@@ -56,7 +56,7 @@
 .ifs-compare-stat__value{display:inline-flex;align-items:center;gap:var(--gaps-gap-150);color:var(--icon-tertiary)}
 .ifs-compare-stat__col{display:inline-flex;flex-direction:column;gap:var(--gaps-gap-50)}
 .ifs-compare-stat__cap{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-compare-stat__num{color:var(--text-primary);font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking)} /* Heading/H1 */
+.ifs-compare-stat__num{color:var(--text-primary);font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Heading/H1 */
 .ifs-compare-stat__col--from .ifs-compare-stat__num{color:var(--text-tertiary)}
 
 /* ================= CompareView ================= */

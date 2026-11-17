@@ -39,7 +39,7 @@
 .ifs-loading-more .ifs-icon{color:var(--icon-primary)}
 .ifs-progress-loading{display:inline-flex;align-items:center;gap:8px;width:289px;max-width:100%}
 .ifs-progress-loading .ifs-progress{flex:1 1 auto;width:auto}
-.ifs-progress-loading__value{flex:none;min-width:30px;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-progress-loading__value{flex:none;min-width:30px;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
 
 /* Skeleton blocks. Same fill as the skeleton bars inside the Figma Loading variants (data.css .ifs-skeleton-bar),
    plus the single shared shimmer the Skeleton notes ask for (rule 6), off under reduced motion. */
@@ -128,7 +128,7 @@
 .ifs-bottom-sheet__buttons{display:flex;align-items:center;gap:6px}
 .ifs-coverage{display:flex;align-items:center;gap:10px /* raw in Figma */;width:190px;flex:0 1 190px;min-width:96px;box-sizing:border-box;padding:var(--paddings-padding-100);border-radius:var(--radius-radius-100)}
 .ifs-coverage .ifs-progress{flex:1 1 auto;width:auto}
-.ifs-coverage__value{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-coverage__value{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
 .ifs-bottom-sheet__map{display:flex;align-items:center;gap:16px;min-width:0;flex:0 1 auto}
 .ifs-bottom-sheet__fields{display:flex;align-items:center;gap:16px;min-width:0}
 .ifs-bottom-sheet__fields > *,.ifs-bottom-sheet__map > :not(.ifs-bottom-sheet__fields){flex:none}

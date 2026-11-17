@@ -10,7 +10,7 @@
 /* ---- counter-atom (88:24147) — used inside group rows and grouped notifications ---- */
 .ifs-data-counter{display:inline-flex;align-items:center;justify-content:center;flex:none;height:18px;padding:var(--paddings-padding-50) var(--paddings-padding-200);
   border-radius:10px /* raw in Figma */;background:var(--surface-tertiary-alpha);color:var(--text-secondary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 
 /* ================= Badge — badge-atom (83:52162) ================= */
 .ifs-badge{display:inline-flex;align-items:center;justify-content:center;gap:var(--gaps-gap-100);flex:none;box-sizing:border-box;
@@ -183,7 +183,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-stat-card__trend .ifs-icon{color:var(--icon-tertiary)}
 .ifs-stat-card__trend--down .ifs-icon{transform:rotate(180deg)}
 .ifs-stat-card__value-row{display:flex;align-items:baseline;gap:var(--gaps-gap-100)}
-.ifs-stat-card__value{flex:none;color:var(--text-primary)}
+.ifs-stat-card__value{flex:none;color:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-stat-card--m .ifs-stat-card__value{font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking)} /* Heading/H1 */
 .ifs-stat-card--s .ifs-stat-card__value{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)} /* Heading/H2 */
 .ifs-stat-card__desc{flex:1;min-width:0;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
@@ -269,7 +269,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table-filter:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* table-cell-atom (1440:5941) */
 .ifs-table__td{display:flex;align-items:center;gap:var(--gaps-gap-200);min-width:0;box-sizing:border-box;padding:var(--spacing-table-cell-y) var(--spacing-table-cell-x);
-  color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+  color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);font-variant-numeric:var(--text-numeric)} /* Body/M/regular */
 /* Align=Right (Text, Text + description, Counter, Text + counter, Number): content and text end-aligned */
 .ifs-table__td--primary{font-weight:var(--text-label-m-medium-weight)} /* name / primary column keeps Label/M/medium; other cells are Body/M/regular */
 .ifs-table__td--right{justify-content:flex-end;text-align:right}

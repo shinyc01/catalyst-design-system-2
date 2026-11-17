@@ -34,7 +34,7 @@
 
 /* ================= value-label-atom (4440:32611) — Label/M/medium ================= */
 .ifs-dv-value{display:inline-flex;align-items:center;justify-content:center;min-height:20px;white-space:nowrap;color:var(--text-primary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
 .ifs-dv-value--secondary{color:var(--text-secondary)}
 .ifs-dv-value--tertiary{color:var(--text-tertiary)}
 .ifs-dv-value--empty{min-width:30px}
@@ -122,11 +122,11 @@
 .ifs-chart__svg{display:block;overflow:visible;font-family:var(--font-family-text)}
 .ifs-chart__tip{position:absolute;z-index:5;pointer-events:none}
 /* Axis ticks Body/S/regular; in-plot values and slice labels Label/M/medium; donut centre H1; gauge value Display/M (semantic tokens, like all text) */
-.ifs-chart__axis{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking);fill:var(--text-tertiary)}
-.ifs-chart__value{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary)}
-.ifs-chart__slice-label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary);pointer-events:none}
-.ifs-chart__center{font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking);fill:var(--text-primary)}
-.ifs-chart__gauge-value{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking);fill:var(--text-primary)}
+.ifs-chart__axis{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking);fill:var(--text-tertiary);font-variant-numeric:var(--text-numeric)}
+.ifs-chart__value{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
+.ifs-chart__slice-label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary);pointer-events:none;font-variant-numeric:var(--text-numeric)}
+.ifs-chart__center{font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking);fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
+.ifs-chart__gauge-value{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking);fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-chart__grid{stroke:var(--border-base);stroke-dasharray:2 4;stroke-linecap:round}
 .ifs-chart__baseline{stroke:var(--white-alpha-30,rgba(255,255,255,0.3))}
 .ifs-chart__guide{stroke:var(--border-medium);stroke-dasharray:2 4}
@@ -170,7 +170,7 @@
   background:repeating-linear-gradient(90deg,var(--seg) 0 2px,transparent 2px 4px) /* raw in Figma: dot spacing */}
 .ifs-evidence__seg--on::before{top:14px;height:8px;border-radius:var(--radius-radius-full);background:var(--seg)}
 .ifs-evidence__marker{position:absolute;top:-9px;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}
-.ifs-evidence__value{color:var(--text-primary);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* Label/L/medium */
+.ifs-evidence__value{color:var(--text-primary);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/L/medium */
 .ifs-evidence__pointer{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:8px solid var(--text-primary)}
 .ifs-evidence__caption{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gaps-gap-400);color:var(--text-tertiary);
   font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */

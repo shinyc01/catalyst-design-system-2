@@ -89,6 +89,8 @@ Big numbers always sit next to a Body or Small label that says what they are. (M
 | Tag / badge (Badge, Chip) | A category, stage, count or attribute | Pill background (or none), no dot | Label/M/medium, normal case: "Shape", "Review", "0/4", "1 resolved" |
 One status per object; a second state is a tag or an icon next to it. Status text is 1–3 words, never a sentence. Never make a tag uppercase to make it stand out; if it matters that much, it's a status.
 
+**Numbers**: any number people compare or watch change uses same-width digits (`font-variant-numeric:var(--text-numeric)`, or the `.t-numeric` class in prototypes): table and list cells, big numbers, chart text, counters, progress and pager values. The kit's components already apply it. Numbers inside sentences keep normal figures.
+
 **By role**
 | Role | Style |
 |---|---|
@@ -140,7 +142,8 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 10. Big numbers: H1 one main number per card, H2 when several or small, Display one hero number per screen; table numbers Label/M/medium.
 11. Meta text is Body/M by default; Small only in named cases (disclaimers, footnotes, text inside a fixed small shape).
 12. Status vs tag: a status (dot + state) is uppercase; a tag or badge (category, stage, count) is Label/M/medium in normal case, including the transparent Badge.
-13. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
+13. Tabular figures (`--text-numeric`) for numbers in tables, big numbers, charts and counters; not in sentences.
+14. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
 
 ## 7. Open
 

@@ -23,6 +23,8 @@
   --letter-spacing-letter-spacing--015:-0.15px;--letter-spacing-letter-spacing--01:-0.1px;
   --letter-spacing-letter-spacing-0:0px;--letter-spacing-letter-spacing-01:0.1px;
   --letter-spacing-letter-spacing-02:0.2px;--letter-spacing-letter-spacing-03:0.3px;
+  /* Numbers people compare or watch change: same-width digits (tables, big numbers, charts, counters). Not for numbers in sentences. */
+  --text-numeric:tabular-nums;
 }
 
 /* Semantic styles. Declared on every density container so the size follows the nearest data-density. */

@@ -143,7 +143,7 @@
 /* counter-atom Size=S (18) */
 .ifs-selection-counter{display:inline-flex;align-items:center;flex:none;height:18px;box-sizing:border-box;padding:var(--paddings-padding-50) var(--paddings-padding-200);
   border-radius:10px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-secondary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 
 /* ---------- Chip (chips 832:235895) ---------- */
 .ifs-chip{

@@ -421,6 +421,7 @@
 .t-code-m-regular{font:var(--text-code-m-regular);letter-spacing:var(--text-code-m-regular-tracking)} /* code at Body size (default) */
 .t-code-m-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)}
 .t-code-s-regular{font:var(--text-code-s-regular);letter-spacing:var(--text-code-s-regular-tracking)} /* code inside Small text only */
+.t-numeric{font-variant-numeric:var(--text-numeric)} /* add to any number people compare or watch change */
 /* Retired styles, kept so older prototypes still render: each renders as the style that replaced it */
 .t-code-regular{font:var(--text-code-m-regular);letter-spacing:var(--text-code-m-regular-tracking)} /* -> Code/M/regular */
 .t-code-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)} /* -> Code/M/medium */
