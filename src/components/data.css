@@ -189,7 +189,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-stat-card__desc{flex:1;min-width:0;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 /* Figma pattern use (Widget Builder 331:493002): value over an UPPERCASE description (was Caption/regular-UPPER → Label/S/UPPER), gap 8 */
 .ifs-stat-card__stack{display:flex;flex-direction:column;gap:var(--gaps-gap-200);min-width:0}
-.ifs-stat-card__desc--below{flex:none;color:var(--text-secondary);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)}
+.ifs-stat-card__desc--below{flex:none;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-stat-card__extra{display:flex;align-items:baseline;gap:var(--gaps-gap-150)}
 .ifs-stat-card--loading .ifs-stat-card__value-row{align-items:center}
 
@@ -282,7 +282,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table__stack--user{gap:var(--gaps-gap-50)}
 .ifs-table__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-table__username{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-table__status-desc{color:var(--text-tertiary);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular */
+.ifs-table__status-desc{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-table__trend{display:inline-flex;align-items:center;gap:var(--gaps-gap-50);color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-table__trend .ifs-icon{color:var(--icon-tertiary)}
 .ifs-table__trend--down .ifs-icon{transform:rotate(180deg)}

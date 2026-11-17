@@ -217,7 +217,7 @@
 .ifs-file-card__head{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:pre}
 .ifs-file-card__tail{flex:none;white-space:pre}
 .ifs-file-card__text .ifs-tooltip-anchor{display:flex;min-width:0}
-.ifs-file-card__date{color:var(--text-tertiary);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular */
+.ifs-file-card__date{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-file-card__actions{display:none;align-items:center;gap:var(--gaps-gap-50);flex:none}
 .ifs-file-card:hover .ifs-file-card__actions,.ifs-file-card:focus-within .ifs-file-card__actions,.ifs-file-card[data-state=hover] .ifs-file-card__actions,.ifs-file-card--active .ifs-file-card__actions,
 .ifs-file-card__actions--error{display:flex}

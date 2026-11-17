@@ -35,8 +35,8 @@ Three text levels plus headings. Steps are 2px.
 
 | Level | Token | Spacious | Comfortable | Compact | Use it for |
 |---|---|---|---|---|---|
-| Small | `--type-s` | 14/20 | 12/16 | 10/14 | **Low-priority reading text only**: disclaimers, helper text, timestamps, captions under numbers, side notes. Never labels, statuses, headers or anything the user acts on. |
-| Body | `--type-m` | 16/24 | 14/20 | 12/16 | The default: all content and all labels. |
+| Small | `--type-s` | 14/20 | 12/16 | 10/14 | **Rare, only where a spec names it**: disclaimers and footnotes, and text inside a fixed small shape (avatar initials at 24px and below, map pin counts, live-cursor tags, chart axis ticks, labels inside Sankey bars). Never labels, statuses, headers, meta or anything the user acts on. |
+| Body | `--type-m` | 16/24 | 14/20 | 12/16 | The default: all content, labels and meta (dates, authors, IDs, helper text, captions). |
 | Large | `--type-l` | 18/26 | 16/24 | 14/20 | H4 titles; text in L-size controls. |
 | H3 / H2 / H1 | `--type-h3/h2/h1` | 22/26/32 | 20/24/28 | 16/20/24 | Sections, page titles, hero pages, big numbers. |
 | Display S/M/L | `--type-display-*` | 36/40/48 | 32/36/44 | 28/32/40 | Rare hero moments. Kept until the product Figma files are checked. |
@@ -54,7 +54,7 @@ Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--ty
 | **Heading/H4/semibold** | Large · 600 · 0 | **The title style**: panel, modal, drawer, card, chart, table card, side nav, empty state |
 | Body/L/regular | Large · 400 · −0.1px | L-field input, long reading |
 | **Body/M/regular** | Body · 400 · 0 | **Default**: content, cells, descriptions, messages, menu items, options, typed text |
-| Body/S/regular | Small · 400 · +0.1px | Low-priority text only |
+| Body/S/regular | Small · 400 · +0.1px | Rare: disclaimers, footnotes, text inside a fixed small shape |
 | Label/L/medium | Large · 500 · −0.15px | L-size control text only |
 | **Label/M/medium** | Body · 500 · 0 | Names, primary column, key values, controls, sub-section titles |
 | **Label/M/UPPER** | Body · 500 · +0.3px · uppercase | Statuses, table and column headers, nav group headers, eyebrows |
@@ -94,8 +94,8 @@ Big numbers always sit next to a Body or Small label that says what they are. (M
 | Control text (button, tab, chip, segmented, badge, nav item) | Label/M/medium (L controls Label/L/medium) |
 | Status (in a table, list or page header) | Label/M/UPPER |
 | Table / column header, nav group header, eyebrow | Label/M/UPPER |
-| Meta (time, author, ID) | Body/M/regular in secondary colour; Body/S/regular when it's low priority |
-| Disclaimer, helper text, caption | Body/S/regular |
+| Meta: time, author, ID, file size, helper text, captions under numbers | Body/M/regular in secondary or tertiary colour |
+| Disclaimer, footnote | Body/S/regular (only where the spec asks for it) |
 | Big number | H1 one per card · H2 several or small cards · Display one hero number per screen |
 
 **Weights mean something**: 400 content · 500 every label, name, control and uppercase text · 600 H4 only (at 500, H4 would equal Label/L/medium). A row with no name or key value is all regular. In tables, the name column is medium (`ifs-table__td--primary`: the column with `primary: true`, else the first text column) and every other cell is regular.
@@ -122,7 +122,7 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 
 1. Compact Small 11 → 10px (2px steps).
 2. Caption retired; Small is the smallest level.
-3. Small is only for low-priority reading text (option B). Labels, statuses and headers move to Body size.
+3. Small is rare (option B, narrowed later the same day: meta moved to Body). Labels, statuses and headers move to Body size.
 4. Uppercase stays for statuses, table headers and nav group headers: Body size, 500, +0.3px. The header status is uppercase too (one status style).
 5. Title Case for titles, chart headers, dropdowns and buttons (strings: content guide).
 6. Label/M/semibold merged into Label/M/medium; H4 keeps 600.
@@ -130,7 +130,8 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 8. Tokens rebuilt as primitives → semantic, like Figma.
 9. Heading order: H2 page → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels.
 10. Big numbers: H1 one main number per card, H2 when several or small, Display one hero number per screen; table numbers Label/M/medium.
-11. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
+11. Meta text is Body/M by default; Small only in named cases (disclaimers, footnotes, text inside a fixed small shape).
+12. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
 
 ## 7. Open
 

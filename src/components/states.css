@@ -135,7 +135,7 @@
 .ifs-map-field{display:flex;flex-direction:column;gap:4px}
 .ifs-map-field__label{padding-left:var(--paddings-padding-150,6px);color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap}
 .ifs-map-field__row{display:flex;align-items:center;gap:2px /* raw in Figma */;height:16px}
-.ifs-map-field__value{padding:0 var(--paddings-padding-150,6px);color:var(--text-secondary);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking);white-space:nowrap}
+.ifs-map-field__value{padding:0 var(--paddings-padding-150,6px);color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
 .ifs-bottom-sheet__divider{width:1px;height:20px;margin:0 var(--paddings-padding-50,2px);background:var(--border-medium);flex:none}
 .ifs-bottom-sheet__tools{display:flex;align-items:center;gap:4px}
 

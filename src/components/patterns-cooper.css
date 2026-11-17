@@ -66,7 +66,7 @@
 .ifs-attachment__icon{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:var(--radius-radius-100);background:var(--background-color-alpha-white-base);flex:none}
 .ifs-attachment__text{display:flex;flex-direction:column;min-width:0}
 .ifs-attachment__name{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ifs-attachment__meta{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking);color:var(--text-tertiary)}
+.ifs-attachment__meta{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-tertiary)}
 
 /* ---------- chat-card-molecule ---------- */
 .ifs-chat-card{display:flex;flex-direction:column;gap:var(--gaps-gap-150);box-sizing:border-box;width:100%;padding:var(--paddings-padding-300);

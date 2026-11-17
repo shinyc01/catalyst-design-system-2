@@ -10,7 +10,7 @@
 .ifs-field--m .ifs-field__label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
 .ifs-field__hint{color:var(--icon-tertiary);display:inline-flex;cursor:help}
 .ifs-field__desc{margin:0;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
-.ifs-field--m .ifs-field__desc{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking) /* Body/S/regular */}
+.ifs-field--m .ifs-field__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 
 .ifs-field__control{
   --fill:var(--element-input-fill-default);--border:var(--element-input-border-default);--ring:0 0 0 0 transparent;
@@ -152,7 +152,7 @@
 .ifs-switch-row{display:flex;align-items:center;justify-content:space-between;gap:var(--gaps-gap-100);border-radius:var(--radius-radius-100);cursor:pointer}
 .ifs-switch-row__text{display:flex;flex-direction:column;gap:var(--gaps-gap-50);min-width:0}
 .ifs-switch-row__label{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
-.ifs-switch-row__desc{color:var(--text-secondary);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking) /* Body/S/regular */}
+.ifs-switch-row__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-switch-row--disabled{cursor:not-allowed}
 .ifs-switch-row--disabled .ifs-switch-row__label,.ifs-switch-row--disabled .ifs-switch-row__desc{color:var(--text-disabled)}
 

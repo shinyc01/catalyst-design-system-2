@@ -10,7 +10,7 @@
       plus text-transform:uppercase for Label/M/UPPER. --text-<style>-weight is there for
       rules that only change the weight.
 
-   Levels: Small (low-priority reading text only), Body (default; all content and labels),
+   Levels: Small (rare: disclaimers, footnotes, text inside a fixed small shape), Body (default; all content and labels),
    Large (H4 titles, L-size controls), H3/H2/H1, Display S/M/L. Caption is retired (= Small).
    Weights: 400 content · 500 every label, name, control and uppercase · 600 H4 only.
    Rules and reasons: guide/typography.md
@@ -45,7 +45,7 @@
   --text-heading-h4-semibold-weight:var(--font-weight-font-weight-semibold);--text-heading-h4-semibold-tracking:var(--letter-spacing-letter-spacing-0);
   --text-heading-h4-semibold:var(--text-heading-h4-semibold-weight) var(--type-l) var(--font-family-text);
 
-  /* Body — content. Body/M is the default; Body/S only for low-priority reading text */
+  /* Body — content and meta. Body/M is the default; Body/S only where a spec names it */
   --text-body-l-regular-weight:var(--font-weight-font-weight-regular);--text-body-l-regular-tracking:var(--letter-spacing-letter-spacing--01);
   --text-body-l-regular:var(--text-body-l-regular-weight) var(--type-l) var(--font-family-text);
   --text-body-m-regular-weight:var(--font-weight-font-weight-regular);--text-body-m-regular-tracking:var(--letter-spacing-letter-spacing-0);

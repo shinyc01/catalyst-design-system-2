@@ -401,7 +401,7 @@
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
    16 styles. Pick by role (guide/typography.md):
      page title H2 (H1 hero/form) · panel/modal/drawer/card/chart title H4 · sub-section Label/M/medium
-     content, typed text, menu items Body/M/regular · low-priority text (disclaimer, helper, timestamp) Body/S/regular
+     content, typed text, menu items, meta Body/M/regular · disclaimers, footnotes, text in a fixed small shape Body/S/regular
      names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2/H1 (Display for rare hero moments)
      UPPERCASE only via Label/M/UPPER: statuses, table/column headers, nav group headers, eyebrows. */
 .t-display-l{font:var(--text-display-l);letter-spacing:var(--text-display-l-tracking)}
@@ -414,7 +414,7 @@
 .t-heading-h4-semibold{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* the title style: panel, modal, drawer, card, chart */
 .t-body-l-regular{font:var(--text-body-l-regular);letter-spacing:var(--text-body-l-regular-tracking)}
 .t-body-m-regular{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* default */
-.t-body-s-regular{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* low-priority reading text only */
+.t-body-s-regular{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* rare: disclaimers, footnotes, text inside a fixed small shape */
 .t-label-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* L-size control text only */
 .t-label-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* names, key values, controls, sub-section titles */
 .t-label-m-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* statuses, table/column headers, nav group headers, eyebrows */
