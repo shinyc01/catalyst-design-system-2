@@ -61,9 +61,11 @@
   --text-label-m-upper-weight:var(--font-weight-font-weight-medium);--text-label-m-upper-tracking:var(--letter-spacing-letter-spacing-03);
   --text-label-m-upper:var(--text-label-m-upper-weight) var(--type-m) var(--font-family-text);
 
-  /* Code — IDs, formulas (kept until the product Figma files are checked) */
-  --text-code-regular-weight:var(--font-weight-font-weight-regular);--text-code-regular-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-code-regular:var(--text-code-regular-weight) var(--type-s) var(--font-family-mono);
-  --text-code-medium-weight:var(--font-weight-font-weight-medium);--text-code-medium-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-code-medium:var(--text-code-medium-weight) var(--type-s) var(--font-family-mono);
+  /* Code — code, formulas, JSON. Code/M matches Body (default, also inline in Body text); Code/S only inside Small text (regular, like Body/S) */
+  --text-code-m-regular-weight:var(--font-weight-font-weight-regular);--text-code-m-regular-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-code-m-regular:var(--text-code-m-regular-weight) var(--type-m) var(--font-family-mono);
+  --text-code-m-medium-weight:var(--font-weight-font-weight-medium);--text-code-m-medium-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-code-m-medium:var(--text-code-m-medium-weight) var(--type-m) var(--font-family-mono);
+  --text-code-s-regular-weight:var(--font-weight-font-weight-regular);--text-code-s-regular-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-code-s-regular:var(--text-code-s-regular-weight) var(--type-s) var(--font-family-mono);
 }

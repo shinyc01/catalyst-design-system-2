@@ -399,7 +399,7 @@
 }
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
-   15 styles. Pick by role (guide/typography.md):
+   16 styles. Pick by role (guide/typography.md):
      page title H2 (H1 hero/form) · panel/modal/drawer/card/chart title H4 · sub-section Label/M/medium
      content, typed text, menu items Body/M/regular · low-priority text (disclaimer, helper, timestamp) Body/S/regular
      names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2/H1 (Display for rare hero moments)
@@ -418,9 +418,12 @@
 .t-label-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* L-size control text only */
 .t-label-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* names, key values, controls, sub-section titles */
 .t-label-m-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* statuses, table/column headers, nav group headers, eyebrows */
-.t-code-regular{font:var(--text-code-regular);letter-spacing:var(--text-code-regular-tracking)}
-.t-code-medium{font:var(--text-code-medium);letter-spacing:var(--text-code-medium-tracking)}
+.t-code-m-regular{font:var(--text-code-m-regular);letter-spacing:var(--text-code-m-regular-tracking)} /* code at Body size (default) */
+.t-code-m-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)}
+.t-code-s-regular{font:var(--text-code-s-regular);letter-spacing:var(--text-code-s-regular-tracking)} /* code inside Small text only */
 /* Retired styles, kept so older prototypes still render: each renders as the style that replaced it */
+.t-code-regular{font:var(--text-code-m-regular);letter-spacing:var(--text-code-m-regular-tracking)} /* -> Code/M/regular */
+.t-code-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)} /* -> Code/M/medium */
 .t-label-m-semibold{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (merged) */
 .t-label-s-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (labels are not Small) */
 .t-label-s-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */

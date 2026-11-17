@@ -1,6 +1,6 @@
 # Typography
 
-How type works in Catalyst Design System 2.0: the token structure, the levels, the 15 styles, and the rules for picking one. Decided with the designer in Nov 2026; the six reference systems (Fluent 2, Atlassian, Carbon, Material 3, Apple HIG, Notion) are the benchmark.
+How type works in Catalyst Design System 2.0: the token structure, the levels, the 16 styles, and the rules for picking one. Decided with the designer in Nov 2026; the six reference systems (Fluent 2, Atlassian, Carbon, Material 3, Apple HIG, Notion) are the benchmark.
 
 ## 1. Structure: primitives → semantic → styles
 
@@ -43,7 +43,7 @@ Three text levels plus headings. Steps are 2px.
 
 Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--type-s`. Only Fluent has a 10px level; the others stop at 11–12. Compact Small went from 11 to 10 so every step is 2px.
 
-## 3. Styles (15)
+## 3. Styles (16)
 
 | Style | Level · weight · letter-spacing | Use |
 |---|---|---|
@@ -58,9 +58,10 @@ Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--ty
 | Label/L/medium | Large · 500 · −0.15px | L-size control text only |
 | **Label/M/medium** | Body · 500 · 0 | Names, primary column, key values, controls, sub-section titles |
 | **Label/M/UPPER** | Body · 500 · +0.3px · uppercase | Statuses, table and column headers, nav group headers, eyebrows |
-| Code regular / medium | Small · mono · 400 / 500 | IDs, formulas (kept until the product Figma files are checked) |
+| Code/M/regular, Code/M/medium | Body · mono · 400 / 500 · 0 | Code, formulas, JSON, also inline in Body text (default) |
+| Code/S/regular | Small · mono · 400 · 0 | Code inside Small text only |
 
-Retired (the class still works and renders as its replacement): Label/M/semibold and Label/S/medium → Label/M/medium; Label/S/UPPER, Caption regular/semibold UPPER and the older uppercase styles → Label/M/UPPER; Label/L/semibold → H4; Body/L/medium → Label/L/medium; Body/M/medium, Heading/H4/medium → Label/M/medium.
+Retired (the class still works and renders as its replacement): Code regular / medium (were Small) → Code/M; Label/M/semibold and Label/S/medium → Label/M/medium; Label/S/UPPER, Caption regular/semibold UPPER and the older uppercase styles → Label/M/UPPER; Label/L/semibold → H4; Body/L/medium → Label/L/medium; Body/M/medium, Heading/H4/medium → Label/M/medium.
 
 ## 4. Rules
 
@@ -107,7 +108,7 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 4. Uppercase stays for statuses, table headers and nav group headers: Body size, 500, +0.3px. The header status is uppercase too (one status style).
 5. Title Case for titles, chart headers, dropdowns and buttons (strings: content guide).
 6. Label/M/semibold merged into Label/M/medium; H4 keeps 600.
-7. Display S/M/L and Code kept until the product Figma files are checked.
+7. Display S/M/L and Code kept until the product Figma files are checked. Code follows Body size (Code/M), with Code/S for code inside Small text; in the old Figma library Code also matched body size.
 8. Tokens rebuilt as primitives → semantic, like Figma.
 9. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
 
