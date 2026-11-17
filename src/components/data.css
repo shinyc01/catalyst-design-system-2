@@ -30,7 +30,7 @@
 .ifs-badge--orange{background:var(--element-map-pin-overlay-warning);color:var(--text-warning)}
 /* Color=False: no fill, caption uppercase in text/secondary, 12px icons */
 .ifs-badge--false{height:20px;padding:var(--paddings-padding-100) var(--paddings-padding-150);color:var(--text-secondary);
-  font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-badge--loading{padding:0}
 .ifs-badge--loading.ifs-badge--l{width:36px;height:28px}
 .ifs-badge--loading.ifs-badge--m{width:78px;height:24px}

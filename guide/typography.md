@@ -82,6 +82,13 @@ Don't skip a level when nesting: if a page groups its cards into sections, each 
 - **Label/M/medium**: numbers inside content (table cells, lists, sentences). A number in a table never uses a heading style.
 Big numbers always sit next to a Body or Small label that says what they are. (Matches the kit today. Revisit if prototypes keep overriding it.)
 
+**Status vs tag**: both are small pills; only a status is uppercase.
+| | What it shows | Looks like | Text |
+|---|---|---|---|
+| Status (Indicator) | The state of the object, which changes over its life | Coloured dot + text | Label/M/UPPER: "DRAFT", "ACTIVE", "UNDER REVIEW" |
+| Tag / badge (Badge, Chip) | A category, stage, count or attribute | Pill background (or none), no dot | Label/M/medium, normal case: "Shape", "Review", "0/4", "1 resolved" |
+One status per object; a second state is a tag or an icon next to it. Status text is 1–3 words, never a sentence. Never make a tag uppercase to make it stand out; if it matters that much, it's a status.
+
 **By role**
 | Role | Style |
 |---|---|
@@ -93,6 +100,7 @@ Big numbers always sit next to a Body or Small label that says what they are. (M
 | Name / primary column / item title / key value | Label/M/medium |
 | Control text (button, tab, chip, segmented, badge, nav item) | Label/M/medium (L controls Label/L/medium) |
 | Status (in a table, list or page header) | Label/M/UPPER |
+| Tag, badge, chip | Label/M/medium, normal case |
 | Table / column header, nav group header, eyebrow | Label/M/UPPER |
 | Meta: time, author, ID, file size, helper text, captions under numbers | Body/M/regular in secondary or tertiary colour |
 | Disclaimer, footnote | Body/S/regular (only where the spec asks for it) |
@@ -131,7 +139,8 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 9. Heading order: H2 page → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels.
 10. Big numbers: H1 one main number per card, H2 when several or small, Display one hero number per screen; table numbers Label/M/medium.
 11. Meta text is Body/M by default; Small only in named cases (disclaimers, footnotes, text inside a fixed small shape).
-12. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
+12. Status vs tag: a status (dot + state) is uppercase; a tag or badge (category, stage, count) is Label/M/medium in normal case, including the transparent Badge.
+13. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
 
 ## 7. Open
 
