@@ -2492,7 +2492,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
   /* ───────────────────────── pattern screens ───────────────────────── */
 
-  const Upper = ({ children, style }) => <span className="t-heading-h3-uppercase" style={{ color: 'var(--text-secondary)', ...style }}>{children}</span>;
+  const Upper = ({ children, style }) => <span className="t-heading-h4-semibold" style={{ color: 'var(--text-primary)', ...style }}>{children}</span>;
   const Panel = ({ children, style }) => <div style={{ background: 'var(--surface-secondary-alpha)', borderRadius: 8, padding: 12, boxSizing: 'border-box', ...style }}>{children}</div>;
   const RightRail = ({ dot }) => (
     <div style={{ flex: 'none', width: 48, boxSizing: 'border-box', padding: 12, background: 'var(--surface-primary)', boxShadow: 'inset 1px 0 0 var(--border-base)', position: 'relative' }}>
@@ -2508,7 +2508,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const shown = DECISIONS.filter(d => d.priority === prio);
     const open = d => { toast(`Opening ${d.title} in ${d.badge}`); setStage(d.badge.toLowerCase()); };
     const tabs = [{ value: 'works', label: 'My works', count: 3 }, { value: 'decisions', label: 'Decisions', count: 6 }, { value: 'conversations', label: 'Conversations', count: 3 }, { value: 'following', label: 'Following', count: 3 }];
-    const stat = (v, l, style) => <div style={{ position: 'absolute', textAlign: 'center', ...style }}><div className="t-body-l-medium">{v}</div><div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{l}</div></div>;
+    const stat = (v, l, style) => <div style={{ position: 'absolute', textAlign: 'center', ...style }}><div className="t-label-l-medium">{v}</div><div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{l}</div></div>;
     return (
       <div style={{ display: 'flex', minHeight: '100%' }}>
         <div style={{ flex: 1, minWidth: 0, padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -2633,7 +2633,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'TruncatedText', figma: 'Name display [patterns] (190:230621)', render: () => {
     const n = 'Northgate Substation Transformer Replacement and Feeder 5 Backup Tie — Phase 2';
     return <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-medium" style={{ width: 260, color: 'var(--text-primary)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
+      {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-regular" style={{ width: 260, color: 'var(--text-primary)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
     </div>;
   } });
 ```
@@ -3290,7 +3290,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'FloatingBar', figma: 'floating-bar-organism (7405:22521)', render: () => <SurfDemoFloatingBar /> });
   function SurfDemoFloatingBar() {
     const [open, setOpen] = React.useState(false);
-    const badge = <span className="t-body-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 16, padding: '0 6px', borderRadius: 100, background: 'var(--background-color-alpha-red-base)', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-danger)' }}>● 3</span>;
+    const badge = <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 16, padding: '0 6px', borderRadius: 100, background: 'var(--background-color-alpha-red-base)', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-danger)' }}>● 3</span>;
     return <>
       <Row label="default"><FloatingBar inline category="Folder" item="Item" badge={badge} secondaryAction={{ label: 'View details' }} primaryAction={{ label: 'Study area' }} onClose={() => {}} /></Row>
       <Live>

@@ -4,6 +4,13 @@ The next version of the IFS DS code kit: a React code twin of the IFS Design Sys
 
 It started as a copy of the IFS DS kit (`shinyc01/new-cl-design-system`, folder `ifs-kit`) with the IFS DS polish values from Flexy (Nov 2026). That kit is unchanged and still powers the `catalyst-prototype` skill; this repo is a separate version.
 
+## 2.0.1 (Nov 17, 2026): typography
+- Type tokens in two layers like the Figma library: primitives, then one semantic set per style (`--text-<style>`, `src/foundations/typography.css`). Components use only the semantic tokens; no hard-coded sizes, weights or letter-spacing anywhere.
+- 16 styles. Caption retired; Small is rare (disclaimers, footnotes, text inside small fixed shapes) and Compact Small is 10 px. Labels, statuses, table headers and meta text are Body size.
+- One uppercase style (Label/M/UPPER: Body, 500, +0.3px) for statuses, table and column headers, nav group headers and eyebrows. Titles are H4 in Title Case; content is regular, names and key values medium.
+- Code follows Body size; tabular figures for numbers; reading text wraps at about 75 characters.
+- Full spec and rules: [guide/typography.md](guide/typography.md). Old `.t-*` class names still work.
+
 ## Previous version: Catalyst Design System 1.0
 Version 1.0 is the original IFS DS code kit, before any of the 2.0 type, spacing or density changes (12 px body text, H1 20 px). It is kept as the record to compare against or go back to.
 

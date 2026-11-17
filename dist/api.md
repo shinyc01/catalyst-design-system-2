@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.0, generated 2026-11-17. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.1, generated 2026-11-17. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant (details: guide/usage.md). `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -705,7 +705,7 @@ table-sort-atom (1440:5921), table-filter-atom (1440:5932), group-row-molecule (
 Figma rule: tables show every row (no pagination). Filter with the `tabs` slot: the Figma table card puts a
 SegmentedControl there (prop "show-segmanted-control"); the canvas notes call it "tabs with counts".
 Props:
-  columns = [{ key, title, width ('1fr' | 240 | 'auto'), align left|center|right (Figma Align=Left|Right; the header follows its column), sortable, sortValue(row),
+  columns = [{ key, title, width ('1fr' | 240 | 'auto'), align left|center|right (Figma Align=Left|Right; the header follows its column), sortable, sortValue(row), primary (medium-weight name column; default the first text column),
               type text|number|description|counter|badge|status|check|user|user-description|custom, render(row), filter: { applied, onClick } }]
     cell values by type: text → row[key]; number → row[key] (Figma Type=Number, right-aligned unless align is set); description → { text, description }; counter → { text, value, direction };
     badge → Badge props; status → { type, label, description }; check → label; user → { name, initials, type, description }.
