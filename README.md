@@ -4,6 +4,17 @@ The next version of the IFS DS code kit: a React code twin of the IFS Design Sys
 
 It started as a copy of the IFS DS kit (`shinyc01/new-cl-design-system`, folder `ifs-kit`) with the IFS DS polish values from Flexy (Nov 2026). That kit is unchanged and still powers the `catalyst-prototype` skill; this repo is a separate version.
 
+## Previous version: Catalyst Design System 1.0
+Version 1.0 is the original IFS DS code kit, before any of the 2.0 type, spacing or density changes (12 px body text, H1 20 px). It is kept as the record to compare against or go back to.
+
+| What | Where |
+|---|---|
+| Source, pinned to the 1.0 version (commit `f75244d`, Oct 29, 2026) | https://github.com/shinyc01/new-cl-design-system/tree/f75244d5834d044761e819a78313691005c4104f/ifs-kit |
+| Live source (folder `ifs-kit` on `master`; may change later) | https://github.com/shinyc01/new-cl-design-system/tree/master/ifs-kit |
+| Storybook (live; shows whatever `master` holds) | https://shinyc01.github.io/new-cl-design-system/ifs-kit/dist/storybook/ |
+
+The pinned link always shows 1.0 exactly as it was, even if `master` changes. To go back to it, copy `ifs-kit/` from that commit (`git checkout f75244d -- ifs-kit` in that repo). Flexy's 14 px polish values (the starting point of 2.0) were never published to that repo; they are the first commit of this one.
+
 ## Look at it
 | What | Where |
 |---|---|
