@@ -75,6 +75,13 @@ Retired (the class still works and renders as its replacement): Code regular / m
 
 Don't skip a level when nesting: if a page groups its cards into sections, each group gets an H3. The visual level is separate from the HTML level: a card title looks like H4 but can be `<h2>` or `<h3>`, whatever keeps the screen-reader outline in order.
 
+**Big numbers**: pick the size by how many numbers compete for attention.
+- **H1**: the one main number of a card or tile (stat card M, quick stat, Cooper chat card, donut centre).
+- **H2**: several numbers side by side, or a small card (stat card S, before → after pairs, metric rows inside a card).
+- **Display**: a single hero number that is the whole point of the view (gauge). At most one per screen.
+- **Label/M/medium**: numbers inside content (table cells, lists, sentences). A number in a table never uses a heading style.
+Big numbers always sit next to a Body or Small label that says what they are. (Matches the kit today. Revisit if prototypes keep overriding it.)
+
 **By role**
 | Role | Style |
 |---|---|
@@ -89,7 +96,7 @@ Don't skip a level when nesting: if a page groups its cards into sections, each 
 | Table / column header, nav group header, eyebrow | Label/M/UPPER |
 | Meta (time, author, ID) | Body/M/regular in secondary colour; Body/S/regular when it's low priority |
 | Disclaimer, helper text, caption | Body/S/regular |
-| Big number | H2 / H1 |
+| Big number | H1 one per card · H2 several or small cards · Display one hero number per screen |
 
 **Weights mean something**: 400 content · 500 every label, name, control and uppercase text · 600 H4 only (at 500, H4 would equal Label/L/medium). A row with no name or key value is all regular. In tables, the name column is medium (`ifs-table__td--primary`: the column with `primary: true`, else the first text column) and every other cell is regular.
 
@@ -122,7 +129,8 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 7. Display S/M/L and Code kept until the product Figma files are checked. Code follows Body size (Code/M), with Code/S for code inside Small text; in the old Figma library Code also matched body size.
 8. Tokens rebuilt as primitives → semantic, like Figma.
 9. Heading order: H2 page → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels.
-10. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
+10. Big numbers: H1 one main number per card, H2 when several or small, Display one hero number per screen; table numbers Label/M/medium.
+11. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
 
 ## 7. Open
 
