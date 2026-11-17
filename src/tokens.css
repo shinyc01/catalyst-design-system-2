@@ -516,7 +516,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
 
 /* Compact = 12px body; spacing about half a notch below Comfortable (a full notch felt too tight) */
 [data-density="compact"]{
-  --type-caption:10px/12px;--type-s:11px/14px /* average gives 10; 11 keeps it apart from caption */;--type-m:12px/16px;--type-l:14px/20px;
+  --type-caption:10px/12px;--type-s:10px/14px /* 2px steps: Small 10, Body 12, Large 14 */;--type-m:12px/16px;--type-l:14px/20px;
   --type-h3:16px/24px;--type-h2:20px/28px;--type-h1:24px/32px;
   --type-display-s:28px/36px;--type-display-m:32px/40px;--type-display-l:40px/48px;
   --control-h-s:20px;--control-h-m:28px;--control-h-l:32px;

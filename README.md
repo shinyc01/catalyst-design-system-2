@@ -34,7 +34,7 @@ Users pick how dense the UI is, as a system setting (three levels):
 |---|---|---|---|---|---|---|---|---|---|---|
 | **Spacious** | 16/24 | 14 | 18 / 22 / 26 / 32 | 36 / 40 / 48 | 28 / 36 / 44 | 64 | 20 / 20 | 24 | 32 | 32 / 32 |
 | **Comfortable** (default) | 14/20 | 12 | 16 / 20 / 24 / 28 | 32 / 36 / 44 | 24 / 32 / 40 | 56 | 16 / 16 | 20 | 24 | 24 / 24 |
-| **Compact** | 12/16 | 11 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 20 / 28 / 32 | 40 | 12 / 8 | 12 | 20 | 16 / 20 |
+| **Compact** | 12/16 | 10 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 20 / 28 / 32 | 40 | 12 / 8 | 12 | 20 | 16 / 20 |
 
 ### Where the numbers come from
 Comfortable is the average of six reference systems: Fluent 2, Atlassian, Carbon, Material 3, Apple HIG and Notion (Notion unofficial, from its CSS).
