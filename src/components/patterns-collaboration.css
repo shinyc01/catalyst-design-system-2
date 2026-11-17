@@ -1,12 +1,12 @@
 /* Collaboration pattern (Patterns › Collaboration 12:8435) + cursor-atom (IFS DS 55:1645). */
 
-/* ---- cursor-atom: cursor-pointer 16 + pill 18 tall offset 16 right, Label/S/medium ---- */
+/* ---- cursor-atom: cursor-pointer 16 + pill (min 18 tall) offset 16 right, Body/S/regular ---- */
 .ifs-cursor{--cu:var(--collaboration-user-1);display:inline-flex;flex-direction:column;align-items:flex-start;pointer-events:none;user-select:none}
 .ifs-cursor__pointer{flex:none;width:16px;height:16px;overflow:visible}
-.ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--gaps-gap-200);margin-left:16px;height:18px;box-sizing:border-box;
+.ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--gaps-gap-200);margin-left:16px;min-height:18px;box-sizing:border-box;
   padding:var(--paddings-padding-50) var(--paddings-padding-150);border-radius:100px /* raw in Figma */;background:var(--cu);color:var(--text-primary);
   box-shadow:0 1px 4px rgba(0,0,0,.16) /* raw in Figma (drop shadow 0 1 4 #000 16%) */;overflow:hidden;white-space:nowrap}
-.ifs-cursor__name{position:relative;padding-bottom:var(--paddings-padding-50);font:var(--font-weight-font-weight-medium) var(--type-s) var(--font-family-text);letter-spacing:0} /* Label/S/medium */
+.ifs-cursor__name{position:relative;padding-bottom:var(--paddings-padding-50);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: ambient name tag */
 .ifs-cursor--dark .ifs-cursor__pill{color:var(--text-primary-inverse)}
 .ifs-cursor--cooper .ifs-cursor__pill{gap:var(--gaps-gap-100)}
 .ifs-cursor__visual{position:absolute;inset:0;width:100%;height:100%}

@@ -19,7 +19,13 @@ Components and prototypes use only the semantic layer:
 ```
 Never write a weight, size or letter-spacing number. A decision such as "uppercase is 500, +0.3px" now lives in one token. The semantic tokens are declared on `:root` and on every `[data-density]` container, so text follows the nearest density setting.
 
-Exception: fixed-size glyph text inside a component (avatar initials, map pins, live-cursor tags) uses the primitives directly at Small size, because the component's box sets it. The two smallest avatars and the mini widget preview keep raw px.
+No exceptions: every text rule in the kit uses a semantic style, including chart SVG text and small component text.
+- Avatar initials: XL (56) H4 · L (40) and M (32) Label/M/UPPER · S (24) Body/S · XS (20) and XXS (16) Body/S with one initial.
+- Map pin counts: Body/S; M and L pins widen into a pill when the count needs it (e.g. 999 in Spacious).
+- Live-cursor name tags: Body/S (ambient text); the tag grows with the text.
+- Charts: axis ticks Body/S · in-plot values Label/M/medium · donut centre H1 · gauge value Display/M.
+- Widget thumbnails (Widget Builder previews): title Label/M/UPPER; the tiny axis and row labels are drawn as skeleton bars, since a thumbnail has no readable text.
+- Navbar wordmark fallback: H3. Bold words inside text use `--text-label-m-medium-weight`.
 
 Paragraph spacing is not a type token (Figma has 8px on Body styles). As in the other systems, the gap between paragraphs comes from spacing tokens.
 
@@ -115,4 +121,3 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 | 4 | Chips in narrow cards wrap more at Body size (Cooper saved scenarios) | Accept, or let those chips truncate. |
 | 5 | Status component sizes XS and S now share the text style | Merge into one size. |
 | 6 | Figma library: old style names (Label/M/medium is "Heading/H4/medium"), single mode with 12px body values, a few wrong bindings (Label/M/medium and Code bound to other styles' letter-spacing), stray styles from other files | Rename to the kit names, add Spacious/Comfortable/Compact modes to "4. Typography semantic", fix the bindings, remove strays. |
-| 7 | Chart text (data viz area) still uses raw 12px/500 in SVG | Move to `--text-body-s-regular` / `--text-label-m-medium` in the data viz pass. |

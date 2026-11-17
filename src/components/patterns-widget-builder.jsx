@@ -43,7 +43,7 @@ function PreviewWidgetCard({ type = 'strategic-objectives', title, className, ..
     </div>;
   } else if (type === 'portfolio') {
     body = <div className="ifs-preview-widget__table">
-      {['[Your company]', 'Peer avg', 'Best in class'].map(l => <div key={l} className="ifs-preview-widget__trow"><span className="ifs-preview-widget__tlabel">{l}</span>{[0, 1, 2, 3, 4].map(i => sk(i, { height: 24 }))}</div>)}
+      {['[Your company]', 'Peer avg', 'Best in class'].map(l => <div key={l} className="ifs-preview-widget__trow"><span className="ifs-preview-widget__sk ifs-preview-widget__tlabel" aria-hidden="true" style={{ width: `${40 + (l.length % 3) * 15}%` }} />{[0, 1, 2, 3, 4].map(i => sk(i, { height: 24 }))}</div>)}
       <div className="ifs-preview-widget__axis ifs-preview-widget__axis--center">{[0, 1, 2, 3, 4].map(i => sk(i, { width: 56 }))}</div>
     </div>;
   } else if (type === 'investment-value') {
@@ -58,7 +58,7 @@ function PreviewWidgetCard({ type = 'strategic-objectives', title, className, ..
     </div>;
   } else {
     body = <div className="ifs-preview-widget__grid">
-      <div className="ifs-preview-widget__yaxis">{['100%', '80%', '60%', '40%', '20%', '0'].map(t => <span key={t}>{t}</span>)}</div>
+      <div className="ifs-preview-widget__yaxis" aria-hidden="true">{['100%', '80%', '60%', '40%', '20%', '0'].map(t => <span key={t} className="ifs-preview-widget__sk" style={{ height: 4 }} />)}</div>
       <div className="ifs-preview-widget__cols">{[0, 1, 2, 3, 4].map(c => <span key={c} className="ifs-preview-widget__col">{[0, 1, 2, 3].map(r => sk(r))}</span>)}</div>
       <div className="ifs-preview-widget__axis">{[0, 1, 2, 3, 4].map(i => sk(i))}</div>
     </div>;

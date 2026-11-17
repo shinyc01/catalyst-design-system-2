@@ -63,13 +63,14 @@ const initialsOf = name => String(name || '').trim().split(/\s+/).filter(Boolean
 function Avatar({ initials, name, type = 'black', src, size = 'm', status, state, onClick, label, className, ...rest }) {
   let t = src && type === 'black' ? 'image' : type;
   if (t === 'auto') { let h = 0; for (const ch of String(name || initials || '')) h = (h * 31 + ch.charCodeAt(0)) >>> 0; t = AVATAR_COLOURS[1 + (h % 15)]; }
-  const text = initials || initialsOf(name);
+  const full = initials || initialsOf(name);
+  const text = size === 'xxs' || size === 'xs' ? String(full).slice(0, 1) : full; // 16/20 px avatars show one initial (Body/S fits one letter)
   const Base = onClick ? 'button' : 'span';
   const showText = !['image', 'cooper', 'loading'].includes(t);
   return (
     <span className={IFS.cx('ifs-avatar', `ifs-avatar--${size}`, `ifs-avatar--${t}`, className)} {...rest}>
       <Base className="ifs-avatar__base" data-state={state} onClick={onClick} type={onClick ? 'button' : undefined}
-        role={onClick ? undefined : 'img'} aria-label={label || name || text || undefined} title={onClick ? (label || name) : undefined}>
+        role={onClick ? undefined : 'img'} aria-label={label || name || full || undefined} title={onClick ? (label || name) : undefined}>
         {t === 'image' && src && <img className="ifs-avatar__img" src={src} alt="" />}
         <span className="ifs-avatar__overlay" />
         {showText && <span className="ifs-avatar__name" aria-hidden="true">{text}</span>}

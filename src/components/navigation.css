@@ -163,7 +163,7 @@
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
 .ifs-navbar__left{display:flex;align-items:center;gap:24px /* raw in Figma */;min-width:0}
 .ifs-navbar__logo{display:flex;align-items:center;flex:none;height:30px;color:var(--text-primary)}
-.ifs-navbar__logo-fallback{display:inline-flex;align-items:center;width:156px;height:30px;font:500 18px/30px var(--font-family-display);letter-spacing:-0.5px;white-space:nowrap}
+.ifs-navbar__logo-fallback{display:inline-flex;align-items:center;width:156px;height:30px;font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking);white-space:nowrap} /* Heading/H3: wordmark fallback */
 .ifs-navbar__list{display:flex;align-items:center;gap:var(--gaps-gap-200);margin:0;padding:0;list-style:none}
 .ifs-navbar__item{box-sizing:border-box;display:inline-flex;align-items:center;gap:var(--gaps-gap-100);height:32px;
   padding:var(--paddings-padding-150) 10px /* raw in Figma */;margin:0;border:0;border-radius:var(--radius-radius-100);cursor:pointer;white-space:nowrap;
@@ -182,7 +182,7 @@
 /* avatar-organism Size=M (32) fallback when the avatar family isn't loaded */
 .ifs-navbar__avatar{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;flex:none;
   border-radius:var(--radius-radius-full);background:var(--background-solid-black);box-shadow:inset 0 0 0 1px var(--border-medium);
-  color:var(--text-primary);font:var(--font-weight-font-weight-semibold) var(--type-s) var(--font-family-text);letter-spacing:0.2px}
+  color:var(--text-primary);font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER: initials */
 
 /* ---------- PageHeader: page-header ---------- */
 .ifs-page-header{position:relative;z-index:0;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--gaps-gap-300);

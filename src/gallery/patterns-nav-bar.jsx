@@ -154,7 +154,7 @@ export default IFS_GALLERY;
             {stat('24', 'Days saved', { left: 8, top: 186 })}
             {stat('$120K', 'Budget saved', { right: 8, top: 186 })}
             <div style={{ position: 'absolute', left: 0, right: 0, top: 200, textAlign: 'center' }}>
-              <div className="t-display" style={{ fontSize: 24, lineHeight: '32px' }}>1 Year</div>
+              <div className="t-heading-h2-medium">1 Year</div>
               <div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>Time horizon</div>
             </div>
           </Panel>

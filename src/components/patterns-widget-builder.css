@@ -11,12 +11,12 @@
 .ifs-preview-widget{position:relative;display:flex;flex-direction:column;gap:var(--gaps-gap-300);box-sizing:border-box;min-width:0;
   padding:var(--paddings-padding-250);border-radius:var(--radius-radius-100);
   box-shadow:inset 0 0 0 1px var(--element-button-primary-border-default);overflow:hidden;pointer-events:none}
-.ifs-preview-widget__title{color:var(--text-tertiary);font:600 7px/10px var(--font-family-text);letter-spacing:0.15px;text-transform:uppercase /* raw in Figma: 7px Semi Bold */}
+.ifs-preview-widget__title{color:var(--text-tertiary);font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */
 .ifs-preview-widget__sk{display:block;height:6px;border-radius:2px;background:var(--background-elevation-1-secondary);box-shadow:inset 0 0 0 0.5px var(--border-base)}
 .ifs-preview-widget__sk--outline{background:transparent;box-shadow:inset 0 0 0 1px var(--border-strong)}
 /* strategic objectives: 5 × 4 block grid with y labels */
 .ifs-preview-widget__grid{display:grid;grid-template-columns:auto 1fr;gap:var(--gaps-gap-100) var(--gaps-gap-200)}
-.ifs-preview-widget__yaxis{display:flex;flex-direction:column;justify-content:space-between;color:var(--text-tertiary);font:400 5px/6px var(--font-family-text)}
+.ifs-preview-widget__yaxis{display:flex;flex-direction:column;justify-content:space-between;width:16px} /* y-axis labels drawn as skeleton bars (a thumbnail has no readable text) */
 .ifs-preview-widget__cols{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--gaps-gap-100)}
 .ifs-preview-widget__col{display:grid;grid-template-rows:repeat(4,16px);gap:2px}
 .ifs-preview-widget__col .ifs-preview-widget__sk{height:auto}
@@ -33,7 +33,7 @@
 .ifs-preview-widget__table{display:flex;flex-direction:column;gap:var(--gaps-gap-100)}
 .ifs-preview-widget__trow{display:grid;grid-template-columns:56px repeat(5,1fr);gap:2px;align-items:center}
 .ifs-preview-widget__trow .ifs-preview-widget__sk{height:12px}
-.ifs-preview-widget__tlabel{color:var(--text-secondary);font:400 5px/6px var(--font-family-text)}
+.ifs-preview-widget__tlabel{height:6px} /* row label drawn as a skeleton bar */
 /* investment value: diverging bars */
 .ifs-preview-widget__diverging{display:grid;grid-template-columns:70px 1fr;gap:var(--gaps-gap-100)}
 .ifs-preview-widget__dlabels{display:flex;flex-direction:column;gap:6px;padding-top:6px}

@@ -58,13 +58,13 @@
 .ifs-avatar__base{--ring:0 0 0 0 transparent;--edge:0 0 0 0 transparent;position:relative;display:flex;align-items:center;justify-content:center;
   width:100%;height:100%;box-sizing:border-box;margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);overflow:hidden;
   background:var(--av-fill,var(--collaboration-user-16));color:var(--av-text,var(--text-on-solid));box-shadow:var(--edge),var(--ring);
-  font:var(--font-weight-font-weight-semibold) var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* Label/S/UPPER */
+  font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER: initials (M avatar, 32) */
 button.ifs-avatar__base{cursor:pointer}
 /* initials type per organism size (Figma overrides the atom text per size) */
-.ifs-avatar--xxs .ifs-avatar__base,.ifs-avatar--xs .ifs-avatar__base{font:600 7px/12px var(--font-family-text);letter-spacing:0.2px /* raw in Figma */}
-.ifs-avatar--s .ifs-avatar__base{font:var(--font-weight-font-weight-semibold) var(--type-s) var(--font-family-text);letter-spacing:0.2px}
-.ifs-avatar--l .ifs-avatar__base{font:var(--font-weight-font-weight-medium) var(--type-m) var(--font-family-text);letter-spacing:-0.15px}
-.ifs-avatar--xl .ifs-avatar__base{font:600 16px/20px var(--font-family-text);letter-spacing:0 /* raw in Figma */}
+.ifs-avatar--xxs .ifs-avatar__base,.ifs-avatar--xs .ifs-avatar__base{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: one initial (16 and 20 px avatars) */
+.ifs-avatar--s .ifs-avatar__base{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: initials (S avatar, 24) */
+.ifs-avatar--l .ifs-avatar__base{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */
+.ifs-avatar--xl .ifs-avatar__base{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 (Large, 600): XL avatar, 56 */
 .ifs-avatar__name{position:relative;z-index:2}
 .ifs-avatar__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* "color": 1.3px inner rim, white 100% → 0% top to bottom at 40% */

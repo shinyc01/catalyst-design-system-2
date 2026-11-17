@@ -79,7 +79,7 @@
 .ifs-activity-panel .ifs-empty{flex:none}
 .ifs-activity-panel__restore p{margin:0 0 var(--gaps-gap-200);color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-activity-panel__restore p:last-child{margin-bottom:0}
-.ifs-activity-panel__restore b{font-weight:600}
+.ifs-activity-panel__restore b{font-weight:var(--text-label-m-medium-weight)}
 
 
 /* The segmented control spans the panel (Figma segmented-control-organism Number=2, Size=S, 355px): SegmentedControl fullWidth. */

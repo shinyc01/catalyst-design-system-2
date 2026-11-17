@@ -121,12 +121,12 @@
 .ifs-chart__plot{position:relative;width:100%}
 .ifs-chart__svg{display:block;overflow:visible;font-family:var(--font-family-text)}
 .ifs-chart__tip{position:absolute;z-index:5;pointer-events:none}
-/* Axis + in-plot text: Label/S/medium (500 12/16, ls 0); donut centre value: Display/S (500 28/36, ls -0.5) */
-.ifs-chart__axis{font-size:12px;font-weight:500;letter-spacing:0;fill:var(--text-tertiary)}
-.ifs-chart__value{font-size:12px;font-weight:500;letter-spacing:0;fill:var(--text-primary)}
-.ifs-chart__slice-label{font-size:12px;font-weight:500;letter-spacing:0;fill:var(--text-primary);pointer-events:none}
-.ifs-chart__center{font-size:28px;font-weight:500;letter-spacing:-0.5px;fill:var(--text-primary)}
-.ifs-chart__gauge-value{font-size:40px;font-weight:600;letter-spacing:-1px;fill:var(--text-primary)}
+/* Axis ticks Body/S/regular; in-plot values and slice labels Label/M/medium; donut centre H1; gauge value Display/M (semantic tokens, like all text) */
+.ifs-chart__axis{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking);fill:var(--text-tertiary)}
+.ifs-chart__value{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary)}
+.ifs-chart__slice-label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary);pointer-events:none}
+.ifs-chart__center{font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking);fill:var(--text-primary)}
+.ifs-chart__gauge-value{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking);fill:var(--text-primary)}
 .ifs-chart__grid{stroke:var(--border-base);stroke-dasharray:2 4;stroke-linecap:round}
 .ifs-chart__baseline{stroke:var(--white-alpha-30,rgba(255,255,255,0.3))}
 .ifs-chart__guide{stroke:var(--border-medium);stroke-dasharray:2 4}
