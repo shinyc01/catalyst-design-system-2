@@ -50,7 +50,7 @@ Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--ty
 | Display L / M / S | Display · 500 · −0.5px | Rare hero numbers |
 | Heading/H1/medium | H1 · 500 · −0.3px | Hero/form page title, big KPI numbers |
 | Heading/H2/medium | H2 · 500 · −0.2px | Page title, big numbers |
-| Heading/H3/medium | H3 · 500 · −0.1px | Large sections |
+| Heading/H3/medium | H3 · 500 · −0.1px | Page sections that aren't inside a card or panel |
 | **Heading/H4/semibold** | Large · 600 · 0 | **The title style**: panel, modal, drawer, card, chart, table card, side nav, empty state |
 | Body/L/regular | Large · 400 · −0.1px | L-field input, long reading |
 | **Body/M/regular** | Body · 400 · 0 | **Default**: content, cells, descriptions, messages, menu items, options, typed text |
@@ -65,11 +65,22 @@ Retired (the class still works and renders as its replacement): Code regular / m
 
 ## 4. Rules
 
+**Heading order**: headings follow the page structure, from the outside in.
+| Level | Use for | Example |
+|---|---|---|
+| H2 (H1 on hero or form pages) | The page title, once per page | "Executive Summary" |
+| H3 | A page section that is not inside a card or panel (it sits on the page background) | "Recommended Alternative" with several cards under it |
+| H4 | The title of a container: card, panel, modal, drawer, chart | "Investment Value Impact", "Readiness Evaluation" |
+| Label/M/medium | A sub-section inside a container that already has a title | "Approval readiness" inside the Readiness panel |
+
+Don't skip a level when nesting: if a page groups its cards into sections, each group gets an H3. The visual level is separate from the HTML level: a card title looks like H4 but can be `<h2>` or `<h3>`, whatever keeps the screen-reader outline in order.
+
 **By role**
 | Role | Style |
 |---|---|
 | Page title | H2 (H1 for hero/form pages) |
-| Panel, modal, drawer, card, chart, section title | H4 |
+| Page section not inside a container | H3 |
+| Panel, modal, drawer, card, chart title | H4 |
 | Sub-section inside a titled panel | Label/M/medium, primary colour |
 | Content, typed text, menu items, options | Body/M/regular |
 | Name / primary column / item title / key value | Label/M/medium |
@@ -110,7 +121,8 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 6. Label/M/semibold merged into Label/M/medium; H4 keeps 600.
 7. Display S/M/L and Code kept until the product Figma files are checked. Code follows Body size (Code/M), with Code/S for code inside Small text; in the old Figma library Code also matched body size.
 8. Tokens rebuilt as primitives → semantic, like Figma.
-9. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
+9. Heading order: H2 page → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels.
+10. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
 
 ## 7. Open
 
