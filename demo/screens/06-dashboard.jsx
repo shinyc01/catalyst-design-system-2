@@ -162,7 +162,7 @@ function ScreenDashboard({ bp, height }) {
                         {segs.map((w, i) => <BarChartItem key={i} number={false} fill={dashboardSeries[i].proj} title={`${name} · ${dashboardSeries[i].label}`}
                           style={{ flex: `${w} 1 0`, height: 16 }} />)}
                       </div>
-                      <span className="t-label-s-medium" style={label}>{value}</span>
+                      <span className="t-label-m-medium" style={label}>{value}</span>
                     </div>
                   </div>
                 );

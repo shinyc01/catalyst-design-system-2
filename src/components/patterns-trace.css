@@ -12,11 +12,11 @@
 .ifs-trc-solution:not(.ifs-trc-solution--applied) .ifs-trc-solution__body{margin-right:calc(24px + var(--gaps-gap-200))}
 .ifs-trc-solution__cooper{flex:none;margin-top:1px}
 .ifs-trc-solution__text{display:flex;flex-direction:column;gap:var(--gaps-gap-100);min-width:0}
-.ifs-trc-solution__title{font:500 var(--type-m) var(--font-family-text);letter-spacing:0;color:var(--text-primary)} /* Label/M/medium */
+.ifs-trc-solution__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-primary)} /* Label/M/medium */
 /* Fill style cooper/Insight/text: text/accent-cooper → text/primary gradient */
 .ifs-trc-solution__title--cooper{background:linear-gradient(270deg,var(--text-accent-cooper) 35%,var(--text-primary) 75%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.ifs-trc-solution__desc{font:400 var(--type-m) var(--font-family-text);letter-spacing:0;color:var(--text-secondary)} /* Body/M/regular */
+.ifs-trc-solution__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary)} /* Body/M/regular */
 /* "The cancel button appears on hover" */
 .ifs-trc-solution--applied .ifs-content-card__head > .ifs-icon-button{opacity:0;transition:opacity .12s}
 .ifs-trc-solution--applied:hover .ifs-content-card__head > .ifs-icon-button,
@@ -33,7 +33,7 @@
 .ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 1px var(--border-base);padding:var(--paddings-padding-300);border-radius:var(--radius-radius-200)}
 .ifs-content-card.ifs-trc-item[role=button]:hover,.ifs-content-card.ifs-trc-item[data-state=hover]{--fill:var(--element-card-state-fill-default);--stroke:inset 0 0 0 1px var(--element-card-state-border-hover)}
 .ifs-trc-item__row{display:flex;align-items:center;gap:var(--gaps-gap-150);min-width:0}
-.ifs-trc-item__title{flex:1;min-width:0;font:400 var(--type-m) var(--font-family-text);letter-spacing:0;color:var(--text-secondary);
+.ifs-trc-item__title{flex:1;min-width:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-trc-item__check{flex:none;color:var(--icon-success)}
 
@@ -49,10 +49,10 @@
 .ifs-trc-nav{display:flex;flex-direction:column;width:100%;min-width:0}
 .ifs-trc-nav--list{gap:var(--gaps-gap-200);padding:var(--paddings-padding-300) 0 var(--paddings-padding-200)}
 .ifs-trc-issue{display:flex;flex-direction:column;gap:var(--gaps-gap-100);padding:var(--paddings-padding-200) 0}
-.ifs-trc-issue__title{margin:0;font:500 var(--type-h2) var(--font-family-text);letter-spacing:-0.2px;color:var(--text-primary)} /* Heading/H2/medium */
-.ifs-trc-issue__desc{margin:0;font:400 var(--type-m) var(--font-family-text);letter-spacing:0;color:var(--text-secondary)} /* Body/M/regular */
+.ifs-trc-issue__title{margin:0;font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking);color:var(--text-primary)} /* Heading/H2 */
+.ifs-trc-issue__desc{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary)} /* Body/M/regular */
 .ifs-trc-section{display:flex;flex-direction:column;gap:var(--gaps-gap-300);padding-top:var(--paddings-padding-300)}
-.ifs-trc-caption{font:400 var(--type-caption) var(--font-family-text);letter-spacing:0.1px;text-transform:uppercase;color:var(--text-secondary)} /* Caption/regular-UPPER */
+.ifs-trc-caption{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase;color:var(--text-secondary)} /* Label/M/UPPER */
 .ifs-trc-solutions{display:flex;flex-direction:column;gap:var(--gaps-gap-150)}
 .ifs-trc-actions{display:flex;gap:var(--gaps-gap-150);padding-top:var(--paddings-padding-200)}
 .ifs-trc-actions > .ifs-button{flex:1 1 0;min-width:0}
@@ -61,7 +61,7 @@
 /* ---- ConfidenceGates ---- */
 .ifs-trc-gates{display:flex;flex-direction:column;gap:var(--gaps-gap-300);width:100%}
 .ifs-trc-gates__head{display:flex;align-items:center;justify-content:space-between;gap:var(--gaps-gap-200);
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0;color:var(--text-primary)} /* Label/M/medium */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-primary)} /* Label/M/medium */
 .ifs-trc-gates__pct{display:inline-flex;align-items:center;gap:var(--gaps-gap-200)}
 .ifs-trc-gates__list{display:flex;flex-direction:column}
 .ifs-trc-gates__inds{display:flex;align-items:center;justify-content:flex-end;gap:var(--gaps-gap-150);width:100%}

@@ -318,9 +318,9 @@ export default IFS_GALLERY;
                 <button key={cy[0]} type="button" role="option" aria-selected={sel} onClick={() => setCycle(i)}
                   style={{ textAlign: 'left', border: 0, cursor: 'pointer', borderRadius: 4, padding: 12, display: 'flex', flexDirection: 'column', gap: 8, color: 'var(--text-primary)',
                     background: sel ? 'var(--surface-tertiary-alpha)' : 'var(--surface-secondary-alpha)', boxShadow: `inset 0 0 0 1px var(${sel ? '--border-medium' : '--border-base'})` }}>
-                  <span style={{ display: 'flex', justifyContent: 'space-between' }}><span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>{cy[0]}</span><span className="t-caption-semibold-upper" style={{ color: tone(cy[1]) }}>{cy[1]}</span></span>
+                  <span style={{ display: 'flex', justifyContent: 'space-between' }}><span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>{cy[0]}</span><span className="t-label-m-upper" style={{ color: tone(cy[1]) }}>{cy[1]}</span></span>
                   <span className="t-heading-h1-medium">{cy[2]}</span>
-                  <span className="t-caption-regular-upper" style={{ color: 'var(--text-tertiary)' }}>{cy[3]}</span>
+                  <span className="t-label-m-upper" style={{ color: 'var(--text-tertiary)' }}>{cy[3]}</span>
                 </button>); })}
             </div>
           </Panel>

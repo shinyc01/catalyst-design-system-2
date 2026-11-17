@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Typography tokens (Catalyst Design System 2.0) — two layers, like the Figma library
+   (collections "3. Typography primitives" and "4. Typography semantic").
+
+   1. Primitives: font families (tokens.css), weights (tokens.css), letter-spacing steps (below),
+      and the size scale --type-s|m|l|h3|h2|h1|display-* (size/line-height pairs per density,
+      Density block in tokens.css).
+   2. Semantic: one set per text style, named like its .t-* class (.t-body-m-regular -> --text-body-m-regular). Components and prototypes use ONLY these:
+        font:var(--text-<style>);letter-spacing:var(--text-<style>-tracking)
+      plus text-transform:uppercase for Label/M/UPPER. --text-<style>-weight is there for
+      rules that only change the weight.
+
+   Levels: Small (low-priority reading text only), Body (default; all content and labels),
+   Large (H4 titles, L-size controls), H3/H2/H1, Display S/M/L. Caption is retired (= Small).
+   Weights: 400 content · 500 every label, name, control and uppercase · 600 H4 only.
+   Rules and reasons: guide/typography.md
+   ========================================================================== */
+
+:root{
+  /* Letter-spacing primitives (Figma "letter-spacing/letter-spacing-*"; --05 = -0.5px, 03 = +0.3px) */
+  --letter-spacing-letter-spacing--06:-0.6px;--letter-spacing-letter-spacing--05:-0.5px;
+  --letter-spacing-letter-spacing--03:-0.3px;--letter-spacing-letter-spacing--02:-0.2px;
+  --letter-spacing-letter-spacing--015:-0.15px;--letter-spacing-letter-spacing--01:-0.1px;
+  --letter-spacing-letter-spacing-0:0px;--letter-spacing-letter-spacing-01:0.1px;
+  --letter-spacing-letter-spacing-02:0.2px;--letter-spacing-letter-spacing-03:0.3px;
+}
+
+/* Semantic styles. Declared on every density container so the size follows the nearest data-density. */
+:root,[data-density]{
+  /* Display S / M / L — rare: hero numbers, landing moments */
+  --text-display-l-weight:var(--font-weight-font-weight-medium);--text-display-l-tracking:var(--letter-spacing-letter-spacing--05);
+  --text-display-l:var(--text-display-l-weight) var(--type-display-l) var(--font-family-display);
+  --text-display-m-weight:var(--font-weight-font-weight-medium);--text-display-m-tracking:var(--letter-spacing-letter-spacing--05);
+  --text-display-m:var(--text-display-m-weight) var(--type-display-m) var(--font-family-display);
+  --text-display-s-weight:var(--font-weight-font-weight-medium);--text-display-s-tracking:var(--letter-spacing-letter-spacing--05);
+  --text-display-s:var(--text-display-s-weight) var(--type-display-s) var(--font-family-display);
+
+  /* Headings — H2 page title (H1 hero/form pages, big numbers), H3 large sections, H4 panel/modal/drawer/card/chart titles */
+  --text-heading-h1-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h1-medium-tracking:var(--letter-spacing-letter-spacing--03);
+  --text-heading-h1-medium:var(--text-heading-h1-medium-weight) var(--type-h1) var(--font-family-text);
+  --text-heading-h2-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h2-medium-tracking:var(--letter-spacing-letter-spacing--02);
+  --text-heading-h2-medium:var(--text-heading-h2-medium-weight) var(--type-h2) var(--font-family-text);
+  --text-heading-h3-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h3-medium-tracking:var(--letter-spacing-letter-spacing--01);
+  --text-heading-h3-medium:var(--text-heading-h3-medium-weight) var(--type-h3) var(--font-family-text);
+  --text-heading-h4-semibold-weight:var(--font-weight-font-weight-semibold);--text-heading-h4-semibold-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-heading-h4-semibold:var(--text-heading-h4-semibold-weight) var(--type-l) var(--font-family-text);
+
+  /* Body — content. Body/M is the default; Body/S only for low-priority reading text */
+  --text-body-l-regular-weight:var(--font-weight-font-weight-regular);--text-body-l-regular-tracking:var(--letter-spacing-letter-spacing--01);
+  --text-body-l-regular:var(--text-body-l-regular-weight) var(--type-l) var(--font-family-text);
+  --text-body-m-regular-weight:var(--font-weight-font-weight-regular);--text-body-m-regular-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-body-m-regular:var(--text-body-m-regular-weight) var(--type-m) var(--font-family-text);
+  --text-body-s-regular-weight:var(--font-weight-font-weight-regular);--text-body-s-regular-tracking:var(--letter-spacing-letter-spacing-01);
+  --text-body-s-regular:var(--text-body-s-regular-weight) var(--type-s) var(--font-family-text);
+
+  /* Labels — names, key values, controls, sub-section titles; UPPER = statuses, table/column headers, nav group headers, eyebrows */
+  --text-label-l-medium-weight:var(--font-weight-font-weight-medium);--text-label-l-medium-tracking:var(--letter-spacing-letter-spacing--015);
+  --text-label-l-medium:var(--text-label-l-medium-weight) var(--type-l) var(--font-family-text);
+  --text-label-m-medium-weight:var(--font-weight-font-weight-medium);--text-label-m-medium-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-label-m-medium:var(--text-label-m-medium-weight) var(--type-m) var(--font-family-text);
+  --text-label-m-upper-weight:var(--font-weight-font-weight-medium);--text-label-m-upper-tracking:var(--letter-spacing-letter-spacing-03);
+  --text-label-m-upper:var(--text-label-m-upper-weight) var(--type-m) var(--font-family-text);
+
+  /* Code — IDs, formulas (kept until the product Figma files are checked) */
+  --text-code-regular-weight:var(--font-weight-font-weight-regular);--text-code-regular-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-code-regular:var(--text-code-regular-weight) var(--type-s) var(--font-family-mono);
+  --text-code-medium-weight:var(--font-weight-font-weight-medium);--text-code-medium-tracking:var(--letter-spacing-letter-spacing-0);
+  --text-code-medium:var(--text-code-medium-weight) var(--type-s) var(--font-family-mono);
+}

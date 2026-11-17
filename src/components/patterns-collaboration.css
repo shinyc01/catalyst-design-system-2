@@ -6,7 +6,7 @@
 .ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--gaps-gap-200);margin-left:16px;height:18px;box-sizing:border-box;
   padding:var(--paddings-padding-50) var(--paddings-padding-150);border-radius:100px /* raw in Figma */;background:var(--cu);color:var(--text-primary);
   box-shadow:0 1px 4px rgba(0,0,0,.16) /* raw in Figma (drop shadow 0 1 4 #000 16%) */;overflow:hidden;white-space:nowrap}
-.ifs-cursor__name{position:relative;padding-bottom:var(--paddings-padding-50);font:500 var(--type-caption) var(--font-family-text);letter-spacing:0} /* Label/S/medium */
+.ifs-cursor__name{position:relative;padding-bottom:var(--paddings-padding-50);font:var(--font-weight-font-weight-medium) var(--type-s) var(--font-family-text);letter-spacing:0} /* Label/S/medium */
 .ifs-cursor--dark .ifs-cursor__pill{color:var(--text-primary-inverse)}
 .ifs-cursor--cooper .ifs-cursor__pill{gap:var(--gaps-gap-100)}
 .ifs-cursor__visual{position:absolute;inset:0;width:100%;height:100%}
@@ -34,7 +34,7 @@
 
 .ifs-collab-section{display:flex;flex-direction:column;gap:var(--gaps-gap-200);padding-top:var(--paddings-padding-100)}
 .ifs-collab-section__title{display:flex;align-items:center;gap:var(--gaps-gap-200);margin:0;padding-left:var(--paddings-padding-300);
-  color:var(--text-secondary);font:600 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/semibold */
+  color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-collab-section__title--cooper span{background:linear-gradient(to left,var(--text-accent-cooper),var(--text-primary)) /* Figma GRADIENT_LINEAR; same as CooperChip */;
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-collab-section__list{display:flex;flex-direction:column;gap:var(--gaps-gap-200);padding:0 var(--paddings-padding-100)}
@@ -47,9 +47,9 @@
 .ifs-collab-row:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-collab-row__who{display:flex;align-items:center;gap:var(--gaps-gap-200);flex:1 1 auto;min-width:0}
 .ifs-collab-row__text{display:flex;flex-direction:column;gap:var(--gaps-gap-50);min-width:0}
-.ifs-collab-row__name{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0; /* Label/M/medium */
+.ifs-collab-row__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
   overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.ifs-collab-row__title{color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0; /* Body/M/regular */
+.ifs-collab-row__title{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
   overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-collab-row__add{opacity:0}
 .ifs-collab-row:hover .ifs-collab-row__add,.ifs-collab-row[data-state=hover] .ifs-collab-row__add,.ifs-collab-row:focus-within .ifs-collab-row__add{opacity:1}
@@ -59,7 +59,7 @@
 .ifs-role-select__trigger{--f:var(--element-input-fill-default);--b:var(--element-input-border-default);--ring:0 0 0 0 transparent;
   display:flex;align-items:center;gap:var(--gaps-gap-100);box-sizing:border-box;height:24px;min-width:75px;padding:0 var(--paddings-padding-200);
   border-radius:var(--radius-radius-100);background:var(--f);box-shadow:inset 0 0 0 1px var(--b),var(--ring);color:var(--text-primary);
-  font:400 var(--type-m) var(--font-family-text);letter-spacing:0;cursor:pointer;outline:none;user-select:none;transition:background-color .12s,box-shadow .12s} /* Body/M/regular */
+  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);cursor:pointer;outline:none;user-select:none;transition:background-color .12s,box-shadow .12s} /* Body/M/regular */
 .ifs-role-select__value{flex:1 1 auto}
 .ifs-role-select__trigger .ifs-icon{color:var(--icon-secondary)}
 .ifs-role-select__trigger:hover{--f:var(--element-input-fill-hover);--b:var(--element-input-border-hover)}
@@ -73,7 +73,7 @@
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))} /* effect blur/strong */
 .ifs-role-select__option,.ifs-role-filter__option{display:flex;align-items:center;gap:var(--gaps-gap-100);box-sizing:border-box;height:28px;
   padding:var(--paddings-padding-100) var(--paddings-padding-200);border-radius:var(--radius-radius-100);color:var(--text-secondary);cursor:pointer;
-  font:400 var(--type-m) var(--font-family-text);letter-spacing:0;outline:none} /* Body/M/regular */
+  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);outline:none} /* Body/M/regular */
 .ifs-role-select__option > span{flex:1 1 auto}
 .ifs-role-select__option .ifs-icon{color:var(--icon-primary)}
 .ifs-role-select__option:hover,.ifs-role-select__option.is-active,.ifs-role-filter__option:hover,.ifs-role-filter__option:focus-visible{background:var(--element-button-secondary-fill-hover);color:var(--text-primary)}
@@ -91,11 +91,11 @@
 .ifs-collab-invite__person{display:flex;align-items:center;gap:var(--gaps-gap-200)}
 .ifs-collab-invite__person > .ifs-role-select{align-self:center}
 .ifs-collab-invite__text{display:flex;flex-direction:column;gap:var(--gaps-gap-100);flex:1 1 auto;min-width:0}
-.ifs-collab-invite__name{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
-.ifs-collab-invite__title{color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
+.ifs-collab-invite__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-collab-invite__title{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-collab-invite__brief{display:flex;flex-direction:column;gap:var(--gaps-gap-200)}
 .ifs-collab-invite__brief .ifs-collab-section__title{padding-left:0}
 .ifs-collab-invite__area.ifs-field--area .ifs-field__control{height:200px} /* Figma resizes the M (100) text area to 200 to fit Cooper's brief */
 .ifs-collab-remove{display:flex;flex-direction:column;gap:var(--gaps-gap-300)}
 .ifs-collab-remove__card{display:flex;align-items:center;gap:var(--gaps-gap-200);padding:var(--paddings-padding-200);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha)}
-.ifs-collab-remove__text{margin:0;color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
+.ifs-collab-remove__text{margin:0;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */

@@ -398,44 +398,41 @@
 --drop-shadow-pin:0 0 10px 0 rgba(10,14,21,0.2);
 }
 
-/* Text styles — one class per Figma text style ("Body/L/regular" -> .t-body-l-regular). Values from the IFS DS polish branch (Nov 2026): 14px default.
-   Pick the style by ROLE (full table + reasons: guide/typography.md):
-     page title H2 (H1 hero) · panel/modal/drawer/card/section title H4 · sub-section inside a titled panel Label/M/semibold
-     content (cells, list text, descriptions, messages, menu items, options, typed text) Body/M/regular
-     name / primary column / item title / key value Label/M/medium · big numbers H2/H1/Display
-     meta (time, author, IDs, helper text) Body/M or Body/S regular, secondary/tertiary colour
-     control text (button, tab, chip, segmented, badge, nav item) Label/M/medium (L controls Label/L/medium)
-     UPPERCASE only for table/column headers, eyebrows and group labels (Label/S/UPPER) and tiny status text (Caption/semibold/UPPER).
-     Never use uppercase or Label/L for a title. */
-.t-display-l{font:500 var(--type-display-l) var(--font-family-display);letter-spacing:-0.5px}
-.t-display-m{font:500 var(--type-display-m) var(--font-family-display);letter-spacing:-0.5px}
-.t-display-s{font:500 var(--type-display-s) var(--font-family-display);letter-spacing:-0.5px}
-.t-display{font:500 var(--type-display-m) var(--font-family-display);letter-spacing:-0.5px} /* = Display/M */
-.t-heading-h1-medium{font:500 var(--type-h1) var(--font-family-text);letter-spacing:-0.3px}
-.t-heading-h2-medium{font:500 var(--type-h2) var(--font-family-text);letter-spacing:-0.2px}
-.t-heading-h3-medium{font:500 var(--type-h3) var(--font-family-text);letter-spacing:-0.1px}
-.t-heading-h4-semibold{font:600 var(--type-l) var(--font-family-text);letter-spacing:0}
-.t-body-l-regular{font:400 var(--type-l) var(--font-family-text);letter-spacing:-0.1px}
-.t-body-l-medium{font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px} /* retired: same values as Label/L/medium; use .t-label-l-medium */
-.t-body-m-regular{font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
-.t-body-s-regular{font:400 var(--type-s) var(--font-family-text);letter-spacing:0.1px}
-.t-label-l-medium{font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px} /* L-size control text only (button L, field L, option L); titles use H4 */
-.t-label-l-semibold{font:600 var(--type-l) var(--font-family-text);letter-spacing:-0.15px} /* retired: near-duplicate of H4 (16/600); use .t-heading-h4-semibold */
-.t-label-m-medium{font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
-.t-label-m-semibold{font:600 var(--type-m) var(--font-family-text);letter-spacing:0}
-.t-label-m-upper{font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* retired: titles use H4, eyebrows use Label/S/UPPER */
-.t-label-s-medium{font:500 var(--type-s) var(--font-family-text);letter-spacing:0}
-.t-label-s-upper{font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* table/column headers, eyebrows, group labels only */
-.t-code-medium{font:500 var(--type-s) var(--font-family-mono);letter-spacing:0}
-.t-code-regular{font:400 var(--type-s) var(--font-family-mono);letter-spacing:0}
-.t-caption-regular-upper{font:400 var(--type-caption) var(--font-family-text);letter-spacing:0.1px;text-transform:uppercase} /* calendar weekday / tiny step caption only; captions under numbers use Body/S/regular */
-.t-caption-semibold-upper{font:600 var(--type-caption) var(--font-family-text);letter-spacing:0.2px;text-transform:uppercase}
-/* Retired styles, kept so older prototypes still render: each maps to the style Figma rebound it to */
-.t-body-m-medium{font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* -> Label/M/medium */
-.t-heading-h3-uppercase{font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* -> Label/M/UPPER */
-.t-heading-h4-medium{font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* -> Label/M/medium */
-.t-heading-h4-upper{font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* -> Label/S/UPPER */
-.t-label-l-upper{font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* -> Label/M/UPPER */
+/* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
+   15 styles. Pick by role (guide/typography.md):
+     page title H2 (H1 hero/form) · panel/modal/drawer/card/chart title H4 · sub-section Label/M/medium
+     content, typed text, menu items Body/M/regular · low-priority text (disclaimer, helper, timestamp) Body/S/regular
+     names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2/H1 (Display for rare hero moments)
+     UPPERCASE only via Label/M/UPPER: statuses, table/column headers, nav group headers, eyebrows. */
+.t-display-l{font:var(--text-display-l);letter-spacing:var(--text-display-l-tracking)}
+.t-display-m{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking)}
+.t-display-s{font:var(--text-display-s);letter-spacing:var(--text-display-s-tracking)}
+.t-display{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking)} /* = Display/M */
+.t-heading-h1-medium{font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking)}
+.t-heading-h2-medium{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)}
+.t-heading-h3-medium{font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking)}
+.t-heading-h4-semibold{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* the title style: panel, modal, drawer, card, chart */
+.t-body-l-regular{font:var(--text-body-l-regular);letter-spacing:var(--text-body-l-regular-tracking)}
+.t-body-m-regular{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* default */
+.t-body-s-regular{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* low-priority reading text only */
+.t-label-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* L-size control text only */
+.t-label-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* names, key values, controls, sub-section titles */
+.t-label-m-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* statuses, table/column headers, nav group headers, eyebrows */
+.t-code-regular{font:var(--text-code-regular);letter-spacing:var(--text-code-regular-tracking)}
+.t-code-medium{font:var(--text-code-medium);letter-spacing:var(--text-code-medium-tracking)}
+/* Retired styles, kept so older prototypes still render: each renders as the style that replaced it */
+.t-label-m-semibold{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (merged) */
+.t-label-s-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (labels are not Small) */
+.t-label-s-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
+.t-label-l-semibold{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* -> H4 */
+.t-body-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* -> Label/L/medium */
+.t-caption-regular-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER (Caption retired) */
+.t-caption-semibold-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER (Caption retired) */
+.t-body-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
+.t-heading-h3-uppercase{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
+.t-heading-h4-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
+.t-heading-h4-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
+.t-label-l-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
 
 /* Effect styles */
 .fx-elevation-1{box-shadow:var(--elevation-elevation-1-primary);backdrop-filter:blur(var(--blur-strong))}
@@ -480,7 +477,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
 /* Comfortable (default): 14px body; best-in-class average type and spacing */
 :root,[data-density="comfortable"]{
   /* Type ramp: size/line-height (weights and letter-spacing stay per style) */
-  --type-caption:10px/12px;--type-s:12px/16px;--type-m:14px/20px;--type-l:16px/24px;
+  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:12px/16px;--type-m:14px/20px;--type-l:16px/24px;
   --type-h3:20px/28px;--type-h2:24px/32px;--type-h1:28px/36px;
   --type-display-s:32px/40px;--type-display-m:36px/44px;--type-display-l:44px/52px;
   --control-h-s:24px;--control-h-m:32px;--control-h-l:40px;
@@ -498,7 +495,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
 
 /* Spacious = 16px body, one notch up */
 [data-density="spacious"]{
-  --type-caption:12px/16px;--type-s:14px/20px;--type-m:16px/24px;--type-l:18px/26px;
+  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:14px/20px;--type-m:16px/24px;--type-l:18px/26px;
   --type-h3:22px/28px;--type-h2:26px/32px;--type-h1:32px/40px;
   --type-display-s:36px/44px;--type-display-m:40px/48px;--type-display-l:48px/56px;
   --control-h-s:28px;--control-h-m:36px;--control-h-l:44px;
@@ -516,7 +513,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
 
 /* Compact = 12px body; spacing about half a notch below Comfortable (a full notch felt too tight) */
 [data-density="compact"]{
-  --type-caption:10px/12px;--type-s:10px/14px /* 2px steps: Small 10, Body 12, Large 14 */;--type-m:12px/16px;--type-l:14px/20px;
+  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:10px/14px /* 2px steps: Small 10, Body 12, Large 14 */;--type-m:12px/16px;--type-l:14px/20px;
   --type-h3:16px/24px;--type-h2:20px/28px;--type-h1:24px/32px;
   --type-display-s:28px/36px;--type-display-m:32px/40px;--type-display-l:40px/48px;
   --control-h-s:20px;--control-h-m:28px;--control-h-l:32px;

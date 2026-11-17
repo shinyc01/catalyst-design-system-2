@@ -34,7 +34,7 @@
 
 /* ================= value-label-atom (4440:32611) — Label/M/medium ================= */
 .ifs-dv-value{display:inline-flex;align-items:center;justify-content:center;min-height:20px;white-space:nowrap;color:var(--text-primary);
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-dv-value--secondary{color:var(--text-secondary)}
 .ifs-dv-value--tertiary{color:var(--text-tertiary)}
 .ifs-dv-value--empty{min-width:30px}
@@ -43,13 +43,13 @@
 
 /* ================= legend-swatch-atom (4440:32628) — Label/M/semibold ================= */
 .ifs-dv-legend{display:inline-flex;align-items:center;gap:var(--gaps-gap-200);padding:var(--paddings-padding-150) 0;white-space:nowrap;
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0;cursor:default}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);cursor:default}
 .ifs-dv-legend__swatch{flex:none;width:16px;height:16px;border-radius:var(--radius-radius-100)}
 .ifs-dv-legend__target{flex:none;width:2px;height:16px;border-radius:2px;background:var(--icon-primary)}
 .ifs-dv-legend__name{color:var(--text-secondary)}
 .ifs-dv-legend__value{color:var(--text-primary)}
 /* In the core charts' legend (info-hint-item) the name is Label/S/medium; the value stays Label/M/semibold. */
-.ifs-dv-card__legend .ifs-dv-legend__name{font:500 var(--type-s) var(--font-family-text);letter-spacing:0}
+.ifs-dv-card__legend .ifs-dv-legend__name{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-dv-legend--hover .ifs-dv-legend__name{color:var(--text-primary)}
 .ifs-dv-legend--out-of-hover .ifs-dv-legend__swatch{opacity:.2}
 .ifs-dv-legend--out-of-hover .ifs-dv-legend__name,.ifs-dv-legend--out-of-hover .ifs-dv-legend__value{color:var(--text-disabled)}
@@ -58,7 +58,7 @@
 .ifs-dv-header{display:flex;align-items:center;gap:var(--gaps-gap-200);min-height:28px;min-width:0;box-sizing:border-box}
 .ifs-dv-header__left{flex:1;display:flex;align-items:center;gap:var(--gaps-gap-100);min-width:0}
 .ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-primary);
-  font:600 var(--type-l) var(--font-family-text);letter-spacing:0} /* Heading/H4/semibold */
+  font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
 .ifs-dv-header__drag{display:none;color:#9e9ea8 /* raw in Figma */;cursor:grab}
 .ifs-dv-header__hover{display:flex;align-items:center;gap:var(--gaps-gap-200);opacity:0;pointer-events:none}
 .ifs-dv-header__divider{width:1px;height:20px;margin:0 var(--paddings-padding-50);background:var(--border-medium)}
@@ -103,16 +103,16 @@
 .ifs-dv-tooltip__head{display:flex;flex-direction:column;gap:var(--gaps-gap-150)}
 .ifs-dv-tooltip__titlerow{display:flex;align-items:flex-end;gap:var(--gaps-gap-200)}
 .ifs-dv-tooltip__titles{flex:1;display:flex;flex-direction:column;gap:var(--gaps-gap-50);min-width:0}
-.ifs-dv-tooltip__title{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
-.ifs-dv-tooltip__sub{color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
+.ifs-dv-tooltip__title{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-dv-tooltip__sub{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-dv-tooltip__line{display:flex;justify-content:space-between;align-items:center;gap:var(--gaps-gap-150);color:var(--text-secondary);
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-dv-tooltip__delta{display:inline-flex;align-items:center;gap:var(--gaps-gap-50)}
 .ifs-dv-tooltip__delta .ifs-icon{color:var(--icon-success)}
 .ifs-dv-tooltip__delta--negative .ifs-icon{color:var(--icon-danger)}
 .ifs-dv-tooltip__divider{display:block;height:1px;background:var(--border-fieldborder-alpha,rgba(255,255,255,0.1))}
 .ifs-dv-tooltip__items{display:flex;flex-direction:column}
-.ifs-dv-tooltip__item{display:flex;align-items:center;gap:var(--gaps-gap-200);padding:var(--paddings-padding-150) 0;font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
+.ifs-dv-tooltip__item{display:flex;align-items:center;gap:var(--gaps-gap-200);padding:var(--paddings-padding-150) 0;font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-dv-tooltip__dot{flex:none;width:8px;height:8px;border-radius:50%}
 .ifs-dv-tooltip__name{flex:1;min-width:0;color:var(--text-secondary)}
 .ifs-dv-tooltip__val{color:var(--text-primary);white-space:nowrap}
@@ -147,8 +147,8 @@
 .ifs-chart__skel-legend span + span{width:75px}
 .ifs-chart--empty .ifs-dv-card__body,.ifs-chart--loading .ifs-dv-card__body{padding:0}
 .ifs-chart__empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--gaps-gap-200);height:388px;text-align:center}
-.ifs-chart__empty-title{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
-.ifs-chart__empty-text{color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
+.ifs-chart__empty-title{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-chart__empty-text{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-chart__table{overflow:auto}
 .ifs-chart__sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
@@ -160,7 +160,7 @@
 
 /* ================= evidence-strength-bar-molecule (67:6634) ================= */
 .ifs-evidence{display:flex;flex-direction:column;gap:var(--gaps-gap-150);min-width:0;width:100%}
-.ifs-evidence__title{color:var(--text-secondary);font:500 var(--type-h3) var(--font-family-text);letter-spacing:-0.1px} /* Heading/H3/medium */
+.ifs-evidence__title{color:var(--text-secondary);font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking)} /* Heading/H3 */
 .ifs-evidence__bar{position:relative;display:flex;height:24px}
 .ifs-evidence__seg{--seg:var(--background-system-danger);flex:1;position:relative}
 .ifs-evidence__seg--review{--seg:var(--background-system-warning)}
@@ -170,9 +170,9 @@
   background:repeating-linear-gradient(90deg,var(--seg) 0 2px,transparent 2px 4px) /* raw in Figma: dot spacing */}
 .ifs-evidence__seg--on::before{top:14px;height:8px;border-radius:var(--radius-radius-full);background:var(--seg)}
 .ifs-evidence__marker{position:absolute;top:-9px;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}
-.ifs-evidence__value{color:var(--text-primary);font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px} /* Label/L/medium */
+.ifs-evidence__value{color:var(--text-primary);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* Label/L/medium */
 .ifs-evidence__pointer{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:8px solid var(--text-primary)}
 .ifs-evidence__caption{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gaps-gap-400);color:var(--text-tertiary);
-  font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* Label/S/UPPER */
+  font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */
 .ifs-evidence__caption span:nth-child(2){text-align:center}
 .ifs-evidence__caption span:nth-child(3){text-align:right}

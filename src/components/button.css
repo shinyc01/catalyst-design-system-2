@@ -11,9 +11,9 @@
 .ifs-button .ifs-button__label{padding:0 var(--paddings-padding-100)}
 
 /* Sizes */
-.ifs-button--l{height:var(--control-h-l);padding:var(--paddings-padding-200) var(--paddings-padding-300);border-radius:var(--radius-radius-200);font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px}
-.ifs-button--m{height:var(--control-h-m);padding:var(--paddings-padding-150) var(--paddings-padding-250);border-radius:var(--radius-radius-100);font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
-.ifs-button--s{height:var(--control-h-s);padding:var(--paddings-padding-50) var(--paddings-padding-150);border-radius:var(--radius-radius-100);font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-button--l{height:var(--control-h-l);padding:var(--paddings-padding-200) var(--paddings-padding-300);border-radius:var(--radius-radius-200);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
+.ifs-button--m{height:var(--control-h-m);padding:var(--paddings-padding-150) var(--paddings-padding-250);border-radius:var(--radius-radius-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-button--s{height:var(--control-h-s);padding:var(--paddings-padding-50) var(--paddings-padding-150);border-radius:var(--radius-radius-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-icon-button--l{width:var(--control-h-l);height:var(--control-h-l);padding:var(--paddings-padding-300);border-radius:var(--radius-radius-200)}
 .ifs-icon-button--m{width:var(--control-h-m);height:var(--control-h-m);padding:var(--paddings-padding-200);border-radius:var(--radius-radius-100)}
 .ifs-icon-button--s{width:24px;height:24px;padding:var(--paddings-padding-100);border-radius:var(--radius-radius-100)}

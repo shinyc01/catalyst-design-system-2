@@ -18,9 +18,9 @@
 .ifs-cpin--open .ifs-cpin__avatars > * + *{margin-left:0}
 .ifs-cpin__body{display:flex;flex-direction:column;gap:6px /* raw in Figma */;width:100%;min-width:0}
 .ifs-cpin__title{display:flex;align-items:center;gap:var(--gaps-gap-200);min-height:20px}
-.ifs-cpin__name{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
-.ifs-cpin__time,.ifs-cpin__replies{color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
-.ifs-cpin__text{color:var(--text-primary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0;
+.ifs-cpin__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-cpin__time,.ifs-cpin__replies{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cpin__text{color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
 /* ---------- CommentMenu (⋯ + single-select-list-molecule, 160 wide) ---------- */
@@ -50,12 +50,12 @@
 .ifs-cdcard--selected .ifs-cdcard__meta,.ifs-cdcard--menu .ifs-cdcard__meta{display:none}
 .ifs-cdcard[data-state=focus] .ifs-cdcard__buttons{display:none}
 .ifs-cdcard__comment{display:flex;flex-direction:column;gap:6px /* raw in Figma */;min-width:0}
-.ifs-cdcard__where{display:flex;align-items:center;gap:6px /* raw in Figma */;color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
+.ifs-cdcard__where{display:flex;align-items:center;gap:6px /* raw in Figma */;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-cdcard__bullet{width:4px;height:4px;border-radius:50%;background:var(--icon-disabled);flex:none}
 .ifs-cdcard__title{display:flex;align-items:center;gap:var(--gaps-gap-200);min-height:20px}
-.ifs-cdcard__name{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
-.ifs-cdcard__time{color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
-.ifs-cdcard__text{color:var(--text-primary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0;
+.ifs-cdcard__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-cdcard__time{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cdcard__text{color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 
 /* ---------- Mention picker (popover-organism + content-card-organism S rows) ---------- */

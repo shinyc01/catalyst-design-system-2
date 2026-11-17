@@ -24,7 +24,7 @@ Run `tools/extract-spec.js` via `use_figma` on the component set: it returns pad
 ## CSS rules
 - Class names: `.ifs-<component>` block, `--<modifier>` for Figma variant values: `.ifs-button.ifs-button--primary.ifs-button--m`.
 - Only token vars for colour, spacing, radius, type. Raw values only where Figma itself has no variable (comment `/* raw in Figma */`).
-- Typography: apply the Figma text style's values from tokens.css `.t-*` (copy the font shorthand + letter-spacing into the component rule).
+- Typography: use the semantic type tokens from `src/foundations/typography.css`: `font:var(--text-<style>);letter-spacing:var(--text-<style>-tracking)` (plus `text-transform:uppercase` for Label/M/UPPER). Never write a weight, size or letter-spacing number. Pick the style by role (`guide/typography.md`).
 - Strokes keep the Figma box size: `INSIDE` stroke → `box-shadow: inset 0 0 0 Wpx color`; `OUTSIDE` → `box-shadow: 0 0 0 Wpx color`; `CENTER` → `outline: Wpx solid; outline-offset: -W/2px`. Use `border` only when Figma's stroke changes layout.
 - States: Figma `State=Hover/Pressed/Disabled/Focus` → `:hover`, `:active`, `:disabled`/`[aria-disabled=true]`, `:focus-visible`. Also support `[data-state=hover|pressed|focus]` so the gallery can show forced states.
 - Focus ring (shared): `box-shadow: 0 0 0 1.5px var(--focus-focus-inner), 0 0 0 3px var(--focus-focus-outer)`.

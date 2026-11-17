@@ -1,5 +1,6 @@
 // Kit entry: styles, icons and every component family. Import from here, not from family files.
 import '../tokens.css';
+import '../foundations/typography.css';
 import './_core.css';
 import './button.css';
 import './data.css';

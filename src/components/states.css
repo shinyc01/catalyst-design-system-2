@@ -21,9 +21,9 @@
   padding:var(--paddings-padding-300) 0;box-sizing:border-box;text-align:center;min-width:0}
 .ifs-empty--full{flex:1 1 auto;width:100%;height:100%;min-height:100%}
 .ifs-empty--section{width:100%}
-.ifs-empty__heading{margin:0;width:100%;color:var(--text-primary);font:600 var(--type-l) var(--font-family-text);letter-spacing:0}
+.ifs-empty__heading{margin:0;width:100%;color:var(--text-primary);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)}
 .ifs-empty__text{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
-.ifs-empty__body{margin:0;width:100%;color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-empty__body{margin:0;width:100%;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-empty__chips{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--gaps-gap-200)}
 .ifs-empty__actions{display:flex;justify-content:center;gap:8px;padding:0 40px /* raw in Figma */;width:100%;box-sizing:border-box}
 
@@ -33,13 +33,13 @@
 @media (prefers-reduced-motion:reduce){.ifs-spin{animation-duration:3s}}
 
 .ifs-spinner{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
-.ifs-spinner__text{color:var(--text-primary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-spinner__text{color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-loading-more{display:inline-flex;align-items:center;gap:8px;color:var(--text-primary);
-  font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
+  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-loading-more .ifs-icon{color:var(--icon-primary)}
 .ifs-progress-loading{display:inline-flex;align-items:center;gap:8px;width:289px;max-width:100%}
 .ifs-progress-loading .ifs-progress{flex:1 1 auto;width:auto}
-.ifs-progress-loading__value{flex:none;min-width:30px;color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-progress-loading__value{flex:none;min-width:30px;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 
 /* Skeleton blocks. Same fill as the skeleton bars inside the Figma Loading variants (data.css .ifs-skeleton-bar),
    plus the single shared shimmer the Skeleton notes ask for (rule 6), off under reduced motion. */
@@ -83,8 +83,8 @@
   border-radius:var(--radius-radius-full);background:var(--fill);color:var(--text-primary);
   box-shadow:inset 0 0 0 1px var(--edge),var(--elevation-elevation-1-primary),var(--ring);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));transition:background-color .12s,box-shadow .12s}
-.ifs-prompt--l{height:40px;padding:var(--paddings-padding-200) var(--paddings-padding-400);font:500 var(--type-l) var(--font-family-text);letter-spacing:-.15px}
-.ifs-prompt--m{height:32px;padding:var(--paddings-padding-150) var(--paddings-padding-300);font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-prompt--l{height:40px;padding:var(--paddings-padding-200) var(--paddings-padding-400);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
+.ifs-prompt--m{height:32px;padding:var(--paddings-padding-150) var(--paddings-padding-300);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-prompt:hover,.ifs-prompt[data-state=hover]{--fill:var(--element-button-secondary-fill-hover);--edge:var(--element-button-secondary-border-hover);color:var(--text-secondary)}
 .ifs-prompt:active,.ifs-prompt[data-state=pressed]{--fill:var(--element-button-secondary-fill-pressed);--edge:var(--element-button-secondary-border-pressed);color:var(--text-tertiary)}
 .ifs-prompt:disabled{cursor:not-allowed;--fill:var(--element-button-secondary-fill-disabled);--edge:var(--element-button-secondary-border-disabled);color:var(--text-disabled)}
@@ -94,7 +94,7 @@
 .ifs-cooper-chip{--fill:var(--background-color-alpha-cooper-base);--ring:0 0 0 0 transparent;
   display:inline-flex;align-items:center;gap:4px;flex:none;height:24px;box-sizing:border-box;margin:0;border:0;cursor:pointer;white-space:nowrap;
   padding:var(--paddings-padding-50) var(--paddings-padding-200);border-radius:var(--radius-radius-full);background:var(--fill);box-shadow:var(--ring);
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-cooper-chip__label{background:linear-gradient(to left,var(--text-accent-cooper),var(--text-primary)) /* gradient direction approx. */;
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-cooper-chip:hover,.ifs-cooper-chip[data-state=hover]{--fill:var(--background-color-alpha-cooper-strong)}
@@ -124,18 +124,18 @@
 .ifs-bottom-sheet__left > *{flex:none}
 .ifs-bottom-sheet__left > .ifs-bottom-sheet__context{flex:0 1 auto}
 .ifs-bottom-sheet__context{display:flex;align-items:center;gap:8px}
-.ifs-bottom-sheet__context-title{color:var(--text-secondary);font:600 var(--type-m) var(--font-family-text);letter-spacing:0;white-space:nowrap}
+.ifs-bottom-sheet__context-title{color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap}
 .ifs-bottom-sheet__buttons{display:flex;align-items:center;gap:6px}
 .ifs-coverage{display:flex;align-items:center;gap:10px /* raw in Figma */;width:190px;flex:0 1 190px;min-width:96px;box-sizing:border-box;padding:var(--paddings-padding-100);border-radius:var(--radius-radius-100)}
 .ifs-coverage .ifs-progress{flex:1 1 auto;width:auto}
-.ifs-coverage__value{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-coverage__value{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-bottom-sheet__map{display:flex;align-items:center;gap:16px;min-width:0;flex:0 1 auto}
 .ifs-bottom-sheet__fields{display:flex;align-items:center;gap:16px;min-width:0}
 .ifs-bottom-sheet__fields > *,.ifs-bottom-sheet__map > :not(.ifs-bottom-sheet__fields){flex:none}
 .ifs-map-field{display:flex;flex-direction:column;gap:4px}
-.ifs-map-field__label{padding-left:var(--paddings-padding-150,6px);color:var(--text-tertiary);font:400 var(--type-caption) var(--font-family-text);letter-spacing:.1px;text-transform:uppercase;white-space:nowrap}
+.ifs-map-field__label{padding-left:var(--paddings-padding-150,6px);color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap}
 .ifs-map-field__row{display:flex;align-items:center;gap:2px /* raw in Figma */;height:16px}
-.ifs-map-field__value{padding:0 var(--paddings-padding-150,6px);color:var(--text-secondary);font:400 var(--type-s) var(--font-family-text);letter-spacing:0.1px;white-space:nowrap}
+.ifs-map-field__value{padding:0 var(--paddings-padding-150,6px);color:var(--text-secondary);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking);white-space:nowrap}
 .ifs-bottom-sheet__divider{width:1px;height:20px;margin:0 var(--paddings-padding-50,2px);background:var(--border-medium);flex:none}
 .ifs-bottom-sheet__tools{display:flex;align-items:center;gap:4px}
 

@@ -13,8 +13,8 @@
 .ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;box-shadow:0 0 0 0.5px var(--border-base),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
 .ifs-pin-dot__fill{display:flex;align-items:center;justify-content:center;width:var(--pd-in);height:var(--pd-in);border-radius:50%;
   background:var(--pd-fill);color:var(--text-primary);overflow:hidden}
-.ifs-pin-dot__text{font:600 var(--type-caption) var(--font-family-text);letter-spacing:0.2px;text-transform:uppercase} /* Caption/semibold-UPPER */
-.ifs-pin-dot--l .ifs-pin-dot__text{font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px} /* Label/S/UPPER */
+.ifs-pin-dot__text{font:var(--font-weight-font-weight-semibold) var(--type-s) var(--font-family-text);letter-spacing:0.2px;text-transform:uppercase} /* Caption/semibold-UPPER */
+.ifs-pin-dot--l .ifs-pin-dot__text{font:var(--font-weight-font-weight-semibold) var(--type-s) var(--font-family-text);letter-spacing:0.3px} /* Label/S/UPPER */
 .ifs-pin-dot--s .ifs-pin-dot__text,.ifs-pin-dot--xs .ifs-pin-dot__text{display:none}
 .ifs-pin-dot--selected{box-shadow:0 0 0 2px var(--element-map-pin-border-active),var(--drop-shadow-pin)}
 .ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 1px var(--element-map-pin-border-active),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
@@ -71,7 +71,7 @@ button.ifs-pin-defect{cursor:pointer}
 /* ================= bar-chart-item (44fcce06…) / vertical-bar-chart-item (c06b1d19…) ================= */
 .ifs-bar-item{--bar-fill:var(--data-viz-data-1);display:flex;align-items:center;justify-content:center;box-sizing:border-box;
   min-width:0;min-height:0;height:32px;padding:0 var(--paddings-padding-200);border-radius:var(--radius-radius-100);background:var(--bar-fill);
-  color:var(--text-primary);font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase /* Label/S/UPPER */;
+  color:var(--text-primary);font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase /* Label/M/UPPER */;
   overflow:hidden;white-space:nowrap}
 /* Figma colour index → data-viz/data-N (the set skips N=8: 9→6, 6→7, 7→9, 8→10). Missing variables: fallbacks are the Figma values. */
 .ifs-bar-item--c1{--bar-fill:var(--data-viz-data-1)}
@@ -98,7 +98,7 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-popover{max-height:360px}
 .ifs-docs-popover .ifs-popover__content{gap:0}
 .ifs-docs-popover__empty{display:flex;align-items:center;justify-content:center;min-height:120px;color:var(--text-primary);
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0 /* Label/M/semibold */}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
 
 /* Cooper's context (left side of the value bottom sheet) with the popover anchored above the bar. */
 .ifs-docs-context{position:static;display:flex;align-items:center}
@@ -120,7 +120,7 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-feedback .ifs-alert{width:303px}
 .ifs-docs-details{display:flex;flex-direction:column;gap:var(--gaps-gap-200);margin:0;padding:0;list-style:none}
 .ifs-docs-details li{display:flex;flex-direction:column;gap:var(--gaps-gap-50)}
-.ifs-docs-details__name{color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
-.ifs-docs-details__why{color:var(--text-tertiary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-docs-details__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-docs-details__why{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-docs-context__loading .ifs-icon{animation:ifs-docs-spin 1s linear infinite}
 @keyframes ifs-docs-spin{to{transform:rotate(360deg)}}

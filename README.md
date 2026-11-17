@@ -65,7 +65,7 @@ Comfortable is the average of six reference systems: Fluent 2, Atlassian, Carbon
 
 How it works:
 - Put `data-density="spacious"`, `"comfortable"` or `"compact"` on `<html>` (or any container). `IFS.setDensity('compact')` does this and remembers the choice; `IFS.getDensity()` reads it back.
-- Component CSS no longer hardcodes type sizes: it reads `--type-caption|s|m|l|h3|h2|h1|display-*` (size/line-height pairs). Weights and letter-spacing stay per style.
+- Type is tokens in two layers (like the Figma library): primitives (families, weights, letter-spacing steps, and the `--type-s|m|l|h3|h2|h1|display-*` size/line-height pairs per density) and one semantic set per text style, `--text-<style>` + `-tracking` + `-weight` (`src/foundations/typography.css`). Components use only the semantic set. 15 styles; rules in `guide/typography.md`.
 - Control heights read `--control-h-s|m|l`, `--tab-h-m|l`, `--nav-row-h`, `--table-row-h`, `--table-header-h`.
 - The `--spacing-*` role tokens step down one notch in Compact; `--page-margin` / `--page-gap` give the page grid.
 - All values live in the Density block at the end of `src/tokens.css`.

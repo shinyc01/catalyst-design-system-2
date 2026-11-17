@@ -53,9 +53,9 @@
 .ifs-widget-card__head{display:flex;align-items:flex-start;gap:var(--gaps-gap-300)}
 .ifs-widget-card__text{display:flex;flex-direction:column;gap:var(--gaps-gap-100);flex:1;min-width:0}
 .ifs-widget-card__title{display:flex;align-items:center;gap:var(--gaps-gap-200);min-height:24px;color:var(--text-primary);
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0 /* Label/M/medium */}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
 .ifs-widget-card__drag{position:absolute;left:2px;top:17px;color:var(--icon-secondary)}
-.ifs-widget-card__desc{color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0 /* Body/M/regular */}
+.ifs-widget-card__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-widget-card > .ifs-preview-widget{flex:none}
 
 /* ---------- resize-handle (key 190c6106…) ---------- */
@@ -79,13 +79,13 @@
   padding:var(--paddings-padding-300);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);
   box-shadow:0 0 0 1px var(--border-base);backdrop-filter:blur(4px) /* raw in Figma: background blur 4 */}
 .ifs-widget-chip__title{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--text-tertiary);
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0 /* Label/M/semibold */}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
 
 /* ========== pattern: WidgetFrame / WidgetBoard / WidgetsDrawer ========== */
 .wb-frame{height:100%;min-width:0}
 .wb-frame .wb-frame__header{flex:none}
 .wb-frame__grab{touch-action:none}
-.wb-frame__body{flex:1;min-width:0;color:var(--text-primary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0 /* Body/M/regular */}
+.wb-frame__body{flex:1;min-width:0;color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .wb-frame--bare .wb-frame__body{padding:0}
 .wb-frame--drag .ifs-dv-header__hover,.wb-frame--drag .ifs-dv-header__drag{opacity:0;pointer-events:none}
 .wb-frame--drag{box-shadow:inset 0 0 0 1px var(--element-card-state-border-drag)}
@@ -99,7 +99,7 @@
 .wb-board--resizing,.wb-board--resizing *{cursor:ew-resize !important;user-select:none}
 .wb-section{display:flex;flex-direction:column;gap:var(--gaps-gap-400);min-width:0}
 .wb-section--titled{padding:var(--paddings-padding-300);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);box-shadow:inset 0 0 0 1px var(--border-base)}
-.wb-section__title{margin:0;color:var(--text-primary);font:500 var(--type-h2) var(--font-family-text);letter-spacing:-0.2px /* Heading/H2/medium */}
+.wb-section__title{margin:0;color:var(--text-primary);font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking) /* Heading/H2 */}
 .wb-rows{display:flex;flex-direction:column;gap:var(--wb-gap);min-width:0}
 .wb-row{position:relative;display:flex;align-items:stretch;gap:var(--wb-gap);min-width:0}
 .wb-cell{display:flex;flex-direction:column;min-width:0}
@@ -124,6 +124,6 @@
 .wb-size-option__bars.is-selected i.is-on{background:var(--background-solid-blue)}
 
 .wb-drawer{width:400px;max-width:100%}
-.wb-drawer__desc{margin:0 0 var(--gaps-gap-400);color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
+.wb-drawer__desc{margin:0 0 var(--gaps-gap-400);color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .wb-drawer__search{margin-bottom:var(--gaps-gap-400)}
 .wb-drawer__list{display:flex;flex-direction:column;gap:var(--gaps-gap-200)}
