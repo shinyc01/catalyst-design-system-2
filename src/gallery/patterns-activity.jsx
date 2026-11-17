@@ -67,7 +67,7 @@ export default IFS_GALLERY;
   const PENDING = [...APPROVED, { key: 'mt', state: 'awaiting', name: 'M. Torres', position: 'Asset Planning', avatar: P.torres, date: 'Requested May 10' },
     { key: 'as', state: 'rejected', name: 'A. Singh', position: 'Investment Owner', avatar: P.singh, date: '4:12 PM · May 11', comment: 'CAPEX split needs the updated 2026 figures.' }];
   const d = s => new Date(`${s}T00:00`);
-  const fmt = v => v.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const fmt = v => IFS.format.date(v);
   const FRAMEWORKS = [
     { id: 'f1', name: 'Q1 2026 Strategy Framework', status: { type: 'green', label: 'Active' }, modified: d('2026-01-15'), by: P.carter, versions: Q1_VERSIONS, approvals: APPROVED },
     { id: 'f2', name: 'Q2 2026 Strategy Framework', status: { type: 'orange', label: 'Pending Approval', count: '5/8' }, modified: d('2026-01-10'), by: P.singh, versions: genVersions(P.singh), approvals: PENDING },
@@ -103,7 +103,7 @@ export default IFS_GALLERY;
     return [
       { key: 'pos', title: 'Industry position percentile', trend: `${Math.abs(62 - k[0])}`, trendDirection: up(k[0], 62), fromLabel: cap, from: ordinal(k[0]), toLabel: curLabel, to: '62nd', description: 'among peer utilities' },
       { key: 'risk', title: 'Risk coverage', trend: `${Math.abs(94 - k[1])} %`, trendDirection: up(k[1], 94), fromLabel: cap, from: `${k[1]}%`, toLabel: curLabel, to: '94%', description: 'of investments scored' },
-      { key: 'cap', title: 'Total capital', trend: `${Math.abs((1.24 - k[2]) / k[2] * 100).toFixed(2)}%`, trendDirection: up(k[2], 1.24), fromLabel: cap, from: `$${k[2].toFixed(2)}B`, toLabel: curLabel, to: '$1.24B' },
+      { key: 'cap', title: 'Total capital', trend: IFS.format.percent(Math.abs((1.24 - k[2]) / k[2] * 100)), trendDirection: up(k[2], 1.24), fromLabel: cap, from: IFS.format.money(k[2] * 1e9), toLabel: curLabel, to: '$1.24B' },
       { key: 'bcr', title: 'Portfolio Benefit-Cost Ratio', trend: `${Math.abs(2.5 - k[3]).toFixed(1)}`, trendDirection: up(k[3], 2.5), fromLabel: cap, from: `${k[3]}`, toLabel: curLabel, to: '2.5' },
     ];
   };

@@ -37,7 +37,7 @@ export default IFS_GALLERY;
       <Row label="show-icon" top>
         {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} showIcon title="Item can't be added here">Drop it on a framework node instead.</Alert>)}
       </Row>
-      <Live>{shown ? <Alert type="warning" title="Unsaved changes" onClose={() => setShown(false)}>Close me.</Alert> : <Button onClick={() => setShown(true)}>Show alert again</Button>}</Live>
+      <Live>{shown ? <Alert type="warning" title="Unsaved changes" onClose={() => setShown(false)}>Save the draft before you leave this page.</Alert> : <Button onClick={() => setShown(true)}>Show alert again</Button>}</Live>
     </>;
   }
 
@@ -62,7 +62,7 @@ export default IFS_GALLERY;
       <Live>
         <Button type="primary" onClick={() => setOpen(true)}>Open modal</Button>
         <Modal open={open} onOpenChange={setOpen} title="Archive investment"
-          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive', onClick: () => setOpen(false) }}>
+          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive investment', onClick: () => setOpen(false) }}>
           <Filler h={80}>Esc, the ✕ or a click on the overlay closes it. Tab stays inside.</Filler>
         </Modal>
       </Live>

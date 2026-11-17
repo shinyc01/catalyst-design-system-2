@@ -32,7 +32,7 @@ const EMPTY_CAUSES = {
   'first-run':          { icon: 'system-plus', tone: 'neutral', action: { icon: 'system-plus' } },
   'empty-container':    { icon: 'node', tone: 'neutral', action: { icon: 'system-pencil-plus' } },
   'all-done':           { icon: 'status-success-filled', tone: 'success' },
-  'error':              { icon: 'status-warning-filled', tone: 'warning', action: { icon: 'arrow-refresh', label: 'Retry' } },
+  'error':              { icon: 'status-warning-filled', tone: 'warning', action: { icon: 'arrow-refresh', label: 'Try again' } },
   'no-access':          { icon: 'lock', tone: 'neutral', action: { label: 'Request access' } },
   'no-results-similar': { icon: null },
   'no-results':         { icon: null, action: { type: 'secondary', label: 'Clear filters' } },
@@ -70,8 +70,9 @@ function EmptyState({ cause = 'first-run', size = 'section', heading, body, icon
 }
 
 // Figma: empty-state-spinner-molecule (3782:24081)
-// Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."), showText (show-text).
-function Spinner({ text = 'Loading...', showText = true, className, ...rest }) {
+// Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."; the kit uses the
+// ellipsis character, guide/content.md), showText (show-text).
+function Spinner({ text = 'Loading…', showText = true, className, ...rest }) {
   return (
     <div role="status" aria-live="polite" className={IFS.cx('ifs-spinner', className)} {...rest}>
       <StateMedia icon="system-loader" spin />

@@ -799,7 +799,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
   };
   if (apiRef) apiRef.current = { send: q => send(q, []), setSize: setSz };
   const newChat = () => { timers.current.forEach(clearTimeout); setMsgs([]); setTtl('New chat'); setFiles([]); onNewChat && onNewChat(); };
-  const addFiles = list => setFiles([...files, ...list.map((f, i) => ({ id: f.name + Date.now() + i, name: f.name, meta: f.size ? `${Math.max(1, Math.round(f.size / 1024))} KB` : 'File' }))]);
+  const addFiles = list => setFiles([...files, ...list.map((f, i) => ({ id: f.name + Date.now() + i, name: f.name, meta: f.size ? IFS.format.fileSize(f.size) : 'File' }))]);
   const attach = () => addFiles([{ name: `Board directive ${files.length + 1}.pdf`, size: 248000 }]);
 
   const conversation = msgs.length ? msgs.map(m => m.role === 'user'
@@ -935,12 +935,12 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
       </div>}
       {modal && modal.kind === 'delete' && confirm(modalIds.length === 1 ? 'Delete this chat?' : 'Delete these chats?', <>
         <div className="ifs-confirm-list">{modalIds.map(id => <ConfirmDeleteCard key={id} onRemove={modalIds.length > 1 ? () => dropId(id) : undefined}>{nameOf(id)}</ConfirmDeleteCard>)}</div>
-        <p className="ifs-confirm-note">Selected chats will be moved to <b>Trash</b> and permanently deleted after <b>30 days</b></p>
-      </>, 'Delete', () => { upd(modalIds, { trashed: true, pinned: false }); setModal(null); endSelect(); })}
+        <p className="ifs-confirm-note">Selected chats will be moved to <b>Trash</b> and permanently deleted after <b>30 days</b>.</p>
+      </>, modalIds.length === 1 ? 'Delete chat' : 'Delete chats', () => { upd(modalIds, { trashed: true, pinned: false }); setModal(null); endSelect(); })}
       {modal && modal.kind === 'deleteFolders' && confirm(modalIds.length === 1 ? 'Delete this folder?' : 'Delete these folders?', <>
         <div className="ifs-confirm-list">{modalIds.map(id => <ConfirmDeleteCard key={id} icon={(fols.find(f => f.id === id) || {}).icon || 'chat-folder'} onRemove={modalIds.length > 1 ? () => dropId(id) : undefined}>{nameOf(id)}</ConfirmDeleteCard>)}</div>
         <p className="ifs-confirm-note">Chats are not deleted. They are removed from the folder and stay in your history.</p>
-      </>, 'Delete', () => { setFols(fols.filter(f => !modalIds.includes(f.id))); setList(list.map(c => modalIds.includes(c.folder) ? { ...c, folder: undefined } : c)); if (modalIds.includes(open)) setOpen(null); setModal(null); endSelect(); })}
+      </>, modalIds.length === 1 ? 'Delete folder' : 'Delete folders', () => { setFols(fols.filter(f => !modalIds.includes(f.id))); setList(list.map(c => modalIds.includes(c.folder) ? { ...c, folder: undefined } : c)); if (modalIds.includes(open)) setOpen(null); setModal(null); endSelect(); })}
       {modal && modal.kind === 'move' && confirm('Move to folder', <>
         {modalIds.length > 1 && <div className="ifs-confirm-list" style={{ marginBottom: 12 }}>{modalIds.map(id => <ConfirmDeleteCard key={id} onRemove={() => dropId(id)}>{nameOf(id)}</ConfirmDeleteCard>)}</div>}
         <div className="ifs-history__list">{fols.length ? fols.map(f => <FolderItem key={f.id} icon={f.icon} active={moveTo === f.id} onClick={() => setMoveTo(f.id)}>{f.name}</FolderItem>)

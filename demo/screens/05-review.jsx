@@ -5,7 +5,7 @@ const reviewStages = [
 ];
 
 const reviewStats = [
-  { title: 'Portfolio value', trend: '4.8 %', compare: { from: '$2.14B', to: '$2.24B', fromLabel: 'Current', toLabel: 'Proposed' } },
+  { title: 'Portfolio value', trend: '4.8%', compare: { from: '$2.14B', to: '$2.24B', fromLabel: 'Current', toLabel: 'Proposed' } },
   { title: 'Investments re-scored', value: '1,621', description: '357 gained • 519 lost • 745 unchanged' },
   { title: 'Finding tier changes', value: '876', description: '52 gained • 31 lost • 12 major shift' },
   { title: 'Governance flags', value: '1', description: 'executing investment affected' },
@@ -40,13 +40,13 @@ const reviewRows = [
   { id: 'g1', group: 'Biggest gainers', name: 'Substation 12 Reliability Upgrade', type: 'Reliability', total: { from: '$3.1M', to: '$4.4M' }, change: { value: '+$1.3M', direction: 'up' }, ratio: { from: '2.6', to: '3.7' } },
   { id: 'g2', group: 'Biggest gainers', name: 'Grid Hardening Program', type: 'Reliability', total: { from: '$5.0M', to: '$6.2M' }, change: { value: '+$1.2M', direction: 'up' }, ratio: { from: '2.5', to: '3.1' } },
   { id: 'g3', group: 'Biggest gainers', name: 'Transformer Replacement — North', type: 'Asset Replacement', total: { from: '$2.8M', to: '$3.4M' }, change: { value: '+$0.6M', direction: 'up' }, ratio: { from: '1.9', to: '2.3' } },
-  { id: 'l1', group: 'Lost the most value', name: 'Vegetation Management', type: 'Safety', total: { from: '$4.2M', to: '$2.9M' }, change: { value: '-$1.3M', direction: 'down' }, ratio: { from: '1.6', to: '1.1' } },
-  { id: 'l2', group: 'Lost the most value', name: 'Safety Compliance Retrofit', type: 'Cost', total: { from: '$3.6M', to: '$3.0M' }, change: { value: '-$0.6M', direction: 'down' }, ratio: { from: '1.7', to: '1.4' } },
+  { id: 'l1', group: 'Lost the most value', name: 'Vegetation Management', type: 'Safety', total: { from: '$4.2M', to: '$2.9M' }, change: { value: '−$1.3M', direction: 'down' }, ratio: { from: '1.6', to: '1.1' } },
+  { id: 'l2', group: 'Lost the most value', name: 'Safety Compliance Retrofit', type: 'Cost', total: { from: '$3.6M', to: '$3.0M' }, change: { value: '−$0.6M', direction: 'down' }, ratio: { from: '1.7', to: '1.4' } },
   // "Unchanged · 408": generated placeholder rows (the spec only gives the count; the group starts collapsed).
   ...Array.from({ length: 408 }, (_, i) => {
-    const v = (0.4 + ((i * 37) % 21) / 10).toFixed(1), r = (1 + ((i * 13) % 15) / 10).toFixed(1);
+    const v = 0.4 + ((i * 37) % 21) / 10, r = (1 + ((i * 13) % 15) / 10).toFixed(1);
     return { id: 'u' + i, group: 'Unchanged', name: `${reviewUnchangedNames[i % 6]} ${String(i + 1).padStart(3, '0')}`, type: reviewUnchangedTypes[i % 4],
-      total: { from: `$${v}M`, to: `$${v}M` }, change: { value: '$0.0M' }, ratio: { from: r, to: r } };
+      total: { from: IFS.format.money(v * 1e6, { unit: 'M', decimals: 1 }), to: IFS.format.money(v * 1e6, { unit: 'M', decimals: 1 }) }, change: { value: '$0' }, ratio: { from: r, to: r } };
   }),
 ];
 

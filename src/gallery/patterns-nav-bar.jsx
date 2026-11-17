@@ -172,7 +172,7 @@ export default IFS_GALLERY;
 
   // ── Value (library) ──
   const d = s => new Date(`${s}T00:00`);
-  const fmt = v => (v ? v.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—');
+  const fmt = v => IFS.format.date(v); // '—' when empty
   const FRAMEWORKS = [
     ['Q1 2026 Strategy Framework', 'green', 'Active', null, '2026-01-15', ['J. Carter', 'JC', 'orange']],
     ['Q2 2026 Strategy Framework', 'orange', 'Pending approval', '5/8', '2026-01-10', ['A. Singh', 'AS', 'blue']],

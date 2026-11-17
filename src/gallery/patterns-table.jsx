@@ -159,7 +159,7 @@ export default IFS_GALLERY;
     { id: 'i10', name: 'Birchwood Lateral Undergrounding Study', status: { type: 'purple', label: 'Shaping' }, horizon: 'FY31–FY35', hz: [31, 35], term: 'Mid', modified: null, keywords: ['Feeder'] },
     { id: 'i11', name: 'Harbor Road Pole Line Rebuild', status: { type: 'blue', label: 'New' }, horizon: 'FY33–FY38', hz: [33, 38], term: 'Mid', modified: ago(40), keywords: ['Replacement'] },
   ].map(r => ({ ...r, icon: r.program ? 'chat-folder' : undefined }));
-  const fmt = v => (v ? v.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—');
+  const fmt = v => IFS.format.date(v); // '—' when empty
   const ideaCols = (onOpenCollab) => [
     { key: 'name', title: 'Ideas', name: true, width: '1fr', truncate: 'end', filterValue: r => r.keywords, filter: 'chips' },
     { key: 'status', title: 'Status', width: 200, type: 'custom', filterValue: r => r.status.label,
@@ -304,8 +304,8 @@ export default IFS_GALLERY;
               { key: 'name', title: 'Investment', name: true, width: '1fr', code: r => r.code, filter: false },
               { key: 'type', title: 'Dependency type', width: 180, type: 'custom', render: r => <IFS.Badge color="white" size="m">{r.type}</IFS.Badge> },
               { key: 'progress', title: 'Progress', width: 150, kind: 'number', sortable: false, type: 'custom', render: r => <span style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}><IFS.ProgressBar value={r.progress} /><span>{r.progress}%</span></span> },
-              { key: 'cost', title: 'Cost', width: 100, kind: 'number', step: 0.1, type: 'custom', render: r => `$${r.cost.toFixed(1)}M` },
-              { key: 'value', title: 'Value', width: 100, kind: 'number', step: 0.1, type: 'custom', render: r => `$${r.value.toFixed(1)}M` },
+              { key: 'cost', title: 'Cost', width: 100, kind: 'number', step: 0.1, type: 'custom', render: r => IFS.format.money(r.cost * 1e6, { unit: 'M', decimals: 1 }) },
+              { key: 'value', title: 'Value', width: 100, kind: 'number', step: 0.1, type: 'custom', render: r => IFS.format.money(r.value * 1e6, { unit: 'M', decimals: 1 }) },
             ]} />
           <DataTable title="Assets impacted" collapsible headerAction={cooperAdd} fixedHeight rows={ASSETS}
             columns={[{ key: 'name', title: 'Asset', name: true, width: '1fr', filter: 'chips' }, { key: 'segment', title: 'Segment', width: '1fr' }, ...sevCols]} />

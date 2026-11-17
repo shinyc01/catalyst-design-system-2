@@ -321,7 +321,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
     );
   } else if (!approvals.length) {
     body = <IFS.EmptyState cause="empty-container" size="section" icon={null} heading="No approval chain yet"
-      body={`Approvers appear here after you send this ${recordLabel} for approval`} />;
+      body={`Approvers appear here after you send this ${recordLabel} for approval.`} />;
   } else {
     const shown = filterApprovals(approvals, applied);
     body = shown.length

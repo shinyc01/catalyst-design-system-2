@@ -11,8 +11,8 @@ export default IFS_GALLERY;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Grid = ({ children, w = 558 }) => <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, ${w}px)`, gap: 24, alignItems: 'start' }}>{children}</div>;
   const STATES = ['default', 'hover', 'cooper', 'empty', 'loading'];
-  const usd = v => `$${Math.abs(v) >= 1e6 ? `${+(v / 1e6).toFixed(1)}M` : Math.abs(v) >= 1e3 ? `${+(v / 1e3).toFixed(1)}K` : v}`;
-  const usdAxis = v => (v ? `$${+(v / 1e6).toFixed(1)}M` : '$0');
+  const usd = v => IFS.format.money(v); // $860K, $19.4M, −$1.8M
+  const usdAxis = v => IFS.format.money(v, { unit: 'M' }); // one unit per axis: $0, $0.5M, $1M, $1.5M
   // One gallery block per chart: every Figma State (Default / Hover / Cooper / Empty / Loading).
   const states = (Chart, props, hot = 0) => () => <Grid>{STATES.map(s => <Chart key={s} {...props} state={s === 'default' ? undefined : s} defaultActive={s === 'hover' ? hot : undefined} />)}</Grid>;
 

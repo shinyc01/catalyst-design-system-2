@@ -18,18 +18,18 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'EmptyState', figma: 'empty-state-organism (3782:18464)', render: () => <>
     <div style={grid}>
-      <Cell title="cause=first-run" h={180}><EmptyState cause="first-run" heading="No value frameworks yet" body="Create your first framework to start planning." primaryAction={{ label: 'New framework' }} /></Cell>
-      <Cell title="cause=empty-container" h={180}><EmptyState cause="empty-container" heading="No models added" body="Add models to this framework to begin scoring." primaryAction={{ label: 'New model' }} /></Cell>
+      <Cell title="cause=first-run" h={180}><EmptyState cause="first-run" heading="No value frameworks yet" body="Create your first framework to start planning." primaryAction={{ label: 'Create framework' }} /></Cell>
+      <Cell title="cause=empty-container" h={180}><EmptyState cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} /></Cell>
       <Cell title="cause=all-done" h={180}><EmptyState cause="all-done" heading="All caught up" body="No frameworks are pending approval right now." /></Cell>
-      <Cell title="cause=error" h={180}><EmptyState cause="error" heading="Couldn’t load frameworks" body="Something went wrong on our end. Please try again." primaryAction={{}} /></Cell>
-      <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
-      <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results found" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
-      <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No results found" body="Try a different term, or clear filters to see everything." primaryAction={{}} /></Cell>
+      <Cell title="cause=error" h={180}><EmptyState cause="error" heading="Couldn’t load frameworks" body="The server didn’t respond. Try again in a minute." primaryAction={{}} /></Cell>
+      <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access to this framework" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
+      <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results for “WDRM-2”" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
+      <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No frameworks match your filters" body="Try a different term, or clear filters to see all frameworks." primaryAction={{}} /></Cell>
       <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it's empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </div>
     <Row label="size=full">
       <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--background-elevation-1-secondary, #111)', borderRadius: 8 }}>
-        <EmptyState size="full" cause="empty-container" heading="No models added" body="Add models to this framework to begin scoring." primaryAction={{ label: 'New model' }} />
+        <EmptyState size="full" cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} />
       </div>
     </Row>
   </> });

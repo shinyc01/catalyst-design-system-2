@@ -21,9 +21,8 @@ function dvColor(color, i = 0, step = DV_STEP) {
 }
 const dvHover = (color, i) => dvColor(color, i, DV_HOVER_STEP);
 
-const fmtCompact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
-const fmtFull = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
-const defaultFormat = v => (v == null || Number.isNaN(v) ? '–' : Math.abs(v) >= 10000 ? fmtCompact.format(v) : fmtFull.format(v));
+// Full under 10,000, then compact (19.4K, 3.04M) with a true minus sign; '—' for no value. Same rules as IFS.format.number.
+const defaultFormat = v => IFS.format.number(v, { compact: 'auto' });
 const signed = (v, f) => (v > 0 ? '+' : v < 0 ? '−' : '') + f(Math.abs(v));
 
 function niceStep(range, count) {
@@ -803,7 +802,7 @@ function BubbleChart(props) { return <ScatterChart {...props} bubble />; }
 // Props: value, max (default 100), min (0), target (solid white tick reaching outside the arc), reference (dashed white tick across the arc), format (default v → v%),
 // label (caption under the number), valueLabel / targetLabel / referenceLabel (legend), color, delta, details, tooltip. + shell props.
 function GaugeChart(props) {
-  const { value = 0, min = 0, max = 100, target, reference, format = v => `${fmtFull.format(v)}%`, label, valueLabel = 'Value', targetLabel = 'Target',
+  const { value = 0, min = 0, max = 100, target, reference, format = v => IFS.format.percent(v), label, valueLabel = 'Value', targetLabel = 'Target',
     referenceLabel = 'Peer median', color = 'muted-purple', tooltip } = props;
   const p = usePlot(props.height || 328, props.defaultActive);
   const [on, setOn] = React.useState(!!props.defaultActive);
@@ -895,7 +894,7 @@ function WaterfallChart(props) {
 // referenceLabel (legend), format (default full number), tooltip. + shell props.
 function FunnelChart(props) {
   const { data = [], color = 'muted-purple', outcomeColor = 'teal', stageLabel = 'In pipeline', outcomeLabel = 'Completed', referenceLabel = 'Peer median',
-    format = v => fmtFull.format(v), tooltip } = props;
+    format = v => IFS.format.number(v), tooltip } = props;
   const p = usePlot(props.height || 328, props.defaultActive);
   const n = data.length, v0 = Math.max(1, ...finite(data.map(d => d.value)));
   const maxW = Math.min(480, p.W - 110), cx = Math.min(p.W / 2, (p.W - 40) / 2 + 10);

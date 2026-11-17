@@ -52,9 +52,9 @@ export default IFS_GALLERY;
   const folders = [{ id: 'f1', name: 'Strategy', icon: 'chat-folder' }, { id: 'f2', name: 'Harbor Substation', icon: 'system-building' }, { id: 'f3', name: 'Risk Analysis', icon: 'chat-folder' }, { id: 'f4', name: 'Board prep', icon: 'system-briefcase' }, { id: 'f5', name: 'Field work', icon: 'map-pin' }];
   const liveChats = chats.filter(c => !c.trashed);
 
-  const impactA = [{ label: 'Total capital', value: '62nd', delta: '1' }, { label: 'Risk coverage', value: '94%', delta: '3 %' }];
+  const impactA = [{ label: 'Total capital', value: '62nd', delta: '1' }, { label: 'Risk coverage', value: '94%', delta: '3%' }];
   const recs = [
-    { id: 'r1', group: 'Strategic objectives', title: 'Add Waste Reduction Objective', description: 'This objective could improve resource efficiency and strengthen sustainability performance across the portfolio.', impact: [{ label: 'Total capital', value: '$1.24B', delta: '0.23%' }, { label: 'Risk coverage', value: '94%', delta: '3 %' }] },
+    { id: 'r1', group: 'Strategic objectives', title: 'Add Waste Reduction Objective', description: 'This objective could improve resource efficiency and strengthen sustainability performance across the portfolio.', impact: [{ label: 'Total capital', value: '$1.24B', delta: '0.23%' }, { label: 'Risk coverage', value: '94%', delta: '3%' }] },
     { id: 'r2', group: 'Measures', title: 'Add Carbon Intensity Measure', description: 'Introduce a Carbon Intensity measure to capture environmental impact more directly at the portfolio level.', impact: [{ label: 'Total capital', value: '62nd', delta: '1' }, { label: 'Portfolio benefit score', value: '2.5', delta: '0.3' }] },
     { id: 'r3', group: 'Value models', title: 'Refine Investment Prioritization', description: 'Weight long-lead procurement risk in the prioritization model so delayed assets rank correctly.', impact: impactA },
     { id: 'r4', group: 'Value models', title: 'Update Risk Calculation Inputs', description: 'Refresh probability-of-failure inputs with the latest 12 months of telemetry.', impact: impactA },
