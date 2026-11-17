@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalyst DS 2.0</title>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+<!-- IFS-KIT -->
+<link rel="stylesheet" href="../dist/ifs-ds.css">
+<script src="../dist/ifs-ds.js"></script>
+<!-- /IFS-KIT -->
+<style>
+/* Layout-only CSS for this prototype. Tokens only. */
+html,body,#root{margin:0;height:100%;background:var(--background-canvas-primary);color:var(--text-primary)}
+/* Page grid comes from the density tokens (Catalyst DS 2.0): --page-margin / --page-gap */
+.app{position:relative;width:100%;height:100%;overflow:hidden;--pg-margin:var(--page-margin);--pg-gap:var(--page-gap)}
+.density-help{color:var(--text-tertiary);margin:var(--gaps-gap-100) 0 0}
+.pg-content{box-sizing:border-box;width:100%;max-width:calc(var(--layout-max-content-width) + 2 * var(--pg-margin));margin:0 auto;padding:var(--pg-margin);display:flex;flex-direction:column;gap:var(--pg-gap)}
+.pg-row{display:flex;gap:var(--pg-gap);min-width:0}
+.pg-row > *{min-width:0}
+.pg-fill{flex:1 1 0;min-width:0}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const SCREENS = [];   // each screen file pushes { id, name, Comp }
+const BP = { 1440: 900, 1920: 1080, 2560: 1440 };
+
+// Snackbar for actions that only show feedback in this prototype
+const ToastCtx = React.createContext(() => {});
+function useToast() { return React.useContext(ToastCtx); }
+
+/* SCREENS */
+
+// In-app navigation between the six screens (hash = screen id, e.g. #library)
+function goScreen(id) { location.hash = id; }
+function navStage(v) {
+  if (v === 'build') goScreen('filtering');
+  else if (v === 'value') goScreen('dashboard');
+  else window.__toast && window.__toast('This stage isn’t part of this prototype');
+}
+function goValueNav(id) {
+  if (id === 'active') goScreen('dashboard');
+  else if (id === 'sf' || id === 'strategy') goScreen('library');
+  else window.__toast && window.__toast('This section isn’t part of this prototype');
+}
+const bpOf = w => (w >= 2560 ? 2560 : w >= 1920 ? 1920 : 1440);
+// Display settings (user setting): density applies live; Cancel restores the previous choice.
+function initialDensity() { const m = location.hash.match(/~(spacious|compact|comfortable)/); return m ? m[1] : IFS.getDensity(); }
+IFS.setDensity(initialDensity());
+function openSettings() { window.__openSettings && window.__openSettings(); }
+const DENSITY_OPTIONS = [
+  { value: 'spacious', label: 'Spacious', help: 'Largest text (16 px) and the most space. Easiest to read.' },
+  { value: 'comfortable', label: 'Comfortable (default)', help: 'Standard text (14 px) and spacing.' },
+  { value: 'compact', label: 'Compact', help: 'Smallest text (12 px) and tight spacing, so the most fits on screen.' },
+];
+function DisplaySettings({ open, onClose }) {
+  const { Modal, RadioGroup } = IFS;
+  const [start, setStart] = React.useState(IFS.getDensity());
+  const [d, setD] = React.useState(IFS.getDensity());
+  React.useEffect(() => { if (open) { const cur = IFS.getDensity(); setStart(cur); setD(cur); } }, [open]);
+  const pick = v => { setD(v); IFS.setDensity(v); };
+  const cancel = () => { IFS.setDensity(start); onClose(); };
+  return <Modal open={open} onOpenChange={o => { if (!o) cancel(); }} title="Display settings" width={440}
+    secondaryAction={{ label: 'Cancel', onClick: cancel }} primaryAction={{ label: 'Save', onClick: onClose }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-form-field-gap)' }}>
+      <div>
+        <div className="t-label-m-semibold">Density</div>
+        <p className="t-body-s-regular density-help">Changes text size and spacing across Catalyst. Only you see this setting.</p>
+      </div>
+      <RadioGroup label="Density" value={d} onChange={pick} options={DENSITY_OPTIONS.map(o => ({ value: o.value, label: o.label }))} />
+      <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--text-secondary)' }}>{DENSITY_OPTIONS.find(o => o.value === d).help}</p>
+    </div>
+  </Modal>;
+}
+function screenFromHash() { const id = location.hash.slice(1).split(/[-~]/)[0]; return SCREENS.some(s => s.id === id) ? id : 'dashboard'; }
+function App() {
+  const [id, setId] = React.useState(screenFromHash);
+  const [vw, setVw] = React.useState(window.innerWidth);
+  const [vh, setVh] = React.useState(window.innerHeight);
+  const [toast, setToast] = React.useState(null);
+  const [settings, setSettings] = React.useState(() => /~settings/.test(location.hash));
+  window.__openSettings = () => setSettings(true);
+  React.useEffect(() => { const on = () => { setVw(window.innerWidth); setVh(window.innerHeight); }; window.addEventListener('resize', on);
+    const hc = () => setId(screenFromHash()); window.addEventListener('hashchange', hc); return () => { window.removeEventListener('resize', on); window.removeEventListener('hashchange', hc); }; }, []);
+  const showToast = React.useCallback((msg) => { setToast(msg); clearTimeout(window.__tt); window.__tt = setTimeout(() => setToast(null), 3000); }, []);
+  window.__toast = showToast;
+  const scr = SCREENS.find(s => s.id === id) || SCREENS[0];
+  const { Snackbar } = IFS;
+  return <ToastCtx.Provider value={showToast}>
+    <div className="app">
+      <scr.Comp key={scr.id} bp={bpOf(vw)} height={vh} />
+      <DisplaySettings open={settings} onClose={() => setSettings(false)} />
+      {toast && Snackbar && <div style={{ position: 'absolute', top: 64, right: 24, zIndex: 900 }}><Snackbar title={toast} onClose={() => setToast(null)} /></div>}
+    </div>
+  </ToastCtx.Provider>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
