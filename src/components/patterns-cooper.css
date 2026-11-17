@@ -104,7 +104,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-cooper-msg__reasoning{display:flex;flex-direction:column;gap:var(--gaps-gap-100);padding-bottom:var(--paddings-padding-100)}
 .ifs-cooper-msg__reasoning ul{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:var(--gaps-gap-100);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-tertiary)}
 .ifs-cooper-msg__body{display:flex;flex-direction:column;gap:var(--gaps-gap-400)}
-.ifs-cooper-msg__text{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-primary);white-space:pre-wrap}
+.ifs-cooper-msg__text{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-primary);white-space:pre-wrap;max-width:var(--text-measure)}
 .ifs-cooper-msg__block{display:flex;flex-direction:column;gap:var(--gaps-gap-200)}
 .ifs-cooper-msg__cards{display:flex;flex-direction:column;gap:var(--gaps-gap-100)}
 .ifs-cooper-msg__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gaps-gap-100)}
@@ -243,7 +243,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-agent__tools{display:flex;align-items:center;gap:var(--gaps-gap-100);padding:0 var(--paddings-padding-200);flex:none}
 .ifs-agent__body{display:flex;flex-direction:column;gap:var(--gaps-gap-200);padding:var(--paddings-padding-300);overflow-y:auto;min-height:0;scrollbar-width:thin;scrollbar-color:var(--border-medium) transparent}
 .ifs-agent__body > *{flex:none}
-.ifs-agent__text{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-primary)}
+.ifs-agent__text{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-primary);max-width:var(--text-measure)}
 .ifs-agent__buttons{display:flex;gap:var(--gaps-gap-100);padding:var(--paddings-padding-300);flex:none}
 .ifs-agent__buttons>*{flex:1}
 
@@ -265,7 +265,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-rec-impact__delta{display:flex;align-items:center;justify-content:center;gap:var(--gaps-gap-50);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-tertiary)}
 .ifs-rec-detail{display:flex;flex-direction:column;gap:var(--gaps-gap-200)}
 .ifs-rec-detail__title{margin:0;padding-top:var(--paddings-padding-200);font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking);color:var(--text-primary)}
-.ifs-rec-detail__desc{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary)}
+.ifs-rec-detail__desc{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary);max-width:var(--text-measure)}
 
 /* ---------- pattern screen helpers ---------- */
 .ifs-cooper-stage{position:relative;width:100%;height:100%;overflow:hidden}

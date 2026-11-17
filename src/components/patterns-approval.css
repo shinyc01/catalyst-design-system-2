@@ -52,7 +52,7 @@
 .ifs-ivi__metric-value--success{color:var(--text-success)}
 .ifs-ivi__metric-value--success .ifs-icon{color:var(--icon-success)}
 .ifs-ivi__divider{flex:none;width:1px;height:52px;background:var(--element-text-area-border-default)}
-.ifs-ivi__text{margin:0;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-ivi__text{margin:0;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)} /* Body/M/regular */
 .ifs-ivi__chart{display:flex;gap:var(--gaps-gap-150);height:234px}
 .ifs-ivi__axis{display:flex;flex-direction:column;justify-content:space-between;flex:none;width:23px;padding-bottom:24px /* raw in Figma */;
   color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */

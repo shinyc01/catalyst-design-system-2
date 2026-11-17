@@ -148,7 +148,7 @@
 .ifs-chart--empty .ifs-dv-card__body,.ifs-chart--loading .ifs-dv-card__body{padding:0}
 .ifs-chart__empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--gaps-gap-200);height:388px;text-align:center}
 .ifs-chart__empty-title{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-chart__empty-text{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-chart__empty-text{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)} /* Body/M/regular */
 .ifs-chart__table{overflow:auto}
 .ifs-chart__sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 

@@ -23,7 +23,7 @@
 .ifs-empty--section{width:100%}
 .ifs-empty__heading{margin:0;width:100%;color:var(--text-primary);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)}
 .ifs-empty__text{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
-.ifs-empty__body{margin:0;width:100%;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+.ifs-empty__body{margin:0;width:100%;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)}
 .ifs-empty__chips{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--gaps-gap-200)}
 .ifs-empty__actions{display:flex;justify-content:center;gap:8px;padding:0 40px /* raw in Figma */;width:100%;box-sizing:border-box}
 

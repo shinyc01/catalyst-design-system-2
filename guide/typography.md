@@ -91,6 +91,15 @@ One status per object; a second state is a tag or an icon next to it. Status tex
 
 **Numbers**: any number people compare or watch change uses same-width digits (`font-variant-numeric:var(--text-numeric)`, or the `.t-numeric` class in prototypes): table and list cells, big numbers, chart text, counters, progress and pager values. The kit's components already apply it. Numbers inside sentences keep normal figures.
 
+**Line length and truncation**
+| Text | Behaviour |
+|---|---|
+| Reading text (descriptions, Cooper answers, help, empty-state text) | Wraps; a line stops at about 75 characters (`max-width:var(--text-measure)`, or `.t-measure`). |
+| Titles (H2–H4), names, labels, buttons, tabs, statuses, table headers | One line; if it doesn't fit, it ends in "…" and the full text shows in a tooltip (`.t-truncate`). |
+| Table and list cells | One line with "…" and a tooltip by default; a column can opt into wrapping (up to 2 lines) when the content is the point. |
+| IDs and file names | Truncate in the middle so the start and the extension stay visible (`TruncatedText mode="middle"`). |
+| Never truncate | Numbers, statuses in a table cell, error messages, anything the user acts on. If they don't fit, the layout changes, never the text. |
+
 **By role**
 | Role | Style |
 |---|---|
@@ -143,7 +152,8 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 11. Meta text is Body/M by default; Small only in named cases (disclaimers, footnotes, text inside a fixed small shape).
 12. Status vs tag: a status (dot + state) is uppercase; a tag or badge (category, stage, count) is Label/M/medium in normal case, including the transparent Badge.
 13. Tabular figures (`--text-numeric`) for numbers in tables, big numbers, charts and counters; not in sentences.
-14. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
+14. Reading text wraps at about 75 characters (`--text-measure`); titles, names and labels are one line with "…" and a tooltip; numbers, statuses and errors never truncate.
+15. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
 
 ## 7. Open
 
@@ -154,4 +164,5 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 | 3 | Uppercase headers at Body size are wider; narrow columns crowd ("Last modified", "Created by") | Raise the minimum widths for short/date/user columns (layout tokens). |
 | 4 | Chips in narrow cards wrap more at Body size (Cooper saved scenarios) | Accept, or let those chips truncate. |
 | 5 | Status component sizes XS and S now share the text style | Merge into one size. |
-| 6 | Figma library: old style names (Label/M/medium is "Heading/H4/medium"), single mode with 12px body values, a few wrong bindings (Label/M/medium and Code bound to other styles' letter-spacing), stray styles from other files | Rename to the kit names, add Spacious/Comfortable/Compact modes to "4. Typography semantic", fix the bindings, remove strays. |
+| 6 | The kit has 47 truncation rules written one by one; not all show a tooltip with the full text | Audit them onto `.t-truncate` plus a tooltip, and check none truncates a number, status or error. |
+| 7 | Figma library: old style names (Label/M/medium is "Heading/H4/medium"), single mode with 12px body values, a few wrong bindings (Label/M/medium and Code bound to other styles' letter-spacing), stray styles from other files | Rename to the kit names, add Spacious/Comfortable/Compact modes to "4. Typography semantic", fix the bindings, remove strays. |

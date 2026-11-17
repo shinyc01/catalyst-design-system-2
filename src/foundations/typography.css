@@ -25,6 +25,8 @@
   --letter-spacing-letter-spacing-02:0.2px;--letter-spacing-letter-spacing-03:0.3px;
   /* Numbers people compare or watch change: same-width digits (tables, big numbers, charts, counters). Not for numbers in sentences. */
   --text-numeric:tabular-nums;
+  /* Reading measure: reading text (descriptions, Cooper answers, help, empty-state text) stops at about 75 characters per line */
+  --text-measure:75ch;
 }
 
 /* Semantic styles. Declared on every density container so the size follows the nearest data-density. */

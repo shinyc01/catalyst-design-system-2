@@ -221,7 +221,7 @@
   font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase}
 .ifs-page-top__eyebrow .ifs-icon{flex:none}
 .ifs-page-top__heading{margin:0;color:var(--text-primary);font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)}
-.ifs-page-top__description{margin:0;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+.ifs-page-top__description{margin:0;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)}
 .ifs-page-top__actions{display:flex;align-items:center;gap:var(--gaps-gap-200);flex:none}
 .ifs-page-top__tabs{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--gaps-gap-700);min-height:40px;min-width:0}
 .ifs-page-top__tabs > .ifs-tabs{flex:0 1 auto;min-width:0}

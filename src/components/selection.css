@@ -90,7 +90,7 @@
 .ifs-select__empty-state{display:flex;flex-direction:column;align-items:center;gap:var(--gaps-gap-300);padding:var(--paddings-padding-300) 0;text-align:center}
 .ifs-select__empty-title{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-select__empty-body{display:flex;flex-direction:column;align-items:center;gap:var(--gaps-gap-200)}
-.ifs-select__empty-text{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-select__empty-text{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)} /* Body/M/regular */
 .ifs-select__empty-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--gaps-gap-100)}
 .ifs-select__tags{position:relative}
 .ifs-select__tags-measure{position:absolute;left:0;top:0;display:flex;gap:var(--gaps-gap-100);visibility:hidden;pointer-events:none}
