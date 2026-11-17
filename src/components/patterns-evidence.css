@@ -14,7 +14,7 @@
 
 /* ================= evidence section ("Why it's flagged" / "Decisions" / "Considered but not included") ================= */
 .ifs-evidence-section{display:flex;flex-direction:column;gap:var(--gaps-gap-300);padding-top:var(--paddings-padding-300);box-shadow:inset 0 1px 0 var(--border-base)}
-.ifs-evidence-section__title{margin:0;color:var(--text-secondary);font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* Label/S/UPPER */
+.ifs-evidence-section__title{margin:0;color:var(--text-secondary);font:600 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/semibold */
 .ifs-evidence-section__list{display:flex;flex-direction:column;gap:var(--gaps-gap-200);margin:0;padding:0;list-style:none}
 
 /* ================= peer benchmark ================= */

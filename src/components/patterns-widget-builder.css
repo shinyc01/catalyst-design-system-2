@@ -79,7 +79,7 @@
   padding:var(--paddings-padding-300);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);
   box-shadow:0 0 0 1px var(--border-base);backdrop-filter:blur(4px) /* raw in Figma: background blur 4 */}
 .ifs-widget-chip__title{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--text-tertiary);
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase /* Label/M/UPPER */}
+  font:600 var(--type-m) var(--font-family-text);letter-spacing:0 /* Label/M/semibold */}
 
 /* ========== pattern: WidgetFrame / WidgetBoard / WidgetsDrawer ========== */
 .wb-frame{height:100%;min-width:0}

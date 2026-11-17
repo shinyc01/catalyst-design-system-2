@@ -14,7 +14,7 @@
 .ifs-smart-search__input{
   flex:1;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;text-overflow:ellipsis;
   color:var(--text-primary);caret-color:var(--text-accent-cooper);
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0 /* Label/M/medium */;
+  font:400 var(--type-m) var(--font-family-text);letter-spacing:0 /* Body/M/regular */;
 }
 .ifs-smart-search__input::placeholder{color:var(--text-tertiary);opacity:1}
 .ifs-smart-search__clear{flex:none;margin-right:var(--paddings-padding-100)}
@@ -137,7 +137,7 @@
 .ifs-record-preview{display:flex;flex-direction:column;flex:none;box-sizing:border-box;height:100%;min-height:0;
   background:var(--surface-primary);box-shadow:inset 1px 0 0 var(--border-base)}
 .ifs-record-preview__header{display:flex;align-items:center;gap:var(--gaps-gap-200);padding:var(--spacing-panel)}
-.ifs-record-preview__id{flex:1;min-width:0;color:var(--text-secondary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/medium */
+.ifs-record-preview__id{flex:1;min-width:0;color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0} /* Body/M/regular */
 .ifs-record-preview__content{flex:1;min-height:0;overflow:auto;padding:0 var(--spacing-panel) var(--spacing-panel)}
 
 /* ================= DataTable (pattern) ================= */
@@ -146,8 +146,8 @@
 .ifs-data-table-page{display:flex;flex-direction:column;gap:var(--gaps-gap-500)}
 .ifs-data-table-page > :not(.ifs-data-table--capped){flex:none} /* the page scrolls; its cards are never squashed or clipped */
 .ifs-data-table__header{display:flex;align-items:center;justify-content:space-between;gap:var(--gaps-gap-300);margin-bottom:var(--gaps-gap-100)}
-.ifs-data-table__title{all:unset;display:inline-flex;align-items:center;gap:var(--gaps-gap-150);cursor:pointer;color:var(--text-secondary);
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* Label/M/UPPER */
+.ifs-data-table__title{all:unset;display:inline-flex;align-items:center;gap:var(--gaps-gap-150);cursor:pointer;color:var(--text-primary);
+  font:600 var(--type-l) var(--font-family-text);letter-spacing:0} /* Heading/H4/semibold */
 .ifs-data-table__title:disabled{cursor:default}
 .ifs-data-table__title .ifs-icon{color:var(--icon-secondary)}
 .ifs-data-table__title:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer);border-radius:var(--radius-radius-100)}

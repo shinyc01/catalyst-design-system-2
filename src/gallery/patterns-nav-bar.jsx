@@ -102,7 +102,7 @@ export default IFS_GALLERY;
 
   /* ───────────────────────── pattern screens ───────────────────────── */
 
-  const Upper = ({ children, style }) => <span className="t-heading-h3-uppercase" style={{ color: 'var(--text-secondary)', ...style }}>{children}</span>;
+  const Upper = ({ children, style }) => <span className="t-heading-h4-semibold" style={{ color: 'var(--text-primary)', ...style }}>{children}</span>;
   const Panel = ({ children, style }) => <div style={{ background: 'var(--surface-secondary-alpha)', borderRadius: 8, padding: 12, boxSizing: 'border-box', ...style }}>{children}</div>;
   const RightRail = ({ dot }) => (
     <div style={{ flex: 'none', width: 48, boxSizing: 'border-box', padding: 12, background: 'var(--surface-primary)', boxShadow: 'inset 1px 0 0 var(--border-base)', position: 'relative' }}>
@@ -118,7 +118,7 @@ export default IFS_GALLERY;
     const shown = DECISIONS.filter(d => d.priority === prio);
     const open = d => { toast(`Opening ${d.title} in ${d.badge}`); setStage(d.badge.toLowerCase()); };
     const tabs = [{ value: 'works', label: 'My works', count: 3 }, { value: 'decisions', label: 'Decisions', count: 6 }, { value: 'conversations', label: 'Conversations', count: 3 }, { value: 'following', label: 'Following', count: 3 }];
-    const stat = (v, l, style) => <div style={{ position: 'absolute', textAlign: 'center', ...style }}><div className="t-body-l-medium">{v}</div><div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{l}</div></div>;
+    const stat = (v, l, style) => <div style={{ position: 'absolute', textAlign: 'center', ...style }}><div className="t-label-l-medium">{v}</div><div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{l}</div></div>;
     return (
       <div style={{ display: 'flex', minHeight: '100%' }}>
         <div style={{ flex: 1, minWidth: 0, padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -159,7 +159,7 @@ export default IFS_GALLERY;
             </div>
           </Panel>
           <Panel style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="t-body-l-medium">Milestone</span><span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>9d left</span></div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}><span className="t-label-l-medium">Milestone</span><span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>9d left</span></div>
             <IFS.ProgressBar value={8} label="Milestone progress" />
             <div className="t-body-m-regular" style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-secondary)' }}><span>Drafts</span><span>Re-submit</span><span>SG2 window</span><span>Gate</span></div>
             <IFS.Calendar defaultMonth={new Date(2026, 8, 1)} today={new Date(2026, 8, 8)} events={{ '2026-09-04': ['info'], '2026-09-09': ['danger'], '2026-09-10': ['info'], '2026-09-18': ['warning'], '2026-09-20': ['danger', 'warning', 'info'] }} />
@@ -224,11 +224,11 @@ export default IFS_GALLERY;
         <div style={{ position: 'absolute', left: 536, top: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
           <span style={{ position: 'relative' }}><IFS.MapPinDot size="l" status="success" counter="456" label="Whistler Company: 456 assets" onClick={() => toast('Whistler Company')} />
             <span style={{ position: 'absolute', right: -12, top: -10 }}><IFS.Badge color="red" size="s">3</IFS.Badge></span></span>
-          <span className="t-body-l-medium">Whistler Company</span>
+          <span className="t-label-l-medium">Whistler Company</span>
         </div>
         <div style={{ position: 'absolute', left: 716, top: 320, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
           <IFS.MapPinDot size="l" status="success" counter="470" label="DC Water capital: 470 assets" onClick={() => toast('DC Water capital')} />
-          <span className="t-body-l-medium">DC Water capital</span>
+          <span className="t-label-l-medium">DC Water capital</span>
         </div>
         <div style={{ position: 'absolute', left: 12, top: 12 }}>
           <IFS.MapToolbar><IFS.MapToolCluster label="Map views">
@@ -302,9 +302,9 @@ export default IFS_GALLERY;
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <h1 className="t-heading-h1-medium" style={{ margin: 0 }}>{node.label}</h1>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
-              <span className="t-body-m-medium" style={{ color: 'var(--text-secondary)' }}>Enterprise-wide electrical asset class, covering distribution and transmission capital plans across all divisions</span>
+              <span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>Enterprise-wide electrical asset class, covering distribution and transmission capital plans across all divisions</span>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 12, flex: 'none' }}><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>Owner</span>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><IFS.Avatar size="s" initials="UN" /><span className="t-body-m-medium">Emily Williams</span></span></span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><IFS.Avatar size="s" initials="UN" /><span className="t-label-m-medium">Emily Williams</span></span></span>
             </div>
           </div>
           <Panel style={{ display: 'flex', flexDirection: 'column', gap: 16, boxShadow: 'inset 0 0 0 1px var(--border-base)' }}>
@@ -329,7 +329,7 @@ export default IFS_GALLERY;
           <Panel style={{ position: 'relative', height: 420, padding: 0, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--border-base)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 14 }}><Upper>Affected area</Upper><IFS.IconButton icon="cooper-system-icon" type="tertiary" shape="circle" size="s" label="Ask Cooper about this area" /></div>
             <div style={{ position: 'absolute', left: 4, right: 4, top: 52, bottom: 4, borderRadius: 4, overflow: 'hidden', background: 'radial-gradient(ellipse at 50% 60%, var(--background-elevation-1-tertiary), var(--surface-secondary-alpha) 75%)' }}>
-              <span className="t-body-m-medium" style={{ position: 'absolute', left: 120, top: 8, color: 'var(--text-tertiary)' }}>Ridgeview Village</span>
+              <span className="t-label-m-medium" style={{ position: 'absolute', left: 120, top: 8, color: 'var(--text-tertiary)' }}>Ridgeview Village</span>
               <div style={{ position: 'absolute', left: 160, top: 140 }}><IFS.MapPinPole symbol="pin" number="Recloser R-1" /></div>
               <div style={{ position: 'absolute', left: 520, top: 100 }}><IFS.MapPinPole symbol="pin" number="Demeter SS" /></div>
               {[['6', 250, 200], ['5', 330, 230], ['4', 400, 260], ['3', 440, 260], ['2', 520, 260], ['1', 600, 255]].map(([n, x, y]) => (

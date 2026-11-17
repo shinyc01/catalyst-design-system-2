@@ -289,7 +289,7 @@
 .ifs-timeline-chart__grid i:last-child{box-shadow:none}
 .ifs-timeline-phase__bar{position:absolute;top:50%;height:16px;margin-top:-8px;border-radius:var(--radius-radius-100);background:var(--bar)}
 .ifs-timeline-phase__bar--task{height:4px;margin-top:-2px}
-.ifs-timeline-phase__task-name{display:inline-flex;align-items:center;gap:var(--gaps-gap-100);min-width:0;color:var(--text-secondary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0 /* Label/M/medium */}
+.ifs-timeline-phase__task-name{display:inline-flex;align-items:center;gap:var(--gaps-gap-100);min-width:0;color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0 /* Body/M/regular */}
 .ifs-timeline-phase__arrow{color:var(--icon-secondary)}
 .ifs-timeline-phase__dot{display:none;width:12px;height:12px;flex:none;background:radial-gradient(circle,var(--bar) 2px,transparent 2.5px)}
 .ifs-timeline-phase:hover .ifs-timeline-phase__arrow,.ifs-timeline-phase[data-state=hover] .ifs-timeline-phase__arrow{display:none}

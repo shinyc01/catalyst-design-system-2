@@ -34,7 +34,7 @@
 
 .ifs-collab-section{display:flex;flex-direction:column;gap:var(--gaps-gap-200);padding-top:var(--paddings-padding-100)}
 .ifs-collab-section__title{display:flex;align-items:center;gap:var(--gaps-gap-200);margin:0;padding-left:var(--paddings-padding-300);
-  color:var(--text-secondary);font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* Label/S/UPPER */
+  color:var(--text-secondary);font:600 var(--type-m) var(--font-family-text);letter-spacing:0} /* Label/M/semibold */
 .ifs-collab-section__title--cooper span{background:linear-gradient(to left,var(--text-accent-cooper),var(--text-primary)) /* Figma GRADIENT_LINEAR; same as CooperChip */;
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-collab-section__list{display:flex;flex-direction:column;gap:var(--gaps-gap-200);padding:0 var(--paddings-padding-100)}
@@ -73,7 +73,7 @@
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))} /* effect blur/strong */
 .ifs-role-select__option,.ifs-role-filter__option{display:flex;align-items:center;gap:var(--gaps-gap-100);box-sizing:border-box;height:28px;
   padding:var(--paddings-padding-100) var(--paddings-padding-200);border-radius:var(--radius-radius-100);color:var(--text-secondary);cursor:pointer;
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0;outline:none} /* Label/M/medium */
+  font:400 var(--type-m) var(--font-family-text);letter-spacing:0;outline:none} /* Body/M/regular */
 .ifs-role-select__option > span{flex:1 1 auto}
 .ifs-role-select__option .ifs-icon{color:var(--icon-primary)}
 .ifs-role-select__option:hover,.ifs-role-select__option.is-active,.ifs-role-filter__option:hover,.ifs-role-filter__option:focus-visible{background:var(--element-button-secondary-fill-hover);color:var(--text-primary)}

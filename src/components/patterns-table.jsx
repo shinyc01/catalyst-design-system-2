@@ -638,7 +638,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
     const fk = filterKind(c);
     const sortable = c.sortable !== false && (kindOf(c) === 'date' || kindOf(c) === 'number');
     const out = { ...c, sortable, sortValue: r => (sort && sort.dir === 'desc' ? -1 : 1) * idx.get(r[rowKey]) };
-    if (c.name) { out.render = r => nameCell(c, r); out.type = 'custom'; }
+    if (c.name) { out.render = r => nameCell(c, r); out.type = 'custom'; out.primary = true; }
     else if (added[c.key]) out.render = () => <IFS.Skeleton width="60%" height={12} />;
     if (fk) out.filter = { applied: activeFilterCount(c.key) > 0, onClick: e => {
       e.stopPropagation(); const b = e.currentTarget.getBoundingClientRect(); const w = wrapRef.current.getBoundingClientRect();

@@ -398,7 +398,15 @@
 --drop-shadow-pin:0 0 10px 0 rgba(10,14,21,0.2);
 }
 
-/* Text styles — one class per Figma text style ("Body/L/regular" -> .t-body-l-regular). Values from the IFS DS polish branch (Nov 2026): 14px default. */
+/* Text styles — one class per Figma text style ("Body/L/regular" -> .t-body-l-regular). Values from the IFS DS polish branch (Nov 2026): 14px default.
+   Pick the style by ROLE (full table + reasons: guide/typography.md):
+     page title H2 (H1 hero) · panel/modal/drawer/card/section title H4 · sub-section inside a titled panel Label/M/semibold
+     content (cells, list text, descriptions, messages, menu items, options, typed text) Body/M/regular
+     name / primary column / item title / key value Label/M/medium · big numbers H2/H1/Display
+     meta (time, author, IDs, helper text) Body/M or Body/S regular, secondary/tertiary colour
+     control text (button, tab, chip, segmented, badge, nav item) Label/M/medium (L controls Label/L/medium)
+     UPPERCASE only for table/column headers, eyebrows and group labels (Label/S/UPPER) and tiny status text (Caption/semibold/UPPER).
+     Never use uppercase or Label/L for a title. */
 .t-display-l{font:500 var(--type-display-l) var(--font-family-display);letter-spacing:-0.5px}
 .t-display-m{font:500 var(--type-display-m) var(--font-family-display);letter-spacing:-0.5px}
 .t-display-s{font:500 var(--type-display-s) var(--font-family-display);letter-spacing:-0.5px}
@@ -408,19 +416,19 @@
 .t-heading-h3-medium{font:500 var(--type-h3) var(--font-family-text);letter-spacing:-0.1px}
 .t-heading-h4-semibold{font:600 var(--type-l) var(--font-family-text);letter-spacing:0}
 .t-body-l-regular{font:400 var(--type-l) var(--font-family-text);letter-spacing:-0.1px}
-.t-body-l-medium{font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px}
+.t-body-l-medium{font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px} /* retired: same values as Label/L/medium; use .t-label-l-medium */
 .t-body-m-regular{font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
 .t-body-s-regular{font:400 var(--type-s) var(--font-family-text);letter-spacing:0.1px}
-.t-label-l-medium{font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px}
-.t-label-l-semibold{font:600 var(--type-l) var(--font-family-text);letter-spacing:-0.15px}
+.t-label-l-medium{font:500 var(--type-l) var(--font-family-text);letter-spacing:-0.15px} /* L-size control text only (button L, field L, option L); titles use H4 */
+.t-label-l-semibold{font:600 var(--type-l) var(--font-family-text);letter-spacing:-0.15px} /* retired: near-duplicate of H4 (16/600); use .t-heading-h4-semibold */
 .t-label-m-medium{font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
 .t-label-m-semibold{font:600 var(--type-m) var(--font-family-text);letter-spacing:0}
-.t-label-m-upper{font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase}
+.t-label-m-upper{font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* retired: titles use H4, eyebrows use Label/S/UPPER */
 .t-label-s-medium{font:500 var(--type-s) var(--font-family-text);letter-spacing:0}
-.t-label-s-upper{font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase}
+.t-label-s-upper{font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* table/column headers, eyebrows, group labels only */
 .t-code-medium{font:500 var(--type-s) var(--font-family-mono);letter-spacing:0}
 .t-code-regular{font:400 var(--type-s) var(--font-family-mono);letter-spacing:0}
-.t-caption-regular-upper{font:400 var(--type-caption) var(--font-family-text);letter-spacing:0.1px;text-transform:uppercase}
+.t-caption-regular-upper{font:400 var(--type-caption) var(--font-family-text);letter-spacing:0.1px;text-transform:uppercase} /* calendar weekday / tiny step caption only; captions under numbers use Body/S/regular */
 .t-caption-semibold-upper{font:600 var(--type-caption) var(--font-family-text);letter-spacing:0.2px;text-transform:uppercase}
 /* Retired styles, kept so older prototypes still render: each maps to the style Figma rebound it to */
 .t-body-m-medium{font:500 var(--type-m) var(--font-family-text);letter-spacing:0} /* -> Label/M/medium */

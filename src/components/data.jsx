@@ -255,7 +255,7 @@ function renderCell(col, row) {
 // Figma rule: tables show every row (no pagination). Filter with the `tabs` slot: the Figma table card puts a
 // SegmentedControl there (prop "show-segmanted-control"); the canvas notes call it "tabs with counts".
 // Props:
-//   columns = [{ key, title, width ('1fr' | 240 | 'auto'), align left|center|right (Figma Align=Left|Right; the header follows its column), sortable, sortValue(row),
+//   columns = [{ key, title, width ('1fr' | 240 | 'auto'), align left|center|right (Figma Align=Left|Right; the header follows its column), sortable, sortValue(row), primary (medium-weight name column; default the first text column),
 //               type text|number|description|counter|badge|status|check|user|user-description|custom, render(row), filter: { applied, onClick } }]
 //     cell values by type: text → row[key]; number → row[key] (Figma Type=Number, right-aligned unless align is set); description → { text, description }; counter → { text, value, direction };
 //     badge → Badge props; status → { type, label, description }; check → label; user → { name, initials, type, description }.
@@ -284,6 +284,8 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
     });
   }, [rows, columns, cur]);
 
+  // Primary (name) column is medium, every other cell regular: the column with primary: true, else the first text/description/custom column.
+  const primaryKey = (columns.find(c => c.primary) || columns.find(c => !c.type || ['text', 'description', 'custom'].includes(c.type)) || {}).key;
   const cols = columns.map(c => c.width == null ? 'minmax(0,1fr)' : typeof c.width === 'number' ? `calc(${c.width}px * var(--density-scale))` : c.width).join(' ');
   const groupOf = typeof groupBy === 'function' ? groupBy : groupBy ? r => r[groupBy] : null;
   const groups = [];
@@ -296,7 +298,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
     return (
       <div role="row" key={id} {...xAttrs} style={xStyle} aria-selected={onRowClick ? sel : undefined} {...(onRowClick ? { tabIndex: 0, onClick: () => onRowClick(row), onKeyDown: e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onRowClick(row); } } } : {})}
         className={IFS.cx('ifs-table__row', 'ifs-table__row--content', onRowClick && 'ifs-table__row--clickable', sel && 'ifs-table__row--selected', xCls)}>
-        {columns.map(c => <div role="cell" key={c.key} className={IFS.cx('ifs-table__td', `ifs-table__td--${c.type || 'text'}`, alignOf(c) && `ifs-table__td--${alignOf(c)}`)}>{renderCell(c, row)}</div>)}
+        {columns.map(c => <div role="cell" key={c.key} className={IFS.cx('ifs-table__td', `ifs-table__td--${c.type || 'text'}`, alignOf(c) && `ifs-table__td--${alignOf(c)}`, c.key === primaryKey && 'ifs-table__td--primary')}>{renderCell(c, row)}</div>)}
       </div>
     );
   };

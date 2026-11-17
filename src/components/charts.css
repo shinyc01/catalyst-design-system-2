@@ -57,8 +57,8 @@
 /* ================= data-viz-header-molecule (2154:2068) ================= */
 .ifs-dv-header{display:flex;align-items:center;gap:var(--gaps-gap-200);min-height:28px;min-width:0;box-sizing:border-box}
 .ifs-dv-header__left{flex:1;display:flex;align-items:center;gap:var(--gaps-gap-100);min-width:0}
-.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-tertiary);
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase} /* Label/M/UPPER */
+.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-primary);
+  font:600 var(--type-l) var(--font-family-text);letter-spacing:0} /* Heading/H4/semibold */
 .ifs-dv-header__drag{display:none;color:#9e9ea8 /* raw in Figma */;cursor:grab}
 .ifs-dv-header__hover{display:flex;align-items:center;gap:var(--gaps-gap-200);opacity:0;pointer-events:none}
 .ifs-dv-header__divider{width:1px;height:20px;margin:0 var(--paddings-padding-50);background:var(--border-medium)}

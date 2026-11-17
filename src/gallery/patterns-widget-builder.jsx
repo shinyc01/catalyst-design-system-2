@@ -151,7 +151,7 @@ export default IFS_GALLERY;
   const ConfidencePanel = () => (
     <IFS.Panel title="System confidence" defaultExpanded>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <div className="t-body-l-medium" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Approval readiness
+        <div className="t-label-l-medium" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Approval readiness
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><IFS.ProgressRing value={35} size={16} />35%</span></div>
         <IFS.ReadinessStatus type="done" right="Passed">Investment readiness</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1 error' }]}>Path forward</IFS.ReadinessStatus>

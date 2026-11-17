@@ -24,7 +24,7 @@ export default IFS_GALLERY;
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, minHeight: description ? 48 : 32 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <h1 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--text-primary)' }}>{title}</h1>
-          {description && <span className="t-body-m-medium" style={{ color: 'var(--text-secondary)' }}>{description}</span>}
+          {description && <span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>{description}</span>}
         </div>
         {action}
       </div>
@@ -105,7 +105,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'TruncatedText', figma: 'Name display [patterns] (190:230621)', render: () => {
     const n = 'Northgate Substation Transformer Replacement and Feeder 5 Backup Tie — Phase 2';
     return <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-      {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-medium" style={{ width: 260, color: 'var(--text-primary)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
+      {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-regular" style={{ width: 260, color: 'var(--text-primary)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
     </div>;
   } });
 

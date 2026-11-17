@@ -17,8 +17,8 @@
 .ifs-sidenav__menu{display:flex;flex-direction:column;gap:var(--gaps-gap-100)}
 .ifs-sidenav__title{display:flex;align-items:center;gap:var(--gaps-gap-100);height:28px;box-sizing:border-box;
   padding:var(--paddings-padding-100) var(--paddings-padding-200) 0}
-.ifs-sidenav__title-text{flex:1;min-width:0;margin:0;color:var(--text-secondary);
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase;
+.ifs-sidenav__title-text{flex:1;min-width:0;margin:0;color:var(--text-primary);
+  font:600 var(--type-l) var(--font-family-text);letter-spacing:0;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-sidenav__content{display:flex;flex-direction:column;gap:var(--gaps-gap-200);padding:var(--paddings-padding-300) 0;margin:0;list-style:none}
 .ifs-sidenav__section{display:flex;flex-direction:column}
@@ -93,7 +93,7 @@
 .ifs-breadcrumb__list > li{display:flex;align-items:center;gap:var(--gaps-gap-100)}
 .ifs-breadcrumb__sep{width:2px;height:2px;border-radius:50%;background:var(--icon-tertiary);flex:none}
 .ifs-crumb{display:inline-flex;align-items:center;gap:var(--gaps-gap-50);height:20px;margin:0;padding:0;border:0;background:none;
-  font:500 var(--type-m) var(--font-family-text);letter-spacing:0;white-space:nowrap;color:var(--text-tertiary);cursor:pointer}
+  font:400 var(--type-m) var(--font-family-text);letter-spacing:0;white-space:nowrap;color:var(--text-tertiary);cursor:pointer}
 .ifs-crumb .ifs-icon{color:var(--icon-tertiary)}
 .ifs-crumb:hover,.ifs-crumb[data-state=hover]{color:var(--text-primary)}
 .ifs-crumb:hover .ifs-icon,.ifs-crumb[data-state=hover] .ifs-icon{color:var(--icon-primary)}
@@ -202,7 +202,7 @@
 .ifs-page-header__text{display:flex;align-items:center;gap:var(--gaps-gap-200);min-width:0}
 .ifs-page-header__title{margin:0;color:var(--text-primary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ifs-page-header__id{color:var(--text-tertiary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0;white-space:nowrap}
+.ifs-page-header__id{color:var(--text-tertiary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0;white-space:nowrap}
 .ifs-page-header__divider{width:1px;height:20px;margin:0 var(--paddings-padding-50);background:var(--border-medium);flex:none}
 .ifs-page-header__right{display:flex;align-items:center;gap:var(--gaps-gap-400);flex:none}
 /* title chevron: button Type=Tertiary Size=S with icon only, 12×20, padding 4/0 */
@@ -218,10 +218,10 @@
 .ifs-page-top--single .ifs-page-top__title{align-items:center;min-height:32px}
 .ifs-page-top__text{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--gaps-gap-200)}
 .ifs-page-top__eyebrow{display:inline-flex;align-items:center;gap:var(--gaps-gap-100);color:var(--text-tertiary);
-  font:600 var(--type-m) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase}
+  font:600 var(--type-s) var(--font-family-text);letter-spacing:0.3px;text-transform:uppercase}
 .ifs-page-top__eyebrow .ifs-icon{flex:none}
 .ifs-page-top__heading{margin:0;color:var(--text-primary);font:500 var(--type-h2) var(--font-family-text);letter-spacing:-0.2px}
-.ifs-page-top__description{margin:0;color:var(--text-secondary);font:500 var(--type-m) var(--font-family-text);letter-spacing:0}
+.ifs-page-top__description{margin:0;color:var(--text-secondary);font:400 var(--type-m) var(--font-family-text);letter-spacing:0}
 .ifs-page-top__actions{display:flex;align-items:center;gap:var(--gaps-gap-200);flex:none}
 .ifs-page-top__tabs{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--gaps-gap-700);min-height:40px;min-width:0}
 .ifs-page-top__tabs > .ifs-tabs{flex:0 1 auto;min-width:0}
