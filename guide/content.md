@@ -2,7 +2,7 @@
 
 How Catalyst screens use words and show values. Everything a screen shows (labels, messages, mock data, Cooper's answers) follows these rules. Values go through `IFS.format` (section 6), so a number looks the same on every screen.
 
-Status: draft for review, v2.0. Capitalisation decided Nov 17, 2026: Title Case for titles, headings, navigation, buttons and dropdowns; sentence case for content; uppercase for column headers and status tags. Rules marked **(decide)** are waiting on a team decision (section 9).
+Status: draft for review, v2.0.1. Rules marked **(decide)** are waiting on a team decision (section 9).
 
 People who read Catalyst: Portfolio Owners, Investment Owners, Asset Managers, finance leads and field SMEs. They are experts in their assets, short of time, and they make decisions worth millions with what the screen tells them. So the words must be exact, short and calm.
 
@@ -41,111 +41,17 @@ Catalyst sounds like a **trusted planning analyst**: it knows the numbers, says 
 
 ## 2. Capitalisation
 
-Three cases, each for a job. The text's **role** decides the case, not the component.
-
-| Case | For | Examples |
-|---|---|---|
-| **Title Case** | Anything that names a place or a block: page, section, card, chart, table, modal, drawer and panel titles; headings at every level (including empty-state, alert and toast headings); navigation (nav bar, side nav, tabs, breadcrumbs, stage names); page and panel headers; **buttons, links used as actions, and dropdowns** (the trigger and its options: the trigger shows the picked option, so both use the same string) | "Strategy Frameworks", "Portfolio Under This Framework", "Archive Investment?", "No Value Frameworks Yet", "Approval Chain", "Send for Approval", "Portfolio Level" |
-| **Sentence case** | All content: body text, descriptions, messages, field labels, placeholders, helper and error text, tooltips, chips, table cell text, Cooper's answers, and Cooper prompt chips (they are questions the user would type) | "Add a model to start scoring investments.", "Total forecast spend", "Why did Northeast slip?" |
-| **UPPERCASE** (CSS only) | Three short, structural labels: **table column and row headers**, **status tags**, **group labels** (eyebrows above a list, menu or section) | `STATUS`, `TOTAL VALUE`, `UNDER REVIEW`, `LIBRARY`, `PINNED` |
-
-**Buttons, action menu items and dropdowns** are Title Case (decided Nov 17, 2026): "Send for Approval", "Add Model", "Rename…", dropdown "Portfolio Level". A link inside a sentence is part of the sentence and keeps its case ("Approvers are listed in the approval chain."). Cooper prompt chips stay sentence case: they are questions ("What could block this idea?").
-
-### Title Case, exactly
-Capitalise every word except *a, an, the, and, but, or, nor, for, of, on, in, at, to, by, as, vs, per, with* — unless it is the first or last word. Capitalise both parts of a hyphenated word ("Year-End Close", "Benefit-Cost Ratio"). A heading that is a question keeps its question mark: "Delete This Comment?". Long headings that read as sentences (more than about 8 words) are a sign the heading should be shorter, not a reason to switch case.
-
-### Uppercase, exactly
-- Only through the text styles **Label/S/UPPER**, **Caption/semibold/UPPER** or **Caption/regular/UPPER** (`text-transform: uppercase`). **Never type capitals in the source** for these: screen readers spell some all-caps words letter by letter, and copy-paste and search get the typed text. Type the source in the case its role would have without the transform: Title Case for column and row headers ("Total Value"), sentence case for status tags and group labels ("Under review", "Shown in table").
-- Short: one to three words, about 24 characters at most. Never a sentence, a number or amount, a date, a person or record name, a title, a field label, a button or link, or a value the user typed.
-- Acronyms and codes typed in capitals because they *are* capitals (FY27, SAIDI, BCR, USD, MEAS.) are not uppercase styling; they keep their capitals in any case.
-
-**Proper nouns keep their capitals in any case:** Cooper, IFS, Copperleaf, Catalyst, the stage names (Command, Value, Explore, Build, Plan, Results), and names the user gave something ("Q2 2026 Strategy Framework", "Harbor Substation Upgrade" — keep a record's name exactly as it was entered). Role names stay lower case in running text ("Ask the investment owner") unless the product decides they are titles **(decide)**.
-
-**Acronyms** as their owners write them: FY27, SAIDI, SME, NPV, capex (lower case in text, as a common noun) **(decide capex vs CAPEX)**.
-
-### Every uppercase style in the kit (Nov 2026)
-
-`main` has **72** CSS rules with `text-transform: uppercase`. The typography branch (`claude/type-usage-f43e8c`) already removes it from 36 of them; the list below says which. It disagrees with this rule on two: `.ifs-risk` and `.ifs-sankey__column` lose their uppercase there, but they are a status tag and a column header, so this rule keeps them. Verdicts follow the rule above.
-
-**Keep uppercase — table column and row headers (12)**
-
-| Class | Component | Shows |
-|---|---|---|
-| `.ifs-table__th` (`__th-btn`) | Table header cell | "STATUS", "TOTAL VALUE", "VALUE CHANGE" |
-| `.ifs-table__group` | Table group row | "BIGGEST GAINERS", "UNCHANGED" |
-| `.ifs-apc__th` | Approval chain table header | "USER", "LAST NOTIFIED" |
-| `.ifs-timeline-chart__phase-head` | Timeline column header | phase names |
-| `.ifs-canvas-column__label` | Framework map column header | "ENTERPRISE GOALS", "VALUE MODELS" |
-| `.ifs-sankey-header__abbr` | Sankey column abbreviation | "OBJ.", "MOD.", "MEAS." |
-| `.ifs-sankey__column` | Sankey column header | column names |
-| `.ifs-readiness-facts__label` | Readiness facts, row header | "CURRENT VALUE" |
-| `.ifs-peer-benchmark__key` | Peer benchmark summary, row header | summary row names |
-| `.ifs-rec-impact__label` | Recommendation impact, row header | "TOTAL CAPITAL", "RISK COVERAGE" |
-| `.ifs-calendar__weekday`, `.ifs-weekday` | Calendar weekday header | "MON", "TUE" (two styles for one thing: pick one) |
-
-**Keep uppercase — status tags (6)**
-
-| Class | Component | Shows |
-|---|---|---|
-| `.ifs-indicator--s` | Status indicator, size S | "UNDER REVIEW", "SHAPING" |
-| `.ifs-badge--false` | Badge without fill (caption badge) | short tag |
-| `.ifs-risk` | Risk tag | "HIGH", "MEDIUM" |
-| `.ifs-version-card__label` | Version card tag | version state |
-| `.ifs-avatar__base`, `.ifs-pin-dot__text` | Avatar initials, map pin counter | "JP", "12" (initials and numbers: uppercase changes nothing; harmless) |
-
-**Keep uppercase — group labels and eyebrows (13)**
-
-| Class | Component | Shows |
-|---|---|---|
-| `.ifs-nav-subtitle__label` | Nav section label | "LIBRARY" |
-| `.ifs-menu__title` | Menu group label | group name |
-| `.ifs-select__list-title` | Dropdown group label | "SUGGESTED" |
-| `.ifs-history__date` | Cooper history group | "PINNED", "TODAY" |
-| `.ifs-chat-card__category` | Cooper chat card category | "RISK REDUCTION" |
-| `.ifs-floating-bar__category` | Floating bar category | "FOLDER" |
-| `.ifs-page-top__eyebrow` | Page eyebrow | "COOPER" |
-| `.ifs-column-settings__label` | Column settings group | "SHOWN IN TABLE" |
-| `.ifs-column-filter__title` | Column filter group | column name |
-| `.ifs-peer-benchmark__label` | Peer benchmark group | "SUMMARY" |
-| `.ifs-trc-caption` | Trace step group | "SOLUTIONS" |
-| `.ifs-timeline-phase__title` | Timeline phase label | phase name |
-| `.ifs-agent__brand` | Cooper wordmark in the agent header | "COOPER" (brand treatment; the one allowed exception for a name) |
-
-**Doesn't make sense — titles and headings → Title Case, no transform (24)** — all already changed on the typography branch, except `.ifs-search-modal__title` (check it there)
-
-`.ifs-surface__title` (every Modal, Drawer and Panel title: "TRACE REPORT"), `.ifs-dv-header__title` (chart and DataVizCard titles: "PORTFOLIO UNDER THIS FRAMEWORK"), `.ifs-table-card__name`, `.ifs-data-table__title`, `.ifs-sidenav__title-text` ("VALUE"), `.ifs-chat-header__title` ("STRATEGY OVERVIEW"), `.ifs-history__title`, `.ifs-apc-panel__title`, `.ifs-thread__title`, `.ifs-empty__heading` (every empty-state heading), `.ifs-alert__title`, `.ifs-select__empty-title`, `.ifs-docs-popover__empty`, `.ifs-approval__brief-title`, `.ifs-collab-section__title`, `.ifs-evidence-section__title`, `.ifs-rec-group__title`, `.ifs-rec-impact__title`, `.ifs-compare-list__title`, `.ifs-cooper-msg__h` ("SAVED SCENARIOS"), `.ifs-cooper-options__head`, `.ifs-bottom-sheet__context-title` ("COOPER'S CONTEXT"), `.ifs-widget-chip__title`, `.ifs-search-modal__title` (still uppercase on the typography branch).
-
-**Doesn't make sense — content, values and controls → sentence case, no transform (16)** — the first 11 already changed on the typography branch
-
-| Class | Why it's wrong | Shows |
-|---|---|---|
-| `.ifs-quick-stat__caption`, `.ifs-compare-stat__cap` | A sentence of content | "357 GAINED • 519 LOST • 745 UNCHANGED" |
-| `.ifs-stat-card__desc--below`, `.ifs-table__status-desc` | Descriptions | |
-| `.ifs-file-card__date`, `.ifs-attachment__meta` | Dates and file meta | "NOV 12, 2026 · 860 KB" |
-| `.ifs-map-field__value` | A value (asset or layer name) | |
-| `.ifs-select--s .ifs-select__field` | The dropdown trigger: Title Case, no transform | "PORTFOLIO LEVEL" → "Portfolio Level" |
-| `.ifs-compare-header__label` | Control label | "COMPARE TO" |
-| `.ifs-cooper-msg__toggle`, `.ifs-history__see-all` | Controls | "ANALYZED YOUR REQUEST", "SEE ALL" |
-| `.ifs-select__label`, `.ifs-map-field__label` | Field labels (every other field label is sentence case) | XL select label, bottom-sheet map field labels |
-| `.ifs-evidence__caption` | Scale labels under a meter, read like axis labels (axes are never uppercase) | "<70% REJECT", "70–90% REVIEW" |
-| `.ifs-bar-item` | Values | "40 %" (also: no space before %) |
-| `.ifs-phone__country` | Country code: already capitals, transform does nothing | "US +1" (remove the transform; harmless) |
-
-**Doesn't matter (1):** `.ifs-preview-widget__title` (7px mini preview, not readable at that size). Also outside the 72: `.t-label-s-upper` used for bar values in the demo Dashboard ("$192M"; the typography branch moved it to Label/S/medium).
-
-Text styles behind these: `.t-label-s-upper` and `.t-caption-semibold-upper` stay for the three keep groups; `.t-label-m-upper`, `.t-heading-h3-uppercase`, `.t-heading-h4-upper` and `.t-label-l-upper` are title or heading sizes, so nothing should use them (the typography branch retires `t-label-m-upper`).
-
-**Source text under the transform** today is a mix: "Enterprise Goals" (Title Case) next to "Shown in table" and "Cooper's Context". Under uppercase it looks the same, but screen readers and copy-paste see the source, so fix it to the rule above when the screen is next edited.
+Case (Title Case, sentence case, no uppercase) is set by the **Case** rule in [guide/typography.md](typography.md); this guide only owns the strings. Write names as their owners do (Cooper, IFS, the stage names, a record's name exactly as entered) and acronyms as acronyms (FY27, SAIDI, NPV) **(decide capex vs CAPEX)**.
 
 ## 3. Labels: buttons, links and menus
 
-- **Start with a verb and name the object** when it isn't obvious from context: "Add Model", "Send for Approval", "Archive Investment". One or two words are enough when the context names the object (a "Save" button at the bottom of an edit form).
-- **Never** "OK", "Submit", "Yes" / "No" as the only label: say what happens. The secondary action of a dialog is "Cancel" (it closes without changes) or a real alternative ("Keep Draft").
-- **Same action, same word:** "Delete" removes for good, "Remove" takes something out of a group without destroying it ("Remove Collaborator"), "Archive" hides it and can be undone. Create vs Add: "Create" makes something new from nothing ("Create Framework"), "Add" puts an existing or simple item in a container ("Add Model", "Add Note").
+- **Start with a verb and name the object** when it isn't obvious from context: "Add model", "Send for approval", "Archive investment". One or two words are enough when the context names the object (a "Save" button at the bottom of an edit form).
+- **Never** "OK", "Submit", "Yes" / "No" as the only label: say what happens. The secondary action of a dialog is "Cancel" (it closes without changes) or a real alternative ("Keep draft").
+- **Same action, same word:** "Delete" removes for good, "Remove" takes something out of a group without destroying it ("Remove collaborator"), "Archive" hides it and can be undone. Create vs Add: "Create" makes something new from nothing ("Create framework"), "Add" puts an existing or simple item in a container ("Add model", "Add note").
 - **Ellipsis on a label** (`…`) only when the action needs more input before it happens ("Rename…" in a menu). Not on buttons that open a dialog with nothing to fill in.
-- **Links** say where they go: "See the Storm Report" as a standalone link, never "click here" or a bare "Learn more". A link in a sentence is part of the sentence ("Approvers are listed in the approval chain.").
-- **Icon-only buttons** get the same verb-object label as their `label` prop (it is the tooltip and the accessible name): "Delete File", "Retry Upload", "Previous Month" (the label doubles as the tooltip, so it follows the button rule).
-- **Cooper prompt chips** are questions or requests in sentence case, as the user would type them: "Why did Northeast slip?", "Summarize unresolved gaps".
+- **Links** say where they go: "See the storm report", never "click here" or a bare "Learn more". A link in a sentence is part of the sentence ("Approvers are listed in the approval chain.").
+- **Icon-only buttons** get the same verb-object label as their `label` prop (it is the tooltip and the accessible name): "Delete file", "Retry upload", "Previous month".
+- **Cooper prompt chips** are questions or requests, written as the user would type them: "Why did Northeast slip?", "Summarize unresolved gaps".
 - **No end punctuation** on buttons, labels, titles, tabs or menu items. Full stops on full sentences in body text, descriptions, messages and tooltips (a tooltip of 1–3 words doesn't need one).
 
 ## 4. Message patterns
@@ -155,30 +61,30 @@ Each message answers up to three questions in this order: **what happened, why (
 ### Error (Alert `type="error"`, inline field error, EmptyState `cause="error"`)
 - Say what went wrong in the user's terms, and how to fix it. No blame ("You entered…"), no "Oops", no codes alone (add a code after the sentence when support needs it).
 - Field errors say what's needed, not that it's wrong: "Enter a date after Jan 1, 2027." — not "Invalid date". Required field: "Enter a name" or "Name is required".
-- System errors: heading "Couldn't Load Frameworks", body "The server didn't respond. Try again in a minute." Action button: **Try Again** (not Retry).
+- System errors: heading "Couldn't Load Frameworks", body "The server didn't respond. Try again in a minute." Action button: **Try again** (not Retry).
 - Form summary: "3 fields need attention" then a list.
 
 ### Warning (Alert `type="warning"`)
-- The risk and its consequence, then the way out: "Weighting is no longer balanced. The total strategic objective weight is above 100%." Button: "Rebalance Weights".
+- The risk and its consequence, then the way out: "Weighting is no longer balanced. The total strategic objective weight is above 100%." Button: "Rebalance weights".
 
 ### Success (Alert `type="success"`, Snackbar / `IFS.toast`)
-- Past tense, object first, 2–5 words, Title Case (it's the heading): "Investment Saved", "Framework Published", "3 Investments Moved to Plan". Add a description only if it says something new ("Collaborators were notified."). Offer **Undo** for reversible actions instead of a confirmation dialog.
+- Past tense, object first, 2–5 words: "Investment saved", "Framework published", "3 investments moved to Plan". Add a description only if it says something new ("Collaborators were notified."). Offer **Undo** for reversible actions instead of a confirmation dialog.
 - Don't toast what the screen already shows (the row appearing in the list is the confirmation).
 
 ### Info
 - Neutral, short, and only when it changes what the user does next: "This framework is active, so it's read-only."
 
 ### Empty states (EmptyState)
-Say why it's empty and what to do. The heading (Title Case) states the situation; the body (sentence case) gives the next step; the button does it.
+Say why it's empty and what to do. The heading states the situation; the body gives the next step; the button does it.
 
 | Cause | Heading | Body | Button |
 |---|---|---|---|
-| first-run | "No Value Frameworks Yet" | "Create your first framework to start planning." | "Create Framework" |
-| empty-container | "No Models in This Framework" | "Add a model to start scoring investments." | "Add Model" |
+| first-run | "No Value Frameworks Yet" | "Create your first framework to start planning." | "Create framework" |
+| empty-container | "No Models in This Framework" | "Add a model to start scoring investments." | "Add model" |
 | all-done | "All Caught Up" | "No frameworks are waiting for approval." | — |
-| error | "Couldn't Load Frameworks" | "The server didn't respond. Try again in a minute." | "Try Again" |
-| no-access | "You Don't Have Access to This Framework" | "Ask the framework owner to share it with you." | "Request Access" |
-| no-results | "No Frameworks Match Your Filters" | "Try a different term, or clear filters to see all frameworks." | "Clear Filters" |
+| error | "Couldn't Load Frameworks" | "The server didn't respond. Try again in a minute." | "Try again" |
+| no-access | "You Don't Have Access to This Framework" | "Ask the framework owner to share it with you." | "Request access" |
+| no-results | "No Frameworks Match Your Filters" | "Try a different term, or clear filters to see all frameworks." | "Clear filters" |
 | no-results-similar | "No Results for “WDRM-2”" | "You might be looking for" + chips | — |
 
 ### Loading (Spinner, LoadingMore, LoadingRegion, Skeleton)
@@ -187,9 +93,9 @@ Say why it's empty and what to do. The heading (Title Case) states the situation
 
 ### Confirmation and destructive actions (Modal)
 - Ask only when the action can't be undone or affects other people. Otherwise do it and offer Undo.
-- **Title** (Title Case): the action and the object, as a question: "Delete This Comment?", "Archive Harbor Substation Upgrade?"
+- **Title:** the action and the object, as a question: "Delete This Comment?", "Archive Harbor Substation Upgrade?"
 - **Body:** the consequence, specific: "The comment is deleted for all collaborators. This can't be undone." / "Chats move to Trash and are deleted after 30 days."
-- **Buttons:** the primary button repeats the verb and object ("Delete Comment", "Remove Collaborator"), styled as destructive where Figma has it; secondary is "Cancel". Never "Yes" / "No" / "OK".
+- **Buttons:** the primary button repeats the verb and object ("Delete comment", "Remove collaborator"), styled as destructive where Figma has it; secondary is "Cancel". Never "Yes" / "No" / "OK".
 - Never "Are you sure?".
 
 ## 5. Terms
@@ -267,7 +173,7 @@ All five public systems publish content guidance; Notion has no public system.
 | Topic | Atlassian | Material 3 | Carbon | Fluent 2 | Apple HIG | Catalyst |
 |---|---|---|---|---|---|---|
 | Voice principles | Voice and tone | Content design | Content | Content design | Writing | §1 |
-| Capitalisation | Sentence case | Sentence case | Sentence case | Sentence case | **Title case** for titles, buttons and menus (macOS) | Title Case for titles, headings, navigation, buttons and dropdowns; sentence case for content; uppercase for column headers, status tags, group labels |
+| Capitalisation | Sentence case | Sentence case | Sentence case | Sentence case | **Title case** for titles, buttons and menus (macOS) | See typography.md (Case) |
 | Inclusive / global writing | Inclusive writing | Global writing | Yes | Yes | Inclusion | §1 (short) |
 | Button labels: verb + object | Yes | Yes | Yes | Yes | Yes | §3 |
 | Message patterns (error, success, empty, confirm) | Designing messages | Yes (dialogs, snackbars) | Notifications, empty states as patterns | Yes | Alerts | §4 |
@@ -275,7 +181,7 @@ All five public systems publish content guidance; Notion has no public system.
 | Number, currency and unit formats | Style | Style guide | Yes | Partial | — | §6 (in more depth: abbreviation thresholds, true minus, fiscal years) |
 | Formatting code helpers | — | — | — | — | — | **`IFS.format`** |
 
-What Catalyst takes from each: Atlassian's message structure and date/time page, Carbon's treatment of empty/loading/error/disabled/read-only as patterns with set copy, Material 3's global-writing rules, Fluent's "lead with what matters", and Apple's split of Title Case for titles against sentence case for content (the other four use sentence case everywhere; Catalyst keeps Title Case for titles, headings and navigation because the product's object names read as names there). What only Catalyst needs: money abbreviations at portfolio scale, fiscal years and planning horizons, and Cooper's confidence and sources.
+What Catalyst takes from each: Atlassian's message structure and date/time page, Carbon's treatment of empty/loading/error/disabled/read-only as patterns with set copy, Material 3's global-writing rules, Fluent's "lead with what matters", and nothing on case here (the typography guide owns it). What only Catalyst needs: money abbreviations at portfolio scale, fiscal years and planning horizons, and Cooper's confidence and sources.
 
 ## 8. Findings in the kit (Nov 2026)
 
@@ -287,11 +193,7 @@ Changed on this branch:
 
 Not changed (listed for decisions or other areas):
 - **Real names in stories:** `src/gallery/patterns-nav-bar.jsx` uses "DC Water Capital Improvement Plan" / "DC Water capital" (a real utility), and `src/gallery/patterns-approval.jsx` uses "Jeff Pauska" as a person. The repo is public; replace both with made-up names unless they are cleared.
-- **Titles in sentence case** (should be Title Case): most titles in the kit are typed in sentence case because they were displayed uppercase — "Trace report", "Readiness evaluation", "Portfolio under this framework", "Strategic objectives breakdown", "Framework coverage by measure type", "Saved scenarios", every EmptyState heading in components and stories ("No results found", "All comments have been resolved"), and Alert and toast titles ("Investment saved", "Unsaved changes"). Title-case titles already right: "Version History", "Approval Chain", "Strategy Frameworks", "Value Models" ("Readiness Evaluation" appears both ways). Not yet changed.
-- **Buttons and dropdown values in sentence case** (should be Title Case): nearly all of them — "Add model", "Send for approval", "Request access", "Clear filters", "Try again", "Delete comment" (including the ones this branch rewrote earlier), and dropdown options. Not yet changed.
-- **Status tags in Title Case** (should be sentence case): "Ready to Approve" next to "Ready to publish". Mixed source under uppercase: "Cooper's Context", "Enterprise Goals" vs "Shown in table".
 - "Projects by value driver" (demo Dashboard chart title) uses "projects" where the glossary says "investments".
-- **"N Documents"** (`patterns-documents.jsx` `docLabel`, BottomSheet stories) and **"4 Recommendations"** (CooperChip) are title case in Figma; sentence case would be "3 documents", "4 recommendations".
 - **"No results found" + "You might be looking for"** repeats in five components. Clearer: "No results for “query”". Left as is because it matches the Figma empty-state text.
 - Chart tables and Funnel use `–` (en dash) for a missing value, the helpers use `—` (em dash). Pick one with the data viz area (helpers: `configure({ empty })`).
 - Benefit-cost ratio shown as "2.40x" in the widget stories and "2.4" elsewhere.
@@ -299,9 +201,8 @@ Not changed (listed for decisions or other areas):
 
 ## 9. Decisions waiting
 
-1. **Group labels and eyebrows** stay uppercase in this guide (with column headers and status tags); confirm, or move them to sentence case (none of the benchmarks uses uppercase for group labels any more; Atlassian keeps it only for status lozenges).
-2. **Bring the Catalyst voice-check rules and glossary into this repo?** (Their substance is reflected here in our own words; the glossary's product terms are not copied.)
-3. **Missing-value mark:** em dash `—` (helpers) or en dash `–` (charts).
-4. **capex vs CAPEX**, and whether role names (Portfolio Owner) are capitalised.
-5. **Fiscal-year start month** default (January today) and whether quarters are fiscal ("Q2 FY27") or calendar ("Q2 2026") by default.
-6. **Accounting-style negatives** — parentheses "($1.8M)" in finance tables? This guide says no (true minus everywhere).
+1. **Bring the Catalyst voice-check rules and glossary into this repo?** (Their substance is reflected here in our own words; the glossary's product terms are not copied.)
+2. **Missing-value mark:** em dash `—` (helpers) or en dash `–` (charts).
+3. **capex vs CAPEX**, and whether role names (Portfolio Owner) are written as names.
+4. **Fiscal-year start month** default (January today) and whether quarters are fiscal ("Q2 FY27") or calendar ("Q2 2026") by default.
+5. **Accounting-style negatives** — parentheses "($1.8M)" in finance tables? This guide says no (true minus everywhere).
