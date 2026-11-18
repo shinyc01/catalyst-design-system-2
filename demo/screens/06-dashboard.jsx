@@ -63,13 +63,13 @@ const dashboardProjects = [
 const dashboardProjMax = 844;
 
 function DashboardLegend({ proj }) {
-  return <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'var(--gaps-gap-500)' }}>
+  return <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'var(--space-stack)' }}>
     {dashboardSeries.map(s => <IFS.InfoHintItem key={s.label} label={s.label} color={proj ? s.proj : s.legend} />)}
   </div>;
 }
 
 function ScreenDashboard({ bp, height }) {
-  const { AppShell, NavBar, SideNav, PageHeader, Indicator, SegmentedControl, CooperChip, StatCardsRow, DataVizCard,
+  const { AppShell, NavBar, SideNav, PageHeader, Indicator, SegmentedControl, CooperChip, StatCardsRow, StatCard, DataVizCard,
     BarChartItem, VerticalBarChartItem, DonutChart, BottomSheet } = IFS;
   const toast = useToast();
   const [nav, setNav] = React.useState('active');
@@ -101,16 +101,16 @@ function ScreenDashboard({ bp, height }) {
         bottom={<BottomSheet prompts={['Generate Cooper from chart', 'Compare to best practice']} onPrompt={l => toast(l)} onCooper={() => toast('Cooper')} />}>
         <div style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto',
           padding: 'var(--pg-gap) var(--pg-margin)', display: 'flex', flexDirection: 'column', gap: 'var(--pg-gap)' }}>
-          <StatCardsRow cards={dashboardStats} style={{ gap: 'var(--pg-gap)' }} />
+          <div className="ifs-grid">{dashboardStats.map(c => <StatCard key={c.title} className="ifs-span-3" {...c} />)}</div>
 
           <DataVizCard title="Portfolio under this framework"
             header={{ segments: [{ value: 'weight', label: 'By weight' }, { value: 'budget', label: 'By budget' }], segmentValue: pf, onSegmentChange: setPf }}
             legend={<DashboardLegend />}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {dashboardPortfolio[pf].map(([name, vals], r) => (
-                <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 'var(--gaps-gap-200)', padding: 'var(--paddings-padding-100) 0' }}>
+                <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-200)', padding: 'var(--space-100) 0' }}>
                   <span className="t-label-m-medium" style={{ ...label, width: 140, flex: 'none' }}>{name}</span>
-                  <div style={{ display: 'flex', gap: 'var(--gaps-gap-50)', flex: '1 1 0', minWidth: 0 }}>
+                  <div style={{ display: 'flex', gap: 'var(--space-50)', flex: '1 1 0', minWidth: 0 }}>
                     {vals.map((v, i) => (
                       <BarChartItem key={i} fill={dashboardSeries[i].fill} title={`${dashboardSeries[i].label}: ${v}%`}
                         style={{ flex: `${v} 1 0`, ...(r > 0 ? { color: 'var(--text-on-solid-secondary)' } : null) }}>{v}%</BarChartItem>
@@ -121,15 +121,15 @@ function ScreenDashboard({ bp, height }) {
             </div>
           </DataVizCard>
 
-          <div className="pg-row">
-            <DataVizCard title="Strategic objectives breakdown" style={{ flex: '768 1 0', minWidth: 0 }}
+          <div className="ifs-grid">
+            <DataVizCard title="Strategic objectives breakdown" className="ifs-span-8"
               header={{ segments: [{ value: 'budget', label: 'By budget' }, { value: 'investment', label: 'By investment' }], segmentValue: so, onSegmentChange: setSo }}>
-              <div style={{ display: 'flex', gap: 'var(--gaps-gap-150)', height: 353 }}>
-                <div className="t-label-m-medium" style={{ ...muted, width: 37, flex: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: 24 }}>
+              <div style={{ display: 'flex', gap: 'var(--space-150)', height: 353 }}>
+                <div className="t-label-m-medium" style={{ ...muted, width: 37, flex: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: 'var(--space-inset)' }}>
                   {['100%', '80%', '60%', '40%', '20%', '0'].map(t => <span key={t}>{t}</span>)}
                 </div>
-                <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 'var(--gaps-gap-300)' }}>
-                  <div style={{ display: 'flex', gap: 'var(--gaps-gap-50)', padding: 'var(--paddings-padding-100)', height: 321, boxSizing: 'border-box', alignItems: 'flex-end' }}>
+                <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-stack)' }}>
+                  <div style={{ display: 'flex', gap: 'var(--space-50)', padding: 'var(--space-100)', height: 321, boxSizing: 'border-box', alignItems: 'flex-end' }}>
                     {dashboardColumns[so].map(([name, segs]) => (
                       <div key={name} style={{ flex: '1 1 0', minWidth: 0 }}>
                         <VerticalBarChartItem width="100%" height={313} label={name} active={activeCol === name}
@@ -138,27 +138,27 @@ function ScreenDashboard({ bp, height }) {
                       </div>
                     ))}
                   </div>
-                  <div style={{ display: 'flex', gap: 'var(--gaps-gap-50)', padding: '0 var(--paddings-padding-100)' }}>
+                  <div style={{ display: 'flex', gap: 'var(--space-50)', padding: '0 var(--space-100)' }}>
                     {dashboardColumns[so].map(([name]) => <span key={name} className="t-label-m-medium" style={{ ...muted, flex: '1 1 0', textAlign: 'center' }}>{name}</span>)}
                   </div>
                 </div>
               </div>
             </DataVizCard>
-            <DataVizCard title="Framework coverage by measure type" style={{ flex: '368 1 0', minWidth: 0 }}>
+            <DataVizCard title="Framework coverage by measure type" className="ifs-span-4">
               <DonutChart bare data={dashboardCoverage} sort={false} height={300} valueLabel="Share" format={v => `${v}%`} />
             </DataVizCard>
           </div>
 
           <DataVizCard title="Projects by value driver" header={{ button: { label: 'Show all', iconRight: 'arrow-right', onClick: () => toast('Show all projects') } }}
             legend={<DashboardLegend proj />}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gaps-gap-100)' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-100)' }}>
               {dashboardProjects.map(([name, value, segs]) => {
                 const sum = segs.reduce((a, b) => a + b, 0);
                 return (
-                  <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 'var(--gaps-gap-300)', padding: 'var(--paddings-padding-150) 0' }}>
+                  <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-stack)', padding: 'var(--space-150) 0' }}>
                     <span className="t-label-m-medium" style={{ ...label, width: 196, flex: 'none' }}>{name}</span>
-                    <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', alignItems: 'center', gap: 'var(--gaps-gap-300)' }}>
-                      <div style={{ display: 'flex', gap: 'var(--gaps-gap-50)', width: `calc((100% - 64px) * ${sum / dashboardProjMax})` }}>
+                    <div style={{ flex: '1 1 0', minWidth: 0, display: 'flex', alignItems: 'center', gap: 'var(--space-stack)' }}>
+                      <div style={{ display: 'flex', gap: 'var(--space-50)', width: `calc((100% - 64px) * ${sum / dashboardProjMax})` }}>
                         {segs.map((w, i) => <BarChartItem key={i} number={false} fill={dashboardSeries[i].proj} title={`${name} · ${dashboardSeries[i].label}`}
                           style={{ flex: `${w} 1 0`, height: 16 }} />)}
                       </div>

@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Layout & grid (Catalyst Design System 2.0.1). Rules and reasons: guide/layout.md
+   Matches the standard (Material 3, Atlassian, Fluent 2, Carbon, Primer, Polaris). Cards on columns, panels at fixed sizes, map slots.
+   Margins and gutters follow SCREEN WIDTH only, never density.
+
+     name   width        columns   page margin   gutter (gap between cards)
+     xs     < 600          4          16            16
+     sm     600–1023       8          24            16
+     md     1024–1439     12          24            16
+     lg     1440–1919     12          24            20   (review: 24 felt too big)
+     xl     1920+         12          32            32
+
+   Content is capped at --layout-max-content-width (1600) and centred; data screens (tables, boards,
+   canvases) may use the wide (2240) or full width. CSS can't read custom properties in @media, so the
+   --bp-* tokens are for JS and docs and the media queries repeat the numbers.
+   ========================================================================== */
+:root{
+  --bp-sm:600px;--bp-md:1024px;--bp-lg:1440px;--bp-xl:1920px;
+  --layout-columns:4;--page-margin:var(--space-400);--page-gap:var(--space-400);
+  --layout-max-content-width-wide:2240px;
+  /* Regions: min / default / max. Push the content at md and up; overlay below md. */
+  --region-panel-min:320px;--region-panel-max:50vw;
+  --region-sidenav:var(--layout-sidebar-width);--region-rail:var(--layout-rail-width);
+  /* Overlay widths */
+  --overlay-width-s:320px;--overlay-width-m:440px;--overlay-width-l:600px;
+}
+@media (min-width:600px){:root{--layout-columns:8;--page-margin:var(--space-600)}}
+@media (min-width:1024px){:root{--layout-columns:12}}
+@media (min-width:1440px){:root{--page-gap:var(--space-500)}}
+@media (min-width:1920px){:root{--page-margin:var(--space-700);--page-gap:var(--space-700)}}
+
+/* ---------- Column width (for page regions and the review overlay) ---------- */
+:root{
+  --layout-content:calc(min(100cqw, var(--layout-max-content-width) + 2 * var(--page-margin)) - 2 * var(--page-margin)); /* cqw = the content area (AppShell main) */
+  --layout-inset:calc((100cqw - var(--layout-content)) / 2); /* content-area edge to the grid edge */
+  --layout-col:calc((var(--layout-content) - (var(--layout-columns) - 1) * var(--page-gap)) / var(--layout-columns));
+  --panel-cols:3; /* side columns that are part of the page (.ifs-span-panel): 3 columns, 4 below 1440 */
+  --span-1:calc(1 * var(--layout-col) + 0 * var(--page-gap));--span-2:calc(2 * var(--layout-col) + 1 * var(--page-gap));--span-3:calc(3 * var(--layout-col) + 2 * var(--page-gap));--span-4:calc(4 * var(--layout-col) + 3 * var(--page-gap));--span-5:calc(5 * var(--layout-col) + 4 * var(--page-gap));--span-6:calc(6 * var(--layout-col) + 5 * var(--page-gap));--span-7:calc(7 * var(--layout-col) + 6 * var(--page-gap));--span-8:calc(8 * var(--layout-col) + 7 * var(--page-gap));--span-9:calc(9 * var(--layout-col) + 8 * var(--page-gap));--span-10:calc(10 * var(--layout-col) + 9 * var(--page-gap));--span-11:calc(11 * var(--layout-col) + 10 * var(--page-gap));--span-12:calc(12 * var(--layout-col) + 11 * var(--page-gap));
+}
+@media (max-width:1439px){:root{--panel-cols:4}}
+
+/* ---------- Panels: fixed sizes (hybrid). Cards and page regions use the columns; panels and overlays use this list ----------
+     side panel / drawer   380   (min 320, max 50%)      --region-panel
+     large panel           600   (Study)                 --region-panel-l
+     modal                 440 / 600                     --overlay-width-m / -l
+     popover               320                           --overlay-width-s
+   Docked panels sit flush against the content-area edge. Floating panels on a map sit in slots (below). */
+:root{--region-panel:var(--layout-side-panel-width);--region-panel-l:var(--overlay-width-l)}
+
+/* ---------- Map slots: floating panels are placed, never pinned, so they never overlap ----------
+   On a map or canvas (.ifs-slots on the map container): tools in the left corner; .ifs-slot-left (large panel) next to them;
+   .ifs-slot-right (side panel) on the right; .ifs-slot-top / .ifs-slot-bottom centre their content in the space left between.
+   Every slot sits the page margin from the map edge and the page gap from its neighbours. Add .has-left / .has-right
+   when those slots are filled. Below 1024 the left slot becomes a bottom sheet and the right slot overlays the map. */
+.ifs-slots{--slot-tools:calc(var(--control-h-m) + var(--space-150));
+  --slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap));--slot-r:var(--page-margin)}
+.ifs-slots.has-left{--slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap) + var(--region-panel-l) + var(--page-gap))}
+.ifs-slots.has-right{--slot-r:calc(var(--page-margin) + var(--region-panel) + var(--page-gap))}
+.ifs-slot-left{position:absolute;z-index:600;display:flex;top:var(--space-300);bottom:var(--space-300);
+  left:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap));width:var(--region-panel-l);max-width:calc(100% - 2 * var(--page-margin))}
+.ifs-slot-right{position:absolute;z-index:600;display:flex;top:var(--space-1000);bottom:var(--space-300);right:var(--page-margin);
+  width:var(--region-panel);max-width:calc(100% - 2 * var(--page-margin))}
+.ifs-slot-top,.ifs-slot-bottom{position:absolute;z-index:500;left:var(--slot-l);right:var(--slot-r);display:flex;justify-content:center;pointer-events:none}
+.ifs-slot-top > *,.ifs-slot-bottom > *{pointer-events:auto;max-width:100%}
+.ifs-slot-top{top:var(--space-1000)}
+.ifs-slot-bottom{bottom:var(--space-300)}
+@media (max-width:1023px){
+  .ifs-slots.has-left{--slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap))}
+  .ifs-slot-left{left:var(--page-margin);right:var(--page-margin);width:auto;top:auto;height:50%} /* bottom sheet */
+  .ifs-slots.has-left .ifs-slot-bottom{bottom:calc(50% + var(--page-gap))}
+}
+
+/* ---------- 12-column grid: cards and page columns snap to it ----------
+   .ifs-grid on the page or a page region; children take .ifs-span-N (default: full width).
+   At 8 columns (600–1023) quarters become halves and anything wider than half goes full width;
+   at 4 columns (< 600) everything is full width. */
+.ifs-grid{display:grid;grid-template-columns:repeat(var(--layout-columns),minmax(0,1fr));gap:var(--page-gap);min-width:0;align-items:stretch}
+.ifs-grid > *{grid-column:1 / -1;min-width:0}
+.ifs-grid > .ifs-span-1{grid-column:span 1}.ifs-grid > .ifs-span-2{grid-column:span 2}.ifs-grid > .ifs-span-3{grid-column:span 3}
+.ifs-grid > .ifs-span-4{grid-column:span 4}.ifs-grid > .ifs-span-5{grid-column:span 5}.ifs-grid > .ifs-span-6{grid-column:span 6}
+.ifs-grid > .ifs-span-7{grid-column:span 7}.ifs-grid > .ifs-span-8{grid-column:span 8}.ifs-grid > .ifs-span-9{grid-column:span 9}
+.ifs-grid > .ifs-span-10{grid-column:span 10}.ifs-grid > .ifs-span-11{grid-column:span 11}.ifs-grid > .ifs-span-12{grid-column:1 / -1}
+@media (max-width:1023px){
+  .ifs-grid > .ifs-span-1,.ifs-grid > .ifs-span-2{grid-column:span 2}
+  .ifs-grid > .ifs-span-3,.ifs-grid > .ifs-span-4{grid-column:span 4}
+  .ifs-grid > [class*="ifs-span-"]:not(.ifs-span-1):not(.ifs-span-2):not(.ifs-span-3):not(.ifs-span-4){grid-column:1 / -1}
+}
+@media (max-width:599px){.ifs-grid > [class*="ifs-span-"]{grid-column:1 / -1}}
+/* A side column on the page grid: .ifs-span-panel takes the panel span (3 columns, 4 below 1440),
+   .ifs-span-rest takes the remaining columns */
+.ifs-grid > .ifs-span-panel{grid-column:span var(--panel-cols)}
+.ifs-grid > .ifs-span-rest{grid-column:span calc(var(--layout-columns) - var(--panel-cols))}
+@media (max-width:1023px){.ifs-grid > .ifs-span-panel,.ifs-grid > .ifs-span-rest{grid-column:1 / -1}}

@@ -403,7 +403,7 @@ function ColumnSettings({ columns = [], onChange, suggestions = [], onAdd, findC
 // Preview sidebar for "table with preview" (Figma uses panel-organism): record ID, Details (navigates), ✕ closes.
 // The table stays fully interactive while it is open; a new preview replaces the current one.
 // Props: id (record code), onDetails, onClose, children (preview content), width (default 380).
-function RecordPreview({ id, onDetails, onClose, children, width = 380, className }) {
+function RecordPreview({ id, onDetails, onClose, children, width = 'var(--region-panel)', className }) {
   return (
     <aside className={ptCx('ifs-record-preview', className)} style={{ width }} aria-label={`Preview ${id || ''}`}>
       <div className="ifs-record-preview__header">
@@ -715,7 +715,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
 
   const capped = fixedHeight && !expanded;
   const card = (
-    <section className={ptCx('ifs-data-table', ranked && 'ifs-data-table--ranked', drag && 'ifs-data-table--dragging', capped && 'ifs-data-table--capped', className)}
+    <section className={ptCx('ifs-table-card', 'ifs-data-table', ranked && 'ifs-data-table--ranked', drag && 'ifs-data-table--dragging', capped && 'ifs-data-table--capped', className)}
       style={{ ...(capped ? { maxHeight } : null), ...style }} ref={wrapRef} aria-label={typeof title === 'string' ? title : undefined}>
       {title && <div className="ifs-data-table__header">
         <button type="button" className="ifs-data-table__title" aria-expanded={!collapsed} onClick={collapsible ? () => setCollapsed(!collapsed) : undefined} disabled={!collapsible}>

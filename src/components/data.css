@@ -8,17 +8,17 @@
   background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.04),rgba(255,255,255,.1)) /* raw in Figma */}
 
 /* ---- counter-atom (88:24147) — used inside group rows and grouped notifications ---- */
-.ifs-data-counter{display:inline-flex;align-items:center;justify-content:center;flex:none;height:18px;padding:var(--paddings-padding-50) var(--paddings-padding-200);
+.ifs-data-counter{display:inline-flex;align-items:center;justify-content:center;flex:none;height:18px;padding:var(--space-50) var(--space-200);
   border-radius:10px /* raw in Figma */;background:var(--surface-tertiary-alpha);color:var(--text-secondary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 
 /* ================= Badge — badge-atom (83:52162) ================= */
-.ifs-badge{display:inline-flex;align-items:center;justify-content:center;gap:var(--gaps-gap-100);flex:none;box-sizing:border-box;
+.ifs-badge{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-100);flex:none;box-sizing:border-box;
   border-radius:var(--radius-radius-full);white-space:nowrap;color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-badge--l{height:32px;padding:var(--paddings-padding-200) var(--paddings-padding-250)}
-.ifs-badge--m{height:24px;padding:var(--paddings-padding-100) var(--paddings-padding-200)}
-.ifs-badge--s{height:20px;padding:0 var(--paddings-padding-150)}
+.ifs-badge--l{height:32px;padding:var(--space-200) var(--space-250)}
+.ifs-badge--m{height:24px;padding:var(--space-100) var(--space-200)}
+.ifs-badge--s{height:20px;padding:0 var(--space-150)}
 .ifs-badge--white{background:var(--element-button-secondary-fill-default)}
 .ifs-badge--black{background:var(--background-color-alpha-black-strong);box-shadow:inset 0 0 0 1px var(--border-medium)}
 .ifs-badge--red{background:var(--background-color-alpha-red-base);color:var(--text-danger)}
@@ -29,7 +29,7 @@
 .ifs-badge--info .ifs-icon{color:var(--icon-info)}
 .ifs-badge--orange{background:var(--element-map-pin-overlay-warning);color:var(--text-warning)}
 /* Color=False: no fill, caption uppercase in text/secondary, 12px icons */
-.ifs-badge--false{height:20px;padding:var(--paddings-padding-100) var(--paddings-padding-150);color:var(--text-secondary);
+.ifs-badge--false{height:20px;padding:var(--space-100) var(--space-150);color:var(--text-secondary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-badge--loading{padding:0}
 .ifs-badge--loading.ifs-badge--l{width:36px;height:28px}
@@ -58,17 +58,17 @@
 .ifs-avatar__base{--ring:0 0 0 0 transparent;--edge:0 0 0 0 transparent;position:relative;display:flex;align-items:center;justify-content:center;
   width:100%;height:100%;box-sizing:border-box;margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);overflow:hidden;
   background:var(--av-fill,var(--collaboration-user-16));color:var(--av-text,var(--text-on-solid));box-shadow:var(--edge),var(--ring);
-  font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER: initials (M avatar, 32) */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/UPPER: initials (M avatar, 32) */
 button.ifs-avatar__base{cursor:pointer}
 /* initials type per organism size (Figma overrides the atom text per size) */
 .ifs-avatar--xxs .ifs-avatar__base,.ifs-avatar--xs .ifs-avatar__base{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: one initial (16 and 20 px avatars) */
 .ifs-avatar--s .ifs-avatar__base{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: initials (S avatar, 24) */
-.ifs-avatar--l .ifs-avatar__base{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */
+.ifs-avatar--l .ifs-avatar__base{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/medium */
 .ifs-avatar--xl .ifs-avatar__base{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 (Large, 600): XL avatar, 56 */
 .ifs-avatar__name{position:relative;z-index:2}
 .ifs-avatar__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* "color": 1.3px inner rim, white 100% → 0% top to bottom at 40% */
-.ifs-avatar__base::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.3px;z-index:3;pointer-events:none;
+.ifs-avatar__base::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:var(--border-widths-border-150);z-index:3;pointer-events:none;
   background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0)) /* raw in Figma */;
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 /* "gradient": soft-light highlight on the top half, blurred */
@@ -123,12 +123,12 @@ button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state
 .ifs-risk-atom--error{--disc:var(--background-system-danger)}
 
 /* ================= RiskStatus — status-risk-molecule (69:1729) ================= */
-.ifs-risk{--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;display:inline-flex;align-items:center;gap:var(--gaps-gap-100);flex:none;box-sizing:border-box;
-  height:24px;margin:0;border:0;padding:var(--paddings-padding-100) var(--paddings-padding-200) var(--paddings-padding-100) var(--paddings-padding-100);
+.ifs-risk{--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;
+  height:24px;margin:0;border:0;padding:var(--space-100) var(--space-200) var(--space-100) var(--space-100);
   border-radius:100px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-primary);white-space:nowrap;
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px) /* raw in Figma */;
   box-shadow:var(--stroke),var(--ring),0 4px 24px rgba(0,0,0,.04) /* raw in Figma */;
-  font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium: statuses are sentence case */
 button.ifs-risk{cursor:pointer}
 button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-tertiary-alpha);--stroke:0 0 0 1px var(--border-base)}
 .ifs-risk:disabled,.ifs-risk[aria-disabled=true]{cursor:not-allowed;color:var(--text-disabled);background:var(--surface-secondary-alpha);--stroke:0 0 0 1px var(--border-base)}
@@ -136,8 +136,8 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-risk--loading{width:138px}
 
 /* ================= ReadinessStatus — status-readiness-molecule (1440:5273) ================= */
-.ifs-readiness{display:flex;align-items:center;gap:var(--gaps-gap-150);box-sizing:border-box;min-height:32px;padding:var(--paddings-padding-150) 0}
-.ifs-readiness__left,.ifs-readiness__right{display:flex;align-items:center;gap:var(--gaps-gap-150);min-width:0}
+.ifs-readiness{display:flex;align-items:center;gap:var(--space-150);box-sizing:border-box;min-height:32px;padding:var(--space-150) 0}
+.ifs-readiness__left,.ifs-readiness__right{display:flex;align-items:center;gap:var(--space-150);min-width:0}
 /* Label takes the room it needs; the status on the right keeps its own width (was 50/50, so labels wrapped in the 380 side panel) */
 .ifs-readiness__left{flex:1 1 auto}
 .ifs-readiness__right{flex:0 1 auto;justify-content:flex-end}
@@ -155,8 +155,8 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 
 /* ================= Indicator — indicator-molecule (1074:180251) ================= */
 .ifs-indicator{display:inline-flex;align-items:center;flex:none;border-radius:100px /* raw in Figma */;color:var(--text-primary);white-space:nowrap}
-.ifs-indicator--s{gap:var(--gaps-gap-150);font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */
-.ifs-indicator--xs{gap:var(--gaps-gap-100);font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER: every status is uppercase; XS and S differ only in dot size and gap */
+.ifs-indicator--s{gap:var(--space-150);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium: statuses are sentence case (2.0.1 review) */
+.ifs-indicator--xs{gap:var(--space-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium, sentence case; XS and S differ only in dot size and gap */
 .ifs-indicator--xs .ifs-status-indicator{width:6px;height:6px}
 .ifs-indicator--orange{--dot:var(--icon-warning)}
 .ifs-indicator--green{--dot:var(--icon-success)}
@@ -175,27 +175,27 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 /* ================= StatCard — stat-card-organism (3643:35055) ================= */
 .ifs-stat-card{display:flex;flex-direction:column;box-sizing:border-box;border-radius:var(--radius-radius-100);
   background:var(--element-card-state-fill-default);box-shadow:0 0 0 1px var(--element-card-state-border-default)}
-.ifs-stat-card--m{gap:var(--spacing-card-gap);padding:var(--spacing-card)}
-.ifs-stat-card--s{gap:var(--gaps-gap-200);padding:var(--spacing-card)}
-.ifs-stat-card__top{display:flex;align-items:center;gap:var(--gaps-gap-100);min-height:20px}
+.ifs-stat-card--m{gap:var(--space-100) /* the value's line height adds ~8px of its own, so 4 reads as about the padding */;padding:var(--space-inset)}
+.ifs-stat-card--s{gap:var(--space-100);padding:var(--space-inset)}
+.ifs-stat-card__top{display:flex;align-items:center;gap:var(--space-100);min-height:20px}
 .ifs-stat-card__title{flex:1;min-width:0;color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-stat-card__trend{display:inline-flex;align-items:center;gap:var(--gaps-gap-50);flex:none;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-stat-card__trend{display:inline-flex;align-items:center;gap:var(--space-50);flex:none;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-stat-card__trend .ifs-icon{color:var(--icon-tertiary)}
 .ifs-stat-card__trend--down .ifs-icon{transform:rotate(180deg)}
-.ifs-stat-card__value-row{display:flex;align-items:baseline;gap:var(--gaps-gap-100)}
+.ifs-stat-card__value-row{display:flex;align-items:baseline;gap:var(--space-100)}
 .ifs-stat-card__value{flex:none;color:var(--text-primary);font-variant-numeric:var(--text-numeric)}
-.ifs-stat-card--m .ifs-stat-card__value{font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking)} /* Heading/H1 */
-.ifs-stat-card--s .ifs-stat-card__value{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)} /* Heading/H2 */
+.ifs-stat-card--m .ifs-stat-card__value{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)} /* Heading/H2 (review, Nov 18: H1 felt too big) */
+.ifs-stat-card--s .ifs-stat-card__value{font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking)} /* Heading/H3 */
 .ifs-stat-card__desc{flex:1;min-width:0;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 /* Figma pattern use (Widget Builder 331:493002): value over an UPPERCASE description (was Caption/regular-UPPER → Label/S/UPPER), gap 8 */
-.ifs-stat-card__stack{display:flex;flex-direction:column;gap:var(--gaps-gap-200);min-width:0}
+.ifs-stat-card__stack{display:flex;flex-direction:column;gap:var(--space-200);min-width:0}
 .ifs-stat-card__desc--below{flex:none;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
-.ifs-stat-card__extra{display:flex;align-items:baseline;gap:var(--gaps-gap-150)}
+.ifs-stat-card__extra{display:flex;align-items:baseline;gap:var(--space-150)}
 .ifs-stat-card--loading .ifs-stat-card__value-row{align-items:center}
 
 /* ================= ContentCard — content-card-organism (3643:32067) ================= */
 .ifs-content-card{--fill:var(--element-card-state-fill-default);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
-  position:relative;display:flex;flex-direction:column;gap:var(--gaps-gap-300);box-sizing:border-box;padding:var(--spacing-card);
+  position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;padding:var(--space-inset);
   border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--text-primary);text-align:left;
   transition:background-color .12s,box-shadow .12s}
 .ifs-content-card[role=button]{cursor:pointer}
@@ -210,31 +210,33 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
    Gradient brand/cooper/500-base → core/1000-base, orange at bottom-right to white at the left (Figma transform ≈ 282deg).
    text/accent-cooper and text/primary hold the same values as those primitives. */
 .ifs-content-card--cooper,.ifs-content-card[data-state=cooper]{--fill:var(--surface-secondary-alpha);--ring:0 0 0 2px var(--focus-focus-inner)}
-.ifs-content-card--cooper::before,.ifs-content-card[data-state=cooper]::before{content:"";position:absolute;inset:-4px;padding:2px;border-radius:calc(var(--radius-radius-100) + 4px);pointer-events:none;
+.ifs-content-card--cooper::before,.ifs-content-card[data-state=cooper]::before{content:"";position:absolute;inset:-4px;padding:var(--space-50);border-radius:calc(var(--radius-radius-100) + 4px);pointer-events:none;
   background:linear-gradient(282deg,var(--text-accent-cooper),var(--text-primary));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .ifs-content-card--loading{background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary))}
-.ifs-content-card__main{display:flex;gap:var(--gaps-gap-200);min-width:0}
-.ifs-content-card--m{gap:var(--spacing-card-actions)}
-.ifs-content-card__text{display:flex;flex-direction:column;gap:var(--spacing-card-text);flex:1;min-width:0}
-.ifs-content-card__head{display:flex;align-items:center;gap:var(--gaps-gap-150);min-height:20px}
+.ifs-content-card__main{display:flex;gap:var(--space-200);min-width:0}
+.ifs-content-card--m{gap:var(--space-inset)}
+.ifs-content-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
+.ifs-content-card__head{display:flex;align-items:center;gap:var(--space-150);min-height:20px}
 .ifs-content-card__title{flex:1;min-width:0;color:var(--text-primary)}
 .ifs-content-card--m .ifs-content-card__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-content-card--s .ifs-content-card__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-content-card__head > .ifs-icon{color:var(--icon-primary)}
-.ifs-content-card__lead{display:flex;align-items:center;gap:var(--gaps-gap-100);flex:1;min-width:0}
+.ifs-content-card__lead{display:flex;align-items:center;gap:var(--space-100);flex:1;min-width:0}
 .ifs-content-card__lead > .ifs-icon{flex:none;color:var(--icon-primary)}
 .ifs-content-card__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-content-card__slot{display:flex;gap:var(--gaps-gap-150)}
-.ifs-content-card__buttons{display:flex;gap:var(--gaps-gap-200)}
+.ifs-content-card__slot{display:flex;gap:var(--space-150)}
+.ifs-content-card__buttons{display:flex;gap:var(--space-200)}
 .ifs-content-card__buttons > .ifs-button{flex:1 1 0;min-width:0}
 
 /* ================= Table — table-card-organism (4835:4031) and its parts ================= */
-.ifs-table-card{display:flex;flex-direction:column;gap:var(--spacing-card-gap);padding:var(--spacing-card);border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha)}
+/* Table card: ONE card for every table (IFS.Table with title/tabs/search, and IFS.DataTable). Figma table-card-organism.
+   Padding inset, gap stack; the same in both, so a change reaches every table. */
+.ifs-table-card{position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;min-width:0;padding:var(--space-inset);border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha)}
 .ifs-table-card__name{color:var(--text-primary);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
-.ifs-table-card__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--gaps-gap-300);min-height:40px}
+.ifs-table-card__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-stack);min-height:40px}
 .ifs-table-card__bar > :last-child:not(:first-child){width:360px;flex:none}
-.ifs-table{display:flex;flex-direction:column;gap:var(--gaps-gap-100);min-width:0}
+.ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
 /* content-row-molecule (4835:3501) */
 .ifs-table__row{display:grid;grid-template-columns:var(--cols);align-items:center;border-radius:var(--radius-radius-100)}
 .ifs-table__row--header{min-height:var(--table-header-h)}
@@ -245,12 +247,12 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table__row--selected{box-shadow:inset 0 0 0 1px var(--element-card-state-border-selected)}
 .ifs-table__row--clickable:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* table-header-molecule (1440:5904) */
-.ifs-table__th{display:flex;align-items:center;gap:var(--gaps-gap-200);min-width:0;box-sizing:border-box;height:var(--table-header-h);padding:var(--spacing-table-header-y) var(--spacing-table-header-x);
-  color:var(--text-tertiary);font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase;white-space:nowrap} /* Label/M/UPPER */
+.ifs-table__th{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;height:var(--table-header-h);padding:var(--table-header-pad-top) var(--space-inset) var(--table-header-pad-bottom); /* header text sits closer to its rows than to what's above */
+  color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium: column headers in sentence case, body size (2.0.1 review) */
 .ifs-table__th:hover,.ifs-table__th[data-state=hover]{color:var(--text-secondary)}
 .ifs-table__th--right{justify-content:flex-end}
 .ifs-table__th--center{justify-content:center}
-.ifs-table__th-btn{all:unset;display:inline-flex;align-items:center;gap:var(--gaps-gap-200);cursor:pointer;border-radius:var(--radius-radius-100)}
+.ifs-table__th-btn{all:unset;display:inline-flex;align-items:center;gap:var(--space-200);cursor:pointer;border-radius:var(--radius-radius-100)}
 .ifs-table__th-btn:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* table-sort-atom (1440:5921) */
 .ifs-table-sort{position:relative;display:inline-flex;flex:none;width:16px;height:16px;color:var(--icon-tertiary)}
@@ -268,52 +270,52 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table-filter--applied::after{content:"";position:absolute;right:1.5px;top:1.5px;width:3px;height:3px;border-radius:50%;background:var(--background-solid-accent-purple);box-shadow:0 0 0 1px var(--surface-primary)}
 .ifs-table-filter:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* table-cell-atom (1440:5941) */
-.ifs-table__td{display:flex;align-items:center;gap:var(--gaps-gap-200);min-width:0;box-sizing:border-box;padding:var(--spacing-table-cell-y) var(--spacing-table-cell-x);
+.ifs-table__td{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;padding:var(--space-stack) var(--space-inset);
   color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);font-variant-numeric:var(--text-numeric)} /* Body/M/regular */
 /* Align=Right (Text, Text + description, Counter, Text + counter, Number): content and text end-aligned */
 .ifs-table__td--primary{font-weight:var(--text-label-m-medium-weight)} /* name / primary column keeps Label/M/medium; other cells are Body/M/regular */
 .ifs-table__td--right{justify-content:flex-end;text-align:right}
 .ifs-table__td--right .ifs-table__stack{align-items:flex-end}
 .ifs-table__td--center{justify-content:center}
-.ifs-table__td--check{gap:var(--gaps-gap-100)}
+.ifs-table__td--check{gap:var(--space-100)}
 /* Status: indicator + description / badge hug their content, gap 8 */
 .ifs-table__td--status > *{flex:none}
-.ifs-table__stack{display:flex;flex-direction:column;gap:var(--gaps-gap-100);min-width:0}
-.ifs-table__stack--user{gap:var(--gaps-gap-50)}
+.ifs-table__stack{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
+.ifs-table__stack--user{gap:var(--space-50)}
 .ifs-table__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-table__username{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-table__status-desc{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-table__trend{display:inline-flex;align-items:center;gap:var(--gaps-gap-50);color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-table__trend{display:inline-flex;align-items:center;gap:var(--space-50);color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-table__trend .ifs-icon{color:var(--icon-tertiary)}
 .ifs-table__trend--down .ifs-icon{transform:rotate(180deg)}
 .ifs-table__ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 /* group-row-molecule (4833:19072) */
-.ifs-table__group{all:unset;display:flex;align-items:center;gap:var(--gaps-gap-100);box-sizing:border-box;height:var(--table-header-h);padding:var(--paddings-padding-300);cursor:pointer;
+.ifs-table__group{all:unset;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--table-header-h);padding:var(--space-300);cursor:pointer;
   border-radius:var(--radius-radius-100);background:var(--surface-tertiary-alpha);color:var(--text-tertiary);
-  font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* Label/M/UPPER */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-table__group .ifs-icon{color:var(--icon-tertiary);transform:rotate(180deg) /* Figma rotates the caret 180° */}
 .ifs-table__group-title{flex:1;min-width:0}
 .ifs-table__group:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 
 /* ================= NotificationCard — notification-card (9943:5373) ================= */
-.ifs-notification{--fill:var(--element-card-state-fill-default);position:relative;display:flex;align-items:flex-start;gap:var(--spacing-card-gap);box-sizing:border-box;
-  padding:var(--spacing-card);border-radius:var(--radius-radius-100);background:var(--fill);text-align:left;transition:background-color .12s}
+.ifs-notification{--fill:var(--element-card-state-fill-default);position:relative;display:flex;align-items:flex-start;gap:var(--space-stack);box-sizing:border-box;
+  padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--fill);text-align:left;transition:background-color .12s}
 .ifs-notification[role=button]{cursor:pointer}
 .ifs-notification[role=button]:hover,.ifs-notification[data-state=hover]{--fill:var(--element-card-state-fill-hover)}
 .ifs-notification[role=button]:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-notification__lead{position:relative;flex:none;width:32px;height:32px}
 .ifs-notification__critical{position:absolute;left:23px;top:-3px;display:inline-flex;color:var(--icon-danger)}
 .ifs-notification__count{position:absolute;left:16px;top:-9px;backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
-.ifs-notification__content{display:flex;flex-direction:column;gap:var(--gaps-gap-100);flex:1;min-width:0}
-.ifs-notification__title-row{display:flex;align-items:flex-start;gap:var(--gaps-gap-200)}
+.ifs-notification__content{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
+.ifs-notification__title-row{display:flex;align-items:flex-start;gap:var(--space-200)}
 .ifs-notification--has-tag .ifs-notification__title-row{min-height:20px}
 .ifs-notification__title{flex:1;min-width:0;color:var(--text-primary);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* Label/L/medium */
 .ifs-notification__details{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-notification__meta-row{display:flex;align-items:center;gap:var(--gaps-gap-150);padding-top:var(--paddings-padding-50);
+.ifs-notification__meta-row{display:flex;align-items:center;gap:var(--space-150);padding-top:var(--space-50);
   color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-notification__meta{flex:1;min-width:0}
 .ifs-notification__time{flex:none}
-.ifs-notification__actions{display:flex;gap:var(--gaps-gap-200);padding-top:var(--paddings-padding-200)}
+.ifs-notification__actions{display:flex;gap:var(--space-200);padding-top:var(--space-200)}
 .ifs-notification__unread{display:flex;align-items:center;flex:none;width:8px;height:20px}
 
 /* ================= ProgressBar — progress-bar-molecule (1674:1902) ================= */

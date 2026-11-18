@@ -15,16 +15,16 @@ Two layers, the same as the Figma library (collections "3. Typography primitives
 Components and prototypes use only the semantic layer:
 ```css
 .ifs-thing__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)}
-.ifs-thing__status{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase}
+.ifs-thing__status{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 ```
 Never write a weight, size or letter-spacing number. A decision such as "uppercase is 500, +0.3px" now lives in one token. The semantic tokens are declared on `:root` and on every `[data-density]` container, so text follows the nearest density setting.
 
 No exceptions: every text rule in the kit uses a semantic style, including chart SVG text and small component text.
-- Avatar initials: XL (56) H4 · L (40) and M (32) Label/M/UPPER · S (24) Body/S · XS (20) and XXS (16) Body/S with one initial.
+- Avatar initials: XL (56) H4 · L (40) and M (32) Label/M/medium (initials stay capitals) · S (24) Body/S · XS (20) and XXS (16) Body/S with one initial.
 - Map pin counts: Body/S; M and L pins widen into a pill when the count needs it (e.g. 999 in Spacious).
 - Live-cursor name tags: Body/S (ambient text); the tag grows with the text.
 - Charts: axis ticks Body/S · in-plot values Label/M/medium · donut centre H1 · gauge value Display/M.
-- Widget thumbnails (Widget Builder previews): title Label/M/UPPER; the tiny axis and row labels are drawn as skeleton bars, since a thumbnail has no readable text.
+- Widget thumbnails (Widget Builder previews): title Label/M/medium; the tiny axis and row labels are drawn as skeleton bars, since a thumbnail has no readable text.
 - Navbar wordmark fallback: H3. Bold words inside text use `--text-label-m-medium-weight`.
 
 Paragraph spacing is not a type token (Figma has 8px on Body styles). As in the other systems, the gap between paragraphs comes from spacing tokens.
@@ -41,7 +41,7 @@ Three text levels plus headings. Steps are 2px.
 | H3 / H2 / H1 | `--type-h3/h2/h1` | 22/26/32 | 20/24/28 | 16/20/24 | Sections, page titles, hero pages, big numbers. |
 | Display S/M/L | `--type-display-*` | 36/40/48 | 32/36/44 | 28/32/40 | Rare hero moments. Kept until the product Figma files are checked. |
 
-Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--type-s`. Only Fluent has a 10px level; the others stop at 11–12. Compact Small went from 11 to 10 so every step is 2px.
+Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--type-s`. Only Fluent has a 10px level; the others stop at 11–12. Compact Small is 11 (2.0.1 review: 10 was too small to read), so Small is 14 / 12 / 11.
 
 ## 3. Styles (16)
 
@@ -49,7 +49,7 @@ Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--ty
 |---|---|---|
 | Display L / M / S | Display · 500 · −0.5px | Rare hero numbers |
 | Heading/H1/medium | H1 · 500 · −0.3px | Hero/form page title, big KPI numbers |
-| Heading/H2/medium | H2 · 500 · −0.2px | Page title, big numbers |
+| Heading/H2/medium | H2 · 500 · −0.2px | Page title, stat card numbers |
 | Heading/H3/medium | H3 · 500 · −0.1px | Page sections that aren't inside a card or panel |
 | **Heading/H4/semibold** | Large · 600 · 0 | **The title style**: panel, modal, drawer, card, chart, table card, side nav, empty state |
 | Body/L/regular | Large · 400 · −0.1px | L-field input, long reading |
@@ -57,7 +57,7 @@ Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--ty
 | Body/S/regular | Small · 400 · +0.1px | Rare: disclaimers, footnotes, text inside a fixed small shape |
 | Label/L/medium | Large · 500 · −0.15px | L-size control text only |
 | **Label/M/medium** | Body · 500 · 0 | Names, primary column, key values, controls, sub-section titles |
-| **Label/M/UPPER** | Body · 500 · +0.3px · uppercase | Statuses, table and column headers, nav group headers, eyebrows |
+| ~~Label/M/UPPER~~ | Retired in 2.0.1 | Renders as Label/M/medium. Statuses, column headers, nav group headers, eyebrows and captions are all sentence case. Only avatar initials and abbreviations are capitals. |
 | Code/M/regular, Code/M/medium | Body · mono · 400 / 500 · 0 | Code, formulas, JSON, also inline in Body text (default) |
 | Code/S/regular | Small · mono · 400 · 0 | Code inside Small text only |
 
@@ -76,18 +76,19 @@ Retired (the class still works and renders as its replacement): Code regular / m
 Don't skip a level when nesting: if a page groups its cards into sections, each group gets an H3. The visual level is separate from the HTML level: a card title looks like H4 but can be `<h2>` or `<h3>`, whatever keeps the screen-reader outline in order.
 
 **Big numbers**: pick the size by how many numbers compete for attention.
-- **H1**: the one main number of a card or tile (stat card M, quick stat, Cooper chat card, donut centre).
-- **H2**: several numbers side by side, or a small card (stat card S, before → after pairs, metric rows inside a card).
+- **H1**: the one main number of a large tile (quick stat, Cooper chat card, donut centre).
+- **H2**: stat card M, numbers side by side, before → after pairs (2.0.1 review: H1 felt too big on stat cards).
+- **H3**: stat card S, metric rows inside a card.
 - **Display**: a single hero number that is the whole point of the view (gauge). At most one per screen.
 - **Label/M/medium**: numbers inside content (table cells, lists, sentences). A number in a table never uses a heading style.
 Big numbers always sit next to a Body or Small label that says what they are. (Matches the kit today. Revisit if prototypes keep overriding it.)
 
-**Status vs tag**: both are small pills; only a status is uppercase.
+**Status vs tag**: both are small pills, both in sentence case; a status has a coloured dot.
 | | What it shows | Looks like | Text |
 |---|---|---|---|
-| Status (Indicator) | The state of the object, which changes over its life | Coloured dot + text | Label/M/UPPER: "DRAFT", "ACTIVE", "UNDER REVIEW" |
+| Status (Indicator) | The state of the object, which changes over its life | Coloured dot + text | Label/M/medium, sentence case: "Draft", "Active", "Under review" |
 | Tag / badge (Badge, Chip) | A category, stage, count or attribute | Pill background (or none), no dot | Label/M/medium, normal case: "Shape", "Review", "0/4", "1 resolved" |
-One status per object; a second state is a tag or an icon next to it. Status text is 1–3 words, never a sentence. Never make a tag uppercase to make it stand out; if it matters that much, it's a status.
+One status per object; a second state is a tag or an icon next to it. Status text is 1–3 words, never a sentence. Never make a tag look like a status to make it stand out; if it matters that much, it's a status.
 
 **Numbers**: any number people compare or watch change uses same-width digits (`font-variant-numeric:var(--text-numeric)`, or the `.t-numeric` class in prototypes): table and list cells, big numbers, chart text, counters, progress and pager values. The kit's components already apply it. Numbers inside sentences keep normal figures.
 
@@ -110,16 +111,17 @@ One status per object; a second state is a tag or an icon next to it. Status tex
 | Content, typed text, menu items, options | Body/M/regular |
 | Name / primary column / item title / key value | Label/M/medium |
 | Control text (button, tab, chip, segmented, badge, nav item) | Label/M/medium (L controls Label/L/medium) |
-| Status (in a table, list or page header) | Label/M/UPPER |
+| Status (in a table, list or page header) | Label/M/medium, sentence case |
 | Tag, badge, chip | Label/M/medium, normal case |
-| Table / column header, nav group header, eyebrow | Label/M/UPPER |
+| Table / column header | Label/M/medium, sentence case |
+| Nav group header, eyebrow | Label/M/medium, sentence case |
 | Meta: time, author, ID, file size, helper text, captions under numbers | Body/M/regular in secondary or tertiary colour |
 | Disclaimer, footnote | Body/S/regular (only where the spec asks for it) |
 | Big number | H1 one per card · H2 several or small cards · Display one hero number per screen |
 
 **Weights mean something**: 400 content · 500 every label, name, control and uppercase text · 600 H4 only (at 500, H4 would equal Label/L/medium). A row with no name or key value is all regular. In tables, the name column is medium (`ifs-table__td--primary`: the column with `primary: true`, else the first text column) and every other cell is regular.
 
-**Case**: Title Case for page, section, card, chart, panel and modal titles, headings, navigation, dropdown triggers and buttons. Sentence case for all content (body text, descriptions, messages, menu items, options, chips, Cooper prompts and answers, field labels). UPPERCASE only through Label/M/UPPER, with the source text typed normally. Title Case is a text change, not CSS: the content guide owns the strings.
+**Case** (2.0.1): Title Case for page, section, card, chart, panel and modal titles, headings and navigation. Sentence case for buttons, dropdown triggers, statuses, column headers and all content (body text, descriptions, messages, menu items, options, chips, Cooper prompts and answers, field labels). No uppercase text (2.0.1); only avatar initials and abbreviations are capitals. Title Case is a text change, not CSS: the content guide owns the strings.
 
 **Density**: components read the tokens, so text follows the user's density. Weights, letter-spacing and case are the same in every density.
 
@@ -135,22 +137,22 @@ One status per object; a second state is a tag or an icon next to it. Status tex
 | Largest size | 68 | 32 | 42 (product) | 57 | 34 | 40 |
 | Named styles | ~17 | ~14 | ~15 | 15 | 11 | ~6 |
 
-We follow the majority on token layers, regular content, a 12px floor (10 in Compact) and a short list of styles. We keep uppercase for statuses and headers because it separates them from content, and set it at Body size in medium so it isn't heavier than the content around it.
+We follow the majority on token layers, regular content, a 12px floor (11 in Compact) and a short list of styles. Statuses and column headers are sentence case at Body size in medium (2.0.1 review); there is no uppercase style.
 
 ## 6. Decisions log (Nov 17, 2026)
 
-1. Compact Small 11 → 10px (2px steps).
+1. Compact Small is 11px (2.0.1 review: 10 was too small to read). Small is 14 / 12 / 11.
 2. Caption retired; Small is the smallest level.
 3. Small is rare (option B, narrowed later the same day: meta moved to Body). Labels, statuses and headers move to Body size.
-4. Uppercase stays for statuses, table headers and nav group headers: Body size, 500, +0.3px. The header status is uppercase too (one status style).
-5. Title Case for titles, chart headers, dropdowns and buttons (strings: content guide).
+4. Statuses and table headers are sentence case at Body size, 500 (2.0.1 review). No uppercase style.
+5. Title Case for titles, chart headers and navigation; buttons and dropdowns are sentence case (2.0.1 review; strings: content guide).
 6. Label/M/semibold merged into Label/M/medium; H4 keeps 600.
 7. Display S/M/L and Code kept until the product Figma files are checked. Code follows Body size (Code/M), with Code/S for code inside Small text; in the old Figma library Code also matched body size.
 8. Tokens rebuilt as primitives → semantic, like Figma.
 9. Heading order: H2 page → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels.
 10. Big numbers: H1 one main number per card, H2 when several or small, Display one hero number per screen; table numbers Label/M/medium.
 11. Meta text is Body/M by default; Small only in named cases (disclaimers, footnotes, text inside a fixed small shape).
-12. Status vs tag: a status (dot + state) is uppercase; a tag or badge (category, stage, count) is Label/M/medium in normal case, including the transparent Badge.
+12. Status vs tag: a status (dot + state) and a tag are both sentence case; a tag or badge (category, stage, count) is Label/M/medium in normal case, including the transparent Badge.
 13. Tabular figures (`--text-numeric`) for numbers in tables, big numbers, charts and counters; not in sentences.
 14. Reading text wraps at about 75 characters (`--text-measure`); titles, names and labels are one line with "…" and a tooltip; numbers, statuses and errors never truncate.
 15. Earlier in the same pass: content regular, name column medium; panel/modal/card titles H4 (no uppercase); readiness rows no longer split 50/50.
@@ -166,3 +168,5 @@ We follow the majority on token layers, regular content, a 12px floor (10 in Com
 | 5 | Status component sizes XS and S now share the text style | Merge into one size. |
 | 6 | The kit has 47 truncation rules written one by one; not all show a tooltip with the full text | Audit them onto `.t-truncate` plus a tooltip, and check none truncates a number, status or error. |
 | 7 | Figma library: old style names (Label/M/medium is "Heading/H4/medium"), single mode with 12px body values, a few wrong bindings (Label/M/medium and Code bound to other styles' letter-spacing), stray styles from other files | Rename to the kit names, add Spacious/Comfortable/Compact modes to "4. Typography semantic", fix the bindings, remove strays. |
+
+**Exception**: the Trace report issue title is H3 (not H4), because the issue is the panel's main subject.

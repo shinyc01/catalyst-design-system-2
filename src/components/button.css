@@ -8,15 +8,15 @@
   backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium));
   transition:background-color .12s,box-shadow .12s;
 }
-.ifs-button .ifs-button__label{padding:0 var(--paddings-padding-100)}
+.ifs-button .ifs-button__label{padding:0 var(--space-100)}
 
 /* Sizes */
-.ifs-button--l{height:var(--control-h-l);padding:var(--paddings-padding-200) var(--paddings-padding-300);border-radius:var(--radius-radius-200);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
-.ifs-button--m{height:var(--control-h-m);padding:var(--paddings-padding-150) var(--paddings-padding-250);border-radius:var(--radius-radius-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-button--s{height:var(--control-h-s);padding:var(--paddings-padding-50) var(--paddings-padding-150);border-radius:var(--radius-radius-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-icon-button--l{width:var(--control-h-l);height:var(--control-h-l);padding:var(--paddings-padding-300);border-radius:var(--radius-radius-200)}
-.ifs-icon-button--m{width:var(--control-h-m);height:var(--control-h-m);padding:var(--paddings-padding-200);border-radius:var(--radius-radius-100)}
-.ifs-icon-button--s{width:24px;height:24px;padding:var(--paddings-padding-100);border-radius:var(--radius-radius-100)}
+.ifs-button--l{height:var(--control-h-l);padding:var(--space-200) var(--space-300);border-radius:var(--radius-radius-200);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
+.ifs-button--m{height:var(--control-h-m);padding:var(--space-150) var(--space-250);border-radius:var(--radius-radius-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-button--s{height:var(--control-h-s);padding:var(--space-50) var(--space-150);border-radius:var(--radius-radius-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-icon-button--l{width:var(--control-h-l);height:var(--control-h-l);padding:var(--space-300);border-radius:var(--radius-radius-200)}
+.ifs-icon-button--m{width:var(--control-h-m);height:var(--control-h-m);padding:var(--space-200);border-radius:var(--radius-radius-100)}
+.ifs-icon-button--s{width:24px;height:var(--control-h-s);padding:var(--space-100);border-radius:var(--radius-radius-100)}
 .ifs-icon-button--circle{border-radius:var(--radius-radius-full)}
 
 /* Types: fill + stroke per state, straight from element/button/<type>/{fill,border}/<state>.

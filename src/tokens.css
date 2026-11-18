@@ -343,25 +343,16 @@
 --data-viz-cyan-data-1:#ccf6fa;--data-viz-cyan-data-2:#80e6ef;--data-viz-cyan-data-3:#4ddce7;--data-viz-cyan-data-4:#1ad1e0;--data-viz-cyan-data-5:#00b5ce;
 --data-viz-cyan-data-6:#0090a6;--data-viz-cyan-data-7:#006f82;--data-viz-cyan-data-8:#005763;--data-viz-cyan-data-9:#004652;--data-viz-cyan-data-10:#003741;
 
-/* 5. Measurements */
+/* 5. Measurements (spacing scale and size ruler for spacing live in foundations/spacing.css) */
 --size-ruler-master-0:0px;--size-ruler-master-0-5:0.5px;--size-ruler-master-1:1px;--size-ruler-master-2:2px;--size-ruler-master-3:3px;--size-ruler-master-4:4px;
 --size-ruler-master-6:6px;--size-ruler-master-8:8px;--size-ruler-master-10:10px;--size-ruler-master-12:12px;--size-ruler-master-14:14px;--size-ruler-master-16:16px;
 --size-ruler-master-20:20px;--size-ruler-master-24:24px;--size-ruler-master-28:28px;--size-ruler-master-32:32px;--size-ruler-master-36:36px;--size-ruler-master-40:40px;
 --size-ruler-master-44:44px;--size-ruler-master-48:48px;--size-ruler-master-52:52px;--size-ruler-master-56:56px;--size-ruler-master-60:60px;--size-ruler-master-64:64px;
 --size-ruler-master-68:68px;--size-ruler-master-72:72px;--size-ruler-master-76:76px;--size-ruler-master-80:80px;--size-ruler-master-1000:1000px;
---gaps-gap-0:0px;--gaps-gap-50:2px;--gaps-gap-100:4px;--gaps-gap-150:6px;--gaps-gap-200:8px;--gaps-gap-250:10px;--gaps-gap-300:12px;
---gaps-gap-400:16px;--gaps-gap-500:20px;--gaps-gap-600:24px;--gaps-gap-700:32px;--gaps-gap-800:40px;--gaps-gap-900:48px;--gaps-gap-1000:64px;--gaps-gap-1100:80px;
---paddings-padding-0:0px;--paddings-padding-50:2px;--paddings-padding-100:4px;--paddings-padding-150:6px;--paddings-padding-200:8px;
---paddings-padding-250:10px;--paddings-padding-300:12px;--paddings-padding-400:16px;--paddings-padding-500:20px;
---paddings-padding-600:24px;--paddings-padding-700:32px;--paddings-padding-800:40px;--paddings-padding-900:48px;--paddings-padding-1000:64px;--paddings-padding-1100:80px;
---margins-layout-margin-xs:12px;--margins-layout-margin-sm:16px;--margins-layout-margin-md:20px;--margins-layout-margin-lg:24px;--margins-layout-margin-xl:40px;
---gutters-gutter-xs:12px;--gutters-gutter-sm:16px;--gutters-gutter-md:20px;--gutters-gutter-lg:24px;--gutters-gutter-xl:32px;
 /* Spacing roles (IFS DS polish, items 1-4): containers get room through these; controls keep their own paddings */
---spacing-card:16px;--spacing-card-compact:12px;--spacing-card-gap:12px;--spacing-card-text:4px;--spacing-card-actions:16px;
---spacing-table-cell-x:16px;--spacing-table-cell-y:14px;--spacing-table-header-x:16px;--spacing-table-header-y:12px;
---spacing-panel:16px;--spacing-panel-gap:16px;--spacing-modal:20px;--spacing-modal-gap:16px;
---spacing-popover:8px;--spacing-popover-content:16px;--spacing-form:20px;--spacing-form-field-gap:16px;
---spacing-section:24px;--spacing-section-lg:32px;
+
+
+
 /* Table column widths by content type */
 --table-col-primary-min:240px;--table-col-primary-max:480px;--table-col-short-min:120px;--table-col-short-max:200px;
 --table-col-user-min:160px;--table-col-user-max:240px;--table-col-number-min:96px;--table-col-number-max:160px;
@@ -403,7 +394,7 @@
      page title H2 (H1 hero/form) · panel/modal/drawer/card/chart title H4 · sub-section Label/M/medium
      content, typed text, menu items, meta Body/M/regular · disclaimers, footnotes, text in a fixed small shape Body/S/regular
      names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2/H1 (Display for rare hero moments)
-     UPPERCASE only via Label/M/UPPER: statuses, table/column headers, nav group headers, eyebrows. */
+     No uppercase style (2.0.1): statuses, column headers, eyebrows and captions are sentence case in Label/M/medium. The old .t-*-upper classes now render as Label/M/medium. */
 .t-display-l{font:var(--text-display-l);letter-spacing:var(--text-display-l-tracking)}
 .t-display-m{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking)}
 .t-display-s{font:var(--text-display-s);letter-spacing:var(--text-display-s-tracking)}
@@ -417,7 +408,7 @@
 .t-body-s-regular{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* rare: disclaimers, footnotes, text inside a fixed small shape */
 .t-label-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* L-size control text only */
 .t-label-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* names, key values, controls, sub-section titles */
-.t-label-m-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* statuses, table/column headers, nav group headers, eyebrows */
+.t-label-m-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* statuses, table/column headers, nav group headers, eyebrows */
 .t-code-m-regular{font:var(--text-code-m-regular);letter-spacing:var(--text-code-m-regular-tracking)} /* code at Body size (default) */
 .t-code-m-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)}
 .t-code-s-regular{font:var(--text-code-s-regular);letter-spacing:var(--text-code-s-regular-tracking)} /* code inside Small text only */
@@ -429,16 +420,16 @@
 .t-code-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)} /* -> Code/M/medium */
 .t-label-m-semibold{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (merged) */
 .t-label-s-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (labels are not Small) */
-.t-label-s-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
+.t-label-s-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
 .t-label-l-semibold{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* -> H4 */
 .t-body-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* -> Label/L/medium */
-.t-caption-regular-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER (Caption retired) */
-.t-caption-semibold-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER (Caption retired) */
+.t-caption-regular-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER (Caption retired) */
+.t-caption-semibold-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER (Caption retired) */
 .t-body-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
-.t-heading-h3-uppercase{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
+.t-heading-h3-uppercase{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
 .t-heading-h4-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
-.t-heading-h4-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
-.t-label-l-upper{font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase} /* -> Label/M/UPPER */
+.t-heading-h4-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
+.t-label-l-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
 
 /* Effect styles */
 .fx-elevation-1{box-shadow:var(--elevation-elevation-1-primary);backdrop-filter:blur(var(--blur-strong))}
@@ -465,13 +456,9 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
    Type ramp = average of Fluent 2, Atlassian, Carbon, Material 3, Apple HIG and Notion,
    taken as ratios to body size (S x0.85, H4 x1.11, H3 x1.38, H2 x1.66, H1 x1.97,
    Display x2.54) and applied to each density's body size, rounded to even px.
-   Spacing started from the same six systems' published averages (rows 48, cell padding 12,
-   card 16, modal 24, panel 20, page margin 20, card gap 24, sections 32), then Comfortable
-   was loosened one half-step after review because it felt tight next to the larger type:
-   rows 56, cell padding 16 all round, card 20, panel 24, page margin 24, sections 40.
-   Spacious sits one notch above Comfortable; Compact about half a notch below.
-   Table rule: row height = tallest cell content (24: badge/avatar) + 2 x cell-y, so every
-   row is the same height: Spacious 24+2x20=64, Comfortable 24+2x16=56, Compact 24+2x8=40.
+   Spacing roles and the page grid live in foundations/spacing.css (rules: guide/spacing.md).
+   Tables: fixed rows 64 / 52 / 40 with content centred; header text sits closer to its rows
+   (no top padding: the card padding or toolbar gap above is the space; below = stack).
    A user setting: put data-density="spacious" | "comfortable" (default) | "compact"
    on <html> or any container. Components read these tokens for text size, control
    heights, table rows, table column widths and container padding, so the whole UI
@@ -480,57 +467,36 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
      Comfortable = 14px body — default
      Compact     = 12px body
    ========================================================================== */
-/* Comfortable (default): 14px body; best-in-class average type and spacing */
+/* Comfortable (default): 14px body */
 :root,[data-density="comfortable"]{
   /* Type ramp: size/line-height (weights and letter-spacing stay per style) */
   --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:12px/16px;--type-m:14px/20px;--type-l:16px/24px;
   --type-h3:20px/28px;--type-h2:24px/32px;--type-h1:28px/36px;
   --type-display-s:32px/40px;--type-display-m:36px/44px;--type-display-l:44px/52px;
-  --control-h-s:24px;--control-h-m:32px;--control-h-l:40px;
+  --control-h-s:24px;--control-h-m:32px;--control-h-l:40px;--icon-scale:1;
   --tab-h-m:36px;--tab-h-l:40px;--nav-row-h:40px;
-  --table-row-h:56px;--table-header-h:56px;
-  --density-scale:1.05;--layout-side-panel-width:380px;
-  --spacing-card:var(--paddings-padding-500);--spacing-card-compact:var(--paddings-padding-400);--spacing-card-gap:var(--gaps-gap-400);--spacing-card-actions:var(--paddings-padding-500);
-  --spacing-table-cell-x:var(--paddings-padding-400);--spacing-table-cell-y:var(--paddings-padding-400);--spacing-table-header-x:var(--paddings-padding-400);--spacing-table-header-y:var(--paddings-padding-400);
-  --spacing-panel:var(--paddings-padding-600);--spacing-panel-gap:var(--gaps-gap-500);--spacing-modal:var(--paddings-padding-600);--spacing-modal-gap:var(--gaps-gap-500);
-  --spacing-popover:var(--paddings-padding-100);--spacing-popover-content:var(--paddings-padding-500);--spacing-form:var(--paddings-padding-600);--spacing-form-field-gap:var(--gaps-gap-500);
-  --spacing-section:var(--paddings-padding-800);--spacing-section-lg:var(--paddings-padding-900);
-  --page-margin:var(--margins-layout-margin-lg);--page-gap:var(--gaps-gap-600);
+  --table-row-h:52px;--table-header-h:32px;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --density-scale:1.05;
 }
-@media (min-width:1920px){:root,[data-density="comfortable"]{--page-margin:var(--paddings-padding-800);--page-gap:var(--gaps-gap-700)}}
 
 /* Spacious = 16px body, one notch up */
 [data-density="spacious"]{
   --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:14px/20px;--type-m:16px/24px;--type-l:18px/26px;
   --type-h3:22px/28px;--type-h2:26px/32px;--type-h1:32px/40px;
   --type-display-s:36px/44px;--type-display-m:40px/48px;--type-display-l:48px/56px;
-  --control-h-s:28px;--control-h-m:36px;--control-h-l:44px;
+  --control-h-s:28px;--control-h-m:36px;--control-h-l:44px;--icon-scale:1.143 /* follows body text 16 / 14 */;
   --tab-h-m:40px;--tab-h-l:48px;--nav-row-h:44px;
-  --table-row-h:64px;--table-header-h:64px;
-  --density-scale:1.2;--layout-side-panel-width:380px;
-  --spacing-card:var(--paddings-padding-600);--spacing-card-compact:var(--paddings-padding-500);--spacing-card-gap:var(--gaps-gap-500);--spacing-card-actions:var(--paddings-padding-600);
-  --spacing-table-cell-x:var(--paddings-padding-500);--spacing-table-cell-y:var(--paddings-padding-500);--spacing-table-header-x:var(--paddings-padding-500);--spacing-table-header-y:var(--paddings-padding-500);
-  --spacing-panel:var(--paddings-padding-700);--spacing-panel-gap:var(--gaps-gap-600);--spacing-modal:var(--paddings-padding-700);--spacing-modal-gap:var(--gaps-gap-600);
-  --spacing-popover:var(--paddings-padding-200);--spacing-popover-content:var(--paddings-padding-600);--spacing-form:var(--paddings-padding-700);--spacing-form-field-gap:var(--gaps-gap-600);
-  --spacing-section:var(--paddings-padding-900);--spacing-section-lg:var(--paddings-padding-1000);
-  --page-margin:var(--paddings-padding-700);--page-gap:var(--gaps-gap-700);
+  --table-row-h:64px;--table-header-h:40px;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --density-scale:1.2;
 }
-@media (min-width:1920px){[data-density="spacious"]{--page-margin:var(--paddings-padding-800);--page-gap:var(--gaps-gap-800)}}
 
-/* Compact = 12px body; spacing about half a notch below Comfortable (a full notch felt too tight) */
+/* Compact = 12px body */
 [data-density="compact"]{
-  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:10px/14px /* 2px steps: Small 10, Body 12, Large 14 */;--type-m:12px/16px;--type-l:14px/20px;
+  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:11px/14px /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */;--type-m:12px/16px;--type-l:14px/20px;
   --type-h3:16px/24px;--type-h2:20px/28px;--type-h1:24px/32px;
   --type-display-s:28px/36px;--type-display-m:32px/40px;--type-display-l:40px/48px;
-  --control-h-s:20px;--control-h-m:28px;--control-h-l:32px;
+  --control-h-s:20px;--control-h-m:28px;--control-h-l:32px;--icon-scale:0.857 /* follows body text 12 / 14 */;
   --tab-h-m:32px;--tab-h-l:36px;--nav-row-h:36px;
-  --table-row-h:40px;--table-header-h:40px;
-  --density-scale:0.95;--layout-side-panel-width:380px;
-  --spacing-card:var(--paddings-padding-300);--spacing-card-compact:var(--paddings-padding-200);--spacing-card-gap:var(--gaps-gap-300);--spacing-card-actions:var(--paddings-padding-300);
-  --spacing-table-cell-x:var(--paddings-padding-300);--spacing-table-cell-y:var(--paddings-padding-200);--spacing-table-header-x:var(--paddings-padding-300);--spacing-table-header-y:var(--paddings-padding-200);
-  --spacing-panel:var(--paddings-padding-400);--spacing-panel-gap:var(--gaps-gap-300);--spacing-modal:var(--paddings-padding-500);--spacing-modal-gap:var(--gaps-gap-300);
-  --spacing-popover:var(--paddings-padding-100);--spacing-popover-content:var(--paddings-padding-300);--spacing-form:var(--paddings-padding-400);--spacing-form-field-gap:var(--gaps-gap-300);
-  --spacing-section:var(--paddings-padding-600);--spacing-section-lg:var(--paddings-padding-700);
-  --page-margin:var(--margins-layout-margin-sm);--page-gap:var(--gaps-gap-500);
+  --table-row-h:40px;--table-header-h:24px;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --density-scale:0.95;
 }
-@media (min-width:1920px){[data-density="compact"]{--page-margin:var(--paddings-padding-600);--page-gap:var(--gaps-gap-600)}}

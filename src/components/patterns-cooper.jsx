@@ -531,7 +531,7 @@ function FolderContent({ type = 'general', title, count, children, onBack, onMor
     <aside aria-label={title} className={IFS.cx('ifs-history', className)} {...rest}>
       <div className={IFS.cx('ifs-history__head', 'ifs-history__head--back')}>
         <span className="ifs-history__title">
-          {onBack ? <Btn icon="arrow-left" label="Back" size="s" onClick={onBack} /> : icon && <span style={{ display: 'inline-flex', padding: 4 }}><IFS.Icon name={icon} variant={type === 'insight' ? 'Default' : undefined} size={16} /></span>}
+          {onBack ? <Btn icon="arrow-left" label="Back" size="s" onClick={onBack} /> : icon && <span style={{ display: 'inline-flex', padding: 'var(--space-100)' }}><IFS.Icon name={icon} variant={type === 'insight' ? 'Default' : undefined} size={16} /></span>}
           <span>{title}</span>
         </span>
         <span style={{ display: 'flex' }}>
@@ -682,7 +682,7 @@ function RecommendationDetail({ title, description, impact = [], onBack, onDecli
       <h3 className="ifs-rec-detail__title">{title}</h3>
       {description && <p className="ifs-rec-detail__desc">{description}</p>}
       <RecommendationImpact rows={impact} />
-      <div className="ifs-cooper-msg__buttons" style={{ paddingTop: 4 }}>
+      <div className="ifs-cooper-msg__buttons" style={{ paddingTop: 'var(--space-100)' }}>
         <IFS.Button type="tertiary" onClick={onDecline}>Decline</IFS.Button>
         <IFS.Button type="secondary" onClick={onApply}>Do it</IFS.Button>
       </div>
@@ -942,11 +942,11 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
         <p className="ifs-confirm-note">Chats are not deleted. They are removed from the folder and stay in your history.</p>
       </>, 'Delete', () => { setFols(fols.filter(f => !modalIds.includes(f.id))); setList(list.map(c => modalIds.includes(c.folder) ? { ...c, folder: undefined } : c)); if (modalIds.includes(open)) setOpen(null); setModal(null); endSelect(); })}
       {modal && modal.kind === 'move' && confirm('Move to folder', <>
-        {modalIds.length > 1 && <div className="ifs-confirm-list" style={{ marginBottom: 12 }}>{modalIds.map(id => <ConfirmDeleteCard key={id} onRemove={() => dropId(id)}>{nameOf(id)}</ConfirmDeleteCard>)}</div>}
+        {modalIds.length > 1 && <div className="ifs-confirm-list" style={{ marginBottom: 'var(--space-300)' }}>{modalIds.map(id => <ConfirmDeleteCard key={id} onRemove={() => dropId(id)}>{nameOf(id)}</ConfirmDeleteCard>)}</div>}
         <div className="ifs-history__list">{fols.length ? fols.map(f => <FolderItem key={f.id} icon={f.icon} active={moveTo === f.id} onClick={() => setMoveTo(f.id)}>{f.name}</FolderItem>)
           : <div className="ifs-history__empty">No folders yet. Create one from the Folders menu.</div>}</div>
       </>, 'Move', () => { if (moveTo) { upd(modalIds, { folder: moveTo }); setModal(null); endSelect(); } })}
-      {modal && modal.kind === 'createFolder' && confirm('Create folder', <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      {modal && modal.kind === 'createFolder' && confirm('Create folder', <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-stack)' }}>
         <IFS.TextField label="Folder name" placeholder="e.g. Strategy" value={newFolder.name} onChange={v => setNewFolder({ ...newFolder, name: v })} autoFocus />
         <IFS.IconPicker value={newFolder.icon} onChange={v => setNewFolder({ ...newFolder, icon: v })} columns={7} label="Folder icon" bare />
       </div>, 'Create', () => { if (!newFolder.name.trim()) return; setFols([...fols, { id: 'f' + Date.now(), name: newFolder.name.trim(), icon: newFolder.icon }]); setModal(null); })}

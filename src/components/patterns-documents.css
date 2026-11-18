@@ -4,14 +4,14 @@
 /* ================= map-pin-dot (d2686af3…) ================= */
 .ifs-pin-dot{--pd-fill:var(--element-map-pin-fill-error);--pd-size:24px;--pd-in:22px;
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
-  min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:1px;border:0;border-radius:var(--radius-radius-full);cursor:pointer; /* grows into a pill when the count needs it */
+  min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-radius-full);cursor:pointer; /* grows into a pill when the count needs it */
   background:var(--background-solid-white);box-shadow:0 0 0 1px var(--border-base),var(--drop-shadow-pin)}
 .ifs-pin-dot--warning{--pd-fill:var(--element-map-pin-fill-warning)}
 .ifs-pin-dot--success{--pd-fill:var(--element-map-pin-fill-default)} /* Figma: status=Success is bound to map-pin/fill/default */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}
 .ifs-pin-dot--s{--pd-size:16px;--pd-in:14px}
-.ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:0.5px;box-shadow:0 0 0 0.5px var(--border-base),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
-.ifs-pin-dot__fill{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:var(--pd-in);height:var(--pd-in);padding:0 var(--paddings-padding-100);border-radius:var(--radius-radius-full);
+.ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 0.5px var(--border-base),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
+.ifs-pin-dot__fill{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:var(--pd-in);height:var(--pd-in);padding:0 var(--space-100);border-radius:var(--radius-radius-full);
   background:var(--pd-fill);color:var(--text-primary);overflow:hidden}
 .ifs-pin-dot__text{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
 .ifs-pin-dot--l .ifs-pin-dot__text{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
@@ -45,9 +45,9 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-pin-flow--error{background:var(--icon-danger)}
 
 /* ================= map-pin-pole "Pole" (b548a660…) ================= */
-.ifs-pin-pole{display:inline-flex;flex-direction:column;align-items:center;gap:var(--gaps-gap-200);width:32px;margin:0;padding:0;border:0;background:none;
+.ifs-pin-pole{display:inline-flex;flex-direction:column;align-items:center;gap:var(--space-200);width:32px;margin:0;padding:0;border:0;background:none;
   cursor:pointer;border-radius:var(--radius-radius-100)}
-.ifs-pin-pole--dot{gap:var(--gaps-gap-100);justify-content:center}
+.ifs-pin-pole--dot{gap:var(--space-100);justify-content:center}
 .ifs-pin-pole__label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-primary);white-space:nowrap;
   -webkit-text-stroke:2px #2d3238 /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px rgba(0,0,0,.7) /* raw in Figma */}
 .ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--background-solid-white)}
@@ -71,8 +71,8 @@ button.ifs-pin-defect{cursor:pointer}
 
 /* ================= bar-chart-item (44fcce06…) / vertical-bar-chart-item (c06b1d19…) ================= */
 .ifs-bar-item{--bar-fill:var(--data-viz-data-1);display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-  min-width:0;min-height:0;height:32px;padding:0 var(--paddings-padding-200);border-radius:var(--radius-radius-100);background:var(--bar-fill);
-  color:var(--text-primary);font:var(--text-label-m-upper);letter-spacing:var(--text-label-m-upper-tracking);text-transform:uppercase /* Label/M/UPPER */;
+  min-width:0;min-height:0;height:32px;padding:0 var(--space-200);border-radius:var(--radius-radius-100);background:var(--bar-fill);
+  color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */;
   overflow:hidden;white-space:nowrap}
 /* Figma colour index → data-viz/data-N (the set skips N=8: 9→6, 6→7, 7→9, 8→10). Missing variables: fallbacks are the Figma values. */
 .ifs-bar-item--c1{--bar-fill:var(--data-viz-data-1)}
@@ -84,8 +84,8 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-bar-item--c6{--bar-fill:var(--data-viz-data-7)}
 .ifs-bar-item--c7{--bar-fill:var(--data-viz-data-9)}
 .ifs-bar-item--c8{--bar-fill:var(--data-viz-data-10)}
-.ifs-vbar{display:inline-flex;flex-direction:column;justify-content:flex-end;gap:var(--gaps-gap-50);box-sizing:border-box;width:104px;height:200px;
-  padding:var(--paddings-padding-50);border-radius:var(--radius-radius-100);margin:0;border:0;background:none;outline:none}
+.ifs-vbar{display:inline-flex;flex-direction:column;justify-content:flex-end;gap:var(--space-50);box-sizing:border-box;width:104px;height:200px;
+  padding:var(--space-50);border-radius:var(--radius-radius-100);margin:0;border:0;background:none;outline:none}
 .ifs-vbar > .ifs-bar-item{height:auto;flex:var(--seg) 1 0;min-height:4px}
 button.ifs-vbar{cursor:pointer}
 .ifs-vbar--active,.ifs-vbar[data-state=active]{box-shadow:0 0 0 1.5px var(--focus-focus-outer)}
@@ -110,18 +110,18 @@ button.ifs-vbar{cursor:pointer}
 /* Drop area: the content region; the purple dashed overlay (move-and-drop-background, change-position-overlay) while files are dragged over it. */
 .ifs-docs-drop{position:relative;min-height:0}
 .ifs-docs-drop__overlay{position:absolute;inset:0;z-index:var(--z-index-z-floating);min-height:0;border-radius:0;pointer-events:none}
-.ifs-docs-drop__ghosts{position:absolute;z-index:var(--z-index-z-floating);display:grid;grid-template-columns:repeat(2,auto);gap:var(--gaps-gap-200);pointer-events:none}
+.ifs-docs-drop__ghosts{position:absolute;z-index:var(--z-index-z-floating);display:grid;grid-template-columns:repeat(2,auto);gap:var(--space-200);pointer-events:none}
 .ifs-docs-drop__ghosts .ifs-node-card{width:230px}
 .ifs-docs-drop__count{position:absolute;left:62px;top:42px}
 
 /* Feedback stack (alerts + snackbars), top-right under the page header. */
-.ifs-docs-feedback{position:absolute;top:var(--docs-feedback-top,88px);right:var(--paddings-padding-300);z-index:var(--z-index-z-toast);
-  display:flex;flex-direction:column;align-items:flex-end;gap:var(--gaps-gap-200);pointer-events:none}
+.ifs-docs-feedback{position:absolute;top:var(--docs-feedback-top,88px);right:var(--space-300);z-index:var(--z-index-z-toast);
+  display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-200);pointer-events:none}
 .ifs-docs-feedback > *{pointer-events:auto;animation:ifs-toast-in .2s ease-out}
 .ifs-docs-feedback .ifs-alert{width:303px}
-.ifs-docs-details{display:flex;flex-direction:column;gap:var(--gaps-gap-200);margin:0;padding:0;list-style:none}
-.ifs-docs-details li{display:flex;flex-direction:column;gap:var(--gaps-gap-50)}
+.ifs-docs-details{display:flex;flex-direction:column;gap:var(--space-200);margin:0;padding:0;list-style:none}
+.ifs-docs-details li{display:flex;flex-direction:column;gap:var(--space-50)}
 .ifs-docs-details__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-docs-details__why{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-docs-context__loading .ifs-icon{animation:ifs-docs-spin 1s linear infinite}
-@keyframes ifs-docs-spin{to{transform:rotate(360deg)}}
+@keyframes ifs-docs-spinto{transform:rotate(360deg)}

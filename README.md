@@ -4,10 +4,15 @@ The next version of the IFS DS code kit: a React code twin of the IFS Design Sys
 
 It started as a copy of the IFS DS kit (`shinyc01/new-cl-design-system`, folder `ifs-kit`) with the IFS DS polish values from Flexy (Nov 2026). That kit is unchanged and still powers the `catalyst-prototype` skill; this repo is a separate version.
 
+## 2.0.1 (Nov 18, 2026): spacing
+- One `--space-*` scale and three density roles: `--space-inset` 20 / 16 / 12 (padding of every card, panel, drawer, modal, popover and form, on all four sides), `--space-stack` 16 / 12 / 8 (gaps between blocks), `--space-section` 40 / 32 / 24 (between page sections). Page margin and the gap between cards follow screen width. No raw px spacing in components. Spec: [guide/spacing.md](guide/spacing.md).
+- Tables: fixed rows 64 / 52 / 40, headers 40 / 32 / 24 (no top padding); one table card for every table. Menus 4px from the trigger and 4px inside.
+- Layout: breakpoints 600 / 1024 / 1440 / 1920, 12 columns, margin and gap by screen width; cards on columns, panels at fixed sizes (380 / 600), map slots. Spec: [guide/layout.md](guide/layout.md).
+
 ## 2.0.1 (Nov 17, 2026): typography
 - Type tokens in two layers like the Figma library: primitives, then one semantic set per style (`--text-<style>`, `src/foundations/typography.css`). Components use only the semantic tokens; no hard-coded sizes, weights or letter-spacing anywhere.
-- 16 styles. Caption retired; Small is rare (disclaimers, footnotes, text inside small fixed shapes) and Compact Small is 10 px. Labels, statuses, table headers and meta text are Body size.
-- One uppercase style (Label/M/UPPER: Body, 500, +0.3px) for statuses, table and column headers, nav group headers and eyebrows. Titles are H4 in Title Case; content is regular, names and key values medium.
+- 16 styles. Caption retired; Small is rare (disclaimers, footnotes, text inside small fixed shapes); Small is 14 / 12 / 11. Labels, statuses, table headers and meta text are Body size.
+- No uppercase style (2.0.1 review): statuses, column headers and captions are sentence case in Label/M/medium. Titles, headings and navigation are Title Case; buttons, dropdowns and all content are sentence case. Content is regular, names and key values medium.
 - Code follows Body size; tabular figures for numbers; reading text wraps at about 75 characters.
 - Full spec and rules: [guide/typography.md](guide/typography.md). Old `.t-*` class names still work.
 
@@ -37,45 +42,22 @@ The pinned link always shows 1.0 exactly as it was, even if `master` changes. To
 ## What's new in 2.0: density
 Users pick how dense the UI is, as a system setting (three levels):
 
-| Setting | Body | Small | H4 / H3 / H2 / H1 | Display S / M / L | Controls S/M/L | Table row = header | Cell padding | Card | Modal | Page margin / gap (1440) |
-|---|---|---|---|---|---|---|---|---|---|---|
-| **Spacious** | 16/24 | 14 | 18 / 22 / 26 / 32 | 36 / 40 / 48 | 28 / 36 / 44 | 64 | 20 / 20 | 24 | 32 | 32 / 32 |
-| **Comfortable** (default) | 14/20 | 12 | 16 / 20 / 24 / 28 | 32 / 36 / 44 | 24 / 32 / 40 | 56 | 16 / 16 | 20 | 24 | 24 / 24 |
-| **Compact** | 12/16 | 10 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 20 / 28 / 32 | 40 | 12 / 8 | 12 | 20 | 16 / 20 |
+| Setting | Body | Small | H4 / H3 / H2 / H1 | Display S / M / L | Controls S/M/L | Table row / header | Inset | Stack | Section |
+|---|---|---|---|---|---|---|---|---|---|
+| **Spacious** | 16/24 | 14 | 18 / 22 / 26 / 32 | 36 / 40 / 48 | 28 / 36 / 44 | 64 / 40 | 20 | 16 | 40 |
+| **Comfortable** (default) | 14/20 | 12 | 16 / 20 / 24 / 28 | 32 / 36 / 44 | 24 / 32 / 40 | 52 / 32 | 16 | 12 | 32 |
+| **Compact** | 12/16 | 11 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 20 / 28 / 32 | 40 / 24 | 12 | 8 | 24 |
+
+Page margin / gap between cards follow screen width, not density: 16 / 16 below 600, 24 / 16 from 600, 24 / 20 from 1440, 32 / 32 from 1920.
 
 ### Where the numbers come from
-Comfortable is the average of six reference systems: Fluent 2, Atlassian, Carbon, Material 3, Apple HIG and Notion (Notion unofficial, from its CSS).
-
-**Type** is averaged as ratios to each system's body size, then applied to our body size and rounded to even px: Small x0.85, H4 x1.11, H3 x1.38, H2 x1.66, H1 x1.97, Display x2.54. Each heading step is now about 20% (it was about 11% with 16/18/20/24). Average heading weights: H4 600, H3-H1 about 500, so weights did not change.
-
-**Spacing** (published values; px):
-| Role | Fluent 2 | Atlassian | Carbon | Material 3 | Average → ours |
-|---|---|---|---|---|---|
-| Default button | 32 | 32 | 40 (forms) | 40 | 36 → kept 32 (dense-app systems use 32) |
-| Table row (default) | 44 | ~28 | 48 | — | 46 → **48**, header same height (was 60 / 40) |
-| Table cell padding (x) | 8 | 8 | 16 | — | 11 → **12** (was 16) |
-| Card padding | 12 | — | 16 | — | 14 → kept 16 |
-| Modal padding | 24 | 24 | 16 | 24 | 22 → **24** (was 20) |
-| Side panel width | 320 | 360 | 480 | 360 | 380 → kept 380 |
-| Side panel padding | 24 | — | 16 | — | 20 → **20** (was 16) |
-| Menu surface padding | 4 | 0 | 4 | 8 | 4 → **4** (was 8) |
-| Field gap / label gap | — / 4 | 8 / 4 | 16–32 / 8 | — | kept 16 / 4 |
-| Page margin (1440) | — | — | 16 | 24 | 20 → **20** (was 24) |
-| Gap between cards | — | 12–24 | 32 | 24 | ~24 → **24** (was 16) |
-| Section spacing | — | 32+ | 32 | 24 | ~32 → **32** (was 24) |
-
-**Base scale:** 0, 2, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, plus **64 and 80** (new; Atlassian and Carbon both have them). 10 is only in Fluent; it stays because existing components use it.
-
-**Adjusted after review:** the averages below (rows 48, cell padding 12, card 16, panel 20, page margin 20, sections 32) felt tight next to the larger type, so Comfortable spacing sits half a step looser (rows 56, cell padding 16 all round, card 20, panel 24, page margin 24, sections 40). Spacious steps one notch above that.
-
-**Table row rule:** row height = tallest cell content (24: badge, avatar, chip) + 2 × the cell's top/bottom padding. Spacious 24 + 2×20 = 64, Comfortable 24 + 2×16 = 56, Compact 24 + 2×8 = 40. Rows are centred, so the row height (not the padding) sets the visible space; following the rule keeps every row the same height whatever it contains. Compact steps text one notch down but spacing only about half a notch (a full notch felt too tight). Apple and Notion publish no spacing metrics, so they count for type only.
+Comfortable type is the average of six reference systems: Fluent 2, Atlassian, Carbon, Material 3, Apple HIG and Notion (Notion unofficial, from its CSS), taken as ratios to each system's body size and applied to ours, rounded to even px: Small x0.85, H4 x1.11, H3 x1.38, H2 x1.66, H1 x1.97, Display x2.54. Spacing started from the same systems' published averages and was then set in the 2.0.1 review with Flexy; the rules and values are in [guide/spacing.md](guide/spacing.md).
 
 How it works:
 - Put `data-density="spacious"`, `"comfortable"` or `"compact"` on `<html>` (or any container). `IFS.setDensity('compact')` does this and remembers the choice; `IFS.getDensity()` reads it back.
 - Type is tokens in two layers (like the Figma library): primitives (families, weights, letter-spacing steps, and the `--type-s|m|l|h3|h2|h1|display-*` size/line-height pairs per density) and one semantic set per text style, `--text-<style>` + `-tracking` + `-weight` (`src/foundations/typography.css`). Components use only the semantic set. 15 styles; rules in `guide/typography.md`.
 - Control heights read `--control-h-s|m|l`, `--tab-h-m|l`, `--nav-row-h`, `--table-row-h`, `--table-header-h`.
-- The `--spacing-*` role tokens step down one notch in Compact; `--page-margin` / `--page-gap` give the page grid.
-- All values live in the Density block at the end of `src/tokens.css`.
+- Spacing: `src/foundations/spacing.css` (scale, roles, page grid). Type and control sizes: the Density block at the end of `src/tokens.css`. Old `--spacing-*`, `--gaps-*` and `--paddings-*` names still work as aliases.
 - The bundle exposes `window.Catalyst` (and `window.IFS`, so existing prototypes work unchanged).
 
 ---

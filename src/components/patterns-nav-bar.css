@@ -7,14 +7,14 @@
 .ifs-navbar-menu{position:relative;display:flex;align-items:center;height:30px}
 .ifs-navbar-menu__trigger{display:inline-flex}
 /* single-select-list-molecule (.ifs-select__list, selection.css): 240 wide, L rows (40px), 4px under the hamburger */
-.ifs-select__list.ifs-navbar-menu__list{left:0;right:auto;top:calc(100% + var(--gaps-gap-100) + 1px);width:240px;max-height:none}
+.ifs-select__list.ifs-navbar-menu__list{left:0;right:auto;top:calc(100% + var(--space-100) + 1px);width:240px;max-height:none}
 
 /* ---------- ExploreHeader: explore-header (12:175111) ---------- */
-.ifs-explore-header{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--gaps-gap-300);
-  width:100%;height:40px;padding:0 var(--paddings-padding-300);
+.ifs-explore-header{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);
+  width:100%;height:40px;padding:0 var(--space-300);
   background:var(--surface-primary-alpha);box-shadow:inset 0 -1px 0 var(--border-base);
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
-.ifs-explore-header__left,.ifs-explore-header__right{display:flex;align-items:center;gap:var(--gaps-gap-150);min-width:0}
+.ifs-explore-header__left,.ifs-explore-header__right{display:flex;align-items:center;gap:var(--space-150);min-width:0}
 .ifs-explore-header__right{flex:none}
 
 /* ---------- HomeRowCard: home-row-card-organism (244:117301) ---------- */
@@ -27,31 +27,31 @@
 .ifs-home-row-card:hover,.ifs-home-row-card[data-state=hover]{background:var(--surface-tertiary-alpha)}
 .ifs-home-row-card:focus-visible,.ifs-home-row-card[data-state=focus]{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* Primary: 1px INSIDE gradient stroke, white (left) → Cooper copper (right) */
-.ifs-home-row-card--primary::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+.ifs-home-row-card--primary::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:var(--size-1);pointer-events:none;
   background:linear-gradient(90deg,var(--border-white),var(--border-accent-cooper));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .ifs-home-row-card--loading{background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary));cursor:default}
 .ifs-home-row-card--loading::before{display:none}
 .ifs-home-row-card__rank{flex:none;display:flex;justify-content:center;align-items:flex-start;box-sizing:border-box;width:72px;
-  padding:18px var(--paddings-padding-400) /* raw in Figma: 18 */}
-.ifs-home-row-card__body{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:var(--gaps-gap-300);
-  box-sizing:border-box;padding:var(--paddings-padding-400) var(--paddings-padding-400) var(--paddings-padding-400) 0}
+  padding:var(--size-18) var(--space-400) /* raw in Figma: 18 */}
+.ifs-home-row-card__body{flex:1 1 460px;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:var(--space-stack);
+  box-sizing:border-box;padding:var(--space-inset) var(--space-inset) var(--space-inset) 0}
 .ifs-home-row-card--secondary .ifs-home-row-card__body{flex-basis:460px}
-.ifs-home-row-card__text{display:flex;flex-direction:column;gap:var(--gaps-gap-100);min-width:0}
-.ifs-home-row-card__head{display:flex;align-items:center;gap:var(--gaps-gap-200);min-width:0;min-height:20px}
+.ifs-home-row-card__text{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
+.ifs-home-row-card__head{display:flex;align-items:center;gap:var(--space-200);min-width:0;min-height:20px}
 .ifs-home-row-card__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
 .ifs-home-row-card__head .ifs-badge{flex:none}
 .ifs-home-row-card__desc{margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-tertiary);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-home-row-card__metrics{display:flex}
-.ifs-home-row-card__metric{flex:none;display:flex;flex-direction:column;gap:var(--gaps-gap-100);box-sizing:border-box;width:132px;min-width:0}
+.ifs-home-row-card__metric{flex:none;display:flex;flex-direction:column;gap:var(--space-100);box-sizing:border-box;width:132px;min-width:0}
 .ifs-home-row-card__metric+.ifs-home-row-card__metric{width:190px}
-.ifs-home-row-card--primary .ifs-home-row-card__metric+.ifs-home-row-card__metric{padding-left:var(--paddings-padding-400)}
-.ifs-home-row-card--secondary .ifs-home-row-card__metric{padding:var(--paddings-padding-400);justify-content:center}
+.ifs-home-row-card--primary .ifs-home-row-card__metric+.ifs-home-row-card__metric{padding-left:var(--space-inset)}
+.ifs-home-row-card--secondary .ifs-home-row-card__metric{padding:var(--space-inset);justify-content:center}
 .ifs-home-row-card__value{white-space:nowrap;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */;font-variant-numeric:var(--text-numeric)}
 .ifs-home-row-card__label{white-space:nowrap;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
-.ifs-home-row-card__action{flex:none;display:flex;justify-content:flex-end;box-sizing:border-box;padding:var(--paddings-padding-400)}
+.ifs-home-row-card__action{flex:none;display:flex;justify-content:flex-end;box-sizing:border-box;padding:var(--space-inset)}
 .ifs-home-row-card--secondary .ifs-home-row-card__action{width:182px;align-items:center}
 .ifs-home-row-card__media{position:relative;flex:0 1 504px;min-width:182px;display:flex;justify-content:flex-end;align-items:flex-end}
 .ifs-home-row-card__media-art{position:absolute;inset:0;overflow:hidden;border-radius:var(--radius-radius-100)}
@@ -61,14 +61,14 @@
 .ifs-home-row-card__media .ifs-home-row-card__action{position:relative}
 
 /* ---------- SideNavTree: navigation-panel-organism + folder tree (Plan 244:120655) ---------- */
-.ifs-nav-tree__list,.ifs-nav-tree__children{display:flex;flex-direction:column;gap:var(--gaps-gap-50);margin:0;padding:0;list-style:none}
-.ifs-nav-tree__children{position:relative;padding-left:18px /* raw in Figma */;margin-top:var(--gaps-gap-50)}
+.ifs-nav-tree__list,.ifs-nav-tree__children{display:flex;flex-direction:column;gap:var(--space-50);margin:0;padding:0;list-style:none}
+.ifs-nav-tree__children{position:relative;padding-left:var(--size-18) /* raw in Figma */;margin-top:var(--space-50)}
 /* tree guide: hairline from the parent's caret down the children */
 .ifs-nav-tree__children::before{content:'';position:absolute;left:9px;top:0;bottom:16px;width:7px;
   border-left:1px solid var(--border-base);border-bottom:1px solid var(--border-base);border-bottom-left-radius:var(--radius-radius-100);pointer-events:none}
-.ifs-nav-tree__section{display:flex;flex-direction:column;padding-top:var(--paddings-padding-100)}
-.ifs-nav-tree__row{box-sizing:border-box;display:flex;align-items:center;gap:var(--gaps-gap-100);width:100%;height:32px;margin:0;
-  padding:var(--paddings-padding-100) var(--paddings-padding-200) var(--paddings-padding-100) var(--paddings-padding-100);
+.ifs-nav-tree__section{display:flex;flex-direction:column;padding-top:var(--space-100)}
+.ifs-nav-tree__row{box-sizing:border-box;display:flex;align-items:center;gap:var(--space-100);width:100%;height:32px;margin:0;
+  padding:var(--space-100) var(--space-200) var(--space-100) var(--space-100);
   border:0;border-radius:var(--radius-radius-100);background:transparent;color:var(--text-secondary);text-align:left;cursor:pointer;
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */;transition:background-color .12s}
 .ifs-nav-tree__row .ifs-icon{flex:none;color:var(--icon-secondary)}

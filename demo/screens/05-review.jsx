@@ -102,7 +102,7 @@ function ScreenReview({ bp, height }) {
           <div className="ifs-scroll" style={{ flex: '1 1 0', minWidth: 0, overflow: 'auto' }}>
             <div style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto',
               padding: 'var(--pg-gap) var(--pg-margin)', display: 'flex', flexDirection: 'column', gap: 'var(--pg-gap)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gaps-gap-200)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-200)' }}>
                 <span className="t-heading-h2-medium" style={{ color: 'var(--text-primary)' }}>Executive summary</span>
                 <span className="t-label-m-medium" style={{ color: 'var(--text-secondary)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments.</span>
               </div>

@@ -18,9 +18,11 @@ function Icon({ name, size = 16, variant, className, style, title }) {
   const entry = set[key];
   const svg = typeof entry === 'string' ? entry : entry.svg;
   const vb = typeof entry === 'string' ? `0 0 ${key} ${key}` : entry.vb;
+  // Icons follow density: --icon-scale (1.143 / 1 / 0.857, like body text), rounded to even px: 16 -> 18 / 16 / 14
+  const dim = `round(calc(${size}px * var(--icon-scale, 1)), 2px)`;
   return (
     <svg className={cx('ifs-icon', className)} width={size} height={size} viewBox={vb} fill="none"
-      aria-hidden={title ? undefined : true} role={title ? 'img' : undefined} style={style}
+      aria-hidden={title ? undefined : true} role={title ? 'img' : undefined} style={{ width: dim, height: dim, ...style }}
       dangerouslySetInnerHTML={{ __html: (title ? `<title>${title}</title>` : '') + svg }} />
   );
 }

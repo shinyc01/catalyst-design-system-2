@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Spacing (Catalyst Design System 2.0.1). Rules and reasons: guide/spacing.md
+   Figma source: "5. Measurements" (size-ruler, gaps, paddings, margins, gutters, spacing/*).
+
+   1. Scale  --space-*   ONE spacing scale for padding, gap and margin (100 = 4px). Same in every density.
+             --size-*    Size ruler for dimensions only (heights, widths, icons, 1–3px optical nudges).
+   2. Roles  change with density (Spacious / Comfortable / Compact):
+             --space-inset    20 / 16 / 12  padding, on all four sides, of every container part:
+                                            cards and table cards, panels, drawers, modals, popovers, forms; table cell x
+             --space-stack    16 / 12 /  8  gap between blocks inside a container
+             --space-section  40 / 32 / 24  gap between the sections of a page
+   3. Page   --page-margin and --page-gap follow SCREEN WIDTH, not density: see foundations/layout.css.
+
+   Which to use: a role for containers and the gaps between blocks; a fixed scale step only inside parts
+   that already scale by their own height (controls, chips, nav bar and side nav, chart geometry,
+   table-like cells) and for gaps of 8 or less. Never a raw px value.
+   ========================================================================== */
+
+:root{
+  /* 1. Spacing scale */
+  --space-0:0px;--space-50:2px;--space-100:4px;--space-150:6px;--space-200:8px;--space-250:10px;
+  --space-300:12px;--space-400:16px;--space-500:20px;--space-600:24px;--space-700:32px;--space-800:40px;
+  --space-900:48px;--space-1000:64px;--space-1100:80px;
+
+  /* 1. Size ruler (Figma size-ruler (master)) */
+  --size-0:0px;--size-0-5:0.5px;--size-1:1px;--size-2:2px;--size-3:3px;--size-4:4px;--size-6:6px;--size-8:8px;
+  --size-10:10px;--size-11:11px;--size-12:12px;--size-14:14px;--size-16:16px;--size-18:18px;--size-20:20px;
+  --size-22:22px;--size-24:24px;--size-26:26px;--size-28:28px;--size-32:32px;--size-36:36px;--size-40:40px;
+  --size-44:44px;--size-48:48px;--size-52:52px;--size-56:56px;--size-60:60px;--size-64:64px;--size-68:68px;
+  --size-72:72px;--size-76:76px;--size-80:80px;--size-1000:1000px;
+
+}
+
+/* 2. Roles */
+:root,[data-density="comfortable"]{--space-inset:var(--space-400);--space-stack:var(--space-300);--space-section:var(--space-700)}
+[data-density="spacious"]{--space-inset:var(--space-500);--space-stack:var(--space-400);--space-section:var(--space-800)}
+[data-density="compact"]{--space-inset:var(--space-300);--space-stack:var(--space-200);--space-section:var(--space-600)}
+
+/* Old names, kept only so existing prototypes keep working. Don't use them in new code. */
+:root{
+  --gaps-gap-0:var(--space-0);--gaps-gap-50:var(--space-50);--gaps-gap-100:var(--space-100);--gaps-gap-150:var(--space-150);
+  --gaps-gap-200:var(--space-200);--gaps-gap-250:var(--space-250);--gaps-gap-300:var(--space-300);--gaps-gap-400:var(--space-400);
+  --gaps-gap-500:var(--space-500);--gaps-gap-600:var(--space-600);--gaps-gap-700:var(--space-700);--gaps-gap-800:var(--space-800);
+  --gaps-gap-900:var(--space-900);--gaps-gap-1000:var(--space-1000);--gaps-gap-1100:var(--space-1100);
+  --paddings-padding-0:var(--space-0);--paddings-padding-50:var(--space-50);--paddings-padding-100:var(--space-100);
+  --paddings-padding-150:var(--space-150);--paddings-padding-200:var(--space-200);--paddings-padding-250:var(--space-250);
+  --paddings-padding-300:var(--space-300);--paddings-padding-400:var(--space-400);--paddings-padding-500:var(--space-500);
+  --paddings-padding-600:var(--space-600);--paddings-padding-700:var(--space-700);--paddings-padding-800:var(--space-800);
+  --paddings-padding-900:var(--space-900);--paddings-padding-1000:var(--space-1000);--paddings-padding-1100:var(--space-1100);
+  --margins-layout-margin-xs:var(--space-300);--margins-layout-margin-sm:var(--space-400);--margins-layout-margin-md:var(--space-500);
+  --margins-layout-margin-lg:var(--space-600);--margins-layout-margin-xl:var(--space-800);
+  --gutters-gutter-xs:var(--space-300);--gutters-gutter-sm:var(--space-400);--gutters-gutter-md:var(--space-500);
+  --gutters-gutter-lg:var(--space-600);--gutters-gutter-xl:var(--space-700);
+}
+:root,[data-density]{
+  --spacing-card:var(--space-inset);--spacing-card-compact:var(--space-inset);--spacing-card-gap:var(--space-stack);
+  --spacing-card-actions:var(--space-inset);--spacing-card-text:var(--space-100);
+  --spacing-panel:var(--space-inset);--spacing-panel-gap:var(--space-stack);--spacing-modal:var(--space-inset);--spacing-modal-gap:var(--space-stack);
+  --spacing-popover:var(--space-100);--spacing-popover-content:var(--space-inset);
+  --spacing-form:var(--space-inset);--spacing-form-field-gap:var(--space-stack);
+  --spacing-section:var(--space-section);--spacing-section-lg:var(--space-section);
+  --spacing-table-cell-x:var(--space-inset);--spacing-table-header-x:var(--space-inset);--spacing-table-cell-y:var(--space-stack);
+}
