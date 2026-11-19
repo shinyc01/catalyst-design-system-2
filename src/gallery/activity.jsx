@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { TimelineMarker, TimelineConnector, TimelineItem, Timeline, ApprovalChain, ApprovalCard, VersionEntry, VersionHistory,
+  const { TimelineMarker, TimelineConnector, TimelineItem, Timeline, ApprovalChain, VersionEntry, VersionHistory,
     Comment, CommentComposer, CommentThread, UserCard, Collaborator, FileCard, VersionCard } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={{ alignItems: 'flex-start', ...style }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Col = ({ w = 354, children, style }) => <div style={{ width: w, display: 'flex', flexDirection: 'column', gap: 12, ...style }}>{children}</div>;

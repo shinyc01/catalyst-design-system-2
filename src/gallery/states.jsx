@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { EmptyState, Spinner, LoadingMore, ProgressLoading, Skeleton, LoadingRegion, FtaButton, PromptButton, CooperChip, BottomSheet, Button, StatCard } = IFS;
+  const { EmptyState, Spinner, LoadingMore, Skeleton, LoadingRegion, FtaButton, PromptButton, CooperChip, BottomSheet, Button, StatCard } = IFS;
   const states = [undefined, 'hover', 'pressed', 'focus'];
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cell = ({ title, children, h }) => (
@@ -40,7 +40,6 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'LoadingMore', figma: 'empty-state-loading-more-molecule (3782:24082)', render: () => <Row label="default"><LoadingMore /></Row> });
 
-  IFS_GALLERY.push({ name: 'ProgressLoading', figma: 'progress-bar-loading (5530:11867)', render: () => <Row label="value">{[0, 60, 100].map(v => <ProgressLoading key={v} value={v} />)}</Row> });
 
   IFS_GALLERY.push({ name: 'Skeleton', figma: 'Content States › Skeleton (4759:9600)', render: () => {
     function Demo() {

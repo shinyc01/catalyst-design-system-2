@@ -37,9 +37,6 @@
 .ifs-loading-more{display:inline-flex;align-items:center;gap:var(--space-200);color:var(--text-primary);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-loading-more .ifs-icon{color:var(--icon-primary)}
-.ifs-progress-loading{display:inline-flex;align-items:center;gap:var(--space-200);width:289px;max-width:100%}
-.ifs-progress-loading .ifs-progress{flex:1 1 auto;width:auto}
-.ifs-progress-loading__value{flex:none;min-width:30px;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
 
 /* Skeleton blocks. Same fill as the skeleton bars inside the Figma Loading variants (data.css .ifs-skeleton-bar),
    plus the single shared shimmer the Skeleton notes ask for (rule 6), off under reduced motion. */

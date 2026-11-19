@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.2, generated 2026-11-19. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.3, generated 2026-11-19. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant (details: guide/usage.md). `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -57,6 +57,13 @@ A few sets (cooper-*-icon, voice-input-animation) vary by state instead of size:
 
 Examples (read before using any component below — shows the data shapes props expect): https://shinyc01.github.io/catalyst-design-system-2/src/gallery/activity.jsx
 
+### CommentMentionMenu
+**Tier:** Component
+Figma: Patterns › Mention (12:45593): the "@" picker under the composer. popover-organism (4394:56471) with no title or search,
+one content-card-organism S row per person (avatar, name, role). The composer's default picker; also exported.
+Props: people [{ name, role, avatar }], query (text after "@", filters by name), activeIndex, onPick(person), onActiveChange(i).
+`function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, className, style })`
+
 ### TimelineMarker
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
@@ -87,14 +94,6 @@ content (the Figma "Content slot"), aside = node replacing the right column.
 Timeline = a list of activity-organism entries (Figma "in use example"). The last entry drops its connector.
 Props: items = TimelineItem props[] (each may carry `key`), or children = <TimelineItem>s; connector solid|dash for all entries.
 `function Timeline({ items, connector = 'solid', children, className, ...rest })`
-
-### ApprovalCard
-**Tier:** Component
-One approver card (the Content slot). Props: state awaiting|success|rejected|empty|disabled|setting, name, position,
-avatar = Avatar props, date (show-date), comment (show-comment), actions = { secondary, primary } labels or false (show-buttons),
-onPrimary / onSecondary, setting-only: role / roles / onRoleChange (dropdown-item), brief (show-brief; Cooper brief text),
-onExpand. Disabled = outlined card (no fill); Figma keeps its buttons in their default look.
-`function ApprovalCard({ state = 'awaiting', name, position, avatar, date, comment, actions, onPrimary, onSecondary, role, roles, onRoleChange, brief, onExpand, className, ...rest })`
 
 ### ApprovalChain
 **Tier:** Component
@@ -708,7 +707,8 @@ right = text (Right-section=Text) OR indicators = [{ type, label }] (Right-secti
 **Tier:** Component
 **In handovers:** placed 138× (Value, Plan, Build) · usual: Size s 63% · Type blue 67%
 Figma: indicator-molecule (1074:180251)
-Props: type orange|green|red|blue|purple|gray|cooper|archive|loading, size s|xs, children = text,
+Props: type orange|green|red|blue|purple|gray|cooper|archive|loading (also the tone names warning|success|error|info|accent|neutral|disabled,
+same colours: 2.0.3), size s|xs, children = text,
 buttonRight = icon name (Figma "button right": tertiary S icon-button), onButtonClick, buttonLabel.
 `function Indicator({ type = 'orange', size = 's', children, buttonRight, onButtonClick, buttonLabel, className, ...rest })`
 
@@ -771,9 +771,10 @@ actionLabel (tag text, default "Action required"), onClick → focusable card.
 ### ProgressBar
 **Tier:** Component
 **In handovers:** placed 10× (Plan) · usual: % 0 100%
-Figma: progress-bar-molecule (1674:1902)
-Props: value 0–100 (Figma % variants 0/10/20/40/50/60/80/100 — any value works), label = accessible name.
-`function ProgressBar({ value = 0, label = 'Progress', className, ...rest })`
+Figma: progress-bar-molecule (1674:1902); showValue = progress-bar-loading (5530:11867, bar + rounded percentage).
+Props: value 0–100 (Figma % variants 0/10/20/40/50/60/80/100 — any value works), label = accessible name,
+showValue (adds the percentage; replaces ProgressLoading, 2.0.3).
+`function ProgressBar({ value = 0, label = 'Progress', showValue, className, ...rest })`
 
 ## extras
 
@@ -1435,17 +1436,9 @@ drawn by the kit's ActionMenu list. An item with copy:true is "Copy link": on cl
 reverts after 2 s (Figma note). Used by CommentDrawerCard and CommentCallout.
 `function CommentMenu({ items = [], label = 'More actions', open, onOpenChange, className })`
 
-### CommentMentionMenu
-**Tier:** Pattern helper
-Pattern helper: @-mention picker — built from Popover + ContentCard.
-The "@" picker under the composer (Patterns › Mention 12:45593): popover-organism (4394:56471) with no title or search,
-one content-card-organism S row per person (avatar, name, role). Props: people [{ name, role, avatar }], query (text after
-"@", filters by name), activeIndex, onPick(person), onActiveChange(i).
-`function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, className, style })`
-
 ### CommentCallout
 **Tier:** Pattern helper
-Pattern helper: thread callout — built from CommentThread + CommentMentionMenu.
+Pattern helper: thread callout — built from CommentThread (its @ picker is CommentMentionMenu).
 The thread opened in place from a pin or a drawer row: kit CommentThread (comment-popover-organism) wired to this page's
 thread state. Props: thread = { number, resolved, comments: [{ id, name, time, text, avatar, you, mentions }] },
 currentUser { name, avatar }, people (mention list), onCommentsChange(comments), onResolve, onUnresolve, onCopyLink, onClose,
@@ -2172,11 +2165,6 @@ Pattern helper: My-answer input — built from TextField M (State=Typing, ✕ + 
 Enter or ✓ submits, Esc or ✕ cancels. Props: value / defaultValue / onChange, onSubmit(text), onCancel, placeholder.
 `function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCancel, placeholder = 'My answer', autoFocus = true, className })`
 
-### ProgressPager
-**Tier:** Pattern helper
-Pattern helper: Pager with the progress word — built from Pager. Figma's pagination-organism text reads "(n% resolved)" / "(n% viewed)".
-`function ProgressPager({ progress = 'resolved', ...p })`
-
 ### IssueKindSwitch
 **Tier:** Pattern helper
 ------------------------------------------------------------------------------------------ 
@@ -2186,7 +2174,7 @@ items (Figma: "when one of the types is completely missing, the segmented contro
 
 ### IssueNavigator
 **Tier:** Pattern helper
-Pattern helper: item-by-item walkthrough — built from ProgressPager, IssueSolution, IssueListItem, IssueAnswerField, Button. The walkthrough (Figma: pagination-organism + title + card). detail view: pager (n / total, % resolved,
+Pattern helper: item-by-item walkthrough — built from Pager (progress="resolved"), IssueSolution, IssueListItem, IssueAnswerField, Button. The walkthrough (Figma: pagination-organism + title + card). detail view: pager (n / total, % resolved,
 "All", ‹ ›), the issue, then its card; list view ("All"): numbered rows, a click opens that item.
 Props: controller (useIssueReport), solutionsLabel / appliedLabel / answeredLabel (captions), accept (file picker).
 `function IssueNavigator({ controller: c, accept, className })`
@@ -2197,12 +2185,6 @@ Props: controller (useIssueReport), solutionsLabel / appliedLabel / answeredLabe
 Pattern helper: approval-readiness gates — built from ProgressRing, ReadinessStatus, Indicator, Tooltip. "Approval readiness" + one status-readiness-molecule per gate (Figma: content-card top slot, 30:73048). Passed gates read
 "Passed"; open ones show an XS indicator per kind, "resolved/total", with the kind as tooltip ("The tooltip appears on hover").
 `function ConfidenceGates({ controller: c, label = 'Approval readiness', className })`
-
-### PanelRail
-**Tier:** Pattern helper
-Pattern helper: collapsed panel rail — built from Panel (collapsed). The 48px rail of the right-hand panels (Figma: sidebar-organism
-View=Collapsed, icon-button-arrow ←|). dot: error (red = open questions / errors), warning (orange = warnings only), none when all is OK.
-`function PanelRail({ dot, label = 'Expand panel', onExpand, className, style })`
 
 ### SystemConfidence
 **Tier:** Pattern helper
@@ -2449,13 +2431,6 @@ ellipsis character, guide/content.md), showText (show-text).
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: empty-state-loading-more-molecule (3782:24082) — appending items to a list that is already visible.
 `function LoadingMore({ children = 'Loading more…', className, ...rest })`
-
-### ProgressLoading
-**Tier:** Component
-**In handovers:** placed 2× (Plan) · usual: progress-bar-loading (100%)
-Figma: progress-bar-loading (5530:11867) = progress-bar-molecule + percentage. Measurable work (uploads, steps).
-Props: value 0–100, label (accessible name).
-`function ProgressLoading({ value = 0, label = 'Loading', className, ...rest })`
 
 ### Skeleton
 **Tier:** Component

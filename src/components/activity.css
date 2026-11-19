@@ -133,8 +133,9 @@
 .ifs-composer-molecule .ifs-composer{backdrop-filter:blur(var(--blur-strong))}
 /* @-mention picker (Patterns › Mention 12:45593), portalled under the field */
 .ifs-composer__mention-pop{position:fixed;z-index:var(--z-index-z-popover)}
-.ifs-composer-mention .ifs-popover__content{padding:0 var(--space-100) var(--space-100)}
-.ifs-composer-mention__list{display:flex;flex-direction:column;padding-top:var(--space-100)}
+/* @ picker (CommentMentionMenu) */
+.ifs-cmention .ifs-popover__content{padding:0 var(--space-100) var(--space-100)}
+.ifs-cmention__list{display:flex;flex-direction:column;padding-top:var(--space-100)}
 
 /* ================= CommentThread — comment-popover-organism (260:88500) ================= */
 .ifs-thread{display:flex;flex-direction:column;width:393px;max-width:100%;max-height:100%;box-sizing:border-box;border-radius:var(--radius-radius-300);

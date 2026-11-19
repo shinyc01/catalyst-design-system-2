@@ -177,7 +177,7 @@ function TableReview({ rows = [], defaultCollapsed = [], labels, onFilter, sort,
     { key: '_end', title: '', width: 48, render: () => null },
   ];
   return (
-    <div className={apCx('ifs-table-review', className)} {...rest}>
+    <div className={apCx('ifs-table-card', 'ifs-table-review', className)} {...rest}>
       <IFS.Table columns={columns} rows={rows} groupBy="group" defaultCollapsed={defaultCollapsed}
         sort={sort} defaultSort={defaultSort} onSortChange={onSortChange} onRowClick={onRowClick} selectedId={selectedId} />
     </div>

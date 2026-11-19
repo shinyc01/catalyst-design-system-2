@@ -351,16 +351,21 @@ function actTextWidth(el, text) {
 }
 const actMentionQuery = text => { const m = /(^|\s)@([\w.-]*)$/.exec(text || ''); return m ? m[2] : null; };
 
-// Default @-mention list (Patterns › Mention 12:45593): popover-organism, one content-card-organism S row per person.
-function ComposerMentionList({ people, activeIndex, onPick, onActiveChange }) {
+// Figma: Patterns › Mention (12:45593): the "@" picker under the composer. popover-organism (4394:56471) with no title or search,
+// one content-card-organism S row per person (avatar, name, role). The composer's default picker; also exported.
+// Props: people [{ name, role, avatar }], query (text after "@", filters by name), activeIndex, onPick(person), onActiveChange(i).
+function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, className, style }) {
+  const q = (query || '').toLowerCase();
+  const list = people.filter(p => p.name.toLowerCase().includes(q));
+  if (!list.length) return null;
   return (
-    <div className="ifs-composer-mention" role="listbox" aria-label="Mention someone">
+    <div className={IFS.cx('ifs-cmention', className)} style={style} role="listbox" aria-label="Mention someone">
       <IFS.Popover inline showClose={false} width={317}>
-        <div className="ifs-composer-mention__list">
-          {people.map((p, i) => (
+        <div className="ifs-cmention__list">
+          {list.map((p, i) => (
             <IFS.ContentCard key={p.name} size="s" role="option" aria-selected={i === activeIndex} title={p.name} description={p.role}
               avatar={{ name: p.name, ...p.avatar, size: 'm' }} state={i === activeIndex ? 'hover' : undefined}
-              onMouseEnter={() => onActiveChange(i)} onMouseDown={e => e.preventDefault()} onClick={() => onPick(p)} />
+              onMouseEnter={() => onActiveChange && onActiveChange(i)} onMouseDown={e => e.preventDefault()} onClick={() => onPick && onPick(p)} />
           ))}
         </div>
       </IFS.Popover>
@@ -436,7 +441,7 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
   );
   const picker = matches.length > 0 && menuPos && createPortal(
     <div className="ifs-composer__mention-pop" style={{ left: menuPos.left, top: menuPos.top }}>
-      {(renderMentionMenu || (p => <ComposerMentionList {...p} />))({ people: matches, query: q, activeIndex: ai, onPick: pick, onActiveChange: setActive })}
+      {(renderMentionMenu || (p => <CommentMentionMenu {...p} />))({ people: matches, query: q, activeIndex: ai, onPick: pick, onActiveChange: setActive })}
     </div>, document.body);
   const field = (
     <div ref={fieldRef} className={actCx('ifs-composer', `ifs-composer--${m}`, multi && 'ifs-composer--multi', disabled && 'ifs-composer--disabled', !avatar && className)}
@@ -743,11 +748,11 @@ function VersionCard({ label = 'Ready to publish', items = [], secondaryAction =
   );
 }
 
-Object.assign(IFS, {
-  TimelineMarker, TimelineConnector, TimelineItem, Timeline, ApprovalCard, ApprovalChain, VersionEntry, VersionHistory,
+Object.assign(IFS, { CommentMentionMenu,
+  TimelineMarker, TimelineConnector, TimelineItem, Timeline, ApprovalChain, VersionEntry, VersionHistory,
   Comment, CommentComposer, CommentThread, UserCard, Collaborator, FileCard, VersionCard,
 });
-export {
-  TimelineMarker, TimelineConnector, TimelineItem, Timeline, ApprovalCard, ApprovalChain, VersionEntry, VersionHistory,
+export { CommentMentionMenu,
+  TimelineMarker, TimelineConnector, TimelineItem, Timeline, ApprovalChain, VersionEntry, VersionHistory,
   Comment, CommentComposer, CommentThread, UserCard, Collaborator, FileCard, VersionCard,
 };

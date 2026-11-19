@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { useIssueReport, IssueSolution, IssueListItem, IssueAnswerField, ConfidenceGates, PanelRail, SystemConfidence, TraceReport, TRACE_KINDS } = IFS;
+  const { useIssueReport, IssueSolution, IssueListItem, IssueAnswerField, ConfidenceGates, SystemConfidence, TraceReport, TRACE_KINDS } = IFS;
   const { useState } = React;
   const noop = () => {};
   const Row = ({ label, children }) => <div className="g-row" style={{ alignItems: 'flex-start' }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
@@ -68,11 +68,6 @@ export default IFS_GALLERY;
     const c = useIssueReport({ issues: CONF_ISSUES, gates: GATES });
     return <Row label="50%"><W><ConfidenceGates controller={c} /></W></Row>;
   } });
-  IFS_GALLERY.push({ name: 'PanelRail', figma: 'sidebar-organism View=Collapsed [patterns] (30:75021)', render: () => <>
-    <Row label="open questions"><div style={{ height: 120 }}><PanelRail dot="error" onExpand={noop} /></div></Row>
-    <Row label="warnings only"><div style={{ height: 120 }}><PanelRail dot="warning" onExpand={noop} /></div></Row>
-    <Row label="all OK"><div style={{ height: 120 }}><PanelRail onExpand={noop} /></div></Row>
-  </> });
   IFS_GALLERY.push({ name: 'SystemConfidence', figma: 'System confidence [patterns] (30:72985)', render: () => {
     const c = useIssueReport({ issues: CONF_ISSUES, gates: GATES });
     const one = useIssueReport({ issues: CONF_ISSUES.filter(i => i.kind === 'question'), gates: GATES });
@@ -228,7 +223,7 @@ export default IFS_GALLERY;
     const panel = <div style={{ height: '100%' }}>{exp
       ? <IFS.Panel title="Readiness Evaluation" expanded onExpandedChange={setExp} onEvidence={noop} style={{ height: '100%' }}>
         <IFS.ReadinessEvaluation summary={data.summary} readiness={data.readiness} checks={data.checks} sections={data.sections} /></IFS.Panel>
-      : <PanelRail dot={blocked ? 'error' : null} label="Expand readiness evaluation" onExpand={() => setExp(true)} />}</div>;
+      : <IFS.Panel title="Readiness Evaluation" expanded={false} onExpandedChange={setExp} dot={blocked ? 'error' : undefined} />}</div>;
     return <Screen label="Readiness evaluation">
       <ReviewShell stage={3} user="IG" status={ind} panel={panel}
         actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton />

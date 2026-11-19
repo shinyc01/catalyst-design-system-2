@@ -54,7 +54,7 @@
 .ifs-ivi__legend{display:flex;align-items:flex-start;gap:var(--space-500);justify-content:center}
 
 /* ---------- table-review (12:122378) ---------- */
-.ifs-table-review{box-sizing:border-box;display:flex;flex-direction:column;width:100%;min-width:0;padding:var(--space-inset);border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha)}
+.ifs-table-review{width:100%} /* the shared table card (.ifs-table-card, data.css) at full width */
 .ifs-table-review > .ifs-table{flex:1 1 auto;width:100%}
 .ifs-table-review__name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-table-review__fromto{display:inline-flex;align-items:center;gap:var(--space-100);white-space:nowrap;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary)}

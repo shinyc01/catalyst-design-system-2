@@ -142,11 +142,6 @@ function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCanc
   );
 }
 
-// Pattern helper: Pager with the progress word — built from Pager. Figma's pagination-organism text reads "(n% resolved)" / "(n% viewed)".
-function ProgressPager({ progress = 'resolved', ...p }) {
-  return <IFS.Pager progress={progress} {...p} />;
-}
-
 /* ------------------------------------------------------------------------------------------ */
 // Pattern helper: issue-kind switch — built from SegmentedControl. Segmented control between issue kinds (Figma: segmented-control-organism S with counters). Hidden when only one kind has
 // items (Figma: "when one of the types is completely missing, the segmented control is hidden").
@@ -158,7 +153,7 @@ function IssueKindSwitch({ controller: c, className }) {
   );
 }
 
-// Pattern helper: item-by-item walkthrough — built from ProgressPager, IssueSolution, IssueListItem, IssueAnswerField, Button. The walkthrough (Figma: pagination-organism + title + card). detail view: pager (n / total, % resolved,
+// Pattern helper: item-by-item walkthrough — built from Pager (progress="resolved"), IssueSolution, IssueListItem, IssueAnswerField, Button. The walkthrough (Figma: pagination-organism + title + card). detail view: pager (n / total, % resolved,
 // "All", ‹ ›), the issue, then its card; list view ("All"): numbered rows, a click opens that item.
 // Props: controller (useIssueReport), solutionsLabel / appliedLabel / answeredLabel (captions), accept (file picker).
 function IssueNavigator({ controller: c, accept, className }) {
@@ -200,7 +195,7 @@ function IssueNavigator({ controller: c, accept, className }) {
   }
   return (
     <div className={cx('ifs-trc-nav', className)}>
-      <ProgressPager page={c.page} total={c.list.length} onChange={c.setPage} complete={done} percent={c.percent}
+      <IFS.Pager progress="resolved" page={c.page} total={c.list.length} onChange={c.setPage} complete={done} percent={c.percent}
         progress={c.kindOf(c.kind).progress} onShowAll={c.showAll} showAllLabel="All" />
       <div className="ifs-trc-issue">
         <h3 className="ifs-trc-issue__title">{issue.title}</h3>
@@ -234,12 +229,6 @@ function ConfidenceGates({ controller: c, label = 'Approval readiness', classNam
   );
 }
 
-// Pattern helper: collapsed panel rail — built from Panel (collapsed). The 48px rail of the right-hand panels (Figma: sidebar-organism
-// View=Collapsed, icon-button-arrow ←|). dot: error (red = open questions / errors), warning (orange = warnings only), none when all is OK.
-function PanelRail({ dot, label = 'Expand panel', onExpand, className, style }) {
-  return <IFS.Panel expanded={false} onExpandedChange={v => v && onExpand && onExpand()} dot={dot || undefined}
-    title={label.replace(/^Expand /, '')} className={className} style={style} />;
-}
 
 // Pattern helper: System Confidence panel — built from Panel, ContentCard, ConfidenceGates, IssueKindSwitch, IssueNavigator. Patterns (30:72985) — the author's right-hand panel on Review screens: approval readiness
 // (gates) and the open questions / warnings to walk through. Panel (sidebar-organism) holding one content card.
@@ -291,7 +280,7 @@ function TraceReport({ controller: c, type = 'drawer', title = 'Trace report', e
   );
 }
 
-Object.assign(IFS, { useIssueReport, IssueSolution, IssueListItem, IssueAnswerField, ProgressPager, IssueKindSwitch, IssueNavigator,
-  ConfidenceGates, PanelRail, SystemConfidence, TraceReport, CONFIDENCE_KINDS, TRACE_KINDS });
-export { useIssueReport, IssueSolution, IssueListItem, IssueAnswerField, ProgressPager, IssueKindSwitch, IssueNavigator,
-  ConfidenceGates, PanelRail, SystemConfidence, TraceReport, CONFIDENCE_KINDS, TRACE_KINDS };
+Object.assign(IFS, { useIssueReport, IssueSolution, IssueListItem, IssueAnswerField, IssueKindSwitch, IssueNavigator,
+  ConfidenceGates, SystemConfidence, TraceReport, CONFIDENCE_KINDS, TRACE_KINDS });
+export { useIssueReport, IssueSolution, IssueListItem, IssueAnswerField, IssueKindSwitch, IssueNavigator,
+  ConfidenceGates, SystemConfidence, TraceReport, CONFIDENCE_KINDS, TRACE_KINDS };

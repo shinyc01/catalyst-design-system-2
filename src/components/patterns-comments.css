@@ -58,11 +58,6 @@
 .ifs-cdcard__text{color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 
-/* ---------- Mention picker (popover-organism + content-card-organism S rows) ---------- */
-.ifs-cmention__list{display:flex;flex-direction:column;gap:0;padding-top:var(--space-stack)}
-.ifs-cmention .ifs-popover__content{padding:0 var(--space-100) var(--space-100)}
-.ifs-cmention__list{padding-top:var(--space-100)}
-
 /* ---------- CommentCallout (kit CommentThread: resolved look, menus and @ picker are the kit's) ---------- */
 .ifs-ccallout{position:relative;display:flex;flex-direction:column;width:393px;max-width:100%}
 .ifs-ccallout > .ifs-thread{max-height:inherit}

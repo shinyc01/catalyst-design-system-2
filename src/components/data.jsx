@@ -101,7 +101,8 @@ function RiskStatus({ type = 'success', state, disabled, loading, onClick, child
 }
 
 // Figma: indicator-molecule (1074:180251)
-// Props: type orange|green|red|blue|purple|gray|cooper|archive|loading, size s|xs, children = text,
+// Props: type orange|green|red|blue|purple|gray|cooper|archive|loading (also the tone names warning|success|error|info|accent|neutral|disabled,
+// same colours: 2.0.3), size s|xs, children = text,
 // buttonRight = icon name (Figma "button right": tertiary S icon-button), onButtonClick, buttonLabel.
 function Indicator({ type = 'orange', size = 's', children, buttonRight, onButtonClick, buttonLabel, className, ...rest }) {
   return (
@@ -408,10 +409,20 @@ function NotificationCard({ type = 'all', read = false, title, details, meta, ti
   );
 }
 
-// Figma: progress-bar-molecule (1674:1902)
-// Props: value 0–100 (Figma % variants 0/10/20/40/50/60/80/100 — any value works), label = accessible name.
-function ProgressBar({ value = 0, label = 'Progress', className, ...rest }) {
+// Figma: progress-bar-molecule (1674:1902); showValue = progress-bar-loading (5530:11867, bar + rounded percentage).
+// Props: value 0–100 (Figma % variants 0/10/20/40/50/60/80/100 — any value works), label = accessible name,
+// showValue (adds the percentage; replaces ProgressLoading, 2.0.3).
+function ProgressBar({ value = 0, label = 'Progress', showValue, className, ...rest }) {
   const v = Math.max(0, Math.min(100, Number(value) || 0));
+  if (showValue) {
+    const r = Math.round(v);
+    return (
+      <div className={IFS.cx('ifs-progress-loading', className)} {...rest}>
+        <ProgressBar value={r} label={label} />
+        <span className="ifs-progress-loading__value" aria-hidden="true">{r}%</span>
+      </div>
+    );
+  }
   return (
     <span role="progressbar" aria-label={label} aria-valuemin={0} aria-valuemax={100} aria-valuenow={v} className={IFS.cx('ifs-progress', className)} {...rest}>
       {v > 0 && <span className="ifs-progress__bar" style={{ width: `${v}%` }} />}

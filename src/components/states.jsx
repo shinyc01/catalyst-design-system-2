@@ -91,17 +91,6 @@ function LoadingMore({ children = 'Loading more…', className, ...rest }) {
   );
 }
 
-// Figma: progress-bar-loading (5530:11867) = progress-bar-molecule + percentage. Measurable work (uploads, steps).
-// Props: value 0–100, label (accessible name).
-function ProgressLoading({ value = 0, label = 'Loading', className, ...rest }) {
-  const v = Math.max(0, Math.min(100, Math.round(Number(value) || 0)));
-  return (
-    <div className={IFS.cx('ifs-progress-loading', className)} {...rest}>
-      <IFS.ProgressBar value={v} label={label} />
-      <span className="ifs-progress-loading__value" aria-hidden="true">{v}%</span>
-    </div>
-  );
-}
 
 // Skeleton block — not a Figma component. Content States › Skeleton defines skeletons as blank shapes built inside the
 // component that owns the async data (stat card, content card, table cells already have Figma Loading variants: use those).
@@ -286,5 +275,5 @@ function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true
   );
 }
 
-Object.assign(IFS, { EmptyState, Spinner, LoadingMore, ProgressLoading, Skeleton, LoadingRegion, FtaButton, PromptButton, CooperChip, ZoomSlider, BottomSheet });
-export { EmptyState, Spinner, LoadingMore, ProgressLoading, Skeleton, LoadingRegion, FtaButton, PromptButton, CooperChip, ZoomSlider, BottomSheet };
+Object.assign(IFS, { EmptyState, Spinner, LoadingMore, Skeleton, LoadingRegion, FtaButton, PromptButton, CooperChip, ZoomSlider, BottomSheet });
+export { EmptyState, Spinner, LoadingMore, Skeleton, LoadingRegion, FtaButton, PromptButton, CooperChip, ZoomSlider, BottomSheet };

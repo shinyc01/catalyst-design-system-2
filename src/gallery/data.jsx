@@ -177,5 +177,6 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'ProgressBar', figma: 'progress-bar-molecule (1674:1902)', render: () => <>
     {[100, 80, 60, 50, 40, 20, 10, 0].map(v => <Row key={v} label={`${v}%`}><div style={{ width: 251 }}><ProgressBar value={v} /></div></Row>)}
+    <Row label="showValue (was ProgressLoading)">{[0, 60, 100].map(v => <ProgressBar key={v} value={v} label="Loading" showValue />)}</Row>
   </> });
 }

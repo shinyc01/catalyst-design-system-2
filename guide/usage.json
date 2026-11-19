@@ -2723,23 +2723,6 @@
     "chain"
    ]
   },
-  "ProgressLoading": {
-   "usual": [],
-   "figma": [
-    "progress-bar-loading"
-   ],
-   "placed": 2,
-   "nested": 0,
-   "files": [
-    "Plan"
-   ],
-   "variants": [
-    "progress-bar-loading (100%)"
-   ],
-   "inside": [
-    "snackbar-organism"
-   ]
-  },
   "FtaButton": {
    "usual": [
     "Stroke true 100%",
@@ -3010,6 +2993,23 @@
    "inside": [
     "Default",
     "Start"
+   ]
+  },
+  "ProgressBar showValue": {
+   "usual": [],
+   "figma": [
+    "progress-bar-loading"
+   ],
+   "placed": 2,
+   "nested": 0,
+   "files": [
+    "Plan"
+   ],
+   "variants": [
+    "progress-bar-loading (100%)"
+   ],
+   "inside": [
+    "snackbar-organism"
    ]
   }
  },

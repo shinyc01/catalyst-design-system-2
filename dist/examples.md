@@ -2,6 +2,14 @@
 
 Working usage of each component, from the kit gallery (src/gallery). Printed by entry.sh after the API entry.
 
+### CommentMentionMenu
+```jsx
+  IFS_GALLERY.push({ name: 'CommentMentionMenu', figma: 'popover-organism + content-card-organism, Mention active [patterns] (12:45774)', render: () => {
+    const [i, setI] = React.useState(1);
+    return <CommentMentionMenu people={PEOPLE} activeIndex={i} onActiveChange={setI} onPick={p => IFS.toast({ title: `Mention ${p.name}` })} />;
+  } });
+```
+
 ### TimelineMarker
 (from the Timeline example)
 ```jsx
@@ -943,6 +951,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'ProgressBar', figma: 'progress-bar-molecule (1674:1902)', render: () => <>
     {[100, 80, 60, 50, 40, 20, 10, 0].map(v => <Row key={v} label={`${v}%`}><div style={{ width: 251 }}><ProgressBar value={v} /></div></Row>)}
+    <Row label="showValue (was ProgressLoading)">{[0, 60, 100].map(v => <ProgressBar key={v} value={v} label="Loading" showValue />)}</Row>
   </> });
 ```
 
@@ -1867,14 +1876,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   ) });
 ```
 
-### CommentMentionMenu
-```jsx
-  IFS_GALLERY.push({ name: 'CommentMentionMenu', figma: 'popover-organism + content-card-organism, Mention active [patterns] (12:45774)', render: () => {
-    const [i, setI] = React.useState(1);
-    return <CommentMentionMenu people={PEOPLE} activeIndex={i} onActiveChange={setI} onPick={p => IFS.toast({ title: `Mention ${p.name}` })} />;
-  } });
-```
-
 ### CommentCallout
 ```jsx
   IFS_GALLERY.push({ name: 'CommentCallout', figma: 'commentModal in Comment open / Resolved thread actions [patterns] (12:34876, 12:44840)', render: () => {
@@ -2709,15 +2710,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   } });
 ```
 
-### PanelRail
-```jsx
-  IFS_GALLERY.push({ name: 'PanelRail', figma: 'sidebar-organism View=Collapsed [patterns] (30:75021)', render: () => <>
-    <Row label="open questions"><div style={{ height: 120 }}><PanelRail dot="error" onExpand={noop} /></div></Row>
-    <Row label="warnings only"><div style={{ height: 120 }}><PanelRail dot="warning" onExpand={noop} /></div></Row>
-    <Row label="all OK"><div style={{ height: 120 }}><PanelRail onExpand={noop} /></div></Row>
-  </> });
-```
-
 ### SystemConfidence
 ```jsx
   IFS_GALLERY.push({ name: 'SystemConfidence', figma: 'System confidence [patterns] (30:72985)', render: () => {
@@ -2998,11 +2990,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### LoadingMore
 ```jsx
   IFS_GALLERY.push({ name: 'LoadingMore', figma: 'empty-state-loading-more-molecule (3782:24082)', render: () => <Row label="default"><LoadingMore /></Row> });
-```
-
-### ProgressLoading
-```jsx
-  IFS_GALLERY.push({ name: 'ProgressLoading', figma: 'progress-bar-loading (5530:11867)', render: () => <Row label="value">{[0, 60, 100].map(v => <ProgressLoading key={v} value={v} />)}</Row> });
 ```
 
 ### Skeleton

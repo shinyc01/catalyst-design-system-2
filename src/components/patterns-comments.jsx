@@ -144,34 +144,9 @@ function CommentDrawerCard({ type = 'read', number, place, name, time, children,
   );
 }
 
-/* ───────────────────────────── Mention picker ───────────────────────────── */
-
-// Pattern helper: @-mention picker — built from Popover + ContentCard.
-// The "@" picker under the composer (Patterns › Mention 12:45593): popover-organism (4394:56471) with no title or search,
-// one content-card-organism S row per person (avatar, name, role). Props: people [{ name, role, avatar }], query (text after
-// "@", filters by name), activeIndex, onPick(person), onActiveChange(i).
-function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, className, style }) {
-  const q = query.toLowerCase();
-  const list = people.filter(p => p.name.toLowerCase().includes(q));
-  if (!list.length) return null;
-  return (
-    <div className={cmCx('ifs-cmention', className)} style={style} role="listbox" aria-label="Mention someone">
-      <IFS.Popover inline showClose={false} width={317}>
-        <div className="ifs-cmention__list">
-          {list.map((p, i) => (
-            <IFS.ContentCard key={p.name} size="s" role="option" aria-selected={i === activeIndex} title={p.name} description={p.role}
-              avatar={{ name: p.name, ...p.avatar, size: 'm' }} state={i === activeIndex ? 'hover' : undefined}
-              onMouseEnter={() => onActiveChange && onActiveChange(i)} onMouseDown={e => e.preventDefault()} onClick={() => onPick && onPick(p)} />
-          ))}
-        </div>
-      </IFS.Popover>
-    </div>
-  );
-}
-
 /* ───────────────────────────── Thread callout ───────────────────────────── */
 
-// Pattern helper: thread callout — built from CommentThread + CommentMentionMenu.
+// Pattern helper: thread callout — built from CommentThread (its @ picker is CommentMentionMenu).
 // The thread opened in place from a pin or a drawer row: kit CommentThread (comment-popover-organism) wired to this page's
 // thread state. Props: thread = { number, resolved, comments: [{ id, name, time, text, avatar, you, mentions }] },
 // currentUser { name, avatar }, people (mention list), onCommentsChange(comments), onResolve, onUnresolve, onCopyLink, onClose,
@@ -187,7 +162,7 @@ function CommentCallout({ thread, currentUser = { name: 'You' }, people = [], on
     <div className={cmCx('ifs-ccallout', resolved && 'ifs-ccallout--resolved', className)} style={style}>
       <IFS.CommentThread number={thread.number} comments={thread.comments} onCommentsChange={onCommentsChange} currentUser={currentUser}
         resolved={resolved} onResolvedChange={r => (r ? onResolve && onResolve() : onUnresolve && onUnresolve())} onClose={onClose}
-        onCopyLink={onCopyLink} mentionables={people} renderMentionMenu={p => <CommentMentionMenu {...p} />}
+        onCopyLink={onCopyLink} mentionables={people}
         cooperSuggestion={!resolved ? cooperSuggestion : undefined}
         composerProps={{ value: draft, onChange: setDraft }} />
     </div>
@@ -317,5 +292,5 @@ function useCommentThreads({ defaultThreads = [] } = {}) {
     unreadCount: threads.filter(t => t.unread && !t.resolved).length, unresolvedCount: threads.filter(t => !t.resolved).length };
 }
 
-Object.assign(IFS, { CommentPin, CommentDrawerCard, CommentMenu, CommentMentionMenu, CommentCallout, CommentsPanel, useCommentThreads, searchComments });
-export { CommentPin, CommentDrawerCard, CommentMenu, CommentMentionMenu, CommentCallout, CommentsPanel, useCommentThreads, searchComments };
+Object.assign(IFS, { CommentPin, CommentDrawerCard, CommentMenu, CommentCallout, CommentsPanel, useCommentThreads, searchComments });
+export { CommentPin, CommentDrawerCard, CommentMenu, CommentCallout, CommentsPanel, useCommentThreads, searchComments };

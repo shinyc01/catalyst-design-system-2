@@ -16,10 +16,10 @@ These are three right-hand panels that all show the system's verdict on a framew
   - `IssueNavigator`.
 - `TraceReport`: `type="drawer"` builds on `Drawer` (inline, floating over the canvas, collapse only). `type="sidebar"` builds on `Panel`. Both have the `SegmentedControl` in the sub-header, `IssueNavigator`, and the footer **Undo** (`Button` tertiary L).
 - `IssueNavigator`:
-  - `ProgressPager` (`Pager` with "(n% resolved|viewed)", All, ‹ ›), then the issue title (H2) and description.
+  - `Pager progress="resolved"` ("(n% resolved|viewed)", All, ‹ ›), then the issue title (H2) and description.
   - Then one of these: a "Solutions" list of `IssueSolution`s, the **Upload file** / **My answer** buttons (`IssueAnswerField` = `TextField` M with ✕ ✓), a single **Okay** (`Button` secondary M), or the "Applied" / "Answered" card with undo.
   - The "All" view lists `IssueListItem`s (`Counter` + title + ✓).
-- `PanelRail` is the collapsed 48 px rail: `ArrowButton` (arrow-bar-left) with a red or orange dot.
+- The collapsed 48 px rail is `Panel expanded={false}` with `dot`: `ArrowButton` (arrow-bar-left) with a red or orange dot.
 - Readiness Evaluation reuses `ReadinessEvaluation` / `ReadinessSection` / `ReadinessFacts` (patterns-approval) inside `Panel`. Reviewer notes are `SourceCard type="user"`. The header uses `SplitButton` (Approve ▾ → Request more info).
 - Screen: `AppShell`, `NavBar`, collapsed `SideNav`, `PageHeader` + `Stepper`, `BottomSheet type="value"`.
   - On Review screens, the content is `Stat`, `Tabs`, `InvestmentValueImpact` and `TableReview`.
@@ -67,7 +67,7 @@ These are three right-hand panels that all show the system's verdict on a framew
 - Don't grey out the actions an issue doesn't need. Leave them out.
 
 ## Consolidated / unsure
-- consolidated: `sidebar-organism` (9e6ee63e) with a custom Content slot → `Panel`. Its collapsed View is rebuilt as `PanelRail` (48 px), because Panel's own rail is 84 px with two buttons.
+- consolidated: `sidebar-organism` (9e6ee63e) with a custom Content slot → `Panel`. Its collapsed View is `Panel expanded={false}` (48 px rail, `--region-rail`).
 - consolidated: the nested content-card holding the gate rows (no fill, no padding) → plain list.
 - consolidated: `tab` (04fe5ad605, not IFS DS) → `Tabs`.
 - consolidated: `tableHeader` / `tableCell` (9c9ffe32 / 4f4be618) in readiness sections → `ReadinessFacts`.
