@@ -1141,10 +1141,15 @@ page-header-pattern / header-pattern are near-duplicates). Props: title, id (Fig
 onTitleMenu (chevron after the title), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
-Narrow widths (Nov 19, measured on the header itself): 1100+ one row as drawn. Below 1100 the centre (the Stepper) leaves the
-bar and opens in a popover from the status (hover or click; a "Progress" button when there is no status). Below 720 the header
-folds into two rows: title (truncates, never hidden) + status on top; views + actions (the main button always stays) below.
-`function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, progressLabel = 'Progress', className, ...rest })`
+Narrow widths (Nov 19, measured on the header itself):
+  1100+   one row as drawn: title · id · status · views | stepper | actions · primary.
+  < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar. stepsPlacement "popover" (default): it opens from the status (hover shows, click pins;
+          a "Progress" button when there is no status). "row": it gets its own row under the bar.
+  < 720   two rows. Row 1: title (truncates, never hidden) and the primary action in the top-right corner.
+          Row 2: id, status, views and the other actions. (With "row" the stepper is a third row.)
+Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
+main button: always visible, always top right), stepsPlacement popover|row, progressLabel.
+`function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, stepsPlacement = 'popover', progressLabel = 'Progress', className, ...rest })`
 
 ### PageTop
 **Tier:** Component

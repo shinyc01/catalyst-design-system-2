@@ -182,7 +182,7 @@
   color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/UPPER: initials */
 
 /* ---------- PageHeader: page-header ---------- */
-.ifs-page-header{position:relative;z-index:0;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);
+.ifs-page-header{position:relative;z-index:0;box-sizing:border-box;display:flex;flex-direction:column;gap:var(--space-100);
   width:100%;padding:var(--space-100) var(--page-margin) /* a bar of controls: its height follows the tallest part (the stepper) + 4 top and bottom, so 50 / 46 / 42; sides line up with the page content */}
 /* Fill, divider and blur/light live on a pseudo layer: backdrop-filter on the header itself would make it the containing
    block of position:fixed descendants (popovers, modals opened from its actions) and clip them. */
@@ -190,11 +190,12 @@
   background:var(--surface-primary-alpha);box-shadow:inset 0 -1px 0 var(--border-base);
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
 /* center slot: left and right containers share the remaining width equally so the centre is truly centred */
-.ifs-page-header--center{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+.ifs-page-header__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);min-width:0}
+.ifs-page-header__bar--center{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
 .ifs-page-header__center{display:flex;align-items:center;justify-content:center;min-width:0}
 .ifs-page-header__center > .ifs-stepper{width:352px} /* stepper-organism instance width in page-header (4 × 88) */
 .ifs-page-header__center > .ifs-stepper > li{flex:1 1 0}
-.ifs-page-header--center .ifs-page-header__right{justify-content:flex-end;min-width:0}
+.ifs-page-header__bar--center .ifs-page-header__right{justify-content:flex-end;min-width:0}
 .ifs-page-header__left{display:flex;align-items:center;gap:var(--space-300);min-width:0}
 .ifs-page-header__text{display:flex;align-items:center;gap:var(--space-200);min-width:0}
 .ifs-page-header__title{margin:0;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
@@ -211,9 +212,15 @@
 .ifs-page-header__steps{display:flex;justify-content:center;padding:var(--space-100) 0}
 .ifs-page-header__steps > .ifs-stepper{width:100%}
 .ifs-page-header__steps > .ifs-stepper > li{flex:1 1 0}
-/* Below 720: two rows. Title + status on top, views + actions below (the main button always stays) */
-.ifs-page-header--two-rows{flex-direction:column;align-items:stretch;gap:var(--space-100)}
-.ifs-page-header--two-rows .ifs-page-header__right{justify-content:flex-start;gap:var(--space-200)}
+/* Rows (Nov 19): below 720 row 1 = title + primary action (top right), row 2 = id, status, views, other actions;
+   stepsPlacement="row" puts the stepper on its own row below 1100 */
+.ifs-page-header__row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);min-width:0}
+.ifs-page-header__row--meta{justify-content:flex-start;flex-wrap:wrap}
+.ifs-page-header__row--meta .ifs-page-header__right{margin-inline-start:auto;gap:var(--space-200)}
+.ifs-page-header__primary{flex:none;display:flex;align-items:center}
+.ifs-page-header__steps-row{display:flex;justify-content:center;min-width:0}
+.ifs-page-header__steps-row > .ifs-stepper{width:min(352px,100%)} /* stepper-organism instance width (4 × 88) */
+.ifs-page-header__steps-row > .ifs-stepper > li{flex:1 1 0}
 .ifs-page-header__id{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
 .ifs-page-header__divider{width:1px;height:20px;margin:0 var(--space-50);background:var(--border-medium);flex:none}
 .ifs-page-header__right{display:flex;align-items:center;gap:var(--space-400);flex:none}

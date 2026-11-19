@@ -9,7 +9,7 @@ export default {
   component: IFS["PageHeader: narrow widths"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** Nov 19 rule: below 1100 the stepper opens from the status; below 720 two rows, title and main button always stay" } },
+    docs: { description: { component: "**Figma:** Nov 19 rule: below 1100 the stepper leaves the bar (popover from the status, or its own row); below 720 two rows: title + primary action, then id, status, views, other actions" } },
     
   },
 };

@@ -351,25 +351,59 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 // onTitleMenu (chevron after the title), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 // center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 // The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
-// Narrow widths (Nov 19, measured on the header itself): 1100+ one row as drawn. Below 1100 the centre (the Stepper) leaves the
-// bar and opens in a popover from the status (hover or click; a "Progress" button when there is no status). Below 720 the header
-// folds into two rows: title (truncates, never hidden) + status on top; views + actions (the main button always stays) below.
-const PH_SIZES = [[1100, 'wide'], [720, 'mid'], [0, 'narrow']];
-function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, progressLabel = 'Progress', className, ...rest }) {
+// Narrow widths (Nov 19, measured on the header itself):
+//   1100+   one row as drawn: title · id · status · views | stepper | actions · primary.
+//   < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar. stepsPlacement "popover" (default): it opens from the status (hover shows, click pins;
+//           a "Progress" button when there is no status). "row": it gets its own row under the bar.
+//   < 720   two rows. Row 1: title (truncates, never hidden) and the primary action in the top-right corner.
+//           Row 2: id, status, views and the other actions. (With "row" the stepper is a third row.)
+// Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
+// main button: always visible, always top right), stepsPlacement popover|row, progressLabel.
+function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, stepsPlacement = 'popover',
+  progressLabel = 'Progress', className, ...rest }) {
   const ref = React.useRef(null);
   const [size, setSize] = React.useState('wide');
   const [tipOpen, setTipOpen] = React.useState(false);
   const pinned = React.useRef(false), hovering = React.useRef(false); // hover shows the steps; a click pins them open
+  // The stepper also leaves the bar when the title side or the actions would not fit beside it (not only below 1100):
+  // while wide, the width the bar needs is measured and remembered (needWide).
+  const needWide = React.useRef(0);
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el) return undefined;
-    const read = () => { const w = el.getBoundingClientRect().width; setSize(PH_SIZES.find(([min]) => w >= min)[1]); };
+    const read = () => {
+      const w = el.getBoundingClientRect().width;
+      setSize(w >= Math.max(1100, needWide.current) ? 'wide' : w >= 720 ? 'mid' : 'narrow');
+    };
     read();
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(read) : null;
     ro && ro.observe(el);
     return () => ro && ro.disconnect();
   }, []);
-  const folded = size !== 'wide' && center != null; // the stepper moves into the status popover
-  const statusNode = folded && IFS.Popover
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el || size !== 'wide' || center == null) return;
+    const bar = el.querySelector('.ifs-page-header__bar'); if (!bar) return;
+    // natural width of a row of parts: children + gaps; the title counts up to 240 (it may truncate below that)
+    const rowNeed = node => {
+      if (!node) return 0;
+      const kids = [...node.children];
+      const g = parseFloat(getComputedStyle(node).columnGap) || 0;
+      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 240)
+        : k.classList.contains('ifs-page-header__text') ? rowNeed(k) : k.getBoundingClientRect().width), 0) + Math.max(0, kids.length - 1) * g;
+    };
+    const gap = parseFloat(getComputedStyle(bar).columnGap) || 0;
+    const pad = el.getBoundingClientRect().width - bar.getBoundingClientRect().width;
+    const mid = bar.querySelector('.ifs-page-header__center');
+    const need = 2 * Math.max(rowNeed(bar.querySelector('.ifs-page-header__left')), rowNeed(bar.querySelector('.ifs-page-header__right')))
+      + (mid ? mid.scrollWidth : 0) + 2 * gap + pad;
+    needWide.current = Math.ceil(need);
+    if (el.getBoundingClientRect().width < needWide.current) setSize('mid');
+  });
+  const hasSteps = center != null;
+  const stepsOut = hasSteps && size !== 'wide';            // the stepper leaves the bar
+  const stepsPop = stepsOut && stepsPlacement !== 'row';   // … into the status popover
+  const stepsRow = stepsOut && stepsPlacement === 'row';   // … into its own row
+  const narrow = size === 'narrow';
+  const statusNode = stepsPop && IFS.Popover
     ? <span className="ifs-page-header__status" onMouseEnter={() => { hovering.current = true; setTipOpen(true); }} onMouseLeave={() => { hovering.current = false; if (!pinned.current) setTipOpen(false); }}>
         <IFS.Popover open={tipOpen} onOpenChange={v => {
           if (!v && hovering.current && !pinned.current) { pinned.current = true; setTipOpen(true); return; } // click while hovering: pin
@@ -380,24 +414,41 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
         </IFS.Popover>
       </span>
     : status;
-  return (
-    <div ref={ref} data-size={size}
-      className={IFS.cx('ifs-page-header', center != null && !folded && 'ifs-page-header--center', size === 'narrow' && 'ifs-page-header--two-rows', className)} {...rest}>
-      <div className="ifs-page-header__left">
-        <div className="ifs-page-header__text">
-          {onBack && <IFS.IconButton icon="arrow-chevron-left" label="Back" size="s" type="tertiary" onClick={onBack} />}
-          <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
-          {id && <span className="ifs-page-header__id">{id}</span>}
-          {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={12} /></button>}
-          {statusNode}
-        </div>
-        {views && size !== 'narrow' && <><span className="ifs-page-header__divider" aria-hidden="true" />{views}</>}
+  const titleBits = <>
+    {onBack && <IFS.IconButton icon="arrow-chevron-left" label="Back" size="s" type="tertiary" onClick={onBack} />}
+    <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
+    {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={12} /></button>}
+  </>;
+  const idNode = id && <span className="ifs-page-header__id">{id}</span>;
+  const stepsRowNode = stepsRow && <div className="ifs-page-header__steps-row">{center}</div>;
+  if (narrow) return (
+    <div ref={ref} data-size={size} className={IFS.cx('ifs-page-header', 'ifs-page-header--rows', className)} {...rest}>
+      <div className="ifs-page-header__row">
+        <div className="ifs-page-header__text">{titleBits}</div>
+        {primaryAction && <div className="ifs-page-header__primary">{primaryAction}</div>}
       </div>
-      {center != null && !folded && <div className="ifs-page-header__center">{center}</div>}
-      {(actions || (center != null && !folded) || (size === 'narrow' && views)) && <div className="ifs-page-header__right">
-        {size === 'narrow' && views}
-        {actions}
+      {(idNode || statusNode || views || actions) && <div className="ifs-page-header__row ifs-page-header__row--meta">
+        <div className="ifs-page-header__text">{idNode}{statusNode}</div>
+        {views}
+        {actions && <div className="ifs-page-header__right">{actions}</div>}
       </div>}
+      {stepsRowNode}
+    </div>
+  );
+  const bar = (
+    <div className={IFS.cx('ifs-page-header__bar', hasSteps && !stepsOut && 'ifs-page-header__bar--center')}>
+      <div className="ifs-page-header__left">
+        <div className="ifs-page-header__text">{titleBits}{idNode}{statusNode}</div>
+        {views && <><span className="ifs-page-header__divider" aria-hidden="true" />{views}</>}
+      </div>
+      {hasSteps && !stepsOut && <div className="ifs-page-header__center">{center}</div>}
+      {(actions || primaryAction || (hasSteps && !stepsOut)) && <div className="ifs-page-header__right">{actions}{primaryAction}</div>}
+    </div>
+  );
+  return (
+    <div ref={ref} data-size={size} className={IFS.cx('ifs-page-header', stepsRow && 'ifs-page-header--rows', className)} {...rest}>
+      {bar}
+      {stepsRowNode}
     </div>
   );
 }

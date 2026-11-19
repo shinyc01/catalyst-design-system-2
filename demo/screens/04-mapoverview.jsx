@@ -111,12 +111,12 @@ function ScreenMapoverview({ bp, height }) {
               { value: 'overview', iconLeft: 'overview', ariaLabel: 'Overview' },
               { value: 'node-map', iconLeft: 'node-map', ariaLabel: 'Node map' },
               { value: 'capital-flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />}
-            center={<div style={{ width: 352 }}><Stepper current={1} active={1} steps={['Input', 'Shape', 'Review', 'Approve'].map(label => ({ label }))} /></div>}
+            center={<Stepper current={1} active={1} steps={['Input', 'Shape', 'Review', 'Approve'].map(label => ({ label }))} />}
             actions={<>
               <CollaboratorsButton accepted={3} invited={5} onClick={() => toast('Collaborators')} />
               <CommentButton onClick={() => toast('Comments')} />
-              <Button type="primary" size="s" onClick={() => goScreen('review')}>Review</Button>
-            </>} />
+            </>}
+            primaryAction={<Button type="primary" size="s" onClick={() => goScreen('review')}>Review</Button>} />
           <CanvasHeader columns={mapovColumns} />
         </>}
         bottom={<BottomSheet type="value" left={<DocumentsContext controller={docs} />}
