@@ -2,10 +2,10 @@
    home-row-card-organism, and the Plan tree sidebar (SideNavTree). */
 
 /* ---------- ExploreHeader: explore-header (12:175111) ---------- */
-.ifs-explore-header{box-sizing:border-box;width:100%;min-height:var(--size-40);padding:0 var(--space-300);container-type:inline-size;
+.ifs-explore-header{box-sizing:border-box;width:100%;padding:var(--space-100) var(--page-margin) /* same format as the thin PageHeader: tallest part + 4 top and bottom, sides on the page margin (Nov 19, was a fixed 40) */;container-type:inline-size;
   background:var(--surface-primary-alpha);box-shadow:inset 0 -1px 0 var(--border-base);
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
-.ifs-explore-header__bar{display:flex;align-items:center;gap:var(--space-300);min-height:var(--size-40);min-width:0}
+.ifs-explore-header__bar{display:flex;align-items:center;gap:var(--space-300);min-width:0}
 .ifs-explore-header__search,.ifs-explore-header__left,.ifs-explore-header__right{display:flex;align-items:center;gap:var(--space-150);min-width:0}
 .ifs-explore-header__right{flex:none;margin-inline-start:auto}
 /* Narrow (Nov 19): row 1 = back / context + collaborators and comments; row 2 = the search (full width) + filter */

@@ -30,8 +30,8 @@
 .ifs-smart-search--disabled .ifs-smart-search__input,.ifs-smart-search--disabled .ifs-smart-search__input::placeholder{color:var(--text-disabled);cursor:not-allowed}
 /* size s: 28 tall, padding 8/0/8/8, the mic icon-button fills 28 (explore-header instance) */
 .ifs-smart-search__field>.ifs-icon-button--m{width:var(--control-h-s);height:var(--control-h-s)} /* the mic / keyboard button fits inside the field */
-.ifs-smart-search--s .ifs-smart-search__field{height:var(--size-28);padding:var(--space-200) 0 var(--space-200) var(--space-200)}
-.ifs-smart-search--s .ifs-smart-search__field>.ifs-icon-button--m{width:var(--size-28);height:var(--size-28)}
+.ifs-smart-search--s .ifs-smart-search__field{height:var(--control-h-s) /* small control: 28 / 24 / 24 (Nov 19, was a fixed 28) */;padding:var(--space-200) 0 var(--space-200) var(--space-200)}
+.ifs-smart-search--s .ifs-smart-search__field>.ifs-icon-button--m{width:var(--control-h-s);height:var(--control-h-s)}
 .ifs-smart-search .ifs-search-modal{position:absolute;left:0;right:0;top:calc(100% + var(--space-100));z-index:var(--z-index-z-popover)}
 
 /* ================= search-modal (d983e4df…) ================= */
