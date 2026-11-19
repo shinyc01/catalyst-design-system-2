@@ -1163,13 +1163,14 @@ center (node, centred between left and right: e.g. the Stepper), actions (node, 
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 Narrow widths (Nov 19, measured on the header itself):
   1100+   one row as drawn: title · id · status · views | stepper | actions · primary.
-  < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar. stepsPlacement "popover" (default): it opens from the status (hover shows, click pins;
-          a "Progress" button when there is no status). "row": it gets its own row under the bar.
-  < 720   two rows. Row 1: title (truncates, never hidden) and the primary action in the top-right corner.
-          Row 2: id, status, views and the other actions. (With "row" the stepper is a third row.)
+  < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar and opens in a
+          popover from the status (hover shows, click pins; a "Progress" button when there is no status). Decided Nov 19:
+          no separate row for it.
+  < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden), id. Row 2: status, views, the other actions and the
+          primary action last (right end).
 Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
-main button: always visible, always top right), stepsPlacement popover|row, progressLabel.
-`function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, stepsPlacement = 'popover', progressLabel = 'Progress', className, ...rest })`
+main button: always visible, last), progressLabel.
+`function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest })`
 
 ### PageTop
 **Tier:** Component

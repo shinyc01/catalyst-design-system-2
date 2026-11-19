@@ -213,18 +213,13 @@
 .ifs-page-header__steps{display:flex;justify-content:center;padding:var(--space-100) 0}
 .ifs-page-header__steps > .ifs-stepper{width:100%}
 .ifs-page-header__steps > .ifs-stepper > li{flex:1 1 0}
-/* Rows (Nov 19): below 720 row 1 = title + primary action (top right), row 2 = id, status, views, other actions;
-   stepsPlacement="row" puts the stepper on its own row below 1100 */
+/* Rows (Nov 19): below 720 row 1 = back, title, id; row 2 = status, views, other actions, primary action last (right end) */
 .ifs-page-header__row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);min-width:0}
 .ifs-page-header__row--meta{justify-content:flex-start;flex-wrap:wrap}
 .ifs-page-header__row--meta .ifs-page-header__right{margin-inline-start:auto;gap:var(--space-200)}
-.ifs-page-header__primary{flex:none;display:flex;align-items:center}
-.ifs-page-header__steps-row{display:flex;justify-content:center;min-width:0}
-.ifs-page-header__steps-row > .ifs-stepper{width:min(352px,100%)} /* stepper-organism instance width (4 × 88) */
-.ifs-page-header__steps-row > .ifs-stepper > li{flex:1 1 0}
 .ifs-page-header__id{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
 .ifs-page-header__divider{width:1px;height:20px;margin:0 var(--space-50);background:var(--border-medium);flex:none}
-.ifs-page-header__right{display:flex;align-items:center;gap:var(--space-400);flex:none}
+.ifs-page-header__right{display:flex;align-items:center;gap:var(--space-200);flex:none} /* buttons 8 apart, like every button group (Nov 19; was 16) */
 /* title chevron: button Type=Tertiary Size=S with icon only, 12×20, padding 4/0 */
 .ifs-page-header__menu{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:12px;height:20px;flex:none;
   margin:0;padding:var(--space-100) 0;border:0;border-radius:var(--radius-radius-100);cursor:pointer;
