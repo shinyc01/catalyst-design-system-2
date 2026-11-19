@@ -222,6 +222,7 @@
 .ifs-page-header__row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);min-width:0}
 .ifs-page-header__row--meta{justify-content:flex-start;flex-wrap:wrap}
 .ifs-page-header__row--meta .ifs-page-header__right{margin-inline-start:auto;gap:var(--space-200)}
+.ifs-page-header__row--meta .ifs-page-header__right--wrapped{margin-inline-start:0} /* on its own line: left-aligned under the title */
 .ifs-page-header__id{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
 .ifs-page-header__divider{width:1px;height:20px;margin:0 var(--space-50);background:var(--border-medium);flex:none}
 .ifs-page-header__right{display:flex;align-items:center;gap:var(--space-200);flex:none} /* buttons 8 apart, like every button group (Nov 19; was 16) */

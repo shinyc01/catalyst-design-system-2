@@ -398,6 +398,21 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
     needWide.current = Math.ceil(need);
     if (el.getBoundingClientRect().width < needWide.current) setSize('mid');
   });
+  // Two rows: when the buttons wrap onto their own line they start on the left (under the title), not at the right end
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el || size !== 'narrow') return undefined;
+    const check = () => {
+      const meta = el.querySelector('.ifs-page-header__row--meta'), right = meta && meta.querySelector('.ifs-page-header__right');
+      if (!right) return;
+      right.classList.remove('ifs-page-header__right--wrapped');
+      const first = meta.firstElementChild;
+      if (first && first !== right && right.getBoundingClientRect().top > first.getBoundingClientRect().bottom - 1) right.classList.add('ifs-page-header__right--wrapped');
+    };
+    check();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(check) : null;
+    ro && ro.observe(el);
+    return () => ro && ro.disconnect();
+  });
   // One row without the stepper: when even that doesn't fit, fold into two rows (not only below 720)
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el || size !== 'mid') return;
