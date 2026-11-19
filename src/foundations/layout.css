@@ -50,40 +50,74 @@
    Docked panels sit flush against the content-area edge. Floating panels on a map sit in slots (below). */
 :root{--region-panel:var(--layout-side-panel-width);--region-panel-l:var(--overlay-width-l)}
 
-/* ---------- Map slots: floating panels are placed, never pinned, so they never overlap ----------
-   On a map or canvas (.ifs-slots on the map container): tools in the left corner; .ifs-slot-left (large panel) next to them;
-   .ifs-slot-right (side panel) on the right; .ifs-slot-top / .ifs-slot-bottom centre their content in the space left between.
-   Every slot sits the page margin from the map edge and the page gap from its neighbours. Add .has-left / .has-right
-   when those slots are filled. Below 1024 the left slot becomes a bottom sheet and the right slot overlays the map. */
-.ifs-slots{--slot-inset:var(--page-margin) /* every slot sits this far in from the map's edges: tops, bottoms and the right edge line up (Nov 19) */;
-  --slot-tools:calc(var(--control-h-m) + var(--space-150));
-  --slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap));--slot-r:var(--page-margin)}
-.ifs-slots.has-left{--slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap) + var(--region-panel-l) + var(--page-gap))}
-.ifs-slots.has-right{--slot-r:calc(var(--page-margin) + var(--region-panel) + var(--page-gap))}
-.ifs-slot-left{position:absolute;z-index:600;display:flex;top:var(--slot-inset);bottom:var(--slot-inset);
-  left:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap));width:var(--region-panel-l);max-width:calc(100% - 2 * var(--page-margin))}
-.ifs-slot-right{position:absolute;z-index:600;display:flex;top:var(--slot-inset);bottom:var(--slot-inset);right:var(--slot-inset);
-  width:var(--region-panel);max-width:calc(100% - 2 * var(--page-margin))}
-.ifs-slot-top,.ifs-slot-bottom{position:absolute;z-index:500;left:var(--slot-l);right:var(--slot-r);display:flex;justify-content:center;pointer-events:none}
-.ifs-slot-top > *,.ifs-slot-bottom > *{pointer-events:auto;max-width:100%}
+/* ---------- Map slots (2.0.3, Nov 19): one panel per side, bars between them, nothing overlaps ----------
+   On the map container (.ifs-slots). Agreed rules: one panel per side (opening another replaces it), centre bars between the
+   panels, no legend on the map, Cooper button in the end-bottom corner.
+     .ifs-slot-tools / .ifs-slot-tools-bottom   map rail and tool bar, start corners
+     .ifs-slot-left     start slot, one at a time: Hierarchy, Study library, Search results (--region-panel) or Study (--region-panel-l: add .has-left-l)
+     .ifs-slot-right    end slot, one at a time: details, trace report, evidence chain, Cooper window (--region-panel)
+     .ifs-slot-top      selected bar, or the draw bar while drawing: centred on the whole map when it clears both panels; otherwise
+                        (.has-top-start) it starts at the start panel's edge and the start panel moves down below it (Nov 19)
+     .ifs-slot-bottom   horizon bar (.ifs-slot-fill: fills up to --region-map-bar); snackbars stack above it
+     .ifs-slot-popover  the Layers popover, beside the bottom tool bar (--overlay-width-s)
+     .ifs-slot-fab      Cooper button, end-bottom corner
+     .ifs-slot-exit     "Exit map preview" (arriving from Build), start-top corner above everything: add .has-exit
+   State on .ifs-slots: .has-left (+ .has-left-l), .has-right, .has-exit. Centre bars are at most --region-map-bar wide.
+   Map minimum: two open panels must leave --layout-map-min of map; if not, the app folds the panel opened first to its rail
+   (JS reads the token). Narrow: below 1100 the end panel overlays the map (the bars ignore it, it closes on outside click / Esc);
+   below 720 panels become a bottom sheet. CSS can't read tokens in @media, so --bp-map-overlay / --bp-map-sheet repeat the numbers for JS. */
+:root{
+  --layout-map-min:25rem; /* narrowest map left between two open panels before the panel opened first folds (Nov 19: 400px = 25rem, review after build) */
+  --region-map-bar:46.625rem; /* 746px. Centre map bars (selected, draw, horizon) are at most this wide; the horizon fills it (Figma Explore horizon bar 746) */
+  --bp-map-overlay:1100px;--bp-map-sheet:720px;
+}
+.ifs-slots{--slot-inset:var(--page-margin) /* every slot sits this far in from the map's edges: tops, bottoms and the end edge line up */;
+  --slot-top:var(--slot-inset);--slot-tools:calc(var(--control-h-m) + var(--space-150));--slot-fab:var(--size-48);--slot-left-w:var(--region-panel);
+  --slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));--slot-r:var(--slot-inset)}
+.ifs-slots.has-left-l{--slot-left-w:var(--region-panel-l)}
+.ifs-slots.has-exit{--slot-top:calc(var(--slot-inset) + var(--control-h-m) + var(--page-gap))}
+.ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap) + var(--slot-left-w) + var(--page-gap))}
+.ifs-slots.has-right{--slot-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
+.ifs-slot-left{position:absolute;z-index:600;display:flex;top:var(--slot-top);bottom:var(--slot-inset);
+  inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));width:var(--slot-left-w);max-width:calc(100% - 2 * var(--slot-inset))}
+.ifs-slot-right{position:absolute;z-index:600;display:flex;top:var(--slot-top);bottom:var(--slot-inset);inset-inline-end:var(--slot-inset);
+  width:var(--region-panel);max-width:calc(100% - 2 * var(--slot-inset))}
+.ifs-slot-left > *,.ifs-slot-right > *{flex:1;min-width:0;max-height:100%}
+.ifs-slot-top,.ifs-slot-bottom{position:absolute;z-index:500;inset-inline-start:var(--slot-l);inset-inline-end:var(--slot-r);display:flex;justify-content:center;pointer-events:none}
+.ifs-slot-top > *,.ifs-slot-bottom > *{pointer-events:auto;max-width:min(100%, var(--region-map-bar))}
+.ifs-slot-top > .ifs-slot-fill,.ifs-slot-bottom > .ifs-slot-fill{flex:0 1 var(--region-map-bar);min-width:0}
 /* A floating bar in a slot is already centred by the slot: its slide-in only moves it up, so it ends on the shared edge */
 .ifs-slot-top > .ifs-floating-bar,.ifs-slot-bottom > .ifs-floating-bar{animation-name:ifs-slot-bar-in}
 @keyframes ifs-slot-bar-in{from{opacity:0;transform:translateY(var(--space-150))}to{opacity:1;transform:none}}
-.ifs-slot-top{top:var(--slot-inset)}
+.ifs-slot-top{top:var(--slot-top);inset-inline:var(--slot-inset)} /* centred on the whole map (Nov 19) */
+/* Not enough room to centre it clear of the panels: the bar lines up with the start panel's edge and sits above it, the panel moves down.
+   The app sets .has-top-start and --slot-top-h (the bar's measured height). */
+.ifs-slots.has-top-start .ifs-slot-top{inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));inset-inline-end:var(--slot-r);justify-content:flex-start}
+.ifs-slots.has-top-start .ifs-slot-left{top:calc(var(--slot-top) + var(--slot-top-h, var(--space-0)) + var(--page-gap))}
 .ifs-slot-bottom{bottom:var(--slot-inset)}
-/* Map tools in the left corners, on the same edges as the slots */
-.ifs-slot-tools,.ifs-slot-tools-bottom{position:absolute;z-index:500;left:var(--slot-inset)}
-.ifs-slot-tools{top:var(--slot-inset)}
+.ifs-slots:not(.has-right) .ifs-slot-bottom{inset-inline-end:calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap))} /* clear the Cooper button */
+/* Map tools in the start corners, on the same edges as the slots */
+.ifs-slot-tools,.ifs-slot-tools-bottom{position:absolute;z-index:500;inset-inline-start:var(--slot-inset)}
+.ifs-slot-tools{top:var(--slot-top)}
 .ifs-slot-tools-bottom{bottom:var(--slot-inset)}
-/* Map legend in the bottom-right corner, on the same edges. With .has-legend the bottom slot centres between the
-   bottom tools and the legend, so they share the bottom edge without touching. */
+.ifs-slot-popover{position:absolute;z-index:650;bottom:var(--slot-inset);inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--space-200));
+  width:var(--overlay-width-s);max-width:calc(100% - 2 * var(--slot-inset));max-height:calc(100% - var(--slot-top) - var(--slot-inset));display:flex}
+.ifs-slot-popover > *{flex:1;min-width:0}
+.ifs-slot-fab{position:absolute;z-index:500;inset-inline-end:var(--slot-inset);bottom:var(--slot-inset)}
+.ifs-slot-exit{position:absolute;z-index:700;inset-inline-start:var(--slot-inset);top:var(--slot-inset)}
+/* Map legend corner (kept for other canvases; the Explore map shows no legend: its key lives in the Layers popover, Nov 19) */
 .ifs-slots{--slot-legend-w:210px /* map legend width (layout geometry) */}
-.ifs-slot-legend{position:absolute;z-index:500;right:var(--slot-inset);bottom:var(--slot-inset);width:var(--slot-legend-w);max-width:calc(100% - 2 * var(--slot-inset))}
-.ifs-slots.has-legend .ifs-slot-bottom{right:calc(var(--slot-inset) + var(--slot-legend-w) + var(--page-gap))}
-@media (max-width:1023px){
-  .ifs-slots.has-left{--slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap))}
-  .ifs-slot-left{left:var(--page-margin);right:var(--page-margin);width:auto;top:auto;height:50%} /* bottom sheet */
-  .ifs-slots.has-left .ifs-slot-bottom{bottom:calc(50% + var(--page-gap))}
+.ifs-slot-legend{position:absolute;z-index:500;inset-inline-end:var(--slot-inset);bottom:var(--slot-inset);width:var(--slot-legend-w);max-width:calc(100% - 2 * var(--slot-inset))}
+.ifs-slots.has-legend .ifs-slot-bottom{inset-inline-end:calc(var(--slot-inset) + var(--slot-legend-w) + var(--page-gap))}
+@media (max-width:1099px){ /* = --bp-map-overlay: the end panel sits over the map; centre bars no longer make room for it */
+  .ifs-slots.has-right{--slot-r:var(--slot-inset)}
+  .ifs-slot-right{z-index:650}
+}
+@media (max-width:719px){ /* = --bp-map-sheet: panels become a bottom sheet (half the map) */
+  .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))}
+  .ifs-slot-left,.ifs-slot-right{inset-inline:var(--slot-inset);width:auto;max-width:none;top:auto;height:50%}
+  .ifs-slots.has-left .ifs-slot-bottom,.ifs-slots.has-right .ifs-slot-bottom{bottom:calc(50% + var(--slot-inset) + var(--page-gap))}
+  .ifs-slots.has-left .ifs-slot-fab,.ifs-slots.has-right .ifs-slot-fab{display:none} /* the sheet covers the bottom tool bar and the Cooper corner */
 }
 
 /* ---------- 12-column grid: cards and page columns snap to it ----------

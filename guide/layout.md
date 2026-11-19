@@ -27,14 +27,26 @@ Cards and page regions: `.ifs-grid` with `.ifs-span-N` children (`.ifs-span-pane
 Docked panels sit flush against the content-area edge; the page beside them keeps its margin and reflows onto its own columns.
 
 ## 4. Map slots
-On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slots` on the map container, `.has-left` / `.has-right` when filled):
-- Tools: left corner. Left slot: the large panel, next to the tools. Right slot: the side panel.
-- Top and bottom slots: centre their content in the space between the left and right slots.
-- Every slot sits the page margin from the map edge and the page gap from its neighbours, so nothing overlaps or needs dragging.
-- Below 1024: the left slot becomes a bottom sheet; the right slot overlays the map.
+On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slots` on the map container). Agreed Nov 19 (2.0.3) from the Explore audit and GIS research: one panel per side, details replace (never stack), panels fold to their rail, the timeline sits at the bottom only when time matters.
 
-- **Edges (Nov 19):** every slot sits one inset (`--slot-inset` = the page margin: 16 / 24 / 32 by screen width) from the map's edges. All top edges line up (map tools, large panel, top bar, side panel), all bottom edges line up, and the side panel lines up with the right edge.
-- **Corners:** map tools sit in the left corners (`.ifs-slot-tools`, `.ifs-slot-tools-bottom`); the map legend sits in the bottom-right corner (`.ifs-slot-legend`, 210 wide). With `.has-legend` the bottom slot centres between the bottom tools and the legend, a page gap from each.
+| Slot | Holds (one at a time) | Size |
+|---|---|---|
+| `.ifs-slot-left` (start) | Hierarchy · Study library · Search results · Study | `--region-panel` (380); Study `--region-panel-l` (600, add `.has-left-l`) |
+| `.ifs-slot-right` (end) | Asset / group details · Trace report · Evidence chain · Cooper window | `--region-panel` (380) |
+| `.ifs-slot-top` | Selected bar, or the draw bar while drawing | content, at most `--region-map-bar` (746) |
+| `.ifs-slot-bottom` | Horizon bar (`.ifs-slot-fill`), only when a study is open or a time layer is on | `--region-map-bar` (746), never wider than the gap |
+| `.ifs-slot-popover` | Layers / map display popover, beside the tool bar | `--overlay-width-s` (320) |
+| `.ifs-slot-fab` | Cooper button, end-bottom corner | `--size-48` |
+| `.ifs-slot-exit` | "Exit map preview" when you arrive from Build (add `.has-exit`: every slot moves down one control row) | — |
+
+- State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. Top and bottom bars centre in the gap between the panels, never under them.
+- **Edges:** every slot sits one inset (`--slot-inset` = the page margin) from the map's edges; tops, bottoms and the end edge line up; neighbours sit a page gap apart.
+- **Map minimum:** two open panels must leave `--layout-map-min` (400, to review) of map. If they don't, the panel opened first folds to its rail (the app reads the token).
+- **Study and a right panel:** Study folds to its rail when a right panel opens and comes back when it closes; clicking Study hides the right panel. The Cooper chat counts as a right panel too: while the user works with Cooper (custom lens, create idea), Study stays folded (Nov 19, no exception).
+- **Lists and details** stay open together. Clearing the selection closes the selected bar and the details panel.
+- **No legend on the map:** counts go in the selected bar, the key in the Layers popover. (`.ifs-slot-legend` stays for other canvases.)
+- **Camera padding:** when a panel opens or the map flies to a target, centre the target in the visible gap.
+- **Narrow:** below 1100 (`--bp-map-overlay`) the end panel sits over the map and closes on outside click / Esc; below 720 (`--bp-map-sheet`) panels become a bottom sheet.
 - A floating bar in a slot slides in vertically only, so it lands on the shared top edge.
 
 ## 5. AppShell: panel mode by job (decided Nov 19, 2.0.3)
