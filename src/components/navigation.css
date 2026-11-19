@@ -202,7 +202,8 @@
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* The title never disappears: it keeps a minimum width and truncates (Nov 19) */
 .ifs-page-header__title{min-width:min(160px,100%);flex:0 1 auto}
-.ifs-page-header__left,.ifs-page-header__text{flex:1 1 auto}
+.ifs-page-header__left{flex:1 1 auto}
+.ifs-page-header__text{flex:0 1 auto} /* the title area doesn't stretch, so the view switch sits right after it (left-aligned) */
 .ifs-page-header__right{min-width:0;flex-wrap:wrap}
 /* Below 1100: the stepper opens from the status */
 .ifs-page-header__status{display:inline-flex;flex:none}
