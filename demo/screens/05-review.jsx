@@ -84,6 +84,8 @@ function ScreenReview({ bp, height }) {
         <CollaboratorsButton accepted={3} invited={5} onClick={() => toast('Collaborators')} />
         <CommentButton size="s" onClick={() => toast('Comments')} />
         <Button type="secondary" size="s" onClick={() => toast('Approval chain')}>Approval chain</Button>
+      </>}
+      primaryAction={<>
         {approved
           ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request more information' }]}>Approved</SplitButton>
           : <SplitButton onClick={() => { setApproved(true); toast('Framework approved'); }}

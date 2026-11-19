@@ -158,6 +158,21 @@ export default IFS_GALLERY;
   const NewBtn = () => <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>;
   const SEARCH = { placeholder: 'Ask anything about strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?'] };
   const Frame = ({ label, children }) => <div style={{ width: 1176, marginBottom: 32 }}><div className="t-label-m-medium" style={{ color: 'var(--text-tertiary)', marginBottom: 12 }}>{label}</div>{children}</div>;
+  IFS_GALLERY.push({ name: 'PageHeader: narrow widths', figma: 'Nov 19 rule: below 1100 the stepper leaves the bar (popover from the status, or its own row); below 720 two rows: title + primary action, then id, status, views, other actions', render: () => {
+    const steps = <IFS.Stepper current={3} active={3} steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} />;
+    const acts = <><IFS.CommentButton size="s" /><IFS.Button type="secondary" size="s">Approval chain</IFS.Button></>;
+    return <>{['popover', 'row'].map(pl => [1300, 1000, 640, 360].map(w => <Row key={pl + w} label={`${pl} · ${w}px`} top><div style={{ width: w }}>
+      <PageHeader title="Copy of Q1 2026 Enterprise Strategy Framework" id="FW-1042" onTitleMenu={() => {}} status={<IFS.Indicator size="xs" type="warning">Pending approval</IFS.Indicator>}
+        views={<IFS.SegmentedControl size="s" defaultValue="o" options={[{ value: 'o', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'n', iconLeft: 'node-map', ariaLabel: 'Node map' }]} />}
+        center={steps} actions={acts} primaryAction={<IFS.Button type="primary" size="s">Approve</IFS.Button>} stepsPlacement={pl} /></div></Row>))}</>;
+  } });
+
+  IFS_GALLERY.push({ name: 'PageTop: narrow widths', figma: 'Nov 19 rule: below 720 the tabs and search go onto separate rows', render: () => <>
+    {[1100, 600].map(w => <Row key={w} label={`${w}px`} top><div style={{ width: w }}>
+      <PageTop title="Strategy Frameworks" description="Frameworks set how investments are valued." actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>}
+        tabs={{ items: [{ value: 'a', label: 'Active', count: 3 }, { value: 'd', label: 'Drafts', count: 5 }, { value: 'r', label: 'Archived', count: 12 }], defaultValue: 'a' }} search={{ placeholder: 'Search frameworks' }} /></div></Row>)}
+  </> });
+
   IFS_GALLERY.push({ name: 'PageTop', figma: 'page-top (244:117279, key c5e4c474…)', render: () => <>
     <Frame label="Default — description, New, tabs with counts, smart search (library page)">
       <PageTop title="Strategy Framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />}
