@@ -158,7 +158,7 @@
 /* Ranked (Idea Pad) rows follow the table row height like every table (Nov 19, was 60). The row being dragged dims. */
 .ifs-data-table__row--dragged{opacity:.4}
 .ifs-data-table__table{display:flex;flex-direction:column;gap:var(--space-100)}
-.ifs-data-table__searching{display:flex;align-items:center;box-sizing:border-box;height:var(--table-row-h) /* a table row */;padding:0 var(--space-inset);border-radius:var(--radius-radius-100);
+.ifs-data-table__searching{display:flex;align-items:center;box-sizing:border-box;height:var(--table-row-h) /* a table row */;padding:0 var(--space-table-x);border-radius:var(--radius-radius-100);
   background:var(--surface-secondary-alpha);color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-data-table__empty{display:flex;justify-content:center;padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha)}
 .ifs-data-table__filter-pop{position:absolute;z-index:var(--z-index-z-popover)}
