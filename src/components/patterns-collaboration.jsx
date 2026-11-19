@@ -320,7 +320,7 @@ function RoleFilter({ roles = [], value = [], onChange, className }) {
 }
 
 // ───────────────────────────── CollaboratorsPanel ─────────────────────────────
-// Pattern component: popover-organism "Collaborators" (360 wide) opened from CollaboratorsButton.
+// Pattern component: popover-organism "Collaborators" (small popover width, 320; Nov 19, was 360) opened from CollaboratorsButton.
 // Default: IN PROJECT (owner first, then joined) · AWAITING · SUGGESTED PEOPLE BY COOPER. Search "Invite by name or role…" + role filter:
 //   focused and empty → Suggested + Recently; typing → RESULTS (name or job role, filtered by role); nothing → empty-state-organism with
 //   suggestion chips that fill the query. Hovering a person who can be invited shows "+"; clicking opens InviteCollaboratorModal.
@@ -362,7 +362,7 @@ function CollaboratorsPanel({ controller: c, open, defaultOpen, onOpenChange, tr
     {c.suggested.length > 0 && <CollaboratorSection cooper title="Suggested people by Cooper">{c.suggested.map(p => row(p))}</CollaboratorSection>}
   </>;
   const card = (
-    <IFS.Popover inline title="Collaborators" showClose={!inline} width={360} className={ccx('ifs-collab-panel', className)} style={style}>
+    <IFS.Popover inline title="Collaborators" showClose={!inline} width="var(--overlay-width-s)" className={ccx('ifs-collab-panel', className)} style={style}>
       <div className="ifs-collab-panel__tools">
         <IFS.Search placeholder="Invite by name or role..." value={q} onChange={v => setQ(v)} aria-label="Invite by name or role"
           onFocus={() => { clearTimeout(blurT.current); setFocus(true); }} onBlur={() => { blurT.current = setTimeout(() => setFocus(false), 200); }} />
