@@ -3,3 +3,5 @@ node_modules/
 *.log
 demo/.index.src.html
 storybook-static/
+review/review.js
+review/review.css
