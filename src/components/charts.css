@@ -132,7 +132,7 @@
 .ifs-chart__axis{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking);fill:var(--text-tertiary);font-variant-numeric:var(--text-numeric)}
 .ifs-chart__value{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-chart__slice-label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);fill:var(--text-primary);pointer-events:none;font-variant-numeric:var(--text-numeric)}
-.ifs-chart__center{font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking);fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
+.ifs-chart__center{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking); /* H2: no H1 for numbers (Nov 19) */fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-chart__gauge-value{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking);fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-chart__grid{stroke:var(--border-base);stroke-dasharray:2 4;stroke-linecap:round}
 .ifs-chart__baseline{stroke:var(--white-alpha-30,rgba(255,255,255,0.3))}
