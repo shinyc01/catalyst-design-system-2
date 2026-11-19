@@ -213,7 +213,12 @@
 .ifs-page-header__steps{display:flex;justify-content:center;padding:var(--space-100) 0}
 .ifs-page-header__steps > .ifs-stepper{width:100%}
 .ifs-page-header__steps > .ifs-stepper > li{flex:1 1 0}
-/* Rows (Nov 19): below 720 row 1 = back, title, id; row 2 = status, views, other actions, primary action last (right end) */
+/* Rows (Nov 19): row 1 = back, title; row 2 starts under the title (back keeps its own column) = id + status together, views,
+   other actions, primary action last (right end) */
+.ifs-page-header__rows{display:flex;align-items:flex-start;gap:var(--space-200);min-width:0}
+.ifs-page-header__back{flex:none;display:flex}
+.ifs-page-header__rows-col{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:var(--space-100)}
+.ifs-page-header__idstatus{display:flex;align-items:center;gap:var(--space-200);flex:none}
 .ifs-page-header__row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);min-width:0}
 .ifs-page-header__row--meta{justify-content:flex-start;flex-wrap:wrap}
 .ifs-page-header__row--meta .ifs-page-header__right{margin-inline-start:auto;gap:var(--space-200)}

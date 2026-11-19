@@ -356,8 +356,8 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 //   < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar and opens in a
 //           popover from the status (hover shows, click pins; a "Progress" button when there is no status). Decided Nov 19:
 //           no separate row for it.
-//   < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden), id. Row 2: status, views, the other actions and the
-//           primary action last (right end).
+//   < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden).
+//           Row 2, starting under the title (not under back): id + status together, views, the other actions, primary last.
 // Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
 // main button: always visible, last), progressLabel.
 function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest }) {
@@ -429,22 +429,32 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
         </IFS.Popover>
       </span>
     : status;
+  const backBtn = onBack && <IFS.IconButton icon="arrow-chevron-left" label="Back" size="s" type="tertiary" onClick={onBack} />;
   const titleBits = <>
-    {onBack && <IFS.IconButton icon="arrow-chevron-left" label="Back" size="s" type="tertiary" onClick={onBack} />}
+    {backBtn}
     <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
     {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={12} /></button>}
   </>;
   const idNode = id && <span className="ifs-page-header__id">{id}</span>;
+  // Two rows: the back button keeps its own column, so row 2 starts where the title starts; the ID and the status move together.
   if (narrow) return (
     <div ref={ref} data-size={size} className={IFS.cx('ifs-page-header', 'ifs-page-header--rows', className)} {...rest}>
-      <div className="ifs-page-header__row">
-        <div className="ifs-page-header__text">{titleBits}{idNode}</div>
+      <div className="ifs-page-header__rows">
+        {backBtn && <div className="ifs-page-header__back">{backBtn}</div>}
+        <div className="ifs-page-header__rows-col">
+          <div className="ifs-page-header__row">
+            <div className="ifs-page-header__text">
+              <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
+              {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={12} /></button>}
+            </div>
+          </div>
+          {(idNode || statusNode || views || actions || primaryAction) && <div className="ifs-page-header__row ifs-page-header__row--meta">
+            {(idNode || statusNode) && <div className="ifs-page-header__idstatus">{idNode}{statusNode}</div>}
+            {views}
+            {(actions || primaryAction) && <div className="ifs-page-header__right">{actions}{primaryAction}</div>}
+          </div>}
+        </div>
       </div>
-      {(statusNode || views || actions || primaryAction) && <div className="ifs-page-header__row ifs-page-header__row--meta">
-        {statusNode}
-        {views}
-        {(actions || primaryAction) && <div className="ifs-page-header__right">{actions}{primaryAction}</div>}
-      </div>}
     </div>
   );
   const bar = (

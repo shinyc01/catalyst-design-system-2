@@ -1166,8 +1166,8 @@ Narrow widths (Nov 19, measured on the header itself):
   < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar and opens in a
           popover from the status (hover shows, click pins; a "Progress" button when there is no status). Decided Nov 19:
           no separate row for it.
-  < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden), id. Row 2: status, views, the other actions and the
-          primary action last (right end).
+  < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden).
+          Row 2, starting under the title (not under back): id + status together, views, the other actions, primary last.
 Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
 main button: always visible, last), progressLabel.
 `function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest })`
