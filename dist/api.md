@@ -1118,11 +1118,15 @@ Figma: nav-bar-page-atom (69:4012) — one stage in the Level-1 bar. Props: acti
 **Tier:** Component
 **In handovers:** placed 2,355× (Value, Build, Explore, Plan, Command) · usual: page value 100% · Type default 100% · bottom panel no 100%
 Stage values: command | value | explore | build | plan | results ('home' is accepted as an alias of 'command').
-Figma: global-header (69:3736) — the Level-1 bar the pattern screens instance (nav-bar-organism 3412:29453 is the
-canvas-documented twin with the same 48px layout). Props: stages [{ value, label, disabled }], value / defaultValue / onChange,
+Figma: global-header (69:3736) / nav-bar-organism (3412:29453) Type=Default, Collapsed (12:2340) and Collapsed opened (12:2352).
+One bar (2.0.3: replaces NavBarCollapsed and ResponsiveNavBar). It collapses by its own width: below collapseBelow (px,
+default 800, where logo + six tabs + actions stop fitting) the stage tabs become a hamburger (IconButton secondary S) that
+opens a Menu of the stages with a check on the current one. The stage value is the same in both looks.
+Props: stages [{ value, label, disabled }], value / defaultValue / onChange, collapsed (force true/false; omit = by width),
+collapseBelow, menuOpen / defaultMenuOpen / onMenuOpenChange (the collapsed list), menuLabel (default "Stages"),
 logo (node; defaults to IFS.Logo), onSearch, onSettings, onNotifications, hasNotifications,
 user = { initials, name } or avatar (node), actions (node: replaces the default search/settings/bell buttons).
-`function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, logo, onSearch, onSettings, onNotifications, hasNotifications, user, avatar, actions, className, ...rest })`
+`function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collapsed, collapseBelow = 800, menuOpen, defaultMenuOpen = false, onMenuOpenChange, menuLabel = 'Stages', logo, onSearch, onSettings, onNotifications, hasNotifications, user, avatar, actions, className, ...rest })`
 
 ### PageHeader
 **Tier:** Component
@@ -1923,26 +1927,6 @@ Confidence zones (Figma dev note 31:79279): <70 % Reject, 70–90 % Review, >90 
 
 Examples (read before using any component below — shows the data shapes props expect): https://shinyc01.github.io/catalyst-design-system-2/src/gallery/patterns-nav-bar.jsx
 
-### NavBarCollapsed
-**Tier:** Component
-**In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: nav-bar-organism Type=Collapsed (12:2340) / Type=Collapsed opened (12:2352) — key 9083880d…
-The Level-1 bar when the stage tabs don't fit: logo, a hamburger (icon-button Secondary S, system-hamburger-menu) in the
-Pages slot, and the same Actions slot. Opened = single-select-list-molecule (240 wide, L rows, check on the current stage)
-4px under the hamburger. Picking a stage closes the list. Escape / outside click close it; arrows move, Enter picks.
-Props: stages [{ value, label, disabled }], value / defaultValue / onChange, open / defaultOpen / onOpenChange,
-logo (node), onSearch, onSettings, onNotifications, hasNotifications, user = { initials, name } or avatar (node),
-actions (node: replaces search/settings/bell), menuLabel (hamburger name, default "Stages").
-`function NavBarCollapsed({ stages = NB_STAGES, value, defaultValue, onChange, open, defaultOpen = false, onOpenChange, logo, onSearch, onSettings, onNotifications, hasNotifications, user, avatar, actions, menuLabel = 'Stages', className, ...rest })`
-
-### ResponsiveNavBar
-**Tier:** Pattern helper
-Pattern: ResponsiveNavBar — nav-bar-organism that switches Type=Default (IFS.NavBar, stage tabs) ↔ Type=Collapsed
-(NavBarCollapsed, hamburger) by its own width. The stage value is shared, so switching keeps the current stage.
-Props: everything NavBar / NavBarCollapsed take, plus collapseBelow (px, default 800 — inferred: the Default bar needs
-~770px for logo + six tabs + actions), collapsed (force true/false; omit = by width).
-`function ResponsiveNavBar({ stages = NB_STAGES, value, defaultValue, onChange, collapseBelow = 800, collapsed, className, style, ...rest })`
-
 ### ExploreHeader
 **Tier:** Component
 **In handovers:** placed 274× (Explore, Command) · usual: Cooper badge no 63%
@@ -1980,12 +1964,12 @@ collapsed / defaultCollapsed / onCollapsedChange.
 
 ### StagedAppShell
 **Tier:** Pattern helper
-Pattern: StagedAppShell — the three-level navigation model as one working shell: the L1 nav bar (ResponsiveNavBar) picks the
+Pattern: StagedAppShell — the three-level navigation model as one working shell: the L1 nav bar (NavBar, collapses by width) picks the
 stage; each stage brings its own L2 sidebar, header, content and bottom sheet (IFS.AppShell slots). Below `collapseSideBelow`
 the sidebar is handed `narrow: true` so it can start collapsed (icon rail) — inferred from the Navigation page rule
 "the sidebar collapses to an icon rail on narrow widths before it disappears".
 Props: stages, value / defaultValue / onChange (stage), screens = { [stage]: { sideNav, header, bottom, content } } where each
-entry may be a node or a function ({ stage, narrow, width }) → node; navBar = extra ResponsiveNavBar props;
+entry may be a node or a function ({ stage, narrow, width }) → node; navBar = extra NavBar props;
 collapseNavBelow (default 800), collapseSideBelow (default 1280, inferred), height.
 `function StagedAppShell({ stages = NB_STAGES, value, defaultValue, onChange, screens = {}, navBar = {}, collapseNavBelow = 800, collapseSideBelow = 1280, height, className, style, ...rest })`
 

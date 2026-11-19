@@ -1,13 +1,5 @@
-/* Patterns › Nav bar (Patterns page 243:66369): nav-bar-organism Collapsed / Collapsed opened, explore-header,
+/* Patterns › Nav bar (Patterns page 243:66369): explore-header,
    home-row-card-organism, and the Plan tree sidebar (SideNavTree). */
-
-/* ---------- NavBarCollapsed: nav-bar-organism Type=Collapsed (12:2340) / Collapsed opened (12:2352) ----------
-   Shares the bar shell of IFS.NavBar (.ifs-navbar*, navigation.css): 48px, padding 8/12, gap 20, left gap 24. */
-.ifs-navbar-responsive{width:100%}
-.ifs-navbar-menu{position:relative;display:flex;align-items:center;height:30px}
-.ifs-navbar-menu__trigger{display:inline-flex}
-/* single-select-list-molecule (.ifs-select__list, selection.css): 240 wide, L rows (40px), 4px under the hamburger */
-.ifs-select__list.ifs-navbar-menu__list{left:0;right:auto;top:calc(100% + var(--space-100) + 1px);width:240px;max-height:none}
 
 /* ---------- ExploreHeader: explore-header (12:175111) ---------- */
 .ifs-explore-header{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);

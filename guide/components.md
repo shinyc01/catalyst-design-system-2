@@ -1186,7 +1186,7 @@ Patterns come from the Figma file **IFS Design System Patterns** (`KmmVU2D0kqWr0
 
 | Pattern (slug) | Use when the screen involves… | Main pieces |
 |---|---|---|
-| Nav bar (`nav-bar`) | the app shell: stage switching (Command · Value · Explore · Build · Plan · Results), sidebars per stage, collapsed/responsive nav | NavBar, NavBarCollapsed, ResponsiveNavBar, SideNav, SideNavTree, ExploreHeader |
+| Nav bar (`nav-bar`) | the app shell: stage switching (Command · Value · Explore · Build · Plan · Results), sidebars per stage, collapsed/responsive nav | NavBar, SideNav, SideNavTree, ExploreHeader |
 | Cooper (`cooper`) | the AI assistant: chat bar → compact → full panel, conversations, sources, follow-ups, chat history and folders, recommendations | CooperChat, ChatCompactPanel, ChatFullPanel, CooperMessage, HistoryPanel, CooperRecommendations |
 | Documents (`documents`) | Cooper's document context in the bottom sheet: upload, drag & drop, remove with undo, read-only, empty and error states | DocumentsContext, DocumentsPopover, DocumentRow, BottomSheet |
 | Table (`table`) | any list of records: filter counts, column filters, search, sort, ranked vs standard, rename, preview, column settings, table states | DataTable (on Table), ColumnFilter, TableToolbar, SmartSearch |

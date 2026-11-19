@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { NavBarCollapsed, ResponsiveNavBar, ExploreHeader, HomeRowCard, SideNavTree, StagedAppShell } = IFS;
+  const { ExploreHeader, HomeRowCard, SideNavTree, StagedAppShell } = IFS;
   const { useState } = React;
   const Row = ({ label, children, top }) => <div className="g-row" style={top ? { alignItems: 'flex-start' } : null}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const USER = { initials: 'JP', name: 'J. Parker' };
@@ -14,22 +14,14 @@ export default IFS_GALLERY;
 
   /* ───────────────────────── components ───────────────────────── */
 
-  IFS_GALLERY.push({ name: 'NavBarCollapsed', figma: 'nav-bar-organism Type=Collapsed / Collapsed opened (3412:29453)', render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Row label="Collapsed"><div style={{ width: 600 }}><NavBarCollapsed stages={STAGES} defaultValue="value" hasNotifications user={USER} /></div></Row>
-      <Row label="Collapsed opened" top><div style={{ width: 600, height: 300 }}><NavBarCollapsed stages={STAGES} defaultValue="value" defaultOpen hasNotifications user={USER} /></div></Row>
-    </div>
-  ) });
-
-  IFS_GALLERY.push({ name: 'ResponsiveNavBar', figma: 'nav-bar-organism Type=Default ↔ Collapsed (3412:29453)', render: () => {
+  IFS_GALLERY.push({ name: 'NavBar: collapsed by width', figma: 'nav-bar-organism Type=Default ↔ Collapsed / Collapsed opened (3412:29453)', render: () => {
     const [w, setW] = useState(1200);
     const [stage, setStage] = useState('plan');
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Row label="Width"><IFS.SegmentedControl size="s" value={String(w)} onChange={v => setW(+v)} options={['1200', '900', '760', '600'].map(v => ({ value: v, label: `${v}px` }))} /></Row>
-        <div style={{ width: w, height: 300, transition: 'width .2s' }}>
-          <ResponsiveNavBar stages={STAGES} value={stage} onChange={setStage} hasNotifications user={USER} />
-        </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <Row label="Width (collapses below 800)"><IFS.SegmentedControl size="s" value={String(w)} onChange={v => setW(+v)} options={['1200', '900', '760', '600'].map(v => ({ value: v, label: `${v}px` }))} /></Row>
+        <div style={{ width: w, transition: 'width .2s' }}><IFS.NavBar stages={STAGES} value={stage} onChange={setStage} hasNotifications user={USER} /></div>
+        <Row label="Collapsed opened" top><div style={{ width: 600, height: 300 }}><IFS.NavBar collapsed stages={STAGES} defaultValue="value" defaultMenuOpen hasNotifications user={USER} /></div></Row>
       </div>
     );
   } });

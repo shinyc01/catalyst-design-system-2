@@ -2,14 +2,14 @@
 import sections from '../../../gallery/patterns-nav-bar.jsx';
 import { IFS } from '../../../components/index.js';
 
-const section = sections.find(s => s.name === "NavBarCollapsed");
+const section = sections.find(s => s.name === "NavBar: collapsed by width");
 
 export default {
-  title: "More components/Nav bar/NavBarCollapsed",
-  component: IFS["NavBarCollapsed"],
+  title: "Pattern helpers/Nav bar/NavBar: collapsed by width",
+  component: IFS["NavBar: collapsed by width"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** nav-bar-organism Type=Collapsed / Collapsed opened (3412:29453)" } },
+    docs: { description: { component: "**Figma:** nav-bar-organism Type=Default ↔ Collapsed / Collapsed opened (3412:29453)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3412-29453"},
   },
 };

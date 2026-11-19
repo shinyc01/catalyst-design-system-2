@@ -281,26 +281,51 @@ function NavBarItem({ active, disabled, state, children, className, ...rest }) {
 }
 
 // Stage values: command | value | explore | build | plan | results ('home' is accepted as an alias of 'command').
-// Figma: global-header (69:3736) — the Level-1 bar the pattern screens instance (nav-bar-organism 3412:29453 is the
-// canvas-documented twin with the same 48px layout). Props: stages [{ value, label, disabled }], value / defaultValue / onChange,
+// Figma: global-header (69:3736) / nav-bar-organism (3412:29453) Type=Default, Collapsed (12:2340) and Collapsed opened (12:2352).
+// One bar (2.0.3: replaces NavBarCollapsed and ResponsiveNavBar). It collapses by its own width: below collapseBelow (px,
+// default 800, where logo + six tabs + actions stop fitting) the stage tabs become a hamburger (IconButton secondary S) that
+// opens a Menu of the stages with a check on the current one. The stage value is the same in both looks.
+// Props: stages [{ value, label, disabled }], value / defaultValue / onChange, collapsed (force true/false; omit = by width),
+// collapseBelow, menuOpen / defaultMenuOpen / onMenuOpenChange (the collapsed list), menuLabel (default "Stages"),
 // logo (node; defaults to IFS.Logo), onSearch, onSettings, onNotifications, hasNotifications,
 // user = { initials, name } or avatar (node), actions (node: replaces the default search/settings/bell buttons).
 const DEFAULT_STAGES = ['Command', 'Value', 'Explore', 'Build', 'Plan', 'Results'].map(l => ({ value: l.toLowerCase(), label: l }));
 const navStage = v => (v === 'home' ? 'command' : v);
-function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, logo, onSearch, onSettings, onNotifications, hasNotifications,
-  user, avatar, actions, className, ...rest }) {
+function useNavWidth() {
+  const ref = React.useRef(null);
+  const [w, setW] = React.useState(null);
+  React.useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return undefined;
+    const read = () => setW(el.getBoundingClientRect().width);
+    read();
+    const ro = window.ResizeObserver ? new ResizeObserver(read) : null;
+    ro && ro.observe(el);
+    return () => ro && ro.disconnect();
+  }, []);
+  return [ref, w];
+}
+function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collapsed, collapseBelow = 800, menuOpen, defaultMenuOpen = false,
+  onMenuOpenChange, menuLabel = 'Stages', logo, onSearch, onSettings, onNotifications, hasNotifications, user, avatar, actions, className, ...rest }) {
   const [rawCurrent, setCurrent] = useNavControlled(value, defaultValue !== undefined ? defaultValue : stages[0] && stages[0].value, onChange);
   const current = navStage(rawCurrent);
+  const [ref, w] = useNavWidth();
+  const isCollapsed = collapsed !== undefined ? !!collapsed : (w != null && w < collapseBelow);
+  const currentLabel = (stages.find(s => navStage(s.value) === current) || {}).label;
   return (
-    <header className={IFS.cx('ifs-navbar', className)} {...rest}>
+    <header ref={ref} className={IFS.cx('ifs-navbar', isCollapsed && 'ifs-navbar--collapsed', className)} {...rest}>
       <div className="ifs-navbar__left">
         <div className="ifs-navbar__logo">{logo || (IFS.Logo ? <IFS.Logo height={30} /> : <span className="ifs-navbar__logo-fallback">IFS Copperleaf</span>)}</div>
         <nav aria-label="Stages">
-          <ul className="ifs-navbar__list">
-            {stages.map(s => (
-              <li key={s.value}><NavBarItem active={navStage(s.value) === current} disabled={s.disabled} onClick={() => setCurrent(s.value)}>{s.label}</NavBarItem></li>
-            ))}
-          </ul>
+          {isCollapsed
+            ? <IFS.Menu align="start" label={menuLabel} open={menuOpen} defaultOpen={defaultMenuOpen} onOpenChange={onMenuOpenChange}
+                items={stages.map(s => ({ label: s.label, disabled: s.disabled, selected: navStage(s.value) === current, onClick: () => setCurrent(s.value) }))}
+                trigger={<IFS.IconButton icon="system-hamburger-menu" type="secondary" size="s" label={currentLabel ? `${menuLabel}: ${currentLabel}` : menuLabel} />} />
+            : <ul className="ifs-navbar__list">
+                {stages.map(s => (
+                  <li key={s.value}><NavBarItem active={navStage(s.value) === current} disabled={s.disabled} onClick={() => setCurrent(s.value)}>{s.label}</NavBarItem></li>
+                ))}
+              </ul>}
         </nav>
       </div>
       <div className="ifs-navbar__actions">
@@ -308,10 +333,9 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, logo, 
           {actions || <>
             <IFS.IconButton icon="system-search" label="Search" size="s" onClick={onSearch} />
             <IFS.IconButton icon="system-settings" label="Settings" size="s" onClick={onSettings} />
-            <span className="ifs-navbar__notify">
-              <IFS.IconButton icon="system-notification" label={hasNotifications ? 'Notifications (unread)' : 'Notifications'} size="s" onClick={onNotifications} />
-              {hasNotifications && <span className="ifs-navbar__dot" aria-hidden="true" />}
-            </span>
+            {IFS.NotificationButton
+              ? <IFS.NotificationButton hasNew={hasNotifications} onClick={onNotifications} />
+              : <IFS.IconButton icon="system-notification" label="Notifications" size="s" onClick={onNotifications} />}
           </>}
         </div>
         {avatar || (user && (IFS.Avatar

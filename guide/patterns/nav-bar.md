@@ -7,9 +7,8 @@ The Level-1 bar that switches between the product's stages, and what each stage 
 
 ## Anatomy
 - `NavBar` (nav-bar-organism Type=Default): logo, stage tabs (`NavBarItem`), search / settings / notifications, avatar. Stages here: Command · Value · Explore · Build · Plan · Results. Pass them as `stages`; the kit default still says "Home".
-- `NavBarCollapsed` (Type=Collapsed / Collapsed opened): logo + hamburger (`IconButton` secondary S `system-hamburger-menu`) in the Pages slot. It opens a single-select list of the stages with a check on the current one.
-- `ResponsiveNavBar`: `NavBar` or `NavBarCollapsed`, chosen by width, with one shared stage value.
-- `StagedAppShell`: `AppShell` + `ResponsiveNavBar`, plus a `screens` map from stage to `{ sideNav, header, content, bottom }`.
+- `NavBar` collapses by its own width (below 800, `collapseBelow`): logo + hamburger (`IconButton` secondary S `system-hamburger-menu`) in the Pages slot, opening a `Menu` of the stages with a check on the current one. `collapsed` forces either look (2.0.3: replaces NavBarCollapsed and ResponsiveNavBar).
+- `StagedAppShell`: `AppShell` + `NavBar`, plus a `screens` map from stage to `{ sideNav, header, content, bottom }`.
 - L2 per stage, as the frames draw it:
   - Command and Build: none.
   - Value: `SideNav` (Active framework · LIBRARY: Strategy Framework / Value Frameworks / Value Models · Human Performance).
@@ -27,7 +26,7 @@ The Level-1 bar that switches between the product's stages, and what each stage 
 1. **Stage switching.** Click a stage tab, or pick one from the hamburger list. The active tab gets the header-item active fill. The whole shell below the bar changes: sidebar, header, content and bottom sheet.
 2. **L2 selection.** Value: picking a sidebar row changes the page title and table. Plan: a tree row selects that plan and expands its folder; the caret toggles a folder without selecting it. The open path is outlined, and the current folder is also filled.
 3. **Sidebar collapse.** `arrow-bar-left` collapses the sidebar to a 48px rail; `arrow-bar-right` expands it.
-4. **Responsive.** ≥ 1280: full shell. Below 1280: sidebars start as rails. Below 800: the bar becomes `NavBarCollapsed`. (All three thresholds inferred; Figma only draws 1440 frames and a 600px Collapsed variant.)
+4. **Responsive.** ≥ 1280: full shell. Below 1280: sidebars start as rails. Below 800: the `NavBar` collapses to the hamburger. (All three thresholds inferred; Figma only draws 1440 frames and a 600px Collapsed variant.)
 5. **Hamburger list.** Opens 4px under the button. Arrow keys / Home / End move, Enter picks, Esc or an outside click closes. Picking a stage closes the list.
 6. **Command list.** The tabs (My works / Decisions / Conversations / Following) change the list. The priority segmented control filters it; with nothing at that priority, an all-done `EmptyState` shows. Opening a decision goes to the stage on its badge (Explore / Build / Plan). (inferred)
 7. **HomeRowCard states.** Default, Hover (tertiary-alpha fill), Focus (ring), Loading (skeleton bars, no media, arrow disabled).
@@ -43,7 +42,7 @@ The Level-1 bar that switches between the product's stages, and what each stage 
 - The bottom sheet's prompts are specific to the screen (e.g. "Why is Northgate #1?" on Command). (Figma)
 
 ## Don'ts
-- Don't mix `global-header` and `nav-bar-organism`: use `NavBar` / `NavBarCollapsed` everywhere.
+- Don't mix `global-header` and `nav-bar-organism`: use `NavBar` everywhere.
 - Don't add a sidebar to a stage that has no sections.
 - Don't make more than one HomeRowCard Primary.
 - Don't put stage navigation in `Tabs`. Tabs are for peer views inside a page.

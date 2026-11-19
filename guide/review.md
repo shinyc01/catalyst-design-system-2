@@ -93,7 +93,7 @@ Format (read by tools/gen-stories.mjs): `### <story section name>`, then one bul
 ### SideNavTree
 - Figma builds the Plan tree from detached table cells; there is no tree component in the DS. The kit's tree is composed.
 
-### ResponsiveNavBar
+### ResponsiveNavBar (resolved 2.0.3: NavBar collapses by width itself)
 - The collapse breakpoint (800px) and sidebar rails below 1280px are inferred, not specified.
 
 ## Patterns — Collaboration

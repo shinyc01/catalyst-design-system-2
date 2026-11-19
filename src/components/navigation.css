@@ -176,9 +176,6 @@
 .ifs-navbar__actions{display:flex;align-items:center;gap:var(--space-200);flex:none}
 .ifs-navbar__buttons{display:flex;align-items:center;gap:var(--space-100)}
 /* icon-button-notification: status-indicator-atom State=Error, Stroke=True */
-.ifs-navbar__notify{position:relative;display:inline-flex}
-.ifs-navbar__dot{position:absolute;top:2px;right:2px;width:8px;height:8px;box-sizing:border-box;border-radius:50%;pointer-events:none;
-  background:var(--icon-danger);box-shadow:0 0 0 1.5px var(--surface-primary)}
 /* avatar-organism Size=M (32) fallback when the avatar family isn't loaded */
 .ifs-navbar__avatar{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:32px;height:var(--control-h-m);flex:none;
   border-radius:var(--radius-radius-full);background:var(--background-solid-black);box-shadow:inset 0 0 0 1px var(--border-medium);

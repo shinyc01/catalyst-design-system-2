@@ -2373,32 +2373,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   } });
 ```
 
-### NavBarCollapsed
-```jsx
-  IFS_GALLERY.push({ name: 'NavBarCollapsed', figma: 'nav-bar-organism Type=Collapsed / Collapsed opened (3412:29453)', render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Row label="Collapsed"><div style={{ width: 600 }}><NavBarCollapsed stages={STAGES} defaultValue="value" hasNotifications user={USER} /></div></Row>
-      <Row label="Collapsed opened" top><div style={{ width: 600, height: 300 }}><NavBarCollapsed stages={STAGES} defaultValue="value" defaultOpen hasNotifications user={USER} /></div></Row>
-    </div>
-  ) });
-```
-
-### ResponsiveNavBar
-```jsx
-  IFS_GALLERY.push({ name: 'ResponsiveNavBar', figma: 'nav-bar-organism Type=Default ↔ Collapsed (3412:29453)', render: () => {
-    const [w, setW] = useState(1200);
-    const [stage, setStage] = useState('plan');
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Row label="Width"><IFS.SegmentedControl size="s" value={String(w)} onChange={v => setW(+v)} options={['1200', '900', '760', '600'].map(v => ({ value: v, label: `${v}px` }))} /></Row>
-        <div style={{ width: w, height: 300, transition: 'width .2s' }}>
-          <ResponsiveNavBar stages={STAGES} value={stage} onChange={setStage} hasNotifications user={USER} />
-        </div>
-      </div>
-    );
-  } });
-```
-
 ### ExploreHeader
 ```jsx
   IFS_GALLERY.push({ name: 'ExploreHeader', figma: 'explore-header [patterns] (12:175111)', render: () => (

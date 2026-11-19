@@ -5,7 +5,7 @@ import { Meta } from '@storybook/blocks';
 
 # Review queue
 
-71 items to check, on 46 stories. Each one is a place where Figma disagrees with itself, something was invented or approximated, or a legacy part was kept. When frames and notes disagreed, the notes won. Open the story, compare it with the Design tab, then remove the item from `guide/review.md`.
+70 items to check, on 45 stories. Each one is a place where Figma disagrees with itself, something was invented or approximated, or a legacy part was kept. When frames and notes disagreed, the notes won. Open the story, compare it with the Design tab, then remove the item from `guide/review.md`.
 
 ## <a href="./index.html?path=/docs/activity-collaboration-commentthread--docs" target="_top">Activity & Collaboration/CommentThread</a>
 
@@ -148,10 +148,6 @@ import { Meta } from '@storybook/blocks';
 - The middle strength caption reads "87% Review" on the 60% and 96% frames too. The kit shows `&#123;value&#125;% Review` inside the band and "70–90% Review" outside it.
 - At exactly 90%: the dev note says "&gt;90% is Approve"; the kit's EvidenceStrength treats 90 as Approve.
 
-## <a href="./index.html?path=/docs/pattern-helpers-nav-bar-responsivenavbar--docs" target="_top">Pattern helpers/Nav bar/ResponsiveNavBar</a>
-
-- The collapse breakpoint (800px) and sidebar rails below 1280px are inferred, not specified.
-
 ## <a href="./index.html?path=/docs/more-components-nav-bar-exploreheader--docs" target="_top">More components/Nav bar/ExploreHeader</a>
 
 - Built from `explore-header` (ae9026ad, no variants), but a published `explore-header-pattern` (0f49a18b, 7205:33581) has four toggles. Which is current?
@@ -218,5 +214,6 @@ import { Meta } from '@storybook/blocks';
 
 ## Not matched to a story
 
+- ResponsiveNavBar (resolved 2.0.3: NavBar collapses by width itself)
 - Stat
 - Menu (resolved 2.0.3)

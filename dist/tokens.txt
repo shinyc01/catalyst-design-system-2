@@ -314,7 +314,7 @@
 --collaboration-user-14: #b46dff
 --collaboration-user-15: #f58adb
 --collaboration-user-16: #000000
---data-viz-neutral: rgba(255,255,255,0.1)
+--data-viz-neutral: var(--icon-tertiary)
 --data-viz-reference: #ffffff
 --data-viz-target: rgba(255,255,255,0.9)
 --data-viz-band: rgba(255,255,255,0.16)
