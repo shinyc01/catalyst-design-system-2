@@ -59,12 +59,13 @@
      .ifs-slot-top      selected bar, or the draw bar while drawing: centred on the whole map; a panel only nudges it aside, a page gap away
                         (.has-top-x + --slot-top-x); when it can't fit between the panels (.has-top-start) it starts at the start panel's edge
                         and the start panel moves down below it (Nov 19)
-     .ifs-slot-bottom   horizon bar (.ifs-slot-fill: fills up to --region-map-bar); snackbars stack above it
+     .ifs-slot-bottom   horizon bar (.ifs-slot-fill: up to --region-map-bar): same rule as the top bar, shrinks to the space between panels
+                        when it's wider; snackbars stack above it
      .ifs-slot-popover  the Layers popover, beside the bottom tool bar (--overlay-width-s)
      .ifs-slot-fab      Cooper button, end-bottom corner
      .ifs-slot-exit     "Exit map preview" (arriving from Build), start-top corner above everything: add .has-exit
    State on .ifs-slots: .has-left (+ .has-left-l), .has-right, .has-exit. Centre bars are at most --region-map-bar wide.
-   No map minimum (Nov 19). Narrow: below 1100 the end panel overlays the map (it closes on outside click / Esc; the top bar still clears it, the bottom bar doesn't);
+   No map minimum (Nov 19). Narrow: below 1100 the end panel overlays the map (it closes on outside click / Esc; the top and bottom bars still clear it);
    below 720 panels become a bottom sheet. CSS can't read tokens in @media, so --bp-map-overlay / --bp-map-sheet repeat the numbers for JS. */
 :root{
   --region-map-bar:46.625rem; /* 746px. Centre map bars (selected, draw, horizon) are at most this wide; the horizon fills it (Figma Explore horizon bar 746) */
@@ -98,6 +99,12 @@
 .ifs-slots.has-top-start .ifs-slot-top{inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));inset-inline-end:var(--slot-top-r);justify-content:flex-start}
 .ifs-slots.has-top-start .ifs-slot-left{top:calc(var(--slot-top) + var(--slot-top-h, var(--space-0)) + var(--page-gap))}
 .ifs-slot-bottom{bottom:var(--slot-inset)}
+/* Bottom bar (horizon), same rule as the top bar (Nov 19): centred on the whole map, nudged a page gap clear of open panels and the
+   Cooper button; when it's wider than the space between them it shrinks to that space. The app measures it (.has-bottom-x, --slot-bottom-x / -w). */
+.ifs-slots{--slot-bottom-r:calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap))}
+.ifs-slots.has-right{--slot-bottom-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
+.ifs-slots.has-bottom-x .ifs-slot-bottom{inset-inline-start:var(--slot-bottom-x);inset-inline-end:auto;width:var(--slot-bottom-w);justify-content:flex-start}
+.ifs-slots.has-bottom-x .ifs-slot-bottom > .ifs-slot-fill{flex:1 1 auto}
 .ifs-slots:not(.has-right) .ifs-slot-bottom{inset-inline-end:calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap))} /* clear the Cooper button */
 /* Map tools in the start corners, on the same edges as the slots */
 .ifs-slot-tools,.ifs-slot-tools-bottom{position:absolute;z-index:500;inset-inline-start:var(--slot-inset)}

@@ -39,7 +39,7 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 | `.ifs-slot-fab` | Cooper button, end-bottom corner | `--size-48` |
 | `.ifs-slot-exit` | "Exit map preview" when you arrive from Build (add `.has-exit`: every slot moves down one control row) | — |
 
-- State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. The top bar follows the rule in the table above. It clears the end panel even when that panel overlays the map (below 1100). The bottom bar (horizon) is centred in the gap between the panels (bottom-bar rule: open question, Nov 19).
+- State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. The top bar follows the rule in the table above. It clears the end panel even when that panel overlays the map (below 1100). The bottom bar (horizon) follows the same rule (Nov 19): centred on the whole map, nudged a page gap clear of panels and the Cooper button; when it's wider than the space between them, it shrinks to that space. It also clears an overlaying end panel.
 - **Edges:** every slot sits one inset (`--slot-inset` = the page margin) from the map's edges; tops, bottoms and the end edge line up; neighbours sit a page gap apart.
 - **No map minimum** (Nov 19): panels never fold because the map is small. Study still folds when a right panel opens (below); below 1100 / 720 the overlay and sheet rules apply.
 - **Study and a right panel:** Study folds to its rail when a right panel opens and comes back when it closes; clicking Study hides the right panel. The Cooper chat counts as a right panel too: while the user works with Cooper (custom lens, create idea), Study stays folded (Nov 19, no exception).
