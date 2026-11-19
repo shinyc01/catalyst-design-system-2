@@ -68,6 +68,14 @@ function entries(file) {
   });
 }
 
+// IFS.format: the header comment of format.js is its API (one function per line).
+{
+  const src = readFileSync(join(comp, 'format.js'), 'utf8').split('\n');
+  const head = [];
+  for (const l of src.slice(1)) { if (!/^\s*\/\//.test(l)) break; head.push(l.replace(/^\s*\/\/ ?/, '')); }
+  out += `## format\n\n\`IFS.format\` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: ${PAGES}/guide/content.md\n\n\`\`\`\n${head.join('\n').trim()}\n\`\`\`\n\n`;
+}
+
 for (const f of ['_core.jsx', ...families]) {
   const fam = f.replace(/^_|\.jsx$/g, '');
   out += `## ${fam}\n\nExamples (read before using any component below — shows the data shapes props expect): ${PAGES}/src/gallery/${fam === 'core' ? 'button' : fam}.jsx\n\n`;

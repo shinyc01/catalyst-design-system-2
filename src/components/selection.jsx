@@ -396,7 +396,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
   };
   const s = range ? val && val.start : val, en = range ? val && val.end : null;
   const key = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-  const title = first.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  const title = IFS.format.date(first, { style: 'monthLong' });
   return (
     <div className={cx('ifs-calendar', className)} {...rest}>
       <div className="ifs-calendar__head">
@@ -420,7 +420,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
               return (
                 <button key={c} type="button" role="gridcell" tabIndex={sameDay(d, focusInView) ? 0 : -1} disabled={out(d)}
                   aria-selected={isEnd || inRange || undefined} aria-current={sameDay(d, today) ? 'date' : undefined}
-                  aria-label={d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                  aria-label={IFS.format.date(d, { style: 'full' })}
                   className={cx('ifs-calendar__date', d.getMonth() !== vm && (d < first ? 'is-last' : 'is-next'),
                     sameDay(d, today) && 'is-today', inRange && 'is-selected', isEnd && 'is-endpoint')}
                   onClick={() => select(d)}>
@@ -442,7 +442,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
 // picks stay a draft until the full-width Apply button commits them), applyLabel, error, disabled, listPosition down|up, state,
 // plus Calendar props (today, events, min, max).
 function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder = 'Select date',
-  format = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }), range = false, clearable = true,
+  format = d => IFS.format.date(d), range = false, clearable = true,
   iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply',
   error, disabled, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest }) {
   const [val, setVal] = useControlled(value, defaultValue, onChange);

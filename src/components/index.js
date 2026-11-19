@@ -13,6 +13,8 @@ import './surfaces.css';
 import '../icons.js';
 
 export { IFS } from './registry.js';
+// Formatting helpers (IFS.format) load first so every family can use them.
+export { format } from './format.js';
 export * from './_core.jsx';
 export * from './button.jsx';
 export * from './data.jsx';

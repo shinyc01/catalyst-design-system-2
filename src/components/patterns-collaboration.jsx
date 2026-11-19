@@ -266,7 +266,7 @@ function RemoveCollaboratorModal({ open, person, onCancel, onConfirm, inline }) 
   if (!person) return null;
   return (
     <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title="Remove this collaborator?" width={440} inline={inline}
-      secondaryAction={{ label: 'Cancel', onClick: onCancel }} primaryAction={{ label: 'Remove', onClick: onConfirm }}>
+      secondaryAction={{ label: 'Cancel', onClick: onCancel }} primaryAction={{ label: 'Remove collaborator', onClick: onConfirm }}>
       <div className="ifs-collab-remove">
         <div className="ifs-collab-remove__card">
           <IFS.Avatar size="l" name={person.name} initials={person.initials} {...person.avatar} type={person.status === 'awaiting' ? 'awaiting' : (person.avatar || {}).type} />

@@ -75,19 +75,19 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'StatCard', figma: 'stat-card-organism (3643:35055)', render: () => <>
     <Row label="m / s">
-      <StatCard style={{ width: 286 }} title="Title" value="Value" description="Description" trend="3 %" />
-      <StatCard style={{ width: 286 }} size="s" title="Title" value="Value" description="Description" trend="3 %" />
+      <StatCard style={{ width: 286 }} title="Title" value="Value" description="Description" trend="3%" />
+      <StatCard style={{ width: 286 }} size="s" title="Title" value="Value" description="Description" trend="3%" />
     </Row>
     <Row label="loading">
-      <StatCard style={{ width: 286 }} loading trend="3 %" />
-      <StatCard style={{ width: 286 }} size="s" loading trend="3 %" />
+      <StatCard style={{ width: 286 }} loading trend="3%" />
+      <StatCard style={{ width: 286 }} size="s" loading trend="3%" />
     </Row>
     <Row label="description inline">
-      <StatCard style={{ width: 286 }} descriptionPosition="inline" title="Title" value="Value" description="Description" trend="3 %" />
-      <StatCard style={{ width: 286 }} descriptionPosition="inline" size="s" title="Title" value="Value" description="Description" trend="3 %" />
+      <StatCard style={{ width: 286 }} descriptionPosition="inline" title="Title" value="Value" description="Description" trend="3%" />
+      <StatCard style={{ width: 286 }} descriptionPosition="inline" size="s" title="Title" value="Value" description="Description" trend="3%" />
     </Row>
     <Row label="badge / down">
-      <StatCard style={{ width: 286 }} title="Budget" value="$4.2M" description="of $5M" trend="12 %" trendDirection="down" badge={{ children: 'Over' }} />
+      <StatCard style={{ width: 286 }} title="Budget" value="$4.2M" description="of $5M" trend="12%" trendDirection="down" badge={{ children: 'Over' }} />
     </Row>
   </> });
 
@@ -130,11 +130,11 @@ export default IFS_GALLERY;
     { key: 'cost', title: 'Cost', sortable: true, type: 'counter', sortValue: r => r.costNum, filter: {} },
   ];
   const rows = [
-    { id: 1, region: 'North', name: { text: 'Substation upgrade', description: 'INV-2041' }, owner: { name: 'Tom Nguyen', type: 'blue' }, status: { type: 'green', label: 'Approved' }, risk: { color: 'red', children: 'High' }, riskRank: 3, cost: { text: '$4.2M', value: '3 %' }, costNum: 4.2 },
-    { id: 2, region: 'North', name: { text: 'Pole replacement', description: 'INV-2042' }, owner: { name: 'Ada Park', type: 'green' }, status: { type: 'orange', label: 'In review' }, risk: { color: 'orange', children: 'Medium' }, riskRank: 2, cost: { text: '$1.1M', value: '1 %', direction: 'down' }, costNum: 1.1 },
-    { id: 3, region: 'South', name: { text: 'Feeder automation', description: 'INV-2043' }, owner: { name: 'Lee Chan', type: 'purple' }, status: { type: 'blue', label: 'Draft' }, risk: { color: 'green', children: 'Low' }, riskRank: 1, cost: { text: '$2.7M', value: '5 %' }, costNum: 2.7 },
-    { id: 4, region: 'South', name: { text: 'Transformer refurb', description: 'INV-2044' }, owner: { name: 'Mia Ross', type: 'orange' }, status: { type: 'red', label: 'Rejected' }, risk: { color: 'red', children: 'High' }, riskRank: 3, cost: { text: '$0.8M', value: '2 %' }, costNum: 0.8 },
-    { id: 5, region: 'East', name: { text: 'Meter rollout', description: 'INV-2045' }, owner: { name: 'Sam Ito', type: 'dark-pink' }, status: { type: 'green', label: 'Approved' }, risk: { color: 'white', children: 'None' }, riskRank: 0, cost: { text: '$3.3M', value: '4 %' }, costNum: 3.3 },
+    { id: 1, region: 'North', name: { text: 'Substation upgrade', description: 'INV-2041' }, owner: { name: 'Tom Nguyen', type: 'blue' }, status: { type: 'green', label: 'Approved' }, risk: { color: 'red', children: 'High' }, riskRank: 3, cost: { text: '$4.2M', value: '3%' }, costNum: 4.2 },
+    { id: 2, region: 'North', name: { text: 'Pole replacement', description: 'INV-2042' }, owner: { name: 'Ada Park', type: 'green' }, status: { type: 'orange', label: 'In review' }, risk: { color: 'orange', children: 'Medium' }, riskRank: 2, cost: { text: '$1.1M', value: '1%', direction: 'down' }, costNum: 1.1 },
+    { id: 3, region: 'South', name: { text: 'Feeder automation', description: 'INV-2043' }, owner: { name: 'Lee Chan', type: 'purple' }, status: { type: 'blue', label: 'Draft' }, risk: { color: 'green', children: 'Low' }, riskRank: 1, cost: { text: '$2.7M', value: '5%' }, costNum: 2.7 },
+    { id: 4, region: 'South', name: { text: 'Transformer refurb', description: 'INV-2044' }, owner: { name: 'Mia Ross', type: 'orange' }, status: { type: 'red', label: 'Rejected' }, risk: { color: 'red', children: 'High' }, riskRank: 3, cost: { text: '$0.8M', value: '2%' }, costNum: 0.8 },
+    { id: 5, region: 'East', name: { text: 'Meter rollout', description: 'INV-2045' }, owner: { name: 'Sam Ito', type: 'dark-pink' }, status: { type: 'green', label: 'Approved' }, risk: { color: 'white', children: 'None' }, riskRank: 0, cost: { text: '$3.3M', value: '4%' }, costNum: 3.3 },
   ];
   function TableDemo({ grouped }) {
     const [sel, setSel] = React.useState(2);

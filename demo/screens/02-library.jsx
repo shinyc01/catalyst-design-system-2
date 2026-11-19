@@ -13,7 +13,7 @@ const libraryNav = [
 ];
 
 const libraryDate = s => new Date(`${s}T00:00`);
-const libraryFmt = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const libraryFmt = d => IFS.format.date(d);
 const libraryTorres = { name: 'M. Torres', initials: 'MT', type: 'dark-purple' };
 const librarySingh = { name: 'A. Singh', initials: 'AS', type: 'blue' };
 

@@ -66,7 +66,7 @@ export default IFS_GALLERY;
   </> });
   IFS_GALLERY.push({ name: 'ConfidenceGates', figma: 'Approval readiness [patterns] (30:73048)', render: () => {
     const c = useIssueReport({ issues: CONF_ISSUES, gates: GATES });
-    return <Row label="50 %"><W><ConfidenceGates controller={c} /></W></Row>;
+    return <Row label="50%"><W><ConfidenceGates controller={c} /></W></Row>;
   } });
   IFS_GALLERY.push({ name: 'PanelRail', figma: 'sidebar-organism View=Collapsed [patterns] (30:75021)', render: () => <>
     <Row label="open questions"><div style={{ height: 120 }}><PanelRail dot="error" onExpand={noop} /></div></Row>
@@ -137,7 +137,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: System confidence', figma: 'Review - Portfolio impact - Errors [patterns] (30:72985)', render: () => {
     const [key, setKey] = useState(0);
     return <>
-      <Demo>Pick a solution, type My answer, upload a file or press Okay on warnings; ‹ › and All walk the list; the rail dot follows what is open. At 100 % Send for approval enables.
+      <Demo>Pick a solution, type My answer, upload a file or press Okay on warnings; ‹ › and All walk the list; the rail dot follows what is open. At 100% Send for approval enables.
         <IFS.Button size="s" type="tertiary" onClick={() => setKey(k => k + 1)}>Reset</IFS.Button></Demo>
       <ConfidenceScreen key={key} />
     </>;
@@ -196,7 +196,7 @@ export default IFS_GALLERY;
   </div>;
   const P = t => <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--text-secondary)' }}>{t}</p>;
   const BASE_SECTIONS = [
-    { id: 'impact', title: 'Portfolio impact', badge: { label: '+4.8%', tone: 'success', icon: 'arrow-caret-up-filled' }, content: <>{P('Net portfolio value rises under the proposed framework, with a modest short-term trade-off across re-scored investments.')}<IFS.ReadinessFacts rows={[['Proposed value', '$2.24B ▴ 3.1 %']]} /></> },
+    { id: 'impact', title: 'Portfolio impact', badge: { label: '+4.8%', tone: 'success', icon: 'arrow-caret-up-filled' }, content: <>{P('Net portfolio value rises under the proposed framework, with a modest short-term trade-off across re-scored investments.')}<IFS.ReadinessFacts rows={[['Proposed value', '$2.24B ▴ 3.1%']]} /></> },
     { id: 'rescored', title: 'Investments re-scored', badge: '1,621', content: <>{P('1,621 investments were re-evaluated against the proposed objective weights.')}<IFS.ReadinessFacts rows={[['Gained', '357'], ['Lost', '519'], ['Unchanged', '745']]} /></> },
     { id: 'tiers', title: 'Fundings-tier changes', badge: '38', content: <>{P('38 investments move between funding tiers as a result of re-scoring.')}<IFS.ReadinessFacts rows={[['Total', '876'], ['Gained', '52'], ['Lost', '31'], ['Significant shift', '12']]} /></> },
     { id: 'risks', title: 'Flagged risks', badge: { label: '1 resolved', tone: 'success' }, content: P('Wildfire risk over-weighted — V2 pulls capital into ignition mitigation.') },

@@ -184,14 +184,8 @@ function InvestmentValueImpact({ title = 'Investment value impact', metrics = IV
 }
 
 /* ===================================================== table-review ===================================================== */
-// "$3.1M" → 3100000, "2.6" → 2.6, "+$1.3M" → 1300000 (for sorting).
-const apNum = s => {
-  if (typeof s === 'number') return s;
-  const str = String(s || '');
-  const n = parseFloat(str.replace(/[^0-9.\-]/g, '')) || 0;
-  const mult = /B\b/i.test(str) ? 1e9 : /M\b/i.test(str) ? 1e6 : /K\b/i.test(str) ? 1e3 : 1;
-  return (/^\s*-/.test(str) && n > 0 ? -n : n) * mult;
-};
+// "$3.1M" → 3100000, "2.6" → 2.6, "−$1.3M" → -1300000 (for sorting); blank → 0.
+const apNum = s => { const n = IFS.format.parse(s); return Number.isNaN(n) ? 0 : n; };
 function FromTo({ v, direction }) {
   if (!v) return null;
   return (

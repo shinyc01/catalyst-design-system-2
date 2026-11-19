@@ -316,7 +316,7 @@ export default IFS_GALLERY;
   }
 
   IFS_GALLERY.push({ name: 'Pattern: Evidence chain from a card', figma: 'Idea overview / Investment owner review → Rationale (Evidence chain) [patterns] (31:75728)', render: () => <>
-    <DemoBar><span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>click the round Cooper button on any card; each block carries its own confidence (Strategic relevance 61 % → Reject zone).</span></DemoBar>
+    <DemoBar><span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>click the round Cooper button on any card; each block carries its own confidence (Strategic relevance 61% → Reject zone).</span></DemoBar>
     <BuildScreen label="Idea overview with evidence chain" initialKey="overview" />
   </> });
 
@@ -330,7 +330,7 @@ export default IFS_GALLERY;
     const z = evidenceZone(v);
     return <>
       <DemoBar>
-        <IFS.SegmentedControl size="s" value={String(v)} onChange={x => setV(+x)} options={[{ value: '60', label: '60 % Rejected' }, { value: '87', label: '87 % Need review' }, { value: '96', label: '96 % Approve' }]} />
+        <IFS.SegmentedControl size="s" value={String(v)} onChange={x => setV(+x)} options={[{ value: '60', label: '60% Rejected' }, { value: '87', label: '87% Need review' }, { value: '96', label: '96% Approve' }]} />
         <span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>{z.label}: {z.behaviour}</span>
       </DemoBar>
       <ReviewScreen key={v} label={`Evidence chain at ${v}%`} initialOpen value={v} />

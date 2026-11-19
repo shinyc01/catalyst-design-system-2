@@ -117,7 +117,7 @@ export default IFS_GALLERY;
 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {
-    const S = 0.47; // the Figma map draws its pins at ~47 %
+    const S = 0.47; // the Figma map draws its pins at ~47%
     const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
