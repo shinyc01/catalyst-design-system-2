@@ -70,7 +70,8 @@ Retired (the class still works and renders as its replacement): Code regular / m
 **Heading order**: headings follow the page structure, from the outside in.
 | Level | Use for | Example |
 |---|---|---|
-| H2 (H1 on hero or form pages) | The page title, once per page | "Executive Summary" |
+| H2 (H1 on hero or form pages) | The page title in `PageTop`, once per page: broad pages (tables, libraries, landing / category pages) | "Value library", "Executive Summary" |
+| Label/M/medium | The title in the thin `PageHeader` (inside one entity: an idea, investment, value or strategy framework) and the `ExploreHeader` map bar. The bar is thin by design, so its title stays Label/M; the content below starts at H3 / H4 | "Northgate feeder replacement" |
 | H3 | A page section that is not inside a card or panel (it sits on the page background) | "Recommended Alternative" with several cards under it |
 | H4 | The title of a container: card, panel, modal, drawer, chart | "Investment Value Impact", "Readiness Evaluation" |
 | Label/M/medium | A sub-section inside a container that already has a title | "Approval readiness" inside the Readiness panel |
@@ -106,7 +107,8 @@ One status per object; a second state is a tag or an icon next to it. Status tex
 **By role**
 | Role | Style |
 |---|---|
-| Page title | H2 (H1 for hero/form pages) |
+| Page title in `PageTop` (broad pages) | H2 (H1 for hero/form pages) |
+| Title in the thin `PageHeader` / `ExploreHeader` (inside an entity, map) | Label/M/medium |
 | Page section not inside a container | H3 |
 | Panel, modal, drawer, card, chart title | H4 |
 | Sub-section inside a titled panel | Label/M/medium, primary colour |
@@ -151,7 +153,7 @@ We follow the majority on token layers, regular content, a 12px floor (11 in Com
 6. Label/M/semibold merged into Label/M/medium; H4 keeps 600.
 7. Display S/M/L and Code kept until the product Figma files are checked. Code follows Body size (Code/M), with Code/S for code inside Small text; in the old Figma library Code also matched body size.
 8. Tokens rebuilt as primitives → semantic, like Figma.
-9. Heading order: H2 page → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels.
+9. Heading order: H2 page (PageTop) → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels. The thin PageHeader / ExploreHeader title is Label/M/medium (Nov 19, 2.0.3): its HTML level stays the page's top heading for screen readers.
 10. Big numbers: H1 one main number per card, H2 when several or small, Display one hero number per screen; table numbers Label/M/medium.
 11. Meta text is Body/M by default; Small only in named cases (disclaimers, footnotes, text inside a fixed small shape).
 12. Status vs tag: a status (dot + state) and a tag are both sentence case; a tag or badge (category, stage, count) is Label/M/medium in normal case, including the transparent Badge.
