@@ -67,7 +67,7 @@ function SearchModal({ title = 'Suggested questions', items = [], activeIndex = 
     <div className={ptCx('ifs-search-modal', inline && 'ifs-search-modal--inline', className)} style={style}>
       <div className="ifs-search-modal__body">
         {title && <div className="ifs-search-modal__title">{title}</div>}
-        <div className="ifs-search-modal__list" role="listbox" id={id} aria-label={title || 'Suggestions'} style={{ maxHeight }}>
+        <div className="ifs-search-modal__list" role="listbox" id={id} aria-label={title || 'Suggestions'} style={{ maxHeight: IFS.remOf(maxHeight) }}>
           {items.map((it, i) => {
             const o = typeof it === 'string' ? { label: it } : it;
             return <SearchCard key={i} type={o.type} query={o.query} active={i === activeIndex}
@@ -116,7 +116,7 @@ function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = '
   return (
     <div ref={ref} className={ptCx('ifs-smart-search', `ifs-smart-search--${mode}`, size === 's' && 'ifs-smart-search--s', filled && 'ifs-smart-search--filled',
       isListening && 'ifs-smart-search--listening', disabled && 'ifs-smart-search--disabled', kbd && 'ifs-smart-search--kbd', className)}
-      data-state={state} style={{ width, ...style }}>
+      data-state={state} style={{ width: IFS.remOf(width), ...style }}>
       <div className="ifs-smart-search__field" onMouseDown={e => { if (e.target === e.currentTarget) { e.preventDefault(); input.current && input.current.focus(); } }}>
         <span className="ifs-smart-search__lead">
           <IFS.Icon name="cooper-system-icon" variant="Smart search" size={16} />
@@ -194,7 +194,7 @@ function ColumnFilter({ title = 'Filter', options = [], value, defaultValue = []
   };
   const clearAll = () => { setSel([]); setQ(''); range && range.onChange && range.onChange({ from: null, to: null }); period && period.onChange && period.onChange(null); onClearAll && onClearAll(); };
   return (
-    <div role="dialog" aria-label={`${title} column`} className={ptCx('ifs-column-filter', inline && 'ifs-column-filter--inline', className)} style={{ width, ...style }}>
+    <div role="dialog" aria-label={`${title} column`} className={ptCx('ifs-column-filter', inline && 'ifs-column-filter--inline', className)} style={{ width: IFS.remOf(width), ...style }}>
       <div className="ifs-column-filter__header">
         <span className="ifs-column-filter__title">{title}</span>
         {count > 0 && <IFS.Counter>{count}</IFS.Counter>}
@@ -386,7 +386,7 @@ function ColumnSettings({ columns = [], onChange, suggestions = [], onAdd, findC
 // Props: id (record code), onDetails, onClose, children (preview content), width (default 380).
 function RecordPreview({ id, onDetails, onClose, children, width = 'var(--region-panel)', className }) {
   return (
-    <aside className={ptCx('ifs-record-preview', className)} style={{ width }} aria-label={`Preview ${id || ''}`}>
+    <aside className={ptCx('ifs-record-preview', className)} style={{ width: IFS.remOf(width) }} aria-label={`Preview ${id || ''}`}>
       <div className="ifs-record-preview__header">
         <span className="ifs-record-preview__id">{id}</span>
         {onDetails && <IFS.Button type="primary" size="s" onClick={onDetails}>Details</IFS.Button>}

@@ -178,7 +178,7 @@ function Modal({ open, defaultOpen, onOpenChange, title, children, secondaryActi
   if (!inline && !isOpen) return null;
   const card = (
     <div ref={ref} role="dialog" aria-modal={inline ? undefined : 'true'} aria-labelledby={titleId} tabIndex={-1}
-      className={IFS.cx('ifs-modal', className)} style={{ width, ...style }}>
+      className={IFS.cx('ifs-modal', className)} style={{ width: IFS.remOf(width), ...style }}>
       <div className="ifs-modal__header">
         <h2 id={titleId} className="ifs-surface__title">{title}</h2>
         {dismissible && <IFS.IconButton icon="system-close" label="Close" type="ghost" size="s" onClick={close} />}
@@ -295,7 +295,7 @@ function Popover({ trigger, open, defaultOpen, onOpenChange, align = 'start', ti
   }, [isOpen, inline]);
   const card = (inline || isOpen) && (
     <div ref={ref} id={id} role="dialog" aria-label={typeof title === 'string' ? title : undefined} tabIndex={-1}
-      className={IFS.cx('ifs-popover', align === 'end' && 'ifs-popover--end', className)} style={{ width, ...style }}>
+      className={IFS.cx('ifs-popover', align === 'end' && 'ifs-popover--end', className)} style={{ width: IFS.remOf(width), ...style }}>
       {(title != null || showClose) && <div className="ifs-popover__header">
         <div className="ifs-popover__title">
           {title != null && <span className="ifs-surface__title">{title}</span>}

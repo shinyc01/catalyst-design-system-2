@@ -34,8 +34,8 @@
 
 /* TextArea: fixed-height box, content top-aligned */
 /* text-area keeps the old Text Input paddings in the branch (L 10,12 / M 8,8) */
-.ifs-field--area .ifs-field__control{align-items:flex-start;height:140px;padding:var(--space-250) var(--space-300)}
-.ifs-field--area.ifs-field--m .ifs-field__control{height:100px;padding:var(--space-200)}
+.ifs-field--area .ifs-field__control{align-items:flex-start;height:8.75rem;padding:var(--space-250) var(--space-300)}
+.ifs-field--area.ifs-field--m .ifs-field__control{height:6.25rem;padding:var(--space-200)}
 .ifs-field--area .ifs-field__input{align-self:stretch;resize:none;overflow:auto}
 
 /* Title brightens while the field is engaged */
@@ -80,7 +80,7 @@
 /* ---------- Search ---------- */
 .ifs-search{
   --border:var(--element-search-border-default);--ring:0 0 0 0 transparent;
-  display:flex;align-items:center;box-sizing:border-box;width:248px;height:32px;
+  display:flex;align-items:center;box-sizing:border-box;width:15.5rem;height:var(--size-32);
   gap:var(--space-100);padding:var(--space-200);border-radius:var(--radius-radius-100);
   box-shadow:var(--ring),inset 0 0 0 1px var(--border) /* INSIDE stroke */;
   color:var(--icon-secondary);cursor:text;transition:box-shadow .12s;
@@ -103,7 +103,7 @@
 /* ---------- Checkbox + Radio (shared molecule row) ---------- */
 .ifs-check{
   --ring:0 0 0 0 transparent;
-  position:relative;display:inline-flex;align-items:center;box-sizing:border-box;min-height:32px;
+  position:relative;display:inline-flex;align-items:center;box-sizing:border-box;min-height:var(--size-32);
   gap:var(--space-200);padding:var(--space-150) var(--space-100);border-radius:var(--radius-radius-100);
   color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;
   box-shadow:var(--ring);cursor:pointer;user-select:none;transition:background-color .12s;
@@ -112,7 +112,7 @@
 .ifs-check__input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
 .ifs-check__box{
   --box-fill:transparent;--box-border:var(--element-checkbox-off-border-default);--box-ring:0 0 0 0 transparent;
-  position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;box-sizing:border-box;
+  position:relative;flex:none;display:inline-flex;align-items:center;justify-content:center;width:var(--size-16);height:var(--size-16);box-sizing:border-box;
   border-radius:var(--radius-radius-100);background:var(--box-fill);box-shadow:var(--box-ring),inset 0 0 0 1px var(--box-border);
   color:var(--icon-primary-inverse);transition:background-color .12s,box-shadow .12s;
 }
@@ -127,7 +127,7 @@
 .ifs-checkbox--on:hover,.ifs-checkbox--on[data-state=hover],.ifs-checkbox--on:active,.ifs-checkbox--on[data-state=pressed]{color:var(--text-primary)}
 /* Radio */
 .ifs-radio .ifs-check__box{border-radius:var(--radius-radius-full);--box-border:var(--element-radiobutton-off-border-default)}
-.ifs-radio .ifs-check__dot{width:8px;height:8px;border-radius:50%;background:var(--dot);display:none}
+.ifs-radio .ifs-check__dot{width:var(--size-8);height:var(--size-8);border-radius:50%;background:var(--dot);display:none}
 .ifs-radio:hover .ifs-check__box,.ifs-radio[data-state=hover] .ifs-check__box{--box-border:var(--element-radiobutton-off-border-hover)}
 .ifs-radio:active .ifs-check__box,.ifs-radio[data-state=pressed] .ifs-check__box{--box-border:var(--element-radiobutton-off-border-pressed)}
 .ifs-radio--on .ifs-check__dot{display:block}
@@ -158,17 +158,17 @@
 
 .ifs-switch{
   --fill:var(--element-toggle-off-fill-default);--border:var(--element-toggle-off-border-default);--knob:var(--icon-primary);--ring:0 0 0 0 transparent;
-  position:relative;flex:none;width:44px;height:24px;margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);
+  position:relative;flex:none;width:var(--size-44);height:var(--size-24);margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);
   background:var(--fill);box-shadow:var(--ring),inset 0 0 0 1px var(--border);cursor:pointer;transition:background-color .15s,box-shadow .15s;
 }
-.ifs-switch__knob{position:absolute;top:50%;left:6px;width:12px;height:12px;border-radius:50%;background:var(--knob);transform:translateY(-50%);transition:left .15s,width .15s,height .15s}
-.ifs-switch--s{width:22px;height:12px}
-.ifs-switch--s .ifs-switch__knob{left:3px;width:7px;height:7px}
+.ifs-switch__knob{position:absolute;top:50%;left:var(--size-6);width:var(--size-12);height:var(--size-12);border-radius:50%;background:var(--knob);transform:translateY(-50%);transition:left .15s,width .15s,height .15s}
+.ifs-switch--s{width:var(--size-22);height:var(--size-12)}
+.ifs-switch--s .ifs-switch__knob{left:0.1875rem;width:0.4375rem;height:0.4375rem}
 .ifs-switch:hover,.ifs-switch[data-state=hover],.ifs-switch-row:hover .ifs-switch{--fill:var(--element-toggle-off-fill-hover);--border:var(--element-toggle-off-border-hover)}
 .ifs-switch:active,.ifs-switch[data-state=pressed]{--fill:var(--element-toggle-off-fill-pressed);--border:var(--element-toggle-off-border-pressed)}
 .ifs-switch[aria-checked=true]{--fill:var(--element-toggle-on-fill-default);--border:transparent;--knob:var(--icon-primary-inverse)}
-.ifs-switch[aria-checked=true] .ifs-switch__knob{left:23px;width:18px;height:18px}
-.ifs-switch--s[aria-checked=true] .ifs-switch__knob{left:11px;width:10px;height:10px}
+.ifs-switch[aria-checked=true] .ifs-switch__knob{left:1.4375rem;width:var(--size-18);height:var(--size-18)}
+.ifs-switch--s[aria-checked=true] .ifs-switch__knob{left:var(--size-11);width:var(--size-10);height:var(--size-10)}
 .ifs-switch[aria-checked=true]:hover,.ifs-switch[aria-checked=true][data-state=hover],.ifs-switch-row:hover .ifs-switch[aria-checked=true]{--fill:var(--element-toggle-on-fill-hover);--border:transparent}
 .ifs-switch[aria-checked=true]:active,.ifs-switch[aria-checked=true][data-state=pressed]{--fill:var(--element-toggle-on-fill-pressed);--border:transparent}
 .ifs-switch:focus-visible,.ifs-switch[data-state=focus]{outline:none;--ring:0 0 0 1px var(--focus-focus-inner),0 0 0 2px var(--focus-focus-outer)}

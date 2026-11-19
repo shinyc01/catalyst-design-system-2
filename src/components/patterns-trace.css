@@ -23,7 +23,7 @@
 .ifs-trc-solution--applied:focus-within .ifs-content-card__head > .ifs-icon-button,
 .ifs-trc-solution--applied[data-state=hover] .ifs-content-card__head > .ifs-icon-button{opacity:1}
 /* Uploading: indicator-molecule with a gradient fill, 40px (30:77981) */
-.ifs-trc-solution--loading{height:40px;border-radius:var(--radius-radius-200);
+.ifs-trc-solution--loading{height:var(--size-40);border-radius:var(--radius-radius-200);
   background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary));
   background-size:200% 100%;animation:ifs-trc-shimmer 1.4s linear infinite}
 @keyframes ifs-trc-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}

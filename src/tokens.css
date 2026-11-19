@@ -349,22 +349,25 @@
 --data-viz-cyan-data-6:#0090a6;--data-viz-cyan-data-7:#006f82;--data-viz-cyan-data-8:#005763;--data-viz-cyan-data-9:#004652;--data-viz-cyan-data-10:#003741;
 
 /* 5. Measurements (spacing scale and size ruler for spacing live in foundations/spacing.css) */
---size-ruler-master-0:0px;--size-ruler-master-0-5:0.5px;--size-ruler-master-1:1px;--size-ruler-master-2:2px;--size-ruler-master-3:3px;--size-ruler-master-4:4px;
---size-ruler-master-6:6px;--size-ruler-master-8:8px;--size-ruler-master-10:10px;--size-ruler-master-12:12px;--size-ruler-master-14:14px;--size-ruler-master-16:16px;
---size-ruler-master-20:20px;--size-ruler-master-24:24px;--size-ruler-master-28:28px;--size-ruler-master-32:32px;--size-ruler-master-36:36px;--size-ruler-master-40:40px;
---size-ruler-master-44:44px;--size-ruler-master-48:48px;--size-ruler-master-52:52px;--size-ruler-master-56:56px;--size-ruler-master-60:60px;--size-ruler-master-64:64px;
---size-ruler-master-68:68px;--size-ruler-master-72:72px;--size-ruler-master-76:76px;--size-ruler-master-80:80px;--size-ruler-master-1000:1000px;
+--size-ruler-master-0:0px;--size-ruler-master-0-5:0.5px;--size-ruler-master-1:1px;--size-ruler-master-2:2px;--size-ruler-master-3:3px;--size-ruler-master-4:0.25rem;
+--size-ruler-master-6:0.375rem;--size-ruler-master-8:0.5rem;--size-ruler-master-10:0.625rem;--size-ruler-master-12:0.75rem;--size-ruler-master-14:0.875rem;--size-ruler-master-16:1rem;
+--size-ruler-master-20:1.25rem;--size-ruler-master-24:1.5rem;--size-ruler-master-28:1.75rem;--size-ruler-master-32:2rem;--size-ruler-master-36:2.25rem;--size-ruler-master-40:2.5rem;
+--size-ruler-master-44:2.75rem;--size-ruler-master-48:3rem;--size-ruler-master-52:3.25rem;--size-ruler-master-56:3.5rem;--size-ruler-master-60:3.75rem;--size-ruler-master-64:4rem;
+--size-ruler-master-68:4.25rem;--size-ruler-master-72:4.5rem;--size-ruler-master-76:4.75rem;--size-ruler-master-80:5rem;--size-ruler-master-1000:1000px;
 /* Spacing roles (IFS DS polish, items 1-4): containers get room through these; controls keep their own paddings */
 
 
 
 /* Table column widths by content type */
---table-col-primary-min:240px;--table-col-primary-max:480px;--table-col-short-min:120px;--table-col-short-max:200px;
---table-col-user-min:160px;--table-col-user-max:240px;--table-col-number-min:96px;--table-col-number-max:160px;
---table-col-date:136px;--table-col-check:44px;--table-col-action:48px;
+--table-col-primary-min:15rem;--table-col-primary-max:30rem;--table-col-short-min:7.5rem;--table-col-short-max:12.5rem;
+--table-col-user-min:10rem;--table-col-user-max:15rem;--table-col-number-min:6rem;--table-col-number-max:10rem;
+--table-col-date:8.5rem;--table-col-check:2.75rem;--table-col-action:3rem;
+/* Minimum width of flexible table columns (160). For now only when the user's text size is larger than the default
+   (0 at 16px, so tables look as designed); from 18px up it is the full 10rem and the table scrolls sideways. */
+--table-col-flex-min:clamp(0px, (1rem - 16px) * 100, 10rem);
 /* Fixed layout regions */
---layout-max-content-width:1600px;--layout-global-header-height:48px;--layout-sidebar-width:240px;
---layout-side-panel-width:380px;--layout-rail-width:48px;--layout-side-panel-collapsed-width:84px;
+--layout-max-content-width:100rem;--layout-global-header-height:3rem;--layout-sidebar-width:15rem;
+--layout-side-panel-width:23.75rem;--layout-rail-width:3rem;--layout-side-panel-collapsed-width:5.25rem;
 --border-widths-border-0:0px;--border-widths-border-100:1px;--border-widths-border-150:1.5px;--border-widths-border-200:2px;--border-widths-border-300:3px;--border-widths-border-400:4px;
 --radius-radius-0:0px;--radius-radius-100:4px;--radius-radius-150:6px;--radius-radius-200:8px;--radius-radius-300:12px;--radius-radius-full:1000px;
 --z-index-z-base:0;--z-index-z-sticky:50;--z-index-z-panels:100;--z-index-z-floating:200;--z-index-z-popover:300;
@@ -471,37 +474,39 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
      Spacious    = 16px body
      Comfortable = 14px body — default
      Compact     = 12px body
+   Units (2.0.3): type, control, tab, nav and table sizes are rem at a 16px base (Figma stays in px:
+   14px = 0.875rem), so they follow the user's default text size. Borders, radius and layout widths stay px.
    ========================================================================== */
 /* Comfortable (default): 14px body */
 :root,[data-density="comfortable"]{
   /* Type ramp: size/line-height (weights and letter-spacing stay per style) */
-  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:12px/16px;--type-m:14px/20px;--type-l:16px/24px;
-  --type-h3:20px/28px;--type-h2:24px/32px;--type-h1:28px/36px;
-  --type-display-s:32px/40px;--type-display-m:36px/44px;--type-display-l:44px/52px;
-  --control-h-s:24px;--control-h-m:32px;--control-h-l:40px;--icon-scale:1;
-  --tab-h-m:36px;--tab-h-l:40px;--nav-row-h:40px;
-  --table-row-h:52px;--table-header-h:32px;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:0.75rem/1rem;--type-m:0.875rem/1.25rem;--type-l:1rem/1.5rem;
+  --type-h3:1.25rem/1.75rem;--type-h2:1.5rem/2rem;--type-h1:1.75rem/2.25rem;
+  --type-display-s:2rem/2.5rem;--type-display-m:2.25rem/2.75rem;--type-display-l:2.75rem/3.25rem;
+  --control-h-s:1.5rem;--control-h-m:2rem;--control-h-l:2.5rem;--icon-scale:1;
+  --tab-h-m:2.25rem;--tab-h-l:2.5rem;--nav-row-h:2.5rem;
+  --table-row-h:3.25rem;--table-header-h:2rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
   --density-scale:1.05;
 }
 
 /* Spacious = 16px body, one notch up */
 [data-density="spacious"]{
-  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:14px/20px;--type-m:16px/24px;--type-l:18px/26px;
-  --type-h3:22px/28px;--type-h2:26px/32px;--type-h1:32px/40px;
-  --type-display-s:36px/44px;--type-display-m:40px/48px;--type-display-l:48px/56px;
-  --control-h-s:28px;--control-h-m:36px;--control-h-l:44px;--icon-scale:1.143 /* follows body text 16 / 14 */;
-  --tab-h-m:40px;--tab-h-l:48px;--nav-row-h:44px;
-  --table-row-h:64px;--table-header-h:40px;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:0.875rem/1.25rem;--type-m:1rem/1.5rem;--type-l:1.125rem/1.625rem;
+  --type-h3:1.375rem/1.75rem;--type-h2:1.625rem/2rem;--type-h1:2rem/2.5rem;
+  --type-display-s:2.25rem/2.75rem;--type-display-m:2.5rem/3rem;--type-display-l:3rem/3.5rem;
+  --control-h-s:1.75rem;--control-h-m:2.25rem;--control-h-l:2.75rem;--icon-scale:1.143 /* follows body text 16 / 14 */;
+  --tab-h-m:2.5rem;--tab-h-l:3rem;--nav-row-h:2.75rem;
+  --table-row-h:4rem;--table-header-h:2.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
   --density-scale:1.2;
 }
 
 /* Compact = 12px body */
 [data-density="compact"]{
-  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:11px/14px /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */;--type-m:12px/16px;--type-l:14px/20px;
-  --type-h3:16px/24px;--type-h2:20px/28px;--type-h1:24px/32px;
-  --type-display-s:28px/36px;--type-display-m:32px/40px;--type-display-l:40px/48px;
-  --control-h-s:24px /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */;--control-h-m:28px;--control-h-l:32px;--icon-scale:0.857 /* follows body text 12 / 14 */;
-  --tab-h-m:32px;--tab-h-l:36px;--nav-row-h:36px;
-  --table-row-h:40px;--table-header-h:24px;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:0.6875rem/0.875rem /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */;--type-m:0.75rem/1rem;--type-l:0.875rem/1.25rem;
+  --type-h3:1rem/1.5rem;--type-h2:1.25rem/1.75rem;--type-h1:1.5rem/2rem;
+  --type-display-s:1.75rem/2.25rem;--type-display-m:2rem/2.5rem;--type-display-l:2.5rem/3rem;
+  --control-h-s:1.5rem /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */;--control-h-m:1.75rem;--control-h-l:2rem;--icon-scale:0.857 /* follows body text 12 / 14 */;
+  --tab-h-m:2rem;--tab-h-l:2.25rem;--nav-row-h:2.25rem;
+  --table-row-h:2.5rem;--table-header-h:1.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
   --density-scale:0.95;
 }

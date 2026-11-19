@@ -133,7 +133,7 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
         </div>
       ) : right != null && (
         <div className="ifs-readiness__right ifs-readiness__right--text">
-          {loading ? <span className="ifs-skeleton-bar" style={{ width: 24, height: 16 }} /> : <span className="ifs-readiness__text">{right}</span>}
+          {loading ? <span className="ifs-skeleton-bar" style={{ width: 'var(--size-24)', height: 'var(--size-16)' }} /> : <span className="ifs-readiness__text">{right}</span>}
         </div>
       )}
     </div>
@@ -152,7 +152,7 @@ function StatCard({ size = 'm', title, value, description, descriptionPosition =
     <div className={IFS.cx('ifs-stat-card', `ifs-stat-card--${size}`, compare && 'ifs-stat-card--compare', loading && 'ifs-stat-card--loading', className)} aria-busy={loading || undefined} {...rest}>
       {(title != null || trend != null || badge || loading) && (
         <div className="ifs-stat-card__top">
-          {loading ? <span className="ifs-skeleton-bar" style={{ flex: 1, height: 14 }} /> : <span className="ifs-stat-card__title">{title}</span>}
+          {loading ? <span className="ifs-skeleton-bar" style={{ flex: 1, height: 'var(--size-14)' }} /> : <span className="ifs-stat-card__title">{title}</span>}
           {trend != null && (
             <span className={IFS.cx('ifs-stat-card__trend', trendDirection === 'down' && 'ifs-stat-card__trend--down')}>
               <IFS.Icon name="arrow-caret-up-filled" size={12} />{trend}
@@ -163,8 +163,8 @@ function StatCard({ size = 'm', title, value, description, descriptionPosition =
       )}
       <div className="ifs-stat-card__value-row">
         {loading ? <>
-          <span className="ifs-skeleton-bar" style={{ width: m ? 51 : 51, height: m ? 24 : 20 }} />
-          <span className="ifs-skeleton-bar" style={{ flex: 1, height: 16 }} />
+          <span className="ifs-skeleton-bar" style={{ width: '3.1875rem', height: m ? 'var(--size-24)' : 'var(--size-20)' }} />
+          <span className="ifs-skeleton-bar" style={{ flex: 1, height: 'var(--size-16)' }} />
         </> : compare ? <span className="ifs-stat-card__stack">
           <span className="ifs-stat-card__compare">
             {compare.from != null && <>
@@ -217,8 +217,8 @@ function ContentCard({ size = 'm', title, description, avatar, control, iconLeft
         {avatar && !loading && <Avatar size="l" {...avatar} />}
         <div className="ifs-content-card__text">
           {loading ? <>
-            <span className="ifs-skeleton-bar" style={{ height: 20 }} />
-            <span className="ifs-skeleton-bar" style={{ width: '41%', height: 16 }} />
+            <span className="ifs-skeleton-bar" style={{ height: 'var(--size-20)' }} />
+            <span className="ifs-skeleton-bar" style={{ width: '41%', height: 'var(--size-16)' }} />
           </> : <>
             <div className="ifs-content-card__head">
               {iconLeft
@@ -306,9 +306,9 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
   // Primary (name) column is medium, every other cell regular: the column with primary: true, else the first text/description/custom column.
   const primaryKey = (columns.find(c => c.primary) || columns.find(c => !c.type || ['text', 'description', 'custom'].includes(c.type)) || {}).key;
   // Columns keep a minimum width (Nov 19, reflow / 400% zoom): flexible columns never squash below --table-col-short-min;
-  // when the card is narrower than the columns need, the table scrolls sideways inside its card instead.
+  // when the card is narrower than the columns need, the table scrolls sideways inside its card instead. Fixed widths are in rem.
   const flexCol = fr => `minmax(var(--table-col-short-min), ${fr})`;
-  const cols = columns.map(c => c.width == null ? flexCol('1fr') : typeof c.width === 'number' ? `calc(${c.width}px * var(--density-scale))`
+  const cols = columns.map(c => c.width == null ? flexCol('1fr') : typeof c.width === 'number' ? `calc(${c.width / 16}rem * var(--density-scale))`
     : /^\d*\.?\d+fr$/.test(String(c.width).trim()) ? flexCol(String(c.width).trim()) : c.width).join(' ');
   const groupOf = typeof groupBy === 'function' ? groupBy : groupBy ? r => r[groupBy] : null;
   const groups = [];
@@ -327,7 +327,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
   };
 
   const table = (
-    <div role="table" className={IFS.cx('ifs-table', !(title || tabs || search) && className)} style={{ '--cols': cols, ...(rowHeight != null && { '--ifs-table-row-h': `${rowHeight}px` }) }} {...(title || tabs || search ? {} : rest)}>
+    <div role="table" className={IFS.cx('ifs-table', !(title || tabs || search) && className)} style={{ '--cols': cols, ...(rowHeight != null && { '--ifs-table-row-h': `${rowHeight / 16}rem` }) }} {...(title || tabs || search ? {} : rest)}>
       <div role="row" className="ifs-table__row ifs-table__row--header">
         {columns.map(c => {
           const dir = cur && cur.key === c.key ? cur.dir : null;
@@ -336,9 +336,9 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
               className={IFS.cx('ifs-table__th', alignOf(c) && `ifs-table__th--${alignOf(c)}`)}>
               {c.sortable ? (
                 <button type="button" className="ifs-table__th-btn" onClick={() => cycle(c.key)}>
-                  {c.title}<TableSort dir={dir} />
+                  <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span><TableSort dir={dir} />
                 </button>
-              ) : c.title}
+              ) : c.title != null && c.title !== '' ? <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span> : c.title}
               {c.filter && <button type="button" aria-label={`Filter ${c.title || ''}`} onClick={c.filter.onClick}
                 className={IFS.cx('ifs-table-filter', c.filter.applied && 'ifs-table-filter--applied')}><IFS.Icon name="system-filter" size={16} /></button>}
             </div>

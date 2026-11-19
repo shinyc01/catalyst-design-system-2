@@ -24,9 +24,9 @@ function SourceCard({ type = 'file', title, icon = 'system-file', onOpen, user, 
   if (loading) {
     return (
       <div className={cx('ifs-source-card', 'ifs-source-card--loading', className)} aria-busy="true" {...rest}>
-        <span className="ifs-skeleton-bar" style={{ width: 160, height: 24 }} />
-        <span className="ifs-skeleton-bar" style={{ width: '100%', height: 16 }} />
-        <span className="ifs-skeleton-bar" style={{ width: '62%', height: 16 }} />
+        <span className="ifs-skeleton-bar" style={{ width: '10rem', height: 'var(--size-24)' }} />
+        <span className="ifs-skeleton-bar" style={{ width: '100%', height: 'var(--size-16)' }} />
+        <span className="ifs-skeleton-bar" style={{ width: '62%', height: 'var(--size-16)' }} />
       </div>
     );
   }

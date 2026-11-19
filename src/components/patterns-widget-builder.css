@@ -5,13 +5,13 @@
 /* every card fills its share of the row and all cards share the tallest card's height */
 .ifs-stat-cards-row > *{box-sizing:border-box;width:auto;height:auto;min-width:0;align-self:stretch}
 .ifs-stat-cards-row--1{flex-wrap:wrap}
-.ifs-stat-cards-row--1 > *{flex:1 1 0;min-width:min(200px,100%)} /* wraps when a card would get narrower than 200 (layout geometry): 4 → 2 → 1 in narrow content (Nov 19) */
+.ifs-stat-cards-row--1 > *{flex:1 1 0;min-width:min(12.5rem,100%)} /* wraps when a card would get narrower than 200 (layout geometry): 4 → 2 → 1 in narrow content (Nov 19) */
 .ifs-stat-cards-row--2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr}
 
 /* ---------- preview-widget-card-organism (key c30262b5…) ---------- */
 .ifs-preview-widget{position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;min-width:0;
   padding:var(--space-250);border-radius:var(--radius-radius-100);
-  box-shadow:inset 0 0 0 1px var(--element-button-primary-border-default);overflow:hidden;pointer-events:none}
+  box-shadow:inset 0 0 0 1px var(--element-button-primary-border-default);overflow:hidden;pointer-events:none} /* preview-widget skeletons below stay px: a miniature chart illustration */
 .ifs-preview-widget__title{color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-preview-widget__sk{display:block;height:6px;border-radius:2px;background:var(--background-elevation-1-secondary);box-shadow:inset 0 0 0 0.5px var(--border-base)}
 .ifs-preview-widget__sk--outline{background:transparent;box-shadow:inset 0 0 0 1px var(--border-strong)}
@@ -53,30 +53,30 @@
   box-shadow:0 0 0 3px var(--border-black),0 0 0 4px #ffffff /* raw in Figma */,0 4px 10.3px rgba(0,0,0,0.25)}
 .ifs-widget-card__head{display:flex;align-items:flex-start;gap:var(--space-stack)}
 .ifs-widget-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
-.ifs-widget-card__title{display:flex;align-items:center;gap:var(--space-200);min-height:24px;color:var(--text-primary);
+.ifs-widget-card__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-24);color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
-.ifs-widget-card__drag{position:absolute;left:2px;top:17px;color:var(--icon-secondary)}
+.ifs-widget-card__drag{position:absolute;left:0.125rem;top:1.0625rem;color:var(--icon-secondary)}
 .ifs-widget-card__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-widget-card > .ifs-preview-widget{flex:none}
 
 /* ---------- resize-handle (key 190c6106…) ---------- */
-.ifs-resize-handle{position:relative;display:inline-block;width:22px;height:64px;color:var(--white-500)}
-.ifs-resize-handle__bar{position:absolute;left:10px;top:0;width:3px;height:100%;border-radius:var(--radius-radius-200);background:currentColor}
-.ifs-resize-handle__arrow{position:absolute;top:calc(50% - 6px)}
+.ifs-resize-handle{position:relative;display:inline-block;width:var(--size-22);height:var(--size-64);color:var(--white-500)}
+.ifs-resize-handle__bar{position:absolute;left:var(--size-10);top:0;width:3px;height:100%;border-radius:var(--radius-radius-200);background:currentColor}
+.ifs-resize-handle__arrow{position:absolute;top:calc(50% - var(--size-6))}
 .ifs-resize-handle__arrow--left{left:-3px}
 .ifs-resize-handle__arrow--right{right:-3px}
 
 /* ---------- drop-indicator-atom (key f78ffb96…) ---------- */
 .ifs-drop-indicator{display:flex;align-items:center;pointer-events:none}
-.ifs-drop-indicator--horizontal{height:4px}
-.ifs-drop-indicator--vertical{flex-direction:column;width:4px}
-.ifs-drop-indicator__dot{flex:none;width:4px;height:4px;border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 1px var(--border-accent-purple)}
+.ifs-drop-indicator--horizontal{height:var(--size-4)}
+.ifs-drop-indicator--vertical{flex-direction:column;width:var(--size-4)}
+.ifs-drop-indicator__dot{flex:none;width:var(--size-4);height:var(--size-4);border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 1px var(--border-accent-purple)}
 .ifs-drop-indicator__line{flex:1;background:var(--border-accent-purple)}
 .ifs-drop-indicator--horizontal .ifs-drop-indicator__line{height:1px}
 .ifs-drop-indicator--vertical .ifs-drop-indicator__line{width:1px}
 
 /* ---------- widget-view-change-position (Patterns 331:509936) ---------- */
-.ifs-widget-chip{display:inline-flex;align-items:center;gap:var(--space-100);box-sizing:border-box;width:190px;height:48px;
+.ifs-widget-chip{display:inline-flex;align-items:center;gap:var(--space-100);box-sizing:border-box;width:11.875rem;height:var(--size-48);
   padding:var(--space-300) /* a chip: fixed, like other controls */;border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);
   box-shadow:0 0 0 1px var(--border-base);backdrop-filter:blur(4px) /* raw in Figma: background blur 4 */}
 .ifs-widget-chip__title{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--text-tertiary);
@@ -107,10 +107,10 @@
 .wb-cell > *{flex:1}
 .wb-cell--source{opacity:0.3 /* notes: ~30% (frames draw 40%) */}
 .wb-cell--zone > .ifs-drop-zone{flex:1}
-.wb-edge{position:absolute;top:40px;bottom:0;width:16px;margin-left:calc(-1 * var(--space-200));display:flex;align-items:center;justify-content:center;cursor:ew-resize;z-index:2;touch-action:none}
+.wb-edge{position:absolute;top:var(--size-40);bottom:0;width:var(--size-16);margin-left:calc(-1 * var(--space-200));display:flex;align-items:center;justify-content:center;cursor:ew-resize;z-index:2;touch-action:none}
 .wb-edge > .ifs-resize-handle{max-height:100%}
 .wb-indicator{position:absolute;z-index:3}
-.wb-empty-zone{min-height:120px}
+.wb-empty-zone{min-height:7.5rem}
 .wb-ghost{position:fixed;z-index:1000;pointer-events:none;overflow:hidden;border-radius:var(--radius-radius-100)}
 .wb-ghost--back{transition:left 200ms ease,top 200ms ease;opacity:0.4}
 .wb-ghost__blank{border-radius:var(--radius-radius-100);background:var(--background-elevation-1-secondary)}
@@ -120,11 +120,11 @@
 
 /* ⋮ menu (single-select-list visuals) with the Resize S / M / L submenu */
 .wb-size-option__bars{display:flex;gap:var(--space-50)}
-.wb-size-option__bars i{display:block;width:30px;height:14px;border-radius:2px;background:var(--background-elevation-1-tertiary)}
+.wb-size-option__bars i{display:block;width:1.875rem;height:var(--size-14);border-radius:2px;background:var(--background-elevation-1-tertiary)}
 .wb-size-option__bars i.is-on{background:var(--text-tertiary)}
 .wb-size-option__bars.is-selected i.is-on{background:var(--background-solid-blue)}
 
-.wb-drawer{width:400px;max-width:100%}
+.wb-drawer{width:25rem;max-width:100%}
 .wb-drawer__desc{margin:0 0 var(--space-stack);color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .wb-drawer__search{margin-bottom:var(--space-stack)}
 .wb-drawer__list{display:flex;flex-direction:column;gap:var(--space-200)}

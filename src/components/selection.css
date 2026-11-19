@@ -28,12 +28,12 @@
 .ifs-select--m .ifs-select__field{height:var(--control-h-m);padding:0 var(--space-200);border-radius:var(--radius-radius-100)}
 .ifs-select--l .ifs-select__field{height:var(--control-h-l);padding:0 var(--space-200) 0 var(--space-300);border-radius:var(--radius-radius-200)}
 .ifs-select--xl .ifs-select__trigger{
-  height:44px;gap:var(--space-200);padding:var(--space-100) var(--space-100) var(--space-100) var(--space-200);
+  height:var(--size-44);gap:var(--space-200);padding:var(--space-100) var(--space-100) var(--space-100) var(--space-200);
   border-radius:var(--radius-radius-200);background:var(--element-input-fill-default);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.1) /* raw in Figma */;
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));
 }
-.ifs-select--xl .ifs-select__field{height:36px;padding:0 var(--space-250);border-radius:var(--radius-radius-150);background:var(--surface-primary)}
+.ifs-select--xl .ifs-select__field{height:var(--size-36);padding:0 var(--space-250);border-radius:var(--radius-radius-150);background:var(--surface-primary)}
 .ifs-select__label{flex:none;color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 /* S (32): text trigger, no box */
 .ifs-select--s .ifs-select__field{
@@ -41,7 +41,7 @@
   background:none;box-shadow:var(--ring);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
 }
-.ifs-select--s .ifs-select__value{flex:0 1 auto;max-width:160px}
+.ifs-select--s .ifs-select__value{flex:0 1 auto;max-width:10rem}
 .ifs-select--s .ifs-select__value.is-count{text-transform:none;font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 
 /* States */
@@ -71,8 +71,8 @@
 
 /* ---------- Dropdown list (single-select-list-molecule 153:62054 / multiple-select-list-molecule 3273:33695) ---------- */
 .ifs-select__list{
-  position:absolute;left:0;right:0;min-width:200px;z-index:var(--z-index-z-popover);
-  display:flex;flex-direction:column;box-sizing:border-box;max-height:196px;overflow-y:auto;overscroll-behavior:contain;
+  position:absolute;left:0;right:0;min-width:12.5rem;z-index:var(--z-index-z-popover);
+  display:flex;flex-direction:column;box-sizing:border-box;max-height:12.25rem;overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-radius-100);
   background:var(--background-elevation-2-primary-base);box-shadow:inset 0 0 0 1px var(--border-base);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect blur/strong */
@@ -110,7 +110,7 @@
 .ifs-select__option.is-selected{color:var(--text-primary)}
 .ifs-select__option.is-disabled{color:var(--text-disabled);cursor:not-allowed;background:none}
 /* checkbox drawn locally (checkbox-atom inside multiple-select-list-atom): 14×14, radius 4 */
-.ifs-select__check{flex:none;display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:var(--radius-radius-100);
+.ifs-select__check{flex:none;display:inline-flex;align-items:center;justify-content:center;width:var(--size-14);height:var(--size-14);border-radius:var(--radius-radius-100);
   box-shadow:inset 0 0 0 1px var(--element-checkbox-off-border-default);color:var(--icon-primary-inverse)}
 .ifs-select__option:hover .ifs-select__check{box-shadow:inset 0 0 0 1px var(--element-checkbox-off-border-hover)}
 .ifs-select__option.is-selected .ifs-select__check{background:var(--element-checkbox-on-fill-default);box-shadow:none}
@@ -141,14 +141,14 @@
 .ifs-segmented__item:disabled .ifs-icon{color:var(--icon-disabled)}
 .ifs-segmented__item:focus-visible,.ifs-segmented__item[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* counter-atom Size=S (18) */
-.ifs-selection-counter{display:inline-flex;align-items:center;flex:none;height:18px;box-sizing:border-box;padding:var(--space-50) var(--space-200);
+.ifs-selection-counter{display:inline-flex;align-items:center;flex:none;height:var(--size-18);box-sizing:border-box;padding:var(--space-50) var(--space-200);
   border-radius:10px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-secondary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 
 /* ---------- Chip (chips 832:235895) ---------- */
 .ifs-chip{
   --fill:transparent;--stroke:inset 0 0 0 1px var(--element-chips-off-border-default);--ring:0 0 0 0 transparent;--ic:var(--icon-primary);
-  display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;height:24px;margin:0;border:0;
+  display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;height:var(--size-24);margin:0;border:0;
   padding:var(--space-100) var(--space-150);border-radius:var(--radius-radius-full);cursor:pointer;white-space:nowrap;
   background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
@@ -163,7 +163,7 @@
 .ifs-chip.is-selected:active,.ifs-chip.is-selected[data-state=pressed]{--fill:var(--element-chips-on-fill-pressed);color:var(--text-primary-inverse);--ic:var(--icon-primary-inverse)}
 .ifs-chip.is-selected:disabled{--fill:var(--element-chips-on-fill-disabled);color:var(--text-disabled);--ic:var(--icon-disabled)}
 .ifs-chip:focus-visible,.ifs-chip[data-state=focus]{outline:none;padding:var(--space-50) var(--space-150);--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
-.ifs-chip__indicator{flex:none;width:6px;height:6px;border-radius:50%;background:var(--icon-warning)} /* status-indicator-atom 6×6 */
+.ifs-chip__indicator{flex:none;width:var(--size-6);height:var(--size-6);border-radius:50%;background:var(--icon-warning)} /* status-indicator-atom 6×6 */
 .ifs-chip__indicator--danger{background:var(--icon-danger)}
 .ifs-chip__indicator--success{background:var(--icon-success)}
 .ifs-chip__indicator--info{background:var(--icon-info)}
@@ -172,7 +172,7 @@
 
 /* ---------- Calendar (date-picker-molecule 3406:9510, date-atom 1440:5201) ---------- */
 .ifs-calendar{
-  display:inline-flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:284px;padding:var(--space-inset);
+  display:inline-flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:17.75rem;padding:var(--space-inset);
   border-radius:var(--radius-radius-100);background:var(--background-elevation-2-primary-base);box-shadow:0 0 0 1px var(--border-base);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));
 }
@@ -186,7 +186,7 @@
 .ifs-calendar__weekday{} /* the weekday-atom (IFS.Weekday, extras.css); names and order from the user's locale (IFS.format.weekdays) */
 .ifs-calendar__date{
   --fill:transparent;--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
-  position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;margin:0;padding:0;border:0;
+  position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-32);height:var(--size-32);margin:0;padding:0;border:0;
   border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);cursor:pointer;
   color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
 }
@@ -200,7 +200,7 @@
   --stroke:inset 0 0 0 1px var(--element-chips-off-border-default);--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-calendar__date:disabled{cursor:not-allowed;color:var(--text-disabled);--stroke:0 0 0 0 transparent}
 .ifs-calendar__date.is-empty{visibility:hidden}
-.ifs-calendar__events{position:absolute;left:6px;right:6px;bottom:0;height:10px;box-sizing:border-box;padding-top:var(--space-50);display:flex;flex-direction:column;gap:var(--size-1)}
+.ifs-calendar__events{position:absolute;left:6px;right:6px;bottom:0;height:var(--size-10);box-sizing:border-box;padding-top:var(--space-50);display:flex;flex-direction:column;gap:var(--size-1)}
 .ifs-calendar__events i{display:block;height:2px;border-radius:var(--radius-radius-100);background:var(--icon-focus)}
 .ifs-calendar__events i.is-danger{background:var(--icon-danger)}
 .ifs-calendar__events i.is-warning{background:var(--icon-warning)}
@@ -211,7 +211,7 @@
 .ifs-floating>.ifs-select__list,.ifs-floating>.ifs-datepicker__popover{position:static}
 
 /* DatePicker showApply (date-picker-molecule show-apply-button): the popover becomes the surface; Apply = Secondary M, full width */
-.ifs-datepicker__popover--apply{display:flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:284px;padding:var(--space-inset);
+.ifs-datepicker__popover--apply{display:flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:17.75rem;padding:var(--space-inset);
   border-radius:var(--radius-radius-100);background:var(--background-elevation-2-primary-base);box-shadow:0 0 0 1px var(--border-base);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 .ifs-datepicker__popover--apply .ifs-calendar{width:auto;padding:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -231,7 +231,7 @@
 .ifs-menu__panel{display:flex;align-items:flex-start;gap:var(--space-100)}
 .ifs-menu__panel--left{flex-direction:row-reverse}
 .ifs-menu__list{
-  display:flex;flex-direction:column;box-sizing:border-box;min-width:120px;max-height:min(400px, calc(100vh - 16px));overflow-y:auto;overscroll-behavior:contain;
+  display:flex;flex-direction:column;box-sizing:border-box;min-width:7.5rem;max-height:min(25rem, calc(100vh - var(--size-16)));overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-radius-100);
   background:var(--background-elevation-2-primary-base);box-shadow:inset 0 0 0 1px var(--border-base);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect blur/strong */
