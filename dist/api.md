@@ -120,7 +120,9 @@ onRenameCancel (Esc / ✕), onRename(value) (fires after a successful submit). s
 **Tier:** Component
 **In handovers:** placed 97× (Value, Build, Plan) · usual: open no 94% · Expand false 88%
 Figma: version-history-timeline (2277:5299) — legacy; rebuilt as a configuration of the timeline base.
-Props: versions = VersionEntry props[] (each may carry `key`); onRename(index, title). Uncontrolled titles update on rename.
+The standalone version list. Bigger components build on it (the Activity panel passes its own menu, rename rules and search).
+Props: versions = VersionEntry props[] (each may carry `key`); onRename(index, title). Titles of entries that don't control
+their own rename (no onRenameSubmit) update locally on rename, keyed by `key` so reordering can't mix them up.
 `function VersionHistory({ versions = [], onRename, className, ...rest })`
 
 ### Comment

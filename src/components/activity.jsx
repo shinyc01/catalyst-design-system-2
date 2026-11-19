@@ -261,15 +261,19 @@ function VersionEntry({ title, badge, description, author, time, activity, expan
 }
 
 // Figma: version-history-timeline (2277:5299) — legacy; rebuilt as a configuration of the timeline base.
-// Props: versions = VersionEntry props[] (each may carry `key`); onRename(index, title). Uncontrolled titles update on rename.
+// The standalone version list. Bigger components build on it (the Activity panel passes its own menu, rename rules and search).
+// Props: versions = VersionEntry props[] (each may carry `key`); onRename(index, title). Titles of entries that don't control
+// their own rename (no onRenameSubmit) update locally on rename, keyed by `key` so reordering can't mix them up.
 function VersionHistory({ versions = [], onRename, className, ...rest }) {
   const [titles, setTitles] = React.useState({});
   return (
     <div role="list" className={actCx('ifs-timeline', 'ifs-version-history', className)} aria-label="Version history" {...rest}>
       {versions.map((v, i) => {
         const { key, ...p } = v;
-        return <VersionEntry key={key != null ? key : i} {...p} title={titles[i] != null ? titles[i] : p.title} last={i === versions.length - 1}
-          onRename={t => { setTitles({ ...titles, [i]: t }); onRename && onRename(i, t); p.onRename && p.onRename(t); }} />;
+        const id = key != null ? key : i;
+        const own = p.onRenameSubmit != null;
+        return <VersionEntry key={id} {...p} title={!own && titles[id] != null ? titles[id] : p.title} last={i === versions.length - 1}
+          onRename={own ? p.onRename : t => { setTitles({ ...titles, [id]: t }); onRename && onRename(i, t); p.onRename && p.onRename(t); }} />;
       })}
     </div>
   );

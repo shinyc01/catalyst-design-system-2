@@ -81,7 +81,7 @@ The record's history: who did what (activity log), the saved versions of the rec
   - Its Type variants map to the `badge` label.
 - **consolidated: `version-history` (e90e29e6, version-history-timeline, e.g. I52:83756;…;52:83752) → the kit timeline base, as used by `VersionHistory` / `VersionEntry`.**
   - Same card (padding 12, radius 8, surface/secondary-alpha), M marker toggle and nested activity.
-  - `ActivityPanel` composes `TimelineItem` itself instead of `VersionEntry`, because VersionEntry lacks: a ⋮ menu (it has ⋯ = rename), a controlled rename, and the rename error / disabled-apply state. See Kit changes.
+  - `ActivityPanel` renders the standalone `VersionHistory` (2.0.3) and passes its own ⋯ `Menu` (Compare, Duplicate, Rename, Restore), controlled rename with the duplicate-name error, and the search.
 - **consolidated: `compare-quick-stat-card` (35bab075 = IFS DS `stat-capital-flow-card`, legacy; Patterns 52:82588) → `StatCard` with `compare`.**
   - It uses the standard StatCard title colour and description position (2.0.3: one stat card, no per-pattern overrides).
   - Variant2 is not used on this page.

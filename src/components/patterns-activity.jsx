@@ -285,22 +285,20 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
   if (tab === 'versions') {
     const { list: shown, expand } = filterVersions(list, applied);
     body = shown.length ? (
-      <div role="list" className="ifs-timeline ifs-version-history ifs-activity-panel__list" aria-label="Version history">
-        {shown.map((v, i) => {
+      <IFS.VersionHistory className="ifs-activity-panel__list" versions={shown.map(v => {
           const isExp = expand ? expand.has(v.id) || expanded.has(v.id) : expanded.has(v.id);
           const isRen = !!ren && ren.id === v.id;
-          return <IFS.VersionEntry key={v.id} title={v.title} badge={v.current ? 'Current' : undefined} description={v.description}
-            author={v.author ? { name: v.author.name, avatar: v.author } : undefined} time={v.time} last={i === shown.length - 1}
-            expanded={isExp} onExpandedChange={() => toggle(v.id)} onOpen={() => onOpenVersion && onOpenVersion(v)}
-            activity={(v.activity || []).map(a => ({ key: a.id, avatar: { name: a.name, ...a.avatar }, title: a.name, badge: PA_TYPE_LABEL[a.type] || a.type,
-              subtitle: a.role, time: a.time, children: a.text }))}
-            renaming={isRen} onRenamingChange={on => (on ? startRename(v) : setRen(null))}
-            renameValue={isRen ? ren.value : undefined}
-            onRenameChange={val => setRen(r => ({ ...r, value: val, error: r.error && nameTaken(r.id, val) ? dupMsg : null }))}
-            renameError={isRen ? ren.error : undefined} onRenameSubmit={saveRename}
-            menu={<IFS.Menu more label={`${v.title} actions`} items={menuFor(v)} />} />;
-        })}
-      </div>
+          return { key: v.id, title: v.title, badge: v.current ? 'Current' : undefined, description: v.description,
+            author: v.author ? { name: v.author.name, avatar: v.author } : undefined, time: v.time,
+            expanded: isExp, onExpandedChange: () => toggle(v.id), onOpen: () => onOpenVersion && onOpenVersion(v),
+            activity: (v.activity || []).map(a => ({ key: a.id, avatar: { name: a.name, ...a.avatar }, title: a.name, badge: PA_TYPE_LABEL[a.type] || a.type,
+              subtitle: a.role, time: a.time, children: a.text })),
+            renaming: isRen, onRenamingChange: on => (on ? startRename(v) : setRen(null)),
+            renameValue: isRen ? ren.value : undefined,
+            onRenameChange: val => setRen(r => ({ ...r, value: val, error: r.error && nameTaken(r.id, val) ? dupMsg : null })),
+            renameError: isRen ? ren.error : undefined, onRenameSubmit: saveRename,
+            menu: <IFS.Menu more label={`${v.title} actions`} items={menuFor(v)} /> };
+        })} />
     ) : (
       <IFS.EmptyState cause="no-results" size="section" icon={null} heading="No results found" body="You might be looking for"
         suggestions={versionSuggestions.slice(0, 3)} onSuggestion={s => { setQ(s); setApplied(s); }} />
