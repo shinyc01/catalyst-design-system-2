@@ -1163,7 +1163,8 @@ center (node, centred between left and right: e.g. the Stepper), actions (node, 
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 Narrow widths (Nov 19, measured on the header itself):
   1100+   one row as drawn: title · id · status · views | stepper | actions · primary.
-  < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar and opens in a
+  1100+   the stepper stays in the bar (centred when there is room, else between the title side and the buttons).
+  < 1100  (or when it can't fit at all) the stepper leaves the bar and opens in a
           popover from the status (hover shows, click pins; a "Progress" button when there is no status). Decided Nov 19:
           no separate row for it.
   < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden).

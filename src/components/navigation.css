@@ -193,6 +193,7 @@
 .ifs-page-header__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);min-width:0}
 .ifs-page-header__bar--center{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
 .ifs-page-header__center{display:flex;align-items:center;justify-content:center;min-width:0}
+.ifs-page-header__bar:not(.ifs-page-header__bar--center) > .ifs-page-header__center{flex:none} /* not centred: the stepper keeps its width; the title truncates */
 .ifs-page-header__center > .ifs-stepper{width:352px} /* stepper-organism instance width in page-header (4 × 88) */
 .ifs-page-header__center > .ifs-stepper > li{flex:1 1 0}
 .ifs-page-header__bar--center .ifs-page-header__right{justify-content:flex-end;min-width:0}

@@ -353,7 +353,8 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 // The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 // Narrow widths (Nov 19, measured on the header itself):
 //   1100+   one row as drawn: title · id · status · views | stepper | actions · primary.
-//   < 1100  (or whenever the title side or the actions would not fit beside it) the stepper leaves the bar and opens in a
+//   1100+   the stepper stays in the bar (centred when there is room, else between the title side and the buttons).
+//   < 1100  (or when it can't fit at all) the stepper leaves the bar and opens in a
 //           popover from the status (hover shows, click pins; a "Progress" button when there is no status). Decided Nov 19:
 //           no separate row for it.
 //   < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden).
@@ -368,11 +369,13 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   // The stepper also leaves the bar when the title side or the actions would not fit beside it (not only below 1100):
   // while wide, the width the bar needs is measured and remembered (needWide).
   const needWide = React.useRef(0), needRow = React.useRef(0); // widths needed for one row with / without the stepper
+  const [centered, setCentered] = React.useState(true);
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el) return undefined;
     const read = () => {
       const w = el.getBoundingClientRect().width;
       setSize(w >= Math.max(1100, needWide.current) ? 'wide' : w >= Math.max(720, needRow.current) ? 'mid' : 'narrow');
+      setCentered(true);
     };
     read();
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(read) : null;
@@ -387,16 +390,21 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
       if (!node) return 0;
       const kids = [...node.children];
       const g = parseFloat(getComputedStyle(node).columnGap) || 0;
-      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 240)
+      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 160)
         : k.classList.contains('ifs-page-header__text') ? rowNeed(k) : k.getBoundingClientRect().width), 0) + Math.max(0, kids.length - 1) * g;
     };
     const gap = parseFloat(getComputedStyle(bar).columnGap) || 0;
     const pad = el.getBoundingClientRect().width - bar.getBoundingClientRect().width;
     const mid = bar.querySelector('.ifs-page-header__center');
-    const need = 2 * Math.max(rowNeed(bar.querySelector('.ifs-page-header__left')), rowNeed(bar.querySelector('.ifs-page-header__right')))
-      + (mid ? mid.scrollWidth : 0) + 2 * gap + pad;
-    needWide.current = Math.ceil(need);
-    if (el.getBoundingClientRect().width < needWide.current) setSize('mid');
+    const L = rowNeed(bar.querySelector('.ifs-page-header__left')), R = rowNeed(bar.querySelector('.ifs-page-header__right'));
+    const C = (mid ? mid.scrollWidth : 0) + 2 * gap + pad;
+    // The stepper stays in the bar from 1100 up. Centred when both sides fit around it; otherwise it simply sits between
+    // the title side and the buttons. Only when even that doesn't fit does it go under the status.
+    needWide.current = Math.ceil(L + R + C);
+    const w = el.getBoundingClientRect().width;
+    if (w < needWide.current) { setSize('mid'); return; }
+    // one-way within a width: centred → between (re-centred on the next resize), so it can't flip back and forth
+    if (centered && w < 2 * Math.max(L, R) + C) setCentered(false);
   });
   // Two rows: when the buttons wrap onto their own line they start on the left (under the title), not at the right end
   React.useLayoutEffect(() => {
@@ -473,7 +481,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
     </div>
   );
   const bar = (
-    <div className={IFS.cx('ifs-page-header__bar', hasSteps && !stepsOut && 'ifs-page-header__bar--center')}>
+    <div className={IFS.cx('ifs-page-header__bar', hasSteps && !stepsOut && centered && 'ifs-page-header__bar--center')}>
       <div className="ifs-page-header__left">
         <div className="ifs-page-header__text">{titleBits}{idNode}{statusNode}</div>
         {views && <><span className="ifs-page-header__divider" aria-hidden="true" />{views}</>}
