@@ -557,9 +557,10 @@ function IconPicker({ icons = EXTRAS_PICKER_ICONS, value, defaultValue = null, o
 function Weekday({ children, className, ...rest }) {
   return <span role="columnheader" className={IFS.cx('ifs-weekday', className)} {...rest}>{children}</span>;
 }
-// A row of seven weekday-atoms as placed in date-picker-molecule. Props: weekStartsOn (0 = Sunday, 1 = Monday), locale.
-function Weekdays({ weekStartsOn = 1, locale = 'en-US', className, ...rest }) {
-  const days = Array.from({ length: 7 }, (_, i) => new Date(2023, 0, 1 + ((i + weekStartsOn) % 7)).toLocaleDateString(locale, { weekday: 'short' }));
+// A row of seven weekday-atoms as placed in date-picker-molecule. Names and first day follow the user's locale
+// (IFS.format.configure({ locale, weekStartsOn })); weekStartsOn (0 = Sunday, 1 = Monday) overrides it here.
+function Weekdays({ weekStartsOn, className, ...rest }) {
+  const days = IFS.format.weekdays(weekStartsOn != null ? { weekStartsOn } : undefined);
   return <div role="row" className={IFS.cx('ifs-weekdays', className)} {...rest}>{days.map(d => <Weekday key={d}>{d}</Weekday>)}</div>;
 }
 

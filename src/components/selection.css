@@ -183,8 +183,7 @@
 .ifs-calendar__nav{display:flex;gap:var(--space-100)}
 .ifs-calendar__body{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-calendar__row{display:flex;gap:var(--space-150)}
-.ifs-calendar__weekday{width:32px;box-sizing:border-box;padding:var(--space-50) var(--space-100);text-align:center;color:var(--text-tertiary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-calendar__weekday{} /* the weekday-atom (IFS.Weekday, extras.css); names and order from the user's locale (IFS.format.weekdays) */
 .ifs-calendar__date{
   --fill:transparent;--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;margin:0;padding:0;border:0;

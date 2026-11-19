@@ -36,7 +36,11 @@ IFS.format.fyRange(a, b)                                                     →
 IFS.format.fileSize(bytes)                                                   → "860 KB", "4.2 MB"
 IFS.format.parse(s)                                                          → number from a shown value, for sorting:
   "$3.1M" → 3100000, "−$1.8M" → -1800000, "4.8%" → 4.8, "1,621" → 1621
-IFS.format.configure({ locale, currency, fyStartMonth, empty })              → set the defaults once per app.
+IFS.format.weekStart()                                                      → first day of the week for the locale: 0 = Sunday
+  (en-US, en-CA, ja-JP…), 1 = Monday (most of Europe, en-GB…), 6 = Saturday; `weekStartsOn` in configure overrides it.
+IFS.format.weekdays({ style = 'short', weekStartsOn })                       → the seven day names in the user's language and order:
+  en-US "Sun Mon … Sat", en-GB "Mon Tue … Sun", de-DE "Mo. Di. … So.".
+IFS.format.configure({ locale, currency, fyStartMonth, weekStartsOn, empty }) → set the defaults once per app (the user's settings).
   fyStartMonth is 1–12 (default 1 = January; 10 = an October–September year). empty is what a missing
   value shows (default "—"). Every function returns `empty` for null, undefined, '' or NaN.
 ```
@@ -942,8 +946,9 @@ Props: children = day text (Figma "day", e.g. "Wed"). Figma's show-badge / timel
 
 ### Weekdays
 **Tier:** Component
-A row of seven weekday-atoms as placed in date-picker-molecule. Props: weekStartsOn (0 = Sunday, 1 = Monday), locale.
-`function Weekdays({ weekStartsOn = 1, locale = 'en-US', className, ...rest })`
+A row of seven weekday-atoms as placed in date-picker-molecule. Names and first day follow the user's locale
+(IFS.format.configure({ locale, weekStartsOn })); weekStartsOn (0 = Sunday, 1 = Monday) overrides it here.
+`function Weekdays({ weekStartsOn, className, ...rest })`
 
 ### Logo
 **Tier:** Component
@@ -2357,7 +2362,7 @@ Figma: date-picker-molecule (3406:9510) with date-atom (1440:5201) cells
 Props: value/defaultValue/onChange (Date; with range=true {start, end}), month/defaultMonth/onMonthChange (any Date in that month),
 today (Date), events ({ 'YYYY-MM-DD': ['danger','warning','info'] }), weekStartsOn (default 1 = Monday), min/max (Dates).
 Keyboard: arrows move a day/week, PageUp/PageDown change month, Home/End week start/end, Enter/Space select.
-`function Calendar({ value, defaultValue = null, onChange, range = false, month, defaultMonth, onMonthChange, today = new Date(), events = {}, weekStartsOn = 1, min, max, autoFocus, className, ...rest })`
+`function Calendar({ value, defaultValue = null, onChange, range = false, month, defaultMonth, onMonthChange, today = new Date(), events = {}, weekStartsOn: weekStartProp, min, max, autoFocus, className, ...rest })`
 
 ### DatePicker
 **Tier:** Component

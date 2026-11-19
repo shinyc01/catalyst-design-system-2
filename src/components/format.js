@@ -26,7 +26,11 @@ import { IFS } from './registry.js';
 // IFS.format.fileSize(bytes)                                                   → "860 KB", "4.2 MB"
 // IFS.format.parse(s)                                                          → number from a shown value, for sorting:
 //   "$3.1M" → 3100000, "−$1.8M" → -1800000, "4.8%" → 4.8, "1,621" → 1621
-// IFS.format.configure({ locale, currency, fyStartMonth, empty })              → set the defaults once per app.
+// IFS.format.weekStart()                                                      → first day of the week for the locale: 0 = Sunday
+//   (en-US, en-CA, ja-JP…), 1 = Monday (most of Europe, en-GB…), 6 = Saturday; `weekStartsOn` in configure overrides it.
+// IFS.format.weekdays({ style = 'short', weekStartsOn })                       → the seven day names in the user's language and order:
+//   en-US "Sun Mon … Sat", en-GB "Mon Tue … Sun", de-DE "Mo. Di. … So.".
+// IFS.format.configure({ locale, currency, fyStartMonth, weekStartsOn, empty }) → set the defaults once per app (the user's settings).
 //   fyStartMonth is 1–12 (default 1 = January; 10 = an October–September year). empty is what a missing
 //   value shows (default "—"). Every function returns `empty` for null, undefined, '' or NaN.
 
@@ -192,7 +196,27 @@ function parse(s) {
 
 function configure(o = {}) { Object.assign(config, o); cache.clear(); return { ...config }; }
 
-const format = { money, number, percent, change, date, time, dateTime, dateRange, relative, fy, fyRange, fileSize, parse, configure, toDate,
+// First day of the week from the locale's region (Intl.Locale week info where the browser has it, else the CLDR regions).
+const SUNDAY_REGIONS = ['US', 'CA', 'MX', 'BR', 'JP', 'KR', 'TW', 'HK', 'IL', 'PH', 'IN', 'ZA', 'AU', 'SA', 'PE', 'CO', 'VE', 'GT', 'HN', 'NI', 'PA', 'PR', 'DO', 'SV', 'KE', 'ZW', 'TH', 'ID', 'PK', 'BD'];
+const SATURDAY_REGIONS = ['AE', 'AF', 'BH', 'DJ', 'DZ', 'EG', 'IQ', 'IR', 'JO', 'KW', 'LY', 'OM', 'QA', 'SD', 'SY'];
+function weekStart() {
+  if (config.weekStartsOn != null) return config.weekStartsOn;
+  try {
+    const loc = new Intl.Locale(config.locale);
+    const info = loc.getWeekInfo ? loc.getWeekInfo() : loc.weekInfo;
+    if (info && info.firstDay) return info.firstDay % 7; // Intl: 1 = Monday … 7 = Sunday
+    const region = (loc.maximize ? loc.maximize() : loc).region;
+    if (SUNDAY_REGIONS.includes(region)) return 0;
+    if (SATURDAY_REGIONS.includes(region)) return 6;
+  } catch (e) { /* unknown locale: fall through */ }
+  return 1;
+}
+function weekdays({ style = 'short', weekStartsOn = weekStart() } = {}) {
+  const f = df(config.locale, { weekday: style });
+  return Array.from({ length: 7 }, (_, i) => f.format(new Date(2023, 0, 1 + ((i + weekStartsOn) % 7)))); // Jan 1 2023 = Sunday
+}
+
+const format = { money, number, percent, change, date, time, dateTime, dateRange, relative, fy, fyRange, fileSize, parse, configure, weekStart, weekdays, toDate,
   get config() { return { ...config }; } };
 IFS.format = format;
 export { format };

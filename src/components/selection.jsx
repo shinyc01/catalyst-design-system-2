@@ -344,14 +344,14 @@ function Chip({ children, selected, defaultSelected = false, onChange, iconLeft,
 const sameDay = (a, b) => !!a && !!b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
 const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
-const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 // Figma: date-picker-molecule (3406:9510) with date-atom (1440:5201) cells
 // Props: value/defaultValue/onChange (Date; with range=true {start, end}), month/defaultMonth/onMonthChange (any Date in that month),
 // today (Date), events ({ 'YYYY-MM-DD': ['danger','warning','info'] }), weekStartsOn (default 1 = Monday), min/max (Dates).
 // Keyboard: arrows move a day/week, PageUp/PageDown change month, Home/End week start/end, Enter/Space select.
 function Calendar({ value, defaultValue = null, onChange, range = false, month, defaultMonth, onMonthChange, today = new Date(),
-  events = {}, weekStartsOn = 1, min, max, autoFocus, className, ...rest }) {
+  events = {}, weekStartsOn: weekStartProp, min, max, autoFocus, className, ...rest }) {
+  const weekStartsOn = weekStartProp != null ? weekStartProp : IFS.format.weekStart();
   const [val, setVal] = useControlled(value, defaultValue, onChange);
   const anchor = (range ? val && val.start : val) || today;
   const [view, setView] = useControlled(month, defaultMonth || new Date(anchor.getFullYear(), anchor.getMonth(), 1), onMonthChange);
@@ -408,7 +408,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
       </div>
       <div className="ifs-calendar__body" role="grid" aria-label={title} ref={gridRef} onKeyDown={onKeyDown} onBlur={() => (kbd.current = false)}>
         <div className="ifs-calendar__row" role="row">
-          {Array.from({ length: 7 }, (_, i) => <span key={i} role="columnheader" className="ifs-calendar__weekday">{WEEKDAYS[(i + weekStartsOn) % 7]}</span>)}
+          {IFS.format.weekdays({ weekStartsOn }).map((d, i) => <IFS.Weekday key={i} className="ifs-calendar__weekday">{d}</IFS.Weekday>)}
         </div>
         {Array.from({ length: rows }, (_, r) => (
           <div className="ifs-calendar__row" role="row" key={r}>

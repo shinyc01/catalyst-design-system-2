@@ -169,9 +169,9 @@ const ITEMS = [
   { id: 'A14', title: 'NavBar: one bar, collapses by width (done)', q: 'Done on Nov 19.',
     cols: [{ label: 'NavBar: pick a width; below 800 it collapses to the hamburger', g: 'NavBar: collapsed by width' }],
     [S]: 'Done. One NavBar collapses by its own width (below 800, adjustable with collapseBelow; collapsed forces it). The collapsed stage list is the kit Menu, and the bell is NotificationButton in both looks.' },
-  { id: 'A15', title: 'Calendar weekday row → Weekday', q: 'OK?',
-    cols: [{ label: 'Weekday / Weekdays', g: 'Weekday' }, { label: 'Calendar (own header)', g: 'DatePicker' }],
-    [S]: 'Yes, with weekday names from the user\'s locale.' },
+  { id: 'A15', title: 'Calendar weekday row = Weekday, from the user\'s locale (done)', q: 'Done on Nov 19.',
+    cols: [{ label: 'Weekday / Weekdays', g: 'Weekday' }, { label: 'Calendar', g: 'DatePicker' }],
+    [S]: 'Done. The calendar header is the Weekday atom. Day names and the first day of the week come from the user\'s locale (IFS.format.configure({ locale })): en-US starts on Sunday, en-GB and de-DE on Monday, ar-EG on Saturday. A user setting (weekStartsOn) overrides it.' },
   { id: 'A16', title: 'Chart empty → EmptyState', q: 'OK?', cols: [{ label: 'Both', el: mockups.empty }],
     [S]: 'Yes. Empty state gaps 20 / 16 / 12 and inset padding (Nov 18).' },
 
