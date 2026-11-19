@@ -44,17 +44,19 @@ function ExploreHeader({ search = {}, onFilter, filtersApplied, collaborators = 
   children, actions, className, ...rest }) {
   return (
     <div className={cx('ifs-explore-header', className)} {...rest}>
-      <div className="ifs-explore-header__left">
+      <div className="ifs-explore-header__bar">
+      <div className="ifs-explore-header__search">
         <IFS.SmartSearch width={248} size="s" placeholder="Search for..." {...search} />
         <IFS.FilterButton shape="round" hasNew={filtersApplied} onClick={onFilter} />
-        {children}
       </div>
+      {children != null && <div className="ifs-explore-header__left">{children}</div>}
       <div className="ifs-explore-header__right">
         {actions || <>
           {collaborators != null && <IFS.Button type="tertiary" size="s" iconLeft="users-group" onClick={onCollaborators}
             aria-label={`Collaborators ${collaborators}`}>{collaborators}</IFS.Button>}
           <IFS.CommentButton hasNew={hasNewComments} onClick={onComments} />
         </>}
+      </div>
       </div>
     </div>
   );

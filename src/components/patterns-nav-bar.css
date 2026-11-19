@@ -2,12 +2,18 @@
    home-row-card-organism, and the Plan tree sidebar (SideNavTree). */
 
 /* ---------- ExploreHeader: explore-header (12:175111) ---------- */
-.ifs-explore-header{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);
-  width:100%;height:40px;padding:0 var(--space-300);
+.ifs-explore-header{box-sizing:border-box;width:100%;min-height:40px;padding:0 var(--space-300);container-type:inline-size;
   background:var(--surface-primary-alpha);box-shadow:inset 0 -1px 0 var(--border-base);
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
-.ifs-explore-header__left,.ifs-explore-header__right{display:flex;align-items:center;gap:var(--space-150);min-width:0}
-.ifs-explore-header__right{flex:none}
+.ifs-explore-header__bar{display:flex;align-items:center;gap:var(--space-300);min-height:40px;min-width:0}
+.ifs-explore-header__search,.ifs-explore-header__left,.ifs-explore-header__right{display:flex;align-items:center;gap:var(--space-150);min-width:0}
+.ifs-explore-header__right{flex:none;margin-inline-start:auto}
+/* Narrow (Nov 19): row 1 = back / context + collaborators and comments; row 2 = the search (full width) + filter */
+@container (max-width:719px){
+  .ifs-explore-header__bar{flex-wrap:wrap;row-gap:var(--space-100);padding-block:var(--space-100)}
+  .ifs-explore-header__search{order:3;flex:1 1 100%}
+  .ifs-explore-header__search > .ifs-smart-search{flex:1 1 auto;width:auto !important} /* overrides SmartSearch's own width prop */
+}
 
 /* ---------- HomeRowCard: home-row-card-organism (244:117301) ---------- */
 .ifs-home-row-card{position:relative;box-sizing:border-box;display:flex;align-items:stretch;width:100%;
