@@ -54,7 +54,7 @@
 .ifs-widget-card__head{display:flex;align-items:flex-start;gap:var(--space-stack)}
 .ifs-widget-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-widget-card__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-24);color:var(--text-primary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
+  font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking) /* H4, like every card title (Nov 19, 2.0.3) */}
 .ifs-widget-card__drag{position:absolute;left:0.125rem;top:1.0625rem;color:var(--icon-secondary)}
 .ifs-widget-card__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-widget-card > .ifs-preview-widget{flex:none}
@@ -80,7 +80,7 @@
   padding:var(--space-300) /* a chip: fixed, like other controls */;border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);
   box-shadow:0 0 0 1px var(--border-base);backdrop-filter:blur(4px) /* raw in Figma: background blur 4 */}
 .ifs-widget-chip__title{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--text-tertiary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
+  font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking) /* H4, like every card title (Nov 19, 2.0.3) */}
 
 /* ========== pattern: WidgetFrame / WidgetBoard / WidgetsDrawer ========== */
 .wb-frame{height:100%;min-width:0}
