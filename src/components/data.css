@@ -245,9 +245,9 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table-card__name{color:var(--text-primary);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
 .ifs-table-card__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-stack);min-height:40px}
 .ifs-table-card__bar > :last-child:not(:first-child){width:360px;flex:none}
-.ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
+.ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0;overflow-x:auto} /* scrolls sideways inside its card when the columns don't fit (Nov 19) */
 /* content-row-molecule (4835:3501) */
-.ifs-table__row{display:grid;grid-template-columns:var(--cols);align-items:center;border-radius:var(--radius-radius-100)}
+.ifs-table__row{display:grid;grid-template-columns:var(--cols);align-items:center;border-radius:var(--radius-radius-100);min-width:min-content} /* rows widen to the column minimums, so fills and hover cover the whole row */
 .ifs-table__row--header{min-height:var(--table-header-h)}
 .ifs-table__row--content{min-height:var(--ifs-table-row-h,var(--table-row-h)) /* rowHeight prop; Figma content-row 60 */;background:var(--surface-secondary-alpha);transition:background-color .12s,box-shadow .12s}
 /* Row hover / selected: not drawn in Figma — card state tokens */

@@ -305,7 +305,11 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
 
   // Primary (name) column is medium, every other cell regular: the column with primary: true, else the first text/description/custom column.
   const primaryKey = (columns.find(c => c.primary) || columns.find(c => !c.type || ['text', 'description', 'custom'].includes(c.type)) || {}).key;
-  const cols = columns.map(c => c.width == null ? 'minmax(0,1fr)' : typeof c.width === 'number' ? `calc(${c.width}px * var(--density-scale))` : c.width).join(' ');
+  // Columns keep a minimum width (Nov 19, reflow / 400% zoom): flexible columns never squash below --table-col-short-min;
+  // when the card is narrower than the columns need, the table scrolls sideways inside its card instead.
+  const flexCol = fr => `minmax(var(--table-col-short-min), ${fr})`;
+  const cols = columns.map(c => c.width == null ? flexCol('1fr') : typeof c.width === 'number' ? `calc(${c.width}px * var(--density-scale))`
+    : /^\d*\.?\d+fr$/.test(String(c.width).trim()) ? flexCol(String(c.width).trim()) : c.width).join(' ');
   const groupOf = typeof groupBy === 'function' ? groupBy : groupBy ? r => r[groupBy] : null;
   const groups = [];
   if (groupOf) { const map = new Map(); sorted.forEach(r => { const g = groupOf(r); if (!map.has(g)) { map.set(g, []); groups.push([g, map.get(g)]); } map.get(g).push(r); }); }

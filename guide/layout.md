@@ -44,7 +44,7 @@ Benchmark: Fluent 2 (inline vs overlay drawer by task), Carbon for IBM Products 
 - One mode per panel, set by its job (`Component.panelMode`); a screen overrides it only with `AppShell panelMode`. No third mode.
 - `over` panels close on an outside click or Esc (`onPanelClose`); clicking another row closes and reopens, so the preview swaps.
 - Below md (1024) a `push` panel has no room: it becomes a rail and expands over the content; outside click / Esc fold it back.
-- Side nav below md, **and when a pushed panel would leave the page area under 840px** (`--layout-content-min`; Nov 19, fold by available space as Atlassian, Carbon and Material do): a rail that expands over the content; outside click / Esc fold it back. With the 240 side nav and a 380 panel this happens at 1440 and below.
+- Side nav below md, **and when a pushed panel would leave the page area under 800px** (`--layout-content-min`; Nov 19, fold by available space as Atlassian, Carbon and Material do): a rail that expands over the content; outside click / Esc fold it back. With the 240 side nav and a 380 panel this happens below 1440 (1440 keeps the nav open).
 - The page grid follows the content area (container `content`): a pushed panel narrows the columns like a smaller screen.
 
 ## 6. Direction: start and end, never left and right (rule from Nov 19, 2026)
@@ -53,3 +53,7 @@ The kit is being prepared for right-to-left languages (Arabic market). In RTL th
 - Geometry that must not mirror (chart time axes, canvas coordinates) keeps physical values with a `/* ltr: reason */` comment.
 - Directional icons (arrows, chevrons, back) will flip in RTL; check marks, media, clocks, trends and logos never flip.
 - Progress: `node tools/check-direction.mjs` (171 physical declarations left on Nov 19). The conversion runs gradually (first pass scheduled Fri Nov 20 after 5 pm).
+
+## 7. Narrow and 400% zoom rules (Nov 19, 2.0.3)
+- **Tables** keep their columns: flexible columns never go below `--table-col-short-min` (120); when the card is narrower than the columns need, the table scrolls sideways inside its card (allowed 2D scroll for data, WCAG 1.4.10).
+- **Bottom sheet**: below 720 wide the prompts hide; the Cooper button stays.

@@ -572,7 +572,7 @@ function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bot
       const w = el.getBoundingClientRect().width;
       setSize(shellSizeOf(w));
       const cs = getComputedStyle(el);
-      const min = parseFloat(cs.getPropertyValue('--layout-content-min')) || 840;
+      const min = parseFloat(cs.getPropertyValue('--layout-content-min')) || 800;
       const nav = parseFloat(cs.getPropertyValue('--region-sidenav')) || 240;
       const p = panelRef.current ? panelRef.current.getBoundingClientRect().width : 0;
       setRoomy(!p || w - nav - p >= min);
