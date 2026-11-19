@@ -13,8 +13,8 @@
     var(--element-cooper-insight-fill-inverse)}
 
 /* ---------- chat-header-molecule ---------- */
-.ifs-chat-header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:var(--size-44);flex:none;box-sizing:border-box;
-  padding:var(--space-300) var(--space-200) var(--space-300) var(--space-300);
+.ifs-chat-header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);flex:none;box-sizing:border-box;
+  padding:calc(var(--space-inset) - var(--space-100)) var(--space-200) calc(var(--space-inset) - var(--space-100)) var(--space-300); /* height from padding: inset minus one step (Nov 19, was a fixed 44) */
   box-shadow:inset 0 -1px 0 var(--border-base)}
 .ifs-chat-header__name{display:flex;align-items:center;gap:var(--space-200);min-width:0;flex:1}
 .ifs-chat-header__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);color:var(--text-primary);
@@ -171,8 +171,8 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 
 /* ---------- history-panel-molecule / folder content ---------- */
 .ifs-history{box-sizing:border-box;width:var(--region-sidenav);height:100%;display:flex;flex-direction:column;box-shadow:inset -1px 0 0 var(--border-base);color:var(--text-primary);flex:none}
-.ifs-history__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-250);height:var(--size-40);flex:none;box-sizing:border-box;
-  padding:var(--space-200) var(--space-200) var(--space-200) var(--space-300);box-shadow:inset 0 -1px 0 var(--border-base)}
+.ifs-history__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-250);flex:none;box-sizing:border-box;
+  padding:calc(var(--space-inset) - var(--space-100)) var(--space-200) calc(var(--space-inset) - var(--space-100)) var(--space-300); /* same rule as the chat header (Nov 19, was a fixed 40) */box-shadow:inset 0 -1px 0 var(--border-base)}
 .ifs-history__head--back{padding-left:var(--space-200)}
 .ifs-history__title{display:flex;align-items:center;gap:var(--space-100);min-width:0;font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);color:var(--text-primary)}
 .ifs-history__title span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
