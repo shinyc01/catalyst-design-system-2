@@ -498,7 +498,7 @@ Props: state primary|secondary|tertiary|empty|loading, children = the value text
 Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
 Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
 value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--data-viz-teal-data-5)'),
-or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); label; value (optional on every entry,
+or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); for non-chart legends any colour token; label; value (optional on every entry,
 tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
 Hover only: legend entries are not clickable (Figma).
 `function LegendSwatch({ layout = 'inline', state = 'default', color = 'rose', step = 4, neutral, label, value, icon, swatchOpacity, className, ...rest })`
@@ -1141,7 +1141,10 @@ page-header-pattern / header-pattern are near-duplicates). Props: title, id (Fig
 onTitleMenu (chevron after the title), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
-`function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, className, ...rest })`
+Narrow widths (Nov 19, measured on the header itself): 1100+ one row as drawn. Below 1100 the centre (the Stepper) leaves the
+bar and opens in a popover from the status (hover or click; a "Progress" button when there is no status). Below 720 the header
+folds into two rows: title (truncates, never hidden) + status on top; views + actions (the main button always stays) below.
+`function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, progressLabel = 'Progress', className, ...rest })`
 
 ### PageTop
 **Tier:** Component

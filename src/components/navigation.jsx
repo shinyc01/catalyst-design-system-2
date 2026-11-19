@@ -351,21 +351,53 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 // onTitleMenu (chevron after the title), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 // center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 // The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
-function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, className, ...rest }) {
+// Narrow widths (Nov 19, measured on the header itself): 1100+ one row as drawn. Below 1100 the centre (the Stepper) leaves the
+// bar and opens in a popover from the status (hover or click; a "Progress" button when there is no status). Below 720 the header
+// folds into two rows: title (truncates, never hidden) + status on top; views + actions (the main button always stays) below.
+const PH_SIZES = [[1100, 'wide'], [720, 'mid'], [0, 'narrow']];
+function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, progressLabel = 'Progress', className, ...rest }) {
+  const ref = React.useRef(null);
+  const [size, setSize] = React.useState('wide');
+  const [tipOpen, setTipOpen] = React.useState(false);
+  const pinned = React.useRef(false), hovering = React.useRef(false); // hover shows the steps; a click pins them open
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const read = () => { const w = el.getBoundingClientRect().width; setSize(PH_SIZES.find(([min]) => w >= min)[1]); };
+    read();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(read) : null;
+    ro && ro.observe(el);
+    return () => ro && ro.disconnect();
+  }, []);
+  const folded = size !== 'wide' && center != null; // the stepper moves into the status popover
+  const statusNode = folded && IFS.Popover
+    ? <span className="ifs-page-header__status" onMouseEnter={() => { hovering.current = true; setTipOpen(true); }} onMouseLeave={() => { hovering.current = false; if (!pinned.current) setTipOpen(false); }}>
+        <IFS.Popover open={tipOpen} onOpenChange={v => {
+          if (!v && hovering.current && !pinned.current) { pinned.current = true; setTipOpen(true); return; } // click while hovering: pin
+          pinned.current = v; setTipOpen(v); }} showClose={false} width="var(--overlay-width-m)"
+          trigger={<button type="button" className="ifs-page-header__status-btn" aria-label={`${progressLabel}: show steps`}>
+            {status || <span className="ifs-page-header__progress"><IFS.Icon name="arrow-chevron-down" size={12} />{progressLabel}</span>}</button>}>
+          <div className="ifs-page-header__steps">{center}</div>
+        </IFS.Popover>
+      </span>
+    : status;
   return (
-    <div className={IFS.cx('ifs-page-header', center != null && 'ifs-page-header--center', className)} {...rest}>
+    <div ref={ref} data-size={size}
+      className={IFS.cx('ifs-page-header', center != null && !folded && 'ifs-page-header--center', size === 'narrow' && 'ifs-page-header--two-rows', className)} {...rest}>
       <div className="ifs-page-header__left">
         <div className="ifs-page-header__text">
           {onBack && <IFS.IconButton icon="arrow-chevron-left" label="Back" size="s" type="tertiary" onClick={onBack} />}
-          <h1 className="ifs-page-header__title">{title}</h1>
+          <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
           {id && <span className="ifs-page-header__id">{id}</span>}
           {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={12} /></button>}
-          {status}
+          {statusNode}
         </div>
-        {views && <><span className="ifs-page-header__divider" aria-hidden="true" />{views}</>}
+        {views && size !== 'narrow' && <><span className="ifs-page-header__divider" aria-hidden="true" />{views}</>}
       </div>
-      {center != null && <div className="ifs-page-header__center">{center}</div>}
-      {(actions || center != null) && <div className="ifs-page-header__right">{actions}</div>}
+      {center != null && !folded && <div className="ifs-page-header__center">{center}</div>}
+      {(actions || (center != null && !folded) || (size === 'narrow' && views)) && <div className="ifs-page-header__right">
+        {size === 'narrow' && views}
+        {actions}
+      </div>}
     </div>
   );
 }
