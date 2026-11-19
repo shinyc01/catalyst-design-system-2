@@ -4,7 +4,8 @@
 .ifs-stat-cards-row{display:flex;align-items:stretch;gap:var(--space-stack);width:100%;max-width:var(--layout-max-content-width);min-width:0;box-sizing:border-box}
 /* every card fills its share of the row and all cards share the tallest card's height */
 .ifs-stat-cards-row > *{box-sizing:border-box;width:auto;height:auto;min-width:0;align-self:stretch}
-.ifs-stat-cards-row--1 > *{flex:1 1 0}
+.ifs-stat-cards-row--1{flex-wrap:wrap}
+.ifs-stat-cards-row--1 > *{flex:1 1 0;min-width:min(200px,100%)} /* wraps when a card would get narrower than 200 (layout geometry): 4 → 2 → 1 in narrow content (Nov 19) */
 .ifs-stat-cards-row--2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr}
 
 /* ---------- preview-widget-card-organism (key c30262b5…) ---------- */
