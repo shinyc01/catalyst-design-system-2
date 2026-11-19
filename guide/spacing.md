@@ -35,8 +35,9 @@ Content is capped at `--layout-max-content-width` (1600) and centred, so wider s
 1. **Never a raw px value** for padding, gap or margin, in components or in screens.
 2. **Three roles, no exceptions for containers.** Every part of a container (header, tabs, body, footer) has the same inset on all four sides. A container's height comes from its padding, not a fixed height.
 3. **Fixed scale steps only where the part scales by its own height:** inside controls (buttons, fields, selects, tabs, chips, prompts, chat input), the nav bar and side nav, chart geometry (axes, legends, sankey, timeline), table-like cells, and gaps of 8 or less (icon to label, label to field). These stay the same in every density.
-4. **Menus and dropdowns:** 4px from the trigger and 4px inside the list, in every density. Option and menu-item height follows the control height: 36 / 32 / 28 (large lists 44 / 40 / 32).
-5. **Exceptions are written next to the value** in the CSS, with the reason. The only kinds: rows (list rows, table cells, note rows) keep a fixed vertical step with inset sides; a tab row sits on its divider (no bottom padding); full-bleed lists leave side padding to their items; the collapsed panel rail is chrome; the page header is a bar of controls (tallest part + 4 top and bottom, page margin at the sides).
+4. **Control heights** (Spacious / Comfortable / Compact): S 28 / 24 / **24**, M 36 / 32 / 28, L 44 / 40 / 32. Nothing clickable is smaller than 24 (WCAG 2.2 target size, decided Nov 19: Compact S went from 20 to 24, visually, not as a hidden hit area). Touch screens get larger targets with the mobile work.
+5. **Menus and dropdowns:** 4px from the trigger and 4px inside the list, in every density. Option and menu-item height follows the control height: 36 / 32 / 28 (large lists 44 / 40 / 32).
+6. **Exceptions are written next to the value** in the CSS, with the reason. The only kinds: rows (list rows, table cells, note rows) keep a fixed vertical step with inset sides; a tab row sits on its divider (no bottom padding); full-bleed lists leave side padding to their items; the collapsed panel rail is chrome; the page header is a bar of controls (tallest part + 4 top and bottom, page margin at the sides).
 
 ## 5. Tables
 

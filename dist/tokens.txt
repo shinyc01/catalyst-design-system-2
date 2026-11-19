@@ -553,7 +553,7 @@
 --type-display-s: 28px/36px
 --type-display-m: 32px/40px
 --type-display-l: 40px/48px
---control-h-s: 20px
+--control-h-s: 24px /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */
 --control-h-m: 28px
 --control-h-l: 32px
 --icon-scale: 0.857 /* follows body text 12 / 14 */

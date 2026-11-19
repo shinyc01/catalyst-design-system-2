@@ -500,7 +500,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
   --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:11px/14px /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */;--type-m:12px/16px;--type-l:14px/20px;
   --type-h3:16px/24px;--type-h2:20px/28px;--type-h1:24px/32px;
   --type-display-s:28px/36px;--type-display-m:32px/40px;--type-display-l:40px/48px;
-  --control-h-s:20px;--control-h-m:28px;--control-h-l:32px;--icon-scale:0.857 /* follows body text 12 / 14 */;
+  --control-h-s:24px /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */;--control-h-m:28px;--control-h-l:32px;--icon-scale:0.857 /* follows body text 12 / 14 */;
   --tab-h-m:32px;--tab-h-l:36px;--nav-row-h:36px;
   --table-row-h:40px;--table-header-h:24px;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
   --density-scale:0.95;
