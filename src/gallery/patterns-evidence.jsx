@@ -255,7 +255,7 @@ export default IFS_GALLERY;
           <IFS.SegmentedControl size="m" defaultValue="q" options={[{ value: 'q', label: 'Open questions', counter: 2 }, { value: 'w', label: 'Warnings', counter: 2 }]} />
           <IFS.Pager defaultPage={1} total={2} percent={0} onShowAll={noop} showAllLabel="All" />
           <div><div className="t-heading-h2-medium">Wildfire risk over-weighted</div><div className="t-body-l-regular" style={{ color: 'var(--text-secondary)', marginTop: 4 }}>V2 pulls capital into ignition mitigation</div></div>
-          <div className="t-label-m-upper" style={{ color: 'var(--text-secondary)' }}>Solutions</div>
+          <div className="t-label-m-medium" style={{ color: 'var(--text-secondary)' }}>Solutions</div>
           <IFS.ContentCard size="s" cooper title="Lock weight at 28%, restore methodology only" description="Hybrid restore · Keeps FY26 strategic alignment" />
           <IFS.ContentCard size="s" title="Accept v2's 45% weighting in full" description="Faithful restore · Requires Strategy OKR review" />
           <IFS.ContentCard size="s" title="Skip restore now, plan for v3.2 release" description="Capture V2's calculation features in FY27 release plan" />

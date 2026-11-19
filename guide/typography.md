@@ -59,7 +59,7 @@ Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--ty
 | Body/S/regular | Small · 400 · +0.1px | Rare: disclaimers, footnotes, text inside a fixed small shape |
 | Label/L/medium | Large · 500 · −0.15px | L-size control text only |
 | **Label/M/medium** | Body · 500 · 0 | Names, primary column, key values, controls, sub-section titles |
-| ~~Label/M/UPPER~~ | Retired in 2.0.1 | Renders as Label/M/medium. Statuses, column headers, nav group headers, eyebrows and captions are all sentence case. Only avatar initials and abbreviations are capitals. |
+| ~~Label/M/UPPER~~ | Removed in 2.0.3 (retired in 2.0.1) | The style, its tokens and the `.t-label-m-upper` class are gone; use Label/M/medium. Statuses, column headers, nav group headers, eyebrows and captions are all sentence case. Only avatar initials and abbreviations are capitals. Only avatar initials and abbreviations are capitals. |
 | Code/M/regular, Code/M/medium | Body · mono · 400 / 500 · 0 | Code, formulas, JSON, also inline in Body text (default) |
 | Code/S/regular | Small · mono · 400 · 0 | Code inside Small text only |
 

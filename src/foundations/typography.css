@@ -7,12 +7,12 @@
       Density block in tokens.css).
    2. Semantic: one set per text style, named like its .t-* class (.t-body-m-regular -> --text-body-m-regular). Components and prototypes use ONLY these:
         font:var(--text-<style>);letter-spacing:var(--text-<style>-tracking)
-      plus text-transform:uppercase for Label/M/UPPER. --text-<style>-weight is there for
+      --text-<style>-weight is there for
       rules that only change the weight.
 
    Levels: Small (rare: disclaimers, footnotes, text inside a fixed small shape), Body (default; all content and labels),
    Large (H4 titles, L-size controls), H3/H2/H1, Display S/M/L. Caption is retired (= Small).
-   Weights: 400 content · 500 every label, name, control and uppercase · 600 H4 only.
+   Weights: 400 content · 500 every label, name and control · 600 H4 only.
    Rules and reasons: guide/typography.md
    ========================================================================== */
 
@@ -57,13 +57,11 @@
   --text-body-s-regular-weight:var(--font-weight-font-weight-regular);--text-body-s-regular-tracking:var(--letter-spacing-letter-spacing-01);
   --text-body-s-regular:var(--text-body-s-regular-weight) var(--type-s) var(--font-family-text);
 
-  /* Labels — names, key values, controls, sub-section titles; UPPER = statuses, table/column headers, nav group headers, eyebrows */
+  /* Labels — names, key values, controls, sub-section titles. Label/M/UPPER removed in 2.0.3: nothing is uppercase except avatar initials and abbreviations */
   --text-label-l-medium-weight:var(--font-weight-font-weight-medium);--text-label-l-medium-tracking:var(--letter-spacing-letter-spacing--015);
   --text-label-l-medium:var(--text-label-l-medium-weight) var(--type-l) var(--font-family-text);
   --text-label-m-medium-weight:var(--font-weight-font-weight-medium);--text-label-m-medium-tracking:var(--letter-spacing-letter-spacing-0);
   --text-label-m-medium:var(--text-label-m-medium-weight) var(--type-m) var(--font-family-text);
-  --text-label-m-upper-weight:var(--font-weight-font-weight-medium);--text-label-m-upper-tracking:var(--letter-spacing-letter-spacing-03);
-  --text-label-m-upper:var(--text-label-m-upper-weight) var(--type-m) var(--font-family-text);
 
   /* Code — code, formulas, JSON. Code/M matches Body (default, also inline in Body text); Code/S only inside Small text (regular, like Body/S) */
   --text-code-m-regular-weight:var(--font-weight-font-weight-regular);--text-code-m-regular-tracking:var(--letter-spacing-letter-spacing-0);

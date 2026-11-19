@@ -416,7 +416,6 @@
 .t-body-s-regular{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* rare: disclaimers, footnotes, text inside a fixed small shape */
 .t-label-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* L-size control text only */
 .t-label-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* names, key values, controls, sub-section titles */
-.t-label-m-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* statuses, table/column headers, nav group headers, eyebrows */
 .t-code-m-regular{font:var(--text-code-m-regular);letter-spacing:var(--text-code-m-regular-tracking)} /* code at Body size (default) */
 .t-code-m-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)}
 .t-code-s-regular{font:var(--text-code-s-regular);letter-spacing:var(--text-code-s-regular-tracking)} /* code inside Small text only */
