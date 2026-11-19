@@ -484,7 +484,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
   --type-display-s:2rem/2.5rem;--type-display-m:2.25rem/2.75rem;--type-display-l:2.75rem/3.25rem;
   --control-h-s:1.5rem;--control-h-m:2rem;--control-h-l:2.5rem;--icon-scale:1;
   --tab-h-m:2.25rem;--tab-h-l:2.5rem;--nav-row-h:2.5rem;
-  --table-row-h:3.25rem;--table-header-h:2rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --table-row-h:3.25rem;--table-header-h:2rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.05;
 }
 
@@ -495,7 +495,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
   --type-display-s:2.25rem/2.75rem;--type-display-m:2.5rem/3rem;--type-display-l:3rem/3.5rem;
   --control-h-s:1.75rem;--control-h-m:2.25rem;--control-h-l:2.75rem;--icon-scale:1.143 /* follows body text 16 / 14 */;
   --tab-h-m:2.5rem;--tab-h-l:3rem;--nav-row-h:2.75rem;
-  --table-row-h:4rem;--table-header-h:2.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --table-row-h:4rem;--table-header-h:2.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.2;
 }
 
@@ -506,6 +506,6 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
   --type-display-s:1.75rem/2.25rem;--type-display-m:2rem/2.5rem;--type-display-l:2.5rem/3rem;
   --control-h-s:1.5rem /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */;--control-h-m:1.75rem;--control-h-l:2rem;--icon-scale:0.857 /* follows body text 12 / 14 */;
   --tab-h-m:2rem;--tab-h-l:2.25rem;--nav-row-h:2.25rem;
-  --table-row-h:2.5rem;--table-header-h:1.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-stack);
+  --table-row-h:2.5rem;--table-header-h:1.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:0.95;
 }
