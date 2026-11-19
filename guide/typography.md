@@ -79,8 +79,7 @@ Retired (the class still works and renders as its replacement): Code regular / m
 Don't skip a level when nesting: if a page groups its cards into sections, each group gets an H3. The visual level is separate from the HTML level: a card title looks like H4 but can be `<h2>` or `<h3>`, whatever keeps the screen-reader outline in order.
 
 **Big numbers**: pick the size by how many numbers compete for attention.
-- **H1**: the one main number of a large tile (quick stat, Cooper chat card, donut centre).
-- **H2**: stat card M, numbers side by side, before → after pairs (2.0.1 review: H1 felt too big on stat cards).
+- **H2**: the main number on a card: stat card M, numbers side by side, before → after pairs. H1 is never used for numbers: it is too big (decided Nov 18, confirmed Nov 19).
 - **H3**: stat card S, metric rows inside a card.
 - **Display**: a single hero number that is the whole point of the view (gauge). At most one per screen.
 - **Label/M/medium**: numbers inside content (table cells, lists, sentences). A number in a table never uses a heading style.
@@ -156,7 +155,7 @@ We follow the majority on token layers, regular content, a 12px floor (11 in Com
 7. Display S/M/L and Code kept until the product Figma files are checked. Code follows Body size (Code/M), with Code/S for code inside Small text; in the old Figma library Code also matched body size.
 8. Tokens rebuilt as primitives → semantic, like Figma.
 9. Heading order: H2 page (PageTop) → H3 page section → H4 container → Label/M/medium sub-section; no skipped levels. The thin PageHeader / ExploreHeader title is Label/M/medium (Nov 19, 2.0.3): its HTML level stays the page's top heading for screen readers.
-10. Big numbers: H1 one main number per card, H2 when several or small, Display one hero number per screen; table numbers Label/M/medium.
+10. Big numbers: H2 for the main number on a card (stat card M), H3 for stat card S and metric rows, Display one hero number per screen; table numbers Label/M/medium. No H1 for numbers.
 11. Meta text is Body/M by default; Small only in named cases (disclaimers, footnotes, text inside a fixed small shape).
 12. Status vs tag: a status (dot + state) and a tag are both sentence case; a tag or badge (category, stage, count) is Label/M/medium in normal case, including the transparent Badge.
 13. Tabular figures (`--text-numeric`) for numbers in tables, big numbers, charts and counters; not in sentences.
