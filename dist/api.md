@@ -481,10 +481,20 @@ Props: state primary|secondary|tertiary|empty|loading, children = the value text
 ### LegendSwatch
 **Tier:** Component
 **In handovers:** placed 12× (Plan) · usual: State=Default (100%)
-Figma: legend-swatch-atom (4440:32628)
-Props: state default|hover|out-of-hover|intended-target, color = data-viz group or CSS colour, label, value (show-value),
-step (group step, default 4; charts use 3), swatchOpacity (for opacity-coded ramps). Hover only — legend entries are not clickable (Figma).
-`function LegendSwatch({ state = 'default', color = 'rose', step = 4, label, value, swatchOpacity, className, ...rest })`
+Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
+Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
+value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--data-viz-teal-data-5)'),
+or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); label; value (optional on every entry,
+tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
+Hover only: legend entries are not clickable (Figma).
+`function LegendSwatch({ layout = 'inline', state = 'default', color = 'rose', step = 4, neutral, label, value, icon, swatchOpacity, className, ...rest })`
+
+### Legend
+**Tier:** Component
+A legend: the entries for one chart. Props: items [{ key, label, color, step, neutral, value, icon }] (the same colours the chart
+draws), layout inline (horizontal, centred, wraps) | row (vertical list), showValues (default true: shows each item's value
+when it has one; false hides all values), align center|start (inline only).
+`function Legend({ items = [], layout = 'inline', showValues = true, align = 'center', className, ...rest })`
 
 ### DataVizHeader
 **Tier:** Component
@@ -653,7 +663,7 @@ labels = [reject, review, approve] captions. Type (Reject|Review|Approve) follow
 
 ### 
 **Tier:** Component
-color = a group name ('teal'), any CSS colour, or undefined (= palette slot i)
+Series colour groups, in the order charts use them (Figma core charts: muted purple → teal → rose → …).
 `function dvColor(color, i = 0, step = DV_STEP)`
 
 ## data
@@ -1205,15 +1215,6 @@ in the approval chain's first column. Props: type success|rejected|awaiting|empt
 awaiting = the reviewer is overdue ("it's time to notify the user", Figma note); empty = not acted yet.
 `function ApprovalStatus({ type = 'empty', label, className, ...rest })`
 
-### InfoHintItem
-**Tier:** Component
-**In handovers:** placed 808× (Plan, Build) · usual: info-hint-item (100%)
-===================================================== info-hint-item ===================================================== 
-Figma: info-hint-item (12:121968, key d3dc02ed) — 16px rounded swatch + name (+ optional icon + value). Used as chart legend entries.
-Props: label, color (any CSS colour, e.g. 'var(--data-viz-alert-data-5)'), neutral (the grey "Unchanged" swatch with a border),
-icon (icon name, Figma masterIcon), value.
-`function InfoHintItem({ label, color, neutral, icon, value, className, style, ...rest })`
-
 ### InvestmentValueImpact
 **Tier:** Component
 **In handovers:** placed 36× (Value) · usual: Investment-value-impact (92%)
@@ -1221,7 +1222,7 @@ Figma: Investment-value-impact (12:121973, key fabd8e0b; IFS DS now publishes it
 review card: chart header, metric strip (dividers between), a caption, a distribution column chart and an info-hint legend.
 Props: title, metrics = [{ title, value, direction up|down, tone danger|success }], description,
 bins = [{ label, value, tone loss|unchanged|gain, step 3|4|5 (colour depth), color (override) }], max (axis top, default 250),
-ticks (axis count, default 6), legend = InfoHintItem props[] (false hides), button (DataVizHeader right button),
+ticks (axis count, default 6), legend = Legend items [{ label, color, value }] (false hides), button (DataVizHeader right button),
 format(bin) → tooltip text, onBinClick(bin, i).
 `function InvestmentValueImpact({ title = 'Investment value impact', metrics = IVI_METRICS, description = "Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.", bins = IVI_BINS, max = 250, ticks = 6, legend = IVI_LEGEND, button, format, onBinClick, className, ...rest })`
 

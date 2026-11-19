@@ -129,7 +129,7 @@ From the audit of the five product handover files (Build, Explore, Command, Plan
   - `Chip` for applied filters and tags (Value, Explore).
 - **Small markers:** `Counter` S next to labels. `Badge` white, size S (`size="s"`). `StatusIndicator` dot without stroke inside tabs, segments and badges. Meaningful status still uses RiskStatus / ReadinessStatus (rule 8).
 - **Charts:**
-  - Compare and Plan screens build breakdowns from `BarChartItem` rows (3,190) with `InfoHintItem` legends (808).
+  - Compare and Plan screens build breakdowns from `BarChartItem` rows (3,190) with legends (`Legend` / `LegendSwatch`, 808 info-hint-item placements).
   - The core chart components (`BarChart`, `LineChart` …) are newer than the handovers. Use them for standard charts in a `DataVizCard` + `DataVizHeader`.
 - **Comments:** `CommentDrawerCard` in the comments drawer, `CommentPin` on canvases, `CommentButton` in headers.
 - **Cooper:** `FtaButton` bottom-right + `BottomSheet` prompts; `ChatCard` / `ChatLink` inside answers.

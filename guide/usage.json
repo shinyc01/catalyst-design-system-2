@@ -1676,25 +1676,6 @@
     "icon+line"
    ]
   },
-  "InfoHintItem": {
-   "usual": [],
-   "figma": [
-    "info-hint-item"
-   ],
-   "placed": 808,
-   "nested": 1933,
-   "files": [
-    "Plan",
-    "Build"
-   ],
-   "variants": [
-    "info-hint-item (100%)"
-   ],
-   "inside": [
-    "items",
-    "bar"
-   ]
-  },
   "InvestmentValueImpact": {
    "usual": [],
    "figma": [
@@ -3010,6 +2991,25 @@
    ],
    "inside": [
     "snackbar-organism"
+   ]
+  },
+  "LegendSwatch (row)": {
+   "usual": [],
+   "figma": [
+    "info-hint-item"
+   ],
+   "placed": 808,
+   "nested": 1933,
+   "files": [
+    "Plan",
+    "Build"
+   ],
+   "variants": [
+    "info-hint-item (100%)"
+   ],
+   "inside": [
+    "items",
+    "bar"
    ]
   }
  },

@@ -26,11 +26,11 @@ const reviewBinsPx = [
 ];
 const reviewBins = reviewBinsPx.map(([label, px, tone, step, n]) => ({
   label, value: (px * 250) / 192, tone, step: step || undefined, n,
-  color: tone === 'unchanged' ? 'var(--background-elevation-1-secondary)' : undefined,
+  color: tone === 'unchanged' ? 'var(--data-viz-neutral)' : undefined,
 }));
 const reviewLegend = [
   { label: 'Loss', color: 'var(--data-viz-alert-data-4)' },
-  { label: 'No change', color: 'var(--background-elevation-1-secondary)' },
+  { label: 'No change', color: 'var(--data-viz-neutral)' },
   { label: 'Gain', color: 'var(--data-viz-deep-green-data-4)' },
 ];
 

@@ -11,13 +11,23 @@ import { IFS } from './registry.js';
 const DV_GROUPS = ['muted-purple', 'teal', 'rose', 'steel-blue', 'deep-green', 'violet', 'cyan', 'alert'];
 const DV_STEP = 3;       // Figma core charts draw every series with data-3
 const DV_HOVER_STEP = 2; // and the hovered mark with data-2 (lighter step, same group)
-const WHITE = '#ffffff'; // raw in Figma: peer-median / reference marks
+const WHITE = 'var(--data-viz-reference)'; // peer-median / reference marks
 
 const dvVar = (group, step = DV_STEP) => `var(--data-viz-${group}-data-${step})`;
-// color = a group name ('teal'), any CSS colour, or undefined (= palette slot i)
+// Charts use data-viz colours only (2.0.3). color = a group name ('teal', with step), a data-viz token ('var(--data-viz-teal-data-5)'),
+// 'neutral' | 'reference' | 'target' | 'band', or undefined (= palette slot i). Anything else is ignored (console warning) and the
+// palette slot is used, so a chart never draws a colour outside the data-viz palette.
+const DV_SPECIAL = { neutral: 'var(--data-viz-neutral)', reference: 'var(--data-viz-reference)', target: 'var(--data-viz-target)', band: 'var(--data-viz-band)' };
+const dvWarned = new Set();
 function dvColor(color, i = 0, step = DV_STEP) {
-  const g = color || DV_GROUPS[i % (DV_GROUPS.length - 1)];
-  return DV_GROUPS.includes(g) ? dvVar(g, step) : g;
+  if (color && DV_SPECIAL[color]) return DV_SPECIAL[color];
+  if (typeof color === 'string' && /^var\(--data-viz-[a-z0-9-]+\)$/.test(color.trim())) return color.trim();
+  if (color && !DV_GROUPS.includes(color) && !dvWarned.has(color)) {
+    dvWarned.add(color);
+    if (typeof console !== 'undefined') console.warn(`IFS charts: "${color}" is not a data-viz colour; using the palette instead.`);
+  }
+  const g = DV_GROUPS.includes(color) ? color : DV_GROUPS[i % (DV_GROUPS.length - 1)];
+  return dvVar(g, step);
 }
 const dvHover = (color, i) => dvColor(color, i, DV_HOVER_STEP);
 
@@ -143,18 +153,35 @@ function ValueLabel({ state = 'primary', children, className, ...rest }) {
   );
 }
 
-// Figma: legend-swatch-atom (4440:32628)
-// Props: state default|hover|out-of-hover|intended-target, color = data-viz group or CSS colour, label, value (show-value),
-// step (group step, default 4; charts use 3), swatchOpacity (for opacity-coded ramps). Hover only — legend entries are not clickable (Figma).
-function LegendSwatch({ state = 'default', color = 'rose', step = 4, label, value, swatchOpacity, className, ...rest }) {
+// Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
+// Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
+// value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--data-viz-teal-data-5)'),
+// or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); label; value (optional on every entry,
+// tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
+// Hover only: legend entries are not clickable (Figma).
+function LegendSwatch({ layout = 'inline', state = 'default', color = 'rose', step = 4, neutral, label, value, icon, swatchOpacity, className, ...rest }) {
+  const isNeutral = neutral || color === 'neutral';
   return (
-    <span data-state={state} className={IFS.cx('ifs-dv-legend', `ifs-dv-legend--${state}`, className)} {...rest}>
+    <span data-state={state} className={IFS.cx('ifs-dv-legend', `ifs-dv-legend--${layout}`, `ifs-dv-legend--${state}`, className)} {...rest}>
       {state === 'intended-target'
         ? <span className="ifs-dv-legend__target" aria-hidden="true" />
-        : <span className="ifs-dv-legend__swatch" aria-hidden="true" style={{ background: dvColor(color, 0, step), opacity: swatchOpacity }} />}
+        : <span className={IFS.cx('ifs-dv-legend__swatch', isNeutral && 'ifs-dv-legend__swatch--neutral')} aria-hidden="true"
+            style={isNeutral ? { opacity: swatchOpacity } : { background: dvColor(color, 0, step), opacity: swatchOpacity }} />}
       {label != null && <span className="ifs-dv-legend__name">{label}</span>}
+      {icon && <IFS.Icon name={icon} size={16} className="ifs-dv-legend__icon" />}
       {value != null && <span className="ifs-dv-legend__value">{value}</span>}
     </span>
+  );
+}
+
+// A legend: the entries for one chart. Props: items [{ key, label, color, step, neutral, value, icon }] (the same colours the chart
+// draws), layout inline (horizontal, centred, wraps) | row (vertical list), showValues (default true: shows each item's value
+// when it has one; false hides all values), align center|start (inline only).
+function Legend({ items = [], layout = 'inline', showValues = true, align = 'center', className, ...rest }) {
+  return (
+    <div className={IFS.cx('ifs-legend', `ifs-legend--${layout}`, align === 'start' && 'ifs-legend--start', className)} {...rest}>
+      {items.filter(Boolean).map((it, i) => <LegendSwatch key={it.key ?? i} layout={layout} {...it} value={showValues ? it.value : undefined} />)}
+    </div>
   );
 }
 
@@ -357,7 +384,7 @@ function ChartShell({ title, state, legend, table, isEmpty, skeleton = 'bars', h
 // Legend row from [{ label, color, opacity, target }]; hovering an entry highlights its series (others → out of hover).
 function ChartLegend({ items, active, onActive }) {
   return items.filter(Boolean).map((it, i) => (
-    <LegendSwatch key={it.key ?? i} label={it.label} color={it.color} step={DV_STEP} swatchOpacity={it.opacity}
+    <LegendSwatch key={it.key ?? i} label={it.label} color={it.color} step={DV_STEP} swatchOpacity={it.opacity} value={it.value} neutral={it.neutral}
       state={it.target ? 'intended-target' : active == null ? 'default' : active === (it.key ?? i) ? 'hover' : 'out-of-hover'}
       onMouseEnter={onActive && it.key != null ? () => onActive(it.key) : undefined} onMouseLeave={onActive ? () => onActive(null) : undefined} />
   ));
@@ -646,7 +673,7 @@ function LineChart(props) {
   const pts = k => data.map((d, i) => (d[k] == null ? null : [X(i), L.y(d[k])])).filter(Boolean);
   const legend = <ChartLegend active={p.series} onActive={p.setSeries} items={[
     ...series.map((s, i) => ({ key: s.key, label: s.label, color: s.color || DV_GROUPS[i] })),
-    band && { label: band.label, color: 'rgba(255,255,255,0.24)' /* raw in Figma */ },
+    band && { label: band.label, color: DV_SPECIAL.band },
     referenceKey && { label: referenceLabel, color: WHITE }]} />;
   const extra = [band && band.mid && { key: band.mid, label: band.label }, referenceKey && { key: referenceKey, label: referenceLabel }].filter(Boolean);
   const table = seriesTable(data, series, format, extra);
@@ -655,7 +682,7 @@ function LineChart(props) {
   const tip = a && s0 && { anchor: { x: X(p.active), y: L.y(a[s0.key] ?? ticks[0]) },
     content: tipFrom(a, { title: a.label, value: format(a[s0.key]), items: [
       ...series.slice(1).map((s, i) => ({ label: s.label, value: format(a[s.key]), color: s.color || DV_GROUPS[i + 1] })),
-      ...(band && band.mid && a[band.mid] != null ? [{ label: band.label, value: `${format(a[band.mid])} ± ${format((a[band.high] - a[band.low]) / 2)}`, color: 'rgba(255,255,255,0.24)' }] : []),
+      ...(band && band.mid && a[band.mid] != null ? [{ label: band.label, value: `${format(a[band.mid])} ± ${format((a[band.high] - a[band.low]) / 2)}`, color: DV_SPECIAL.band }] : []),
       ...(referenceKey && a[referenceKey] != null ? [{ label: referenceLabel, value: format(a[referenceKey]), color: WHITE }] : [])] }, tooltip, p.active) };
   const dim = k => (p.series != null && p.series !== k ? 0.2 : 1);
   return (
@@ -663,7 +690,7 @@ function LineChart(props) {
       <Plot p={p} label={props.title} tip={tip}>
         <YAxis L={L} ticks={ticks} format={format} />
         {data.map((d, i) => (i % every === 0 ? <text key={i} x={X(i)} y={L.yB + 20} textAnchor="middle" className="ifs-chart__axis" aria-hidden="true">{d.label}</text> : null))}
-        {band && (() => { const up = pts(band.high), dn = pts(band.low).reverse(); return up.length ? <path d={`${linePath(up)}L${dn.map(q => q.join(',')).join('L')}Z`} fill="rgba(255,255,255,0.16)" /* raw in Figma */ /> : null; })()}
+        {band && (() => { const up = pts(band.high), dn = pts(band.low).reverse(); return up.length ? <path d={`${linePath(up)}L${dn.map(q => q.join(',')).join('L')}Z`} fill={DV_SPECIAL.band} /> : null; })()}
         {band && band.mid && <path d={linePath(pts(band.mid))} fill="none" className="ifs-chart__refline" />}
         {area && series.map((s, k) => (
           <g key={s.key}>
@@ -811,7 +838,7 @@ function GaugeChart(props) {
   const pt = (v, r) => [cx - r * Math.cos(ang(v)), cy - r * Math.sin(ang(v))];
   const arc = (v0, v1) => { const [x0, y0] = pt(v0, R), [x1, y1] = pt(v1, R); return `M${x0},${y0}A${R},${R} 0 0 1 ${x1},${y1}`; };
   const tick = (v, r0, r1) => { const [x0, y0] = pt(v, r0), [x1, y1] = pt(v, r1); return { x1: x0, y1: y0, x2: x1, y2: y1 }; };
-  const legend = <ChartLegend items={[{ label: valueLabel, color }, target != null && { label: targetLabel, color: 'rgba(255,255,255,0.9)' /* raw in Figma */ }, reference != null && { label: referenceLabel, color: WHITE }]} />;
+  const legend = <ChartLegend items={[{ label: valueLabel, color }, target != null && { label: targetLabel, color: DV_SPECIAL.target }, reference != null && { label: referenceLabel, color: WHITE }]} />;
   const table = { columns: [{ key: 'label', title: 'Measure' }, { key: 'v', title: 'Value' }],
     rows: [{ id: 0, label: valueLabel, v: format(value) }, target != null && { id: 1, label: targetLabel, v: format(target) }, reference != null && { id: 2, label: referenceLabel, v: format(reference) }].filter(Boolean) };
   const [ex, ey] = pt(value, R);
@@ -1014,12 +1041,12 @@ function EvidenceStrength({ value = 0, thresholds = [70, 90], min = 50, title = 
 }
 
 Object.assign(IFS, {
-  DataVizBar, DataVizGroupedBar, DataVizLine, DataVizIndicator, ValueLabel, LegendSwatch, DataVizHeader, DataVizCard, DataVizTooltip,
+  DataVizBar, DataVizGroupedBar, DataVizLine, DataVizIndicator, ValueLabel, LegendSwatch, Legend, DataVizHeader, DataVizCard, DataVizTooltip,
   ColumnChart, HistogramChart, BarChart, GroupedColumnChart, StackedColumnChart, LineChart, AreaChart, PieChart, DonutChart, ScatterChart, BubbleChart,
   GaugeChart, WaterfallChart, FunnelChart, HeatmapChart, ProgressRing, EvidenceStrength,
 });
 export {
-  DataVizBar, DataVizGroupedBar, DataVizLine, DataVizIndicator, ValueLabel, LegendSwatch, DataVizHeader, DataVizCard, DataVizTooltip,
+  DataVizBar, DataVizGroupedBar, DataVizLine, DataVizIndicator, ValueLabel, LegendSwatch, Legend, DataVizHeader, DataVizCard, DataVizTooltip,
   ColumnChart, HistogramChart, BarChart, GroupedColumnChart, StackedColumnChart, LineChart, AreaChart, PieChart, DonutChart, ScatterChart, BubbleChart,
   GaugeChart, WaterfallChart, FunnelChart, HeatmapChart, ProgressRing, EvidenceStrength,
 };

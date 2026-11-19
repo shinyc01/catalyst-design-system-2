@@ -11,14 +11,6 @@
 
 /* stat (12:121119): StatCardsRow + StatCard (data.css). */
 
-/* ---------- info-hint-item (12:121968) ---------- */
-.ifs-info-hint{display:flex;align-items:center;gap:var(--space-200);min-width:0;padding:var(--space-150) 0}
-.ifs-info-hint__swatch{flex:none;box-sizing:border-box;width:16px;height:16px;border-radius:var(--radius-radius-100);background:var(--data-viz-deep-green-data-4)}
-.ifs-info-hint__swatch--neutral{background:var(--icon-disabled);box-shadow:inset 0 0 0 1px var(--border-base)}
-.ifs-info-hint__name{min-width:0;color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ifs-info-hint--value .ifs-info-hint__name{flex:1 1 auto}
-.ifs-info-hint__icon{flex:none;color:var(--icon-tertiary)}
-.ifs-info-hint__value{flex:none;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
 
 /* ---------- Investment-value-impact (12:121973) ---------- */
 .ifs-ivi{display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;width:100%;
@@ -51,7 +43,7 @@
 .ifs-ivi__item:focus-visible{outline:none;border-radius:var(--radius-radius-100);box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-ivi__labels{display:flex;gap:var(--space-50);padding:0 var(--space-100)}
 .ifs-ivi__labels span{flex:1 1 0;min-width:0;text-align:center;color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ifs-ivi__legend{display:flex;align-items:flex-start;gap:var(--space-500);justify-content:center}
+.ifs-ivi__legend{align-items:flex-start}
 
 /* ---------- table-review (12:122378) ---------- */
 .ifs-table-review{width:100%} /* the shared table card (.ifs-table-card, data.css) at full width */

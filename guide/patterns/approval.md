@@ -16,7 +16,7 @@ The Approve stage of a framework or investment. Reviewers see the change's impac
   - title and description
   - `StatCardsRow` of four `StatCard`s: one with `compare` (from → to) and three plain ones
   - `Tabs` (Portfolio Impact / Strategic Alignment)
-  - `InvestmentValueImpact`: `DataVizHeader`, metric strip, distribution bars, `InfoHintItem` legend
+  - `InvestmentValueImpact`: `DataVizHeader`, metric strip, distribution bars, `Legend` (inline)
   - `TableReview`: kit `Table` with groups, sort and filter
 - **Reviewer sidebar**: `Panel` "Readiness Evaluation" holding `ReadinessEvaluation`:
   - the summary card, "Approval readiness" with `ProgressRing` 16 and `ReadinessStatus` rows

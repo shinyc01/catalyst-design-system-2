@@ -323,6 +323,10 @@
 --collaboration-user-14:#b46dff;
 --collaboration-user-15:#f58adb;
 --collaboration-user-16:#000000;
+/* data-viz marks that are not a series (2.0.3: charts use data-viz colours only).
+   neutral = no-change / other data (bars and their legend swatch); reference = peer-median and reference marks; target = target marks;
+   band = the confidence band of a line. Values are the ones the charts already drew. */
+--data-viz-neutral:rgba(255,255,255,0.1);--data-viz-reference:#ffffff;--data-viz-target:rgba(255,255,255,0.9);--data-viz-band:rgba(255,255,255,0.16);
 /* data-viz single palette (series colours, data-viz/data-1…10) */
 --data-viz-data-1:#bf302f;--data-viz-data-2:#a06d1c;--data-viz-data-3:#176932;--data-viz-data-4:#5238a4;--data-viz-data-5:#3556a0;
 --data-viz-data-6:#167bb6;--data-viz-data-7:#692917;--data-viz-data-8:#6a1766;--data-viz-data-9:#1e1e1e;--data-viz-data-10:#313131;

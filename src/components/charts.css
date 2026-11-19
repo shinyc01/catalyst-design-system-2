@@ -41,17 +41,24 @@
 .ifs-dv-value__skeleton{display:block;width:30px;height:16px;
   background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.04),rgba(255,255,255,.1)) /* raw in Figma */}
 
-/* ================= legend-swatch-atom (4440:32628) — Label/M/semibold ================= */
-.ifs-dv-legend{display:inline-flex;align-items:center;gap:var(--space-200);padding:var(--space-150) 0;white-space:nowrap;
+/* ================= legend-swatch-atom (4440:32628) + info-hint-item (12:121968): one entry, layout inline | row ================= */
+.ifs-dv-legend{display:inline-flex;align-items:center;gap:var(--space-200);min-width:0;padding:var(--space-150) 0;white-space:nowrap;
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);cursor:default}
-.ifs-dv-legend__swatch{flex:none;width:16px;height:16px;border-radius:var(--radius-radius-100)}
+.ifs-dv-legend--row{display:flex;width:100%}
+.ifs-dv-legend__swatch{flex:none;box-sizing:border-box;width:16px;height:16px;border-radius:var(--radius-radius-100)}
+.ifs-dv-legend__swatch--neutral{background:var(--data-viz-neutral);box-shadow:inset 0 0 0 var(--border-widths-border-100) var(--border-base)}
 .ifs-dv-legend__target{flex:none;width:2px;height:16px;border-radius:2px;background:var(--icon-primary)}
-.ifs-dv-legend__name{color:var(--text-secondary)}
-.ifs-dv-legend__value{color:var(--text-primary)}
-/* In the core charts' legend (info-hint-item) the name is Label/S/medium; the value stays Label/M/semibold. */
-.ifs-dv-card__legend .ifs-dv-legend__name{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-dv-legend__name{min-width:0;color:var(--text-secondary);overflow:hidden;text-overflow:ellipsis}
+.ifs-dv-legend--row .ifs-dv-legend__name{flex:1 1 auto}
+.ifs-dv-legend__icon{flex:none;color:var(--icon-tertiary)}
+.ifs-dv-legend__value{flex:none;color:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-dv-legend--hover .ifs-dv-legend__name{color:var(--text-primary)}
 .ifs-dv-legend--out-of-hover .ifs-dv-legend__swatch{opacity:.2}
+/* Legend: the entries of one chart */
+.ifs-legend{display:flex;min-width:0}
+.ifs-legend--inline{flex-wrap:wrap;justify-content:center;column-gap:var(--space-500)}
+.ifs-legend--inline.ifs-legend--start{justify-content:flex-start}
+.ifs-legend--row{flex-direction:column}
 .ifs-dv-legend--out-of-hover .ifs-dv-legend__name,.ifs-dv-legend--out-of-hover .ifs-dv-legend__value{color:var(--text-disabled)}
 
 /* ================= data-viz-header-molecule (2154:2068) ================= */

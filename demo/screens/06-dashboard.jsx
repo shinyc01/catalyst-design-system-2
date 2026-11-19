@@ -63,9 +63,7 @@ const dashboardProjects = [
 const dashboardProjMax = 844;
 
 function DashboardLegend({ proj }) {
-  return <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'var(--space-stack)' }}>
-    {dashboardSeries.map(s => <IFS.InfoHintItem key={s.label} label={s.label} color={proj ? s.proj : s.legend} />)}
-  </div>;
+  return <IFS.Legend items={dashboardSeries.map(s => ({ key: s.label, label: s.label, color: proj ? s.proj : s.legend }))} />;
 }
 
 function ScreenDashboard({ bp, height }) {

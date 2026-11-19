@@ -46,27 +46,12 @@ function ApprovalStatus({ type = 'empty', label, className, ...rest }) {
 /* stat (12:121119): the executive-summary row is IFS.StatCardsRow, its cards IFS.StatCard (one compare + three plain).
    QuickStatCard and Stat were removed in 2.0.3. */
 
-/* ===================================================== info-hint-item ===================================================== */
-// Figma: info-hint-item (12:121968, key d3dc02ed) — 16px rounded swatch + name (+ optional icon + value). Used as chart legend entries.
-// Props: label, color (any CSS colour, e.g. 'var(--data-viz-alert-data-5)'), neutral (the grey "Unchanged" swatch with a border),
-// icon (icon name, Figma masterIcon), value.
-function InfoHintItem({ label, color, neutral, icon, value, className, style, ...rest }) {
-  return (
-    <div className={apCx('ifs-info-hint', value != null && 'ifs-info-hint--value', className)} style={style} {...rest}>
-      <span aria-hidden="true" className={apCx('ifs-info-hint__swatch', neutral && 'ifs-info-hint__swatch--neutral')}
-        style={!neutral && color ? { background: color } : undefined} />
-      <span className="ifs-info-hint__name">{label}</span>
-      {icon && <IFS.Icon name={icon} size={16} className="ifs-info-hint__icon" />}
-      {value != null && <span className="ifs-info-hint__value">{value}</span>}
-    </div>
-  );
-}
 
 /* ===================================================== Investment-value-impact ===================================================== */
 const IVI_TONE = {
   loss: step => `var(--data-viz-alert-data-${step || 4})`,
   gain: step => `var(--data-viz-deep-green-data-${step || 4})`,
-  unchanged: () => 'var(--background-color-alpha-white-base)',
+  unchanged: () => 'var(--data-viz-neutral)',
 };
 const IVI_METRICS = [
   { title: 'Investments re-scored', value: '1,621' },
@@ -81,14 +66,14 @@ const IVI_BINS = [
   { label: 'Major gain', value: 48, tone: 'gain', step: 5 },
 ];
 const IVI_LEGEND = [
-  { label: 'Loss', color: IVI_TONE.loss(5) }, { label: 'Unchanged', neutral: true }, { label: 'Gain', color: IVI_TONE.gain(5) },
+  { label: 'Loss', color: IVI_TONE.loss(5) }, { label: 'Unchanged', color: 'neutral' }, { label: 'Gain', color: IVI_TONE.gain(5) },
 ];
 
 // Figma: Investment-value-impact (12:121973, key fabd8e0b; IFS DS now publishes it as "review-data-visualisation") — the
 // review card: chart header, metric strip (dividers between), a caption, a distribution column chart and an info-hint legend.
 // Props: title, metrics = [{ title, value, direction up|down, tone danger|success }], description,
 // bins = [{ label, value, tone loss|unchanged|gain, step 3|4|5 (colour depth), color (override) }], max (axis top, default 250),
-// ticks (axis count, default 6), legend = InfoHintItem props[] (false hides), button (DataVizHeader right button),
+// ticks (axis count, default 6), legend = Legend items [{ label, color, value }] (false hides), button (DataVizHeader right button),
 // format(bin) → tooltip text, onBinClick(bin, i).
 function InvestmentValueImpact({ title = 'Investment value impact', metrics = IVI_METRICS,
   description = "Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.",
@@ -138,7 +123,7 @@ function InvestmentValueImpact({ title = 'Investment value impact', metrics = IV
           <div className="ifs-ivi__labels" aria-hidden="true">{bins.map(b => <span key={b.label}>{b.label}</span>)}</div>
         </div>
       </div>
-      {legend && <div className="ifs-ivi__legend">{legend.map((l, i) => <InfoHintItem key={i} {...l} />)}</div>}
+      {legend && <IFS.Legend className="ifs-ivi__legend" items={legend} />}
     </section>
   );
 }
@@ -462,7 +447,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
   );
 }
 
-Object.assign(IFS, { ApprovalStatus, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
+Object.assign(IFS, { ApprovalStatus, InvestmentValueImpact, TableReview, SplitButton,
   ReadinessFacts, ReadinessSection, ReadinessEvaluation, ApprovalChainPanel, ApprovalChainTable });
-export { ApprovalStatus, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
+export { ApprovalStatus, InvestmentValueImpact, TableReview, SplitButton,
   ReadinessFacts, ReadinessSection, ReadinessEvaluation, ApprovalChainPanel, ApprovalChainTable };

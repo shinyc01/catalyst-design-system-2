@@ -43,8 +43,8 @@ const G = name => { const s = GALLERY[name]; return s ? <div className="rv-galle
 /* ---------- small mock-ups for proposals that don't exist as one component yet ---------- */
 const { Menu, ActionMenu, StatusIndicator, Indicator, Badge, Chip, ContentCard, Search, Select, Popover, LegendSwatch, InfoHintItem,
   IconButton, EvidenceButton, Avatar, EmptyState, DataVizBar } = IFS;
-const MENU = [{ label: 'Compare', icon: 'compare' }, { label: 'Duplicate', icon: 'system-copy' }, { label: 'Rename', icon: 'system-edit-rename' }, { divider: true }, { label: 'Delete', icon: 'system-delete', danger: true }];
-const MENU_AM = [{ label: 'Compare', icon: 'compare' }, { label: 'Duplicate', icon: 'system-copy' }, { label: 'Rename', icon: 'system-edit-rename' }, { label: 'Delete', icon: 'system-delete', destructive: true }];
+const MENU = [{ label: 'Compare', icon: 'compare' }, { label: 'Duplicate', icon: 'duplicate' }, { label: 'Rename', icon: 'system-edit-rename' }, { divider: true }, { label: 'Delete', icon: 'system-trash-delete', danger: true }];
+const MENU_AM = [{ label: 'Compare', icon: 'compare' }, { label: 'Duplicate', icon: 'duplicate' }, { label: 'Rename', icon: 'system-edit-rename' }, { label: 'Delete', icon: 'system-trash-delete', destructive: true }];
 const Stack = ({ children, gap = 12 }) => <div style={{ display: 'flex', flexDirection: 'column', gap, alignItems: 'flex-start' }}>{children}</div>;
 const Line = ({ children, gap = 16 }) => <div style={{ display: 'flex', gap, alignItems: 'center', flexWrap: 'wrap' }}>{children}</div>;
 const Cap = ({ children }) => <div className="rv-cap">{children}</div>;
@@ -124,10 +124,10 @@ const mockups = {
 /* ---------- the decisions ---------- */
 const S = 'suggest';
 const ITEMS = [
-  { sec: 'A. Merges that change the look', id: 'A1', title: 'Legend entry: InfoHintItem → LegendSwatch',
-    q: 'One legend entry. Which behaviour should it have?',
-    cols: [{ label: 'Both today, side by side', el: mockups.legendProposal }],
-    [S]: 'Keep LegendSwatch, add InfoHintItem\'s good parts: a neutral grey swatch, the optional icon, name truncation and tabular numbers. The token colours (group + step) replace raw colours.' },
+  { sec: 'A. Merges that change the look', id: 'A1', title: 'Legend entry: one LegendSwatch, two layouts (done)',
+    q: 'Done on Nov 19 from your feedback. Check the neutral grey.',
+    cols: [{ label: 'LegendSwatch / Legend: inline (horizontal) and row (vertical), values on or off', g: 'LegendSwatch' }],
+    [S]: 'Done: InfoHintItem is gone. Entries take the data\'s colour (data-viz group + step, a data-viz token, or neutral). Charts only accept data-viz colours now. Open point: the neutral swatch uses the same grey as the neutral bars (white 10%), so it matches the chart but is darker than before. If both should be lighter, we change --data-viz-neutral once and both follow.' },
   { id: 'A2', title: 'Chart bar: BarChartItem → DataVizBar',
     q: 'Which bar look and which colour system?',
     cols: [{ label: 'DataVizBar (keeper candidate)', g: 'DataVizBar' }, { label: 'BarChartItem (1–9 palette)', g: 'BarChartItem' }],
@@ -135,7 +135,7 @@ const ITEMS = [
   { id: 'A3', title: 'Stacked column: VerticalBarChartItem vs DataVizGroupedBar',
     q: 'Merge or keep both?',
     cols: [{ label: 'VerticalBarChartItem', g: 'VerticalBarChartItem' }, { label: 'DataVizGroupedBar', g: 'DataVizGroupedBar' }],
-    [S]: 'Keep both for now. They are not the same: the column has per-segment colours, share of the maximum and an active ring. Revisit when we do charts.' },
+    [S]: 'Parked: revisit in the data-viz pass (your call, Nov 19).' },
   { id: 'A4', title: 'Menus: ActionMenu, CommentMenu, CooperMenu, Activity menu → Menu',
     q: 'One menu width and one "more" icon.',
     cols: [{ label: 'Widths', el: mockups.menus }, { label: 'Trigger icon', el: mockups.triggers }],

@@ -207,7 +207,7 @@ export default IFS_GALLERY;
 
   /* ---- Value › Review (31:76689 → 31:76841 / 31:77627 / 31:78108…78888) ---- */
   const IMPACT = [['Major loss', 42, 'var(--data-viz-alert-data-5)'], ['Moderate loss', 49, 'var(--data-viz-alert-data-4)'], ['Minor loss', 67, 'var(--data-viz-alert-data-3)'],
-    ['No material change', 163, 'var(--background-color-alpha-white-base)'], ['Minor gain', 82, 'var(--data-viz-deep-green-data-3)'], ['Moderate gain', 74, 'var(--data-viz-deep-green-data-4)'], ['Major gain', 38, 'var(--data-viz-deep-green-data-5)']];
+    ['No material change', 163, 'var(--data-viz-neutral)'], ['Minor gain', 82, 'var(--data-viz-deep-green-data-3)'], ['Moderate gain', 74, 'var(--data-viz-deep-green-data-4)'], ['Major gain', 38, 'var(--data-viz-deep-green-data-5)']];
   function ImpactChart() {
     return <IFS.DataVizCard title="Investment value impact" header={{ draggable: false }}>
       <div style={{ padding: '0 10px 12px', width: '100%', boxSizing: 'border-box' }}>
@@ -219,7 +219,7 @@ export default IFS_GALLERY;
           <div className="t-body-m-regular" style={{ display: 'flex', gap: 6, color: 'var(--text-secondary)', textAlign: 'center' }}>{IMPACT.map(([l]) => <span key={l} style={{ flex: '1 1 0' }}>{l}</span>)}</div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 12 }}>
-          <IFS.LegendSwatch color="var(--data-viz-alert-data-5)" label="Loss" /><IFS.LegendSwatch color="var(--background-color-alpha-white-base)" label="Unchanged" /><IFS.LegendSwatch color="var(--data-viz-deep-green-data-5)" label="Gain" />
+          <IFS.LegendSwatch color="var(--data-viz-alert-data-5)" label="Loss" /><IFS.LegendSwatch color="neutral" label="Unchanged" /><IFS.LegendSwatch color="var(--data-viz-deep-green-data-5)" label="Gain" />
         </div>
       </div>
     </IFS.DataVizCard>;

@@ -601,11 +601,18 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
 ### LegendSwatch
 ```jsx
-  IFS_GALLERY.push({ name: 'LegendSwatch', figma: 'legend-swatch-atom (4440:32628)', render: () => <>
-    <Row label="states">{['default', 'hover', 'out-of-hover'].map(s => <LegendSwatch key={s} state={s} label="Title" value="Value" />)}
-      <LegendSwatch state="intended-target" label="Intended target" /></Row>
-    <Row label="no value">{['muted-purple', 'teal', 'rose'].map(c => <LegendSwatch key={c} color={c} label={c} />)}</Row>
-  </> });
+  IFS_GALLERY.push({ name: 'LegendSwatch', figma: 'legend-swatch-atom (4440:32628) + info-hint-item (12:121968)', render: () => {
+    const items = [{ label: 'Loss', color: 'alert', step: 5, value: '357' }, { label: 'Unchanged', color: 'neutral', value: '745' }, { label: 'Gain', color: 'deep-green', step: 5, value: '519' }];
+    return <>
+      <Row label="states">{['default', 'hover', 'out-of-hover'].map(s => <LegendSwatch key={s} state={s} label="Title" value="Value" />)}
+        <LegendSwatch state="intended-target" label="Intended target" /></Row>
+      <Row label="inline · values"><IFS.Legend items={items} /></Row>
+      <Row label="inline · no values"><IFS.Legend items={items} showValues={false} /></Row>
+      <Row label="row (vertical list)" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={[...items, { label: 'A very long category name that truncates', color: 'teal', value: '12', icon: 'system-info-hint' }]} /></div></Row>
+      <Row label="row · no values" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={items} showValues={false} /></div></Row>
+      <Row label="group colours">{['muted-purple', 'teal', 'rose', 'steel-blue'].map(c => <LegendSwatch key={c} color={c} label={c} />)}</Row>
+    </>;
+  } });
 ```
 
 ### DataVizHeader
@@ -1621,14 +1628,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'ApprovalStatus', figma: 'status (12:210060)', render: () => (
     <Row label="type">{['success', 'rejected', 'awaiting', 'empty'].map(t => <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><ApprovalStatus type={t} /><span className="t-body-m-regular">{t}</span></span>)}</Row>
   ) });
-```
-
-### InfoHintItem
-```jsx
-  IFS_GALLERY.push({ name: 'InfoHintItem', figma: 'info-hint-item (12:121968)', render: () => <>
-    <Row label="legend">{[{ label: 'Loss', color: 'var(--data-viz-alert-data-5)' }, { label: 'Unchanged', neutral: true }, { label: 'Gain', color: 'var(--data-viz-deep-green-data-5)' }].map(l => <InfoHintItem key={l.label} {...l} />)}</Row>
-    <Row label="with value / icon"><Box w={232}><InfoHintItem label="Title" color="var(--data-viz-deep-green-data-4)" icon="system-info-hint" value="Value" /></Box></Row>
-  </> });
 ```
 
 ### InvestmentValueImpact

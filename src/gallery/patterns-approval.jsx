@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { StatCardsRow, StatCard, ApprovalStatus, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
+  const { StatCardsRow, StatCard, ApprovalStatus, InvestmentValueImpact, TableReview, SplitButton,
     ReadinessFacts, ReadinessEvaluation, ApprovalChainPanel, ApprovalChainTable } = IFS;
   const { useState } = React;
   const Row = ({ label, children, top }) => <div className="g-row" style={top ? { alignItems: 'flex-start' } : null}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
@@ -78,11 +78,6 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'ApprovalStatus', figma: 'status (12:210060)', render: () => (
     <Row label="type">{['success', 'rejected', 'awaiting', 'empty'].map(t => <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><ApprovalStatus type={t} /><span className="t-body-m-regular">{t}</span></span>)}</Row>
   ) });
-
-  IFS_GALLERY.push({ name: 'InfoHintItem', figma: 'info-hint-item (12:121968)', render: () => <>
-    <Row label="legend">{[{ label: 'Loss', color: 'var(--data-viz-alert-data-5)' }, { label: 'Unchanged', neutral: true }, { label: 'Gain', color: 'var(--data-viz-deep-green-data-5)' }].map(l => <InfoHintItem key={l.label} {...l} />)}</Row>
-    <Row label="with value / icon"><Box w={232}><InfoHintItem label="Title" color="var(--data-viz-deep-green-data-4)" icon="system-info-hint" value="Value" /></Box></Row>
-  </> });
 
   IFS_GALLERY.push({ name: 'InvestmentValueImpact', figma: 'Investment-value-impact (12:121973)', render: () => (
     <Row label="default (hover a bar)"><Box w={988}><InvestmentValueImpact /></Box></Row>
