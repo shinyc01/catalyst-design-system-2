@@ -8,7 +8,7 @@ Tokens: `src/foundations/spacing.css` (scale, roles, page grid) and the Density 
 |---|---|---|
 | Scale | `--space-0` … `--space-1100` (100 = 4px): 0, 2, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64, 80 | nothing |
 | Size ruler | `--size-*`: dimensions only (heights, widths, icons, 1–3px optical nudges) | nothing |
-| Roles | `--space-inset`, `--space-stack`, `--space-section` | density |
+| Roles | `--space-inset`, `--space-inset-l` (modals and forms: 24 / 20 / 16, accepted from Flexy Nov 19), `--space-stack`, `--space-section` | density |
 | Page grid | `--page-margin`, `--page-gap` | screen width |
 
 **px in Figma, rem in code (2.0.3).** Figma stays in px. The code ships every size that holds text or icons in rem at a 16px base (16px = `1rem`, 24px = `1.5rem`): the spacing scale, the size ruler (4 and up), control, tab, nav and table sizes, icons, and the layout widths (side nav, rail, panels, modals, popovers, menus, max content width, `--layout-content-min`). At the browser's default text size nothing looks different. When a user sets a larger default text size, the UI behaves like zoom: everything grows in proportion, and the shell's fold points (side nav to rail, nav bar to menu, page header to two rows) are read in 16px-equivalent widths, so they fold sooner. Still px: 1–3px lines (borders, dividers, focus rings, `--size-0` … `--size-3`), radius, `@media` breakpoints, and chart, map-pin and canvas geometry. Numbers in this guide stay in px.
