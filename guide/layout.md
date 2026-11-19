@@ -32,14 +32,14 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 | Slot | Holds (one at a time) | Size |
 |---|---|---|
 | `.ifs-slot-left` (start) | Hierarchy · Study library · Search results · Study | `--region-panel` (380); Study `--region-panel-l` (600, add `.has-left-l`) |
-| `.ifs-slot-right` (end) | Asset / group details · Trace report · Evidence chain · Cooper window | `--region-panel` (380) |
+| `.ifs-slot-right` (end) | Asset / group details · Trace report · Evidence chain · Cooper window. A new one replaces the open one, with Back (details → evidence → back to details) | `--region-panel` (380) |
 | `.ifs-slot-top` | Selected bar, or the draw bar while drawing. Centred on the whole map. An open panel only nudges it aside, keeping a page gap from the panel; it is never re-centred in the space that's left. When it can't fit between the panels at all, it lines up with the start panel's edge and sits above it, and the start panel moves down (`.has-top-x`, `.has-top-start`, Nov 19) | content, at most `--region-map-bar` (746) |
-| `.ifs-slot-bottom` | Horizon bar (`.ifs-slot-fill`), only when a study is open or a time layer is on | `--region-map-bar` (746), never wider than the gap |
-| `.ifs-slot-popover` | Layers / map display popover, beside the tool bar | `--overlay-width-s` (320) |
+| `.ifs-slot-bottom` | Horizon bar (`.ifs-slot-fill`), only when a study is open or a time layer is on. Snackbars stack above it, never on it | `--region-map-bar` (746), never wider than the gap |
+| `.ifs-slot-popover` | Layers / map display popover, beside the tool bar; closes on outside click or Esc | `--overlay-width-s` (320) |
 | `.ifs-slot-fab` | Cooper button, end-bottom corner | `--size-48` |
 | `.ifs-slot-exit` | "Exit map preview" when you arrive from Build (add `.has-exit`: every slot moves down one control row) | — |
 
-- State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. The top and bottom bars are centred on the whole map; a panel only pushes a bar aside as far as needed to keep a page gap between bar and panel, never under it. They are not re-centred in the space that is left.
+- State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. The top bar follows the rule in the table above. It clears the end panel even when that panel overlays the map (below 1100). The bottom bar (horizon) is centred in the gap between the panels (bottom-bar rule: open question, Nov 19).
 - **Edges:** every slot sits one inset (`--slot-inset` = the page margin) from the map's edges; tops, bottoms and the end edge line up; neighbours sit a page gap apart.
 - **No map minimum** (Nov 19): panels never fold because the map is small. Study still folds when a right panel opens (below); below 1100 / 720 the overlay and sheet rules apply.
 - **Study and a right panel:** Study folds to its rail when a right panel opens and comes back when it closes; clicking Study hides the right panel. The Cooper chat counts as a right panel too: while the user works with Cooper (custom lens, create idea), Study stays folded (Nov 19, no exception).

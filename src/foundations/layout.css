@@ -64,7 +64,7 @@
      .ifs-slot-fab      Cooper button, end-bottom corner
      .ifs-slot-exit     "Exit map preview" (arriving from Build), start-top corner above everything: add .has-exit
    State on .ifs-slots: .has-left (+ .has-left-l), .has-right, .has-exit. Centre bars are at most --region-map-bar wide.
-   No map minimum (Nov 19). Narrow: below 1100 the end panel overlays the map (the bars ignore it, it closes on outside click / Esc);
+   No map minimum (Nov 19). Narrow: below 1100 the end panel overlays the map (it closes on outside click / Esc; the top bar still clears it, the bottom bar doesn't);
    below 720 panels become a bottom sheet. CSS can't read tokens in @media, so --bp-map-overlay / --bp-map-sheet repeat the numbers for JS. */
 :root{
   --region-map-bar:46.625rem; /* 746px. Centre map bars (selected, draw, horizon) are at most this wide; the horizon fills it (Figma Explore horizon bar 746) */
