@@ -22,7 +22,7 @@
 .ifs-select__clear{display:inline-flex;flex:none;margin:0;padding:0;border:0;background:none;cursor:pointer;color:var(--icon-secondary);border-radius:var(--radius-radius-100)}
 .ifs-select__clear:hover{color:var(--icon-primary)}
 .ifs-select__loader{animation:ifs-select-spin 1s linear infinite}
-@keyframes ifs-select-spinto{transform:rotate(360deg)}
+@keyframes ifs-select-spin{to{transform:rotate(360deg)}}
 
 /* Sizes */
 .ifs-select--m .ifs-select__field{height:var(--control-h-m);padding:0 var(--space-200);border-radius:var(--radius-radius-100)}

@@ -124,4 +124,4 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-details__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-docs-details__why{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-docs-context__loading .ifs-icon{animation:ifs-docs-spin 1s linear infinite}
-@keyframes ifs-docs-spinto{transform:rotate(360deg)}
+@keyframes ifs-docs-spin{to{transform:rotate(360deg)}}

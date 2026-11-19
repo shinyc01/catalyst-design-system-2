@@ -180,7 +180,7 @@
   padding:var(--space-inset) var(--space-inset);box-shadow:inset 0 1px 0 var(--border-base)}
 .ifs-form-card__footer--plain{box-shadow:none;padding-top:0}
 .ifs-form-card__submitting .ifs-icon{animation:ifs-extras-spin 1s linear infinite}
-@keyframes ifs-extras-spinto{transform:rotate(360deg)}
+@keyframes ifs-extras-spin{to{transform:rotate(360deg)}}
 
 /* ================= IconPicker — icon-picker-atom (210:77686), icon-picker-organism (5434:16926) ================= */
 .ifs-icon-picker{display:inline-flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset);box-sizing:border-box}

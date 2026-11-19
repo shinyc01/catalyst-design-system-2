@@ -112,13 +112,13 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-cooper-msg__buttons>*{flex:1}
 .ifs-cooper-msg__list{display:flex;flex-direction:column}
 .ifs-cooper-msg__cursor{display:inline-block;width:2px;height:16px;margin-left:var(--space-50);vertical-align:-3px;background:var(--text-primary);animation:ifs-cooper-blink 1s steps(2) infinite}
-@keyframes ifs-cooper-blink50%{opacity:0}
+@keyframes ifs-cooper-blink{50%{opacity:0}}
 .ifs-cooper-progress{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-100) 0;
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-tertiary);min-width:0}
 .ifs-cooper-progress__text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-cooper-progress--live .ifs-cooper-progress__text{background:linear-gradient(90deg,var(--text-tertiary) 30%,var(--text-primary) 50%,var(--text-tertiary) 70%);
   background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ifs-cooper-shimmer 1.8s linear infinite}
-@keyframes ifs-cooper-shimmerfrom{background-position:100% 0}to{background-position:-100% 0}
+@keyframes ifs-cooper-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
 .ifs-cooper-status{display:flex;align-items:center;gap:var(--space-100);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-tertiary)}
 .ifs-cooper-options{display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-cooper-options__head{display:flex;justify-content:space-between;align-items:center;padding:var(--space-200) 0;box-shadow:inset 0 1px 0 var(--border-base);
@@ -271,4 +271,4 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-cooper-stage{position:relative;width:100%;height:100%;overflow:hidden}
 .ifs-cooper-float{position:absolute;z-index:5}
 .ifs-cooper-fade{animation:ifs-cooper-in var(--motion-duration-medium,200ms) ease-out}
-@keyframes ifs-cooper-infrom{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}
+@keyframes ifs-cooper-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}

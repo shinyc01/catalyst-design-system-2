@@ -12,7 +12,7 @@
 .ifs-cursor__visual{position:absolute;inset:0;width:100%;height:100%}
 .ifs-cursor__cooper{position:relative;flex:none}
 .ifs-cursor--placed{position:absolute;left:0;top:0;transition:transform 1.4s cubic-bezier(.45,.05,.35,1);will-change:transform}
-@media (prefers-reduced-motion:reduce).ifs-cursor--placed{transition:none}
+@media (prefers-reduced-motion:reduce){.ifs-cursor--placed{transition:none}}
 .ifs-cursor--u1{--cu:var(--collaboration-user-1)} .ifs-cursor--u2{--cu:var(--collaboration-user-2)} .ifs-cursor--u3{--cu:var(--collaboration-user-3)}
 .ifs-cursor--u4{--cu:var(--collaboration-user-4)} .ifs-cursor--u5{--cu:var(--collaboration-user-5)} .ifs-cursor--u6{--cu:var(--collaboration-user-6)}
 .ifs-cursor--u7{--cu:var(--collaboration-user-7)} .ifs-cursor--u8{--cu:var(--collaboration-user-8)} .ifs-cursor--u9{--cu:var(--collaboration-user-9)}

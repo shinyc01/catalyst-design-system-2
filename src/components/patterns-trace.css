@@ -26,8 +26,8 @@
 .ifs-trc-solution--loading{height:40px;border-radius:var(--radius-radius-200);
   background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary));
   background-size:200% 100%;animation:ifs-trc-shimmer 1.4s linear infinite}
-@keyframes ifs-trc-shimmerfrom{background-position:100% 0}to{background-position:-100% 0}
-@media (prefers-reduced-motion:reduce).ifs-trc-solution--loading{animation:none}
+@keyframes ifs-trc-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+@media (prefers-reduced-motion:reduce){.ifs-trc-solution--loading{animation:none}}
 
 /* ---- IssueListItem — content-card-organism row (30:75771): 12 padding, radius 8, border/base, no fill ---- */
 .ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 1px var(--border-base);padding:var(--space-inset);border-radius:var(--radius-radius-200)}

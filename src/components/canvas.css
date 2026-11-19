@@ -95,7 +95,7 @@
 .ifs-node-card--edit{cursor:default}
 .ifs-node-card--skeleton{width:280px;height:88px;cursor:default;--nc-stroke:var(--border-base);background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary));
   background-size:200% 100%;animation:ifs-node-shimmer 1.6s linear infinite;backdrop-filter:blur(var(--blur-light))}
-@keyframes ifs-node-shimmerfrom{background-position:100% 0}to{background-position:-100% 0}
+@keyframes ifs-node-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
 
 .ifs-node-card__text{display:flex;flex-direction:column;justify-content:center;gap:var(--space-200);flex:1;min-width:0;align-self:stretch}
 .ifs-node-card__text>.ifs-badge{align-self:flex-start}
