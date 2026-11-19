@@ -125,9 +125,9 @@ const mockups = {
 const S = 'suggest';
 const ITEMS = [
   { sec: 'A. Merges that change the look', id: 'A1', title: 'Legend entry: one LegendSwatch, two layouts (done)',
-    q: 'Done on Nov 19 from your feedback. Check the neutral grey.',
+    q: 'Done on Nov 19 from your feedback.',
     cols: [{ label: 'LegendSwatch / Legend: inline (horizontal) and row (vertical), values on or off', g: 'LegendSwatch' }],
-    [S]: 'Done: InfoHintItem is gone. Entries take the data\'s colour (data-viz group + step, a data-viz token, or neutral). Charts only accept data-viz colours now. Open point: the neutral swatch uses the same grey as the neutral bars (white 10%), so it matches the chart but is darker than before. If both should be lighter, we change --data-viz-neutral once and both follow.' },
+    [S]: 'Done: InfoHintItem is gone. Entries take the data\'s colour (data-viz group + step, a data-viz token, or neutral). Charts only accept data-viz colours now. Neutral grey: --data-viz-neutral = --icon-tertiary (#8c8c8c), 5.2–6.3:1 on page, card and chart backgrounds (WCAG 1.4.11 needs 3:1); bars and swatch match.' },
   { id: 'A2', title: 'Chart bar: BarChartItem → DataVizBar',
     q: 'Which bar look and which colour system?',
     cols: [{ label: 'DataVizBar (keeper candidate)', g: 'DataVizBar' }, { label: 'BarChartItem (1–9 palette)', g: 'BarChartItem' }],
