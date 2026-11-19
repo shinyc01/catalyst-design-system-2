@@ -350,7 +350,7 @@ const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
 // today (Date), events ({ 'YYYY-MM-DD': ['danger','warning','info'] }), weekStartsOn (default 1 = Monday), min/max (Dates).
 // Keyboard: arrows move a day/week, PageUp/PageDown change month, Home/End week start/end, Enter/Space select.
 function Calendar({ value, defaultValue = null, onChange, range = false, month, defaultMonth, onMonthChange, today = new Date(),
-  events = {}, weekStartsOn: weekStartProp, min, max, autoFocus, className, ...rest }) {
+  events = {}, weekStartsOn: weekStartProp, min, max, autoFocus, fill, className, ...rest }) {
   const weekStartsOn = weekStartProp != null ? weekStartProp : IFS.format.weekStart();
   const [val, setVal] = useControlled(value, defaultValue, onChange);
   const anchor = (range ? val && val.start : val) || today;
@@ -398,7 +398,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
   const key = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   const title = IFS.format.date(first, { style: 'monthLong' });
   return (
-    <div className={cx('ifs-calendar', className)} {...rest}>
+    <div className={cx('ifs-calendar', fill && 'ifs-calendar--fill', className)} {...rest}>
       <div className="ifs-calendar__head">
         <span className="ifs-calendar__title" aria-live="polite">{title}<IFS.Icon name="arrow-caret-down-filled" size={12} /></span>
         <span className="ifs-calendar__nav">

@@ -178,7 +178,7 @@
 }
 .ifs-calendar__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:calc(var(--control-h-s) + var(--space-100))}
 .ifs-calendar__title{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--text-primary);
-  font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)} /* Heading/H2 */
+  font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking)} /* Heading/H3: month and year one level down (Nov 19, was H2) */
 .ifs-calendar__title .ifs-icon{color:var(--icon-primary)}
 .ifs-calendar__nav{display:flex;gap:var(--space-100)}
 .ifs-calendar__body{display:flex;flex-direction:column;gap:var(--space-150)}
@@ -200,6 +200,10 @@
   --stroke:inset 0 0 0 1px var(--element-chips-off-border-default);--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-calendar__date:disabled{cursor:not-allowed;color:var(--text-disabled);--stroke:0 0 0 0 transparent}
 .ifs-calendar__date.is-empty{visibility:hidden}
+/* fill: the calendar takes its container's width (e.g. a card); the 7 days share the row and each date cell stretches (Nov 19) */
+.ifs-calendar--fill{display:flex;width:100%}
+.ifs-calendar--fill .ifs-calendar__row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.ifs-calendar--fill .ifs-calendar__date,.ifs-calendar--fill .ifs-weekday{justify-self:center} /* dates keep their size, spread across the row */
 .ifs-calendar__events{position:absolute;left:6px;right:6px;bottom:0;height:var(--size-10);box-sizing:border-box;padding-top:var(--space-50);display:flex;flex-direction:column;gap:var(--size-1)}
 .ifs-calendar__events i{display:block;height:2px;border-radius:var(--radius-radius-100);background:var(--icon-focus)}
 .ifs-calendar__events i.is-danger{background:var(--icon-danger)}
