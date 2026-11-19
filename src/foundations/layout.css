@@ -56,8 +56,8 @@
      .ifs-slot-tools / .ifs-slot-tools-bottom   map rail and tool bar, start corners
      .ifs-slot-left     start slot, one at a time: Hierarchy, Study library, Search results (--region-panel) or Study (--region-panel-l: add .has-left-l)
      .ifs-slot-right    end slot, one at a time: details, trace report, evidence chain, Cooper window (--region-panel)
-     .ifs-slot-top      selected bar, or the draw bar while drawing: centred on the whole map when it clears both panels; otherwise
-                        (.has-top-start) it starts at the start panel's edge and the start panel moves down below it (Nov 19)
+     .ifs-slot-top      selected bar, or the draw bar while drawing: centred in the gap between the panels; when the gap is narrower than
+                        the bar (.has-top-start) it starts at the start panel's edge and the start panel moves down below it (Nov 19)
      .ifs-slot-bottom   horizon bar (.ifs-slot-fill: fills up to --region-map-bar); snackbars stack above it
      .ifs-slot-popover  the Layers popover, beside the bottom tool bar (--overlay-width-s)
      .ifs-slot-fab      Cooper button, end-bottom corner
@@ -67,7 +67,7 @@
    (JS reads the token). Narrow: below 1100 the end panel overlays the map (the bars ignore it, it closes on outside click / Esc);
    below 720 panels become a bottom sheet. CSS can't read tokens in @media, so --bp-map-overlay / --bp-map-sheet repeat the numbers for JS. */
 :root{
-  --layout-map-min:25rem; /* narrowest map left between two open panels before the panel opened first folds (Nov 19: 400px = 25rem, review after build) */
+  --layout-map-min:20rem; /* narrowest map left between two open panels before the panel opened first folds (Nov 19: 320px = 20rem, lowered from 400 to try; review) */
   --region-map-bar:46.625rem; /* 746px. Centre map bars (selected, draw, horizon) are at most this wide; the horizon fills it (Figma Explore horizon bar 746) */
   --bp-map-overlay:1100px;--bp-map-sheet:720px;
 }
@@ -89,10 +89,12 @@
 /* A floating bar in a slot is already centred by the slot: its slide-in only moves it up, so it ends on the shared edge */
 .ifs-slot-top > .ifs-floating-bar,.ifs-slot-bottom > .ifs-floating-bar{animation-name:ifs-slot-bar-in}
 @keyframes ifs-slot-bar-in{from{opacity:0;transform:translateY(var(--space-150))}to{opacity:1;transform:none}}
-.ifs-slot-top{top:var(--slot-top);inset-inline:var(--slot-inset)} /* centred on the whole map (Nov 19) */
-/* Not enough room to centre it clear of the panels: the bar lines up with the start panel's edge and sits above it, the panel moves down.
+.ifs-slots{--slot-top-r:var(--slot-inset)}
+.ifs-slots.has-right{--slot-top-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))} /* the top bar always clears the end panel, even when it overlays the map */
+.ifs-slot-top{top:var(--slot-top);inset-inline-start:var(--slot-l);inset-inline-end:var(--slot-top-r)} /* centred in the gap between the panels (Nov 19) */
+/* The gap is narrower than the bar: the bar lines up with the start panel's edge and sits above it, the panel moves down.
    The app sets .has-top-start and --slot-top-h (the bar's measured height). */
-.ifs-slots.has-top-start .ifs-slot-top{inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));inset-inline-end:var(--slot-r);justify-content:flex-start}
+.ifs-slots.has-top-start .ifs-slot-top{inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));inset-inline-end:var(--slot-top-r);justify-content:flex-start}
 .ifs-slots.has-top-start .ifs-slot-left{top:calc(var(--slot-top) + var(--slot-top-h, var(--space-0)) + var(--page-gap))}
 .ifs-slot-bottom{bottom:var(--slot-inset)}
 .ifs-slots:not(.has-right) .ifs-slot-bottom{inset-inline-end:calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap))} /* clear the Cooper button */

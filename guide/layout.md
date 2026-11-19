@@ -33,7 +33,7 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 |---|---|---|
 | `.ifs-slot-left` (start) | Hierarchy · Study library · Search results · Study | `--region-panel` (380); Study `--region-panel-l` (600, add `.has-left-l`) |
 | `.ifs-slot-right` (end) | Asset / group details · Trace report · Evidence chain · Cooper window | `--region-panel` (380) |
-| `.ifs-slot-top` | Selected bar, or the draw bar while drawing | content, at most `--region-map-bar` (746) |
+| `.ifs-slot-top` | Selected bar, or the draw bar while drawing. Centred in the gap between the panels; when the gap is narrower than the bar, it lines up with the start panel's edge and sits above it, and the start panel moves down (`.has-top-start`, Nov 19) | content, at most `--region-map-bar` (746) |
 | `.ifs-slot-bottom` | Horizon bar (`.ifs-slot-fill`), only when a study is open or a time layer is on | `--region-map-bar` (746), never wider than the gap |
 | `.ifs-slot-popover` | Layers / map display popover, beside the tool bar | `--overlay-width-s` (320) |
 | `.ifs-slot-fab` | Cooper button, end-bottom corner | `--size-48` |
@@ -41,7 +41,7 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 
 - State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. Top and bottom bars centre in the gap between the panels, never under them.
 - **Edges:** every slot sits one inset (`--slot-inset` = the page margin) from the map's edges; tops, bottoms and the end edge line up; neighbours sit a page gap apart.
-- **Map minimum:** two open panels must leave `--layout-map-min` (400, to review) of map. If they don't, the panel opened first folds to its rail (the app reads the token).
+- **Map minimum:** two open panels must leave `--layout-map-min` (320, lowered from 400 on Nov 19 to try) of map. If they don't, the panel opened first folds to its rail (the app reads the token).
 - **Study and a right panel:** Study folds to its rail when a right panel opens and comes back when it closes; clicking Study hides the right panel. The Cooper chat counts as a right panel too: while the user works with Cooper (custom lens, create idea), Study stays folded (Nov 19, no exception).
 - **Lists and details** stay open together. Clearing the selection closes the selected bar and the details panel.
 - **No legend on the map:** counts go in the selected bar, the key in the Layers popover. (`.ifs-slot-legend` stays for other canvases.)
