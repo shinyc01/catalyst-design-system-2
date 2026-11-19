@@ -393,10 +393,10 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
     <div className={apCx('ifs-apc', `ifs-apc--${viewClass}`, className)} style={{ '--apc-cols': cols }} role="table" aria-label="Approval chain" {...rest}>
       <div className="ifs-apc__head" role="row">
         <span role="columnheader" aria-label="Status" />
-        <span role="columnheader" className="ifs-apc__th">User{filter}</span>
-        <span role="columnheader" className="ifs-apc__th">Note</span>
-        {full && <><span role="columnheader" className="ifs-apc__th">Comment</span>
-          <span role="columnheader" className="ifs-apc__th">Last notified</span><span role="columnheader" className="ifs-apc__th" aria-label="Actions" /></>}
+        <span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="User">User</span>{filter}</span>
+        <span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="Note">Note</span></span>
+        {full && <><span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="Comment">Comment</span></span>
+          <span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="Last notified">Last notified</span></span><span role="columnheader" className="ifs-apc__th" aria-label="Actions" /></>}
       </div>
       {rows.length === 0 && <div className="ifs-apc__empty"><IFS.EmptyState cause="no-results" size="section" heading="No results found"
         body="Try another name or state." /></div>}

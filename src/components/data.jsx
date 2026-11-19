@@ -337,9 +337,9 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
               className={IFS.cx('ifs-table__th', alignOf(c) && `ifs-table__th--${alignOf(c)}`)}>
               {c.sortable ? (
                 <button type="button" className="ifs-table__th-btn" onClick={() => cycle(c.key)}>
-                  {c.title}<TableSort dir={dir} />
+                  <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span><TableSort dir={dir} />
                 </button>
-              ) : c.title}
+              ) : c.title != null && c.title !== '' ? <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span> : c.title}
               {c.filter && <button type="button" aria-label={`Filter ${c.title || ''}`} onClick={c.filter.onClick}
                 className={IFS.cx('ifs-table-filter', c.filter.applied && 'ifs-table-filter--applied')}><IFS.Icon name="system-filter" size={16} /></button>}
             </div>
