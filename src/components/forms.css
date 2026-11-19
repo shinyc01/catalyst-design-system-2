@@ -80,7 +80,7 @@
 /* ---------- Search ---------- */
 .ifs-search{
   --border:var(--element-search-border-default);--ring:0 0 0 0 transparent;
-  display:flex;align-items:center;box-sizing:border-box;width:15.5rem;height:var(--size-32);
+  display:flex;align-items:center;box-sizing:border-box;width:15.5rem;height:var(--control-h-m) /* 36 / 32 / 28 */;
   gap:var(--space-100);padding:var(--space-200);border-radius:var(--radius-radius-100);
   box-shadow:var(--ring),inset 0 0 0 1px var(--border) /* INSIDE stroke */;
   color:var(--icon-secondary);cursor:text;transition:box-shadow .12s;
@@ -103,7 +103,7 @@
 /* ---------- Checkbox + Radio (shared molecule row) ---------- */
 .ifs-check{
   --ring:0 0 0 0 transparent;
-  position:relative;display:inline-flex;align-items:center;box-sizing:border-box;min-height:var(--size-32);
+  position:relative;display:inline-flex;align-items:center;box-sizing:border-box;min-height:var(--control-h-m) /* checkbox / radio row 36 / 32 / 28 */;
   gap:var(--space-200);padding:var(--space-150) var(--space-100);border-radius:var(--radius-radius-100);
   color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;
   box-shadow:var(--ring);cursor:pointer;user-select:none;transition:background-color .12s;

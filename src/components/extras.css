@@ -101,7 +101,7 @@
 .ifs-phone .ifs-field__control{padding-left:var(--space-100)}
 .ifs-phone.ifs-field--m .ifs-field__control{padding-left:var(--space-200);gap:0}
 .ifs-phone .ifs-field__control{gap:0}
-.ifs-phone__country{position:relative;display:inline-flex;align-items:center;gap:var(--space-100);flex:none;height:var(--size-32);box-sizing:border-box;
+.ifs-phone__country{position:relative;display:inline-flex;align-items:center;gap:var(--space-100);flex:none;height:var(--control-h-m);box-sizing:border-box;
   margin:calc(-1 * var(--space-150)) 0;padding:var(--space-200) var(--space-150);border:0;border-radius:var(--radius-radius-100);background:none;cursor:pointer;
   color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
 .ifs-phone__country:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}

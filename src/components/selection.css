@@ -148,7 +148,7 @@
 /* ---------- Chip (chips 832:235895) ---------- */
 .ifs-chip{
   --fill:transparent;--stroke:inset 0 0 0 1px var(--element-chips-off-border-default);--ring:0 0 0 0 transparent;--ic:var(--icon-primary);
-  display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;height:var(--size-24);margin:0;border:0;
+  display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;height:var(--control-h-s) /* 28 / 24 / 24 */;margin:0;border:0;
   padding:var(--space-100) var(--space-150);border-radius:var(--radius-radius-full);cursor:pointer;white-space:nowrap;
   background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */

@@ -4,8 +4,8 @@
 .ifs-smart-search{position:relative;flex:none;max-width:100%}
 .ifs-smart-search__field{
   --border:var(--element-search-border-default);--ring:0 0 0 0 transparent;
-  display:flex;align-items:center;justify-content:space-between;gap:var(--space-700);box-sizing:border-box;width:100%;height:var(--size-40);
-  padding:var(--space-200) var(--space-100) var(--space-200) var(--space-300);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-700);box-sizing:border-box;width:100%;height:var(--control-h-m) /* same as Search: 36 / 32 / 28 (Nov 19, was 40) */;
+  padding:0 var(--space-100) 0 var(--space-300);
   border-radius:var(--radius-radius-full);box-shadow:var(--ring),inset 0 0 0 1px var(--border) /* INSIDE stroke */;
   color:var(--icon-primary);cursor:text;transition:box-shadow .12s;
 }
@@ -29,6 +29,7 @@
 .ifs-smart-search--disabled .ifs-smart-search__field{--border:var(--element-search-border-disabled);color:var(--icon-disabled);cursor:not-allowed}
 .ifs-smart-search--disabled .ifs-smart-search__input,.ifs-smart-search--disabled .ifs-smart-search__input::placeholder{color:var(--text-disabled);cursor:not-allowed}
 /* size s: 28 tall, padding 8/0/8/8, the mic icon-button fills 28 (explore-header instance) */
+.ifs-smart-search__field>.ifs-icon-button--m{width:var(--control-h-s);height:var(--control-h-s)} /* the mic / keyboard button fits inside the field */
 .ifs-smart-search--s .ifs-smart-search__field{height:var(--size-28);padding:var(--space-200) 0 var(--space-200) var(--space-200)}
 .ifs-smart-search--s .ifs-smart-search__field>.ifs-icon-button--m{width:var(--size-28);height:var(--size-28)}
 .ifs-smart-search .ifs-search-modal{position:absolute;left:0;right:0;top:calc(100% + var(--space-100));z-index:var(--z-index-z-popover)}

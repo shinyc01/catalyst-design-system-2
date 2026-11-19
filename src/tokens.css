@@ -427,7 +427,7 @@
 .t-code-medium{font:var(--text-code-m-medium);letter-spacing:var(--text-code-m-medium-tracking)} /* -> Code/M/medium */
 .t-label-m-semibold{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (merged) */
 .t-label-s-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (labels are not Small) */
-.t-label-s-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
+.t-label-s-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* retired: renders as Label/M/medium */
 .t-label-l-semibold{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* -> H4 */
 .t-body-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* -> Label/L/medium */
 .t-caption-regular-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER (Caption retired) */
@@ -478,6 +478,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
    ========================================================================== */
 /* Comfortable (default): 14px body */
 :root,[data-density="comfortable"]{
+  --badge-h-s:var(--size-20);--badge-h-m:var(--size-24);--badge-h-l:var(--size-32); /* badges follow density (round 1, Nov 19) */
   /* Type ramp: size/line-height (weights and letter-spacing stay per style) */
   --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:0.75rem/1rem;--type-m:0.875rem/1.25rem;--type-l:1rem/1.5rem;
   --type-h3:1.25rem/1.75rem;--type-h2:1.5rem/2rem;--type-h1:1.75rem/2.25rem;
@@ -490,6 +491,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
 
 /* Spacious = 16px body, one notch up */
 [data-density="spacious"]{
+  --badge-h-s:var(--size-24);--badge-h-m:var(--size-28);--badge-h-l:var(--size-36);
   --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:0.875rem/1.25rem;--type-m:1rem/1.5rem;--type-l:1.125rem/1.625rem;
   --type-h3:1.375rem/1.75rem;--type-h2:1.625rem/2rem;--type-h1:2rem/2.5rem;
   --type-display-s:2.25rem/2.75rem;--type-display-m:2.5rem/3rem;--type-display-l:3rem/3.5rem;
@@ -501,6 +503,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
 
 /* Compact = 12px body */
 [data-density="compact"]{
+  --badge-h-s:var(--size-20);--badge-h-m:var(--size-24);--badge-h-l:var(--size-28);
   --type-caption:var(--type-s) /* retired: Caption = Small */;--type-s:0.6875rem/0.875rem /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */;--type-m:0.75rem/1rem;--type-l:0.875rem/1.25rem;
   --type-h3:1rem/1.5rem;--type-h2:1.25rem/1.75rem;--type-h1:1.5rem/2rem;
   --type-display-s:1.75rem/2.25rem;--type-display-m:2rem/2.5rem;--type-display-l:2.5rem/3rem;
