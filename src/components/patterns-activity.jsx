@@ -298,7 +298,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
             renameValue={isRen ? ren.value : undefined}
             onRenameChange={val => setRen(r => ({ ...r, value: val, error: r.error && nameTaken(r.id, val) ? dupMsg : null }))}
             renameError={isRen ? ren.error : undefined} onRenameSubmit={saveRename}
-            menu={<IFS.ActionMenu label={`${v.title} actions`} width={160} items={menuFor(v)} />} />;
+            menu={<IFS.Menu more label={`${v.title} actions`} items={menuFor(v)} />} />;
         })}
       </div>
     ) : (

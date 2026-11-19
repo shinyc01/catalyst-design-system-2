@@ -276,9 +276,9 @@ function DocumentRow({ doc, editable = true, onOpen, onDownload, onRemove, onRet
     <IFS.FileCard name={doc.name} date={fmtDate(doc.date)} onClick={() => onOpen && onOpen(doc)} active={active}
       state={state === 'hover' ? 'hover' : undefined} aria-label={`${doc.name}, ${fmtDate(doc.date)}`} className={cx('ifs-doc-row', className)} {...rest}
       actions={editable
-        ? <IFS.Menu open={menuOpen} onOpenChange={setMenuOpen} width={160} label="More actions"
-            items={[{ label: 'Download', icon: 'system-download', onClick: call(onDownload) }, { divider: true }, { label: 'Remove', icon: 'system-trash-delete', onClick: call(onRemove) }]}
-            trigger={<IFS.IconButton type="ghost" size="s" icon="system-dots-vertical" label="More actions" data-state={state === 'menu' ? 'pressed' : undefined} />} />
+        ? <IFS.Menu open={menuOpen} onOpenChange={setMenuOpen} label="More actions"
+            items={[{ label: 'Download', icon: 'system-download', onClick: call(onDownload) }, { label: 'Remove', icon: 'system-trash-delete', destructive: true, onClick: call(onRemove) }]}
+            trigger={<IFS.IconButton type="ghost" size="s" icon="system-dots-horizont" label="More actions" data-state={state === 'menu' ? 'pressed' : undefined} />} />
         : <IFS.Tooltip content="Download"><IFS.IconButton type="ghost" size="s" icon="system-download" label="Download" onClick={call(onDownload)} /></IFS.Tooltip>} />
   );
 }

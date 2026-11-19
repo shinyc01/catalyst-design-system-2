@@ -9,7 +9,7 @@ The record's history: who did what (activity log), the saved versions of the rec
 - **ActivityPanel**: `Overlay` (Type=Base) + `Panel` (380px, full height, title ACTIVITY, ✕).
   - `SegmentedControl` S, full width: Version History | Approval Chain.
   - `SmartSearch` ("Ask anything about version history / approval chain") with suggested questions.
-  - Version history: the kit timeline base (`TimelineItem` with the M marker as expand toggle). Each version card has a title, a `Badge` "Current", a description, the last-activity author (`Avatar` XS) and time, and a ⋮ `ActionMenu`.
+  - Version history: the kit timeline base (`TimelineItem` with the M marker as expand toggle). Each version card has a title, a `Badge` "Current", a description, the last-activity author (`Avatar` XS) and time, and a ⋯ `Menu` (more).
   - Expanded version: a nested `Timeline` of activity entries. Each entry has an `Avatar`, name, a type `Badge` (Comment / Action / Auto-action), role, time and text. Cooper uses `Avatar type="cooper"`.
   - Approval chain: `ApprovalChain` (display-only steps).
   - `EmptyState` for no results and for no approval chain. `Modal` to confirm Restore. `toast` with Undo after a rename.
@@ -86,7 +86,7 @@ The record's history: who did what (activity log), the saved versions of the rec
   - It uses the standard StatCard title colour and description position (2.0.3: one stat card, no per-pattern overrides).
   - Variant2 is not used on this page.
 - **consolidated: `sunkey-item` 3389a548 = sankey-atom → `SankeyNode`; `sunkey-item` 7b5c534e (an older copy without the `compare-data` boolean) → `SankeyNode` (leave out `change`); `sunkey-header` (ce04ed8a = IFS DS sunkey-canvas-header) → the column strip that `Sankey` draws.** All of these sit inside `Sankey` (52:84351).
-- **consolidated (as in table.md): `tableCell` / `tableHeader` legacy sets, `ai smart search` → `SmartSearch`, `overlay` → `Overlay`, `single-select-list-molecule` row menus → `ActionMenu`, `panel-organism` → `Panel`.**
+- **consolidated (as in table.md): `tableCell` / `tableHeader` legacy sets, `ai smart search` → `SmartSearch`, `overlay` → `Overlay`, `single-select-list-molecule` row menus → `Menu`, `panel-organism` → `Panel`.**
 - `page-top` → `PageTop` on the library screen (designer decision, Oct 2026); the framework screen keeps `PageHeader`.
 - **UNSURE: the Activity panel is `panel-organism` + `overlay`.**
   - The Panel guide says a panel lives in the layout with no scrim, but this panel is on demand with a scrim, which is how the guide describes a drawer.

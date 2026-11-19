@@ -25,7 +25,7 @@ The Approve stage of a framework or investment. Reviewers see the change's impac
 - **Approval chain**: `ApprovalChainPanel` (sidebar 380 / popover 440 / full) around `ApprovalChainTable`, which is made of:
   - an `ApprovalStatus` rail with a dashed connector
   - user cells (`Avatar` S)
-  - notes: ghost `Button` "Add note", `TextArea`, `ActionMenu` Edit/Delete
+  - notes: ghost `Button` "Add note", `TextArea`, `Menu` (more) Edit/Delete
   - the filter: `Popover` + `Search` + `Chip`s, and `EmptyState` when nothing matches
   - Push: secondary S `IconButton` `system-notification`, then a disabled "Notified" `Button` with a `Tooltip`
 - **Confirmations**: `Modal` (overlay base). **Feedback**: `toast`.
@@ -94,7 +94,7 @@ The Approve stage of a framework or investment. Reviewers see the change's impac
 - consolidated: `badge` (452878e4) → `Badge color="white" size="m"`. `counter` (d1fbe5eb) → `Counter`.
 - consolidated: `chart-header` (b323b777) → `DataVizHeader`. `cooper-evidence` (23c26b5d, Type=medium) in the readiness header → `Panel`'s evidence button.
 - consolidated: `sidebar-organism` (9e6ee63e) holding the readiness card → `Panel`. `sidebar-value` (7d91409b) / `sidebar-pattern` → `SideNav`. `header-pattern` → `PageHeader`. `value-bottom-sheet-organism` / `Evidence-strip-bar` → `BottomSheet`.
-- consolidated: `single-select-list-molecule` → `SplitButton` menu / `ActionMenu`. `snackbar-organism` → `toast`. `modal-organism` + `overlay` → `Modal`. `text-area-organism` → `TextArea`. `search-regular-organism` + `chips` → the chain filter. `empty-state-organism` → `EmptyState`.
+- consolidated: `single-select-list-molecule` → `SplitButton` menu / `Menu`. `snackbar-organism` → `toast`. `modal-organism` + `overlay` → `Modal`. `text-area-organism` → `TextArea`. `search-regular-organism` + `chips` → the chain filter. `empty-state-organism` → `EmptyState`.
 - consolidated: `stat` → `StatCardsRow` + `StatCard` (`compare` for the from → to card). The old `Stat` / `QuickStatCard` copies were removed in 2.0.3.
 - **UNSURE: `approval-chain-item` (40e7aa77) / kit `ApprovalChain` vs this page's chain.** This page never instances approval-chain-item. Its chain is a local table (sidebar-organism → content-card → `status` + tableHeader + tableCell "user expanded"), e.g. 157:106020 and 157:114827, with notes, comments, push, filter and replaced reviewers. The kit `ApprovalChain` is a card timeline with Approve/Reject buttons and can't do any of these. Built as `ApprovalChainTable`.
 - **UNSURE: who may add notes.** The dev note (253:53983) says approvers add notes to their own row. The reviewer frames (138:292115, 138:292305) show "Add note" on every row except the reviewer's own. Built per the note.

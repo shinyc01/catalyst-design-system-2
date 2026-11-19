@@ -18,14 +18,23 @@ function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, children,
 // Figma: icon-button (71:4250)
 // Props: icon (required), type ghost|primary|secondary|tertiary, size l|m|s, shape square|circle.
 // Always pass a `label` — it becomes the accessible name and tooltip.
-function IconButton({ icon, label, type = 'ghost', size = 'm', shape = 'square', state, className, ...rest }) {
+function IconButton({ icon, iconVariant, label, type = 'ghost', size = 'm', shape = 'square', state, className, ...rest }) {
   return (
     <button type="button" aria-label={label} title={label} data-state={state}
       className={IFS.cx('ifs-icon-button', `ifs-icon-button--${type}`, `ifs-icon-button--${size}`, shape === 'circle' && 'ifs-icon-button--circle', className)} {...rest}>
-      <IFS.Icon name={icon} size={16} />
+      <IFS.Icon name={icon} size={16} variant={iconVariant} />
     </button>
   );
 }
 
-Object.assign(IFS, { Button, IconButton });
-export { Button, IconButton };
+// Figma: the circle Tertiary S icon-button with the Cooper evidence icon (content-card-organism show-icon-button,
+// panel-organism show-evidence-chain, the Cooper button of every core chart header). One button for all of them (2.0.3):
+// the chart header's look (cooper-evidence-icon, medium variant) at the standard 16px icon size.
+// Props: onClick, active (the chain for this value is open → aria-expanded + pressed look), label (accessible name).
+function EvidenceButton({ onClick, active, label = 'Evidence chain', className, ...rest }) {
+  return <IconButton icon="cooper-evidence-icon" iconVariant="medium" label={label} type="tertiary" size="s" shape="circle" aria-expanded={active == null ? undefined : !!active}
+    data-state={active ? 'pressed' : undefined} className={className} onClick={onClick} {...rest} />;
+}
+
+Object.assign(IFS, { Button, IconButton, EvidenceButton });
+export { Button, IconButton, EvidenceButton };

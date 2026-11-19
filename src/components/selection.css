@@ -238,6 +238,8 @@
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect blur/strong */
   scrollbar-width:thin;scrollbar-color:var(--background-elevation-1-tertiary) transparent;
 }
+.ifs-menu__list--s{width:var(--menu-width-s)}
+.ifs-menu__list--l{width:var(--menu-width-l)}
 .ifs-menu__title{flex:none;display:flex;align-items:center;height:calc(var(--control-h-s) + var(--space-100));padding:var(--space-100) var(--space-200);color:var(--text-secondary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-menu__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--border-base)}

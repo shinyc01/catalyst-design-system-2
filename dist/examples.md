@@ -122,9 +122,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Col w={348}><VersionHistory versions={[{ ...VER, title: 'Version 3', time: '2:40 PM · May 10', state: 'hover' }]} /></Col>
       <Col w={348}><VersionHistory versions={[{ ...VER, title: 'Version 3', time: '2:40 PM · May 10', state: 'rename' }]} /></Col>
     </Row>
-    <Row label="⋮ menu slot / open / rename error (duplicate name)">
+    <Row label="⋯ menu slot / open / rename error (duplicate name)">
       <Col w={348}><div role="list" className="ifs-timeline"><VersionEntry {...VER} title="Version 3" badge="Current" time="2:40 PM · May 10" last state="hover"
-        onOpen={() => {}} menu={<IFS.ActionMenu label="Version 3 actions" items={[{ label: 'Compare', icon: 'compare' }, { label: 'Rename', icon: 'system-edit-rename' }]} />} /></div></Col>
+        onOpen={() => {}} menu={<IFS.Menu more label="Version 3 actions" items={[{ label: 'Compare', icon: 'compare' }, { label: 'Rename', icon: 'system-edit-rename' }]} />} /></div></Col>
       <Col w={348}><div role="list" className="ifs-timeline"><VersionEntry {...VER} title="Version 3" time="2:40 PM · May 10" last
         renaming renameValue="Version 2" renameError="A version with this name already exists" onRenameChange={() => {}} /></div></Col>
     </Row>
@@ -145,9 +145,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Col w={348}><VersionHistory versions={[{ ...VER, title: 'Version 3', time: '2:40 PM · May 10', state: 'hover' }]} /></Col>
       <Col w={348}><VersionHistory versions={[{ ...VER, title: 'Version 3', time: '2:40 PM · May 10', state: 'rename' }]} /></Col>
     </Row>
-    <Row label="⋮ menu slot / open / rename error (duplicate name)">
+    <Row label="⋯ menu slot / open / rename error (duplicate name)">
       <Col w={348}><div role="list" className="ifs-timeline"><VersionEntry {...VER} title="Version 3" badge="Current" time="2:40 PM · May 10" last state="hover"
-        onOpen={() => {}} menu={<IFS.ActionMenu label="Version 3 actions" items={[{ label: 'Compare', icon: 'compare' }, { label: 'Rename', icon: 'system-edit-rename' }]} />} /></div></Col>
+        onOpen={() => {}} menu={<IFS.Menu more label="Version 3 actions" items={[{ label: 'Compare', icon: 'compare' }, { label: 'Rename', icon: 'system-edit-rename' }]} />} /></div></Col>
       <Col w={348}><div role="list" className="ifs-timeline"><VersionEntry {...VER} title="Version 3" time="2:40 PM · May 10" last
         renaming renameValue="Version 2" renameError="A version with this name already exists" onRenameChange={() => {}} /></div></Col>
     </Row>
@@ -258,7 +258,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Col w={300}>
         <FileCard name="2025 Board Planning Presentation — Strategic Business Case.pdf" date="Jan 15, 2025" onDownload={() => {}} />
         <FileCard name="2025 Board Planning Presentation — Strategic Business Case.pdf" date="Jan 15, 2025" active
-          actions={<IFS.ActionMenu label="More actions" items={[{ label: 'Download', icon: 'system-download' }, { label: 'Remove', icon: 'system-trash-delete', destructive: true }]} />} />
+          actions={<IFS.Menu more label="More actions" items={[{ label: 'Download', icon: 'system-download' }, { label: 'Remove', icon: 'system-trash-delete', destructive: true }]} />} />
       </Col>
     </Row>
   </> });
@@ -300,6 +300,14 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     ))}
     <Row label="sizes l / m / s">{['l', 'm', 's'].map(z => <IconButton key={z} type="secondary" size={z} icon="system-settings" label="Settings" />)}</Row>
   </> });
+```
+
+### EvidenceButton
+```jsx
+  IFS_GALLERY.push({ name: 'EvidenceButton', figma: 'icon-button Shape=Circle Type=Tertiary S, cooper evidence icon [patterns] (31:74957)', render: () => {
+    const [on, setOn] = React.useState(false);
+    return <Row label="default · open (aria-expanded) · click"><EvidenceButton /><EvidenceButton active /><EvidenceButton active={on} onClick={() => setOn(!on)} /></Row>;
+  } });
 ```
 
 ### ValueMapButton
@@ -2282,7 +2290,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px auto 1fr 40px', overflow: 'hidden',
     background: 'var(--background-canvas-primary)', border: '1px solid var(--border-base)', boxSizing: 'content-box' };
-  const evidenceBtn = <IFS.IconButton shape="circle" type="tertiary" size="s" icon="cooper-evidence-icon" label="Evidence" />;
+  const evidenceBtn = <IFS.EvidenceButton label="Evidence" />;
 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {
@@ -2318,6 +2326,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '48px 1fr', gridTemplateRows: '200px 20px', gap: '4px 0', padding: '8px 10px 0' }}>
         <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
           {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
   // … cut; full example in src/gallery/patterns-documents.jsx
 ```
 
@@ -2346,14 +2355,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <div style={{ width: 354 }}><PeerBenchmark {...BENCHMARK} /></div>
     <div style={{ width: 354 }}><PeerBenchmark empty /></div>
   </div> });
-```
-
-### EvidenceButton
-```jsx
-  IFS_GALLERY.push({ name: 'EvidenceButton', figma: 'icon-button Shape=Circle Type=Tertiary S, cooper evidence icon [patterns] (31:74957)', render: () => {
-    const [on, setOn] = React.useState(false);
-    return <Row label="default · open (aria-expanded) · click"><EvidenceButton /><EvidenceButton active /><EvidenceButton active={on} onClick={() => setOn(!on)} /></Row>;
-  } });
 ```
 
 ### EvidenceChainDrawer
@@ -2606,17 +2607,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   } });
 ```
 
-### ActionMenu
-```jsx
-  IFS_GALLERY.push({ name: 'ActionMenu', figma: 'more actions — single-select-list-molecule [patterns] (95:127626)', render: () => (
-    <div style={grid}>
-      <Cell title="inline list" w={200}><ActionMenu inline items={VF_ACTIONS} /></Cell>
-      <Cell title="disabled with reason + destructive last" w={200}><ActionMenu inline items={[{ label: 'Compare', icon: 'compare', disabled: true, reason: 'Compare is not available for a Draft in the Input stage' }, { label: 'Archive', icon: 'chat-archive', destructive: true }, ...VF_ACTIONS.slice(1)]} /></Cell>
-      <Cell title="trigger (⋮)" w={200}><div style={{ height: 180, display: 'flex', justifyContent: 'flex-end' }}><ActionMenu items={VF_ACTIONS} /></div></Cell>
-    </div>
-  ) });
-```
-
 ### TableToolbar
 ```jsx
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
@@ -2829,13 +2819,16 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### Menu
 ```jsx
   IFS_GALLERY.push({ name: 'Menu', figma: 'single-select-list-molecule (153:62054) · single-select-list-atom (153:61939)', render: () => <>
-    <Row label="list" style={{ alignItems: 'flex-start' }}>
+    <Row label="list · size s (200) · size l (320, with descriptions)" style={{ alignItems: 'flex-start' }}>
       <Menu inline items={MENU} />
-      <Menu inline width={160} items={[{ label: 'Default' }, { label: 'Hover', state: 'hover' }, { label: 'Selected', selected: true }, { label: 'Disabled', disabled: true }, { label: 'Danger', danger: true }]} />
-      <Menu inline width={240} items={[{ label: 'Approve', description: 'Moves the item to the next stage' }, { label: 'Approve with note', description: 'Adds a note for the next approver' }]} />
+      <Menu inline items={[{ label: 'Default' }, { label: 'Hover', state: 'hover' }, { label: 'Selected', selected: true }, { label: 'Disabled', disabled: true }, { label: 'Danger', danger: true }]} />
+      <Menu inline size="l" items={[{ label: 'Approve', description: 'Moves the item to the next stage' }, { label: 'Approve with note', description: 'Adds a note for the next approver' }]} />
     </Row>
-    <Row label="trigger (end / start)" style={{ alignItems: 'flex-start', height: 280 }}>
-      <div style={{ width: 240, display: 'flex', justifyContent: 'flex-end' }}><Menu defaultOpen items={MENU} label="More actions" trigger={<IFS.IconButton icon="system-dots-vertical" type="ghost" size="s" label="More actions" />} /></div>
+    <Row label="destructive last · copy link · disabled with reason" style={{ alignItems: 'flex-start' }}>
+      <Menu inline items={[{ label: 'Delete', icon: 'system-trash-delete', destructive: true }, { label: 'Copy link', copy: true }, { label: 'Compare', icon: 'compare', disabled: true, reason: 'Compare is not available for a Draft in the Input stage' }, { label: 'Rename', icon: 'system-edit-rename' }]} />
+    </Row>
+    <Row label="trigger: more (⋯) end / button start" style={{ alignItems: 'flex-start', height: 280 }}>
+      <div style={{ width: 240, display: 'flex', justifyContent: 'flex-end' }}><Menu defaultOpen more items={MENU} label="More actions" /></div>
       <div style={{ width: 240, marginLeft: 40 }}><Menu align="start" items={[{ label: 'Resize', icon: 'arrow-diagonal-expand', items: [{ label: 'Small' }, { label: 'Medium', selected: true }, { label: 'Large' }] }, { label: 'Remove', icon: 'system-trash-delete', danger: true }]}
         label="Widget actions" trigger={<IFS.Button type="secondary" size="s" iconRight="arrow-caret-down-filled">Open menu</IFS.Button>} /></div>
     </Row>

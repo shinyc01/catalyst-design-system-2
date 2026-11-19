@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { SmartSearch, SearchModal, SearchCard, FollowButton, ColumnFilter, CollaborationBadge, TruncatedText, ActionMenu,
+  const { SmartSearch, SearchModal, SearchCard, FollowButton, ColumnFilter, CollaborationBadge, TruncatedText,
     TableToolbar, ColumnSettings, RecordPreview, DataTable } = IFS;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cell = ({ title, children, w = 376 }) => (
@@ -108,15 +108,6 @@ export default IFS_GALLERY;
       {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-regular" style={{ width: 260, color: 'var(--text-primary)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
     </div>;
   } });
-
-  const VF_ACTIONS = [{ label: 'Compare', icon: 'compare' }, { label: 'Activity', icon: 'users-group' }, { label: 'Duplicate & Update', icon: 'duplicate' }, { label: 'Rename', icon: 'system-edit-rename' }];
-  IFS_GALLERY.push({ name: 'ActionMenu', figma: 'more actions — single-select-list-molecule [patterns] (95:127626)', render: () => (
-    <div style={grid}>
-      <Cell title="inline list" w={200}><ActionMenu inline items={VF_ACTIONS} /></Cell>
-      <Cell title="disabled with reason + destructive last" w={200}><ActionMenu inline items={[{ label: 'Compare', icon: 'compare', disabled: true, reason: 'Compare is not available for a Draft in the Input stage' }, { label: 'Archive', icon: 'chat-archive', destructive: true }, ...VF_ACTIONS.slice(1)]} /></Cell>
-      <Cell title="trigger (⋮)" w={200}><div style={{ height: 180, display: 'flex', justifyContent: 'flex-end' }}><ActionMenu items={VF_ACTIONS} /></div></Cell>
-    </div>
-  ) });
 
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
     <div style={{ width: 1000, padding: 16, borderRadius: 8, background: 'var(--surface-secondary-alpha)' }}>

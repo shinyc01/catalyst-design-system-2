@@ -63,7 +63,7 @@ Cooper is the AI assistant available on every stage screen. Use this pattern whe
 - consolidated: `FTA button / style=with stroke` inside the collapsed bar → `FtaButton`.
 - consolidated: `counter` / `counter-atom` (d1fbe5eb) → `Counter`. `checkbox-item` (2fd66408) → the checkbox inside history rows (the kit `Checkbox` atom look).
 - consolidated: `chat-inline-quick-mode` / `floating-window` / `right-side-panel-chat` / `chat header` / `user-message-bubble` / `chat history` are older local names in the Patterns file for the same keys as chat-collapsed-bar-organism / chat-compact-panel-organism / chat-full-panel-organism / chat-header-molecule / user-message-molecule / history-panel-molecule.
-- consolidated: `Scroll bar` (e0af1521) → native thin scrollbar (`ScrollArea` look). `overlay` (29a182db) → `Overlay`. `popover-organism` and `single-select-list-molecule` (row menus) → `Popover` + ghost `Button`s (`CooperMenu`).
+- consolidated: `Scroll bar` (e0af1521) → native thin scrollbar (`ScrollArea` look). `overlay` (29a182db) → `Overlay`. `popover-organism` and `single-select-list-molecule` (row menus) → `Menu` (anchored at the clicked ⋯).
 - UNSURE: `list-item` (68fd47d4 = capex-card, marked legacy "can be content-card-organism") is used as the recommendation card in agent-window (67:108505), and also with a checkbox and a badge in 12:265397. It is built as `RecommendationItem`. Should it be `ContentCard`?
 - UNSURE: `source card` (fafdbabd = source-card, legacy) in answers (67:126739). It is shown as `ChatLink type="source"` under "Supporting evidence". Should it be a `ContentCard` with a quote?
 - UNSURE: `chat-link-item/Default/source` (8c76696d) uses the raw colour white/850, while the follow-up uses text/secondary.

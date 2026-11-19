@@ -258,7 +258,7 @@ function Panel({ title, actions, expanded, defaultExpanded = true, onExpandedCha
         <h2 className="ifs-surface__title">{title}</h2>
         <div className="ifs-panel__buttons">
           {actions}
-          {showEvidence && <IFS.IconButton icon="cooper-evidence-icon" label="Evidence chain" type="tertiary" size="s" shape="circle" onClick={onEvidence} />}
+          {showEvidence && <IFS.EvidenceButton onClick={onEvidence} />}
           {onClose
             ? <IFS.IconButton icon="system-close" label="Close" type="ghost" size="s" onClick={onClose} />
             : <IFS.IconButton className="ifs-panel__toggle" icon="arrow-bar-right" label="Collapse panel" aria-expanded

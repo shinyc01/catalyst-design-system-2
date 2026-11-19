@@ -79,13 +79,16 @@ export default IFS_GALLERY;
     { label: 'Delete', icon: 'system-trash-delete', danger: true },
   ];
   IFS_GALLERY.push({ name: 'Menu', figma: 'single-select-list-molecule (153:62054) · single-select-list-atom (153:61939)', render: () => <>
-    <Row label="list" style={{ alignItems: 'flex-start' }}>
+    <Row label="list · size s (200) · size l (320, with descriptions)" style={{ alignItems: 'flex-start' }}>
       <Menu inline items={MENU} />
-      <Menu inline width={160} items={[{ label: 'Default' }, { label: 'Hover', state: 'hover' }, { label: 'Selected', selected: true }, { label: 'Disabled', disabled: true }, { label: 'Danger', danger: true }]} />
-      <Menu inline width={240} items={[{ label: 'Approve', description: 'Moves the item to the next stage' }, { label: 'Approve with note', description: 'Adds a note for the next approver' }]} />
+      <Menu inline items={[{ label: 'Default' }, { label: 'Hover', state: 'hover' }, { label: 'Selected', selected: true }, { label: 'Disabled', disabled: true }, { label: 'Danger', danger: true }]} />
+      <Menu inline size="l" items={[{ label: 'Approve', description: 'Moves the item to the next stage' }, { label: 'Approve with note', description: 'Adds a note for the next approver' }]} />
     </Row>
-    <Row label="trigger (end / start)" style={{ alignItems: 'flex-start', height: 280 }}>
-      <div style={{ width: 240, display: 'flex', justifyContent: 'flex-end' }}><Menu defaultOpen items={MENU} label="More actions" trigger={<IFS.IconButton icon="system-dots-vertical" type="ghost" size="s" label="More actions" />} /></div>
+    <Row label="destructive last · copy link · disabled with reason" style={{ alignItems: 'flex-start' }}>
+      <Menu inline items={[{ label: 'Delete', icon: 'system-trash-delete', destructive: true }, { label: 'Copy link', copy: true }, { label: 'Compare', icon: 'compare', disabled: true, reason: 'Compare is not available for a Draft in the Input stage' }, { label: 'Rename', icon: 'system-edit-rename' }]} />
+    </Row>
+    <Row label="trigger: more (⋯) end / button start" style={{ alignItems: 'flex-start', height: 280 }}>
+      <div style={{ width: 240, display: 'flex', justifyContent: 'flex-end' }}><Menu defaultOpen more items={MENU} label="More actions" /></div>
       <div style={{ width: 240, marginLeft: 40 }}><Menu align="start" items={[{ label: 'Resize', icon: 'arrow-diagonal-expand', items: [{ label: 'Small' }, { label: 'Medium', selected: true }, { label: 'Large' }] }, { label: 'Remove', icon: 'system-trash-delete', danger: true }]}
         label="Widget actions" trigger={<IFS.Button type="secondary" size="s" iconRight="arrow-caret-down-filled">Open menu</IFS.Button>} /></div>
     </Row>

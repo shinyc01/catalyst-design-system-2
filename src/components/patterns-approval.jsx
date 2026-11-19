@@ -180,7 +180,7 @@ function SplitButton({ children, type = 'primary', size = 's', iconLeft, disable
   return (
     <span className={apCx('ifs-split-button', className)}>
       <IFS.Button type={type} size={size} iconLeft={iconLeft} disabled={disabled} onClick={onClick}>{children}</IFS.Button>
-      {hasMenu && <IFS.Menu open={open} onOpenChange={setOpen} width={240} align="end" label={menuLabel}
+      {hasMenu && <IFS.Menu open={open} onOpenChange={setOpen} size="l" align="end" label={menuLabel}
         items={items.map(it => ({ label: it.label, description: it.description, icon: it.icon, disabled: it.disabled, danger: it.danger, onClick: it.onClick ? () => it.onClick() : undefined }))}
         trigger={<IFS.IconButton type={type} size={size} icon="arrow-caret-down-filled" label={menuLabel} disabled={disabled} />} />}
     </span>
@@ -313,7 +313,7 @@ function ApcNote({ row, canAdd, canEdit, editing, onStartEdit, onSave, onCancel,
     return (
       <div className={apCx('ifs-apc__note', canEdit && 'ifs-apc__note--editable')} title={row.note.text}>
         <span className="ifs-apc__note-text">{row.note.text}</span>
-        {canEdit && <span className="ifs-apc__note-menu"><IFS.ActionMenu label="Note actions" items={[
+        {canEdit && <span className="ifs-apc__note-menu"><IFS.Menu more label="Note actions" items={[
           { label: 'Edit', icon: 'system-edit-rename', onClick: onStartEdit },
           { label: 'Delete', icon: 'system-trash-delete', destructive: true, onClick: onDelete },
         ]} /></span>}
@@ -323,7 +323,7 @@ function ApcNote({ row, canAdd, canEdit, editing, onStartEdit, onSave, onCancel,
   return canAdd ? <IFS.Button type="ghost" size="s" iconLeft="system-plus" onClick={onStartEdit}>Add note</IFS.Button> : null;
 }
 
-// Pattern helper: the approval chain table with note/push/filter rules — built from ApprovalStatus, Avatar, Button, ActionMenu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table with a status rail (status + dashed connector),
+// Pattern helper: the approval chain table with note/push/filter rules — built from ApprovalStatus, Avatar, Button, Menu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table with a status rail (status + dashed connector),
 // USER (filter when > 3 approvers), NOTE, and in the full view COMMENT, LAST NOTIFIED and an action column.
 // Props:
 //   approvers / defaultApprovers / onChange(approvers) — [{ id, name, role, avatar (Avatar props), status success|awaiting|empty|rejected|revisions,

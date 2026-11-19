@@ -211,15 +211,6 @@ function DataVizHeader({ title, state, segments, segmentValue, defaultSegmentVal
   );
 }
 
-// Circular Tertiary S icon-button carrying the Cooper evidence mark (top-right of every core chart).
-function DvCooperButton({ onClick, label = 'Ask Cooper about this chart' }) {
-  return (
-    <button type="button" aria-label={label} title={label} onClick={onClick}
-      className="ifs-icon-button ifs-icon-button--tertiary ifs-icon-button--s ifs-icon-button--circle">
-      <IFS.Icon name="cooper-evidence-icon" variant="medium" size={14} />
-    </button>
-  );
-}
 
 // Figma: data-viz-card-organism (4457:33030)
 // Props: state default|hover|drag|cooper, title, header = extra DataVizHeader props, children = Content slot, legend (node, below content).
@@ -241,7 +232,7 @@ function DataVizCard({ variant = 'organism', state, title, header, legend, child
             {actions}
             <span className="ifs-dv-header__divider" aria-hidden="true" />
           </>}
-          slot={<DvCooperButton onClick={onCooper} />} />}
+          slot={<IFS.EvidenceButton label="Ask Cooper about this chart" onClick={onCooper} />} />}
         <div className="ifs-dv-card__body">{children}</div>
         {legend && <div className="ifs-dv-card__legend">{legend}</div>}
       </section>

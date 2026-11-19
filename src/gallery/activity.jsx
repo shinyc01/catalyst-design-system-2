@@ -66,9 +66,9 @@ export default IFS_GALLERY;
       <Col w={348}><VersionHistory versions={[{ ...VER, title: 'Version 3', time: '2:40 PM · May 10', state: 'hover' }]} /></Col>
       <Col w={348}><VersionHistory versions={[{ ...VER, title: 'Version 3', time: '2:40 PM · May 10', state: 'rename' }]} /></Col>
     </Row>
-    <Row label="⋮ menu slot / open / rename error (duplicate name)">
+    <Row label="⋯ menu slot / open / rename error (duplicate name)">
       <Col w={348}><div role="list" className="ifs-timeline"><VersionEntry {...VER} title="Version 3" badge="Current" time="2:40 PM · May 10" last state="hover"
-        onOpen={() => {}} menu={<IFS.ActionMenu label="Version 3 actions" items={[{ label: 'Compare', icon: 'compare' }, { label: 'Rename', icon: 'system-edit-rename' }]} />} /></div></Col>
+        onOpen={() => {}} menu={<IFS.Menu more label="Version 3 actions" items={[{ label: 'Compare', icon: 'compare' }, { label: 'Rename', icon: 'system-edit-rename' }]} />} /></div></Col>
       <Col w={348}><div role="list" className="ifs-timeline"><VersionEntry {...VER} title="Version 3" time="2:40 PM · May 10" last
         renaming renameValue="Version 2" renameError="A version with this name already exists" onRenameChange={() => {}} /></div></Col>
     </Row>
@@ -168,7 +168,7 @@ export default IFS_GALLERY;
       <Col w={300}>
         <FileCard name="2025 Board Planning Presentation — Strategic Business Case.pdf" date="Jan 15, 2025" onDownload={() => {}} />
         <FileCard name="2025 Board Planning Presentation — Strategic Business Case.pdf" date="Jan 15, 2025" active
-          actions={<IFS.ActionMenu label="More actions" items={[{ label: 'Download', icon: 'system-download' }, { label: 'Remove', icon: 'system-trash-delete', destructive: true }]} />} />
+          actions={<IFS.Menu more label="More actions" items={[{ label: 'Download', icon: 'system-download' }, { label: 'Remove', icon: 'system-trash-delete', destructive: true }]} />} />
       </Col>
     </Row>
   </> });

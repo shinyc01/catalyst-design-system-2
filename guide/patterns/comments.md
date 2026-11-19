@@ -7,8 +7,8 @@ Threaded comments anchored to elements of a canvas (framework map): pins on the 
 
 ## Anatomy
 - Components: `CommentPin` (comment-pin-organism), `CommentDrawerCard` (comment-drawer-card).
-- Kit reused: `CommentThread`, `Comment`, `CommentComposer` (activity), `Drawer`, `SegmentedControl`, `SmartSearch`, `EmptyState`, `Popover`, `ContentCard`, `ActionMenu`, `Badge`, `Indicator`, `Avatar`, `Tooltip`, `NodeCard`, `NodeHoverActions` (node-action), `CanvasBackground`, `CanvasConnector`, `ValueMapButton`, `CommentButton`, `NavBar`, `PageHeader`, `Stepper`, `CanvasHeader`, `BottomSheet`, `toast`.
-- Pattern helpers: `CommentsPanel` (drawer list + filter + search + empty states), `CommentCallout` (CommentThread + ⋯ menu + @-mention picker + resolved look), `CommentMentionMenu`, `CommentMenu` (thin ⋯ menu; replace with a shared Menu if one is added), `useCommentThreads`, `searchComments`.
+- Kit reused: `CommentThread`, `Comment`, `CommentComposer` (activity), `Drawer`, `SegmentedControl`, `SmartSearch`, `EmptyState`, `Popover`, `ContentCard`, `Menu`, `Badge`, `Indicator`, `Avatar`, `Tooltip`, `NodeCard`, `NodeHoverActions` (node-action), `CanvasBackground`, `CanvasConnector`, `ValueMapButton`, `CommentButton`, `NavBar`, `PageHeader`, `Stepper`, `CanvasHeader`, `BottomSheet`, `toast`.
+- Pattern helpers: `CommentsPanel` (drawer list + filter + search + empty states), `CommentCallout` (CommentThread + ⋯ menu + @-mention picker + resolved look), `CommentMentionMenu`, `useCommentThreads`, `searchComments`.
 
 ## Flows and states
 1. **Enter Comments mode**: comment button in the page header, or press C. The drawer opens; over the canvas the comment cursor shows, over the drawer the default cursor.
@@ -52,7 +52,7 @@ Threaded comments anchored to elements of a canvas (framework map): pins on the 
 - consolidated: node-card 4e51d5a8… (legacy "data input" set, 12:31161) → `NodeCard type="subnode"` (same compact node).
 - consolidated: node-action 3b1065e0… → `NodeHoverActions` (same key as node-button).
 - consolidated: tableHeader / tableCell / tabItem / list-item inside the Cooper agent window → Table / Tabs (Cooper pattern owns that flow).
-- consolidated: single-select-list-molecule menus → `ActionMenu` list (via `CommentMenu`).
+- consolidated: single-select-list-molecule menus → `Menu` (more ⋯, copy-link item).
 - Built in the kit (CommentThread / CommentComposer): own-comment ⋯ → Edit / Delete (Delete → confirm modal 12:47578 → "Comment deleted" snackbar with Undo); edit field with Cancel / **Send** and no mention button (12:47187); posted mentions as a Badge with the `mention` icon (12:46402).
 - UNSURE: resolved header — frame 12:36500 (Cooper solution applied) shows a green `status-success-filled` ✓ in the header with colored avatars; frame 12:44840 hides ✓ and greys avatars. Built per 12:44840.
 

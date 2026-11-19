@@ -300,25 +300,6 @@ function TruncatedText({ children, mode = 'end', className, tooltip = true }) {
   return cut && tooltip ? <IFS.Tooltip content={full} delay={300}>{text}</IFS.Tooltip> : text;
 }
 
-// ───────────────────────────── More-actions menu ─────────────────────────────
-// Pattern helper: More-actions (⋮) menu — built from IconButton + Menu (single-select-list-molecule with single-select-list-atoms).
-// Props: items [{ label, icon, onClick(event), disabled, reason (tooltip shown on a disabled action), destructive, danger (red), divider,
-// shortcut, submenu (array of items) }], label (default "More actions"), open / defaultOpen / onOpenChange, align end|start,
-// inline (just the list), width (default 180).
-// Rules (Figma): an action that never applies is not listed; one that applies but is unavailable is disabled with a reason;
-// destructive actions (Archive, Delete) go last after a divider — the menu sorts them there.
-const ptMenuItem = it => it.divider ? it : { ...it, items: Array.isArray(it.submenu) ? it.submenu.map(ptMenuItem) : undefined,
-  onClick: it.onClick ? (_, e) => it.onClick(e) : undefined };
-function ActionMenu({ items = [], label = 'More actions', open, defaultOpen = false, onOpenChange, align = 'end', inline, width = 180, className }) {
-  const safe = items.filter(i => !i.destructive); const danger = items.filter(i => i.destructive);
-  const list = [...safe, ...(danger.length && safe.length ? [{ divider: true }] : []), ...danger].map(ptMenuItem);
-  return (
-    <IFS.Menu items={list} label={label} open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange} align={align} inline={inline} width={width}
-      className={ptCx('ifs-action-menu', className)}
-      trigger={inline ? undefined : <IFS.IconButton icon="system-dots-vertical" label={label} type="ghost" size="s" />} />
-  );
-}
-
 // ───────────────────────────── Table toolbar ─────────────────────────────
 // The bar above the table (Figma table-card "Frame" row, 40px): filter (SegmentedControl S with counts inside a table card,
 // or Tabs with counts on library pages), search (SmartSearch), onConfigure → divider + Tertiary S icon-button system-filter-settings
@@ -433,7 +414,7 @@ const ptDayMs = 864e5;
 //     sort is a temporary override ↓ → ↑ → off, rows drag to re-rank, pinned rows stay on top.
 //   defaultSort { key, dir }, filterTabs { variant: 'segmented'|'tabs', items: [{ value, label, match(row) }], defaultValue },
 //   search { placeholder, suggestions, noResults (suggestion labels), match(row, query), delay } — Cooper search over the rows,
-//   onOpen(row) (row click), onPreview(row) + previewId (eye button on hover), rowActions(row) → ActionMenu items,
+//   onOpen(row) (row click), onPreview(row) + previewId (eye button on hover), rowActions(row) → Menu items,
 //   follow (show icon-button-following in the actions column), onRename(row, name) (double-click the name; must be unique),
 //   collaboration: handled by columns with render → CollaborationBadge.
 //   configurable { suggestions: [{ key, title, ...column, value(row) }] } → toolbar settings button + Columns drawer,
@@ -652,7 +633,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
     <span className="ifs-data-table__actions" onClick={e => e.stopPropagation()}>
       {onPreview && <IFS.Tooltip content="Open preview"><IFS.IconButton icon={'eye-opened'} type="ghost" size="s" label="Open preview"
         className={previewId === r[rowKey] ? undefined : 'ifs-data-table__hover'} data-state={previewId === r[rowKey] ? 'hover' : undefined} onClick={() => onPreview(r)} /></IFS.Tooltip>}
-      {rowActions && <span className="ifs-data-table__hover"><ActionMenu items={rowActions(r, { rename: () => setEditing({ id: r[rowKey], value: String(ptText(r[(cols.find(x => x.name) || {}).key])), error: null }) })} /></span>}
+      {rowActions && <span className="ifs-data-table__hover"><IFS.Menu more label="Row actions" items={rowActions(r, { rename: () => setEditing({ id: r[rowKey], value: String(ptText(r[(cols.find(x => x.name) || {}).key])), error: null }) })} /></span>}
       {follow && <FollowButton defaultFollowing={!!r.following} />}
     </span>) });
 
@@ -748,5 +729,5 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
   return <>{card}{settings}</>;
 }
 
-Object.assign(IFS, { SmartSearch, SearchModal, SearchCard, FollowButton, ColumnFilter, CollaborationBadge, TruncatedText, ActionMenu, TableToolbar, ColumnSettings, RecordPreview, DataTable });
-export { SmartSearch, SearchModal, SearchCard, FollowButton, ColumnFilter, CollaborationBadge, TruncatedText, ActionMenu, TableToolbar, ColumnSettings, RecordPreview, DataTable };
+Object.assign(IFS, { SmartSearch, SearchModal, SearchCard, FollowButton, ColumnFilter, CollaborationBadge, TruncatedText, TableToolbar, ColumnSettings, RecordPreview, DataTable });
+export { SmartSearch, SearchModal, SearchCard, FollowButton, ColumnFilter, CollaborationBadge, TruncatedText, TableToolbar, ColumnSettings, RecordPreview, DataTable };

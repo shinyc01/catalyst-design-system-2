@@ -113,7 +113,7 @@ export default IFS_GALLERY;
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px auto 1fr 40px', overflow: 'hidden',
     background: 'var(--background-canvas-primary)', border: '1px solid var(--border-base)', boxSizing: 'content-box' };
-  const evidenceBtn = <IFS.IconButton shape="circle" type="tertiary" size="s" icon="cooper-evidence-icon" label="Evidence" />;
+  const evidenceBtn = <IFS.EvidenceButton label="Evidence" />;
 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {

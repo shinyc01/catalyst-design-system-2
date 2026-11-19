@@ -127,13 +127,6 @@ function evidenceZone(value, thresholds = [70, 90]) {
     behaviour: 'Cooper applies the value automatically; the Evidence chain stays open to inspection.' };
 }
 
-// Figma: the circle Tertiary S icon-button with the Cooper evidence icon (content-card-organism show-icon-button,
-// panel-organism show-evidence-chain). The trigger sits next to every field, block or card Cooper filled in.
-// Props: onClick, active (the chain for this value is open → aria-expanded), label (accessible name).
-function EvidenceButton({ onClick, active, label = 'Evidence chain', className, ...rest }) {
-  return <IFS.IconButton icon="cooper-evidence-icon" label={label} type="tertiary" size="s" shape="circle" aria-expanded={active == null ? undefined : !!active}
-    data-state={active ? 'pressed' : undefined} className={className} onClick={onClick} {...rest} />;
-}
 
 /* ------------------------------------------------------------------------------------------ */
 // Figma: drawer-organism "Evidence chain" (Patterns 31:76682; same content in modal-organism 297:76633 on the empty-state frames).
@@ -178,5 +171,5 @@ function EvidenceChainDrawer({ open, defaultOpen = true, onOpenChange, value = 8
   );
 }
 
-Object.assign(IFS, { SourceCard, EvidenceSection, PeerBenchmark, EvidenceButton, EvidenceChainDrawer, evidenceZone });
-export { SourceCard, EvidenceSection, PeerBenchmark, EvidenceButton, EvidenceChainDrawer, evidenceZone };
+Object.assign(IFS, { SourceCard, EvidenceSection, PeerBenchmark, EvidenceChainDrawer, evidenceZone });
+export { SourceCard, EvidenceSection, PeerBenchmark, EvidenceChainDrawer, evidenceZone };

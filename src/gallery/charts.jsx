@@ -78,7 +78,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'DataVizCard chart: actions / bare', figma: 'data-viz-card-organism (4457:33030)', render: () => <Grid w={558}>
     <DataVizCard variant="chart" state="hover" title="With header actions" style={{ width: 558 }}
-      actions={<IFS.IconButton type="ghost" size="s" icon="system-dots-vertical" label="Widget actions" />}>
+      actions={<IFS.IconButton type="ghost" size="s" icon="system-dots-horizont" label="Widget actions" />}>
       <DataVizGroupedBar type="vertical" showValues values={[42, 28, 18, 12]} style={{ height: 40 }} />
       <div style={{ height: 120 }} />
     </DataVizCard>

@@ -552,7 +552,7 @@ function TimelinePhase({ title, subtitle, badge, color = 'teal', start = 0, end 
           </div>
           <span className="ifs-timeline-phase__actions">
             <IFS.IconButton size="s" icon="system-plus" label="Add task" onClick={onAdd} />
-            <IFS.IconButton size="s" icon="system-dots-vertical" label="More actions" onClick={onMore} />
+            <IFS.IconButton size="s" icon="system-dots-horizont" label="More actions" onClick={onMore} />
           </span>
         </div>
         <div className="ifs-timeline-phase__track">{grid}<span className="ifs-timeline-phase__bar" style={{ left: pct(start), width: pct(end - start) }} /></div>

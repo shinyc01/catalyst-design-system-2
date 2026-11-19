@@ -6,7 +6,7 @@ Figma: IFS Design System Patterns › page "Evidence Chain" (12:339982), section
 The Evidence chain is Cooper's glass box. It shows the sources and reasoning steps behind one value that Cooper filled in, and how confident Cooper is in that value. Use it on every field, block or card that Cooper wrote. Don't use it for content a person wrote, or as a general document viewer (→ Documents pattern).
 
 ## Anatomy (kit components)
-- **Trigger:** `EvidenceButton` (the circle Tertiary S `IconButton`, `cooper-evidence-icon`). On a card, pass it in the card header: `DataVizCard header.slot`, or `ContentCard iconButton={{ icon:'cooper-evidence-icon', type:'tertiary', shape:'circle', … }}`. On a side panel, use `Panel showEvidence onEvidence`.
+- **Trigger:** `EvidenceButton` (the circle Tertiary S `IconButton`, `cooper-evidence-icon` medium, 16px; also the Cooper button of every chart header). On a card, pass it in the card header: `DataVizCard header.slot`, or `ContentCard iconButton={{ icon:'cooper-evidence-icon', type:'tertiary', shape:'circle', … }}`. On a side panel, use `Panel showEvidence onEvidence`.
 - **Drawer:** `EvidenceChainDrawer` = `Drawer` (title "Evidence chain", ✕ only, no collapse) holding:
   - `EvidenceStrength`, the confidence bar (no title; captions `<70% Reject` · `{value}% Review` · `>90% Approve`)
   - `SegmentedControl` S, full width: **Rationale** | **Peer benchmark**

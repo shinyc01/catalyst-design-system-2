@@ -11,16 +11,6 @@ function useCmValue(value, defaultValue, onChange) {
   const set = (next, ...extra) => { if (!controlled) setInner(next); onChange && onChange(next, ...extra); };
   return [v, set];
 }
-// Closes a floating menu on outside pointer-down or Escape.
-function useCmDismiss(ref, open, close) {
-  React.useEffect(() => {
-    if (!open) return undefined;
-    const down = e => { if (ref.current && !ref.current.contains(e.target)) close(); };
-    const key = e => { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
-    document.addEventListener('pointerdown', down, true); document.addEventListener('keydown', key, true);
-    return () => { document.removeEventListener('pointerdown', down, true); document.removeEventListener('keydown', key, true); };
-  }, [open, close]);
-}
 
 /* ───────────────────────────── comment-pin-organism ───────────────────────────── */
 
@@ -57,41 +47,6 @@ function CommentPin({ type = 'unread', avatars = [], count, preview, state, onCl
   );
 }
 
-/* ───────────────────────────── ⋯ menu (Copy link / Unresolve / Edit / Delete) ───────────────────────────── */
-
-// Pattern helper: thin ⋯ menu (Copy link → "Copied" 2 s) — built from IconButton + ActionMenu (Table) inline list.
-// Duplicates ActionMenu / CooperMenu on purpose as a thin wrapper; replace with a shared Menu if one is added.
-// The ⋯ menus on this page: single-select-list-molecule (153:62054) of S (28) single-select-list-atoms, 160 wide,
-// drawn by the kit's ActionMenu list. An item with copy:true is "Copy link": on click its label turns to "Copied" (✓) and
-// reverts after 2 s (Figma note). Used by CommentDrawerCard and CommentCallout.
-function useCopied() {
-  const [copied, setCopied] = React.useState(false);
-  const t = React.useRef();
-  React.useEffect(() => () => clearTimeout(t.current), []);
-  const fire = () => { setCopied(true); clearTimeout(t.current); t.current = setTimeout(() => setCopied(false), 2000); };
-  return [copied, fire];
-}
-function cmMenuItems(items, copied, fireCopied) {
-  return items.map(it => it.copy
-    ? { ...it, label: copied ? 'Copied' : (it.label || 'Copy link'), icon: copied ? 'system-check' : 'system-link', onClick: e => { fireCopied(); it.onClick && it.onClick(e); } }
-    : it);
-}
-function CommentMenu({ items = [], label = 'More actions', open, onOpenChange, className }) {
-  const [isOpen, setOpen] = useCmValue(open, false, onOpenChange);
-  const [copied, fireCopied] = useCopied();
-  const ref = React.useRef(null);
-  useCmDismiss(ref, isOpen, React.useCallback(() => setOpen(false), [setOpen]));
-  return (
-    <span ref={ref} className={cmCx('ifs-cmenu', className)} onClick={e => e.stopPropagation()}>
-      <IFS.IconButton type="ghost" size="s" icon="system-dots-horizont" label={label} aria-haspopup="menu" aria-expanded={isOpen}
-        data-state={isOpen ? 'pressed' : undefined} onClick={() => setOpen(!isOpen)} />
-      {isOpen && <div className="ifs-cmenu__pop">
-        <IFS.ActionMenu inline label={label} items={cmMenuItems(items, copied, fireCopied).map(it => it.copy ? it : { ...it, onClick: e => { setOpen(false); it.onClick && it.onClick(e); } })} />
-      </div>}
-    </span>
-  );
-}
-
 /* ───────────────────────────── comment-drawer-card ───────────────────────────── */
 
 // Figma: comment-drawer-card (1231:170874) — key 548d968e…; Patterns copy 12:30656. One thread row in the Comments drawer.
@@ -124,7 +79,7 @@ function CommentDrawerCard({ type = 'read', number, place, name, time, children,
             {type === 'new' && <span className="ifs-cdcard__dot" aria-label="Unread" />}
           </span>
           <span className="ifs-cdcard__buttons">
-            {menu && menu.length > 0 && <CommentMenu items={menu} open={menuOpen} onOpenChange={setMenuOpen} />}
+            {menu && menu.length > 0 && <IFS.Menu more label="More actions" items={menu} open={menuOpen} onOpenChange={setMenuOpen} />}
             {type !== 'resolved' && onResolve && <IFS.Tooltip content="Resolve"><IFS.IconButton type="ghost" size="s" icon="system-circle-check" label="Resolve"
               onClick={e => { e.stopPropagation(); onResolve(e); }} /></IFS.Tooltip>}
           </span>
@@ -292,5 +247,5 @@ function useCommentThreads({ defaultThreads = [] } = {}) {
     unreadCount: threads.filter(t => t.unread && !t.resolved).length, unresolvedCount: threads.filter(t => !t.resolved).length };
 }
 
-Object.assign(IFS, { CommentPin, CommentDrawerCard, CommentMenu, CommentCallout, CommentsPanel, useCommentThreads, searchComments });
-export { CommentPin, CommentDrawerCard, CommentMenu, CommentCallout, CommentsPanel, useCommentThreads, searchComments };
+Object.assign(IFS, { CommentPin, CommentDrawerCard, CommentCallout, CommentsPanel, useCommentThreads, searchComments });
+export { CommentPin, CommentDrawerCard, CommentCallout, CommentsPanel, useCommentThreads, searchComments };

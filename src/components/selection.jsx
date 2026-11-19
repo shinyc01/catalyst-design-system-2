@@ -484,7 +484,7 @@ function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = 
 
 // ---------- Menu ----------
 // One list (main or submenu) of Menu rows.
-function MenuList({ items, label, width, onRun, listRef, sub, setSub, submenuSide }) {
+function MenuList({ items, label, width, size = 's', onRun, listRef, sub, setSub, submenuSide }) {
   const btns = useRef([]);
   const enabled = () => btns.current.map((b, k) => (b && !b.disabled ? k : -1)).filter(k => k >= 0);
   const focusAt = i => { const b = btns.current[i]; b && b.focus(); };
@@ -495,7 +495,7 @@ function MenuList({ items, label, width, onRun, listRef, sub, setSub, submenuSid
     else if (it.items && (e.key === (submenuSide === 'left' ? 'ArrowLeft' : 'ArrowRight'))) { e.preventDefault(); setSub && setSub(i); }
   };
   return (
-    <div ref={listRef} role="menu" aria-label={label} className="ifs-menu__list" style={width ? { width } : undefined}>
+    <div ref={listRef} role="menu" aria-label={label} className={cx('ifs-menu__list', !width && `ifs-menu__list--${size}`)} style={width ? { width } : undefined}>
       {items.map((it, i) => {
         if (it.divider) return <div key={`d${i}`} role="separator" className="ifs-menu__divider" />;
         if (it.title) return <div key={`t${i}`} role="presentation" className="ifs-menu__title">{it.title}</div>;
@@ -533,12 +533,32 @@ function MenuList({ items, label, width, onRun, listRef, sub, setSub, submenuSid
 //   | { divider: true } | { title: 'Section' }],
 // trigger (element; gets aria-haspopup/aria-expanded and the pressed look) or anchor (DOMRect or element, for menus opened elsewhere)
 // or inline (just the list, in place: galleries and custom popovers),
-// open / defaultOpen / onOpenChange, onSelect(item), align end|start, position down|up (flips when there is no room), width (default 200),
-// label (accessible name). Keyboard: ↑/↓ move, Home/End, Enter/Space run, → / ← open / close a submenu, Esc closes and refocuses the trigger.
-function Menu({ items = [], trigger, anchor, inline = false, open, defaultOpen = false, onOpenChange, onSelect, align = 'end', position = 'down', width = 200,
-  label = 'Menu', className, style }) {
+// open / defaultOpen / onOpenChange, onSelect(item), align end|start, position down|up (flips when there is no room),
+// size s (200, action menus) | l (320 = popover width, items with descriptions), label (accessible name).
+// more (true or a label): the standard "more actions" trigger, a ghost S IconButton with ⋯ (system-dots-horizont).
+// Item extras: destructive (red, moved last after a divider), copy (a "Copy link" item: shows "Copied" ✓ for 2 s and stays open),
+// submenu (same as items). width (px) only for a one-off fixed width; prefer size.
+// The one menu of the kit (2.0.3: replaces ActionMenu, CommentMenu, CooperMenu and the comment/thread ⋯ menus).
+// Keyboard: ↑/↓ move, Home/End, Enter/Space run, → / ← open / close a submenu, Esc closes and refocuses the trigger.
+function Menu({ items = [], trigger, more, anchor, inline = false, open, defaultOpen = false, onOpenChange, onSelect, align = 'end', position = 'down',
+  size = 's', width, label = 'Menu', className, style }) {
   const [isOpen, setOpenRaw] = useControlled(open, defaultOpen, onOpenChange);
   const [sub, setSub] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const copyTimer = useRef();
+  useEffect(() => () => clearTimeout(copyTimer.current), []);
+  const fireCopied = () => { setCopied(true); clearTimeout(copyTimer.current); copyTimer.current = setTimeout(() => setCopied(false), 2000); };
+  if (!trigger && more) trigger = <IFS.IconButton type="ghost" size="s" icon="system-dots-horizont" label={typeof more === 'string' ? more : label} />;
+  const norm = arr => {
+    const shown = arr.filter(it => it && !it.hidden);
+    const ok = shown.filter(it => !it.destructive), bad = shown.filter(it => it.destructive);
+    const joined = [...ok, ...(ok.length && bad.length && !ok[ok.length - 1].divider ? [{ divider: true }] : []), ...bad];
+    return joined.map(it => (it.divider || it.title) ? it : {
+      ...it, danger: it.danger || it.destructive, items: Array.isArray(it.items) ? norm(it.items) : Array.isArray(it.submenu) ? norm(it.submenu) : undefined,
+      ...(it.copy ? { keepOpen: true, label: copied ? 'Copied' : (it.label || 'Copy link'), icon: copied ? 'system-check' : (it.icon || 'system-link'),
+        onClick: (x, e) => { fireCopied(); it.onClick && it.onClick(x, e); } } : {}),
+    });
+  };
   const rootRef = useRef(null), floatRef = useRef(null), listRef = useRef(null);
   const anchorRef = useMemo(() => ({ get current() {
     if (!anchor) return rootRef.current;
@@ -555,8 +575,8 @@ function Menu({ items = [], trigger, anchor, inline = false, open, defaultOpen =
     });
     return () => cancelAnimationFrame(id);
   }, [isOpen]);
-  const list = items.filter(it => it && !it.hidden);
-  const subItems = sub != null && list[sub] && list[sub].items ? list[sub].items.filter(it => it && !it.hidden) : null;
+  const list = norm(items);
+  const subItems = sub != null && list[sub] && list[sub].items ? list[sub].items : null;
   const side = align === 'end' ? 'left' : 'right';
   const run = (it, e) => { if (!it.keepOpen) { setOpen(false); if (trigger) focusTrigger(); } if (it.onClick) it.onClick(it, e); if (onSelect) onSelect(it); };
   const body = (
@@ -565,8 +585,8 @@ function Menu({ items = [], trigger, anchor, inline = false, open, defaultOpen =
         if (e.key === 'Escape' && !inline) { e.preventDefault(); e.stopPropagation(); if (subItems) { setSub(null); return; } setOpen(false); focusTrigger(); }
         else if (e.key === 'Tab' && !inline) setOpen(false);
       }}>
-      <MenuList items={list} label={label} width={width} onRun={run} listRef={listRef} sub={sub} setSub={setSub} submenuSide={side} />
-      {subItems && <MenuList items={subItems} label={list[sub].label} width={width} onRun={run} submenuSide={side} />}
+      <MenuList items={list} label={label} width={width} size={size} onRun={run} listRef={listRef} sub={sub} setSub={setSub} submenuSide={side} />
+      {subItems && <MenuList items={subItems} label={list[sub].label} width={width} size={size} onRun={run} submenuSide={side} />}
     </div>
   );
   if (inline) return body;

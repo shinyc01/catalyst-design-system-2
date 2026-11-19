@@ -23,6 +23,8 @@
   --region-sidenav:var(--layout-sidebar-width);--region-rail:var(--layout-rail-width);
   /* Overlay widths */
   --overlay-width-s:320px;--overlay-width-m:440px;--overlay-width-l:600px;
+  /* Menus: two widths (2.0.3). S for action menus (Carbon 180–288, Material 112–280); L = the popover width, for items with descriptions */
+  --menu-width-s:200px;--menu-width-l:var(--overlay-width-s);
 }
 @media (min-width:600px){:root{--layout-columns:8;--page-margin:var(--space-600)}}
 @media (min-width:1024px){:root{--layout-columns:12}}

@@ -304,7 +304,7 @@ key: 1e822b0788d92859ccef310dc14e833c0d4f7d4c · node: 153:61939 · variants: Si
 ### single-select-list-molecule
 key: 445715ffc4f2e6d072e576b8ceb05991fb5d72b2 · node: 153:62054 · variants: State=[Default] · swap: Slot
 **Use for** (Figma) The option popup. Group headers appear only when the list mixes kinds/sources (e.g. Recent / Suggested / Results); a plain or short list has no header.
-**Code** `Select`'s option list, and **`Menu`**: the same list used as a command menu anchored to a trigger (⋮ row menus, split-button menus, "more actions"). Items take an icon, shortcut, description, danger, disabled with reason, a selected check, dividers, section titles and submenus. (inferred) Use `Menu` for every ⋮ / overflow menu rather than a one-off list; pattern helpers such as ActionMenu, CooperMenu and SplitButton are built on it.
+**Code** `Select`'s option list, and **`Menu`**: the same list used as a command menu anchored to a trigger (⋯ "more actions" via `more`, split-button menus; sizes s 200 / l 320; destructive last, copy-link items). Items take an icon, shortcut, description, danger, disabled with reason, a selected check, dividers, section titles and submenus. (inferred) Use `Menu` for every ⋮ / overflow menu rather than a one-off list; pattern helpers such as ActionMenu, CooperMenu and SplitButton are built on it.
 
 ### single-select-organism
 key: a75ef0a0942e69679ba6f4dd043aabdc29d3856a · node: 3273:26820 · variants: List position=[Down|Up]

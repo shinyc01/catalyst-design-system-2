@@ -108,7 +108,7 @@ onApprove(step, index) / onReject(step, index) also fire.
 **Tier:** Component
 One version entry. Props: title (e.g. "Version 3"), badge (show-badge; label or Badge props, e.g. "Current"), description,
 author = { name, avatar }, time, activity = TimelineItem props[] (shown when expanded), expanded / defaultExpanded / onExpandedChange,
-onOpen (click the card or the name: open that version), menu (node in the top-right slot, e.g. an ActionMenu ⋮; default ⋯ =
+onOpen (click the card or the name: open that version), menu (node in the top-right slot, e.g. a Menu with more; default ⋯ =
 onMenu, or Rename when absent).
 Rename: renaming / defaultRenaming / onRenamingChange (controlled or not; double-click on the title also starts it),
 renameValue / onRenameChange(value) (the draft; resets to the title when renaming starts), onRenameSubmit(value) (Enter / ✓;
@@ -129,7 +129,7 @@ Props: versions = VersionEntry props[] (each may carry `key`); onRename(index, t
 Figma: comment-content-card (260:86722) — one reply. Variants State=Default|Hover, Tagged user=False|True.
 Props: name, time (time ago), avatar = Avatar props, you (adds "(you)"), children = text (string: @mentions render as
 tagged-user badges), mentions = names to match exactly, menuItems (⋯ menu shown on hover/focus — e.g. Edit / Delete on your
-own reply; ActionMenu items), onMenu (plain ⋯ button instead of a menu), state hover (gallery).
+own reply; Menu items), onMenu (plain ⋯ button instead of a menu), state hover (gallery).
 `function Comment({ name, time, avatar, you, children, mentions, onMenu, menuItems, state, className, ...rest })`
 
 ### CommentComposer
@@ -187,7 +187,7 @@ onAdd (recommended: "+" shown on hover/focus), loading, state hover|focus (galle
 Figma: file-card (1440:5465) — legacy ("Documents"; guide: "can be content-card-organism").
 Props: name (long names truncate in the middle, full name as tooltip), date, error (State=error: red tile + delete / retry),
 loading, onDownload (shown on hover/focus), onDelete, onRetry, onClick (open), actions (node replacing the right-hand buttons,
-e.g. a ⋮ ActionMenu or Tooltip-wrapped icon-buttons; shown on hover/focus, always on error), active (keeps the hover look and
+e.g. a Menu with more or Tooltip-wrapped icon-buttons; shown on hover/focus, always on error), active (keeps the hover look and
 the actions visible, e.g. while its menu is open), state hover (gallery).
 `function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, onClick, actions, active, state, className, ...rest })`
 
@@ -223,7 +223,15 @@ Leave out children for Figma show-label=false.
 Figma: icon-button (71:4250)
 Props: icon (required), type ghost|primary|secondary|tertiary, size l|m|s, shape square|circle.
 Always pass a `label` — it becomes the accessible name and tooltip.
-`function IconButton({ icon, label, type = 'ghost', size = 'm', shape = 'square', state, className, ...rest })`
+`function IconButton({ icon, iconVariant, label, type = 'ghost', size = 'm', shape = 'square', state, className, ...rest })`
+
+### EvidenceButton
+**Tier:** Component
+Figma: the circle Tertiary S icon-button with the Cooper evidence icon (content-card-organism show-icon-button,
+panel-organism show-evidence-chain, the Cooper button of every core chart header). One button for all of them (2.0.3):
+the chart header's look (cooper-evidence-icon, medium variant) at the standard 16px icon size.
+Props: onClick, active (the chain for this value is open → aria-expanded + pressed look), label (accessible name).
+`function EvidenceButton({ onClick, active, label = 'Evidence chain', className, ...rest })`
 
 ## canvas
 
@@ -1281,7 +1289,7 @@ style (position the popover), children.
 
 ### ApprovalChainTable
 **Tier:** Pattern helper
-Pattern helper: the approval chain table with note/push/filter rules — built from ApprovalStatus, Avatar, Button, ActionMenu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table with a status rail (status + dashed connector),
+Pattern helper: the approval chain table with note/push/filter rules — built from ApprovalStatus, Avatar, Button, Menu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table with a status rail (status + dashed connector),
 USER (filter when > 3 approvers), NOTE, and in the full view COMMENT, LAST NOTIFIED and an action column.
 Props:
   approvers / defaultApprovers / onChange(approvers) — [{ id, name, role, avatar (Avatar props), status success|awaiting|empty|rejected|revisions,
@@ -1427,15 +1435,6 @@ actionRequired (Figma show-action-required: Badge "Action required"; never on Re
 selected (Figma State=Selected: the thread whose callout is open), state hover|selected|focus (forced, gallery),
 onClick (open the thread), onResolve (✓ on hover — absent on Resolved), menu = ⋯ items [{ label, icon, onClick, copy }].
 `function CommentDrawerCard({ type = 'read', number, place, name, time, children, avatar, avatars = [], actionRequired, cooperLabel = 'Need review', selected, state, onClick, onResolve, menu, className, ...rest })`
-
-### CommentMenu
-**Tier:** Pattern helper
-Pattern helper: thin ⋯ menu (Copy link → "Copied" 2 s) — built from IconButton + ActionMenu (Table) inline list.
-Duplicates ActionMenu / CooperMenu on purpose as a thin wrapper; replace with a shared Menu if one is added.
-The ⋯ menus on this page: single-select-list-molecule (153:62054) of S (28) single-select-list-atoms, 160 wide,
-drawn by the kit's ActionMenu list. An item with copy:true is "Copy link": on click its label turns to "Copied" (✓) and
-reverts after 2 s (Figma note). Used by CommentDrawerCard and CommentCallout.
-`function CommentMenu({ items = [], label = 'More actions', open, onOpenChange, className })`
 
 ### CommentCallout
 **Tier:** Pattern helper
@@ -1687,12 +1686,6 @@ History search overlay (Patterns "History- search" 67:125364): search field + re
 Props: chats (as HistoryPanel), query / defaultQuery / onQueryChange, onOpenChat(id), onClose, activeChatId.
 `function HistorySearch({ chats = [], query, defaultQuery = '', onQueryChange, onOpenChat, onClose, activeChatId, className, ...rest })`
 
-### CooperMenu
-**Tier:** Pattern helper
-Pattern helper: action menu for history rows — built from Menu, anchored at the clicked ⋯ (a DOMRect) so the scroll area can't clip it.
-Props: anchor (DOMRect), items [{ icon, label, onClick, hidden, danger }], onClose.
-`function CooperMenu({ anchor, items = [], onClose })`
-
 ### AgentWindow
 **Tier:** Component
 **In handovers:** placed 128× (Value, Build, Explore, Plan, Command) · usual: view expanded 93% · speaking? yes 97% · Speaking true 100%
@@ -1903,13 +1896,6 @@ empty (true → "Peer benchmark isn't available" empty state; no action — noth
 emptyHeading / emptyBody to override the copy.
 `function PeerBenchmark({ description, summary = [], scope, empty, emptyHeading = 'Peer benchmark isn’t available', emptyBody = 'There are too few comparable ideas to compare fairly. Cooper won’t show a benchmark it can’t stand behind.', className, ...rest })`
 
-### EvidenceButton
-**Tier:** Pattern helper
-Figma: the circle Tertiary S icon-button with the Cooper evidence icon (content-card-organism show-icon-button,
-panel-organism show-evidence-chain). The trigger sits next to every field, block or card Cooper filled in.
-Props: onClick, active (the chain for this value is open → aria-expanded), label (accessible name).
-`function EvidenceButton({ onClick, active, label = 'Evidence chain', className, ...rest })`
-
 ### EvidenceChainDrawer
 **Tier:** Pattern helper
 ------------------------------------------------------------------------------------------ 
@@ -2069,17 +2055,6 @@ Investment-name display (Figma "Name display"). Truncation is display-only; the 
 Props: children = full text (string), mode end|middle|start|wrap|segment (a table-level, per-tenant setting), className.
 `function TruncatedText({ children, mode = 'end', className, tooltip = true })`
 
-### ActionMenu
-**Tier:** Pattern helper
-───────────────────────────── More-actions menu ─────────────────────────────
-Pattern helper: More-actions (⋮) menu — built from IconButton + Menu (single-select-list-molecule with single-select-list-atoms).
-Props: items [{ label, icon, onClick(event), disabled, reason (tooltip shown on a disabled action), destructive, danger (red), divider,
-shortcut, submenu (array of items) }], label (default "More actions"), open / defaultOpen / onOpenChange, align end|start,
-inline (just the list), width (default 180).
-Rules (Figma): an action that never applies is not listed; one that applies but is unavailable is disabled with a reason;
-destructive actions (Archive, Delete) go last after a divider — the menu sorts them there.
-`function ActionMenu({ items = [], label = 'More actions', open, defaultOpen = false, onOpenChange, align = 'end', inline, width = 180, className })`
-
 ### TableToolbar
 **Tier:** Pattern helper
 ───────────────────────────── Table toolbar ─────────────────────────────
@@ -2120,7 +2095,7 @@ Props:
     sort is a temporary override ↓ → ↑ → off, rows drag to re-rank, pinned rows stay on top.
   defaultSort { key, dir }, filterTabs { variant: 'segmented'|'tabs', items: [{ value, label, match(row) }], defaultValue },
   search { placeholder, suggestions, noResults (suggestion labels), match(row, query), delay } — Cooper search over the rows,
-  onOpen(row) (row click), onPreview(row) + previewId (eye button on hover), rowActions(row) → ActionMenu items,
+  onOpen(row) (row click), onPreview(row) + previewId (eye button on hover), rowActions(row) → Menu items,
   follow (show icon-button-following in the actions column), onRename(row, name) (double-click the name; must be unique),
   collaboration: handled by columns with render → CollaborationBadge.
   configurable { suggestions: [{ key, title, ...column, value(row) }] } → toolbar settings button + Columns drawer,
@@ -2336,9 +2311,14 @@ a disabled item), selected (check), prefix (node before the label), items (subme
   | { divider: true } | { title: 'Section' }],
 trigger (element; gets aria-haspopup/aria-expanded and the pressed look) or anchor (DOMRect or element, for menus opened elsewhere)
 or inline (just the list, in place: galleries and custom popovers),
-open / defaultOpen / onOpenChange, onSelect(item), align end|start, position down|up (flips when there is no room), width (default 200),
-label (accessible name). Keyboard: ↑/↓ move, Home/End, Enter/Space run, → / ← open / close a submenu, Esc closes and refocuses the trigger.
-`function Menu({ items = [], trigger, anchor, inline = false, open, defaultOpen = false, onOpenChange, onSelect, align = 'end', position = 'down', width = 200, label = 'Menu', className, style })`
+open / defaultOpen / onOpenChange, onSelect(item), align end|start, position down|up (flips when there is no room),
+size s (200, action menus) | l (320 = popover width, items with descriptions), label (accessible name).
+more (true or a label): the standard "more actions" trigger, a ghost S IconButton with ⋯ (system-dots-horizont).
+Item extras: destructive (red, moved last after a divider), copy (a "Copy link" item: shows "Copied" ✓ for 2 s and stays open),
+submenu (same as items). width (px) only for a one-off fixed width; prefer size.
+The one menu of the kit (2.0.3: replaces ActionMenu, CommentMenu, CooperMenu and the comment/thread ⋯ menus).
+Keyboard: ↑/↓ move, Home/End, Enter/Space run, → / ← open / close a submenu, Esc closes and refocuses the trigger.
+`function Menu({ items = [], trigger, more, anchor, inline = false, open, defaultOpen = false, onOpenChange, onSelect, align = 'end', position = 'down', size = 's', width, label = 'Menu', className, style })`
 
 ### Select
 **Tier:** Component

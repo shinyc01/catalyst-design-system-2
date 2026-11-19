@@ -587,12 +587,6 @@ function HistorySearch({ chats = [], query, defaultQuery = '', onQueryChange, on
   );
 }
 
-// Pattern helper: action menu for history rows — built from Menu, anchored at the clicked ⋯ (a DOMRect) so the scroll area can't clip it.
-// Props: anchor (DOMRect), items [{ icon, label, onClick, hidden, danger }], onClose.
-function CooperMenu({ anchor, items = [], onClose }) {
-  if (!anchor) return null;
-  return <IFS.Menu anchor={anchor} open onOpenChange={o => { if (!o && onClose) onClose(); }} items={items} width={180} align="end" label="Chat actions" />;
-}
 
 // ============================================================ recommendations (agent window)
 
@@ -928,7 +922,7 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
               onClick={open === 'trash' ? undefined : () => onOpenChat && onOpenChat(c.id)}
               onMore={open === 'trash' ? e => setMenu({ anchor: at(e), items: [{ icon: 'arrow-back-up', label: 'Restore', onClick: () => upd([c.id], { trashed: false }) }] }) : e => chatMenu(c, e)} />)}
       </FolderContent>}
-      {menu && <CooperMenu anchor={menu.anchor} items={menu.items} onClose={() => setMenu(null)} />}
+      {menu && <IFS.Menu anchor={menu.anchor} open onOpenChange={o => { if (!o) setMenu(null); }} items={menu.items} align="end" label="Chat actions" />}
       {search && <div style={{ position: 'fixed', inset: 0, zIndex: 40, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '22vh' }}>
         <IFS.Overlay type="base" onClick={() => setSearch(false)} />
         <HistorySearch chats={live} activeChatId={activeChatId} onClose={() => setSearch(false)} onOpenChat={id => { setSearch(false); onOpenChat && onOpenChat(id); }} style={{ position: 'relative' }} />
@@ -1004,7 +998,7 @@ Object.assign(IFS, {
   CooperHistory,
   ChatHeader, UserMessage, Attachment, TextMessageInput, VoiceMessageInput, SpeakingControl, ChatCard, ChatLink, CooperProgress, CooperMessage,
   ChatCollapsedBar, ChatCompactPanel, ChatFullPanel, FolderItem, SectionHeader, ChatHistoryCard, SearchChatHistoryCard, ChatReminderCard,
-  HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, CooperMenu, AgentWindow, RecommendationImpact, RecommendationGroup,
+  HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, AgentWindow, RecommendationImpact, RecommendationGroup,
   RecommendationItem, RecommendationDetail, CooperChat,
 });
 export {
@@ -1012,6 +1006,6 @@ export {
   CooperHistory,
   ChatHeader, UserMessage, Attachment, TextMessageInput, VoiceMessageInput, SpeakingControl, ChatCard, ChatLink, CooperProgress, CooperMessage,
   ChatCollapsedBar, ChatCompactPanel, ChatFullPanel, FolderItem, SectionHeader, ChatHistoryCard, SearchChatHistoryCard, ChatReminderCard,
-  HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, CooperMenu, AgentWindow, RecommendationImpact, RecommendationGroup,
+  HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, AgentWindow, RecommendationImpact, RecommendationGroup,
   RecommendationItem, RecommendationDetail, CooperChat,
 };

@@ -207,7 +207,7 @@ export default IFS_GALLERY;
             {draft && <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
               <IFS.Stepper steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} current={1} /></div>}
             {menu && <div style={{ position: 'absolute', left: 120, top: 40, zIndex: 5 }}>
-              <IFS.ActionMenu inline items={[{ label: 'Activity', icon: 'users-group', onClick: () => { setMenu(false); onActivity(); } }, { divider: true },
+              <IFS.Menu inline items={[{ label: 'Activity', icon: 'users-group', onClick: () => { setMenu(false); onActivity(); } }, { divider: true },
                 { label: 'Duplicate', icon: 'duplicate', onClick: () => { setMenu(false); onDuplicate(); } }, { label: 'Rename', icon: 'system-edit-rename', onClick: () => setMenu(false) }]} /></div>}
           </div>
           <IFS.CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />

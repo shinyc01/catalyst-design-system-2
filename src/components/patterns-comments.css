@@ -23,10 +23,6 @@
 .ifs-cpin__text{color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
-/* ---------- CommentMenu (⋯ + single-select-list-molecule, 160 wide) ---------- */
-.ifs-cmenu{position:relative;display:inline-flex}
-.ifs-cmenu__pop{position:absolute;top:calc(100% + var(--space-100));right:0;z-index:var(--z-index-z-popover)}
-.ifs-cmenu__pop .ifs-action-menu__list{width:160px;min-width:0}
 
 /* ---------- CommentDrawerCard — comment-drawer-card (1231:170874) ----------
    380 wide, padding 12/16, gap 8. Hover: background/elevation-1/secondary. Selected: padding 4/8 around an 8px-radius box

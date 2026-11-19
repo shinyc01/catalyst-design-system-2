@@ -77,7 +77,7 @@
 .ifs-version__card--link{cursor:pointer}
 .ifs-version__open{padding:0;border:0;background:none;cursor:pointer;text-align:left;border-radius:var(--radius-radius-100)}
 .ifs-version__open:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
-/* top-right slot: default ⋯ or a passed menu (e.g. ActionMenu ⋮); shown on hover/focus and while its menu is open */
+/* top-right slot: default ⋯ or a passed menu (e.g. a Menu with more); shown on hover/focus and while its menu is open */
 .ifs-version__menu{position:absolute;top:var(--space-200);right:var(--space-200);display:flex;opacity:0;z-index:2}
 .ifs-version__card:hover .ifs-version__menu,.ifs-version__card:focus-within .ifs-version__menu,.ifs-version__card[data-state=hover] .ifs-version__menu,
 .ifs-version__menu:has([aria-expanded=true]){opacity:1}

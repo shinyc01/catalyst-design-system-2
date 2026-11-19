@@ -183,8 +183,8 @@ Format (read by tools/gen-stories.mjs): `### <story section name>`, then one bul
 
 These are pattern helpers: compositions built from kit components to implement a pattern's rules. They have no Figma component. Decide for each: promote it to a real IFS DS component (design it in Figma, then the kit will match), keep it as a helper, or drop it.
 
-### ActionMenu
-- Three near-identical menus exist: `ActionMenu` (Table), `CooperMenu` (Cooper) and `CommentMenu` (Comments). All are single-select-list-molecule used as an action menu. Several agents asked for one standalone **Menu** component. Recommend: add Menu to the DS.
+### Menu (resolved 2.0.3)
+- Resolved: `ActionMenu`, `CooperMenu`, `CommentMenu` and the comment/thread menus are now one `Menu` (`more` trigger ⋯, size s | l). Original note: All are single-select-list-molecule used as an action menu. Several agents asked for one standalone **Menu** component. Recommend: add Menu to the DS.
 
 ### WidgetFrame
 - The frame every dashboard widget sits in (header, hover actions, ⋮ menu). Figma draws it as content-card variations. Candidate for a real `widget-frame` component.

@@ -183,38 +183,13 @@ function ApprovalChain({ steps, defaultSteps = [], onChange, onApprove, onReject
   );
 }
 
-/* ===================================================== ⋯ menu (shared by the thread header, own replies) ===================================================== */
-
-// "Copy link" item: its label turns to "Copied" (✓) for 2 s (Figma 165:406810).
-function useActCopied() {
-  const [copied, setCopied] = React.useState(false);
-  const t = React.useRef();
-  React.useEffect(() => () => clearTimeout(t.current), []);
-  const fire = () => { setCopied(true); clearTimeout(t.current); t.current = setTimeout(() => setCopied(false), 2000); };
-  return [copied, fire];
-}
-// IconButton + Menu (single-select-list-molecule 153:62054, 160 wide), rendered at <body> level so the thread can't clip it.
-// items = ActionMenu items (destructive ones go last after a divider); an item with copy:true is "Copy link" (stays open, shows "Copied").
-function ActMenu({ items = [], label = 'More actions', icon = 'system-dots-horizont', open, onOpenChange, className }) {
-  const [isOpen, setOpen] = useActValue(open, false, onOpenChange);
-  const [copied, fireCopied] = useActCopied();
-  const safe = items.filter(i => !i.destructive), bad = items.filter(i => i.destructive);
-  const list = [...safe, ...(bad.length && safe.length ? [{ divider: true }] : []), ...bad].map(it => it.divider ? it : it.copy
-    ? { ...it, keepOpen: true, label: copied ? 'Copied' : (it.label || 'Copy link'), icon: copied ? 'system-check' : 'system-link', onClick: (_, e) => { fireCopied(); it.onClick && it.onClick(e); } }
-    : { ...it, onClick: it.onClick ? (_, e) => it.onClick(e) : undefined });
-  return (
-    <IFS.Menu items={list} label={label} open={!!isOpen} onOpenChange={setOpen} width={160} className={actCx('ifs-act-menu', className)}
-      trigger={<IFS.IconButton type="ghost" size="s" icon={icon} label={label} />} />
-  );
-}
-
 /* ===================================================== VersionHistory ===================================================== */
 // Legacy reference: version-history-timeline (2277:5299). Built on the timeline base: the marker (M) is the
 // expand toggle; the Content slot holds the version card and, when expanded, a nested Timeline of activity.
 
 // One version entry. Props: title (e.g. "Version 3"), badge (show-badge; label or Badge props, e.g. "Current"), description,
 // author = { name, avatar }, time, activity = TimelineItem props[] (shown when expanded), expanded / defaultExpanded / onExpandedChange,
-// onOpen (click the card or the name: open that version), menu (node in the top-right slot, e.g. an ActionMenu ⋮; default ⋯ =
+// onOpen (click the card or the name: open that version), menu (node in the top-right slot, e.g. a Menu with more; default ⋯ =
 // onMenu, or Rename when absent).
 // Rename: renaming / defaultRenaming / onRenamingChange (controlled or not; double-click on the title also starts it),
 // renameValue / onRenameChange(value) (the draft; resets to the title when renaming starts), onRenameSubmit(value) (Enter / ✓;
@@ -321,7 +296,7 @@ function renderMentions(text, mentions) {
 // Figma: comment-content-card (260:86722) — one reply. Variants State=Default|Hover, Tagged user=False|True.
 // Props: name, time (time ago), avatar = Avatar props, you (adds "(you)"), children = text (string: @mentions render as
 // tagged-user badges), mentions = names to match exactly, menuItems (⋯ menu shown on hover/focus — e.g. Edit / Delete on your
-// own reply; ActionMenu items), onMenu (plain ⋯ button instead of a menu), state hover (gallery).
+// own reply; Menu items), onMenu (plain ⋯ button instead of a menu), state hover (gallery).
 function Comment({ name, time, avatar, you, children, mentions, onMenu, menuItems, state, className, ...rest }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   return (
@@ -335,7 +310,7 @@ function Comment({ name, time, avatar, you, children, mentions, onMenu, menuItem
         <div className="ifs-comment__text">{renderMentions(children, mentions)}</div>
       </div>
       {menuItems && menuItems.length > 0
-        ? <ActMenu className="ifs-comment__menu" label="Comment actions" items={menuItems} open={menuOpen} onOpenChange={setMenuOpen} />
+        ? <IFS.Menu more className="ifs-comment__menu" label="Comment actions" items={menuItems} open={menuOpen} onOpenChange={setMenuOpen} />
         : onMenu && <IFS.IconButton type="ghost" size="s" icon="system-dots-horizont" label="Comment actions" className="ifs-comment__menu" onClick={onMenu} />}
     </div>
   );
@@ -550,7 +525,7 @@ function CommentThread({ number = '#00', comments, defaultComments = [], onComme
         <div className="ifs-thread__title"><span>Comment</span><span className="ifs-thread__number">{number}</span></div>
         <div className="ifs-thread__buttons">
           {onMenu ? <IFS.IconButton type="ghost" size="s" icon="system-dots-horizont" label="More actions" onClick={onMenu} />
-            : <ActMenu label="Thread actions" items={headerItems} />}
+            : <IFS.Menu more label="Thread actions" items={headerItems} />}
           {!isResolved && <IFS.Tooltip content="Resolve"><IFS.IconButton type="ghost" size="s" icon="system-circle-check" label="Resolve thread"
             className="ifs-thread__resolve" onClick={() => setResolved(true)} /></IFS.Tooltip>}
           <IFS.IconButton type="ghost" size="s" icon="system-close" label="Close" onClick={onClose} />
@@ -685,7 +660,7 @@ function FileCardName({ name }) {
 // Figma: file-card (1440:5465) — legacy ("Documents"; guide: "can be content-card-organism").
 // Props: name (long names truncate in the middle, full name as tooltip), date, error (State=error: red tile + delete / retry),
 // loading, onDownload (shown on hover/focus), onDelete, onRetry, onClick (open), actions (node replacing the right-hand buttons,
-// e.g. a ⋮ ActionMenu or Tooltip-wrapped icon-buttons; shown on hover/focus, always on error), active (keeps the hover look and
+// e.g. a Menu with more or Tooltip-wrapped icon-buttons; shown on hover/focus, always on error), active (keeps the hover look and
 // the actions visible, e.g. while its menu is open), state hover (gallery).
 function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, onClick, actions, active, state, className, ...rest }) {
   if (loading) return <div className={actCx('ifs-file-card', 'ifs-file-card--loading', 'ifs-skeleton', className)} aria-busy="true" {...rest} />;

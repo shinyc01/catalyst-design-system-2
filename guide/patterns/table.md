@@ -19,7 +19,7 @@ How data tables behave in the product: filtering, search, sorting, pinning and m
   - `ProgressBar`.
 - **Row controls**:
   - pin `IconButton` (`chat-pin`) and a drag handle (ranked tables).
-  - an actions column with the preview `IconButton` (`eye-opened`), `ActionMenu` (⋮) and `FollowButton` (icon-button-following).
+  - an actions column with the preview `IconButton` (`eye-opened`), `Menu more` (⋯) and `FollowButton` (icon-button-following).
   - `IFS.DropIndicator` (drop-indicator-atom, from the widget-builder family) while dragging.
 - **Surfaces**:
   - `RecordPreview`: a sidebar shown in the layout, panel-organism in Figma.

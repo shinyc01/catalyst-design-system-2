@@ -170,14 +170,10 @@ function WidgetFrame({ title, children, state, menu, onEditWithCooper, onCooper,
         </div>
         <div className="ifs-dv-header__hover">
           {onEditWithCooper !== false && <IFS.Button type="tertiary" size="s" iconLeft="cooper-system-icon" onClick={onEditWithCooper || undefined}>Edit with Cooper</IFS.Button>}
-          {menu && <IFS.Menu items={wbMenuItems(menu)} open={menuOpen} onOpenChange={setMenuOpen} width={152} align="end" label="Widget actions"
-            trigger={<IFS.IconButton type="ghost" size="s" icon="system-dots-vertical" label="Widget actions" />} />}
+          {menu && <IFS.Menu more items={wbMenuItems(menu)} open={menuOpen} onOpenChange={setMenuOpen} align="end" label="Widget actions" />}
           <span className="ifs-dv-header__divider" aria-hidden="true" />
         </div>
-        <button type="button" aria-label="Ask Cooper about this widget" title="Ask Cooper about this widget" onClick={onCooper}
-          className="ifs-icon-button ifs-icon-button--tertiary ifs-icon-button--s ifs-icon-button--circle">
-          <IFS.Icon name="cooper-evidence-icon" variant="medium" size={14} />
-        </button>
+        <IFS.EvidenceButton label="Ask Cooper about this widget" onClick={onCooper} />
       </div>
       <div className="ifs-dv-card__body wb-frame__body">{bare && React.isValidElement(children) && typeof children.type !== 'string' ? React.cloneElement(children, { bare: true }) : children}</div>
     </section>
