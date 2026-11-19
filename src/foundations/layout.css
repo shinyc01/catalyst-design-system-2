@@ -55,18 +55,31 @@
    .ifs-slot-right (side panel) on the right; .ifs-slot-top / .ifs-slot-bottom centre their content in the space left between.
    Every slot sits the page margin from the map edge and the page gap from its neighbours. Add .has-left / .has-right
    when those slots are filled. Below 1024 the left slot becomes a bottom sheet and the right slot overlays the map. */
-.ifs-slots{--slot-tools:calc(var(--control-h-m) + var(--space-150));
+.ifs-slots{--slot-inset:var(--page-margin) /* every slot sits this far in from the map's edges: tops, bottoms and the right edge line up (Nov 19) */;
+  --slot-tools:calc(var(--control-h-m) + var(--space-150));
   --slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap));--slot-r:var(--page-margin)}
 .ifs-slots.has-left{--slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap) + var(--region-panel-l) + var(--page-gap))}
 .ifs-slots.has-right{--slot-r:calc(var(--page-margin) + var(--region-panel) + var(--page-gap))}
-.ifs-slot-left{position:absolute;z-index:600;display:flex;top:var(--space-300);bottom:var(--space-300);
+.ifs-slot-left{position:absolute;z-index:600;display:flex;top:var(--slot-inset);bottom:var(--slot-inset);
   left:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap));width:var(--region-panel-l);max-width:calc(100% - 2 * var(--page-margin))}
-.ifs-slot-right{position:absolute;z-index:600;display:flex;top:var(--space-1000);bottom:var(--space-300);right:var(--page-margin);
+.ifs-slot-right{position:absolute;z-index:600;display:flex;top:var(--slot-inset);bottom:var(--slot-inset);right:var(--slot-inset);
   width:var(--region-panel);max-width:calc(100% - 2 * var(--page-margin))}
 .ifs-slot-top,.ifs-slot-bottom{position:absolute;z-index:500;left:var(--slot-l);right:var(--slot-r);display:flex;justify-content:center;pointer-events:none}
 .ifs-slot-top > *,.ifs-slot-bottom > *{pointer-events:auto;max-width:100%}
-.ifs-slot-top{top:var(--space-1000)}
-.ifs-slot-bottom{bottom:var(--space-300)}
+/* A floating bar in a slot is already centred by the slot: its slide-in only moves it up, so it ends on the shared edge */
+.ifs-slot-top > .ifs-floating-bar,.ifs-slot-bottom > .ifs-floating-bar{animation-name:ifs-slot-bar-in}
+@keyframes ifs-slot-bar-in{from{opacity:0;transform:translateY(var(--space-150))}to{opacity:1;transform:none}}
+.ifs-slot-top{top:var(--slot-inset)}
+.ifs-slot-bottom{bottom:var(--slot-inset)}
+/* Map tools in the left corners, on the same edges as the slots */
+.ifs-slot-tools,.ifs-slot-tools-bottom{position:absolute;z-index:500;left:var(--slot-inset)}
+.ifs-slot-tools{top:var(--slot-inset)}
+.ifs-slot-tools-bottom{bottom:var(--slot-inset)}
+/* Map legend in the bottom-right corner, on the same edges. With .has-legend the bottom slot centres between the
+   bottom tools and the legend, so they share the bottom edge without touching. */
+.ifs-slots{--slot-legend-w:210px /* map legend width (layout geometry) */}
+.ifs-slot-legend{position:absolute;z-index:500;right:var(--slot-inset);bottom:var(--slot-inset);width:var(--slot-legend-w);max-width:calc(100% - 2 * var(--slot-inset))}
+.ifs-slots.has-legend .ifs-slot-bottom{right:calc(var(--slot-inset) + var(--slot-legend-w) + var(--page-gap))}
 @media (max-width:1023px){
   .ifs-slots.has-left{--slot-l:calc(var(--page-margin) + var(--slot-tools) + var(--page-gap))}
   .ifs-slot-left{left:var(--page-margin);right:var(--page-margin);width:auto;top:auto;height:50%} /* bottom sheet */

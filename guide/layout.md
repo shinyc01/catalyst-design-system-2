@@ -33,6 +33,10 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 - Every slot sits the page margin from the map edge and the page gap from its neighbours, so nothing overlaps or needs dragging.
 - Below 1024: the left slot becomes a bottom sheet; the right slot overlays the map.
 
+- **Edges (Nov 19):** every slot sits one inset (`--slot-inset` = the page margin: 16 / 24 / 32 by screen width) from the map's edges. All top edges line up (map tools, large panel, top bar, side panel), all bottom edges line up, and the side panel lines up with the right edge.
+- **Corners:** map tools sit in the left corners (`.ifs-slot-tools`, `.ifs-slot-tools-bottom`); the map legend sits in the bottom-right corner (`.ifs-slot-legend`, 210 wide). With `.has-legend` the bottom slot centres between the bottom tools and the legend, a page gap from each.
+- A floating bar in a slot slides in vertically only, so it lands on the shared top edge.
+
 ## 5. AppShell: panel mode by job (decided Nov 19, 2.0.3)
 Benchmark: Fluent 2 (inline vs overlay drawer by task), Carbon for IBM Products (SidePanel slideIn per panel), Workday, Visa, Material 3 (standard vs modal; modal only for lack of room).
 
