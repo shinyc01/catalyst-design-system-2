@@ -1162,15 +1162,22 @@ With neither description nor eyebrow the title row is 32 tall and centred (the B
 **Tier:** Component
 AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map - Overview - Default" (4484:116532):
 48px NavBar across the top, 240px SideNav below it on the left, then the content column with the PageHeader
-(+ optional CanvasHeader) on top, a scrolling content area and an optional docked side panel on the right (2.0.3, from the
-layout branch). Bar, sidebar, header and panel stay put; only content scrolls.
+(+ optional CanvasHeader) on top, a scrolling content area and an optional side panel on the right.
+Bar, sidebar, header and panel stay put; only content scrolls.
 Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
-e.g. a bottom sheet), children (content), height (default 100vh).
-Panels and screen width (guide/layout.md, Nov 18 decision): md and up (1024+) the side nav and the panel push the content,
-which reflows onto its own columns; below md they start collapsed and expand over the content (overlay). The shell measures
-its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a panel with a controlled
-`expanded`, is left alone.
-`function AppShell({ navBar, sideNav, header, panel, bottom, children, height, className, style, ...rest })`
+e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
+Panel mode (decided Nov 19, guide/layout.md): set by the panel's JOB, not the screen.
+  push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
+        whole page together (readiness evaluation, Cooper chat, comments, widgets, approval chain). Default.
+  over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
+        is context (row / record preview, evidence chain, activity). Outside click and Esc call onPanelClose
+        (clicking another row closes and reopens, so the preview swaps).
+  panelMode beats the panel component's own default (Component.panelMode); below md (1024) push falls back to over:
+  the panel starts collapsed to its rail and expands over the content.
+Side nav below md: starts as a rail and expands over the content; outside click and Esc collapse it again.
+The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a
+panel with a controlled `expanded`, is left alone.
+`function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, className, style, ...rest })`
 
 ## patterns-activity
 

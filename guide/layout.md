@@ -33,9 +33,16 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 - Every slot sits the page margin from the map edge and the page gap from its neighbours, so nothing overlaps or needs dragging.
 - Below 1024: the left slot becomes a bottom sheet; the right slot overlays the map.
 
-## 5. AppShell: panels by screen width (2.0.3, from the layout branch)
-- `AppShell` has a `panel` slot: the docked side panel sits right of the content, under the page header, above the bottom sheet.
-- md and up (1024+): the side nav and the panel push the content; the page beside them reflows onto its own columns.
-- Below md: both start collapsed (rails) and expand over the content (overlay); the content keeps a rail's width free.
-- The page grid follows the content area (container `content`), so a docked panel narrows the columns like a smaller screen: four stat cards go 2 × 2.
-- Controlled `collapsed` (SideNav) or `expanded` (Panel) props are left alone.
+## 5. AppShell: panel mode by job (decided Nov 19, 2.0.3)
+Benchmark: Fluent 2 (inline vs overlay drawer by task), Carbon for IBM Products (SidePanel slideIn per panel), Workday, Visa, Material 3 (standard vs modal; modal only for lack of room).
+
+| Mode | When | Kit panels (default) |
+|---|---|---|
+| `push` | The user works with the panel and the whole page together; the content shrinks and reflows onto its own columns | Panel, readiness evaluation, Cooper chat (ChatFullPanel), CommentsPanel, WidgetsDrawer, ApprovalChainPanel, TraceReport |
+| `over` | The panel is the focus and the page is context (the names on the left stay visible). No scrim; the page stays usable | RecordPreview (row / record preview), EvidenceChainDrawer, ActivityPanel |
+
+- One mode per panel, set by its job (`Component.panelMode`); a screen overrides it only with `AppShell panelMode`. No third mode.
+- `over` panels close on an outside click or Esc (`onPanelClose`); clicking another row closes and reopens, so the preview swaps.
+- Below md (1024) a `push` panel has no room: it becomes a rail and expands over the content; outside click / Esc fold it back.
+- Side nav below md: a rail that expands over the content; outside click / Esc fold it back.
+- The page grid follows the content area (container `content`): a pushed panel narrows the columns like a smaller screen.

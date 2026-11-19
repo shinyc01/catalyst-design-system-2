@@ -714,6 +714,7 @@ function WidgetsDrawer({ open, onOpenChange, items = [], onAdd, onGrab, title = 
     </IFS.Drawer>
   );
 }
+WidgetsDrawer.panelMode = 'push'; // AppShell panel mode by job (Nov 19): used together with the whole page
 
 Object.assign(IFS, { StatCardsRow, PreviewWidgetCard, WidgetCard, ResizeHandle, DropIndicator, WidgetViewChangePosition, WidgetFrame, WidgetBoard, WidgetsDrawer, widgetLayoutEngine: makeEngine });
 export { StatCardsRow, PreviewWidgetCard, WidgetCard, ResizeHandle, DropIndicator, WidgetViewChangePosition, WidgetFrame, WidgetBoard, WidgetsDrawer, makeEngine as widgetLayoutEngine };

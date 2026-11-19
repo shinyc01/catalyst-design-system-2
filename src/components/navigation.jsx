@@ -408,18 +408,35 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 
 // AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map - Overview - Default" (4484:116532):
 // 48px NavBar across the top, 240px SideNav below it on the left, then the content column with the PageHeader
-// (+ optional CanvasHeader) on top, a scrolling content area and an optional docked side panel on the right (2.0.3, from the
-// layout branch). Bar, sidebar, header and panel stay put; only content scrolls.
+// (+ optional CanvasHeader) on top, a scrolling content area and an optional side panel on the right.
+// Bar, sidebar, header and panel stay put; only content scrolls.
 // Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
-// e.g. a bottom sheet), children (content), height (default 100vh).
-// Panels and screen width (guide/layout.md, Nov 18 decision): md and up (1024+) the side nav and the panel push the content,
-// which reflows onto its own columns; below md they start collapsed and expand over the content (overlay). The shell measures
-// its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a panel with a controlled
-// `expanded`, is left alone.
+// e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
+// Panel mode (decided Nov 19, guide/layout.md): set by the panel's JOB, not the screen.
+//   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
+//         whole page together (readiness evaluation, Cooper chat, comments, widgets, approval chain). Default.
+//   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
+//         is context (row / record preview, evidence chain, activity). Outside click and Esc call onPanelClose
+//         (clicking another row closes and reopens, so the preview swaps).
+//   panelMode beats the panel component's own default (Component.panelMode); below md (1024) push falls back to over:
+//   the panel starts collapsed to its rail and expands over the content.
+// Side nav below md: starts as a rail and expands over the content; outside click and Esc collapse it again.
+// The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a
+// panel with a controlled `expanded`, is left alone.
 const SHELL_SIZES = [[1920, 'xl'], [1440, 'lg'], [1024, 'md'], [600, 'sm'], [0, 'xs']];
 const shellSizeOf = w => SHELL_SIZES.find(([min]) => w >= min)[1];
-function AppShell({ navBar, sideNav, header, panel, bottom, children, height, className, style, ...rest }) {
-  const ref = React.useRef(null);
+// Outside pointer-down or Esc while `active` → onDismiss (ignores clicks inside `ref`).
+function useShellDismiss(ref, active, onDismiss) {
+  React.useEffect(() => {
+    if (!active) return undefined;
+    const down = e => { if (ref.current && !ref.current.contains(e.target) && !(e.target.closest && e.target.closest('.ifs-floating,.ifs-modal,[role="dialog"]'))) onDismiss(); };
+    const key = e => { if (e.key === 'Escape' && !e.defaultPrevented) onDismiss(); };
+    document.addEventListener('pointerdown', down, true); document.addEventListener('keydown', key);
+    return () => { document.removeEventListener('pointerdown', down, true); document.removeEventListener('keydown', key); };
+  }, [active, onDismiss]);
+}
+function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, className, style, ...rest }) {
+  const ref = React.useRef(null), sideRef = React.useRef(null), panelRef = React.useRef(null);
   const [size, setSize] = React.useState(() => shellSizeOf(typeof window !== 'undefined' ? window.innerWidth : 1440));
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el) return undefined;
@@ -429,29 +446,45 @@ function AppShell({ navBar, sideNav, header, panel, bottom, children, height, cl
     ro && ro.observe(el);
     return () => ro && ro.disconnect();
   }, []);
-  const overlay = size === 'xs' || size === 'sm';
-  const navOverlay = !!sideNav && overlay;
-  const panelOverlay = !!panel && overlay;
+  const narrow = size === 'xs' || size === 'sm';
+  const job = panelMode || (React.isValidElement(panel) && panel.type && panel.type.panelMode) || 'push';
+  const over = !!panel && job === 'over';
+  const pushRail = !!panel && job === 'push' && narrow; // push panel with no room: rail + expands over
+  const navOverlay = !!sideNav && narrow;
+
+  // Side nav below md: AppShell owns collapse (unless controlled) so outside click / Esc can fold it back.
+  const navCtl = React.isValidElement(sideNav) && sideNav.props.collapsed !== undefined;
+  const [navCollapsed, setNavCollapsed] = React.useState(true);
+  React.useEffect(() => { setNavCollapsed(true); }, [navOverlay]);
   let nav = sideNav;
-  if (React.isValidElement(sideNav) && sideNav.props.collapsed === undefined) {
-    // remount when the mode changes so the new default applies; the user can still expand / collapse
-    nav = React.cloneElement(sideNav, { key: navOverlay ? 'overlay' : 'push', defaultCollapsed: navOverlay ? true : sideNav.props.defaultCollapsed });
+  if (React.isValidElement(sideNav) && !navCtl && navOverlay) {
+    nav = React.cloneElement(sideNav, { collapsed: navCollapsed, onCollapsedChange: v => { setNavCollapsed(v); sideNav.props.onCollapsedChange && sideNav.props.onCollapsedChange(v); } });
   }
+  useShellDismiss(sideRef, navOverlay && !navCtl && !navCollapsed, React.useCallback(() => setNavCollapsed(true), []));
+
+  // Push panel with no room: same idea, AppShell folds it back to its rail.
+  const panelCtl = React.isValidElement(panel) && panel.props.expanded !== undefined;
+  const [panelOpen, setPanelOpen] = React.useState(false);
+  React.useEffect(() => { setPanelOpen(false); }, [pushRail]);
   let side = panel;
-  if (React.isValidElement(panel) && panel.props.expanded === undefined) {
-    side = React.cloneElement(panel, { key: panelOverlay ? 'overlay' : 'push', defaultExpanded: panelOverlay ? false : panel.props.defaultExpanded });
+  if (React.isValidElement(panel) && pushRail && !panelCtl) {
+    side = React.cloneElement(panel, { expanded: panelOpen, onExpandedChange: v => { setPanelOpen(v); panel.props.onExpandedChange && panel.props.onExpandedChange(v); } });
   }
+  useShellDismiss(panelRef, pushRail && !panelCtl && panelOpen, React.useCallback(() => setPanelOpen(false), []));
+  // Over panel: outside click / Esc → onPanelClose.
+  useShellDismiss(panelRef, over && !!onPanelClose, React.useCallback(() => onPanelClose && onPanelClose(), [onPanelClose]));
+
   return (
     <div ref={ref} data-size={size}
-      className={IFS.cx('ifs-app-shell', navOverlay && 'ifs-app-shell--nav-overlay', panelOverlay && 'ifs-app-shell--panel-overlay', className)}
+      className={IFS.cx('ifs-app-shell', navOverlay && 'ifs-app-shell--nav-overlay', pushRail && 'ifs-app-shell--panel-rail', over && 'ifs-app-shell--panel-over', className)}
       style={height ? { height, ...style } : style} {...rest}>
       <div className="ifs-app-shell__bar">{navBar}</div>
-      {sideNav && <div className="ifs-app-shell__side">{nav}</div>}
+      {sideNav && <div ref={sideRef} className="ifs-app-shell__side">{nav}</div>}
       <div className="ifs-app-shell__main" style={sideNav ? undefined : { gridColumn: '1 / -1' }}>
         {header && <div className="ifs-app-shell__header">{header}</div>}
         <div className="ifs-app-shell__body">
           <main className="ifs-app-shell__content">{children}</main>
-          {panel && <div className="ifs-app-shell__panel">{side}</div>}
+          {panel && <div ref={panelRef} className="ifs-app-shell__panel">{side}</div>}
         </div>
         {bottom && <div className="ifs-app-shell__bottom">{bottom}</div>}
       </div>

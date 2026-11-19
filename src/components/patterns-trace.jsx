@@ -279,6 +279,7 @@ function TraceReport({ controller: c, type = 'drawer', title = 'Trace report', e
     </IFS.Drawer>
   );
 }
+TraceReport.panelMode = 'push'; // AppShell panel mode by job (Nov 19): used together with the whole page
 
 Object.assign(IFS, { useIssueReport, IssueSolution, IssueListItem, IssueAnswerField, IssueKindSwitch, IssueNavigator,
   ConfidenceGates, SystemConfidence, TraceReport, CONFIDENCE_KINDS, TRACE_KINDS });

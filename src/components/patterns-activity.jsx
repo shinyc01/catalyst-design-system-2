@@ -343,6 +343,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
     {panel}
   </>;
 }
+ActivityPanel.panelMode = 'over'; // AppShell panel mode by job (Nov 19): the panel is the focus, the page is context
 
 Object.assign(IFS, { CompareDropdownList, CompareDropdown, CompareHeader, CompareView, ActivityPanel, filterVersions });
 export { CompareDropdownList, CompareDropdown, CompareHeader, CompareView, ActivityPanel, filterVersions };

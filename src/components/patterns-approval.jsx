@@ -286,6 +286,7 @@ function ApprovalChainPanel({ mode = 'sidebar', collapsed, title = 'Approval cha
     </aside>
   );
 }
+ApprovalChainPanel.panelMode = 'push'; // AppShell panel mode by job (Nov 19): used together with the whole page
 
 const APC_STATES = [
   { value: 'success', label: 'Approved' }, { value: 'awaiting', label: 'Awaiting' },

@@ -200,8 +200,9 @@ export default IFS_GALLERY;
     );
   } });
 
-  IFS_GALLERY.push({ name: 'AppShell: docked panel by width', figma: 'not a Figma component — panel push (1024+) / overlay (< 1024), Nov 18 decision', render: () => {
+  IFS_GALLERY.push({ name: 'AppShell: panel push / over', figma: 'not a Figma component — panel mode by job (Nov 19): push = used with the page, over = preview; push falls back to a rail below 1024', render: () => {
     const [w, setW] = React.useState(1440);
+    const [row, setRow] = React.useState('ID-1042');
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ display: 'flex', gap: 8 }}>{[1440, 1100, 900, 700].map(v => <IFS.Button key={v} type={w === v ? 'primary' : 'secondary'} size="s" onClick={() => setW(v)}>{v}px</IFS.Button>)}</div>
@@ -212,6 +213,16 @@ export default IFS_GALLERY;
             header={<PageHeader title="Q1 2026 Strategy Framework" />}
             panel={<IFS.Panel title="Readiness Evaluation"><div className="t-body-m-regular">Panel content</div></IFS.Panel>}>
             <div style={{ padding: "var(--page-margin)" }}><div className="ifs-grid">{[1, 2, 3, 4].map(i => <IFS.StatCard key={i} className="ifs-span-3" title={`Metric ${i}`} value="1,621" />)}</div></div>
+          </AppShell>
+        </div>
+        <div style={{ width: w, border: '1px solid var(--border-base)' }}>
+          <AppShell height={420} onPanelClose={() => setRow(null)}
+            navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
+            header={<PageHeader title="Ideas (row preview: over)" />}
+            panel={row ? <IFS.RecordPreview id={row} onClose={() => setRow(null)}><div className="t-body-m-regular">Details of {row}</div></IFS.RecordPreview> : null}>
+            <div style={{ padding: 'var(--page-margin)', display: 'flex', flexDirection: 'column', gap: 'var(--space-100)' }}>
+              {['ID-1042', 'ID-1043', 'ID-1044', 'ID-1045'].map(id => <IFS.Button key={id} type="secondary" size="m" onClick={() => setRow(id)}>Open {id}</IFS.Button>)}
+            </div>
           </AppShell>
         </div>
       </div>

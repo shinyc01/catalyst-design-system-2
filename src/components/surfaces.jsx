@@ -269,6 +269,7 @@ function Panel({ title, actions, expanded, defaultExpanded = true, onExpandedCha
     </aside>
   );
 }
+Panel.panelMode = 'push'; // AppShell panel mode by job (Nov 19): a docked panel is used together with the page
 
 // Figma: popover-organism (4394:56471)
 // Props: trigger (element; click toggles), open / defaultOpen / onOpenChange, align start|end,

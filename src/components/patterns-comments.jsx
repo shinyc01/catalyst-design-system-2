@@ -216,6 +216,7 @@ function CommentsPanel({ threads = [], filter, defaultFilter = 'unresolved', onF
     </IFS.Drawer>
   );
 }
+CommentsPanel.panelMode = 'push'; // AppShell panel mode by job (Nov 19): used together with the whole page
 
 /* ───────────────────────────── State ───────────────────────────── */
 
