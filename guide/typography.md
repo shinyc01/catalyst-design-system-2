@@ -27,7 +27,7 @@ No exceptions: every text rule in the kit uses a semantic style, including chart
 - Widget thumbnails (Widget Builder previews): title Label/M/medium; the tiny axis and row labels are drawn as skeleton bars, since a thumbnail has no readable text.
 - Navbar wordmark fallback: H3. Bold words inside text use `--text-label-m-medium-weight`.
 
-**px in Figma, rem in code (2.0.3).** Designers keep working in px in Figma. The code ships font sizes and line heights in rem at a 16px base (14px = `0.875rem`, 20px = `1.25rem`), like Atlassian and Polaris, so text also follows a user's own default text size in the browser, not only zoom. At the default 16px nothing changes. Spacing, control heights and icons scale with it (guide/spacing.md); letter-spacing stays in px (a fraction of a pixel either way).
+**px in Figma, rem in code (2.0.3).** Designers keep working in px in Figma. The code ships font sizes and line heights in rem at a 16px base (14px = `0.875rem`, 20px = `1.25rem`), like Atlassian and Polaris, so text also follows a user's own default text size in the browser, not only zoom. At the default 16px nothing changes. Spacing, control heights, icons and layout widths scale with it, like zoom (guide/spacing.md); letter-spacing stays in px (a fraction of a pixel either way).
 
 Paragraph spacing is not a type token (Figma has 8px on Body styles). As in the other systems, the gap between paragraphs comes from spacing tokens.
 

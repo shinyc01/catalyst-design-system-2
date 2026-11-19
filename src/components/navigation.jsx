@@ -1,5 +1,8 @@
 import React from 'react';
 import { IFS } from './registry.js';
+// Widths in JS follow the user's text size, like zoom: px at the default 16px, scaled by root font size / 16.
+const rootPx = () => (typeof document !== 'undefined' && parseFloat(getComputedStyle(document.documentElement).fontSize)) || 16;
+const cssPx = (v, fallback) => { const n = parseFloat(v); return Number.isNaN(n) ? fallback : /rem\s*$/.test(v) ? n * rootPx() : n; };
 // Navigation family. Organisms (SideNav, Tabs, Breadcrumb, Stepper, Pager, CanvasHeader, NavBar, PageHeader, PageTop)
 // are what screens use; NavItem, Tab, Crumb, Step, CanvasColumn are the atoms they are built from.
 
@@ -311,7 +314,7 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
   const current = navStage(rawCurrent);
   const [ref, w] = useNavWidth();
   // collapseBelow is px at the default 16px text size; it grows with the user's text size, since the tabs it measures do
-  const remScale = typeof document !== 'undefined' ? (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16) / 16 : 1;
+  const remScale = rootPx() / 16;
   const isCollapsed = collapsed !== undefined ? !!collapsed : (w != null && w < collapseBelow * remScale);
   const currentLabel = (stages.find(s => navStage(s.value) === current) || {}).label;
   return (
@@ -376,7 +379,8 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
     const el = ref.current; if (!el) return undefined;
     const read = () => {
       const w = el.getBoundingClientRect().width;
-      setSize(w >= Math.max(1100, needWide.current) ? 'wide' : w >= Math.max(720, needRow.current) ? 'mid' : 'narrow');
+      const k = rootPx() / 16; // 1100 / 720 follow the user's text size
+      setSize(w >= Math.max(1100 * k, needWide.current) ? 'wide' : w >= Math.max(720 * k, needRow.current) ? 'mid' : 'narrow');
       setCentered(true);
     };
     read();
@@ -388,7 +392,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
     const el = ref.current; if (!el || size !== 'wide' || center == null) return;
     const bar = el.querySelector('.ifs-page-header__bar'); if (!bar) return;
     // natural width of a row of parts: children + gaps; the title counts up to 160 (10rem, its min-width; it may truncate below that)
-    const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16; // 160 / 240 follow the user's text size
+    const remPx = rootPx(); // 160 / 240 follow the user's text size
     const rowNeed = node => {
       if (!node) return 0;
       const kids = [...node.children];
@@ -428,7 +432,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el || size !== 'mid') return;
     const bar = el.querySelector('.ifs-page-header__bar'); if (!bar) return;
-    const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    const remPx = rootPx();
     const rowNeed = node => {
       if (!node) return 0;
       const kids = [...node.children];
@@ -555,7 +559,7 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a
 // panel with a controlled `expanded`, is left alone.
 const SHELL_SIZES = [[1920, 'xl'], [1440, 'lg'], [1024, 'md'], [600, 'sm'], [0, 'xs']];
-const shellSizeOf = w => SHELL_SIZES.find(([min]) => w >= min)[1];
+const shellSizeOf = w => SHELL_SIZES.find(([min]) => w >= min * rootPx() / 16)[1];
 // Outside pointer-down or Esc while `active` → onDismiss (ignores clicks inside `ref`).
 function useShellDismiss(ref, active, onDismiss) {
   React.useEffect(() => {
@@ -576,8 +580,8 @@ function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bot
       const w = el.getBoundingClientRect().width;
       setSize(shellSizeOf(w));
       const cs = getComputedStyle(el);
-      const min = parseFloat(cs.getPropertyValue('--layout-content-min')) || 840;
-      const nav = parseFloat(cs.getPropertyValue('--region-sidenav')) || 240;
+      const min = cssPx(cs.getPropertyValue('--layout-content-min'), 840);
+      const nav = cssPx(cs.getPropertyValue('--region-sidenav'), 240);
       const p = panelRef.current ? panelRef.current.getBoundingClientRect().width : 0;
       setRoomy(!p || w - nav - p >= min);
     };

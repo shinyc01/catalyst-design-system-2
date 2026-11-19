@@ -249,7 +249,7 @@
 .ifs-page-top__tabs > .ifs-tabs{flex:0 1 auto;min-width:0}
 .ifs-page-top__tabs > .ifs-smart-search{flex:none}
 /* Narrow (Nov 19): tabs and search on separate rows; the search goes full width */
-@container (max-width:719px){
+@container (max-width:44.9375rem){
   .ifs-page-top__tabs{flex-direction:column;align-items:stretch}
   .ifs-page-top__tabs > .ifs-smart-search{width:100% !important} /* overrides SmartSearch's own width prop */
   .ifs-page-top__title{flex-wrap:wrap}

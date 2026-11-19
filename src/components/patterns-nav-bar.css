@@ -9,7 +9,7 @@
 .ifs-explore-header__search,.ifs-explore-header__left,.ifs-explore-header__right{display:flex;align-items:center;gap:var(--space-150);min-width:0}
 .ifs-explore-header__right{flex:none;margin-inline-start:auto}
 /* Narrow (Nov 19): row 1 = back / context + collaborators and comments; row 2 = the search (full width) + filter */
-@container (max-width:719px){
+@container (max-width:44.9375rem){
   .ifs-explore-header__bar{flex-wrap:wrap;row-gap:var(--space-100);padding-block:var(--space-100)}
   .ifs-explore-header__search{order:3;flex:1 1 100%}
   .ifs-explore-header__search > .ifs-smart-search{flex:1 1 auto;width:auto !important} /* overrides SmartSearch's own width prop */

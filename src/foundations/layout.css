@@ -17,15 +17,15 @@
 :root{
   --bp-sm:600px;--bp-md:1024px;--bp-lg:1440px;--bp-xl:1920px;
   --layout-columns:4;--page-margin:var(--space-400);--page-gap:var(--space-400);
-  --layout-max-content-width-wide:2240px;
+  --layout-max-content-width-wide:140rem;
   /* Regions: min / default / max. Push the content at md and up; overlay below md. */
-  --region-panel-min:320px;--region-panel-max:50vw;
+  --region-panel-min:20rem;--region-panel-max:50vw;
   --region-sidenav:var(--layout-sidebar-width);--region-rail:var(--layout-rail-width);
-  --layout-content-min:840px; /* narrowest page area beside a pushed panel before the side nav folds to its rail (Material 3 "expanded"; Nov 19) */
+  --layout-content-min:52.5rem; /* narrowest page area beside a pushed panel before the side nav folds to its rail (Material 3 "expanded"; Nov 19) */
   /* Overlay widths */
-  --overlay-width-s:320px;--overlay-width-m:440px;--overlay-width-l:600px;
+  --overlay-width-s:20rem;--overlay-width-m:27.5rem;--overlay-width-l:37.5rem;
   /* Menus: two widths (2.0.3). S for action menus (Carbon 180–288, Material 112–280); L = the popover width, for items with descriptions */
-  --menu-width-s:200px;--menu-width-l:var(--overlay-width-s);
+  --menu-width-s:12.5rem;--menu-width-l:var(--overlay-width-s);
 }
 @media (min-width:600px){:root{--layout-columns:8;--page-margin:var(--space-600)}}
 @media (min-width:1024px){:root{--layout-columns:12}}
@@ -97,14 +97,14 @@
 
 /* Inside AppShell the grid follows the CONTENT AREA (container "content": beside the side nav and any docked panel), as decided
    Nov 18; the @media rules above are the fallback outside a shell. A container is never wider than the window, so these only narrow. */
-@container content (max-width:1023px){
+@container content (max-width:63.9375rem){
   .ifs-grid{--layout-columns:8}
   .ifs-grid > .ifs-span-1,.ifs-grid > .ifs-span-2{grid-column:span 2}
   .ifs-grid > .ifs-span-3,.ifs-grid > .ifs-span-4{grid-column:span 4}
   .ifs-grid > [class*="ifs-span-"]:not(.ifs-span-1):not(.ifs-span-2):not(.ifs-span-3):not(.ifs-span-4){grid-column:1 / -1}
   .ifs-grid > .ifs-span-panel,.ifs-grid > .ifs-span-rest{grid-column:1 / -1}
 }
-@container content (max-width:599px){
+@container content (max-width:37.4375rem){
   .ifs-grid{--layout-columns:4}
   .ifs-grid > [class*="ifs-span-"]{grid-column:1 / -1}
 }

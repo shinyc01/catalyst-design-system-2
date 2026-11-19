@@ -11,7 +11,7 @@ Tokens: `src/foundations/spacing.css` (scale, roles, page grid) and the Density 
 | Roles | `--space-inset`, `--space-stack`, `--space-section` | density |
 | Page grid | `--page-margin`, `--page-gap` | screen width |
 
-**px in Figma, rem in code (2.0.3).** Figma stays in px; the code ships the spacing scale, the size ruler (4 and up), control, tab, nav and table row heights, table column widths and icons in rem at a 16px base (16px = `1rem`, 24px = `1.5rem`). At the browser's default text size nothing looks different; when a user sets a larger default text size the whole UI grows in proportion, like zoom, and nothing gets cut off. Still px on purpose: borders, dividers and focus rings (and `--size-0` … `--size-3`), radius, breakpoints and media queries, fixed layout widths (side nav 240, rail 48, panels 380 / 600, modals 440 / 600, popover 320, menus 200 / 320, max content widths, `--layout-content-min` 840), and chart, map-pin and canvas geometry. Numbers in this guide stay in px.
+**px in Figma, rem in code (2.0.3).** Figma stays in px. The code ships every size that holds text or icons in rem at a 16px base (16px = `1rem`, 24px = `1.5rem`): the spacing scale, the size ruler (4 and up), control, tab, nav and table sizes, icons, and the layout widths (side nav, rail, panels, modals, popovers, menus, max content width, `--layout-content-min`). At the browser's default text size nothing looks different. When a user sets a larger default text size, the UI behaves like zoom: everything grows in proportion, and the shell's fold points (side nav to rail, nav bar to menu, page header to two rows) are read in 16px-equivalent widths, so they fold sooner. Still px: 1–3px lines (borders, dividers, focus rings, `--size-0` … `--size-3`), radius, `@media` breakpoints, and chart, map-pin and canvas geometry. Numbers in this guide stay in px.
 
 One scale replaces Figma's four identical scales (gaps, paddings, margins, gutters), as in Atlassian (`space.*`), Carbon (`spacing-*`) and Primer.
 
@@ -52,6 +52,8 @@ Content is capped at `--layout-max-content-width` (1600) and centred, so wider s
 | Table card padding (= inset) | 20 | 16 | 12 |
 | Gap from the card's toolbar to the table (stack) | 16 | 12 | 8 |
 | Cell padding, left and right (inset) | 20 | 16 | 12 |
+
+Flexible columns (no width, or `1fr`) have a minimum width of 160 (`--table-col-flex-min`). When the columns don't fit, the table scrolls sideways instead of squeezing the names. For now the minimum only applies when the user's text size is larger than the default, so tables at the default size look as designed.
 
 The header has no top padding, so the space above its text is just the toolbar gap or card padding, about the same as the space below it. Every table uses one table card (`.ifs-table-card`), for `IFS.Table` and `IFS.DataTable` alike.
 

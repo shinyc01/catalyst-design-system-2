@@ -305,7 +305,12 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
 
   // Primary (name) column is medium, every other cell regular: the column with primary: true, else the first text/description/custom column.
   const primaryKey = (columns.find(c => c.primary) || columns.find(c => !c.type || ['text', 'description', 'custom'].includes(c.type)) || {}).key;
-  const cols = columns.map(c => c.width == null ? 'minmax(0,1fr)' : typeof c.width === 'number' ? `calc(${c.width / 16}rem * var(--density-scale))` : c.width).join(' ');
+  // Flexible columns (no width, or '1fr' / '2fr') get a minimum width (--table-col-flex-min); when the columns don't fit, the
+  // table scrolls sideways instead of squeezing the names. '1fr' keeps its own minimum too (the cell padding, 2 × inset).
+  const isFr = w => typeof w === 'string' && /^\s*\d*\.?\d+fr\s*$/.test(w);
+  const cols = columns.map(c => c.width == null ? 'minmax(var(--table-col-flex-min),1fr)'
+    : isFr(c.width) ? `minmax(max(var(--table-col-flex-min),2 * var(--space-inset)),${c.width.trim()})`
+    : typeof c.width === 'number' ? `calc(${c.width / 16}rem * var(--density-scale))` : c.width).join(' ');
   const groupOf = typeof groupBy === 'function' ? groupBy : groupBy ? r => r[groupBy] : null;
   const groups = [];
   if (groupOf) { const map = new Map(); sorted.forEach(r => { const g = groupOf(r); if (!map.has(g)) { map.set(g, []); groups.push([g, map.get(g)]); } map.get(g).push(r); }); }

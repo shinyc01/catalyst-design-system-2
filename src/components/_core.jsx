@@ -28,5 +28,8 @@ function Icon({ name, size = 16, variant, className, style, title }) {
   );
 }
 
-Object.assign(IFS, { Icon, cx });
-export { Icon, cx };
+// A size prop given as a number is px at the default 16px text size; it comes out in rem so it follows the user's text size.
+const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);
+
+Object.assign(IFS, { Icon, cx, remOf });
+export { Icon, cx, remOf };

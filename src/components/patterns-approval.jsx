@@ -353,7 +353,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
   const rows = list.filter(r => (!states.length || apcMatch(r.status, states))
     && (!q || `${r.name} ${r.role || ''}`.toLowerCase().includes(q)));
   const update = (id, patch) => setList(list.map(r => (r.id === id ? { ...r, ...patch } : r)));
-  const cols = full ? 'minmax(0,1.02fr) minmax(0,1fr) minmax(0,1fr) 140px 101px' : 'minmax(0,1fr) minmax(0,1fr)';
+  const cols = full ? 'minmax(0,1.02fr) minmax(0,1fr) minmax(0,1fr) 8.75rem 6.3125rem' : 'minmax(0,1fr) minmax(0,1fr)';
   const viewClass = view === 'full' ? 'full' : 'compact';
 
   const saveNote = row => text => {

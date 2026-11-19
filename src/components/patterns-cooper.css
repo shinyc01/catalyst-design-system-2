@@ -129,7 +129,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-cooper-option:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 
 /* ---------- chat-collapsed-bar-organism (inline quick mode) ---------- */
-.ifs-chat-bar{box-sizing:border-box;width:320px;display:flex;flex-direction:column;border-radius:var(--radius-radius-full);
+.ifs-chat-bar{box-sizing:border-box;width:20rem;display:flex;flex-direction:column;border-radius:var(--radius-radius-full);
   box-shadow:inset 0 0 0 1px var(--edge,var(--border-base)),var(--elevation-elevation-3-primary)}
 .ifs-chat-bar:hover,.ifs-chat-bar[data-state=hover]{--edge:var(--border-medium)}
 .ifs-chat-bar--multi{border-radius:var(--radius-radius-300);--edge:var(--border-medium)}
@@ -148,8 +148,8 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 /* ---------- chat-compact-panel-organism / chat-full-panel-organism ---------- */
 .ifs-chat-panel{box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius-radius-300);
   box-shadow:0 0 0 1px var(--border-base) /* OUTSIDE stroke */}
-.ifs-chat-panel--compact{width:320px;height:360px} /* px: fixed panel sizes */
-.ifs-chat-panel--full{width:450px;height:725px}
+.ifs-chat-panel--compact{width:20rem;height:22.5rem}
+.ifs-chat-panel--full{width:28.125rem;height:45.3125rem}
 .ifs-chat-panel__body{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
 .ifs-chat-panel__scroll{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset) var(--space-inset) var(--size-72);scrollbar-width:thin;scrollbar-color:var(--border-medium) transparent}
 .ifs-chat-panel__scroll > *{flex:none} /* messages and cards keep their height; the panel scrolls */
@@ -166,11 +166,11 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-chat-panel__resize{position:absolute;left:-3px;top:0;bottom:0;width:6px;cursor:ew-resize}
 
 /* history + chat joined (Figma: history-panel-molecule / folder content sit to the left of the full panel) */
-.ifs-cooper-dock{display:flex;border-radius:var(--radius-radius-300);overflow:hidden;box-shadow:0 0 0 1px var(--border-base);height:725px}
+.ifs-cooper-dock{display:flex;border-radius:var(--radius-radius-300);overflow:hidden;box-shadow:0 0 0 1px var(--border-base);height:45.3125rem}
 .ifs-cooper-dock>.ifs-chat-panel{border-radius:0;box-shadow:none;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;height:100%}
 
 /* ---------- history-panel-molecule / folder content ---------- */
-.ifs-history{box-sizing:border-box;width:240px;height:100%;display:flex;flex-direction:column;box-shadow:inset -1px 0 0 var(--border-base);color:var(--text-primary);flex:none} /* px: fixed region width (= side nav) */
+.ifs-history{box-sizing:border-box;width:15rem;height:100%;display:flex;flex-direction:column;box-shadow:inset -1px 0 0 var(--border-base);color:var(--text-primary);flex:none}
 .ifs-history__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-250);height:var(--size-40);flex:none;box-sizing:border-box;
   padding:var(--space-200) var(--space-200) var(--space-200) var(--space-300);box-shadow:inset 0 -1px 0 var(--border-base)}
 .ifs-history__head--back{padding-left:var(--space-200)}
@@ -216,7 +216,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-section-header:hover .ifs-section-header__actions,.ifs-section-header:focus-within .ifs-section-header__actions,.ifs-section-header[data-state=hover] .ifs-section-header__actions{opacity:1}
 
 /* history search overlay (search-chat-history-card list) */
-.ifs-history-search{width:600px;max-width:100%;height:400px;display:flex;flex-direction:column;border-radius:var(--radius-radius-200);overflow:hidden; /* px: fixed overlay size */
+.ifs-history-search{width:37.5rem;max-width:100%;height:25rem;display:flex;flex-direction:column;border-radius:var(--radius-radius-200);overflow:hidden;
   box-shadow:0 0 0 1px var(--border-base),var(--elevation-elevation-3-primary)}
 .ifs-history-search__field{display:flex;align-items:center;gap:var(--space-200);height:var(--size-48);flex:none;padding:0 var(--space-300);box-shadow:inset 0 -1px 0 var(--border-base)}
 .ifs-history-search__field input{all:unset;flex:1;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-primary)}

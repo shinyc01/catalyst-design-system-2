@@ -245,7 +245,9 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table-card__name{color:var(--text-primary);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
 .ifs-table-card__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-stack);min-height:var(--size-40)}
 .ifs-table-card__bar > :last-child:not(:first-child){width:22.5rem;flex:none}
-.ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
+.ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0;
+  overflow-x:auto;padding:var(--size-3);margin:calc(-1 * var(--size-3))} /* scrolls sideways when the columns' minimum widths don't fit; the 3px padding keeps row focus rings visible */
+.ifs-table > *{min-width:min-content}
 /* content-row-molecule (4835:3501) */
 .ifs-table__row{display:grid;grid-template-columns:var(--cols);align-items:center;border-radius:var(--radius-radius-100)}
 .ifs-table__row--header{min-height:var(--table-header-h)}

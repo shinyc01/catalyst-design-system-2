@@ -129,7 +129,7 @@
 
 /* ---------- sidebar-node-card (2667:6608) ---------- */
 .ifs-sidebar-node{--sn-ring:0 0 0 0 transparent;--sn-stroke:transparent;--sn-shadow:0 0 0 0 transparent;
-  position:relative;display:flex;flex-direction:column;gap:var(--space-150);width:345px;box-sizing:border-box;padding:var(--space-inset); /* px: fits the 380 side panel */
+  position:relative;display:flex;flex-direction:column;gap:var(--space-150);width:21.5625rem;box-sizing:border-box;padding:var(--space-inset);
   border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);cursor:grab;user-select:none;
   box-shadow:inset 0 0 0 1px var(--sn-stroke),var(--sn-ring),var(--sn-shadow);transition:background-color .12s,box-shadow .12s}
 .ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--surface-tertiary-alpha)}

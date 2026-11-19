@@ -57,6 +57,11 @@ Figma draws every size from its own artwork, so pick the nearest exported size r
 A few sets (cooper-*-icon, voice-input-animation) vary by state instead of size: pass `variant`.
 `function Icon({ name, size = 16, variant, className, style, title })`
 
+### remOf
+**Tier:** Component
+A size prop given as a number is px at the default 16px text size; it comes out in rem so it follows the user's text size.
+`const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);  Object.assign(IFS, { Icon, cx, remOf }); export { Icon, cx, remOf }; `
+
 ## activity
 
 Examples (read before using any component below — shows the data shapes props expect): https://shinyc01.github.io/catalyst-design-system-2/src/gallery/activity.jsx

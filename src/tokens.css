@@ -362,9 +362,12 @@
 --table-col-primary-min:15rem;--table-col-primary-max:30rem;--table-col-short-min:7.5rem;--table-col-short-max:12.5rem;
 --table-col-user-min:10rem;--table-col-user-max:15rem;--table-col-number-min:6rem;--table-col-number-max:10rem;
 --table-col-date:8.5rem;--table-col-check:2.75rem;--table-col-action:3rem;
+/* Minimum width of flexible table columns (160). For now only when the user's text size is larger than the default
+   (0 at 16px, so tables look as designed); from 18px up it is the full 10rem and the table scrolls sideways. */
+--table-col-flex-min:clamp(0px, (1rem - 16px) * 100, 10rem);
 /* Fixed layout regions */
---layout-max-content-width:1600px;--layout-global-header-height:3rem;--layout-sidebar-width:240px;
---layout-side-panel-width:380px;--layout-rail-width:48px;--layout-side-panel-collapsed-width:84px;
+--layout-max-content-width:100rem;--layout-global-header-height:3rem;--layout-sidebar-width:15rem;
+--layout-side-panel-width:23.75rem;--layout-rail-width:3rem;--layout-side-panel-collapsed-width:5.25rem;
 --border-widths-border-0:0px;--border-widths-border-100:1px;--border-widths-border-150:1.5px;--border-widths-border-200:2px;--border-widths-border-300:3px;--border-widths-border-400:4px;
 --radius-radius-0:0px;--radius-radius-100:4px;--radius-radius-150:6px;--radius-radius-200:8px;--radius-radius-300:12px;--radius-radius-full:1000px;
 --z-index-z-base:0;--z-index-z-sticky:50;--z-index-z-panels:100;--z-index-z-floating:200;--z-index-z-popover:300;

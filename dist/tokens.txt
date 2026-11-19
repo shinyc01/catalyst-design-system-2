@@ -448,12 +448,13 @@
 --table-col-date: 8.5rem
 --table-col-check: 2.75rem
 --table-col-action: 3rem
---layout-max-content-width: 1600px
+--table-col-flex-min: clamp(0px, (1rem - 16px) * 100, 10rem)
+--layout-max-content-width: 100rem
 --layout-global-header-height: 3rem
---layout-sidebar-width: 240px
---layout-side-panel-width: 380px
---layout-rail-width: 48px
---layout-side-panel-collapsed-width: 84px
+--layout-sidebar-width: 15rem
+--layout-side-panel-width: 23.75rem
+--layout-rail-width: 3rem
+--layout-side-panel-collapsed-width: 5.25rem
 --border-widths-border-0: 0px
 --border-widths-border-100: 1px
 --border-widths-border-150: 1.5px

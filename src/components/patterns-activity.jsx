@@ -96,7 +96,7 @@ function CompareDropdown({ groups = [], value, defaultValue = null, onChange, op
   };
   const activeId = isOpen && active != null ? `${listId}-${String(active).replace(/\W+/g, '-')}` : undefined;
   return (
-    <div ref={ref} className={paCx('ifs-compare-dd', isOpen && 'ifs-compare-dd--open', disabled && 'ifs-compare-dd--disabled', className)} style={{ width, ...style }}>
+    <div ref={ref} className={paCx('ifs-compare-dd', isOpen && 'ifs-compare-dd--open', disabled && 'ifs-compare-dd--disabled', className)} style={{ width: IFS.remOf(width), ...style }}>
       <div ref={field} className="ifs-compare-dd__field" role="combobox" tabIndex={disabled ? -1 : 0} aria-label={ariaLabel}
         aria-expanded={!!isOpen} aria-controls={isOpen ? listId : undefined} aria-activedescendant={activeId} aria-disabled={disabled || undefined}
         onClick={() => !disabled && setOpen(!isOpen)} onKeyDown={onKeyDown}>

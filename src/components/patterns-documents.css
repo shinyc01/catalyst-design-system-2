@@ -96,7 +96,7 @@ button.ifs-vbar{cursor:pointer}
 .ifs-doc-row{width:100%}
 
 /* Popover: the list rows sit with no gap; max height 360 (Figma note). Padding 12/8/8/8 is the kit Popover's own. */
-.ifs-docs-popover{max-height:360px}
+.ifs-docs-popover{max-height:22.5rem}
 .ifs-docs-popover .ifs-popover__content{gap:0}
 .ifs-docs-popover__empty{display:flex;align-items:center;justify-content:center;min-height:7.5rem;color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
