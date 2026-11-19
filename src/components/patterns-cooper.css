@@ -149,7 +149,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-chat-panel{box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius-radius-300);
   box-shadow:0 0 0 1px var(--border-base) /* OUTSIDE stroke */}
 .ifs-chat-panel--compact{width:20rem;height:22.5rem}
-.ifs-chat-panel--full{width:28.125rem;height:45.3125rem}
+.ifs-chat-panel--full{width:var(--region-panel);height:45.3125rem}
 .ifs-chat-panel__body{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
 .ifs-chat-panel__scroll{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset) var(--space-inset) var(--size-72);scrollbar-width:thin;scrollbar-color:var(--border-medium) transparent}
 .ifs-chat-panel__scroll > *{flex:none} /* messages and cards keep their height; the panel scrolls */
@@ -170,7 +170,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-cooper-dock>.ifs-chat-panel{border-radius:0;box-shadow:none;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;height:100%}
 
 /* ---------- history-panel-molecule / folder content ---------- */
-.ifs-history{box-sizing:border-box;width:15rem;height:100%;display:flex;flex-direction:column;box-shadow:inset -1px 0 0 var(--border-base);color:var(--text-primary);flex:none}
+.ifs-history{box-sizing:border-box;width:var(--region-sidenav);height:100%;display:flex;flex-direction:column;box-shadow:inset -1px 0 0 var(--border-base);color:var(--text-primary);flex:none}
 .ifs-history__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-250);height:var(--size-40);flex:none;box-sizing:border-box;
   padding:var(--space-200) var(--space-200) var(--space-200) var(--space-300);box-shadow:inset 0 -1px 0 var(--border-base)}
 .ifs-history__head--back{padding-left:var(--space-200)}

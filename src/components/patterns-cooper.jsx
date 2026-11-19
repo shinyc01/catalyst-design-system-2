@@ -737,7 +737,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
   const [input, setInput] = React.useState('');
   const [files, setFiles] = React.useState([]);
   const [pos, setPos] = React.useState(null);
-  const [width, setWidth] = React.useState(450);
+  const [width, setWidth] = React.useState(null); // null = the standard panel width (--region-panel, 380; Nov 19, was 450) until the user drags to resize
   const msgsRef = React.useRef(msgs); msgsRef.current = msgs;
   const timers = React.useRef([]);
   const scrollRef = React.useRef();
@@ -810,7 +810,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   };
   const resizeFull = e => {
-    const start = e.clientX, w0 = width;
+    const start = e.clientX, w0 = width ?? (e.currentTarget.closest('.ifs-chat-panel')?.getBoundingClientRect().width || 380);
     const move = ev => setWidth(Math.min(720, Math.max(380, w0 + (start - ev.clientX))));
     const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
@@ -834,7 +834,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
     </div>
   );
   const panel = <ChatFullPanel {...common} prompts={prompts} onPrompt={q => send(q, [])} onResize={() => { setSz('compact'); onHistory && historyOpen && onHistory(false); }}
-    onHistory={onHistory ? () => onHistory(!historyOpen) : undefined} historyOpen={historyOpen} onResizeStart={resizeFull} style={{ width, height: '100%' }} />;
+    onHistory={onHistory ? () => onHistory(!historyOpen) : undefined} historyOpen={historyOpen} onResizeStart={resizeFull} style={{ width: width ?? 'var(--region-panel)', height: '100%' }} />;
   return (
     <div className={IFS.cx('ifs-cooper-float', 'ifs-cooper-fade', className)} style={{ top: fullInset, right: fullInset, bottom: fullInset }}>
       {renderPanel ? renderPanel(panel) : panel}
