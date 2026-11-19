@@ -7,7 +7,7 @@ export default IFS_GALLERY;
 {
   const { CommentPin, CommentDrawerCard, CommentMentionMenu, CommentCallout, CommentsPanel } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const canvasBg = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)', display: 'flex', flexDirection: 'column', gap: 16 };
+  const canvasBg = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)' };
   const LONG = 'There are people within organizations that have a say in the results of scenarios but are not Copperleaf users. The report from the previous quarter shows it.';
 
   /* ---------------- data ---------------- */
@@ -40,7 +40,7 @@ export default IFS_GALLERY;
   /* ---------------- components ---------------- */
   const preview = { name: '{Name}', time: '{time ago}', text: LONG, replies: '{qty replies}' };
   const UN = { initials: 'UN', type: 'black' }, UN2 = { initials: 'UN', type: 'yellow' };
-  IFS_GALLERY.push({ name: 'CommentPin', figma: 'comment-pin-organism (260:47160)', render: () => <div style={canvasBg}>
+  IFS_GALLERY.push({ name: 'CommentPin', figma: 'comment-pin-organism (260:47160)', render: () => <IFS.Stack gap="400" style={canvasBg}>
     {['unread', 'read', 'cooper'].map(t => (
       <Row key={t} label={`Type=${t}`} style={{ alignItems: 'flex-end', gap: 32, minHeight: 200 }}>
         <CommentPin type={t} avatars={t === 'cooper' ? [{ type: 'cooper' }, UN] : [UN]} />
@@ -50,7 +50,7 @@ export default IFS_GALLERY;
       </Row>
     ))}
     <Row label="interactive (hover = preview)"><CommentPin avatars={[P['Lara Green'].avatar]} preview={{ name: 'Lara Green', time: '1d ago', text: 'Should we include additional environmental objectives?' }} onClick={() => IFS.toast({ title: 'Pin clicked — opens the thread' })} /></Row>
-  </div> });
+  </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'CommentDrawerCard', figma: 'comment-drawer-card (1231:170874)', render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 380px)', gap: 16, background: 'var(--background-canvas-primary)', padding: 16, borderRadius: 8 }}>
@@ -75,13 +75,13 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'CommentCallout', figma: 'commentModal in Comment open / Resolved thread actions [patterns] (12:34876, 12:44840)', render: () => {
     const [a, setA] = React.useState(THREADS[1]);
     const [b, setB] = React.useState({ ...THREADS[11] });
-    return <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start', minHeight: 420 }}>
+    return <IFS.Inline gap="600" align="start" style={{ minHeight: 420 }}>
       <CommentCallout thread={a} currentUser={ME} people={PEOPLE} onCommentsChange={cm => setA({ ...a, comments: cm })}
         onResolve={() => setA({ ...a, resolved: true })} onUnresolve={() => setA({ ...a, resolved: false })} onClose={() => {}} />
       <CommentCallout thread={b} currentUser={ME} people={PEOPLE} onCommentsChange={cm => setB({ ...b, comments: cm })}
         onResolve={() => setB({ ...b, resolved: true })} onUnresolve={() => setB({ ...b, resolved: false })} onClose={() => {}} />
       <CommentCallout thread={THREADS[0]} currentUser={ME} people={PEOPLE} cooperSuggestion={{ label: 'Shape with Cooper' }} onClose={() => {}} />
-    </div>;
+    </IFS.Inline>;
   } });
 
   /* ---------------- pattern screens ---------------- */
@@ -196,11 +196,11 @@ export default IFS_GALLERY;
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
                 views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'node-map' }, { value: 'map', iconLeft: 'map-view-2d' }, { value: 'flow', iconLeft: 'map-views' }]} />}
-                actions={<span style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                  <span style={{ display: 'flex', gap: 4 }}><IFS.Button type="tertiary" size="s" iconLeft="users-group">5/5</IFS.Button>
+                actions={<IFS.Inline as="span" gap="300" align="center">
+                  <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">5/5</IFS.Button>
                     <IFS.CommentButton hasNew={unreadAny} aria-pressed={panel} data-state={panel ? 'pressed' : undefined}
-                      onClick={() => { setPanel(!panel); setDraft(null); }} /></span>
-                  <IFS.Button type="primary" size="s">Review</IFS.Button></span>} />
+                      onClick={() => { setPanel(!panel); setDraft(null); }} /></IFS.Inline>
+                  <IFS.Button type="primary" size="s">Review</IFS.Button></IFS.Inline>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
                 <IFS.Stepper steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} current={1} /></div>
             </div>
@@ -243,10 +243,10 @@ export default IFS_GALLERY;
                   style={{ position: 'absolute', left: p.x, top: p.y, transform: 'translateY(-100%)' }} onClick={() => focusOn(list[0], false)} />; })}
 
               </div>
-              {draft && <div style={{ position: 'absolute', left: draft.sx, top: draft.sy, transform: 'translateY(-50%)', display: 'flex', gap: 8, alignItems: 'center', width: 420, zIndex: 3 }}>
+              {draft && <IFS.Inline gap="200" align="center" style={{ position: 'absolute', left: draft.sx, top: draft.sy, transform: 'translateY(-50%)', width: 420, zIndex: 3 }}>
                 <IFS.Icon name="cursor-comment" size={32} />
                 <IFS.CommentComposer autoFocus avatar={{ name: ME.name, ...ME.avatar }} onSubmit={send} style={{ flex: 1 }} />
-              </div>}
+              </IFS.Inline>}
 
               {openThread && openAnchor && (() => { const p = S(openAnchor.x, openAnchor.y);
                 return <CommentCallout thread={openThread} currentUser={ME} people={PEOPLE}
@@ -279,13 +279,13 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Comments panel — search and empty states', figma: 'Map - Overview - Comment search result / no results [patterns] (12:34132, 12:34205)', render: () => {
     const [ts, setTs] = React.useState(THREADS);
     const [sel, setSel] = React.useState(null);
-    return <div style={{ display: 'flex', gap: 24, alignItems: 'stretch', height: 720, background: 'var(--background-canvas-primary)', padding: 12, borderRadius: 8 }}>
+    return <IFS.Inline gap="600" align="stretch" style={{ height: 720, background: 'var(--background-canvas-primary)', padding: 12, borderRadius: 8 }}>
       <CommentsPanel threads={ts} selectedId={sel} currentUser={ME} onOpen={t => { setSel(t.id); setTs(ts.map(x => x.id === t.id ? { ...x, unread: false } : x)); }}
         onResolve={t => setTs(ts.map(x => x.id === t.id ? { ...x, resolved: true, unread: false } : x))} onUnresolve={t => setTs(ts.map(x => x.id === t.id ? { ...x, resolved: false } : x))} />
       <div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', maxWidth: 280 }}>
         Try “Find comments about WDRM v4”, “Show me everything about WDRM v65” (no result → suggestion chip), “action required”, or “Lara”.
         Resolve every row to reach the all-resolved state.</div>
       <CommentsPanel threads={[]} currentUser={ME} />
-    </div>;
+    </IFS.Inline>;
   } });
 }

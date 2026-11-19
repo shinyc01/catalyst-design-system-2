@@ -47,23 +47,23 @@ export default IFS_GALLERY;
   };
 
   /* ---------------- components ---------------- */
-  IFS_GALLERY.push({ name: 'SourceCard', figma: 'source-card (1440:5362)', render: () => <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+  IFS_GALLERY.push({ name: 'SourceCard', figma: 'source-card (1440:5362)', render: () => <IFS.Stack gap="400">
     <Row label="file · quote · badge (Default)"><div style={{ width: 354 }}><SourceCard {...FLAGGED_DOCS[0]} onOpen={noop} /></div></Row>
     <Row label="file · text · badge (Variant2)"><div style={{ width: 354 }}><SourceCard {...DECISIONS[0]} onOpen={noop} /></div></Row>
     <Row label="user · quote (Variant3)"><div style={{ width: 354 }}><SourceCard {...CONSIDERED[0]} /></div></Row>
     <Row label="label only · quote (State=Default)"><div style={{ width: 354 }}><SourceCard {...FLAGGED_SYSTEMS[0]} /></div></Row>
     <Row label="loading"><div style={{ width: 354 }}><SourceCard loading /></div></Row>
-  </div> });
+  </IFS.Stack> });
 
-  IFS_GALLERY.push({ name: 'EvidenceSection', figma: 'Evidence chain "Slot" blocks [patterns] (31:76667)', render: () => <div style={{ width: 354, display: 'flex', flexDirection: 'column', gap: 12 }}>
+  IFS_GALLERY.push({ name: 'EvidenceSection', figma: 'Evidence chain "Slot" blocks [patterns] (31:76667)', render: () => <IFS.Stack gap="300" style={{ width: 354 }}>
     <EvidenceSection title="Why it’s flagged" items={FLAGGED_DOCS.slice(0, 2)} />
     <EvidenceSection title="Considered but not included" items={CONSIDERED} />
-  </div> });
+  </IFS.Stack> });
 
-  IFS_GALLERY.push({ name: 'PeerBenchmark', figma: 'Evidence chain › Peer benchmark [patterns] (31:77627)', render: () => <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+  IFS_GALLERY.push({ name: 'PeerBenchmark', figma: 'Evidence chain › Peer benchmark [patterns] (31:77627)', render: () => <IFS.Inline gap="700" align="start">
     <div style={{ width: 354 }}><PeerBenchmark {...BENCHMARK} /></div>
     <div style={{ width: 354 }}><PeerBenchmark empty /></div>
-  </div> });
+  </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'EvidenceButton', figma: 'icon-button Shape=Circle Type=Tertiary S, cooper evidence icon [patterns] (31:74957)', render: () => {
     const [on, setOn] = React.useState(false);
@@ -74,12 +74,12 @@ export default IFS_GALLERY;
     const [open, setOpen] = React.useState(true);
     return <>
       {!open && <IFS.Button size="s" type="secondary" onClick={() => setOpen(true)}>Reopen</IFS.Button>}
-      <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+      <IFS.Inline gap="400" align="start">
         {[60, 87, 96].map((v, i) => <div key={v} style={{ height: 760, display: 'flex' }}>
           <EvidenceChainDrawer floating={false} value={v} rationale={rationale(FLAGGED_DOCS)} benchmark={BENCHMARK} defaultTab={i === 2 ? 'benchmark' : 'rationale'}
             {...(i === 0 ? { open, onOpenChange: setOpen } : {})} />
         </div>)}
-      </div>
+      </IFS.Inline>
     </>;
   } });
 
@@ -98,8 +98,8 @@ export default IFS_GALLERY;
   }
 
   function DemoBar({ children }) {
-    return <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 12, maxWidth: 1440 }}>
-      <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo —</span>{children}</div>;
+    return <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
+      <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo —</span>{children}</IFS.Inline>;
   }
 
   /* ---- Build › Idea overview (31:74915 → 31:75728; Northgate 297:75586 / 297:76637) ---- */
@@ -135,23 +135,23 @@ export default IFS_GALLERY;
 
   function IdeaOverview({ chain, title = 'Southern Feeder Replacement — Circuit 14B' }) {
     const ev = (k) => <EvidenceButton active={chain.key === k} onClick={chain.toggle(k)} label={`Evidence chain: ${k}`} />;
-    const card = (k, t, body, extra) => <IFS.DataVizCard title={t} header={{ draggable: false, slot: <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>{extra}{ev(k)}</span> }}>{body}</IFS.DataVizCard>;
+    const card = (k, t, body, extra) => <IFS.DataVizCard title={t} header={{ draggable: false, slot: <IFS.Inline as="span" gap="200" align="center">{extra}{ev(k)}</IFS.Inline> }}>{body}</IFS.DataVizCard>;
     const pad = { padding: '0 10px 10px', boxSizing: 'border-box', width: '100%' };
     return (
-      <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <IFS.Stack gap="300" style={{ padding: 12 }}>
         {card('overview', 'Idea overview', <div style={pad}>
           <div className="t-heading-h2-medium">{title}</div>
           <div className="t-body-l-regular" style={{ color: 'var(--text-secondary)', marginTop: 8 }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
         </div>, <IFS.Button type="tertiary" size="s" iconLeft="cooper-system-icon">Edit with Cooper</IFS.Button>)}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'start' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <IFS.Stack gap="300">
             {card('need', 'The need', <div className="t-body-l-regular" style={pad}>Fault frequency on these feeders are up 3.1× over 24 months, with two sustained outages this year. Health index has dropped from 74 to 41. Left alone, Cooper projects a likely in-service failure within 18-30 months, affecting ~9400 customers including a hospital.</div>)}
-            {card('goals', 'Aligned enterprise goals', <div style={{ ...pad, display: 'flex', flexWrap: 'wrap', gap: 8 }}>{GOALS.map(g => <IFS.Badge key={g} color="black" size="m">{g}</IFS.Badge>)}</div>)}
-            {card('relevance', 'Strategic relevance', <div style={{ ...pad, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <div style={{ display: 'flex', gap: 2, height: 24 }}>{RELEVANCE.map(([l, v, c]) => <IFS.BarChartItem key={l} fill={c} style={{ flex: `${v} 1 0`, minWidth: 0 }}>{`${v}%`}</IFS.BarChartItem>)}</div>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>{RELEVANCE.map(([l, , c]) => <IFS.LegendSwatch key={l} color={c} label={l} />)}</div>
-            </div>)}
-          </div>
+            {card('goals', 'Aligned enterprise goals', <IFS.Inline gap="200" wrap style={{ ...pad }}>{GOALS.map(g => <IFS.Badge key={g} color="black" size="m">{g}</IFS.Badge>)}</IFS.Inline>)}
+            {card('relevance', 'Strategic relevance', <IFS.Stack gap="400" style={{ ...pad }}>
+              <IFS.Inline gap="50" style={{ height: 24 }}>{RELEVANCE.map(([l, v, c]) => <IFS.BarChartItem key={l} fill={c} style={{ flex: `${v} 1 0`, minWidth: 0 }}>{`${v}%`}</IFS.BarChartItem>)}</IFS.Inline>
+              <IFS.Inline gap="400" justify="center" wrap>{RELEVANCE.map(([l, , c]) => <IFS.LegendSwatch key={l} color={c} label={l} />)}</IFS.Inline>
+            </IFS.Stack>)}
+          </IFS.Stack>
           {card('assets', 'Affected assets & area', <div style={{ ...pad, padding: '0 4px 4px' }}><AffectedAssets /></div>)}
         </div>
         {card('alternative', 'Recommended alternative', <div style={pad}>
@@ -167,7 +167,7 @@ export default IFS_GALLERY;
           <IFS.ContentCard title="Full Replacement" description="Replace all 7 feeders in one program. Highest cost, removes the cluster risk." />
           <IFS.ContentCard title="Reactive Repair" description="Fix on failure. Lowest near-term cost; outage exposure keeps rising." />
         </div>)}
-      </div>
+      </IFS.Stack>
     );
   }
 
@@ -181,8 +181,8 @@ export default IFS_GALLERY;
           <IFS.PageHeader title={title} id="INV-2025-0842" onBack={noop} onTitleMenu={recordTitle ? noop : undefined}
             status={<IFS.Indicator type="purple" size="xs">Shaping</IFS.Indicator>}
             actions={<>
-              <span style={{ display: 'flex', gap: 4 }}><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></span>
-              <span style={{ display: 'flex', gap: 8 }}><IFS.Button type="secondary" size="s">Dismiss</IFS.Button><IFS.Button type="primary" size="s">Send for review</IFS.Button></span>
+              <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></IFS.Inline>
+              <IFS.Inline as="span" gap="200"><IFS.Button type="secondary" size="s">Dismiss</IFS.Button><IFS.Button type="primary" size="s">Send for review</IFS.Button></IFS.Inline>
             </>} />
           <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
             <IFS.Stepper steps={[{ label: 'Shape' }, { label: 'Review' }, { label: 'Refine' }, { label: 'Approve' }]} current={0} />
@@ -214,13 +214,13 @@ export default IFS_GALLERY;
         <div className="t-body-m-regular" style={{ color: 'var(--text-secondary)', marginBottom: 12 }}>Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.</div>
         <div style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gridTemplateRows: '200px auto', gap: '8px 4px' }}>
           <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>{[250, 200, 150, 100, 50, 0].map(t => <span key={t}>{t}</span>)}</div>
-          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6 }}>{IMPACT.map(([l, v, c]) => <IFS.VerticalBarChartItem key={l} label={`${l}: ${v}`} width="auto" height={200} value={v} max={250} segments={[{ value: 1, fill: c }]} style={{ flex: '1 1 0' }} />)}</div>
+          <IFS.Inline gap="150" align="end">{IMPACT.map(([l, v, c]) => <IFS.VerticalBarChartItem key={l} label={`${l}: ${v}`} width="auto" height={200} value={v} max={250} segments={[{ value: 1, fill: c }]} style={{ flex: '1 1 0' }} />)}</IFS.Inline>
           <span />
-          <div className="t-body-m-regular" style={{ display: 'flex', gap: 6, color: 'var(--text-secondary)', textAlign: 'center' }}>{IMPACT.map(([l]) => <span key={l} style={{ flex: '1 1 0' }}>{l}</span>)}</div>
+          <IFS.Inline gap="150" className="t-body-m-regular" style={{ color: 'var(--text-secondary)', textAlign: 'center' }}>{IMPACT.map(([l]) => <span key={l} style={{ flex: '1 1 0' }}>{l}</span>)}</IFS.Inline>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 12 }}>
+        <IFS.Inline gap="400" justify="center" style={{ marginTop: 12 }}>
           <IFS.LegendSwatch color="var(--data-viz-alert-data-5)" label="Loss" /><IFS.LegendSwatch color="neutral" label="Unchanged" /><IFS.LegendSwatch color="var(--data-viz-deep-green-data-5)" label="Gain" />
-        </div>
+        </IFS.Inline>
       </div>
     </IFS.DataVizCard>;
   }
@@ -243,10 +243,10 @@ export default IFS_GALLERY;
   function SystemConfidence({ onEvidence, evidenceOpen }) {
     return (
       <IFS.Panel title="System confidence" onEvidence={onEvidence} style={{ height: '100%' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: 12, borderRadius: 8, background: 'var(--surface-secondary-alpha)' }}>
+        <IFS.Stack gap="300" style={{ padding: 12, borderRadius: 8, background: 'var(--surface-secondary-alpha)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span className="t-heading-h3-medium">Approval readiness</span>
-            <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}><IFS.ProgressRing value={50} size={16} label="Approval readiness" /><span className="t-heading-h3-medium">50%</span></span>
+            <IFS.Inline as="span" gap="200" align="center"><IFS.ProgressRing value={50} size={16} label="Approval readiness" /><span className="t-heading-h3-medium">50%</span></IFS.Inline>
           </div>
           <IFS.ReadinessStatus style={{ width: "100%" }} type="done" right="Passed">Objective weighting</IFS.ReadinessStatus>
           <IFS.ReadinessStatus style={{ width: "100%" }} type="done" right="Passed">Strategic alignment</IFS.ReadinessStatus>
@@ -260,7 +260,7 @@ export default IFS_GALLERY;
           <IFS.ContentCard size="s" title="Accept v2's 45% weighting in full" description="Faithful restore · Requires Strategy OKR review" />
           <IFS.ContentCard size="s" title="Skip restore now, plan for v3.2 release" description="Capture V2's calculation features in FY27 release plan" />
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}><IFS.Button type="secondary" size="m" iconLeft="system-upload">Upload file</IFS.Button><IFS.Button type="secondary" size="m" iconLeft="system-plus">My answer</IFS.Button></div>
-        </div>
+        </IFS.Stack>
       </IFS.Panel>
     );
   }
@@ -281,9 +281,9 @@ export default IFS_GALLERY;
             <div style={{ position: 'relative' }}>
               <IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} onTitleMenu={noop}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
-                views={<span style={{ display: 'flex', gap: 2 }}>{['node-map', 'map-view-2d', 'map-views'].map(i => <IFS.IconButton key={i} icon={i} label={i} type="ghost" size="s" />)}</span>}
+                views={<IFS.Inline as="span" gap="50">{['node-map', 'map-view-2d', 'map-views'].map(i => <IFS.IconButton key={i} icon={i} label={i} type="ghost" size="s" />)}</IFS.Inline>}
                 actions={<>
-                  <span style={{ display: 'flex', gap: 4 }}><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></span>
+                  <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></IFS.Inline>
                   <IFS.Button type="primary" size="s" disabled>Send for approval</IFS.Button>
                 </>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
@@ -291,7 +291,7 @@ export default IFS_GALLERY;
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', minHeight: 0 }}>
-              <div ref={scroller} style={{ overflow: 'auto', padding: 12, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <IFS.Stack gap="300" ref={scroller} style={{ overflow: 'auto', padding: 12 }}>
                 <div><div className="t-heading-h1-medium">Executive summary</div>
                   <div className="t-body-l-regular" style={{ color: 'var(--text-secondary)', marginTop: 8 }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</div></div>
                 <IFS.StatCardsRow cards={[{ title: 'Portfolio value', value: '$2.24B', description: 'Proposed · $2.14B current', trend: '4.8%' },
@@ -301,7 +301,7 @@ export default IFS_GALLERY;
                 <IFS.Tabs items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'align', label: 'Strategic Alignment' }]} defaultValue="impact" />
                 <ImpactChart />
                 <IFS.Table columns={REVIEW_COLS} rows={REVIEW_ROWS} groupBy="group" />
-              </div>
+              </IFS.Stack>
               <SystemConfidence onEvidence={() => set(!open)} evidenceOpen={open} />
             </div>
             <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '16 Documents', icon: 'system-file', onClick: noop }}

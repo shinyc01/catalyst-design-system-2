@@ -88,7 +88,7 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'FormCard', figma: 'form-card-organism (5826:24755)', render: () => <>
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start' }}>
+    <IFS.Inline gap="600" align="start" wrap>
       <FormCard title="Welcome to IFS Copperleaf" description="Sign in with your work email." style={{ width: 464 }}
         fields={[{ name: 'email', label: 'Email', type: 'email', placeholder: 'you@company.com' }, { name: 'password', label: 'Password', type: 'password', placeholder: '••••••••' }]}
         primaryAction={{ label: 'Sign in' }} onSubmit={v => console.log('FormCard submit', v)}>
@@ -101,7 +101,7 @@ export default IFS_GALLERY;
       <FormCard title="Submitting" style={{ width: 464 }} submitting defaultValues={{ a: 'Value' }} fields={[{ name: 'a', label: 'Name' }]} secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save' }} />
       <FormCard title="Form-level error" style={{ width: 464 }} error="Email or password is incorrect." defaultValues={{ email: 'pat@company.com' }}
         fields={[{ name: 'email', label: 'Email', type: 'email' }]} primaryAction={{ label: 'Sign in' }} />
-    </div>
+    </IFS.Inline>
   </> });
 
   IFS_GALLERY.push({ name: 'IconPicker', figma: 'icon-picker-atom (210:77686), icon-picker-organism (5434:16926)', render: () => <>

@@ -9,36 +9,36 @@ export default IFS_GALLERY;
     TableToolbar, ColumnSettings, RecordPreview, DataTable } = IFS;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cell = ({ title, children, w = 376 }) => (
-    <div style={{ width: w, display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <IFS.Stack gap="200" style={{ width: w }}>
       <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>{title}</span>{children}
-    </div>
+    </IFS.Stack>
   );
-  const grid = { display: 'flex', flexWrap: 'wrap', gap: 24, marginBottom: 24, alignItems: 'flex-start' };
+  const grid = { marginBottom: 24 };
   const QUESTIONS = ['Which investments address the Northgate cluster?', 'What was deferred in this planning cycle?', 'What changed since the last review?',
     'Which drafts haven\'t moved in 30 days?', 'Drafts created by P. Nair'];
   const STAGES = [{ value: 'command', label: 'Command' }, { value: 'value', label: 'Value' }, { value: 'explore', label: 'Explore' },
     { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' }];
   const Screen = ({ children, h = 900 }) => <div style={{ position: 'relative', width: 1440, height: h, overflow: 'hidden', background: 'var(--surface-primary)', transform: 'translateZ(0)' }}>{children}</div>;
   const PageTop = ({ title, description, action, children }) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, minHeight: description ? 48 : 32 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <IFS.Stack gap="500">
+      <IFS.Inline gap="200" align="start" justify="between" style={{ minHeight: description ? 48 : 32 }}>
+        <IFS.Stack gap="200">
           <h1 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--text-primary)' }}>{title}</h1>
           {description && <span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>{description}</span>}
-        </div>
+        </IFS.Stack>
         {action}
-      </div>
+      </IFS.Inline>
       {children}
-    </div>
+    </IFS.Stack>
   );
 
   // ── SmartSearch ──
   IFS_GALLERY.push({ name: 'SmartSearch', figma: 'smart-search-organism (2145:3758)', render: () => {
     const ph = 'Ask anything about strategy frameworks';
     return <>
-      <div style={grid}>
+      <IFS.Inline gap="600" align="start" wrap style={grid}>
         {['text', 'voice'].map(t => (
-          <div key={t} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <IFS.Stack gap="400" key={t}>
             <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Type={t}</span>
             <SmartSearch type={t} placeholder={ph} />
             <SmartSearch type={t} placeholder={ph} state="hover" />
@@ -48,28 +48,28 @@ export default IFS_GALLERY;
             <SmartSearch type={t} placeholder={ph} state="pressed" defaultValue="Explain how our current pricing model impacts different customer segments" />
             <SmartSearch type={t} placeholder={ph} disabled />
             <SmartSearch type={t} placeholder={ph} state="focus" />
-          </div>
+          </IFS.Stack>
         ))}
-      </div>
+      </IFS.Inline>
       <Row label="size s (28, explore-header)"><SmartSearch size="s" width={248} placeholder="Search for..." /><SmartSearch size="s" width={248} defaultValue="Northgate" /></Row>
       <Row label="live, with suggestions"><div style={{ height: 300 }}><SmartSearch placeholder="Ask anything about idea pad" suggestions={QUESTIONS} onSubmit={v => IFS.toast({ title: `Asked: ${v}` })} /></div></Row>
     </>;
   } });
 
   IFS_GALLERY.push({ name: 'SearchModal', figma: 'search-modal [patterns] (95:21781)', render: () => (
-    <div style={grid}>
+    <IFS.Inline gap="600" align="start" wrap style={grid}>
       <Cell title="suggestions" w={462}><SearchModal inline items={QUESTIONS} /></Cell>
       <Cell title="active (keyboard)" w={462}><SearchModal inline items={QUESTIONS.slice(0, 3)} activeIndex={1} /></Cell>
-    </div>
+    </IFS.Inline>
   ) });
 
   IFS_GALLERY.push({ name: 'SearchCard', figma: 'search-card [patterns] (95:21751)', render: () => (
-    <div style={{ width: 450, display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <IFS.Stack gap="200" style={{ width: 450 }}>
       <SearchCard>Where is wildfire risk used?</SearchCard>
       <SearchCard state="hover">Where is wildfire risk used?</SearchCard>
       <SearchCard type="user-query" query="Where is wild">Where is wildfire risk used?</SearchCard>
       <SearchCard type="user-query" query="Where is wild" state="hover">Where is wildfire risk used?</SearchCard>
-    </div>
+    </IFS.Stack>
   ) });
 
   IFS_GALLERY.push({ name: 'FollowButton', figma: 'icon-button-following [patterns] (95:16985)', render: () => (
@@ -84,13 +84,13 @@ export default IFS_GALLERY;
     const [col, setCol] = React.useState(['Replied', 'Input required']);
     const [rng, setRng] = React.useState({ from: null, to: null });
     return (
-      <div style={grid}>
+      <IFS.Inline gap="600" align="start" wrap style={grid}>
         <Cell title="chips (Ideas: AI keywords)" w={240}><ColumnFilter options={['Replacement', 'Refurbishment', 'Upgrade', 'Feeder', 'Substation'].map(v => ({ value: v, label: v }))} value={name} onChange={setName} /></Cell>
         <Cell title="chips + custom period (Horizon)" w={240}><ColumnFilter options={['Long', 'Mid', 'Short'].map(v => ({ value: v, label: v }))} value={hz} onChange={setHz} period={{ value: per, onChange: setPer }} /></Cell>
         <Cell title="presets + custom period (Modified)" w={240}><ColumnFilter multiple={false} options={[{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This Year' }, { value: '2026', label: '2026' }]} value={mod} onChange={setMod} period={{ value: null, onChange: () => {} }} /></Cell>
         <Cell title="search + chips (Collaboration)" w={240}><ColumnFilter search={{ placeholder: 'Search by name, role...', onFilter: () => {} }} options={['Replied', 'Input required', 'Review required', 'A. Singh', 'P. Nair'].map(v => ({ value: v, label: v }))} value={col} onChange={setCol} /></Cell>
         <Cell title="range (Progress)" w={240}><ColumnFilter range={{ value: rng, onChange: setRng, min: 11, max: 89, step: 1 }} /></Cell>
-      </div>
+      </IFS.Inline>
     );
   } });
 
@@ -104,9 +104,9 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'TruncatedText', figma: 'Name display [patterns] (190:230621)', render: () => {
     const n = 'Northgate Substation Transformer Replacement and Feeder 5 Backup Tie — Phase 2';
-    return <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+    return <IFS.Stack gap="300">
       {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-regular" style={{ width: 260, color: 'var(--text-primary)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
-    </div>;
+    </IFS.Stack>;
   } });
 
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
@@ -180,7 +180,7 @@ export default IFS_GALLERY;
       navBar={<IFS.NavBar stages={STAGES} defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
       bottom={<IFS.BottomSheet prompts={['Brief me', 'What needs my input first?']} />}>
       <div style={{ display: 'flex', minHeight: '100%' }}>
-        <div style={{ flex: 1, minWidth: 0, padding: 12, display: 'flex', flexDirection: 'column', gap: 20 }}>{children}</div>
+        <IFS.Stack gap="500" style={{ flex: 1, minWidth: 0, padding: 12 }}>{children}</IFS.Stack>
         {aside}
       </div>
     </IFS.AppShell>
@@ -240,7 +240,7 @@ export default IFS_GALLERY;
             { id: 'hp', label: 'Human Performance' }]} />}
           bottom={<IFS.BottomSheet prompts={['Walk me through this framework', 'What hasn\'t been updated in a while?']} />}
 >
-          <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <IFS.Stack gap="500" style={{ padding: 12 }}>
             <DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
               pageTop={{ title: 'Value Framework', description: 'Published, archived and draft value frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
               filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s === 'Pending approval' ? 'Pending Approval' : s, match: r => r.status.label === s }))] }}
@@ -255,7 +255,7 @@ export default IFS_GALLERY;
                 { key: 'measures', title: 'Value measures', width: 140, kind: 'number', filter: false, render: r => (r.measures == null ? '—' : r.measures), type: 'custom' },
                 { key: 'by', title: 'Created by', width: 160, type: 'user', filterValue: r => r.by.name },
               ]} />
-          </div>
+          </IFS.Stack>
         </IFS.AppShell>
       </Screen>
     );
@@ -286,7 +286,7 @@ export default IFS_GALLERY;
           views={<div style={{ width: 360 }}><IFS.Stepper current={2} steps={['Shape', 'Review', 'Refine', 'Approve'].map(label => ({ label }))} /></div>}
           actions={<><IFS.Button type="secondary" size="s">Dismiss</IFS.Button><IFS.Button type="primary" size="s">Send for approval</IFS.Button></>} />}
         bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} onUpload={() => {}} prompts={['Explain gaps in confidence', 'Draft value assessment']} />}>
-        <div style={{ padding: '12px 60px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <IFS.Stack gap="300" style={{ padding: '12px 60px' }}>
           <PageTop title="Investment details" description="Core investment details, context, and current status">
             <IFS.Tabs items={[{ value: 'g', label: 'General' }, { value: 'c', label: 'Cost & Schedule' }, { value: 'r', label: 'Relationships' }]} defaultValue="r" />
           </PageTop>
@@ -294,7 +294,7 @@ export default IFS_GALLERY;
             columns={[
               { key: 'name', title: 'Investment', name: true, width: '1fr', code: r => r.code, filter: false },
               { key: 'type', title: 'Dependency type', width: 180, type: 'custom', render: r => <IFS.Badge color="white" size="m">{r.type}</IFS.Badge> },
-              { key: 'progress', title: 'Progress', width: 150, kind: 'number', sortable: false, type: 'custom', render: r => <span style={{ display: 'flex', alignItems: 'center', gap: 8, width: '100%' }}><IFS.ProgressBar value={r.progress} /><span>{r.progress}%</span></span> },
+              { key: 'progress', title: 'Progress', width: 150, kind: 'number', sortable: false, type: 'custom', render: r => <IFS.Inline as="span" gap="200" align="center" style={{ width: '100%' }}><IFS.ProgressBar value={r.progress} /><span>{r.progress}%</span></IFS.Inline> },
               { key: 'cost', title: 'Cost', width: 100, kind: 'number', step: 0.1, type: 'custom', render: r => IFS.format.money(r.cost * 1e6, { unit: 'M', decimals: 1 }) },
               { key: 'value', title: 'Value', width: 100, kind: 'number', step: 0.1, type: 'custom', render: r => IFS.format.money(r.value * 1e6, { unit: 'M', decimals: 1 }) },
             ]} />
@@ -302,7 +302,7 @@ export default IFS_GALLERY;
             columns={[{ key: 'name', title: 'Asset', name: true, width: '1fr', filter: 'chips' }, { key: 'segment', title: 'Segment', width: '1fr' }, ...sevCols]} />
           <DataTable title="Risks impacted" collapsible headerAction={cooperAdd} fixedHeight rows={RISKS}
             columns={[{ key: 'name', title: 'Risk', name: true, width: '1fr', filter: 'chips' }, ...sevCols]} />
-        </div>
+        </IFS.Stack>
       </IFS.AppShell>
     </Screen>
   ) });
@@ -311,7 +311,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Table states', figma: 'empty states [patterns] (190:231737)', render: () => {
     const cols = ideaCols(() => {}).slice(0, 4);
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: 1100 }}>
+      <IFS.Stack gap="600" style={{ width: 1100 }}>
         <Cell title="Loading (skeleton rows inside the table)" w={1100}><DataTable variant="ranked" defaultRows={IDEAS.slice(0, 3)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Ask anything about idea pad' }} loading /></Cell>
         <Cell title="Search → Searching… → results / No results found (type a query and press Enter, e.g. “zzz”)" w={1100}>
           <DataTable variant="ranked" defaultRows={IDEAS.slice(0, 5)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Ask anything about idea pad', suggestions: QUESTIONS, noResults: ['Cedar Park', 'Birchwood', 'Northgate Full Replacement'] }} />
@@ -322,7 +322,7 @@ export default IFS_GALLERY;
         <Cell title="Progressive loading (single table on the page: more rows load on scroll)" w={1100}>
           <div style={{ height: 360, overflow: 'auto' }}><DataTable defaultSort={{ key: 'modified', dir: 'desc' }} defaultRows={[...IDEAS, ...IDEAS.map(r => ({ ...r, id: r.id + 'b' }))]} columns={cols} progressive={{ pageSize: 6 }} /></div>
         </Cell>
-      </div>
+      </IFS.Stack>
     );
   } });
 }

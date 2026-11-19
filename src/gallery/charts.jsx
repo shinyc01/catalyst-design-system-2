@@ -33,7 +33,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'DataVizLine', figma: 'line-atom (4440:32650)', render: () => <>
     <Row label="solid"><div style={{ width: 212 }}><DataVizLine /></div></Row>
     <Row label="dashed"><div style={{ width: 212 }}><DataVizLine dashed /></div></Row>
-    <Row label="vertical"><div style={{ height: 60, display: 'flex', gap: 24 }}><DataVizLine orientation="vertical" /><DataVizLine orientation="vertical" dashed /></div></Row>
+    <Row label="vertical"><IFS.Inline gap="600" style={{ height: 60 }}><DataVizLine orientation="vertical" /><DataVizLine orientation="vertical" dashed /></IFS.Inline></Row>
   </> });
 
   IFS_GALLERY.push({ name: 'DataVizIndicator', figma: 'indicator-atom (4440:32643)', render: () => <>

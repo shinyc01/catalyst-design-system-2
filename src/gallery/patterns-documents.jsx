@@ -7,10 +7,10 @@ export default IFS_GALLERY;
 {
   const { MapPinDot, MapPinDefect, MapPinFlow, MapPinPole, BarChartItem, VerticalBarChartItem, DocumentRow, DocumentsPopover } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const mapBg = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)', display: 'flex', flexDirection: 'column', gap: 4 };
+  const mapBg = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)' };
 
   /* ---------------- components ---------------- */
-  IFS_GALLERY.push({ name: 'MapPinDot', figma: 'map-pin-dot (d2686af3) [patterns] (12:107153)', render: () => <div style={mapBg}>
+  IFS_GALLERY.push({ name: 'MapPinDot', figma: 'map-pin-dot (d2686af3) [patterns] (12:107153)', render: () => <IFS.Stack gap="100" style={mapBg}>
     {['error', 'warning', 'success'].map(st => <React.Fragment key={st}>
       {[['out-of-hover', 'out of hover'], [undefined, 'default'], ['highlight', 'higlight=yes'], ['selected', 'selected']].map(([s, l]) => (
         (s === 'highlight' && st === 'success') ? null :
@@ -22,9 +22,9 @@ export default IFS_GALLERY;
       ))}
     </React.Fragment>)}
     <Row label="interactive"><MapPinDot counter="12" label="12 faults — click to select" /><MapPinDot size="s" status="warning" label="Warning" /></Row>
-  </div> });
+  </IFS.Stack> });
 
-  IFS_GALLERY.push({ name: 'MapPinPole', figma: 'map-pin-pole "Pole" (b548a660) [patterns] (12:107120)', render: () => <div style={mapBg}>
+  IFS_GALLERY.push({ name: 'MapPinPole', figma: 'map-pin-pole "Pole" (b548a660) [patterns] (12:107120)', render: () => <IFS.Stack gap="100" style={mapBg}>
     {['default', 'selected'].map(s => (
       <Row key={s} label={`state=${s}`} style={{ gap: 40, alignItems: 'flex-end' }}>
         <MapPinPole state={s} symbol="pin" pinIcon="asset type-substation" />
@@ -40,18 +40,18 @@ export default IFS_GALLERY;
       {['group', 'segment', 'structure'].map(h => <MapPinPole key={h} symbol="hierarchy-pin" hierarchy={h} number={h} />)}
     </Row>
     <Row label="pin=false (route numbers)" style={{ gap: 24 }}>{[1, 2, 3, 4, 5, 6].map(n => <MapPinPole key={n} pin={false} number={n} defaultSelected={n === 4} />)}</Row>
-  </div> });
+  </IFS.Stack> });
 
-  IFS_GALLERY.push({ name: 'MapPinDefect', figma: 'map-pin-defect (91cf9e42) [patterns] (12:106855)', render: () => <div style={mapBg}>
+  IFS_GALLERY.push({ name: 'MapPinDefect', figma: 'map-pin-defect (91cf9e42) [patterns] (12:106855)', render: () => <IFS.Stack gap="100" style={mapBg}>
     {['confirmed', 'unconfirmed', 'monitoring'].map(s => (
       <Row key={s} label={s} style={{ gap: 24 }}>{['cyclone', 'flood', 'heat', 'storm'].map(t => <MapPinDefect key={t} type={t} state={s} />)}</Row>
     ))}
-  </div> });
+  </IFS.Stack> });
 
-  IFS_GALLERY.push({ name: 'MapPinFlow', figma: 'Electric Flow Direction Indicator (a6c2010c) [patterns] (12:107306)', render: () => <div style={mapBg}>
+  IFS_GALLERY.push({ name: 'MapPinFlow', figma: 'Electric Flow Direction Indicator (a6c2010c) [patterns] (12:107306)', render: () => <IFS.Stack gap="100" style={mapBg}>
     <Row label="type" style={{ gap: 24 }}><MapPinFlow /><MapPinFlow type="error" /></Row>
     <Row label="rotate" style={{ gap: 24 }}>{[0, 90, 169, 180, -63].map(r => <MapPinFlow key={r} type="error" rotate={r} />)}</Row>
-  </div> });
+  </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
@@ -87,7 +87,7 @@ export default IFS_GALLERY;
   ].map(([name, date], i) => ({ id: `l${i}`, name, date }));
   const noop = () => {};
 
-  IFS_GALLERY.push({ name: 'DocumentRow', figma: 'file-card rows in the documents popover [patterns] (168:433527)', render: () => <div style={{ width: 284, display: 'flex', flexDirection: 'column', gap: 12 }}>
+  IFS_GALLERY.push({ name: 'DocumentRow', figma: 'file-card rows in the documents popover [patterns] (168:433527)', render: () => <IFS.Stack gap="300" style={{ width: 284 }}>
     <Row label="default"><div style={{ width: 284 }}><DocumentRow doc={SAMPLE[0]} onOpen={noop} /></div></Row>
     <Row label="hover (editable: more)"><div style={{ width: 284 }}><DocumentRow doc={SAMPLE[3]} state="hover" onOpen={noop} /></div></Row>
     <Row label="menu open"><div style={{ width: 284 }}><DocumentRow doc={SAMPLE[3]} state="menu" onOpen={noop} /></div></Row>
@@ -95,19 +95,19 @@ export default IFS_GALLERY;
     <Row label="long name"><div style={{ width: 284 }}><DocumentRow doc={LONG[1]} onOpen={noop} /></div></Row>
     <Row label="upload failed"><div style={{ width: 284 }}><DocumentRow doc={{ ...SAMPLE[1], name: 'Investment ideas.pdf', date: 'Sep 23, 2026', status: 'error' }} /></div></Row>
     <Row label="uploading"><div style={{ width: 284 }}><DocumentRow doc={{ ...SAMPLE[1], status: 'uploading' }} /></div></Row>
-  </div> });
+  </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'DocumentsPopover', figma: 'popover-organism with file-card rows [patterns] (168:426540)', render: () => (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start' }}>
+    <IFS.Inline gap="600" align="start" wrap>
       {[[1, '1 document'], [7, '7 — height adapts'], [8, '8 — max 360 + scroll'], [10, '10 — search appears']].map(([n, l]) => (
-        <div key={n} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}><span className="g-label t-body-m-regular" style={{ width: 'auto' }}>{l}</span>
-          <DocumentsPopover documents={SAMPLE.slice(0, n)} onOpen={noop} onClose={noop} /></div>
+        <IFS.Stack gap="200" key={n}><span className="g-label t-body-m-regular" style={{ width: 'auto' }}>{l}</span>
+          <DocumentsPopover documents={SAMPLE.slice(0, n)} onOpen={noop} onClose={noop} /></IFS.Stack>
       ))}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}><span className="g-label t-body-m-regular" style={{ width: 'auto' }}>no results</span>
-        <DocumentsPopover documents={SAMPLE} defaultQuery="Strategy" onClose={noop} /></div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}><span className="g-label t-body-m-regular" style={{ width: 'auto' }}>long names (middle truncation)</span>
-        <DocumentsPopover documents={LONG} onOpen={noop} onClose={noop} /></div>
-    </div>
+      <IFS.Stack gap="200"><span className="g-label t-body-m-regular" style={{ width: 'auto' }}>no results</span>
+        <DocumentsPopover documents={SAMPLE} defaultQuery="Strategy" onClose={noop} /></IFS.Stack>
+      <IFS.Stack gap="200"><span className="g-label t-body-m-regular" style={{ width: 'auto' }}>long names (middle truncation)</span>
+        <DocumentsPopover documents={LONG} onOpen={noop} onClose={noop} /></IFS.Stack>
+    </IFS.Inline>
   ) });
 
   /* ---------------- pattern screens ---------------- */
@@ -189,7 +189,7 @@ export default IFS_GALLERY;
     // (same surface, data-viz-header-molecule header) stands in. See guide/patterns/documents.md › Consolidated.
     const card = (title, body) => <IFS.DataVizCard title={title} header={{ draggable: false, slot: evidenceBtn }}>{body}</IFS.DataVizCard>;
     return (
-      <div style={{ padding: '12px 12px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <IFS.Stack gap="300" style={{ padding: '12px 12px 24px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div><div className="t-heading-h1-medium">Investment overview</div>
             <div className="t-body-l-regular" style={{ color: 'var(--text-secondary)', marginTop: 8 }}>High-level investment summary, key metrics, and current progress</div></div>
@@ -208,7 +208,7 @@ export default IFS_GALLERY;
           {card('Yearly forecast', <YearlyForecast />)}
           {card('Investment value', <InvestmentValue />)}
         </div>
-      </div>
+      </IFS.Stack>
     );
   }
 
@@ -224,7 +224,7 @@ export default IFS_GALLERY;
         style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-secondary)' }}>{f.name}</span>
     );
     return (
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 12, maxWidth: 1440 }}>
+      <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
         <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo — drag a file onto the screen:</span>
         {FAKE.slice(0, 2).map(chip)}
         <span {...c.dragSource(FAKE.slice(1, 6))} className="t-body-m-regular" style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-secondary)' }}>5 files</span>
@@ -235,7 +235,7 @@ export default IFS_GALLERY;
         <IFS.Button size="s" type="tertiary" onClick={() => c.addFiles(FAKE.slice(1, 8))}>7 files, 3 rejected</IFS.Button>
         <IFS.Checkbox checked={c.failNext} onChange={v => c.setFailNext(typeof v === 'boolean' ? v : !c.failNext)}>Next upload fails (network)</IFS.Checkbox>
         {extra}
-      </div>
+      </IFS.Inline>
     );
   }
 
@@ -249,8 +249,8 @@ export default IFS_GALLERY;
           <IFS.PageHeader title="Southern Feeder Replacem…" id="INV-2025-0842" onBack={() => {}} onTitleMenu={() => {}}
             status={<IFS.Indicator type="purple" size="xs">Refining</IFS.Indicator>}
             actions={<>
-              <span style={{ display: 'flex', gap: 4 }}><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></span>
-              <span style={{ display: 'flex', gap: 8 }}><IFS.Button type="secondary" size="s">Dismiss</IFS.Button><IFS.Button type="primary" size="s">Send for approval</IFS.Button></span>
+              <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></IFS.Inline>
+              <IFS.Inline as="span" gap="200"><IFS.Button type="secondary" size="s">Dismiss</IFS.Button><IFS.Button type="primary" size="s">Send for approval</IFS.Button></IFS.Inline>
             </>} />
           <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
             <IFS.Stepper steps={[{ label: 'Shape' }, { label: 'Review' }, { label: 'Refine' }, { label: 'Approve' }]} current={2} />
@@ -314,8 +314,8 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Documents on an active framework (read-only)', figma: 'Map - Overview - Documents search focused [patterns] (168:426467)', render: () => {
     const [n, setN] = React.useState(10);
     return <>
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 12 }}><span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo — number of documents:</span>
-        <IFS.SegmentedControl size="s" value={String(n)} onChange={v => setN(+v)} options={['1', '7', '8', '10', '16'].map(v => ({ value: v, label: v }))} /></div>
+      <IFS.Inline gap="200" align="center" style={{ marginBottom: 12 }}><span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo — number of documents:</span>
+        <IFS.SegmentedControl size="s" value={String(n)} onChange={v => setN(+v)} options={['1', '7', '8', '10', '16'].map(v => ({ value: v, label: v }))} /></IFS.Inline>
       <FrameworkScreen key={n} label="Active framework, read-only documents" initial={withDates(SAMPLE.slice(0, n))} />
     </>;
   } });

@@ -10,9 +10,9 @@ export default IFS_GALLERY;
     HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, AgentWindow, RecommendationGroup, RecommendationItem, RecommendationDetail,
     CooperChat, CooperHistory, CooperRecommendations } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={{ alignItems: 'flex-start', ...style }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const Cap = ({ title, children, w }) => <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: w }}><span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>{title}</span>{children}</div>;
+  const Cap = ({ title, children, w }) => <IFS.Stack gap="200" style={{ width: w }}><span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>{title}</span>{children}</IFS.Stack>;
   // Cooper surfaces are glass: show them on the dark canvas they sit on in the product.
-  const stage = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)', display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start' };
+  const stage = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)' };
 
   // ---------- sample content (from the Figma frames) ----------
   const Q = 'Can you give me a quick overview of our current Strategy Framework? How healthy is it overall?';
@@ -103,7 +103,7 @@ export default IFS_GALLERY;
 
   /* ================================================================ components */
 
-  IFS_GALLERY.push({ name: 'ChatCollapsedBar', figma: 'chat-collapsed-bar-organism "chat-inline-quick-mode" [patterns] (12:263488)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatCollapsedBar', figma: 'chat-collapsed-bar-organism "chat-inline-quick-mode" [patterns] (12:263488)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Type=Voice · Default (opens by default)" w={320}><ChatCollapsedBar type="voice" /></Cap>
     <Cap title="Voice · Hover (expand control)" w={320}><ChatCollapsedBar type="voice" state="hover" onExpand={() => {}} /></Cap>
     <Cap title="Voice · Speaking" w={320}><ChatCollapsedBar type="voice" speech="Show me" /></Cap>
@@ -112,56 +112,56 @@ export default IFS_GALLERY;
     <Cap title="Text · Typing (interactive)" w={320}><ChatCollapsedBar type="text" defaultValue="Show me" onExpand={() => {}} /></Cap>
     <Cap title="Text · Typing multi-line" w={320}><ChatCollapsedBar type="text" defaultValue="Can you give me a quick overview of our current Strategy Framework? How" /></Cap>
     <Cap title="Type=FAB button" w={320}><ChatCollapsedBar type="fab" /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ChatHeader', figma: 'chat-header-molecule "chat header" [patterns] (12:263805)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatHeader', figma: 'chat-header-molecule "chat header" [patterns] (12:263805)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Full panel · New chat" w={450}><div className="ifs-cooper-surface"><ChatHeader size="full" newChat /></div></Cap>
     <Cap title="Full panel · existing chat (more ⋯)" w={450}><div className="ifs-cooper-surface"><ChatHeader size="full" title="Current strategy overview" historyOpen /></div></Cap>
     <Cap title="Compact · New chat" w={320}><div className="ifs-cooper-surface"><ChatHeader size="compact" newChat /></div></Cap>
     <Cap title="Compact · long name" w={320}><div className="ifs-cooper-surface"><ChatHeader size="compact" title="Current strategy overview for the board" /></div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'UserMessage', figma: 'user-message-molecule "user-message-bubble" [patterns] (12:263541)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'UserMessage', figma: 'user-message-molecule "user-message-bubble" [patterns] (12:263541)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Size=Inline" w={426}><UserMessage>Strategic priorities</UserMessage></Cap>
     <Cap title="Size=>1" w={426}><UserMessage>{Q}</UserMessage></Cap>
     <Cap title="Hover (copy · edit)" w={426}><UserMessage state="hover" onEdit={() => {}}>{Q}</UserMessage></Cap>
     <Cap title="Editing" w={426}><UserMessage defaultEditing onEdit={() => {}}>{Q}</UserMessage></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'TextMessageInput', figma: 'text-message-input-molecule [patterns] (67:120307)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'TextMessageInput', figma: 'text-message-input-molecule [patterns] (67:120307)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="State=Default" w={426}><TextMessageInput /></Cap>
     <Cap title="State=Typing (interactive)" w={426}><TextMessageInput defaultValue="Show me transformer" /></Cap>
     <Cap title="State=Typing multi-line" w={426}><TextMessageInput defaultValue="Show me transformer T-902 on the map, the one that had the oil leak last quarter" /></Cap>
     <Cap title="State=Analyzing (Stop)" w={426}><TextMessageInput analyzing /></Cap>
     <Cap title="With attachments" w={426}><TextMessageInput defaultValue="Summarise these" attachments={[{ id: 'a', name: 'Board directive.pdf', meta: 'PDF · 240 KB' }, { id: 'b', name: 'Q1 capex plan.xlsx', meta: 'XLSX · 1 MB' }]} onRemoveAttachment={() => {}} /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'VoiceMessageInput', figma: 'voice-message-input-molecule [patterns] (67:107207)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'VoiceMessageInput', figma: 'voice-message-input-molecule [patterns] (67:107207)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="State=Default" w={320}><VoiceMessageInput /></Cap>
     <Cap title="State=Speaking" w={320}><VoiceMessageInput state="speaking" /></Cap>
     <Cap title="State=Analyzing" w={320}><VoiceMessageInput state="analyzing" /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'SpeakingControl', figma: 'speaking-control-molecule [patterns] (67:108505)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'SpeakingControl', figma: 'speaking-control-molecule [patterns] (67:108505)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Speaking"><SpeakingControl /></Cap><Cap title="Paused"><SpeakingControl defaultSpeaking={false} /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'Attachment', figma: 'attachments [patterns] (16:18042)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'Attachment', figma: 'attachments [patterns] (16:18042)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Attachment name="Board directive.pdf" meta="PDF · 240 KB" onRemove={() => {}} /><Attachment name="Q1 capex plan with a very long file name.xlsx" meta="XLSX · 1 MB" onRemove={() => {}} />
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ChatCard', figma: 'chat-card-molecule [patterns] (67:120468)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatCard', figma: 'chat-card-molecule [patterns] (67:120468)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Type=Scenario" w={426}><ChatCard title="West District Feeder - Balanced" badges={['T-902', 'T-887']} meta={['$3.2M', '2yr', 'saved 3:44 AM']} /></Cap>
     <Cap title="Scenario · show-receipt · clickable" w={426}><ChatCard title="Harbor Substation upgrade" receipt="Receipt #438" badges={['Sub-H']} meta={['$4.8M', '3yr', 'saved 1:40 AM']} onClick={() => {}} /></Cap>
     <Cap title="Type=Metric" w={211}><ChatCard type="metric" category="Risk reduction" value="28–35%" /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ChatLink', figma: 'chat-link-molecule "chat-link-item" [patterns] (12:265109)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatLink', figma: 'chat-link-molecule "chat-link-item" [patterns] (12:265109)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="follow-up · Default / Hover" w={426}><div><ChatLink>What decisions are waiting?</ChatLink><ChatLink state="hover">Show agent conflict</ChatLink></div></Cap>
     <Cap title="source" w={426}><div><ChatLink type="source" number={1}>Q1 2026 Strategy Framework — coverage report</ChatLink><ChatLink type="source" number={2}>Asset health telemetry, last 12 months</ChatLink></div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'CooperMessage', figma: 'Cooper Message content — anatomy & states [patterns] (67:134213)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'CooperMessage', figma: 'Cooper Message content — anatomy & states [patterns] (67:134213)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Analysing (Step n/total)" w={426}><CooperProgress {...step} /></Cap>
     <Cap title="Streaming" w={426}><CooperMessage status="streaming" text={answerText} streamed={120} /></Cap>
     <Cap title="Stopped while analysing → Try again" w={426}><CooperMessage status="stopped" step={step} onRetry={() => {}} /></Cap>
@@ -171,66 +171,66 @@ export default IFS_GALLERY;
     <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework — coverage report' }]} /></Cap>
     <Cap title="Answer with clarifying options (follow-ups hidden)" w={426}><CooperMessage status="answered" text="I need a little more context. Which would you like to start with?" followUps={followUps}
       options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours — select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ChatCompactPanel', figma: 'chat-compact-panel-organism "floating-window" [patterns] (12:263560)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatCompactPanel', figma: 'chat-compact-panel-organism "floating-window" [patterns] (12:263560)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Text · Default"><ChatCompactPanel type="text" newChat /></Cap>
     <Cap title="Voice · Speaking"><ChatCompactPanel type="voice" newChat speech="Can you give me" /></Cap>
     <Cap title="Text · Analyzing"><ChatCompactPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress {...step} /></ChatCompactPanel></Cap>
     <Cap title="Voice · Interrupted"><ChatCompactPanel type="voice" newChat><UserMessage>{Q}</UserMessage><CooperMessage status="stopped" onRetry={() => {}} /></ChatCompactPanel></Cap>
     <Cap title="Text · Answered"><ChatCompactPanel type="text" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatCompactPanel></Cap>
     <Cap title="Text · Drop file"><ChatCompactPanel type="text" newChat dropping /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ChatFullPanel', figma: 'chat-full-panel-organism [patterns] (67:120161)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatFullPanel', figma: 'chat-full-panel-organism [patterns] (67:120161)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Text · Default (show-chips)"><ChatFullPanel type="text" newChat prompts={prompts} /></Cap>
     <Cap title="Text · Analyzing"><ChatFullPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress {...step} /></ChatFullPanel></Cap>
     <Cap title="Text · Answered"><ChatFullPanel type="text" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatFullPanel></Cap>
     <Cap title="Voice · Answered"><ChatFullPanel type="voice" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatFullPanel></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'FolderItem', figma: 'folder-item [patterns] (12:264108)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'FolderItem', figma: 'folder-item [patterns] (12:264108)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Default · Hover · Active" w={231}><div className="ifs-history__list"><FolderItem count={3}>Strategy</FolderItem><FolderItem state="hover" onMore={() => {}} count={3}>Harbor Substation</FolderItem><FolderItem active count={2}>Risk Analysis</FolderItem></div></Cap>
     <Cap title="Select active · Selected" w={231}><div className="ifs-history__list"><FolderItem selectable>Strategy</FolderItem><FolderItem selectable selected>Risk Analysis</FolderItem></div></Cap>
     <Cap title="Rename" w={231}><FolderItem renaming>Strategy</FolderItem></Cap>
     <Cap title="Smart folders" w={231}><div className="ifs-history__list"><FolderItem icon="system-clock-time" count={3}>Reminders</FolderItem><FolderItem icon="cooper-system-icon" iconVariant="Default" count={2}>Recommendations</FolderItem><FolderItem icon="system-trash-delete" count={2}>Trash</FolderItem></div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'SectionHeader', figma: 'section-header [patterns] (12:264342)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'SectionHeader', figma: 'section-header [patterns] (12:264342)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="default" w={239}><SectionHeader heading="Chats" count={35} /></Cap>
     <Cap title="hover (actions)" w={239}><SectionHeader heading="Folders" count={5} icon="chat-folder" state="hover" actions={[{ icon: 'chat-folder-add', label: 'Create folder' }, { icon: 'system-dots-horizont', label: 'More' }]} /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ChatHistoryCard', figma: 'chat-history-card [patterns] (12:264367)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatHistoryCard', figma: 'chat-history-card [patterns] (12:264367)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="default · hover · active" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Network Capacity Review" time="3d ago" /><ChatHistoryCard title="Power Line Risk Assessment" time="6h ago" state="hover" onMore={() => {}} /><ChatHistoryCard title="Current Strategy Overview" time="Now" active /></div></Cap>
     <Cap title="pinned · select · selected" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Board prep notes" time="Mar 2" pinned /><ChatHistoryCard title="Outage History Analysis" time="Mar 26" selectable /><ChatHistoryCard title="System Performance Review" time="Mar 20" selectable selected /></div></Cap>
     <Cap title="rename" w={234}><ChatHistoryCard title="Network Capacity Review" renaming /></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'SearchChatHistoryCard', figma: 'search-chat-history-card [patterns] (67:120339)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'SearchChatHistoryCard', figma: 'search-chat-history-card [patterns] (67:120339)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="default · current chat · hover" w={360}><div><SearchChatHistoryCard title="Power Line Risk Assessment" query="Risk" time="6h ago" /><SearchChatHistoryCard title="Risk Analysis" query="Risk" time="Now" currentChat /><SearchChatHistoryCard title="Power Line Risk Evaluation" query="Risk" time="1d ago" state="hover" /></div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ChatReminderCard', figma: 'chat-reminder-card [patterns] (12:265339)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ChatReminderCard', figma: 'chat-reminder-card [patterns] (12:265339)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Default · active · hover" w={234}><div className="ifs-history__list">
       <ChatReminderCard title="Inspect corrosion on TL-107 joint" badge="In 12 days" due="May 14" />
       <ChatReminderCard title="Check thermal status of T-902" badge="In 4 days" due="May 2" active />
       <ChatReminderCard title="Check for leaks on T-491 valve" badge="In 3 days" due="Apr 29" state="hover" onMore={() => {}} />
     </div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'ConfirmDeleteCard', figma: 'confirm-delete-card-molecule [patterns] (67:129201)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'ConfirmDeleteCard', figma: 'confirm-delete-card-molecule [patterns] (67:129201)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="in Delete modal" w={414}><div className="ifs-confirm-list"><ConfirmDeleteCard onRemove={() => {}}>Saved Scenarios Review</ConfirmDeleteCard><ConfirmDeleteCard icon="chat-folder" onRemove={() => {}}>Risk Analysis</ConfirmDeleteCard></div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'HistoryPanel', figma: 'history-panel-molecule "chat history" [patterns] (12:264137)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'HistoryPanel', figma: 'history-panel-molecule "chat history" [patterns] (12:264137)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Default"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 12 }}><HistoryPanel chats={liveChats.filter(c => !c.smart)} folders={folders} smart={{ reminders: 3, recommendations: 2, trash: 2 }} activeChatId="c1" onCollapse={() => {}} onChatMore={() => {}} onFolderMore={() => {}} onFoldersMore={() => {}} onChatsMore={() => {}} /></div></Cap>
     <Cap title="Select (chats)"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 12 }}><HistoryPanel chats={liveChats.filter(c => !c.smart)} folders={folders.slice(0, 2)} smart={{ reminders: 3, recommendations: 2, trash: 2 }} selecting="chats" selected={['c4', 'c6']}
       footer={<div className="ifs-history__bar"><div className="ifs-history__bar-buttons"><IFS.Button iconLeft="chat-folder-move">Move</IFS.Button><IFS.Button iconLeft="system-trash-delete">Delete</IFS.Button></div><div className="ifs-history__bar-count">Selected <IFS.Counter>2</IFS.Counter></div></div>} /></div></Cap>
     <Cap title="empty"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 12 }}><HistoryPanel /></div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'FolderContent', figma: 'folder content [patterns] (12:264418)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'FolderContent', figma: 'folder content [patterns] (12:264418)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="type=reminders"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent type="reminders" title="Reminders" onCollapse={() => {}}>
       {chats.filter(c => c.smart === 'reminders').map((c, i) => <ChatReminderCard key={c.id} title={c.title} badge={c.badge} due={c.due} active={i === 0} />)}</FolderContent></div></Cap>
     <Cap title="type=insight (Recommendations)"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent type="insight" title="Recommendations">
@@ -238,13 +238,13 @@ export default IFS_GALLERY;
     <Cap title="type=trash"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent type="trash" title="Trash">
       {chats.filter(c => c.trashed).map(c => <ChatHistoryCard key={c.id} title={c.title} time={c.time} />)}</FolderContent></div></Cap>
     <Cap title="type=general (empty)"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent title="Board prep" onBack={() => {}} onMore={() => {}} empty="No chats in this folder yet" /></div></Cap>
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'HistorySearch', figma: 'History- search [patterns] (67:125529)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'HistorySearch', figma: 'History- search [patterns] (67:125529)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <HistorySearch chats={liveChats} defaultQuery="Risk" activeChatId="c1" onClose={() => {}} />
-  </div> });
+  </IFS.Inline> });
 
-  IFS_GALLERY.push({ name: 'AgentWindow', figma: 'agent-window-organism [patterns] (12:264637)', render: () => <div style={stage}>
+  IFS_GALLERY.push({ name: 'AgentWindow', figma: 'agent-window-organism [patterns] (12:264637)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="View=Expanded · list"><AgentWindow text="I’ve found 4 recommendations that could meaningfully improve how investments are evaluated, prioritized, and aligned with organizational goals."
       onAsk={() => {}} onClose={() => {}} tertiaryAction={{ label: 'Decline all' }} secondaryAction={{ label: 'Shape' }}>
       {['Strategic objectives', 'Measures', 'Value models'].map(g => <RecommendationGroup key={g} title={g}>{recs.filter(r => r.group === g).map((r, i) => <RecommendationItem key={r.id} {...r} defaultExpanded={g === 'Strategic objectives'} action={{ label: 'Explore' }} />)}</RecommendationGroup>)}
@@ -252,7 +252,7 @@ export default IFS_GALLERY;
     <Cap title="Shape mode · one recommendation"><AgentWindow onAsk={() => {}} onClose={() => {}}><RecommendationDetail {...recs[0]} onBack={() => {}} /></AgentWindow></Cap>
     <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Working on it: Applying to framework structure…" /></Cap>
     <Cap title="View=Collapsed · Speaking=False"><AgentWindow defaultView="collapsed" defaultSpeaking={false} onAsk={() => {}} onClose={() => {}} text="x" /></Cap>
-  </div> });
+  </IFS.Inline> });
 
   /* ================================================================ pattern screens */
 

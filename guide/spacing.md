@@ -59,3 +59,31 @@ No uppercase text style. Statuses, column headers, eyebrows and captions are sen
 Padding: inset on all four sides. Gaps between icon, heading and text: 20 / 16 / 12 (the inset values). Buttons are their own group: a section gap above them (40 / 32 / 24).
 
 Cards placed on a page use the page gap; blocks inside a container use the stack.
+
+## 8. Stack and Inline (layout spacing in screens, 2.0.3)
+
+**Rule: use `IFS.Stack` and `IFS.Inline` for layout spacing in screens instead of writing your own `display:flex; gap`.** They only take tokens, so a screen can't end up with a raw px gap.
+
+| | Lays out | Props |
+|---|---|---|
+| `IFS.Stack` | top to bottom | `gap`, `align` (start, center, end, stretch), `justify` (start, center, end, between), `as`, `className`, `style` |
+| `IFS.Inline` | side by side, in reading order (start is the right edge in RTL) | the same, plus `align="baseline"` and `wrap` (rows use the same gap) |
+
+- `gap` is a role (`inset`, `stack`, `section`, `page-gap`) or a step of the scale as a string (`"50"`, `"100"`, `"150"`, `"200"`, `"250"`, `"300"`, `"400"`, `"500"`, `"600"` … `"1100"`). Default `stack`. Anything else (a number, `"12px"`) warns in the console and uses `stack`.
+- Pick the gap as in §2 and §4: a role between blocks in a container (`stack`) or between page sections (`section`); a fixed step for small gaps (8 or less) and inside parts that scale by their own height.
+- `align` and `justify` left out = flexbox defaults (stretch, start). Values are logical (start/end), never left/right.
+- `style` is for sizing and surface (width, padding, background), not for overriding the layout. Cards on the page grid still use `.ifs-grid` / `.ifs-span-*` (guide/layout.md).
+- Components keep their own CSS; Stack and Inline are for the space between things in a screen or prototype.
+
+```jsx
+<IFS.Stack gap="stack">
+  <IFS.Inline gap="200" align="center" justify="between">
+    <h2 className="t-heading-h4-medium">Investments</h2>
+    <IFS.Inline gap="200"><IFS.Button type="secondary">Export</IFS.Button><IFS.Button type="primary">Add</IFS.Button></IFS.Inline>
+  </IFS.Inline>
+  <IFS.Table … />
+</IFS.Stack>
+```
+
+What we took from the benchmarks: the two names and the token-only `space` prop from Atlassian (Stack / Inline); `gap` as the prop name and steps as strings (`"200"`) from Polaris (BlockStack / InlineStack) and Carbon; `align` / `justify` / `wrap` names from Primer. Like Atlassian and Primer, `wrap` is off by default (Polaris turns it on); we left out responsive props, `grow` and `separator` until a screen needs them.
+

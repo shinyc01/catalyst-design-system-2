@@ -100,12 +100,11 @@ function ScreenReview({ bp, height }) {
         bottom={<BottomSheet prompts={['Explain me the value impact', 'Evaluate publish risk']} onPrompt={l => toast(l)} onCooper={() => toast('Cooper')} />}>
         <div style={{ display: 'flex', height: '100%', minHeight: 0 }}>
           <div className="ifs-scroll" style={{ flex: '1 1 0', minWidth: 0, overflow: 'auto' }}>
-            <div style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto',
-              padding: 'var(--pg-gap) var(--pg-margin)', display: 'flex', flexDirection: 'column', gap: 'var(--pg-gap)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-200)' }}>
+            <IFS.Stack gap="page-gap" style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto', padding: 'var(--pg-gap) var(--pg-margin)' }}>
+              <IFS.Stack gap="200">
                 <span className="t-heading-h2-medium" style={{ color: 'var(--text-primary)' }}>Executive summary</span>
                 <span className="t-label-m-medium" style={{ color: 'var(--text-secondary)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments.</span>
-              </div>
+              </IFS.Stack>
               <StatCardsRow cards={reviewStats} style={{ gap: 'var(--pg-gap)' }} />
               <Tabs aria-label="Review views" value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'alignment', label: 'Strategic Alignment' }]} />
               {tab === 'impact' ? <>
@@ -115,7 +114,7 @@ function ScreenReview({ bp, height }) {
               </> : (
                 <EmptyState cause="empty-container" heading="Strategic Alignment" body="This view is not part of this prototype." />
               )}
-            </div>
+            </IFS.Stack>
           </div>
           <Panel title="Readiness evaluation" onEvidence={() => toast('Evidence chain')}>
             <ReadinessEvaluation

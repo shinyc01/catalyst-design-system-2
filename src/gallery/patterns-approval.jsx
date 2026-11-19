@@ -141,10 +141,10 @@ export default IFS_GALLERY;
     const [tone, label] = STATUS[status];
     return <IFS.PageHeader title={FRAMEWORK} onBack={() => {}} onTitleMenu={() => {}}
       status={<IFS.Indicator type={tone} size="xs">{label}</IFS.Indicator>}
-      views={<div style={{ display: 'flex', alignItems: 'center', gap: 80 }}>
+      views={<IFS.Inline gap="1100" align="center">
         <IFS.SegmentedControl size="s" defaultValue="overview" options={[{ value: 'overview', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'flow', iconLeft: 'capital-flow' }]} />
         <div style={{ width: 352 }}><IFS.Stepper current={step} steps={['Input', 'Shape', 'Review', 'Approve'].map(l => ({ label: l }))} /></div>
-      </div>}
+      </IFS.Inline>}
       actions={<>
         <IFS.Button type="secondary" size="s" iconLeft="users-group">3/5</IFS.Button>
         <IFS.IconButton icon="system-comment" label="Comments" type="secondary" size="s" />
@@ -156,12 +156,12 @@ export default IFS_GALLERY;
     const [tab, setTab] = useState('impact');
     return (
       <div style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 12, display: 'grid', gap: 20, alignContent: 'start' }} className="ifs-scroll">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <IFS.Stack gap="200">
           <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--text-primary)' }}>Executive summary</h2>
           <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--text-tertiary)' }}>
             Applying this change <span style={{ color: 'var(--text-primary)' }}>increases Reliability influence by 18%, decreases Safety influence by 7%</span>, and changes the value of <span style={{ color: 'var(--text-primary)' }}>876 investments</span>.<br />
             3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p>
-        </div>
+        </IFS.Stack>
         <StatCardsRow cards={STATS} />
         <div><IFS.Tabs value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'alignment', label: 'Strategic Alignment' }]} /></div>
         {tab === 'impact' && <InvestmentValueImpact />}

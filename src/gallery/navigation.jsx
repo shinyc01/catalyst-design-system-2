@@ -204,8 +204,8 @@ export default IFS_GALLERY;
     const [w, setW] = React.useState(1440);
     const [row, setRow] = React.useState('ID-1042');
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <div style={{ display: 'flex', gap: 8 }}>{[1440, 1100, 900, 700].map(v => <IFS.Button key={v} type={w === v ? 'primary' : 'secondary'} size="s" onClick={() => setW(v)}>{v}px</IFS.Button>)}</div>
+      <IFS.Stack gap="300">
+        <IFS.Inline gap="200">{[1440, 1100, 900, 700].map(v => <IFS.Button key={v} type={w === v ? 'primary' : 'secondary'} size="s" onClick={() => setW(v)}>{v}px</IFS.Button>)}</IFS.Inline>
         <div style={{ width: w, border: '1px solid var(--border-base)' }}>
           <AppShell height={520}
             navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
@@ -220,12 +220,12 @@ export default IFS_GALLERY;
             navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
             header={<PageHeader title="Ideas (row preview: over)" />}
             panel={row ? <IFS.RecordPreview id={row} onClose={() => setRow(null)}><div className="t-body-m-regular">Details of {row}</div></IFS.RecordPreview> : null}>
-            <div style={{ padding: 'var(--page-margin)', display: 'flex', flexDirection: 'column', gap: 'var(--space-100)' }}>
+            <IFS.Stack gap="100" style={{ padding: 'var(--page-margin)' }}>
               {['ID-1042', 'ID-1043', 'ID-1044', 'ID-1045'].map(id => <IFS.Button key={id} type="secondary" size="m" onClick={() => setRow(id)}>Open {id}</IFS.Button>)}
-            </div>
+            </IFS.Stack>
           </AppShell>
         </div>
-      </div>
+      </IFS.Stack>
     );
   } });
 }

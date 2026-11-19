@@ -12,7 +12,7 @@ const PATTERNS_FILE = 'https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-D
 const FAMILY = {
   button: 'Action', extras: 'Action & Input Extras', forms: 'Inputs & Forms', selection: 'Selection', navigation: 'Navigation',
   surfaces: 'Surfaces & Feedback', states: 'Content States & Cooper', data: 'Data Display', activity: 'Activity & Collaboration',
-  charts: 'Data Visualisation', canvas: 'Map & Canvas',
+  charts: 'Data Visualisation', canvas: 'Map & Canvas', layout: 'Layout',
 };
 // Pattern families (patterns-<slug>.jsx) split by tier (guide/tiers.json): "Pattern …" sections → Examples/<page>,
 // Figma-backed components → More components/<page>, everything else → Pattern helpers/<page>.

@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.3, generated 2026-11-19. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.3, generated 2026-11-19. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant (details: guide/usage.md). `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -498,7 +498,7 @@ Props: state primary|secondary|tertiary|empty|loading, children = the value text
 Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
 Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
 value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--data-viz-teal-data-5)'),
-or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); label; value (optional on every entry,
+or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); for non-chart legends any colour token; label; value (optional on every entry,
 tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
 Hover only: legend entries are not clickable (Figma).
 `function LegendSwatch({ layout = 'inline', state = 'default', color = 'rose', step = 4, neutral, label, value, icon, swatchOpacity, className, ...rest })`
@@ -1018,6 +1018,26 @@ Props: children = label (omit for the bare atom), description (Figma "Show text"
 ("l" accepted: the atom calls 24px "L"), checked / defaultChecked / onChange(checked, event), disabled,
 state hover|pressed|focus (gallery only). Renders a <button role="switch">.
 `function Switch({ size = 'm', checked, defaultChecked = false, onChange, disabled, children, description, state, className, style, id, ...rest })`
+
+## layout
+
+Examples (read before using any component below — shows the data shapes props expect): https://shinyc01.github.io/catalyst-design-system-2/src/gallery/layout.jsx
+
+### Stack
+**Tier:** Layout primitive
+Stack — children top to bottom (block axis). Like Atlassian Stack, Polaris BlockStack, Primer Stack, Carbon Stack.
+Props: gap inset|stack|section|page-gap or a --space-* step "0"…"1100" (default "stack"; anything else warns and uses "stack"),
+align start|center|end|stretch (cross axis, default stretch), justify start|center|end|between (main axis, default start),
+as (element, default div), className, style, any other HTML attribute (role, aria-*, onClick…).
+`const Stack = React.forwardRef(function Stack({ as, gap, align, justify, className, style, children, ...rest }, ref)`
+
+### Inline
+**Tier:** Layout primitive
+Inline — children side by side in reading order (inline axis; start is on the right in RTL). Like Atlassian Inline,
+Polaris InlineStack, Primer Stack direction="horizontal".
+Props: gap, align (start|center|end|stretch|baseline, default stretch), justify, as, className, style as on Stack;
+wrap (boolean, default false) lets children wrap onto more rows, rows use the same gap.
+`const Inline = React.forwardRef(function Inline({ as, gap, align, justify, wrap, className, style, children, ...rest }, ref)`
 
 ## navigation
 

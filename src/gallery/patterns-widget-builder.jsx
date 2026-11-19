@@ -27,9 +27,9 @@ export default IFS_GALLERY;
   const KeyValues = ({ rows, note }) => (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {rows.map(([k, v]) => (
-        <div key={k} className="t-body-l-regular" style={{ display: 'flex', justifyContent: 'space-between', gap: 16, padding: '6px 0' }}>
+        <IFS.Inline gap="400" justify="between" key={k} className="t-body-l-regular" style={{ padding: '6px 0' }}>
           <span style={{ color: 'var(--text-secondary)' }}>{k}</span><span style={{ textAlign: 'right' }}>{v}</span>
-        </div>
+        </IFS.Inline>
       ))}
       {note && <div style={{ borderTop: '1px solid var(--border-base)', marginTop: 6, paddingTop: 10 }}>
         <div className="t-body-l-regular" style={{ color: 'var(--text-secondary)' }}>{note[0]}</div>
@@ -75,7 +75,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'ResizeHandle', figma: 'resize-handle [patterns] (413:44028)', render: () => <>
     <Row label="arrows">
-      {['both', 'right', 'left'].map(a => <div key={a} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}><ResizeHandle arrows={a} /><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{a}</span></div>)}
+      {['both', 'right', 'left'].map(a => <IFS.Stack gap="200" align="center" key={a}><ResizeHandle arrows={a} /><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{a}</span></IFS.Stack>)}
     </Row>
   </> });
 
@@ -150,14 +150,14 @@ export default IFS_GALLERY;
   const Screen = ({ children }) => <div style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--border-base)' }}>{children}</div>;
   const ConfidencePanel = () => (
     <IFS.Panel title="System confidence" defaultExpanded>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <IFS.Stack gap="300">
         <div className="t-label-l-medium" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Approval readiness
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><IFS.ProgressRing value={35} size={16} />35%</span></div>
         <IFS.ReadinessStatus type="done" right="Passed">Investment readiness</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1 error' }]}>Path forward</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1 error' }]}>Assumption consistency</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1/2' }, { type: 'warning', label: '1/3' }]}>Review blockers</IFS.ReadinessStatus>
-      </div>
+      </IFS.Stack>
     </IFS.Panel>
   );
 
@@ -233,18 +233,18 @@ export default IFS_GALLERY;
           bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} onUpload={() => {}}
             prompts={['Generate Annualized outcome risk by risk type chart', 'Compare to best practice']} />}>
           <div style={{ display: 'flex', minHeight: '100%' }}>
-            <div style={{ flex: 1, minWidth: 0, padding: 12, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
+            <IFS.Stack gap="300" style={{ flex: 1, minWidth: 0, padding: 12 }}>
+              <IFS.Inline gap="400" align="start" justify="between">
                 <div>
                   <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--text-primary)' }}>Investment overview</h2>
                   <div className="t-body-m-regular" style={{ color: 'var(--text-secondary)', marginTop: 4 }}>High-level investment summary, key metrics, and current progress</div>
                 </div>
                 <IFS.Button type="secondary" size="m" iconLeft="chart" onClick={() => setDrawer(true)}>Widgets</IFS.Button>
-              </div>
+              </IFS.Inline>
               <StatCardsRow cards={STATS} />
               <WidgetBoard value={layout} onChange={setLayout} widgets={widgets}
                 moveMessage={w => `"${w.title}" widget moved`} external={ext} onExternalDrop={onExternalDrop} />
-            </div>
+            </IFS.Stack>
             <ConfidencePanel />
           </div>
         </IFS.AppShell>

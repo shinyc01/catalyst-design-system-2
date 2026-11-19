@@ -8,10 +8,10 @@ export default IFS_GALLERY;
   const { CompareDropdown, CompareDropdownList, CompareHeader, CompareView, ActivityPanel } = IFS;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cell = ({ title, children, w = 380, h }) => (
-    <div style={{ width: w, display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <IFS.Stack gap="200" style={{ width: w }}>
       <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>{title}</span>
       <div style={{ height: h, display: 'flex', alignItems: 'flex-start', minHeight: 0 }}>{children}</div>
-    </div>
+    </IFS.Stack>
   );
   const grid = { display: 'flex', flexWrap: 'wrap', gap: 24, marginBottom: 24, alignItems: 'flex-start' };
   const STAGES = [['command', 'Command'], ['value', 'Value'], ['explore', 'Explore'], ['build', 'Build'], ['plan', 'Plan'], ['results', 'Results']].map(([value, label]) => ({ value, label }));
@@ -157,10 +157,10 @@ export default IFS_GALLERY;
   ) });
 
   IFS_GALLERY.push({ name: 'CompareHeader', figma: 'compare-header [patterns] (52:82780)', render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 1200 }}>
+    <IFS.Stack gap="400" style={{ width: 1200 }}>
       <Row label="filled"><div style={{ width: 1200 }}><CompareHeader groups={COMPARE_GROUPS} defaultValue="best" /></div></Row>
       <Row label="empty"><div style={{ width: 1200 }}><CompareHeader groups={COMPARE_GROUPS} /></div></Row>
-    </div>
+    </IFS.Stack>
   ) });
 
   IFS_GALLERY.push({ name: 'ActivityPanel', figma: 'panel-organism — Activity [patterns] (52:83780)', render: () => {
@@ -239,7 +239,7 @@ export default IFS_GALLERY;
     };
     const library = (
       <IFS.AppShell height={900} navBar={NAV} sideNav={SIDE} bottom={<IFS.BottomSheet prompts={PROMPTS} />}>
-        <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <IFS.Stack gap="500" style={{ padding: 12 }}>
           <IFS.DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
             pageTop={{ title: 'Strategy Framework', description: 'Published, archived, and draft strategy frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
             filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending Approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s, match: r => r.status.label === s }))] }}
@@ -252,7 +252,7 @@ export default IFS_GALLERY;
               { key: 'modified', title: 'Last modified', width: 270, kind: 'date', type: 'custom', render: r => fmt(r.modified) },
               { key: 'by', title: 'Created by', width: 280, type: 'user', filterValue: r => r.by.name },
             ]} />
-        </div>
+        </IFS.Stack>
       </IFS.AppShell>
     );
     let body = library;

@@ -9,7 +9,7 @@ export default IFS_GALLERY;
   const Row = ({ label, children, top }) => <div className="g-row" style={top ? { alignItems: 'flex-start' } : undefined}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Live = ({ children }) => <Row label="live">{children}</Row>;
   const Filler = ({ h = 120, children }) => <div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', minHeight: h }}>{children}</div>;
-  const Black = ({ children }) => <div style={{ background: '#000', padding: 16, display: 'flex', gap: 24, alignItems: 'center' }}>{children}</div>;
+  const Black = ({ children }) => <IFS.Inline gap="600" align="center" style={{ background: '#000', padding: 16 }}>{children}</IFS.Inline>;
 
   IFS_GALLERY.push({ name: 'Tooltip', figma: 'tooltip-organism (67:6151)', render: () => <>
     {['black', 'grey'].map(c => <React.Fragment key={c}>
@@ -89,17 +89,17 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'Panel', figma: 'panel-organism (4305:365421)', render: () => <>
     <Row label="Expanded true / false" top>
-      <div style={{ display: 'flex', height: 420, gap: 24 }}>
+      <IFS.Inline gap="600" style={{ height: 420 }}>
         <Panel title="{title}" />
         <Panel title="{title}" defaultExpanded={false} />
         <Panel title="{title}" defaultExpanded={false} dot="error" />
         <Panel title="{title}" defaultExpanded={false} dot="warning" />
-      </div>
+      </IFS.Inline>
     </Row>
     <Row label="actions + onClose (✕ instead of collapse)" top>
-      <div style={{ display: 'flex', height: 240, gap: 24 }}>
+      <IFS.Inline gap="600" style={{ height: 240 }}>
         <Panel title="Details" showEvidence={false} onClose={() => {}} actions={<Button type="tertiary" size="s" iconLeft="system-plus">Add</Button>} />
-      </div>
+      </IFS.Inline>
     </Row>
     <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>The panels above collapse with |→ and expand from the 48px rail's ←|.</span></Row>
   </> });

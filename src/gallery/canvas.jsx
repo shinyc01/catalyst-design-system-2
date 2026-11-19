@@ -8,7 +8,7 @@ export default IFS_GALLERY;
   const { ValueMapButton, MapToolbar, NodeHoverActions, AddNodeButton, NodeCard, SidebarNodeCard, MapPin, CanvasBackground, CanvasConnector,
     DropZone, SankeyNode, SankeyHeader, Sankey, TimelinePhase, TimelineChart } = IFS;
   const Row = ({ label, children, top, nowrap }) => <div className="g-row" style={{ ...(top ? { alignItems: 'flex-start' } : null), ...(nowrap ? { flexWrap: 'nowrap' } : null) }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const Col = ({ children }) => <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>{children}</div>;
+  const Col = ({ children }) => <IFS.Stack gap="400">{children}</IFS.Stack>;
 
   IFS_GALLERY.push({ name: 'ValueMapButton', figma: 'value-map-button (2590:20612)', render: () => <>
     <Row label="Type / Selected">

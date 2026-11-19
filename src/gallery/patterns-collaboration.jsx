@@ -62,7 +62,7 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'CollaboratorRow', figma: 'content-card-organism top slot [patterns] (12:8519)', render: () =>
-    <div style={{ width: 352, display: 'flex', flexDirection: 'column', gap: 8, padding: 4, background: 'var(--background-elevation-1-primary-base)', borderRadius: 8 }}>
+    <IFS.Stack gap="200" style={{ width: 352, padding: 4, background: 'var(--background-elevation-1-primary-base)', borderRadius: 8 }}>
       <IFS.CollaboratorRow person={{ ...ME, you: true }} />
       <IFS.CollaboratorRow person={joined(MARIA, true)} onOpen={() => {}} onRemove={() => {}} />
       <IFS.CollaboratorRow person={joined(LARA, false)} onOpen={() => {}} onRemove={() => {}} />
@@ -71,7 +71,7 @@ export default IFS_GALLERY;
       <IFS.CollaboratorRow person={waiting(JAMES, 0)} push="notified" onOpen={() => {}} onRemove={() => {}} />
       <IFS.CollaboratorRow person={JAN} onAdd={() => {}} />
       <IFS.CollaboratorRow person={ISABELLA} onAdd={() => {}} state="hover" />
-    </div> });
+    </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'RoleFilter', figma: 'icon-button + multiple-select-list-molecule [patterns] (12:11259)', render: () => {
     const [v, setV] = React.useState([]);
@@ -82,17 +82,17 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'CollaboratorsPanel', figma: 'popover-organism Collaborators [patterns] (12:10231 / 12:10037 / 12:9653 / 12:9847)', render: () => {
     const Panel = ({ preset, q }) => { const c = useCollab(preset); return <div><div className="g-label t-body-m-regular" style={{ marginBottom: 8 }}>{q ? `Search "${q}"` : PRESETS[preset].label}</div>
       <IFS.CollaboratorsPanel inline controller={c} defaultQuery={q} onInvite={() => {}} onOpen={() => {}} onRemove={() => {}} onPush={p => c.push(p.id)} /></div>; };
-    return <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start' }}>
+    return <IFS.Inline gap="600" align="start" wrap>
       <Panel preset="owner" /><Panel preset="pending" /><Panel preset="partial" /><Panel preset="complete" />
       <Panel preset="partial" q="Ja" /><Panel preset="partial" q="Hafs" />
-    </div>;
+    </IFS.Inline>;
   } });
 
   IFS_GALLERY.push({ name: 'InviteCollaboratorModal', figma: 'modal-organism Add Collaborator [patterns] (12:11386 / 12:9330)', render: () =>
-    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+    <IFS.Inline gap="600" align="start" wrap>
       <IFS.InviteCollaboratorModal inline open person={DIRECTORY[0]} defaultBrief={BRIEF()} onCancel={() => {}} onSubmit={() => {}} />
       <IFS.InviteCollaboratorModal inline open mode="edit" person={JAMES} defaultBrief={BRIEF()} onCancel={() => {}} onSubmit={() => {}} />
-    </div> });
+    </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'RemoveCollaboratorModal', figma: 'modal-organism Remove this collaborator? [patterns] (12:12281)', render: () =>
     <IFS.RemoveCollaboratorModal inline open person={waiting(JAMES, 2)} onCancel={() => {}} onConfirm={() => {}} /> });
@@ -115,12 +115,12 @@ export default IFS_GALLERY;
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
                 views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'flow', iconLeft: 'capital-flow' }]} />}
-                actions={<span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />
                   <span style={{ width: 1, height: 24, margin: '0 8px', background: 'var(--border-base)' }} aria-hidden="true" />
                   <IFS.Button type="primary" size="s">Review</IFS.Button>
-                </span>} />
+                </IFS.Inline>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
                 <IFS.Stepper steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} current={1} /></div>
             </div>
@@ -152,12 +152,12 @@ export default IFS_GALLERY;
     const [cursors, setCursors] = React.useState(true);
     const next = c.awaiting[0];
     return <>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: 12, maxWidth: 1440 }}>
+      <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
         <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo — state:</span>
         <IFS.SegmentedControl size="s" value={preset} onChange={setPreset} options={Object.entries(PRESETS).map(([value, p]) => ({ value, label: p.label }))} />
         <IFS.Button size="s" type="tertiary" disabled={!next} onClick={() => next && c.accept(next.id, true)}>{next ? `Simulate: ${next.name} accepts` : 'Everyone accepted'}</IFS.Button>
         <IFS.Button size="s" type="tertiary" onClick={() => setCursors(!cursors)}>{cursors ? 'Hide live cursors' : 'Show live cursors'}</IFS.Button>
-      </div>
+      </IFS.Inline>
       <FrameworkScreen c={c} panelOpen={open} onPanelOpen={setOpen} cursors={cursors} />
     </>;
   }
@@ -170,7 +170,7 @@ export default IFS_GALLERY;
     const c = useCollab(preset);
     return <div style={{ width: 700, border: '1px solid var(--border-base)' }}>
       <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
-        actions={<span style={{ display: 'flex', gap: 4 }}><IFS.CollaboratorsMenu controller={c} /><IFS.CommentButton /></span>} />
+        actions={<IFS.Inline as="span" gap="100"><IFS.CollaboratorsMenu controller={c} /><IFS.CommentButton /></IFS.Inline>} />
     </div>;
   }
 }

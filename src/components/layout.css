@@ -1,0 +1,5 @@
+/* Stack and Inline (layout primitives, 2.0.3). gap / align / justify come from props as token vars: see layout.jsx.
+   Logical by construction: flex rows follow the reading direction, so Inline's start is the right edge in RTL. */
+.ifs-stack{display:flex;flex-direction:column}
+.ifs-inline{display:flex;flex-direction:row;flex-wrap:nowrap}
+.ifs-inline--wrap{flex-wrap:wrap}

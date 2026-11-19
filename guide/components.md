@@ -58,6 +58,7 @@ Each rule is quoted from a canvas note (Figma) and cited by page.
 14. **Charts:** zero-based bars, one series = one colour group, exact values always available (tooltip + data-table fallback). — Data Visualisation
 15. **Filters:** a surface is either instant (chips only) or deferred (contains fields, commits on Apply); "instant and deferred never mix on one surface." — Selection › Filter
 16. **Field size follows the surface:** L for full-page forms, M for modals/drawers/panels, S for footers/toolbars, XL for view-level selectors that change what the page shows. — Selection, Inputs & Forms
+17. **Layout spacing in screens uses `Stack` and `Inline`,** never a hand-written `display:flex; gap`. `gap` takes a role (`inset`, `stack`, `section`, `page-gap`) or a `--space-*` step (`"200"`); a number or px warns and falls back to `stack`. Cards on the page grid still use `.ifs-grid`. (designer decision, Nov 19 2026; guide/spacing.md §8)
 
 ---
 

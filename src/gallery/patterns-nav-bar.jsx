@@ -18,19 +18,19 @@ export default IFS_GALLERY;
     const [w, setW] = useState(1200);
     const [stage, setStage] = useState('plan');
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <IFS.Stack gap="600">
         <Row label="Width (collapses below 800)"><IFS.SegmentedControl size="s" value={String(w)} onChange={v => setW(+v)} options={['1200', '900', '760', '600'].map(v => ({ value: v, label: `${v}px` }))} /></Row>
         <div style={{ width: w, transition: 'width .2s' }}><IFS.NavBar stages={STAGES} value={stage} onChange={setStage} hasNotifications user={USER} /></div>
         <Row label="Collapsed opened" top><div style={{ width: 600, height: 300 }}><IFS.NavBar collapsed stages={STAGES} defaultValue="value" defaultMenuOpen hasNotifications user={USER} /></div></Row>
-      </div>
+      </IFS.Stack>
     );
   } });
 
   IFS_GALLERY.push({ name: 'ExploreHeader', figma: 'explore-header [patterns] (12:175111)', render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 1100 }}>
+    <IFS.Stack gap="400" style={{ width: 1100 }}>
       <Row label="Default"><div style={{ flex: 1 }}><ExploreHeader search={{ suggestions: ['Where are the oldest feeders?', 'Show substations over capacity'] }} onCollaborators={() => toast('Collaborators')} onComments={() => toast('Comments')} /></div></Row>
       <Row label="Filters applied, new comments"><div style={{ flex: 1 }}><ExploreHeader filtersApplied hasNewComments collaborators="5/5" /></div></Row>
-    </div>
+    </IFS.Stack>
   ) });
 
   const MiniMap = () => (
@@ -54,7 +54,7 @@ export default IFS_GALLERY;
     const d = DECISIONS[0], e = DECISIONS[1];
     const box = { width: 1036 };
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <IFS.Stack gap="300">
         <Row label="Primary" top><div style={box}><HomeRowCard type="primary" rank={1} {...d} metrics={metricsOf(d)} media={<MiniMap />} onOpen={() => toast(`Opening ${d.title}`)} /></div></Row>
         <Row label="Primary hover" top><div style={box}><HomeRowCard type="primary" rank={1} {...d} metrics={metricsOf(d)} media={<MiniMap />} state="hover" /></div></Row>
         <Row label="Primary focus" top><div style={box}><HomeRowCard type="primary" rank={1} {...d} metrics={metricsOf(d)} media={<MiniMap />} state="focus" /></div></Row>
@@ -66,7 +66,7 @@ export default IFS_GALLERY;
         <Row label="Live alert"><div style={box}><HomeRowCard rank={3} {...e} liveAlert={{ type: 'storm', state: 'confirmed', label: 'Storm warning' }} metrics={metricsOf(e)} onOpen={() => {}} /></div></Row>
         <Row label="Collaboration"><div style={box}><HomeRowCard rank={4} {...e} collaboration={{ initials: 'AS', type: 'blue', size: 's' }} metrics={metricsOf(e)} onOpen={() => {}} /></div></Row>
         <Row label="No metrics"><div style={box}><HomeRowCard rank={5} {...e} onOpen={() => {}} /></div></Row>
-      </div>
+      </IFS.Stack>
     );
   } });
 
@@ -85,11 +85,11 @@ export default IFS_GALLERY;
   const findNode = (nodes, id) => { for (const n of nodes) { if (n.id === id) return n; const r = n.children && findNode(n.children, id); if (r) return r; } return null; };
 
   IFS_GALLERY.push({ name: 'SideNavTree', figma: 'sidebar-organism + Plan tree [patterns] (244:120655)', render: () => (
-    <div style={{ display: 'flex', gap: 24, height: 640 }}>
+    <IFS.Inline gap="600" style={{ height: 640 }}>
       <SideNavTree title="Plan" tree={PLAN_TREE} sections={PLAN_SECTIONS} defaultValue="el" defaultExpanded={['wa', 'el']} />
       <SideNavTree title="Plan" tree={PLAN_TREE} sections={PLAN_SECTIONS} defaultValue="el-d" defaultExpanded={['wa', 'el']} />
       <SideNavTree title="Plan" tree={PLAN_TREE} defaultCollapsed />
-    </div>
+    </IFS.Inline>
   ) });
 
   /* ───────────────────────── pattern screens ───────────────────────── */
@@ -113,30 +113,30 @@ export default IFS_GALLERY;
     const stat = (v, l, style) => <div style={{ position: 'absolute', textAlign: 'center', ...style }}><div className="t-label-l-medium">{v}</div><div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{l}</div></div>;
     return (
       <div style={{ display: 'flex', minHeight: '100%' }}>
-        <div style={{ flex: 1, minWidth: 0, padding: '12px 12px 0', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <IFS.Stack gap="300" style={{ flex: 1, minWidth: 0, padding: '12px 12px 0' }}>
           {/* page-top instance 244:119970: cooper on, Show button off; the instance overrides the row gap to 12 */}
           <IFS.PageTop eyebrow title="Welcome back, Jeff." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
             style={{ gap: 12 }} tabs={{ items: tabs, value: tab, onChange: setTab }}
             search={{ placeholder: 'Ask anything about your work', suggestions: ['Why is Northgate #1?', 'What changed since Friday?'] }} />
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, height: 28 }}>
+          <IFS.Stack gap="400">
+            <IFS.Inline gap="400" align="center" justify="between" style={{ height: 28 }}>
               <Upper>{tab === 'decisions' ? 'Decisions to review' : tabs.find(t => t.value === tab).label}</Upper>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <IFS.Inline gap="300" align="center">
                 <IFS.SegmentedControl size="s" value={prio} onChange={setPrio} options={[{ value: 'normal', label: 'Normal' }, { value: 'high', label: 'High' }, { value: 'critical', label: 'Critical' }]} />
                 <span style={{ width: 1, height: 20, background: 'var(--border-base)' }} />
                 <IFS.IconButton icon="system-filter-settings" type="tertiary" size="s" label="Display settings" />
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              </IFS.Inline>
+            </IFS.Inline>
+            <IFS.Stack gap="200">
               {tab === 'decisions' && shown.length === 0 && <IFS.EmptyState cause="all-done" heading={`No ${prio}-priority decisions`} body="Nothing at this priority needs your input right now." />}
               {(tab === 'decisions' ? shown : DECISIONS.slice(3, 6)).map((d, i) => (
                 <HomeRowCard key={d.id} type={i === 0 && tab === 'decisions' ? 'primary' : 'secondary'} rank={i + 1} title={d.title} badge={d.badge}
                   description={d.description} metrics={metricsOf(d)} media={i === 0 ? <MiniMap /> : undefined} onOpen={() => open(d)} />
               ))}
-            </div>
-          </div>
-        </div>
-        <div style={{ flex: 'none', width: 380, padding: 12, boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            </IFS.Stack>
+          </IFS.Stack>
+        </IFS.Stack>
+        <IFS.Stack gap="300" style={{ flex: 'none', width: 380, padding: 12, boxSizing: 'border-box' }}>
           <Panel style={{ position: 'relative', height: 268, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--border-base)' }}>
             <Upper>Cooper’s work results</Upper>
             <div aria-hidden="true" style={{ position: 'absolute', left: '50%', top: 168, width: 160, height: 160, marginLeft: -80, borderRadius: '50%', boxShadow: 'inset 0 0 0 1px var(--border-medium)', background: 'radial-gradient(circle at 50% 30%, var(--background-elevation-1-tertiary), transparent 70%)' }} />
@@ -157,7 +157,7 @@ export default IFS_GALLERY;
             <IFS.Calendar defaultMonth={new Date(2026, 8, 1)} today={new Date(2026, 8, 8)} events={{ '2026-09-04': ['info'], '2026-09-09': ['danger'], '2026-09-10': ['info'], '2026-09-18': ['warning'], '2026-09-20': ['danger', 'warning', 'info'] }} />
             <IFS.Button type="tertiary" size="m" iconLeft="system-plus" onClick={() => toast('Add event')}>Add event</IFS.Button>
           </Panel>
-        </div>
+        </IFS.Stack>
       </div>
     );
   };
@@ -190,7 +190,7 @@ export default IFS_GALLERY;
     const [rows, setRows] = useState(FRAMEWORKS);
     const [title] = VALUE_PAGES[p];
     return (
-      <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <IFS.Stack gap="500" style={{ padding: 12 }}>
         <IFS.DataTable key={p} variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
           pageTop={{ title, description: VALUE_PAGES[p][1], actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus" onClick={() => toast('New framework')}>New</IFS.Button> }}
           filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s === 'Pending approval' ? 'Pending Approval' : s, match: r => r.status.label === s }))] }}
@@ -203,7 +203,7 @@ export default IFS_GALLERY;
             { key: 'modified', title: 'Last modified', width: 276, kind: 'date', type: 'custom', render: r => fmt(r.modified) },
             { key: 'by', title: 'Created by', width: 276, type: 'user', filterValue: r => r.by.name },
           ]} />
-      </div>
+      </IFS.Stack>
     );
   };
 
@@ -213,15 +213,15 @@ export default IFS_GALLERY;
       <div style={{ position: 'relative', flex: 1, overflow: 'hidden', background: 'var(--background-page)' }}>
         <div aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '58%', width: 1100, height: 1100, marginLeft: -560, marginTop: -540, borderRadius: '50%',
           background: 'radial-gradient(circle at 42% 30%, var(--background-elevation-1-tertiary), var(--background-elevation-1-secondary) 45%, var(--surface-secondary-alpha) 69%, transparent 71%)' }} />
-        <div style={{ position: 'absolute', left: 536, top: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+        <IFS.Stack gap="150" align="center" style={{ position: 'absolute', left: 536, top: 140 }}>
           <span style={{ position: 'relative' }}><IFS.MapPinDot size="l" status="success" counter="456" label="Whistler Company: 456 assets" onClick={() => toast('Whistler Company')} />
             <span style={{ position: 'absolute', right: -12, top: -10 }}><IFS.Badge color="red" size="s">3</IFS.Badge></span></span>
           <span className="t-label-l-medium">Whistler Company</span>
-        </div>
-        <div style={{ position: 'absolute', left: 716, top: 320, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+        </IFS.Stack>
+        <IFS.Stack gap="150" align="center" style={{ position: 'absolute', left: 716, top: 320 }}>
           <IFS.MapPinDot size="l" status="success" counter="470" label="DC Water capital: 470 assets" onClick={() => toast('DC Water capital')} />
           <span className="t-label-l-medium">DC Water capital</span>
-        </div>
+        </IFS.Stack>
         <div style={{ position: 'absolute', left: 12, top: 12 }}>
           <IFS.MapToolbar><IFS.MapToolCluster label="Map views">
             <IFS.MapToolButton icon="map-compass" label="Reset bearing" /><IFS.MapToolButton icon="asset-structure" label="Asset structure" /><IFS.MapToolButton icon="system-book" label="Legend" />
@@ -253,7 +253,7 @@ export default IFS_GALLERY;
     const [rows, setRows] = useState(IDEAS);
     const [page, setPage] = useState('ideas');
     return (
-      <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <IFS.Stack gap="500" style={{ padding: 12 }}>
         <IFS.PageTop title="Build" actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus" onClick={() => toast('New idea')}>New</IFS.Button>}
           tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], value: page, onChange: setPage }} />
         {page === 'ideas'
@@ -269,7 +269,7 @@ export default IFS_GALLERY;
                 { key: 'collab', title: 'Collaboration', width: 248, type: 'custom', filter: false, render: r => r.collab && <IFS.CollaborationBadge {...r.collab} onOpen={() => toast(r.collab.label)} /> },
               ]} />
           : <IFS.EmptyState size="full" cause="first-run" heading="No investments yet" body="Promote an idea from the Idea Pad to start an investment." primaryAction={{ label: 'Go to Idea Pad', onClick: () => setPage('ideas') }} />}
-      </div>
+      </IFS.Stack>
     );
   };
 
@@ -290,15 +290,15 @@ export default IFS_GALLERY;
     const tone = s => (s === 'Active' ? 'var(--text-success)' : s === 'Next' ? 'var(--text-warning)' : 'var(--text-tertiary)');
     return (
       <div style={{ display: 'flex', minHeight: '100%' }}>
-        <div style={{ flex: 1, minWidth: 0, padding: '12px 12px 20px', display: 'flex', flexDirection: 'column', gap: 20 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <IFS.Stack gap="500" style={{ flex: 1, minWidth: 0, padding: '12px 12px 20px' }}>
+          <IFS.Stack gap="100">
             <h1 className="t-heading-h1-medium" style={{ margin: 0 }}>{node.label}</h1>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
+            <IFS.Inline gap="400" align="center" justify="between">
               <span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>Enterprise-wide electrical asset class, covering distribution and transmission capital plans across all divisions</span>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 12, flex: 'none' }}><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>Owner</span>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><IFS.Avatar size="s" initials="UN" /><span className="t-label-m-medium">Emily Williams</span></span></span>
-            </div>
-          </div>
+            </IFS.Inline>
+          </IFS.Stack>
           <Panel style={{ display: 'flex', flexDirection: 'column', gap: 16, boxShadow: 'inset 0 0 0 1px var(--border-base)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}><Upper>Planning cycles</Upper>
               <span style={{ display: 'inline-flex', gap: 4 }}>
@@ -330,7 +330,7 @@ export default IFS_GALLERY;
               <div style={{ position: 'absolute', right: 12, top: 12 }}><IFS.IconButton icon="map" type="secondary" size="s" label="Open in Explore" /></div>
             </div>
           </Panel>
-        </div>
+        </IFS.Stack>
         <RightRail dot />
       </div>
     );
@@ -357,10 +357,10 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Nav bar — responsive', figma: 'nav bar [patterns] (244:119940)', render: () => {
     const [w, setW] = useState(1024);
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <IFS.Stack gap="300">
         <Row label="Viewport"><IFS.SegmentedControl size="s" value={String(w)} onChange={v => setW(+v)} options={[{ value: '1440', label: '1440 · full' }, { value: '1024', label: '1024 · sidebar rail' }, { value: '600', label: '600 · hamburger' }]} /></Row>
         <StageScreen start="plan" w={w} />
-      </div>
+      </IFS.Stack>
     );
   } });
 }

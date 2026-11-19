@@ -8,7 +8,7 @@ export default IFS_GALLERY;
   const { TimelineMarker, TimelineConnector, TimelineItem, Timeline, ApprovalChain, VersionEntry, VersionHistory,
     Comment, CommentComposer, CommentThread, UserCard, Collaborator, FileCard, VersionCard } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={{ alignItems: 'flex-start', ...style }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const Col = ({ w = 354, children, style }) => <div style={{ width: w, display: 'flex', flexDirection: 'column', gap: 12, ...style }}>{children}</div>;
+  const Col = ({ w = 354, children, style }) => <IFS.Stack gap="300" style={{ width: w, ...style }}>{children}</IFS.Stack>;
   const LOREM = 'There are people within organizations that have a say in the results of scenarios but are not Copperleaf users.';
 
   const ACTIVITY = [
@@ -25,7 +25,7 @@ export default IFS_GALLERY;
       <TimelineMarker size="m"><IFS.Avatar size="m" initials="JC" type="dark-orange" /></TimelineMarker>
       <TimelineMarker size="s"><IFS.Avatar size="s" type="cooper" name="Cooper" /></TimelineMarker>
     </Row>
-    <Row label="connector"><div style={{ display: 'flex', height: 120, gap: 24 }}><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector /></div><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector type="dash" /></div></div></Row>
+    <Row label="connector"><IFS.Inline gap="600" style={{ height: 120 }}><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector /></div><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector type="dash" /></div></IFS.Inline></Row>
     <Row label="organism">
       <Col><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
         Surfaced T-902 as top contributor to Hydro Feed Line 3 cluster risk. Scaled Inference — 87% evidence strength. Computational Receipt #441-WD generated.
