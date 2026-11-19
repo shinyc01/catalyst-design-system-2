@@ -21,6 +21,7 @@
   /* Regions: min / default / max. Push the content at md and up; overlay below md. */
   --region-panel-min:320px;--region-panel-max:50vw;
   --region-sidenav:var(--layout-sidebar-width);--region-rail:var(--layout-rail-width);
+  --layout-content-min:840px; /* narrowest page area beside a pushed panel before the side nav folds to its rail (Material 3 "expanded"; Nov 19) */
   /* Overlay widths */
   --overlay-width-s:320px;--overlay-width-m:440px;--overlay-width-l:600px;
   /* Menus: two widths (2.0.3). S for action menus (Carbon 180–288, Material 112–280); L = the popover width, for items with descriptions */

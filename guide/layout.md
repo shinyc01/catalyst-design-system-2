@@ -44,7 +44,7 @@ Benchmark: Fluent 2 (inline vs overlay drawer by task), Carbon for IBM Products 
 - One mode per panel, set by its job (`Component.panelMode`); a screen overrides it only with `AppShell panelMode`. No third mode.
 - `over` panels close on an outside click or Esc (`onPanelClose`); clicking another row closes and reopens, so the preview swaps.
 - Below md (1024) a `push` panel has no room: it becomes a rail and expands over the content; outside click / Esc fold it back.
-- Side nav below md: a rail that expands over the content; outside click / Esc fold it back.
+- Side nav below md, **and when a pushed panel would leave the page area under 840px** (`--layout-content-min`; Nov 19, fold by available space as Atlassian, Carbon and Material do): a rail that expands over the content; outside click / Esc fold it back. With the 240 side nav and a 380 panel this happens at 1440 and below.
 - The page grid follows the content area (container `content`): a pushed panel narrows the columns like a smaller screen.
 
 ## 6. Direction: start and end, never left and right (rule from Nov 19, 2026)

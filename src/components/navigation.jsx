@@ -565,19 +565,32 @@ function useShellDismiss(ref, active, onDismiss) {
 function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, className, style, ...rest }) {
   const ref = React.useRef(null), sideRef = React.useRef(null), panelRef = React.useRef(null);
   const [size, setSize] = React.useState(() => shellSizeOf(typeof window !== 'undefined' ? window.innerWidth : 1440));
+  const [roomy, setRoomy] = React.useState(true); // false: a pushed panel would leave the page area under --layout-content-min
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el) return undefined;
-    const read = () => setSize(shellSizeOf(el.getBoundingClientRect().width));
+    const read = () => {
+      const w = el.getBoundingClientRect().width;
+      setSize(shellSizeOf(w));
+      const cs = getComputedStyle(el);
+      const min = parseFloat(cs.getPropertyValue('--layout-content-min')) || 840;
+      const nav = parseFloat(cs.getPropertyValue('--region-sidenav')) || 240;
+      const p = panelRef.current ? panelRef.current.getBoundingClientRect().width : 0;
+      setRoomy(!p || w - nav - p >= min);
+    };
     read();
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(read) : null;
     ro && ro.observe(el);
+    ro && panelRef.current && ro.observe(panelRef.current);
     return () => ro && ro.disconnect();
-  }, []);
+  }, [!!panel]);
   const narrow = size === 'xs' || size === 'sm';
   const job = panelMode || (React.isValidElement(panel) && panel.type && panel.type.panelMode) || 'push';
   const over = !!panel && job === 'over';
   const pushRail = !!panel && job === 'push' && narrow; // push panel with no room: rail + expands over
-  const navOverlay = !!sideNav && narrow;
+  // Side nav folds to its rail below md, and also when a pushed panel would leave the page area under 840 (Nov 19:
+  // fold by available space, as Atlassian, Carbon and Material do); it can be opened again over the content.
+  const navFold = !!sideNav && !narrow && !!panel && job === 'push' && !roomy;
+  const navOverlay = !!sideNav && (narrow || navFold);
 
   // Side nav below md: AppShell owns collapse (unless controlled) so outside click / Esc can fold it back.
   const navCtl = React.isValidElement(sideNav) && sideNav.props.collapsed !== undefined;
