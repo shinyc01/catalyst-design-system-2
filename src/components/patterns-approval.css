@@ -101,7 +101,7 @@
 .ifs-apc-panel{display:flex;flex-direction:column;flex:none;box-sizing:border-box;min-height:0;color:var(--text-primary)}
 .ifs-apc-panel--sidebar{width:var(--region-panel);height:100%;padding:var(--space-inset);background:var(--surface-primary);box-shadow:inset 1px 0 0 var(--border-base)}
 .ifs-apc-panel--full{flex:1 1 auto;width:100%;height:100%;padding:var(--space-inset);background:var(--surface-primary)}
-.ifs-apc-panel--popover{position:absolute;z-index:var(--z-index-z-popover);width:27.5rem;max-height:calc(100% - var(--size-16));padding:var(--space-inset);
+.ifs-apc-panel--popover{position:absolute;z-index:var(--z-index-z-popover);width:var(--overlay-width-m);max-height:calc(100% - var(--size-16));padding:var(--space-inset);
   border-radius:var(--radius-radius-200);background:var(--background-elevation-1-primary-base);
   box-shadow:inset 0 0 0 1px var(--border-base),var(--elevation-elevation-3-primary);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 .ifs-apc-panel--collapsed{width:var(--layout-side-panel-collapsed-width);height:100%;align-items:center;padding:var(--space-300) /* a rail: fixed, like the side nav */;background:var(--surface-primary);box-shadow:inset 1px 0 0 var(--border-base)}
