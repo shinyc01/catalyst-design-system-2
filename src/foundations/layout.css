@@ -56,8 +56,9 @@
      .ifs-slot-tools / .ifs-slot-tools-bottom   map rail and tool bar, start corners
      .ifs-slot-left     start slot, one at a time: Hierarchy, Study library, Search results (--region-panel) or Study (--region-panel-l: add .has-left-l)
      .ifs-slot-right    end slot, one at a time: details, trace report, evidence chain, Cooper window (--region-panel)
-     .ifs-slot-top      selected bar, or the draw bar while drawing: centred in the gap between the panels; when the gap is narrower than
-                        the bar (.has-top-start) it starts at the start panel's edge and the start panel moves down below it (Nov 19)
+     .ifs-slot-top      selected bar, or the draw bar while drawing: centred on the whole map; a panel only nudges it aside, a page gap away
+                        (.has-top-x + --slot-top-x); when it can't fit between the panels (.has-top-start) it starts at the start panel's edge
+                        and the start panel moves down below it (Nov 19)
      .ifs-slot-bottom   horizon bar (.ifs-slot-fill: fills up to --region-map-bar); snackbars stack above it
      .ifs-slot-popover  the Layers popover, beside the bottom tool bar (--overlay-width-s)
      .ifs-slot-fab      Cooper button, end-bottom corner
@@ -91,8 +92,10 @@
 @keyframes ifs-slot-bar-in{from{opacity:0;transform:translateY(var(--space-150))}to{opacity:1;transform:none}}
 .ifs-slots{--slot-top-r:var(--slot-inset)}
 .ifs-slots.has-right{--slot-top-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))} /* the top bar always clears the end panel, even when it overlays the map */
-.ifs-slot-top{top:var(--slot-top);inset-inline-start:var(--slot-l);inset-inline-end:var(--slot-top-r)} /* centred in the gap between the panels (Nov 19) */
-/* The gap is narrower than the bar: the bar lines up with the start panel's edge and sits above it, the panel moves down.
+.ifs-slot-top{top:var(--slot-top);inset-inline-start:var(--slot-l);inset-inline-end:var(--slot-top-r)} /* without the app's measurement: centred in the gap */
+/* The app measures the bar: centred on the whole map, nudged just clear of a panel (a page gap away) — never re-centred in the gap (Nov 19) */
+.ifs-slots.has-top-x .ifs-slot-top{inset-inline-start:var(--slot-top-x);inset-inline-end:auto;justify-content:flex-start}
+/* The bar can't fit between the panels at all: the bar lines up with the start panel's edge and sits above it, the panel moves down.
    The app sets .has-top-start and --slot-top-h (the bar's measured height). */
 .ifs-slots.has-top-start .ifs-slot-top{inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));inset-inline-end:var(--slot-top-r);justify-content:flex-start}
 .ifs-slots.has-top-start .ifs-slot-left{top:calc(var(--slot-top) + var(--slot-top-h, var(--space-0)) + var(--page-gap))}

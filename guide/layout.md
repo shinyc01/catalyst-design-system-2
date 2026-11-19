@@ -33,7 +33,7 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 |---|---|---|
 | `.ifs-slot-left` (start) | Hierarchy · Study library · Search results · Study | `--region-panel` (380); Study `--region-panel-l` (600, add `.has-left-l`) |
 | `.ifs-slot-right` (end) | Asset / group details · Trace report · Evidence chain · Cooper window | `--region-panel` (380) |
-| `.ifs-slot-top` | Selected bar, or the draw bar while drawing. Centred in the gap between the panels; when the gap is narrower than the bar, it lines up with the start panel's edge and sits above it, and the start panel moves down (`.has-top-start`, Nov 19) | content, at most `--region-map-bar` (746) |
+| `.ifs-slot-top` | Selected bar, or the draw bar while drawing. Centred on the whole map. An open panel only nudges it aside, keeping a page gap from the panel; it is never re-centred in the space that's left. When it can't fit between the panels at all, it lines up with the start panel's edge and sits above it, and the start panel moves down (`.has-top-x`, `.has-top-start`, Nov 19) | content, at most `--region-map-bar` (746) |
 | `.ifs-slot-bottom` | Horizon bar (`.ifs-slot-fill`), only when a study is open or a time layer is on | `--region-map-bar` (746), never wider than the gap |
 | `.ifs-slot-popover` | Layers / map display popover, beside the tool bar | `--overlay-width-s` (320) |
 | `.ifs-slot-fab` | Cooper button, end-bottom corner | `--size-48` |
