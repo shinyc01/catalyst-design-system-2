@@ -408,16 +408,51 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 
 // AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map - Overview - Default" (4484:116532):
 // 48px NavBar across the top, 240px SideNav below it on the left, then the content column with the PageHeader
-// (+ optional CanvasHeader) on top and a scrolling content area. Bar, sidebar and header stay put; only content scrolls.
-// Props: navBar, sideNav, header (nodes), bottom (node, e.g. a bottom sheet), children (content), height (default 100vh).
-function AppShell({ navBar, sideNav, header, bottom, children, height, className, style, ...rest }) {
+// (+ optional CanvasHeader) on top, a scrolling content area and an optional docked side panel on the right (2.0.3, from the
+// layout branch). Bar, sidebar, header and panel stay put; only content scrolls.
+// Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
+// e.g. a bottom sheet), children (content), height (default 100vh).
+// Panels and screen width (guide/layout.md, Nov 18 decision): md and up (1024+) the side nav and the panel push the content,
+// which reflows onto its own columns; below md they start collapsed and expand over the content (overlay). The shell measures
+// its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a panel with a controlled
+// `expanded`, is left alone.
+const SHELL_SIZES = [[1920, 'xl'], [1440, 'lg'], [1024, 'md'], [600, 'sm'], [0, 'xs']];
+const shellSizeOf = w => SHELL_SIZES.find(([min]) => w >= min)[1];
+function AppShell({ navBar, sideNav, header, panel, bottom, children, height, className, style, ...rest }) {
+  const ref = React.useRef(null);
+  const [size, setSize] = React.useState(() => shellSizeOf(typeof window !== 'undefined' ? window.innerWidth : 1440));
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el) return undefined;
+    const read = () => setSize(shellSizeOf(el.getBoundingClientRect().width));
+    read();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(read) : null;
+    ro && ro.observe(el);
+    return () => ro && ro.disconnect();
+  }, []);
+  const overlay = size === 'xs' || size === 'sm';
+  const navOverlay = !!sideNav && overlay;
+  const panelOverlay = !!panel && overlay;
+  let nav = sideNav;
+  if (React.isValidElement(sideNav) && sideNav.props.collapsed === undefined) {
+    // remount when the mode changes so the new default applies; the user can still expand / collapse
+    nav = React.cloneElement(sideNav, { key: navOverlay ? 'overlay' : 'push', defaultCollapsed: navOverlay ? true : sideNav.props.defaultCollapsed });
+  }
+  let side = panel;
+  if (React.isValidElement(panel) && panel.props.expanded === undefined) {
+    side = React.cloneElement(panel, { key: panelOverlay ? 'overlay' : 'push', defaultExpanded: panelOverlay ? false : panel.props.defaultExpanded });
+  }
   return (
-    <div className={IFS.cx('ifs-app-shell', className)} style={height ? { height, ...style } : style} {...rest}>
+    <div ref={ref} data-size={size}
+      className={IFS.cx('ifs-app-shell', navOverlay && 'ifs-app-shell--nav-overlay', panelOverlay && 'ifs-app-shell--panel-overlay', className)}
+      style={height ? { height, ...style } : style} {...rest}>
       <div className="ifs-app-shell__bar">{navBar}</div>
-      {sideNav && <div className="ifs-app-shell__side">{sideNav}</div>}
+      {sideNav && <div className="ifs-app-shell__side">{nav}</div>}
       <div className="ifs-app-shell__main" style={sideNav ? undefined : { gridColumn: '1 / -1' }}>
         {header && <div className="ifs-app-shell__header">{header}</div>}
-        <main className="ifs-app-shell__content">{children}</main>
+        <div className="ifs-app-shell__body">
+          <main className="ifs-app-shell__content">{children}</main>
+          {panel && <div className="ifs-app-shell__panel">{side}</div>}
+        </div>
         {bottom && <div className="ifs-app-shell__bottom">{bottom}</div>}
       </div>
     </div>

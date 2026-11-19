@@ -93,3 +93,17 @@
 .ifs-grid > .ifs-span-panel{grid-column:span var(--panel-cols)}
 .ifs-grid > .ifs-span-rest{grid-column:span calc(var(--layout-columns) - var(--panel-cols))}
 @media (max-width:1023px){.ifs-grid > .ifs-span-panel,.ifs-grid > .ifs-span-rest{grid-column:1 / -1}}
+
+/* Inside AppShell the grid follows the CONTENT AREA (container "content": beside the side nav and any docked panel), as decided
+   Nov 18; the @media rules above are the fallback outside a shell. A container is never wider than the window, so these only narrow. */
+@container content (max-width:1023px){
+  .ifs-grid{--layout-columns:8}
+  .ifs-grid > .ifs-span-1,.ifs-grid > .ifs-span-2{grid-column:span 2}
+  .ifs-grid > .ifs-span-3,.ifs-grid > .ifs-span-4{grid-column:span 4}
+  .ifs-grid > [class*="ifs-span-"]:not(.ifs-span-1):not(.ifs-span-2):not(.ifs-span-3):not(.ifs-span-4){grid-column:1 / -1}
+  .ifs-grid > .ifs-span-panel,.ifs-grid > .ifs-span-rest{grid-column:1 / -1}
+}
+@container content (max-width:599px){
+  .ifs-grid{--layout-columns:4}
+  .ifs-grid > [class*="ifs-span-"]{grid-column:1 / -1}
+}

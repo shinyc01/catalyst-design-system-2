@@ -199,4 +199,22 @@ export default IFS_GALLERY;
       </div>
     );
   } });
+
+  IFS_GALLERY.push({ name: 'AppShell: docked panel by width', figma: 'not a Figma component — panel push (1024+) / overlay (< 1024), Nov 18 decision', render: () => {
+    const [w, setW] = React.useState(1440);
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', gap: 8 }}>{[1440, 1100, 900, 700].map(v => <IFS.Button key={v} type={w === v ? 'primary' : 'secondary'} size="s" onClick={() => setW(v)}>{v}px</IFS.Button>)}</div>
+        <div style={{ width: w, border: '1px solid var(--border-base)' }}>
+          <AppShell height={520}
+            navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
+            sideNav={<SideNav title="Value" items={valueNav} defaultValue="active" />}
+            header={<PageHeader title="Q1 2026 Strategy Framework" />}
+            panel={<IFS.Panel title="Readiness Evaluation"><div className="t-body-m-regular">Panel content</div></IFS.Panel>}>
+            <div style={{ padding: "var(--page-margin)" }}><div className="ifs-grid">{[1, 2, 3, 4].map(i => <IFS.StatCard key={i} className="ifs-span-3" title={`Metric ${i}`} value="1,621" />)}</div></div>
+          </AppShell>
+        </div>
+      </div>
+    );
+  } });
 }

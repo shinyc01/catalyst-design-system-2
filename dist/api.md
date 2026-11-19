@@ -1162,9 +1162,15 @@ With neither description nor eyebrow the title row is 32 tall and centred (the B
 **Tier:** Component
 AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map - Overview - Default" (4484:116532):
 48px NavBar across the top, 240px SideNav below it on the left, then the content column with the PageHeader
-(+ optional CanvasHeader) on top and a scrolling content area. Bar, sidebar and header stay put; only content scrolls.
-Props: navBar, sideNav, header (nodes), bottom (node, e.g. a bottom sheet), children (content), height (default 100vh).
-`function AppShell({ navBar, sideNav, header, bottom, children, height, className, style, ...rest })`
+(+ optional CanvasHeader) on top, a scrolling content area and an optional docked side panel on the right (2.0.3, from the
+layout branch). Bar, sidebar, header and panel stay put; only content scrolls.
+Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
+e.g. a bottom sheet), children (content), height (default 100vh).
+Panels and screen width (guide/layout.md, Nov 18 decision): md and up (1024+) the side nav and the panel push the content,
+which reflows onto its own columns; below md they start collapsed and expand over the content (overlay). The shell measures
+its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a panel with a controlled
+`expanded`, is left alone.
+`function AppShell({ navBar, sideNav, header, panel, bottom, children, height, className, style, ...rest })`
 
 ## patterns-activity
 
