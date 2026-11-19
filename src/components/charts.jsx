@@ -153,10 +153,13 @@ function ValueLabel({ state = 'primary', children, className, ...rest }) {
   );
 }
 
+// A legend swatch shows the colour of what it describes: chart series use data-viz colours (dvColor); a legend for something
+// else (e.g. map risk bands drawn with system colours) may pass that colour's token. Tokens only: raw colours fall back to dvColor.
+const legendColor = (color, step) => (typeof color === 'string' && /^var\(--[a-z0-9-]+\)$/.test(color.trim()) ? color.trim() : dvColor(color, 0, step));
 // Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
 // Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
 // value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--data-viz-teal-data-5)'),
-// or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); label; value (optional on every entry,
+// or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); for non-chart legends any colour token; label; value (optional on every entry,
 // tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
 // Hover only: legend entries are not clickable (Figma).
 function LegendSwatch({ layout = 'inline', state = 'default', color = 'rose', step = 4, neutral, label, value, icon, swatchOpacity, className, ...rest }) {
@@ -166,7 +169,7 @@ function LegendSwatch({ layout = 'inline', state = 'default', color = 'rose', st
       {state === 'intended-target'
         ? <span className="ifs-dv-legend__target" aria-hidden="true" />
         : <span className={IFS.cx('ifs-dv-legend__swatch', isNeutral && 'ifs-dv-legend__swatch--neutral')} aria-hidden="true"
-            style={isNeutral ? { opacity: swatchOpacity } : { background: dvColor(color, 0, step), opacity: swatchOpacity }} />}
+            style={isNeutral ? { opacity: swatchOpacity } : { background: legendColor(color, step), opacity: swatchOpacity }} />}
       {label != null && <span className="ifs-dv-legend__name">{label}</span>}
       {icon && <IFS.Icon name={icon} size={16} className="ifs-dv-legend__icon" />}
       {value != null && <span className="ifs-dv-legend__value">{value}</span>}

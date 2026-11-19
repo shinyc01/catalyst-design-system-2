@@ -46,3 +46,10 @@ Benchmark: Fluent 2 (inline vs overlay drawer by task), Carbon for IBM Products 
 - Below md (1024) a `push` panel has no room: it becomes a rail and expands over the content; outside click / Esc fold it back.
 - Side nav below md: a rail that expands over the content; outside click / Esc fold it back.
 - The page grid follows the content area (container `content`): a pushed panel narrows the columns like a smaller screen.
+
+## 6. Direction: start and end, never left and right (rule from Nov 19, 2026)
+The kit is being prepared for right-to-left languages (Arabic market). In RTL the layout mirrors: the side nav moves to the right, back arrows point right, text starts on the right; numbers, logos, media controls and chart time axes do not mirror.
+- **All new and changed code** uses logical properties: `margin-inline-start/end`, `padding-inline-*`, `inset-inline-start/end`, `border-inline-*`, `text-align:start/end`; in JSX `marginInlineStart`, `insetInlineEnd`, …
+- Geometry that must not mirror (chart time axes, canvas coordinates) keeps physical values with a `/* ltr: reason */` comment.
+- Directional icons (arrows, chevrons, back) will flip in RTL; check marks, media, clocks, trends and logos never flip.
+- Progress: `node tools/check-direction.mjs` (171 physical declarations left on Nov 19). The conversion runs gradually (first pass scheduled Fri Nov 20 after 5 pm).
