@@ -9,26 +9,7 @@
 .ifs-ap-status--awaiting path[fill="white"]{fill:var(--icon-primary-inverse)}
 .ifs-ap-status__empty{display:block;box-sizing:border-box;width:16px;height:16px;border-radius:50%;border:1px dashed var(--border-medium)} /* Figma dash 3/5 */
 
-/* ---------- stat (12:121119): row of quick-stat cards ---------- */
-.ifs-stat{display:flex;align-items:stretch;gap:var(--space-stack);width:100%;min-width:0}
-.ifs-quick-stat{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 0;min-width:0;box-sizing:border-box;min-height:108px;
-  padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);box-shadow:0 0 0 1px var(--border-base)}
-.ifs-quick-stat__top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);min-height:20px}
-.ifs-quick-stat__title{min-width:0;color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-quick-stat__trend{display:inline-flex;align-items:center;gap:var(--space-50);flex:none;color:var(--text-success);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-quick-stat__trend .ifs-icon{color:var(--icon-success)}
-.ifs-quick-stat__trend--down{color:var(--text-danger)}
-.ifs-quick-stat__trend--down .ifs-icon{color:var(--icon-danger)}
-.ifs-quick-stat__body{display:flex;flex-direction:column;gap:var(--space-200)}
-.ifs-quick-stat__value{color:var(--text-primary);font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking);white-space:nowrap;font-variant-numeric:var(--text-numeric)} /* Heading/H1 */
-.ifs-quick-stat__value--from{color:var(--text-tertiary)}
-.ifs-quick-stat__caption{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-quick-stat__body .ifs-quick-stat__caption{letter-spacing:var(--text-body-m-regular-tracking)}
-.ifs-quick-stat__compare{display:flex;align-items:center;gap:var(--space-stack)}
-.ifs-quick-stat__side{display:flex;flex-direction:column;gap:var(--space-200)}
-.ifs-quick-stat__arrow{color:var(--icon-tertiary)}
-/* Catalyst DS 2.0: two values side by side (from → to) step down to H2 so they fit a quarter-width card */
-.ifs-quick-stat__compare .ifs-quick-stat__value{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)}
+/* stat (12:121119): StatCardsRow + StatCard (data.css). */
 
 /* ---------- info-hint-item (12:121968) ---------- */
 .ifs-info-hint{display:flex;align-items:center;gap:var(--space-200);min-width:0;padding:var(--space-150) 0}

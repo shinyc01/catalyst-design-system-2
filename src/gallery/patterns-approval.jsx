@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { ApprovalStatus, QuickStatCard, Stat, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
+  const { StatCardsRow, StatCard, ApprovalStatus, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
     ReadinessFacts, ReadinessEvaluation, ApprovalChainPanel, ApprovalChainTable } = IFS;
   const { useState } = React;
   const Row = ({ label, children, top }) => <div className="g-row" style={top ? { alignItems: 'flex-start' } : null}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
@@ -78,15 +78,6 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'ApprovalStatus', figma: 'status (12:210060)', render: () => (
     <Row label="type">{['success', 'rejected', 'awaiting', 'empty'].map(t => <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><ApprovalStatus type={t} /><span className="t-body-m-regular">{t}</span></span>)}</Row>
   ) });
-
-  IFS_GALLERY.push({ name: 'Stat', figma: 'stat (12:121119)', render: () => <>
-    <Row label="row (Figma: 1 compare + 3)"><Box w={988}><Stat items={STATS} /></Box></Row>
-    <Row label="QuickStatCard">
-      <Box w={238}><QuickStatCard title="Portfolio value" trend="4.8%" compare={{ from: '$2.14B', to: '$2.24B' }} /></Box>
-      <Box w={238}><QuickStatCard title="Net value" trend="3.1%" trendDirection="down" value="$2.08B" description="vs. current" /></Box>
-      <Box w={238}><QuickStatCard title="Governance flags" value="1" description="Executing investment affected" /></Box>
-    </Row>
-  </> });
 
   IFS_GALLERY.push({ name: 'InfoHintItem', figma: 'info-hint-item (12:121968)', render: () => <>
     <Row label="legend">{[{ label: 'Loss', color: 'var(--data-viz-alert-data-5)' }, { label: 'Unchanged', neutral: true }, { label: 'Gain', color: 'var(--data-viz-deep-green-data-5)' }].map(l => <InfoHintItem key={l.label} {...l} />)}</Row>
@@ -176,7 +167,7 @@ export default IFS_GALLERY;
             Applying this change <span style={{ color: 'var(--text-primary)' }}>increases Reliability influence by 18%, decreases Safety influence by 7%</span>, and changes the value of <span style={{ color: 'var(--text-primary)' }}>876 investments</span>.<br />
             3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p>
         </div>
-        <Stat items={STATS} />
+        <StatCardsRow cards={STATS} />
         <div><IFS.Tabs value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'alignment', label: 'Strategic Alignment' }]} /></div>
         {tab === 'impact' && <InvestmentValueImpact />}
         <TableReview rows={INVESTMENTS} defaultCollapsed={['Unchanged']} />

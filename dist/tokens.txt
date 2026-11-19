@@ -433,65 +433,6 @@
 --size-ruler-master-76: 76px
 --size-ruler-master-80: 80px
 --size-ruler-master-1000: 1000px
---gaps-gap-0: 0px
---gaps-gap-50: 2px
---gaps-gap-100: 4px
---gaps-gap-150: 6px
---gaps-gap-200: 8px
---gaps-gap-250: 10px
---gaps-gap-300: 12px
---gaps-gap-400: 16px
---gaps-gap-500: 20px
---gaps-gap-600: 24px
---gaps-gap-700: 32px
---gaps-gap-800: 40px
---gaps-gap-900: 48px
---gaps-gap-1000: 64px
---gaps-gap-1100: 80px
---paddings-padding-0: 0px
---paddings-padding-50: 2px
---paddings-padding-100: 4px
---paddings-padding-150: 6px
---paddings-padding-200: 8px
---paddings-padding-250: 10px
---paddings-padding-300: 12px
---paddings-padding-400: 16px
---paddings-padding-500: 20px
---paddings-padding-600: 24px
---paddings-padding-700: 32px
---paddings-padding-800: 40px
---paddings-padding-900: 48px
---paddings-padding-1000: 64px
---paddings-padding-1100: 80px
---margins-layout-margin-xs: 12px
---margins-layout-margin-sm: 16px
---margins-layout-margin-md: 20px
---margins-layout-margin-lg: 24px
---margins-layout-margin-xl: 40px
---gutters-gutter-xs: 12px
---gutters-gutter-sm: 16px
---gutters-gutter-md: 20px
---gutters-gutter-lg: 24px
---gutters-gutter-xl: 32px
---spacing-card: 16px
---spacing-card-compact: 12px
---spacing-card-gap: 12px
---spacing-card-text: 4px
---spacing-card-actions: 16px
---spacing-table-cell-x: 16px
---spacing-table-cell-y: 14px
---spacing-table-header-x: 16px
---spacing-table-header-y: 12px
---spacing-panel: 16px
---spacing-panel-gap: 16px
---spacing-modal: 20px
---spacing-modal-gap: 16px
---spacing-popover: 8px
---spacing-popover-content: 16px
---spacing-form: 20px
---spacing-form-field-gap: 16px
---spacing-section: 24px
---spacing-section-lg: 32px
 --table-col-primary-min: 240px
 --table-col-primary-max: 480px
 --table-col-short-min: 120px
@@ -567,39 +508,16 @@
 --control-h-s: 24px
 --control-h-m: 32px
 --control-h-l: 40px
+--icon-scale: 1
 --tab-h-m: 36px
 --tab-h-l: 40px
 --nav-row-h: 40px
---table-row-h: 56px
---table-header-h: 56px
+--table-row-h: 52px
+--table-header-h: 32px
+--table-header-pad-top: var(--space-0)
+--table-header-pad-bottom: var(--space-stack)
 --density-scale: 1.05
---layout-side-panel-width: 380px
---spacing-card: var(--paddings-padding-500)
---spacing-card-compact: var(--paddings-padding-400)
---spacing-card-gap: var(--gaps-gap-400)
---spacing-card-actions: var(--paddings-padding-500)
---spacing-table-cell-x: var(--paddings-padding-400)
---spacing-table-cell-y: var(--paddings-padding-400)
---spacing-table-header-x: var(--paddings-padding-400)
---spacing-table-header-y: var(--paddings-padding-400)
---spacing-panel: var(--paddings-padding-600)
---spacing-panel-gap: var(--gaps-gap-500)
---spacing-modal: var(--paddings-padding-600)
---spacing-modal-gap: var(--gaps-gap-500)
---spacing-popover: var(--paddings-padding-100)
---spacing-popover-content: var(--paddings-padding-500)
---spacing-form: var(--paddings-padding-600)
---spacing-form-field-gap: var(--gaps-gap-500)
---spacing-section: var(--paddings-padding-800)
---spacing-section-lg: var(--paddings-padding-900)
---page-margin: var(--margins-layout-margin-lg)
---page-gap: var(--gaps-gap-600)
---page-margin: var(--paddings-padding-800)
---page-gap: var(--gaps-gap-700)}}
-
-/* Spacious = 16px body, one notch up */
-[data-density="spacious"]{
-  --type-caption:var(--type-s) /* retired: Caption = Small */
+--type-caption: var(--type-s) /* retired: Caption = Small */
 --type-s: 14px/20px
 --type-m: 16px/24px
 --type-l: 18px/26px
@@ -612,39 +530,17 @@
 --control-h-s: 28px
 --control-h-m: 36px
 --control-h-l: 44px
+--icon-scale: 1.143 /* follows body text 16 / 14 */
 --tab-h-m: 40px
 --tab-h-l: 48px
 --nav-row-h: 44px
 --table-row-h: 64px
---table-header-h: 64px
+--table-header-h: 40px
+--table-header-pad-top: var(--space-0)
+--table-header-pad-bottom: var(--space-stack)
 --density-scale: 1.2
---layout-side-panel-width: 380px
---spacing-card: var(--paddings-padding-600)
---spacing-card-compact: var(--paddings-padding-500)
---spacing-card-gap: var(--gaps-gap-500)
---spacing-card-actions: var(--paddings-padding-600)
---spacing-table-cell-x: var(--paddings-padding-500)
---spacing-table-cell-y: var(--paddings-padding-500)
---spacing-table-header-x: var(--paddings-padding-500)
---spacing-table-header-y: var(--paddings-padding-500)
---spacing-panel: var(--paddings-padding-700)
---spacing-panel-gap: var(--gaps-gap-600)
---spacing-modal: var(--paddings-padding-700)
---spacing-modal-gap: var(--gaps-gap-600)
---spacing-popover: var(--paddings-padding-200)
---spacing-popover-content: var(--paddings-padding-600)
---spacing-form: var(--paddings-padding-700)
---spacing-form-field-gap: var(--gaps-gap-600)
---spacing-section: var(--paddings-padding-900)
---spacing-section-lg: var(--paddings-padding-1000)
---page-margin: var(--paddings-padding-700)
---page-gap: var(--gaps-gap-700)
---page-margin: var(--paddings-padding-800)
---page-gap: var(--gaps-gap-800)}}
-
-/* Compact = 12px body
 --type-caption: var(--type-s) /* retired: Caption = Small */
---type-s: 10px/14px /* 2px steps: Small 10, Body 12, Large 14 */
+--type-s: 11px/14px /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */
 --type-m: 12px/16px
 --type-l: 14px/20px
 --type-h3: 16px/24px
@@ -656,34 +552,15 @@
 --control-h-s: 20px
 --control-h-m: 28px
 --control-h-l: 32px
+--icon-scale: 0.857 /* follows body text 12 / 14 */
 --tab-h-m: 32px
 --tab-h-l: 36px
 --nav-row-h: 36px
 --table-row-h: 40px
---table-header-h: 40px
+--table-header-h: 24px
+--table-header-pad-top: var(--space-0)
+--table-header-pad-bottom: var(--space-stack)
 --density-scale: 0.95
---layout-side-panel-width: 380px
---spacing-card: var(--paddings-padding-300)
---spacing-card-compact: var(--paddings-padding-200)
---spacing-card-gap: var(--gaps-gap-300)
---spacing-card-actions: var(--paddings-padding-300)
---spacing-table-cell-x: var(--paddings-padding-300)
---spacing-table-cell-y: var(--paddings-padding-200)
---spacing-table-header-x: var(--paddings-padding-300)
---spacing-table-header-y: var(--paddings-padding-200)
---spacing-panel: var(--paddings-padding-400)
---spacing-panel-gap: var(--gaps-gap-300)
---spacing-modal: var(--paddings-padding-500)
---spacing-modal-gap: var(--gaps-gap-300)
---spacing-popover: var(--paddings-padding-100)
---spacing-popover-content: var(--paddings-padding-300)
---spacing-form: var(--paddings-padding-400)
---spacing-form-field-gap: var(--gaps-gap-300)
---spacing-section: var(--paddings-padding-600)
---spacing-section-lg: var(--paddings-padding-700)
---page-margin: var(--margins-layout-margin-sm)
---page-gap: var(--gaps-gap-500)
---page-margin: var(--paddings-padding-600)
 
 # Text-style classes (Figma text styles) and effect classes
 .t-display-l

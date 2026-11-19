@@ -142,11 +142,13 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
 // Figma: stat-card-organism (3643:35055)
 // Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over an UPPERCASE
 // caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
-// badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading.
-function StatCard({ size = 'm', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, loading, children, className, ...rest }) {
+// badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
+// compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;
+// without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
+function StatCard({ size = 'm', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest }) {
   const m = size === 'm';
   return (
-    <div className={IFS.cx('ifs-stat-card', `ifs-stat-card--${size}`, loading && 'ifs-stat-card--loading', className)} aria-busy={loading || undefined} {...rest}>
+    <div className={IFS.cx('ifs-stat-card', `ifs-stat-card--${size}`, compare && 'ifs-stat-card--compare', loading && 'ifs-stat-card--loading', className)} aria-busy={loading || undefined} {...rest}>
       {(title != null || trend != null || badge || loading) && (
         <div className="ifs-stat-card__top">
           {loading ? <span className="ifs-skeleton-bar" style={{ flex: 1, height: 14 }} /> : <span className="ifs-stat-card__title">{title}</span>}
@@ -162,7 +164,22 @@ function StatCard({ size = 'm', title, value, description, descriptionPosition =
         {loading ? <>
           <span className="ifs-skeleton-bar" style={{ width: m ? 51 : 51, height: m ? 24 : 20 }} />
           <span className="ifs-skeleton-bar" style={{ flex: 1, height: 16 }} />
-        </> : <>
+        </> : compare ? <span className="ifs-stat-card__stack">
+          <span className="ifs-stat-card__compare">
+            {compare.from != null && <>
+              <span className="ifs-stat-card__col ifs-stat-card__col--from">
+                {compare.fromLabel && <span className="ifs-stat-card__cap">{compare.fromLabel}</span>}
+                <span className="ifs-stat-card__value">{compare.from}</span>
+              </span>
+              <span className="ifs-stat-card__arrow"><IFS.Icon name="arrow-right" size={12} /></span>
+            </>}
+            <span className="ifs-stat-card__col">
+              {compare.toLabel && <span className="ifs-stat-card__cap">{compare.toLabel}</span>}
+              <span className="ifs-stat-card__value">{compare.to}</span>
+            </span>
+          </span>
+          {description != null && <span className="ifs-stat-card__desc ifs-stat-card__desc--below">{description}</span>}
+        </span> : <>
           {description != null && descriptionPosition !== 'inline'
             ? <span className="ifs-stat-card__stack">
                 <span className="ifs-stat-card__value">{value}</span>

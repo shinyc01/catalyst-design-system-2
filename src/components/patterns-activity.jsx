@@ -4,7 +4,7 @@ import { IFS } from './registry.js';
 // page "Activity, Versions" (12:339984), section Activity log (52:83648).
 // IFS DS components the kit lacked: compare-dropdown (+ its drop-down list) and compare-header.
 // Pattern composites: ActivityPanel (version history + activity log + approval chain in the panel the library opens),
-// CompareStatValue (the from → to value of a compare stat card) and CompareView (compare header + stat cards + Sankey).
+// CompareView (compare header + stat cards + Sankey).
 // The timeline itself is the kit's (VersionEntry / Timeline / ApprovalChain, activity.jsx).
 
 const paCx = (...a) => a.filter(Boolean).join(' ');
@@ -133,20 +133,6 @@ function CompareHeader({ label = 'Compare to', cooperBanner, className, style, .
   );
 }
 
-/* ───────────────────────────── compare stat value ───────────────────────────── */
-// The value of a compare stat card (Figma compare-quick-stat-card 52:82588 = legacy stat-capital-flow-card Type=Compare):
-// two caption-over-value columns joined by arrow-right. Pass it as IFS.StatCard `value` with className "ifs-compare-stat".
-// Props: fromLabel, from (baseline: text/tertiary), toLabel, to (current: text/primary). Without `from` only the current value shows.
-function CompareStatValue({ fromLabel, from, toLabel, to, className }) {
-  const col = (l, v, cls) => <span className={paCx('ifs-compare-stat__col', cls)}>{l && <span className="ifs-compare-stat__cap">{l}</span>}<span className="ifs-compare-stat__num">{v}</span></span>;
-  return (
-    <span className={paCx('ifs-compare-stat__value', className)}>
-      {from != null && <>{col(fromLabel, from, 'ifs-compare-stat__col--from')}<IFS.Icon name="arrow-right" size={12} /></>}
-      {col(toLabel, to)}
-    </span>
-  );
-}
-
 /* ───────────────────────────── CompareView (pattern) ───────────────────────────── */
 // Compare screen body ("Library - Strategy Framework - Active models", Patterns 52:84351): compare-header, a row of four
 // compare stat cards, then the Sankey with the current and baseline frameworks as its two source blocks.
@@ -159,9 +145,9 @@ function CompareView({ groups, value, defaultValue = null, onChange, stats = [],
       <CompareHeader groups={groups} value={val} onChange={setVal} cooperBanner={cooperBanner} />
       <div className="ifs-compare-view__stats">
         {stats.map((s, i) => (
-          <IFS.StatCard key={s.key || i} className="ifs-compare-stat" title={s.title} trend={val != null ? s.trend : undefined} trendDirection={s.trendDirection}
+          <IFS.StatCard key={s.key || i} title={s.title} trend={val != null ? s.trend : undefined} trendDirection={s.trendDirection}
             description={s.description}
-            value={<CompareStatValue fromLabel={val != null ? s.fromLabel : undefined} from={val != null ? s.from : undefined} toLabel={s.toLabel} to={s.to} />} />
+            compare={{ fromLabel: val != null ? s.fromLabel : undefined, from: val != null ? s.from : undefined, toLabel: s.toLabel, to: s.to }} />
         ))}
       </div>
       {sankey && <IFS.Sankey {...sankey} height={height} />}
@@ -360,5 +346,5 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
   </>;
 }
 
-Object.assign(IFS, { CompareDropdownList, CompareDropdown, CompareHeader, CompareStatValue, CompareView, ActivityPanel, filterVersions });
-export { CompareDropdownList, CompareDropdown, CompareHeader, CompareStatValue, CompareView, ActivityPanel, filterVersions };
+Object.assign(IFS, { CompareDropdownList, CompareDropdown, CompareHeader, CompareView, ActivityPanel, filterVersions });
+export { CompareDropdownList, CompareDropdown, CompareHeader, CompareView, ActivityPanel, filterVersions };

@@ -859,19 +859,24 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'StatCard', figma: 'stat-card-organism (3643:35055)', render: () => <>
     <Row label="m / s">
-      <StatCard style={{ width: 286 }} title="Title" value="Value" description="Description" trend="3 %" />
-      <StatCard style={{ width: 286 }} size="s" title="Title" value="Value" description="Description" trend="3 %" />
+      <StatCard style={{ width: 286 }} title="Title" value="Value" description="Description" trend="3%" />
+      <StatCard style={{ width: 286 }} size="s" title="Title" value="Value" description="Description" trend="3%" />
     </Row>
     <Row label="loading">
-      <StatCard style={{ width: 286 }} loading trend="3 %" />
-      <StatCard style={{ width: 286 }} size="s" loading trend="3 %" />
+      <StatCard style={{ width: 286 }} loading trend="3%" />
+      <StatCard style={{ width: 286 }} size="s" loading trend="3%" />
     </Row>
     <Row label="description inline">
-      <StatCard style={{ width: 286 }} descriptionPosition="inline" title="Title" value="Value" description="Description" trend="3 %" />
-      <StatCard style={{ width: 286 }} descriptionPosition="inline" size="s" title="Title" value="Value" description="Description" trend="3 %" />
+      <StatCard style={{ width: 286 }} descriptionPosition="inline" title="Title" value="Value" description="Description" trend="3%" />
+      <StatCard style={{ width: 286 }} descriptionPosition="inline" size="s" title="Title" value="Value" description="Description" trend="3%" />
+    </Row>
+    <Row label="compare (from → to)">
+      <StatCard style={{ width: 286 }} title="Portfolio value" trend="4.8%" compare={{ from: '$2.14B', to: '$2.24B', fromLabel: 'Current', toLabel: 'Proposed' }} />
+      <StatCard style={{ width: 286 }} size="s" title="Portfolio value" trend="4.8%" compare={{ from: '$2.14B', to: '$2.24B' }} />
+      <StatCard style={{ width: 286 }} title="Risk score" compare={{ to: '6.4', toLabel: 'Current' }} description="No baseline selected" />
     </Row>
     <Row label="badge / down">
-      <StatCard style={{ width: 286 }} title="Budget" value="$4.2M" description="of $5M" trend="12 %" trendDirection="down" badge={{ children: 'Over' }} />
+      <StatCard style={{ width: 286 }} title="Budget" value="$4.2M" description="of $5M" trend="12%" trendDirection="down" badge={{ children: 'Over' }} />
     </Row>
   </> });
 ```
@@ -1582,18 +1587,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   ) });
 ```
 
-### CompareStatValue
-```jsx
-  IFS_GALLERY.push({ name: 'CompareStatValue', figma: 'compare-quick-stat-card [patterns] (52:82588) → StatCard', render: () => (
-    <div style={{ ...grid, width: 1200, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-      {statsFor('best').map(s => <IFS.StatCard key={s.key} className="ifs-compare-stat" title={s.title} trend={s.trend} trendDirection={s.trendDirection} description={s.description}
-        value={<CompareStatValue fromLabel={s.fromLabel} from={s.from} toLabel={s.toLabel} to={s.to} />} />)}
-      {statsFor(null).slice(0, 2).map(s => <IFS.StatCard key={s.key} className="ifs-compare-stat" title={s.title} description={s.description}
-        value={<CompareStatValue toLabel={s.toLabel} to={s.to} />} />)}
-    </div>
-  ) });
-```
-
 ### ActivityPanel
 ```jsx
   IFS_GALLERY.push({ name: 'ActivityPanel', figma: 'panel-organism — Activity [patterns] (52:83780)', render: () => {
@@ -1619,31 +1612,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'ApprovalStatus', figma: 'status (12:210060)', render: () => (
     <Row label="type">{['success', 'rejected', 'awaiting', 'empty'].map(t => <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><ApprovalStatus type={t} /><span className="t-body-m-regular">{t}</span></span>)}</Row>
   ) });
-```
-
-### QuickStatCard
-(from the Stat example)
-```jsx
-  IFS_GALLERY.push({ name: 'Stat', figma: 'stat (12:121119)', render: () => <>
-    <Row label="row (Figma: 1 compare + 3)"><Box w={988}><Stat items={STATS} /></Box></Row>
-    <Row label="QuickStatCard">
-      <Box w={238}><QuickStatCard title="Portfolio value" trend="4.8%" compare={{ from: '$2.14B', to: '$2.24B' }} /></Box>
-      <Box w={238}><QuickStatCard title="Net value" trend="3.1%" trendDirection="down" value="$2.08B" description="vs. current" /></Box>
-      <Box w={238}><QuickStatCard title="Governance flags" value="1" description="Executing investment affected" /></Box>
-    </Row>
-  </> });
-```
-
-### Stat
-```jsx
-  IFS_GALLERY.push({ name: 'Stat', figma: 'stat (12:121119)', render: () => <>
-    <Row label="row (Figma: 1 compare + 3)"><Box w={988}><Stat items={STATS} /></Box></Row>
-    <Row label="QuickStatCard">
-      <Box w={238}><QuickStatCard title="Portfolio value" trend="4.8%" compare={{ from: '$2.14B', to: '$2.24B' }} /></Box>
-      <Box w={238}><QuickStatCard title="Net value" trend="3.1%" trendDirection="down" value="$2.08B" description="vs. current" /></Box>
-      <Box w={238}><QuickStatCard title="Governance flags" value="1" description="Executing investment affected" /></Box>
-    </Row>
-  </> });
 ```
 
 ### InfoHintItem
@@ -2318,7 +2286,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {
-    const S = 0.47; // the Figma map draws its pins at ~47 %
+    const S = 0.47; // the Figma map draws its pins at ~47%
     const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
@@ -2698,9 +2666,10 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     { id: 'i10', name: 'Birchwood Lateral Undergrounding Study', status: { type: 'purple', label: 'Shaping' }, horizon: 'FY31–FY35', hz: [31, 35], term: 'Mid', modified: null, keywords: ['Feeder'] },
     { id: 'i11', name: 'Harbor Road Pole Line Rebuild', status: { type: 'blue', label: 'New' }, horizon: 'FY33–FY38', hz: [33, 38], term: 'Mid', modified: ago(40), keywords: ['Replacement'] },
   ].map(r => ({ ...r, icon: r.program ? 'chat-folder' : undefined }));
-  const fmt = v => (v ? v.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—');
+  const fmt = v => IFS.format.date(v); // '—' when empty
   const ideaCols = (onOpenCollab) => [
     { key: 'name', title: 'Ideas', name: true, width: '1fr', truncate: 'end', filterValue: r => r.keywords, filter: 'chips' },
+    { key: 'status', title: 'Status', width: 200, type: 'custom', filterValue: r => r.status.label,
   // … cut; full example in src/gallery/patterns-table.jsx
 ```
 
@@ -2736,7 +2705,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'ConfidenceGates', figma: 'Approval readiness [patterns] (30:73048)', render: () => {
     const c = useIssueReport({ issues: CONF_ISSUES, gates: GATES });
-    return <Row label="50 %"><W><ConfidenceGates controller={c} /></W></Row>;
+    return <Row label="50%"><W><ConfidenceGates controller={c} /></W></Row>;
   } });
 ```
 
@@ -3002,18 +2971,18 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'EmptyState', figma: 'empty-state-organism (3782:18464)', render: () => <>
     <div style={grid}>
-      <Cell title="cause=first-run" h={180}><EmptyState cause="first-run" heading="No value frameworks yet" body="Create your first framework to start planning." primaryAction={{ label: 'New framework' }} /></Cell>
-      <Cell title="cause=empty-container" h={180}><EmptyState cause="empty-container" heading="No models added" body="Add models to this framework to begin scoring." primaryAction={{ label: 'New model' }} /></Cell>
+      <Cell title="cause=first-run" h={180}><EmptyState cause="first-run" heading="No value frameworks yet" body="Create your first framework to start planning." primaryAction={{ label: 'Create framework' }} /></Cell>
+      <Cell title="cause=empty-container" h={180}><EmptyState cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} /></Cell>
       <Cell title="cause=all-done" h={180}><EmptyState cause="all-done" heading="All caught up" body="No frameworks are pending approval right now." /></Cell>
-      <Cell title="cause=error" h={180}><EmptyState cause="error" heading="Couldn’t load frameworks" body="Something went wrong on our end. Please try again." primaryAction={{}} /></Cell>
-      <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
-      <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results found" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
-      <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No results found" body="Try a different term, or clear filters to see everything." primaryAction={{}} /></Cell>
+      <Cell title="cause=error" h={180}><EmptyState cause="error" heading="Couldn’t load frameworks" body="The server didn’t respond. Try again in a minute." primaryAction={{}} /></Cell>
+      <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access to this framework" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
+      <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results for “WDRM-2”" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
+      <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No frameworks match your filters" body="Try a different term, or clear filters to see all frameworks." primaryAction={{}} /></Cell>
       <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it's empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </div>
     <Row label="size=full">
       <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--background-elevation-1-secondary, #111)', borderRadius: 8 }}>
-        <EmptyState size="full" cause="empty-container" heading="No models added" body="Add models to this framework to begin scoring." primaryAction={{ label: 'New model' }} />
+        <EmptyState size="full" cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} />
       </div>
     </Row>
   </> });
@@ -3164,7 +3133,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Row label="show-icon" top>
         {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} showIcon title="Item can't be added here">Drop it on a framework node instead.</Alert>)}
       </Row>
-      <Live>{shown ? <Alert type="warning" title="Unsaved changes" onClose={() => setShown(false)}>Close me.</Alert> : <Button onClick={() => setShown(true)}>Show alert again</Button>}</Live>
+      <Live>{shown ? <Alert type="warning" title="Unsaved changes" onClose={() => setShown(false)}>Save the draft before you leave this page.</Alert> : <Button onClick={() => setShown(true)}>Show alert again</Button>}</Live>
     </>;
   }
 ```
@@ -3196,7 +3165,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Live>
         <Button type="primary" onClick={() => setOpen(true)}>Open modal</Button>
         <Modal open={open} onOpenChange={setOpen} title="Archive investment"
-          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive', onClick: () => setOpen(false) }}>
+          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive investment', onClick: () => setOpen(false) }}>
           <Filler h={80}>Esc, the ✕ or a click on the overlay closes it. Tab stays inside.</Filler>
         </Modal>
       </Live>
@@ -3223,7 +3192,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Live>
         <Button type="primary" onClick={() => setOpen(true)}>Open modal</Button>
         <Modal open={open} onOpenChange={setOpen} title="Archive investment"
-          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive', onClick: () => setOpen(false) }}>
+          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive investment', onClick: () => setOpen(false) }}>
           <Filler h={80}>Esc, the ✕ or a click on the overlay closes it. Tab stays inside.</Filler>
         </Modal>
       </Live>

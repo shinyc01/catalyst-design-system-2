@@ -49,16 +49,6 @@
 .ifs-compare-header__dd{flex:1 1 auto}
 .ifs-compare-header__banner{display:flex;align-items:center;width:398px;height:42px;flex:none}
 
-/* ================= compare stat card (compare-quick-stat-card 52:82588 on StatCard) ================= */
-.ifs-compare-stat .ifs-stat-card__title{color:var(--text-secondary)}
-.ifs-compare-stat .ifs-stat-card__value-row{align-items:flex-end;gap:var(--space-150)}
-.ifs-compare-stat .ifs-stat-card__value{font:inherit;letter-spacing:normal}
-.ifs-compare-stat__value{display:inline-flex;align-items:center;gap:var(--space-150);color:var(--icon-tertiary)}
-.ifs-compare-stat__col{display:inline-flex;flex-direction:column;gap:var(--space-50)}
-.ifs-compare-stat__cap{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-compare-stat__num{color:var(--text-primary);font:var(--text-heading-h1-medium);letter-spacing:var(--text-heading-h1-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Heading/H1 */
-.ifs-compare-stat__col--from .ifs-compare-stat__num{color:var(--text-tertiary)}
-
 /* ================= CompareView ================= */
 .ifs-compare-view{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
 .ifs-compare-view__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-stack)}

@@ -1,8 +1,45 @@
 # IFS DS kit — component API
 
-Kit version 2.0.1, generated 2026-11-17. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.2, generated 2026-11-19. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant (details: guide/usage.md). `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
+
+## format
+
+`IFS.format` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: https://shinyc01.github.io/catalyst-design-system-2/guide/content.md
+
+```
+IFS.format: one way to show money, numbers, percentages, dates, times and fiscal years everywhere.
+Rules and examples: guide/content.md (section 6). Built on Intl, so it follows the locale; en-US is the default.
+
+IFS.format.money(v, { compact = 'auto', decimals, unit, sign, currency = 'USD', locale })
+  compact 'auto' (default): under $10,000 in full ("$8,450"), then K / M / B with 3 significant digits
+  ("$860K", "$19.4M", "$3.04B"). compact false: "$19,400,000". unit 'K' | 'M' | 'B' fixes the scale for a column
+  ("$0.6M" next to "$12.4M"; up to 1 decimal, decimals: 1 gives "$5.0M" for a table column). Negative: "−$1.8M" (true minus sign).
+  sign 'always' (for changes): "+$1.3M", "−$0.6M", "$0".
+IFS.format.number(v, { compact = false, decimals, unit, sign, locale })      → "1,621", compact "19.4K", unit "5.1 min"
+IFS.format.percent(v, { decimals = 1, ratio = false, sign, locale })        → v is the percent: 4.8 → "4.8%";
+  ratio true takes 0.048. Whole numbers drop the decimal ("48%"). sign 'always' → "+4.8%".
+IFS.format.change(v, kind = 'money' | 'number' | 'percent', opts)          → signed delta: "+$1.3M", "−2.1%", "0%"
+IFS.format.date(d, { style = 'medium', locale })                             → d: Date, 'YYYY-MM-DD' (read as a local
+  date, never UTC) or a timestamp. medium "Nov 12, 2026" · long "November 12, 2026" · short "Nov 12" ·
+  month "Nov 2026" · monthLong "November 2026" · weekday "Thu, Nov 12, 2026" · full "Thursday, November 12, 2026" · iso "2026-11-12" (exports and data only).
+IFS.format.time(d)                                                           → "3:44 AM"
+IFS.format.dateTime(d)                                                       → "Nov 12, 2026, 3:44 AM"
+IFS.format.dateRange(a, b)                                                   → "Nov 12 – 18, 2026", "Nov 28, 2026 – Jan 4, 2027"
+IFS.format.relative(d, { now = new Date() })                                 → "just now", "5 minutes ago", "3 hours ago",
+  "yesterday", "4 days ago"; 7 days or more → the date ("Nov 12, 2026"). Lower case: it usually follows a word
+  ("Edited 3 hours ago"); capitalise it yourself when it starts a line.
+IFS.format.fy(x, { style = 'short', quarter = false, startMonth })           → x: a year (2027 or 27) or a date.
+  "FY27" · long "FY2027" · quarter "Q2 FY27". A fiscal year is named for the calendar year it ends in.
+IFS.format.fyRange(a, b)                                                     → "FY27–FY31"
+IFS.format.fileSize(bytes)                                                   → "860 KB", "4.2 MB"
+IFS.format.parse(s)                                                          → number from a shown value, for sorting:
+  "$3.1M" → 3100000, "−$1.8M" → -1800000, "4.8%" → 4.8, "1,621" → 1621
+IFS.format.configure({ locale, currency, fyStartMonth, empty })              → set the defaults once per app.
+  fyStartMonth is 1–12 (default 1 = January; 10 = an October–September year). empty is what a missing
+  value shows (default "—"). Every function returns `empty` for null, undefined, '' or NaN.
+```
 
 ## core
 
@@ -681,8 +718,10 @@ buttonRight = icon name (Figma "button right": tertiary S icon-button), onButton
 Figma: stat-card-organism (3643:35055)
 Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over an UPPERCASE
 caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
-badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading.
-`function StatCard({ size = 'm', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, loading, children, className, ...rest })`
+badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
+compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;
+without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
+`function StatCard({ size = 'm', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest })`
 
 ### ContentCard
 **Tier:** Component
@@ -1133,14 +1172,6 @@ cooper-banner beside it (hidden by default; the banner itself is a separate comp
 Props: label (default "Compare to", drawn uppercase), cooperBanner (node → show-cooper-banner), every CompareDropdown prop.
 `function CompareHeader({ label = 'Compare to', cooperBanner, className, style, ...dropdown })`
 
-### CompareStatValue
-**Tier:** Pattern helper
-───────────────────────────── compare stat value ───────────────────────────── 
-The value of a compare stat card (Figma compare-quick-stat-card 52:82588 = legacy stat-capital-flow-card Type=Compare):
-two caption-over-value columns joined by arrow-right. Pass it as IFS.StatCard `value` with className "ifs-compare-stat".
-Props: fromLabel, from (baseline: text/tertiary), toLabel, to (current: text/primary). Without `from` only the current value shows.
-`function CompareStatValue({ fromLabel, from, toLabel, to, className })`
-
 ### CompareView
 **Tier:** Pattern helper
 ───────────────────────────── CompareView (pattern) ───────────────────────────── 
@@ -1172,22 +1203,6 @@ Figma: status (12:210060 in the Patterns file; IFS DS set "status", key 84df17a7
 in the approval chain's first column. Props: type success|rejected|awaiting|empty, label (accessible name; defaults per type).
 awaiting = the reviewer is overdue ("it's time to notify the user", Figma note); empty = not acted yet.
 `function ApprovalStatus({ type = 'empty', label, className, ...rest })`
-
-### QuickStatCard
-**Tier:** Component
-**In handovers:** placed 36× (Value) · usual: stat (97%)
-===================================================== stat ===================================================== 
-Figma: stat (12:121119) — one card of the row: quick-stat-card, or compare-quick-stat-card when `compare` is given.
-Props: title, value, description (10px caption line under the value), trend (e.g. "4.8%") + trendDirection up|down,
-compare = { from, to, fromLabel = 'Current', toLabel = 'Proposed' } (replaces value/description).
-`function QuickStatCard({ title, value, description, trend, trendDirection = 'up', compare, className, ...rest })`
-
-### Stat
-**Tier:** Component
-**In handovers:** placed 36× (Value) · usual: stat (97%)
-Figma: stat (12:121119, key c74437d8) — the executive-summary row of equal-width quick-stat cards (Figma draws 4: one compare + three plain).
-Props: items = QuickStatCard props[].
-`function Stat({ items = [], className, ...rest })`
 
 ### InfoHintItem
 **Tier:** Component
@@ -2094,7 +2109,7 @@ searchSuggestions (strings for the Cooper search list), findColumn(query) → Pr
 Preview sidebar for "table with preview" (Figma uses panel-organism): record ID, Details (navigates), ✕ closes.
 The table stays fully interactive while it is open; a new preview replaces the current one.
 Props: id (record code), onDetails, onClose, children (preview content), width (default 380).
-`function RecordPreview({ id, onDetails, onClose, children, width = 380, className })`
+`function RecordPreview({ id, onDetails, onClose, children, width = 'var(--region-panel)', className })`
 
 ### DataTable
 **Tier:** Pattern helper
@@ -2225,7 +2240,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 93× (Build, Command) · usual: Type 1 row 100%
 ------------------------------------------------------------------------------------------ 
-Figma: stat-cards-row (key 88ffaeba129d4876c6ded6e6f3bbe9e983a8b46c; Patterns copy 12:104002)
+Figma: stat-cards-row (key 88ffaeba129d4876c6ded6e6f3bbe9e983a8b46c; Patterns copy 12:104002), stat (12:121119)
 A row of stat-card-organism (StatCard). Props: rows 1 | 2 (Figma Type "1 row" = all cards in one line, equal width;
 "2 rows" = two per line), cards = [StatCard props] (Figma draws 4), children = extra cards/nodes.
 `function StatCardsRow({ rows = 1, cards = [], children, className, ...rest })`
@@ -2402,7 +2417,7 @@ Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaul
 format(date) → string, range, clearable, iconLeft (default system-calendar-date; null hides it), showApply (Figma show-apply-button:
 picks stay a draft until the full-width Apply button commits them), applyLabel, error, disabled, listPosition down|up, state,
 plus Calendar props (today, events, min, max).
-`function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder = 'Select date', format = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }), range = false, clearable = true, iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply', error, disabled, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest })`
+`function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder = 'Select date', format = d => IFS.format.date(d), range = false, clearable = true, iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply', error, disabled, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest })`
 
 ## states
 
@@ -2425,8 +2440,9 @@ primaryAction / secondaryAction = { label, icon, onClick, type } (show-primary-b
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: empty-state-spinner-molecule (3782:24081)
-Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."), showText (show-text).
-`function Spinner({ text = 'Loading...', showText = true, className, ...rest })`
+Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."; the kit uses the
+ellipsis character, guide/content.md), showText (show-text).
+`function Spinner({ text = 'Loading…', showText = true, className, ...rest })`
 
 ### LoadingMore
 **Tier:** Component

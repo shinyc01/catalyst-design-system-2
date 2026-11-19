@@ -43,48 +43,8 @@ function ApprovalStatus({ type = 'empty', label, className, ...rest }) {
   );
 }
 
-/* ===================================================== stat ===================================================== */
-// Figma: stat (12:121119) — one card of the row: quick-stat-card, or compare-quick-stat-card when `compare` is given.
-// Props: title, value, description (10px caption line under the value), trend (e.g. "4.8%") + trendDirection up|down,
-// compare = { from, to, fromLabel = 'Current', toLabel = 'Proposed' } (replaces value/description).
-function QuickStatCard({ title, value, description, trend, trendDirection = 'up', compare, className, ...rest }) {
-  return (
-    <div className={apCx('ifs-quick-stat', compare && 'ifs-quick-stat--compare', className)} {...rest}>
-      <div className="ifs-quick-stat__top">
-        <span className="ifs-quick-stat__title">{title}</span>
-        {trend != null && (
-          <span className={apCx('ifs-quick-stat__trend', trendDirection === 'down' && 'ifs-quick-stat__trend--down')}>
-            <IFS.Icon name={trendDirection === 'down' ? 'arrow-caret-down-filled' : 'arrow-caret-up-filled'} size={12} />{trend}
-          </span>
-        )}
-      </div>
-      {compare ? (
-        <div className="ifs-quick-stat__compare">
-          <div className="ifs-quick-stat__side">
-            <span className="ifs-quick-stat__value ifs-quick-stat__value--from">{compare.from}</span>
-            <span className="ifs-quick-stat__caption">{compare.fromLabel || 'Current'}</span>
-          </div>
-          <IFS.Icon name="arrow-right" size={12} className="ifs-quick-stat__arrow" />
-          <div className="ifs-quick-stat__side">
-            <span className="ifs-quick-stat__value">{compare.to}</span>
-            <span className="ifs-quick-stat__caption">{compare.toLabel || 'Proposed'}</span>
-          </div>
-        </div>
-      ) : (
-        <div className="ifs-quick-stat__body">
-          <span className="ifs-quick-stat__value">{value}</span>
-          {description != null && <span className="ifs-quick-stat__caption">{description}</span>}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// Figma: stat (12:121119, key c74437d8) — the executive-summary row of equal-width quick-stat cards (Figma draws 4: one compare + three plain).
-// Props: items = QuickStatCard props[].
-function Stat({ items = [], className, ...rest }) {
-  return <div className={apCx('ifs-stat', className)} {...rest}>{items.map((it, i) => <QuickStatCard key={it.key != null ? it.key : i} {...it} />)}</div>;
-}
+/* stat (12:121119): the executive-summary row is IFS.StatCardsRow, its cards IFS.StatCard (one compare + three plain).
+   QuickStatCard and Stat were removed in 2.0.3. */
 
 /* ===================================================== info-hint-item ===================================================== */
 // Figma: info-hint-item (12:121968, key d3dc02ed) — 16px rounded swatch + name (+ optional icon + value). Used as chart legend entries.
@@ -502,7 +462,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
   );
 }
 
-Object.assign(IFS, { ApprovalStatus, QuickStatCard, Stat, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
+Object.assign(IFS, { ApprovalStatus, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
   ReadinessFacts, ReadinessSection, ReadinessEvaluation, ApprovalChainPanel, ApprovalChainTable });
-export { ApprovalStatus, QuickStatCard, Stat, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
+export { ApprovalStatus, InfoHintItem, InvestmentValueImpact, TableReview, SplitButton,
   ReadinessFacts, ReadinessSection, ReadinessEvaluation, ApprovalChainPanel, ApprovalChainTable };

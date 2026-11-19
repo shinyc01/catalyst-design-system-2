@@ -10,7 +10,7 @@ const { useState, useRef, useEffect, useLayoutEffect, useCallback } = React;
 const cx = (...a) => a.filter(Boolean).join(' ');
 
 /* ------------------------------------------------------------------------------------------ */
-// Figma: stat-cards-row (key 88ffaeba129d4876c6ded6e6f3bbe9e983a8b46c; Patterns copy 12:104002)
+// Figma: stat-cards-row (key 88ffaeba129d4876c6ded6e6f3bbe9e983a8b46c; Patterns copy 12:104002), stat (12:121119)
 // A row of stat-card-organism (StatCard). Props: rows 1 | 2 (Figma Type "1 row" = all cards in one line, equal width;
 // "2 rows" = two per line), cards = [StatCard props] (Figma draws 4), children = extra cards/nodes.
 function StatCardsRow({ rows = 1, cards = [], children, className, ...rest }) {

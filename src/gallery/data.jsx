@@ -86,6 +86,11 @@ export default IFS_GALLERY;
       <StatCard style={{ width: 286 }} descriptionPosition="inline" title="Title" value="Value" description="Description" trend="3%" />
       <StatCard style={{ width: 286 }} descriptionPosition="inline" size="s" title="Title" value="Value" description="Description" trend="3%" />
     </Row>
+    <Row label="compare (from → to)">
+      <StatCard style={{ width: 286 }} title="Portfolio value" trend="4.8%" compare={{ from: '$2.14B', to: '$2.24B', fromLabel: 'Current', toLabel: 'Proposed' }} />
+      <StatCard style={{ width: 286 }} size="s" title="Portfolio value" trend="4.8%" compare={{ from: '$2.14B', to: '$2.24B' }} />
+      <StatCard style={{ width: 286 }} title="Risk score" compare={{ to: '6.4', toLabel: 'Current' }} description="No baseline selected" />
+    </Row>
     <Row label="badge / down">
       <StatCard style={{ width: 286 }} title="Budget" value="$4.2M" description="of $5M" trend="12%" trendDirection="down" badge={{ children: 'Over' }} />
     </Row>

@@ -112,7 +112,7 @@ export default IFS_GALLERY;
       <div ref={ref} className="ifs-scroll" style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 12, display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div><h2 className="t-heading-h1-medium" style={{ margin: 0 }}>Executive summary</h2>
           <p className="t-body-l-regular" style={{ color: 'var(--text-secondary)', margin: '8px 0 0' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p></div>
-        <IFS.Stat items={STATS} />
+        <IFS.StatCardsRow cards={STATS} />
         <div style={{ flex: 'none' }}><IFS.Tabs items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'align', label: 'Strategic Alignment' }]} defaultValue="impact" /></div>
         <IFS.InvestmentValueImpact style={{ flex: 'none' }} />
         <IFS.TableReview style={{ flex: 'none' }} rows={INVESTMENTS} defaultCollapsed={['Unchanged']} />

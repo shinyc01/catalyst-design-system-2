@@ -1203,7 +1203,7 @@
     "Explore"
    ],
    "variants": [
-    "Type=Default, State=0 → max (100%)"
+    "Type=Default, State=0 \u2192 max (100%)"
    ],
    "inside": [
     "lasso",
@@ -1676,38 +1676,6 @@
     "icon+line"
    ]
   },
-  "QuickStatCard": {
-   "usual": [],
-   "figma": [
-    "stat"
-   ],
-   "placed": 36,
-   "nested": 0,
-   "files": [
-    "Value"
-   ],
-   "variants": [
-    "stat (97%)",
-    "Property 1=2 row (3%)"
-   ],
-   "inside": []
-  },
-  "Stat": {
-   "usual": [],
-   "figma": [
-    "stat"
-   ],
-   "placed": 36,
-   "nested": 0,
-   "files": [
-    "Value"
-   ],
-   "variants": [
-    "stat (97%)",
-    "Property 1=2 row (3%)"
-   ],
-   "inside": []
-  },
   "InfoHintItem": {
    "usual": [],
    "figma": [
@@ -1769,7 +1737,7 @@
     "user cooper 100%"
    ],
    "figma": [
-    "Cursor-сollaboration"
+    "Cursor-\u0441ollaboration"
    ],
    "placed": 59,
    "nested": 4,

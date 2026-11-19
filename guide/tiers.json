@@ -45,14 +45,12 @@
     "CompareDropdown",
     "CompareDropdownList",
     "CompareHeader",
-    "Stat",
     "InfoHintItem",
     "InvestmentValueImpact",
     "TableReview",
     "ApprovalStatus",
     "CommentPin",
-    "CommentDrawerCard",
-    "QuickStatCard"
+    "CommentDrawerCard"
   ],
   "pages": {
     "cooper": "Cooper",

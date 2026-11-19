@@ -65,7 +65,7 @@ const reviewSections = [
 
 function ScreenReview({ bp, height }) {
   const { AppShell, NavBar, SideNav, PageHeader, Indicator, SegmentedControl, Stepper, CollaboratorsButton, CommentButton, Button,
-    SplitButton, Stat, Tabs, InvestmentValueImpact, TableReview, Panel, ReadinessEvaluation, BottomSheet, EmptyState } = IFS;
+    SplitButton, StatCardsRow, Tabs, InvestmentValueImpact, TableReview, Panel, ReadinessEvaluation, BottomSheet, EmptyState } = IFS;
   const toast = useToast();
   const [tab, setTab] = React.useState('impact');
   const [approved, setApproved] = React.useState(false);
@@ -106,7 +106,7 @@ function ScreenReview({ bp, height }) {
                 <span className="t-heading-h2-medium" style={{ color: 'var(--text-primary)' }}>Executive summary</span>
                 <span className="t-label-m-medium" style={{ color: 'var(--text-secondary)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments.</span>
               </div>
-              <Stat items={reviewStats} style={{ gap: 'var(--pg-gap)' }} />
+              <StatCardsRow cards={reviewStats} style={{ gap: 'var(--pg-gap)' }} />
               <Tabs aria-label="Review views" value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'alignment', label: 'Strategic Alignment' }]} />
               {tab === 'impact' ? <>
                 <InvestmentValueImpact metrics={reviewMetrics} bins={reviewBins} legend={reviewLegend} max={250} ticks={6}

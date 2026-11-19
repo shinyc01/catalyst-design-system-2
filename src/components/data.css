@@ -192,6 +192,15 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-stat-card__desc--below{flex:none;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-stat-card__extra{display:flex;align-items:baseline;gap:var(--space-150)}
 .ifs-stat-card--loading .ifs-stat-card__value-row{align-items:center}
+/* compare: from → to (replaces QuickStatCard's compare variant and CompareStatValue) */
+.ifs-stat-card__compare{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--space-100) var(--space-150);min-width:0} /* wraps "to" under "from" in a narrow card */
+.ifs-stat-card__col{display:flex;flex-direction:column;gap:var(--space-50);min-width:0}
+.ifs-stat-card__col--from .ifs-stat-card__value{color:var(--text-tertiary)}
+.ifs-stat-card__cap{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-stat-card__arrow{display:flex;align-items:center;flex:none;color:var(--icon-tertiary)}
+/* the arrow box takes the number's font so 1lh = the number's line: centred on the number, not the caption */
+.ifs-stat-card--m .ifs-stat-card__arrow{font:var(--text-heading-h2-medium);height:1lh}
+.ifs-stat-card--s .ifs-stat-card__arrow{font:var(--text-heading-h3-medium);height:1lh}
 
 /* ================= ContentCard — content-card-organism (3643:32067) ================= */
 .ifs-content-card{--fill:var(--element-card-state-fill-default);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;

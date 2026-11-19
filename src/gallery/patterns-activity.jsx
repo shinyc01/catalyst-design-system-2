@@ -5,7 +5,7 @@ const IFS_GALLERY = [];
 export default IFS_GALLERY;
 
 {
-  const { CompareDropdown, CompareDropdownList, CompareHeader, CompareStatValue, CompareView, ActivityPanel } = IFS;
+  const { CompareDropdown, CompareDropdownList, CompareHeader, CompareView, ActivityPanel } = IFS;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cell = ({ title, children, w = 380, h }) => (
     <div style={{ width: w, display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -160,15 +160,6 @@ export default IFS_GALLERY;
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 1200 }}>
       <Row label="filled"><div style={{ width: 1200 }}><CompareHeader groups={COMPARE_GROUPS} defaultValue="best" /></div></Row>
       <Row label="empty"><div style={{ width: 1200 }}><CompareHeader groups={COMPARE_GROUPS} /></div></Row>
-    </div>
-  ) });
-
-  IFS_GALLERY.push({ name: 'CompareStatValue', figma: 'compare-quick-stat-card [patterns] (52:82588) → StatCard', render: () => (
-    <div style={{ ...grid, width: 1200, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)' }}>
-      {statsFor('best').map(s => <IFS.StatCard key={s.key} className="ifs-compare-stat" title={s.title} trend={s.trend} trendDirection={s.trendDirection} description={s.description}
-        value={<CompareStatValue fromLabel={s.fromLabel} from={s.from} toLabel={s.toLabel} to={s.to} />} />)}
-      {statsFor(null).slice(0, 2).map(s => <IFS.StatCard key={s.key} className="ifs-compare-stat" title={s.title} description={s.description}
-        value={<CompareStatValue toLabel={s.toLabel} to={s.to} />} />)}
     </div>
   ) });
 
