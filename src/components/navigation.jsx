@@ -310,7 +310,9 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
   const [rawCurrent, setCurrent] = useNavControlled(value, defaultValue !== undefined ? defaultValue : stages[0] && stages[0].value, onChange);
   const current = navStage(rawCurrent);
   const [ref, w] = useNavWidth();
-  const isCollapsed = collapsed !== undefined ? !!collapsed : (w != null && w < collapseBelow);
+  // collapseBelow is px at the default 16px text size; it grows with the user's text size, since the tabs it measures do
+  const remScale = typeof document !== 'undefined' ? (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16) / 16 : 1;
+  const isCollapsed = collapsed !== undefined ? !!collapsed : (w != null && w < collapseBelow * remScale);
   const currentLabel = (stages.find(s => navStage(s.value) === current) || {}).label;
   return (
     <header ref={ref} className={IFS.cx('ifs-navbar', isCollapsed && 'ifs-navbar--collapsed', className)} {...rest}>
@@ -385,12 +387,13 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el || size !== 'wide' || center == null) return;
     const bar = el.querySelector('.ifs-page-header__bar'); if (!bar) return;
-    // natural width of a row of parts: children + gaps; the title counts up to 240 (it may truncate below that)
+    // natural width of a row of parts: children + gaps; the title counts up to 160 (10rem, its min-width; it may truncate below that)
+    const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16; // 160 / 240 follow the user's text size
     const rowNeed = node => {
       if (!node) return 0;
       const kids = [...node.children];
       const g = parseFloat(getComputedStyle(node).columnGap) || 0;
-      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 160)
+      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 10 * remPx)
         : k.classList.contains('ifs-page-header__text') ? rowNeed(k) : k.getBoundingClientRect().width), 0) + Math.max(0, kids.length - 1) * g;
     };
     const gap = parseFloat(getComputedStyle(bar).columnGap) || 0;
@@ -425,11 +428,12 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el || size !== 'mid') return;
     const bar = el.querySelector('.ifs-page-header__bar'); if (!bar) return;
+    const remPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
     const rowNeed = node => {
       if (!node) return 0;
       const kids = [...node.children];
       const g = parseFloat(getComputedStyle(node).columnGap) || 0;
-      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 240)
+      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 15 * remPx)
         : k.classList.contains('ifs-page-header__text') ? rowNeed(k) : k.getBoundingClientRect().width), 0) + Math.max(0, kids.length - 1) * g;
     };
     const gap = parseFloat(getComputedStyle(bar).columnGap) || 0;

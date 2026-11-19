@@ -1,6 +1,6 @@
 /* Patterns › Documents — map pins, bar-chart items and the Documents (Cooper's context) composites.
    Tokens only; raw values carry a "raw in Figma" note. */
-
+/* Pins, pin dots and the vertical bar chart stay px on purpose: map and chart geometry. */
 /* ================= map-pin-dot (d2686af3…) ================= */
 .ifs-pin-dot{--pd-fill:var(--element-map-pin-fill-error);--pd-size:24px;--pd-in:22px;
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
@@ -71,7 +71,7 @@ button.ifs-pin-defect{cursor:pointer}
 
 /* ================= bar-chart-item (44fcce06…) / vertical-bar-chart-item (c06b1d19…) ================= */
 .ifs-bar-item{--bar-fill:var(--data-viz-data-1);display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-  min-width:0;min-height:0;height:32px;padding:0 var(--space-200);border-radius:var(--radius-radius-100);background:var(--bar-fill);
+  min-width:0;min-height:0;height:var(--size-32) /* holds a label, so it scales */;padding:0 var(--space-200);border-radius:var(--radius-radius-100);background:var(--bar-fill);
   color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */;
   overflow:hidden;white-space:nowrap}
 /* Figma colour index → data-viz/data-N (the set skips N=8: 9→6, 6→7, 7→9, 8→10). Missing variables: fallbacks are the Figma values. */
@@ -98,14 +98,14 @@ button.ifs-vbar{cursor:pointer}
 /* Popover: the list rows sit with no gap; max height 360 (Figma note). Padding 12/8/8/8 is the kit Popover's own. */
 .ifs-docs-popover{max-height:360px}
 .ifs-docs-popover .ifs-popover__content{gap:0}
-.ifs-docs-popover__empty{display:flex;align-items:center;justify-content:center;min-height:120px;color:var(--text-primary);
+.ifs-docs-popover__empty{display:flex;align-items:center;justify-content:center;min-height:7.5rem;color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
 
 /* Cooper's context (left side of the value bottom sheet) with the popover anchored above the bar. */
 .ifs-docs-context{position:static;display:flex;align-items:center}
 .ifs-docs-context__pop{position:fixed;z-index:var(--z-index-z-popover)}
 .ifs-docs-context__file{display:none}
-.ifs-docs-context .ifs-coverage{min-width:180px}
+.ifs-docs-context .ifs-coverage{min-width:11.25rem}
 
 /* Drop area: the content region; the purple dashed overlay (move-and-drop-background, change-position-overlay) while files are dragged over it. */
 .ifs-docs-drop{position:relative;min-height:0}
@@ -118,7 +118,7 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-feedback{position:absolute;top:var(--docs-feedback-top,88px);right:var(--space-300);z-index:var(--z-index-z-toast);
   display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-200);pointer-events:none}
 .ifs-docs-feedback > *{pointer-events:auto;animation:ifs-toast-in .2s ease-out}
-.ifs-docs-feedback .ifs-alert{width:303px}
+.ifs-docs-feedback .ifs-alert{width:18.9375rem}
 .ifs-docs-details{display:flex;flex-direction:column;gap:var(--space-200);margin:0;padding:0;list-style:none}
 .ifs-docs-details li{display:flex;flex-direction:column;gap:var(--space-50)}
 .ifs-docs-details__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}

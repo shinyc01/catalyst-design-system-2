@@ -11,6 +11,8 @@ Tokens: `src/foundations/spacing.css` (scale, roles, page grid) and the Density 
 | Roles | `--space-inset`, `--space-stack`, `--space-section` | density |
 | Page grid | `--page-margin`, `--page-gap` | screen width |
 
+**px in Figma, rem in code (2.0.3).** Figma stays in px; the code ships the spacing scale, the size ruler (4 and up), control, tab, nav and table row heights, table column widths and icons in rem at a 16px base (16px = `1rem`, 24px = `1.5rem`). At the browser's default text size nothing looks different; when a user sets a larger default text size the whole UI grows in proportion, like zoom, and nothing gets cut off. Still px on purpose: borders, dividers and focus rings (and `--size-0` … `--size-3`), radius, breakpoints and media queries, fixed layout widths (side nav 240, rail 48, panels 380 / 600, modals 440 / 600, popover 320, menus 200 / 320, max content widths, `--layout-content-min` 840), and chart, map-pin and canvas geometry. Numbers in this guide stay in px.
+
 One scale replaces Figma's four identical scales (gaps, paddings, margins, gutters), as in Atlassian (`space.*`), Carbon (`spacing-*`) and Primer.
 
 ## 2. Roles

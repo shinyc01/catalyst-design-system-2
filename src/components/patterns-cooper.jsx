@@ -106,7 +106,7 @@ function TextMessageInput({ value, defaultValue = '', onChange, onSend, analyzin
   const multi = state === 'multi' || attachments.length > 0 || text.includes('\n') || text.length > 52;
   const busy = analyzing || state === 'analyzing';
   const canSend = (text.trim() || attachments.length) && !busy;
-  React.useEffect(() => { const t = ref.current; if (!t) return; t.style.height = 'auto'; t.style.height = Math.min(t.scrollHeight, 336) + 'px'; }, [text, multi]);
+  React.useEffect(() => { const t = ref.current; if (!t) return; t.style.height = 'auto'; t.style.height = Math.min(t.scrollHeight, 21 * (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16)) + 'px'; /* 336 = 21rem, the CSS max-height */ }, [text, multi]);
   const send = () => { if (!canSend) return; onSend && onSend(text.trim(), attachments); setText(''); };
   const field = (
     <textarea ref={ref} rows={1} className="ifs-msg-input__field" value={text} placeholder={placeholder} aria-label="Message Cooper" autoFocus={autoFocus}
@@ -155,7 +155,7 @@ function SpeakingControl({ speaking, defaultSpeaking = true, onSpeakingChange, c
   return (
     <span className={IFS.cx('ifs-speaking', className)} {...rest}>
       <span className="ifs-speaking__wave"><IFS.Icon name={on ? 'system-sound-waves-ai-speaking' : 'system-sound-waves-ai-paused'} size={16} /></span>
-      <span style={{ width: 53 }}>{on ? 'Speaking' : 'Paused'}</span>
+      <span style={{ width: '3.3125rem' }}>{on ? 'Speaking' : 'Paused'}</span>
       <Btn icon={on ? 'player-pause-fiiled' : 'system-volume-on'} label={on ? 'Pause' : 'Resume speaking'} size="s" onClick={() => setOn(!on)} />
     </span>
   );

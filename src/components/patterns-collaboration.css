@@ -2,8 +2,8 @@
 
 /* ---- cursor-atom: cursor-pointer 16 + pill (min 18 tall) offset 16 right, Body/S/regular ---- */
 .ifs-cursor{--cu:var(--collaboration-user-1);display:inline-flex;flex-direction:column;align-items:flex-start;pointer-events:none;user-select:none}
-.ifs-cursor__pointer{flex:none;width:16px;height:16px;overflow:visible}
-.ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--space-200);margin-left:var(--space-400);min-height:18px;box-sizing:border-box;
+.ifs-cursor__pointer{flex:none;width:var(--size-16);height:var(--size-16);overflow:visible}
+.ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--space-200);margin-left:var(--space-400);min-height:var(--size-18);box-sizing:border-box;
   padding:var(--space-50) var(--space-150);border-radius:100px /* raw in Figma */;background:var(--cu);color:var(--text-primary);
   box-shadow:0 1px 4px rgba(0,0,0,.16) /* raw in Figma (drop shadow 0 1 4 #000 16%) */;overflow:hidden;white-space:nowrap}
 .ifs-cursor__name{position:relative;padding-bottom:var(--space-50);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: ambient name tag */
@@ -25,7 +25,7 @@
 /* ---- panel: popover-organism 360, tools row p12 gap6, content slot p8 4, sections gap12 ---- */
 .ifs-collab-anchor{position:relative;display:inline-flex}
 .ifs-collab-anchor__pop{position:fixed;z-index:var(--z-index-z-popover)} /* top/right set from the trigger */
-.ifs-collab-panel.ifs-popover{max-height:640px}
+.ifs-collab-panel.ifs-popover{max-height:40rem}
 .ifs-collab-panel .ifs-popover__content{padding:0;gap:0}
 .ifs-collab-panel__tools{display:flex;align-items:center;gap:var(--space-150);flex:none;padding:var(--space-inset) var(--space-inset)}
 .ifs-collab-panel__tools .ifs-search{flex:1 1 auto;min-width:0}
@@ -40,7 +40,7 @@
 .ifs-collab-section__list{display:flex;flex-direction:column;gap:var(--space-200);padding:0 var(--space-100)}
 
 /* ---- row: content-card-organism M (40), top slot = avatar M + text (gap 8) + control (gap 6) ---- */
-.ifs-collab-row{display:flex;align-items:center;gap:var(--space-150);box-sizing:border-box;min-height:40px;padding:var(--space-100);
+.ifs-collab-row{display:flex;align-items:center;gap:var(--space-150);box-sizing:border-box;min-height:var(--size-40);padding:var(--space-100);
   border-radius:var(--radius-radius-100);background:transparent;transition:background-color .12s;outline:none}
 .ifs-collab-row[role=button]{cursor:pointer}
 .ifs-collab-row[role=button]:hover,.ifs-collab-row[data-state=hover]{background:var(--element-card-state-fill-hover)}
@@ -57,7 +57,7 @@
 /* ---- RoleSelect: single-select-atom M drawn 24 tall (p 10/8 → 4/8), list = single-select-list-molecule ---- */
 .ifs-role-select{position:relative;flex:none}
 .ifs-role-select__trigger{--f:var(--element-input-fill-default);--b:var(--element-input-border-default);--ring:0 0 0 0 transparent;
-  display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:24px;min-width:75px;padding:0 var(--space-200);
+  display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-24);min-width:4.6875rem;padding:0 var(--space-200);
   border-radius:var(--radius-radius-100);background:var(--f);box-shadow:inset 0 0 0 1px var(--b),var(--ring);color:var(--text-primary);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);cursor:pointer;outline:none;user-select:none;transition:background-color .12s,box-shadow .12s} /* Body/M/regular */
 .ifs-role-select__value{flex:1 1 auto}
@@ -68,10 +68,10 @@
 .ifs-role-select__trigger:focus-visible{--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-role-select__trigger.is-disabled{--f:var(--element-input-fill-disabled);--b:var(--element-input-border-disabled);color:var(--text-disabled);cursor:not-allowed}
 .ifs-role-select__list,.ifs-role-filter__list{position:absolute;top:calc(100% + var(--space-100));right:0;z-index:var(--z-index-z-popover);
-  display:flex;flex-direction:column;box-sizing:border-box;width:160px;padding:var(--space-100);border-radius:var(--radius-radius-100);
+  display:flex;flex-direction:column;box-sizing:border-box;width:10rem;padding:var(--space-100);border-radius:var(--radius-radius-100);
   background:var(--background-elevation-2-primary-base);box-shadow:inset 0 0 0 1px var(--border-base);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))} /* effect blur/strong */
-.ifs-role-select__option,.ifs-role-filter__option{display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:28px;
+.ifs-role-select__option,.ifs-role-filter__option{display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-28);
   padding:var(--space-100) var(--space-200);border-radius:var(--radius-radius-100);color:var(--text-secondary);cursor:pointer;
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);outline:none} /* Body/M/regular */
 .ifs-role-select__option > span{flex:1 1 auto}
@@ -82,7 +82,7 @@
 
 /* ---- RoleFilter (icon-button Secondary M + multiple-select-list-molecule) ---- */
 .ifs-role-filter{position:relative;flex:none}
-.ifs-role-filter__list{top:0;right:0;width:160px}
+.ifs-role-filter__list{top:0;right:0;width:10rem}
 .ifs-role-filter__option{gap:var(--space-200)}
 .ifs-role-filter__option .ifs-checkbox{pointer-events:none}
 
@@ -95,7 +95,7 @@
 .ifs-collab-invite__title{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-collab-invite__brief{display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-collab-invite__brief .ifs-collab-section__title{padding-left:0}
-.ifs-collab-invite__area.ifs-field--area .ifs-field__control{height:200px} /* Figma resizes the M (100) text area to 200 to fit Cooper's brief */
+.ifs-collab-invite__area.ifs-field--area .ifs-field__control{height:12.5rem} /* Figma resizes the M (100) text area to 200 to fit Cooper's brief */
 .ifs-collab-remove{display:flex;flex-direction:column;gap:var(--space-stack)}
 .ifs-collab-remove__card{display:flex;align-items:center;gap:var(--space-200);padding:var(--space-200);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha)}
 .ifs-collab-remove__text{margin:0;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
