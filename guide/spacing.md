@@ -1,8 +1,8 @@
-# Spacing — Catalyst Design System 2.0.1
+# Spacing — Catalyst Design System 2.0.3
 
 Tokens: `src/foundations/spacing.css` (scale, roles, page grid) and the Density block in `src/tokens.css` (table and control sizes).
 
-## 1. Two layers
+## 1. Layers
 
 | Layer | Tokens | Changes with |
 |---|---|---|
@@ -19,23 +19,25 @@ One scale replaces Figma's four identical scales (gaps, paddings, margins, gutte
 
 | Role | Spacious | Comfortable | Compact | Use for |
 |---|---|---|---|---|
-| `--space-inset` | 20 | 16 | 12 | Padding of every container part, on all four sides: cards and table cards, panels, drawers, modals, popovers, forms. Also table cell left and right. |
+| `--space-inset` | 20 | 16 | 12 | Padding of every container part, on all four sides: cards and table cards, panels, drawers, modals, popovers, forms. Not modals and form cards (`inset-l`) or table cards (`table-x`). |
+| `--space-inset-l` | 24 | 20 | 16 | Padding of modals and form cards (one step roomier next to their H4 title; accepted from Flexy, Nov 19) |
+| `--space-table-x` | 20 | 16 | 16 | Table card padding and table cell left and right (Compact keeps 16) |
 | `--space-stack` | 16 | 12 | 8 | Gap between blocks inside a container (fields, cards in a panel, sections of a drawer) |
 | `--space-section` | 40 | 32 | 24 | Gap between the sections of a page |
 
 ## 3. Page grid (by screen width, not density)
 
-| Screen width | < 1024 | 1024–1439 | 1440+ |
-|---|---|---|---|
-| `--page-margin` | 16 | 24 | 24 |
-| `--page-gap` (between cards and blocks on a page) | 16 | 16 | 20 |
+| Screen width | < 600 | 600–1439 | 1440–1919 | 1920+ |
+|---|---|---|---|---|
+| `--page-margin` | 16 | 24 | 24 | 32 |
+| `--page-gap` (between cards and blocks on a page) | 16 | 16 | 20 | 32 |
 
 Content is capped at `--layout-max-content-width` (1600) and centred, so wider screens get centred space, not bigger gaps. This follows Carbon, Atlassian, Primer and Polaris.
 
 ## 4. Rules
 
 1. **Never a raw px value** for padding, gap or margin, in components or in screens.
-2. **Three roles, no exceptions for containers.** Every part of a container (header, tabs, body, footer) has the same inset on all four sides. A container's height comes from its padding, not a fixed height.
+2. **Three roles, no exceptions for containers.** Every part of a container (header, tabs, body, footer) has the same inset on all four sides (`inset`; modals and form cards `inset-l`; table cards `table-x`). A container's height comes from its padding, not a fixed height.
 3. **Fixed scale steps only where the part scales by its own height:** inside controls (buttons, fields, selects, tabs, chips, prompts, chat input), the nav bar and side nav, chart geometry (axes, legends, sankey, timeline), table-like cells, and gaps of 8 or less (icon to label, label to field). These stay the same in every density.
 4. **Control heights** (Spacious / Comfortable / Compact): S 28 / 24 / **24**, M 36 / 32 / 28, L 44 / 40 / 32. Nothing clickable is smaller than 24 (WCAG 2.2 target size, decided Nov 19: Compact S went from 20 to 24, visually, not as a hidden hit area). Touch screens get larger targets with the mobile work.
 5. **Menus and dropdowns:** 4px from the trigger and 4px inside the list, in every density. Option and menu-item height follows the control height: 36 / 32 / 28 (large lists 44 / 40 / 32).
@@ -46,16 +48,14 @@ Content is capped at `--layout-max-content-width` (1600) and centred, so wider s
 | | Spacious | Comfortable | Compact |
 |---|---|---|---|
 | Row height (fixed; content centred) | 64 | 52 | 40 |
-| Header height (text + stack) | 40 | 32 | 24 |
-| Space above the header text | no header padding: the toolbar gap (stack) or the card padding (inset) above | | |
-| Space below the header text (= stack) | 16 | 12 | 8 |
-| Table card padding (= inset) | 20 | 16 | 12 |
+| Header height (fixed; text centred, no vertical padding) | 40 | 32 | 24 |
+| Table card padding (`table-x`) | 20 | 16 | 16 |
 | Gap from the card's toolbar to the table (stack) | 16 | 12 | 8 |
-| Cell padding, left and right (inset) | 20 | 16 | 12 |
+| Cell padding, left and right (`table-x`) | 20 | 16 | 16 |
 
-Flexible columns (no width, or `1fr`) have a minimum width of 160 (`--table-col-flex-min`). When the columns don't fit, the table scrolls sideways instead of squeezing the names. For now the minimum only applies when the user's text size is larger than the default, so tables at the default size look as designed.
+Flexible columns (no width, or `1fr`) have a minimum width of 160 (`--table-col-flex-min`); short columns (dates, status, counts) never go below 120 (`--table-col-short-min`). When the columns don't fit, the table scrolls sideways instead of squeezing the names. For now the minimum only applies when the user's text size is larger than the default, so tables at the default size look as designed.
 
-The header has no top padding, so the space above its text is just the toolbar gap or card padding, about the same as the space below it. Every table uses one table card (`.ifs-table-card`), for `IFS.Table` and `IFS.DataTable` alike.
+The header text is centred in its fixed height and cells have no vertical padding (the row height sets it; Flexy's version, accepted Nov 19). Every table uses one table card (`.ifs-table-card`), for `IFS.Table` and `IFS.DataTable` alike.
 
 ## 6. Case and uppercase (with typography)
 No uppercase text style. Statuses, column headers, eyebrows and captions are sentence case in Label/M/medium. Only avatar initials and abbreviations are capitals. Full type rules: `guide/typography.md`.

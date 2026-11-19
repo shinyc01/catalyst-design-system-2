@@ -7,7 +7,7 @@ Cooper is the AI assistant available on every stage screen. Use this pattern whe
 
 ## Anatomy (kit components)
 - **Entry point:** `BottomSheet` with prompt chips (`PromptButton`) and the Cooper avatar (`FtaButton`). Shortcut `/`.
-- **Three chat sizes:** `ChatCollapsedBar` (320px pill above the bottom sheet), `ChatCompactPanel` (320×360 floating window), `ChatFullPanel` (450px panel docked in the content area, 8px inset). All three use `ChatHeader`, plus `TextMessageInput` or `VoiceMessageInput`, `Attachment` and the empty-state `PromptButton`s.
+- **Three chat sizes:** `ChatCollapsedBar` (320px pill above the bottom sheet), `ChatCompactPanel` (320×360 floating window), `ChatFullPanel` (380px panel docked in the content area, 8px inset). All three use `ChatHeader`, plus `TextMessageInput` or `VoiceMessageInput`, `Attachment` and the empty-state `PromptButton`s.
 - **Conversation:** `UserMessage` bubbles and `CooperMessage` answers. Inside an answer: `CooperProgress`, `ChatCard` (scenario / metric), `ChatLink` (follow-up / source) and `Button`.
 - **History:** `HistoryPanel` (240px, docked to the left of the full panel) with `FolderItem`, `SectionHeader` and `ChatHistoryCard`. `FolderContent` opens as a second column and holds `ChatReminderCard` or `ChatHistoryCard` rows. `HistorySearch` holds `SearchChatHistoryCard` rows. Delete and move dialogs use `Modal` + `ConfirmDeleteCard`. Create folder uses `Modal` + `TextField` + `IconPicker`.
 - **Recommendations:** `CooperChip` ("N Recommendations") in `PageHeader` opens `AgentWindow`, which contains `SpeakingControl`, `RecommendationGroup`, `RecommendationItem`, `RecommendationDetail` and `RecommendationImpact`.

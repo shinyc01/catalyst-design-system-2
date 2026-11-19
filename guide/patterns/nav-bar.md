@@ -16,8 +16,8 @@ The Level-1 bar that switches between the product's stages, and what each stage 
   - Explore: no sidebar. It has `ExploreHeader` under the bar.
   - Plan and Explore also have a 48px collapsed right panel rail (sidebar-organism View=Collapsed).
 - Content:
-  - Command: `PageTop` (Cooper eyebrow, H1 greeting, description, `Tabs` with counts, `SmartSearch`), then "Decisions to review" + `SegmentedControl` S + display-settings `IconButton`. Below that, the ranked `HomeRowCard` list (first = Primary, rest = Secondary). A right column holds Cooper's results, the milestone (`ProgressBar`) and `Calendar`.
-  - Value / Build: `PageTop` (H1, description, "New" `Button`; no `PageHeader`), then `DataTable` (Value: standard, tabs + search outside the card; Build: `Tabs` L Idea Pad / Investments, ranked table with segmented filter).
+  - Command: `PageTop` (Cooper eyebrow, H2 greeting, description, `Tabs` with counts, `SmartSearch`), then "Decisions to review" + `SegmentedControl` S + display-settings `IconButton`. Below that, the ranked `HomeRowCard` list (first = Primary, rest = Secondary). A right column holds Cooper's results, the milestone (`ProgressBar`) and `Calendar`.
+  - Value / Build: `PageTop` (H2, description, "New" `Button`; no `PageHeader`), then `DataTable` (Value: standard, tabs + search outside the card; Build: `Tabs` L Idea Pad / Investments, ranked table with segmented filter).
   - Explore: map with `MapPinDot` clusters, `MapToolbar` (top-left views, bottom-left default), `FtaButton`.
   - Plan: title, description and owner. Then planning-cycle cards, the cycle's `StatCardsRow`, and an affected-area map (`MapPinPole`, `MapPinDot`).
 - Bottom: `BottomSheet` with two prompts. Command and Build: base. Value: base under the content column only. Plan: `type="value"` with Cooper's Context "16 Documents" + upload. Explore: none.
@@ -49,7 +49,7 @@ The Level-1 bar that switches between the product's stages, and what each stage 
 
 ## Consolidated / unsure
 - consolidated: `global-header` (8a567522…, Plan home 244:120469) → `NavBar` / nav-bar-organism. Same 48px bar, padding, gaps, fills, blur, stroke, items and actions. It differs only by legacy atoms (`header-item`, `avatar`, `Icon Button / Notification`), no slots, no collapsed variants, and an unused "Show recomendation" bool (nav-bar-organism has a hidden badge-atom in its place). nav-bar-organism is marked "use this".
-- consolidated: `Switcher` / `switcher container` (9087521b… / 609a3312…, not published in IFS DS) → `SegmentedControl size="s"`. Same 24px items, padding 0/8 and container padding 2. Text is H4/medium and the fills are surface tokens instead of element tokens.
+- consolidated: `Switcher` / `switcher container` (9087521b… / 609a3312…, not published in IFS DS) → `SegmentedControl size="s"`. Same 24px items, padding 0/8 and container padding 2. Text is Label/M/medium and the fills are surface tokens instead of element tokens.
 - consolidated: `segmented-control-icon` (882a35e9…, Patterns-local 244:119673) → `IconButton` (secondary) or `SegmentedControl` with icon options.
 - consolidated: `compare-quick-stat-card` (35bab075… = legacy stat-capital-flow-card) → `StatCard` in `StatCardsRow`.
 - consolidated: `tableHeader` / `tableCell` (609b40c3… / 81b10bef…) → `DataTable`.

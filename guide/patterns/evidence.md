@@ -42,7 +42,7 @@ The Evidence chain is Cooper's glass box. It shows the sources and reasoning ste
 - The empty benchmark offers no action, because nothing the user does can fill it. (Figma)
 - The empty benchmark tab stays rendered and selectable, so users don't look for the comparison elsewhere. (Figma)
 - Rationale is never empty. (Figma)
-- Evidence order in Rationale: Why it's flagged → Decisions → Considered but not included. Sections are 12 px apart, with a 1 px top rule and a Label/M/UPPER title (Caption was retired in 2.0). Cards in a section are 8 px apart. (Figma)
+- Evidence order in Rationale: Why it's flagged → Decisions → Considered but not included. Sections are 12 px apart, with a 1 px top rule and a Label/M/medium title. Cards in a section are 8 px apart. (Figma)
 - One chain is open at a time. It is tied to the value whose trigger opened it, and that trigger shows as expanded. (inferred)
 - Every value carries its own confidence. The drawer's bar shows the confidence of the value that opened it. (inferred)
 

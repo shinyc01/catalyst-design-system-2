@@ -22,12 +22,12 @@ The standard product screen (Navigation pattern page, screen "Map - Overview - D
 | Level 3 page header | single object's page: `page-header` / `page-header-pattern` / `header-pattern` (kit `PageHeader`); on map views add `canvas-header` underneath. Library/list page: `page-top` (kit `PageTop`) | top of content area | (Figma) "the page header frames the specific page … holding the controls and actions that act on the page's content." |
 | Content | 12-column grid (dashboards, content pages) **or** `canvas-background` (map / node-graph views) | fills remaining space | (Figma, Layout) |
 | Bottom sheet | `base-bottom-sheet-organism` (Value tab: `value-bottom-sheet-organism`; Explore tab: `explore-bottom-sheet`) — Cooper FAB + prompt chips | bottom of content area, 40px | (Figma) "Baseline for all tabs. If a tab has no special bottom-sheet needs, it uses this." |
-| Optional right column | `panel-organism` | 380px expanded / 84px collapsed, full height, in the layout (no overlay) | (Figma) |
+| Optional right column | `panel-organism` | 380px expanded / 48px collapsed rail, full height, in the layout (no overlay) | (Figma) |
 
 Layout rules (Foundations › Layout, Figma):
 - Sidebars and header stay sticky while content scrolls; the sidebar collapses to an icon rail on narrow widths before it disappears.
 - Hierarchy comes from elevation (blur, shadow, opacity); most elements float.
-- Desktop reference frame 1440 × 810 (inside the 1280–1599 range). Minimum supported width 320px. Breakpoints: 320–639, 640–959, 960–1279, 1280–1599, 1600+. Each uses its own `margins/margin-*` and `gutters/gutter-*` token; the grid is fluid inside a breakpoint (columns grow, margins and gutters stay fixed).
+- Desktop reference frame 1440 × 810. Breakpoints, columns, page margin and gutter: `guide/layout.md` §1 (xs < 600, sm 600, md 1024, lg 1440, xl 1920; 4 / 8 / 12 columns; by screen width, never density; the grid follows the content area).
 - Grid layout: 12 columns, centred, for dashboards and content pages. Sticky header spans full width above it. Cooper FAB anchored bottom-right.
 - Map layout: the map background is a draggable canvas filling all space between the sticky header and the bottom bar; bottom bar is sticky.
 - Spacing, padding, radius and border use semantic tokens (`paddings/padding-*`, `gap-*`, `radius-*`, `border-*`), never arbitrary values. Layout primitives: Box, Stack (vertical), Flex (horizontal), Visually Hidden (screen-reader-only labels).
@@ -482,7 +482,7 @@ key: e09f61a3d506abeb1f2cbfc8e0f5d551a9bf7e9e · node: 7405:22521 · variants: C
 
 ### panel-organism
 key: f0e3c9a42ff7672fb98146c09103ce63ae364044 · node: 4305:365421 · variants: Expanded=[True|False] · bool: show-evidence-chain · swap: Content slot
-**Use for** (Figma) Persistent, always-relevant side context inside the page layout (confidence/insight rail, inspector, secondary reading pane). 380px expanded / 84px collapsed, full height, divider not shadow.
+**Use for** (Figma) Persistent, always-relevant side context inside the page layout (confidence/insight rail, inspector, secondary reading pane). 380px expanded / 48px collapsed rail, full height, divider not shadow.
 **Don't use for** (Figma) Temporary tasks or on-demand detail (→ drawer or popover); anything with a scrim or focus trap.
 
 ### popover-organism
@@ -685,7 +685,7 @@ key: 98141b94b2ed7e1429cb0fe9ab5c9191fbf49d7b · node: 1440:5932 · variants: St
 
 ### table-header-molecule
 key: da7b4eb424b891f91adde562bd02dfd924b4d8d8 · node: 1440:5904 · variants: Type=[Column|Row] State=[Default|Hover|Empty] · bool: show-sort, show-title, show-filter, show-clue-icon · text: title-text
-**Use for** (Figma) Sticky column header: short, uppercase, muted labels; align to the column's content.
+**Use for** (Figma) Sticky column header: short, muted labels in sentence case; align to the column's content.
 
 ### table-cell-atom
 key: 688040eb82c8d6fa44426f329b11676e7155e59c · node: 1440:5941 · variants: Type=[Text|Badge|Status|Check|In progress|Counter|Action|Action icons|User|User description|Comment|Text and button (hover)|Text + description|Text + counter] State=[Default|Hover|Edit|Loading] · bool: show-description, show-acion, Show badge, Evidence · text: Label, description-text, user-name · swap: container, Slot
@@ -1025,7 +1025,7 @@ key: 9175f001185d8545d21a5915e5794992587351cc · node: 1588:1971
 
 ### page-top
 key: c5e4c47466b6a214434547fc54bd5678b6658fd1 (set; variant Type=Default 771d842501a13c89539875ae993aca11fbcbfa82) · node: 244:117279 (IFS Design System Patterns; not found in the published IFS Design System library) · variants: Type=[Default] · bool: cooper, show search, Show button
-**Use for** (designer decision) The intro of a library/list page: Cooper eyebrow (optional), H1 title, one-line description, a "New" (or other) Secondary M button on the right, then `Tabs` with counts and a 360px `SmartSearch`. Kit: `PageTop`; on a DataTable library page pass `pageTop` to `DataTable` so its tab filter and search sit in it. Also the Command home intro (cooper on, no button) and the Build page (title only, Tabs L, no search).
+**Use for** (designer decision) The intro of a library/list page: Cooper eyebrow (optional), H2 title, one-line description, a "New" (or other) Secondary M button on the right, then `Tabs` with counts and a 360px `SmartSearch`. Kit: `PageTop`; on a DataTable library page pass `pageTop` to `DataTable` so its tab filter and search sit in it. Also the Command home intro (cooper on, no button) and the Build page (title only, Tabs L, no search).
 **Don't use for** a single object's page (framework, investment, report): that's `PageHeader`. Don't stack `PageHeader` above `PageTop`.
 
 ### explore-header-pattern

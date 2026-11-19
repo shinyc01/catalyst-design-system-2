@@ -1,4 +1,4 @@
-# Layout — Catalyst Design System 2.0.1
+# Layout — Catalyst Design System 2.0.3
 
 Tokens: `src/foundations/layout.css`. Spacing roles: `guide/spacing.md`.
 
@@ -11,7 +11,7 @@ Tokens: `src/foundations/layout.css`. Spacing roles: `guide/spacing.md`.
 | lg | 1440–1919 | 12 | 24 | 20 |
 | xl | 1920+ | 12 | 32 | 32 |
 
-Content is capped at 1600 and centred. The grid is measured in the content area (beside the side nav and any docked panel).
+Content is capped at 1600 and centred. The grid is measured in the content area (beside the side nav and any docked push panel). An overlay panel never changes the grid.
 
 ## 2. What snaps to the columns
 Cards and page regions: `.ifs-grid` with `.ifs-span-N` children (`.ifs-span-panel` / `.ifs-span-rest` for a side column that is part of the page: 3 columns, 4 below 1440). Below 1024 quarters become halves and wider spans go full width; below 600 everything is full width. Content inside a card (table columns, metric rows) follows the card, not the grid.
@@ -39,9 +39,9 @@ On a map or canvas, floating panels are placed in slots, never pinned (`.ifs-slo
 | `.ifs-slot-fab` | Cooper button, end-bottom corner | `--size-48` |
 | `.ifs-slot-exit` | "Exit map preview" when you arrive from Build (add `.has-exit`: every slot moves down one control row) | — |
 
-- State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. Top and bottom bars centre in the gap between the panels, never under them.
+- State on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. The top and bottom bars are centred on the whole map; a panel only pushes a bar aside as far as needed to keep a page gap between bar and panel, never under it. They are not re-centred in the space that is left.
 - **Edges:** every slot sits one inset (`--slot-inset` = the page margin) from the map's edges; tops, bottoms and the end edge line up; neighbours sit a page gap apart.
-- **Map minimum:** two open panels must leave `--layout-map-min` (320, lowered from 400 on Nov 19 to try) of map. If they don't, the panel opened first folds to its rail (the app reads the token).
+- **No map minimum** (Nov 19): panels never fold because the map is small. Study still folds when a right panel opens (below); below 1100 / 720 the overlay and sheet rules apply.
 - **Study and a right panel:** Study folds to its rail when a right panel opens and comes back when it closes; clicking Study hides the right panel. The Cooper chat counts as a right panel too: while the user works with Cooper (custom lens, create idea), Study stays folded (Nov 19, no exception).
 - **Lists and details** stay open together. Clearing the selection closes the selected bar and the details panel.
 - **No legend on the map:** counts go in the selected bar, the key in the Layers popover. (`.ifs-slot-legend` stays for other canvases.)
@@ -61,7 +61,7 @@ Benchmark: Fluent 2 (inline vs overlay drawer by task), Carbon for IBM Products 
 - `over` panels close on an outside click or Esc (`onPanelClose`); clicking another row closes and reopens, so the preview swaps.
 - Below md (1024) a `push` panel has no room: it becomes a rail and expands over the content; outside click / Esc fold it back.
 - Side nav below md, **and when a pushed panel would leave the page area under 800px** (`--layout-content-min`; Nov 19, fold by available space as Atlassian, Carbon and Material do): a rail that expands over the content; outside click / Esc fold it back. With the 240 side nav and a 380 panel this happens below 1440 (1440 keeps the nav open).
-- The page grid follows the content area (container `content`): a pushed panel narrows the columns like a smaller screen.
+- **Grid convention (Nov 19):** the page grid follows the content area (container `content`). A push panel (docked, sliding) shrinks the content area, so the columns step down like on a smaller screen (12 → 8 → 4). An `over` panel or overlay (Cooper floating chat, record preview, popover, modal) sits on top of the page and never changes the grid.
 
 ## 6. Direction: start and end, never left and right (rule from Nov 19, 2026)
 The kit is being prepared for right-to-left languages (Arabic market). In RTL the layout mirrors: the side nav moves to the right, back arrows point right, text starts on the right; numbers, logos, media controls and chart time axes do not mirror.

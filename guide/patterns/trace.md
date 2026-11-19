@@ -16,7 +16,7 @@ These are three right-hand panels that all show the system's verdict on a framew
   - `IssueNavigator`.
 - `TraceReport`: `type="drawer"` builds on `Drawer` (inline, floating over the canvas, collapse only). `type="sidebar"` builds on `Panel`. Both have the `SegmentedControl` in the sub-header, `IssueNavigator`, and the footer **Undo** (`Button` tertiary L).
 - `IssueNavigator`:
-  - `Pager progress="resolved"` ("(n% resolved|viewed)", All, ‹ ›), then the issue title (H2) and description.
+  - `Pager progress="resolved"` ("(n% resolved|viewed)", All, ‹ ›), then the issue title (H3) and description.
   - Then one of these: a "Solutions" list of `IssueSolution`s, the **Upload file** / **My answer** buttons (`IssueAnswerField` = `TextField` M with ✕ ✓), a single **Okay** (`Button` secondary M), or the "Applied" / "Answered" card with undo.
   - The "All" view lists `IssueListItem`s (`Counter` + title + ✓).
 - The collapsed 48 px rail is `Panel expanded={false}` with `dot`: `ArrowButton` (arrow-bar-left) with a red or orange dot.

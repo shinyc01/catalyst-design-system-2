@@ -7,7 +7,7 @@ The owner of a framework (or any record with an owner) invites people to work on
 
 ## Anatomy (kit components)
 - **Indicator:** `CollaboratorsButton` (button Tertiary S, `users-group`, "accepted/invited") next to `CommentButton` in `PageHeader` actions.
-- **Panel:** `CollaboratorsPanel` = `Popover` (360 wide, title "Collaborators", ✕) + `Search` ("Invite by name or role…") + `RoleFilter` (`IconButton` Secondary M + multiple-select list with `Checkbox`) + `CollaboratorSection`s of `CollaboratorRow`s. A no-match search shows `EmptyState` with suggestion `Chip`s.
+- **Panel:** `CollaboratorsPanel` = `Popover` (320 wide, title "Collaborators", ✕) + `Search` ("Invite by name or role…") + `RoleFilter` (`IconButton` Secondary M + multiple-select list with `Checkbox`) + `CollaboratorSection`s of `CollaboratorRow`s. A no-match search shows `EmptyState` with suggestion `Chip`s.
 - **Row:** `CollaboratorRow` = content-card-organism top slot: `Avatar` M (Awaiting = dashed avatar; online = risk-atom Online dot), name + job role, then one control: `Badge` "Owner", `RoleSelect` (Editor / Viewer / Remove), ghost "+" (people who can be invited), and on awaiting rows the reminder bell (`IconButton` Tertiary S) or a disabled "Notified" `Button`.
 - **Dialogs:** `InviteCollaboratorModal` (`Modal` "Add Collaborator": person + `RoleSelect`, "Brief by Cooper" + `TextArea`), `RemoveCollaboratorModal` (`Modal` "Remove this collaborator?"). Reminder confirmation: `toast` (`Snackbar`).
 - **Presence:** `CollaboratorCursor` (cursor-atom) and `LiveCursors` (the other online people's cursors over the canvas).

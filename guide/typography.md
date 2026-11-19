@@ -23,7 +23,7 @@ No exceptions: every text rule in the kit uses a semantic style, including chart
 - Avatar initials: XL (56) H4 · L (40) and M (32) Label/M/medium (initials stay capitals) · S (24) Body/S · XS (20) and XXS (16) Body/S with one initial.
 - Map pin counts: Body/S; M and L pins widen into a pill when the count needs it (e.g. 999 in Spacious).
 - Live-cursor name tags: Body/S (ambient text); the tag grows with the text.
-- Charts: axis ticks Body/S · in-plot values Label/M/medium · donut centre H1 · gauge value Display/M.
+- Charts: axis ticks Body/S · in-plot values Label/M/medium · donut centre H2 · gauge value Display/M.
 - Widget thumbnails (Widget Builder previews): title Label/M/medium; the tiny axis and row labels are drawn as skeleton bars, since a thumbnail has no readable text.
 - Navbar wordmark fallback: H3. Bold words inside text use `--text-label-m-medium-weight`.
 
@@ -37,7 +37,7 @@ Three text levels plus headings. Steps are 2px.
 
 | Level | Token | Spacious | Comfortable | Compact | Use it for |
 |---|---|---|---|---|---|
-| Small | `--type-s` | 14/20 | 12/16 | 10/14 | **Rare, only where a spec names it**: disclaimers and footnotes, and text inside a fixed small shape (avatar initials at 24px and below, map pin counts, live-cursor tags, chart axis ticks, labels inside Sankey bars). Never labels, statuses, headers, meta or anything the user acts on. |
+| Small | `--type-s` | 14/20 | 12/16 | 11/14 | **Rare, only where a spec names it**: disclaimers and footnotes, and text inside a fixed small shape (avatar initials at 24px and below, map pin counts, live-cursor tags, chart axis ticks, labels inside Sankey bars). Never labels, statuses, headers, meta or anything the user acts on. |
 | Body | `--type-m` | 16/24 | 14/20 | 12/16 | The default: all content, labels and meta (dates, authors, IDs, helper text, captions). |
 | Large | `--type-l` | 18/26 | 16/24 | 14/20 | H4 titles; text in L-size controls. |
 | H3 / H2 / H1 | `--type-h3/h2/h1` | 22/26/32 | 20/24/28 | 16/20/24 | Sections, page titles, hero pages, big numbers. |
@@ -50,20 +50,20 @@ Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--ty
 | Style | Level · weight · letter-spacing | Use |
 |---|---|---|
 | Display L / M / S | Display · 500 · −0.5px | Rare hero numbers |
-| Heading/H1/medium | H1 · 500 · −0.3px | Hero/form page title, big KPI numbers |
+| Heading/H1/medium | H1 · 500 · −0.3px | Hero/form page title. Never numbers |
 | Heading/H2/medium | H2 · 500 · −0.2px | Page title, stat card numbers |
 | Heading/H3/medium | H3 · 500 · −0.1px | Page sections that aren't inside a card or panel |
-| **Heading/H4/semibold** | Large · 600 · 0 | **The title style**: panel, modal, drawer, card, chart, table card, side nav, empty state |
+| **Heading/H4/semibold** | Large · 600 · 0 | **The title style**: panel, modal, drawer, card, table card, side nav, empty state (chart and stat card titles are Label/M, see Heading order) |
 | Body/L/regular | Large · 400 · −0.1px | L-field input, long reading |
 | **Body/M/regular** | Body · 400 · 0 | **Default**: content, cells, descriptions, messages, menu items, options, typed text |
 | Body/S/regular | Small · 400 · +0.1px | Rare: disclaimers, footnotes, text inside a fixed small shape |
-| Label/L/medium | Large · 500 · −0.15px | L-size control text only |
+| Label/L/medium | Large · 500 · −0.15px | L-size control text, Command card titles, notification titles |
 | **Label/M/medium** | Body · 500 · 0 | Names, primary column, key values, controls, sub-section titles |
-| ~~Label/M/UPPER~~ | Removed in 2.0.3 (retired in 2.0.1) | The style, its tokens and the `.t-label-m-upper` class are gone; use Label/M/medium. Statuses, column headers, nav group headers, eyebrows and captions are all sentence case. Only avatar initials and abbreviations are capitals. Only avatar initials and abbreviations are capitals. |
+| ~~Label/M/UPPER~~ | Removed in 2.0.3 (retired in 2.0.1) | The style, its tokens and the `.t-label-m-upper` class are gone; use Label/M/medium. Statuses, column headers, nav group headers, eyebrows and captions are all sentence case. Only avatar initials and abbreviations are capitals. |
 | Code/M/regular, Code/M/medium | Body · mono · 400 / 500 · 0 | Code, formulas, JSON, also inline in Body text (default) |
 | Code/S/regular | Small · mono · 400 · 0 | Code inside Small text only |
 
-Retired (the class still works and renders as its replacement): Code regular / medium (were Small) → Code/M; Label/M/semibold and Label/S/medium → Label/M/medium; Label/S/UPPER, Caption regular/semibold UPPER and the older uppercase styles → Label/M/UPPER; Label/L/semibold → H4; Body/L/medium → Label/L/medium; Body/M/medium, Heading/H4/medium → Label/M/medium.
+Retired (the class still works and renders as its replacement): Code regular / medium (were Small) → Code/M; Label/M/semibold and Label/S/medium → Label/M/medium; Label/S/UPPER, Caption regular/semibold UPPER and the older uppercase styles → Label/M/medium; Label/L/semibold → H4; Body/L/medium → Label/L/medium; Body/M/medium, Heading/H4/medium → Label/M/medium.
 
 ## 4. Rules
 
@@ -73,8 +73,10 @@ Retired (the class still works and renders as its replacement): Code regular / m
 | H2 (H1 on hero or form pages) | The page title in `PageTop`, once per page: broad pages (tables, libraries, landing / category pages) | "Value library", "Executive Summary" |
 | Label/M/medium | The title in the thin `PageHeader` (inside one entity: an idea, investment, value or strategy framework) and the `ExploreHeader` map bar. The bar is thin by design, so its title stays Label/M; the content below starts at H3 / H4 | "Northgate feeder replacement" |
 | H3 | A page section that is not inside a card or panel (it sits on the page background) | "Recommended Alternative" with several cards under it |
-| H4 | The title of a container: card, panel, modal, drawer, chart. Every `ContentCard` title is H4, small or normal size, including readiness cards and Cooper's fix cards (Nov 19, 2.0.3). Exception: chart cards (`DataVizCard` header) and stat cards use Label/M/medium, so a dashboard's charts and numbers read as one set | "Investment Value Impact", "Readiness Evaluation", "Start with Ideas" |
+| H4 | The title of a container: card, panel, modal, drawer, chart. Every `ContentCard` title is H4, small or normal size, including readiness cards and Cooper's fix cards (Nov 19, 2.0.3). Exception: chart cards (`DataVizCard` header) and stat cards use Label/M/medium in tertiary grey, so a dashboard's charts and numbers read as one set | "Investment Value Impact", "Readiness Evaluation", "Start with Ideas" |
 | Label/M/medium | A sub-section inside a container that already has a title | "Approval readiness" inside the Readiness panel |
+
+H1 and H2 are never used for titles inside a card or panel; those are H4 (or Label/M/medium for a sub-section).
 
 Don't skip a level when nesting: if a page groups its cards into sections, each group gets an H3. The visual level is separate from the HTML level: a card title looks like H4 but can be `<h2>` or `<h3>`, whatever keeps the screen-reader outline in order.
 
@@ -122,9 +124,9 @@ One status per object; a second state is a tag or an icon next to it. Status tex
 | Nav group header, eyebrow | Label/M/medium, sentence case |
 | Meta: time, author, ID, file size, helper text, captions under numbers | Body/M/regular in secondary or tertiary colour |
 | Disclaimer, footnote | Body/S/regular (only where the spec asks for it) |
-| Big number | H1 one per card · H2 several or small cards · Display one hero number per screen |
+| Big number | H2 stat card M and numbers side by side · H3 stat card S and metric rows · Display one hero number per screen. Never H1 |
 
-**Weights mean something**: 400 content · 500 every label, name, control and uppercase text · 600 H4 only (at 500, H4 would equal Label/L/medium). A row with no name or key value is all regular. In tables, the name column is medium (`ifs-table__td--primary`: the column with `primary: true`, else the first text column) and every other cell is regular.
+**Weights mean something**: 400 content · 500 every label, name and control · 600 H4 only (at 500, H4 would equal Label/L/medium). A row with no name or key value is all regular. In tables, the name column is medium (`ifs-table__td--primary`: the column with `primary: true`, else the first text column) and every other cell is regular.
 
 **Case** (2.0.1): Title Case for page, section, card, chart, panel and modal titles, headings and navigation. Sentence case for buttons, dropdown triggers, statuses, column headers and all content (body text, descriptions, messages, menu items, options, chips, Cooper prompts and answers, field labels). No uppercase text (2.0.1); only avatar initials and abbreviations are capitals. Title Case is a text change, not CSS: the content guide owns the strings.
 
@@ -167,11 +169,10 @@ We follow the majority on token layers, regular content, a 12px floor (11 in Com
 | # | Item | Recommendation |
 |---|---|---|
 | 1 | Display and Code use in the product Figma files (Value etc.) | Count style use there; remove what nothing uses. |
-| 2 | Modal titles: H4 like every surface, or H3? | H4 for consistency. |
-| 3 | Uppercase headers at Body size are wider; narrow columns crowd ("Last modified", "Created by") | Raise the minimum widths for short/date/user columns (layout tokens). |
-| 4 | Chips in narrow cards wrap more at Body size (Cooper saved scenarios) | Accept, or let those chips truncate. |
-| 5 | Status component sizes XS and S now share the text style | Merge into one size. |
-| 6 | The kit has 47 truncation rules written one by one; not all show a tooltip with the full text | Audit them onto `.t-truncate` plus a tooltip, and check none truncates a number, status or error. |
-| 7 | Figma library: old style names (Label/M/medium is "Heading/H4/medium"), single mode with 12px body values, a few wrong bindings (Label/M/medium and Code bound to other styles' letter-spacing), stray styles from other files | Rename to the kit names, add Spacious/Comfortable/Compact modes to "4. Typography semantic", fix the bindings, remove strays. |
+| 2 | Column headers at Body size are wider; narrow columns crowd ("Last modified", "Created by") | Raise the minimum widths for short/date/user columns (layout tokens). |
+| 3 | Chips in narrow cards wrap more at Body size (Cooper saved scenarios) | Accept, or let those chips truncate. |
+| 4 | Status component sizes XS and S now share the text style | Merge into one size. |
+| 5 | The kit has 47 truncation rules written one by one; not all show a tooltip with the full text | Audit them onto `.t-truncate` plus a tooltip, and check none truncates a number, status or error. |
+| 6 | Figma library: old style names (Label/M/medium is "Heading/H4/medium"), single mode with 12px body values, a few wrong bindings (Label/M/medium and Code bound to other styles' letter-spacing), stray styles from other files | Rename to the kit names, add Spacious/Comfortable/Compact modes to "4. Typography semantic", fix the bindings, remove strays. |
 
 **Exception**: the Trace report issue title is H3 (not H4), because the issue is the panel's main subject.

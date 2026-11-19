@@ -46,7 +46,7 @@ Users pick how dense the UI is, as a system setting (three levels):
 |---|---|---|---|---|---|---|---|---|---|
 | **Spacious** | 16/24 | 14 | 18 / 22 / 26 / 32 | 36 / 40 / 48 | 28 / 36 / 44 | 64 / 40 | 20 | 16 | 40 |
 | **Comfortable** (default) | 14/20 | 12 | 16 / 20 / 24 / 28 | 32 / 36 / 44 | 24 / 32 / 40 | 52 / 32 | 16 | 12 | 32 |
-| **Compact** | 12/16 | 11 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 20 / 28 / 32 | 40 / 24 | 12 | 8 | 24 |
+| **Compact** | 12/16 | 11 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 24 / 28 / 32 | 40 / 24 | 12 | 8 | 24 |
 
 Page margin / gap between cards follow screen width, not density: 16 / 16 below 600, 24 / 16 from 600, 24 / 20 from 1440, 32 / 32 from 1920.
 
@@ -55,7 +55,7 @@ Comfortable type is the average of six reference systems: Fluent 2, Atlassian, C
 
 How it works:
 - Put `data-density="spacious"`, `"comfortable"` or `"compact"` on `<html>` (or any container). `IFS.setDensity('compact')` does this and remembers the choice; `IFS.getDensity()` reads it back.
-- Type is tokens in two layers (like the Figma library): primitives (families, weights, letter-spacing steps, and the `--type-s|m|l|h3|h2|h1|display-*` size/line-height pairs per density) and one semantic set per text style, `--text-<style>` + `-tracking` + `-weight` (`src/foundations/typography.css`). Components use only the semantic set. 15 styles; rules in `guide/typography.md`.
+- Type is tokens in two layers (like the Figma library): primitives (families, weights, letter-spacing steps, and the `--type-s|m|l|h3|h2|h1|display-*` size/line-height pairs per density) and one semantic set per text style, `--text-<style>` + `-tracking` + `-weight` (`src/foundations/typography.css`). Components use only the semantic set. 16 styles; rules in `guide/typography.md`.
 - Control heights read `--control-h-s|m|l`, `--tab-h-m|l`, `--nav-row-h`, `--table-row-h`, `--table-header-h`.
 - Spacing: `src/foundations/spacing.css` (scale, roles, page grid). Type and control sizes: the Density block at the end of `src/tokens.css`. Old `--spacing-*`, `--gaps-*` and `--paddings-*` names still work as aliases.
 - The bundle exposes `window.Catalyst` (and `window.IFS`, so existing prototypes work unchanged).

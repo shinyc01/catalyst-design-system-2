@@ -9,7 +9,7 @@ A page of widgets that people arrange themselves: add widgets from a catalog, re
 - `AppShell` + `NavBar` + `SideNav` (collapsed rail on a dashboard; the "Sections" list on a report) + `PageHeader` + `BottomSheet type="value"`; optional `Panel` on the right (dashboard: System confidence).
 - Page intro: title, subtitle and a secondary "Widgets" button (opens the drawer). (Figma)
 - `StatCardsRow` (stat-cards-row): the metric cards row above the grid; inside a report it is the "metrics block".
-- `WidgetBoard`: the grid engine. Each widget is drawn in a `WidgetFrame` (uppercase title, Cooper button; on hover ⋮⋮, "Edit with Cooper", ⋮ menu). Kit charts (`ColumnChart`, `BarChart`, `DonutChart`…) go inside with `bare`.
+- `WidgetBoard`: the grid engine. Each widget is drawn in a `WidgetFrame` (title, Cooper button; on hover ⋮⋮, "Edit with Cooper", ⋮ menu). Kit charts (`ColumnChart`, `BarChart`, `DonutChart`…) go inside with `bare`.
 - Drag feedback, always together: the ghost card under the pointer (`WidgetFrame state="ghost"`; from the drawer, `WidgetCard state="drag"`), the source faded to 30 %, `DropIndicator` (line) and then `DropZone` "+ Drop here to place" at the current target; `Tooltip` for a blocked drop. `WidgetViewChangePosition` stays in the kit but the board does not use it.
 - Resize feedback: `ResizeHandle` (arrows = directions still possible), `Tooltip` ("Maximum / Minimum width reached").
 - `WidgetsDrawer`: `Drawer` + search + `WidgetCard` list (each with a `PreviewWidgetCard`).
@@ -67,7 +67,7 @@ Drag and drop
 Consolidated
 - change-position-overlay → `DropZone` (it is move-and-drop-background Type=change-position-overlay, already in the kit).
 - Widget frames (content-card-organism, Size M, 6 px padding, header slot) → `WidgetFrame`, built on the kit chart frame (DataVizCard variant chart / DataVizHeader), which draws the same header and hover actions.
-- Widgets drawer (a plain 400 px frame with title + description) → `Drawer` (drawer-organism) with the description as the first content line.
+- Widgets drawer (a plain frame, now the 380 side panel with title + description) → `Drawer` (drawer-organism) with the description as the first content line.
 - coverage-item (747d414e…) appears only inside value-bottom-sheet-organism → already drawn by `BottomSheet type="value" inProgress`.
 - tableHeader / tableCell (9c9ffe32…, 4f4be618…, 609b40c3…, 81b10bef…) → `Table`.
 - ⋮ menu (single-select-list-molecule) → the kit Select list visuals.

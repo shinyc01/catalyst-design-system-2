@@ -6,7 +6,7 @@ Source: IFS Design System Patterns › page **Table** (92:16787), section Table 
 How data tables behave in the product: filtering, search, sorting, pinning and manual ranking, row actions, inline rename, column configuration, display on single- and multi-table pages, and the empty, searching and loading states. Use `IFS.DataTable` for any list of records (libraries such as the Idea Pad, Strategy Framework, Value Framework and Value Models libraries, and relationship tables on detail pages). Use bare `IFS.Table` only for a static table with no behaviour.
 
 ## Anatomy
-- **Card**: `DataTable` (16px padding, 12px gap, radius 8, `surface/secondary-alpha`) around the kit `Table` (table-header-molecule, table-cell-atom, table-sort-atom, table-filter-atom, content-row-molecule).
+- **Card**: `DataTable` (`table-x` padding, `stack` gap, radius 8, `surface/secondary-alpha`) around the kit `Table` (table-header-molecule, table-cell-atom, table-sort-atom, table-filter-atom, content-row-molecule).
 - **Toolbar** (`TableToolbar`, 40px):
   - left: the row filter with counts. Inside the card this is a `SegmentedControl` S. On library pages it is `Tabs`, which sit above the card inside `PageTop` (`pageTop`).
   - right: `SmartSearch` (smart-search-organism), a divider, and a Tertiary S `IconButton` `system-filter-settings` that opens the Columns drawer.
@@ -129,7 +129,7 @@ How data tables behave in the product: filtering, search, sorting, pinning and m
   - Where they are used: 81b10bef in every Library screen (95:113514…), and 4f4be618 on Cooper, Widget Builder and Trace Report.
 - **consolidated: `tableHeader` 9c9ffe32… and `tableHeader` 609b40c3… → table-header-molecule (da7b4eb4).**
   - Both are unpublished and have identical properties: `sort`, `filter`, `title`, `state default|hover|active sort &filters`, `type column|row`.
-  - Both are 32px with 8/12 padding, Heading/H4/UPPER and `text/tertiary`. The only difference is a 6px gap instead of 8.
+  - Both are 32px with 8/12 padding, Label/M/medium (was Heading/H4/UPPER) and `text/tertiary`. The only difference is a 6px gap instead of 8.
   - Their sort and filter items are the kit table-sort-atom and table-filter-atom states.
   - 609b40c3 also sits inside the current content-row-molecule header as the empty last-column header (95:106546).
 - **consolidated: `ai-search` (b419c093) → `Icon cooper-system-icon variant="Smart search"`.** Same artwork at 24px (the paths are the 16px icon scaled by 1.5). It only appears inside older smart-search instances.
