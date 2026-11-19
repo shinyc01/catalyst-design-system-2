@@ -112,6 +112,7 @@ One status per object; a second state is a tag or an icon next to it. Status tex
 | Page section not inside a container | H3 |
 | Panel, modal, drawer, card title | H4 |
 | Chart card and stat card title (dashboards) | Label/M/medium |
+| Command list card title (`HomeRowCard`) | Label/L/medium |
 | Sub-section inside a titled panel | Label/M/medium, primary colour |
 | Content, typed text, menu items, options | Body/M/regular |
 | Name / primary column / item title / key value | Label/M/medium |

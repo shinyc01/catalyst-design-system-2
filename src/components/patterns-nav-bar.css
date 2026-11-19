@@ -38,7 +38,7 @@
 .ifs-home-row-card__text{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
 .ifs-home-row-card__head{display:flex;align-items:center;gap:var(--space-200);min-width:0;min-height:var(--size-20)}
 .ifs-home-row-card__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-primary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
+  font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking) /* Label/L/medium (Nov 19, 2.0.3; was Label/M) */}
 .ifs-home-row-card__head .ifs-badge{flex:none}
 .ifs-home-row-card__desc{margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-tertiary);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
