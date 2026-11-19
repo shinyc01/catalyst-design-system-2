@@ -73,7 +73,7 @@ Retired (the class still works and renders as its replacement): Code regular / m
 | H2 (H1 on hero or form pages) | The page title in `PageTop`, once per page: broad pages (tables, libraries, landing / category pages) | "Value library", "Executive Summary" |
 | Label/M/medium | The title in the thin `PageHeader` (inside one entity: an idea, investment, value or strategy framework) and the `ExploreHeader` map bar. The bar is thin by design, so its title stays Label/M; the content below starts at H3 / H4 | "Northgate feeder replacement" |
 | H3 | A page section that is not inside a card or panel (it sits on the page background) | "Recommended Alternative" with several cards under it |
-| H4 | The title of a container: card, panel, modal, drawer, chart | "Investment Value Impact", "Readiness Evaluation" |
+| H4 | The title of a container: card, panel, modal, drawer, chart. Every `ContentCard` title is H4, small or normal size, including readiness cards and Cooper's fix cards (Nov 19, 2.0.3) | "Investment Value Impact", "Readiness Evaluation", "Start with Ideas" |
 | Label/M/medium | A sub-section inside a container that already has a title | "Approval readiness" inside the Readiness panel |
 
 Don't skip a level when nesting: if a page groups its cards into sections, each group gets an H3. The visual level is separate from the HTML level: a card title looks like H4 but can be `<h2>` or `<h3>`, whatever keeps the screen-reader outline in order.
