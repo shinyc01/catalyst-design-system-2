@@ -686,7 +686,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
   else body = (
     <div className="ifs-data-table__table" ref={tableRef}>
       <IFS.Table columns={tableCols} rows={rowsShown} rowKey={rowKey} sort={sort} onSortChange={onSortChange} selectedId={previewId}
-        rowHeight={ranked ? 60 : undefined} rowProps={drag ? r => (r[rowKey] === drag.id ? { className: 'ifs-data-table__row--dragged' } : null) : undefined}
+        rowProps={drag ? r => (r[rowKey] === drag.id ? { className: 'ifs-data-table__row--dragged' } : null) : undefined}
         onRowClick={onOpen ? r => { if (editing) return; clearTimeout(clickTimer.current); clickTimer.current = setTimeout(() => onOpen(r), 220); } : undefined} />
       {noFilterMatch && <div className="ifs-data-table__empty"><IFS.EmptyState cause="no-results" heading="No results found" body="Try a different term, or clear filters to see everything."
         primaryAction={{ label: 'Clear filters', type: 'secondary', onClick: clearFilters }} /></div>}

@@ -155,7 +155,7 @@
 .ifs-data-table--capped .ifs-data-table__scroll{flex:1;overflow:hidden;
   -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 48px),transparent) /* mask alpha only, not a colour */}
 .ifs-data-table__more{display:flex;margin-top:calc(-1 * var(--space-200))}
-/* Ranked (Idea Pad) rows are 60px in Figma (pin icon-button cells): IFS.Table rowHeight={60}. The row being dragged dims. */
+/* Ranked (Idea Pad) rows follow the table row height like every table (Nov 19, was 60). The row being dragged dims. */
 .ifs-data-table__row--dragged{opacity:.4}
 .ifs-data-table__table{display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-data-table__searching{display:flex;align-items:center;box-sizing:border-box;height:var(--table-row-h) /* a table row */;padding:0 var(--space-inset);border-radius:var(--radius-radius-100);
