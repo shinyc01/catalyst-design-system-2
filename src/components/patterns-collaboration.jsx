@@ -226,8 +226,8 @@ function useCollaboration({ people: init = [], suggested: sugInit = [], director
 // Pattern component: modal-organism "Add Collaborator": person (content card, avatar L 40) + access select,
 // "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
 // Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 7.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
-//   onCancel, onSubmit({ access, brief }), inline (card only — gallery).
-function InviteCollaboratorModal({ open, person, mode = 'invite', defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline }) {
+//   title (the screen's own text; example default "Add Collaborator" / "Edit Collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
+function InviteCollaboratorModal({ open, person, mode = 'invite', title, defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline }) {
   const [access, setAccess] = React.useState(defaultAccess);
   const [text, setText] = React.useState(defaultBrief);
   React.useEffect(() => { if (open) { setAccess(defaultAccess); setText(defaultBrief); } }, [open, person && person.id]);
@@ -235,7 +235,7 @@ function InviteCollaboratorModal({ open, person, mode = 'invite', defaultAccess 
   const changed = access !== defaultAccess || text !== defaultBrief;
   const submit = () => { if (mode === 'edit' && !changed) { onCancel && onCancel(); return; } onSubmit && onSubmit({ access, brief: text }); };
   return (
-    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title="Add Collaborator" width={440} inline={inline}
+    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title || (mode === 'edit' ? 'Edit Collaborator' : 'Add Collaborator')} width={440} inline={inline}
       footer={<>
         <IFS.Button type="tertiary" size="l" onClick={onCancel}>Cancel</IFS.Button>
         <IFS.Button type="primary" size="l" onClick={submit}>
