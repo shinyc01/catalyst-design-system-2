@@ -306,8 +306,12 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table__group{all:unset;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--table-header-h);padding:var(--space-300);cursor:pointer;
   border-radius:var(--radius-radius-100);background:var(--surface-tertiary-alpha);color:var(--text-tertiary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-table__group .ifs-icon{color:var(--icon-tertiary);transform:rotate(180deg) /* Figma rotates the caret 180° */}
+.ifs-table__group .ifs-icon{color:var(--icon-tertiary)}
+.ifs-table__group .ifs-table__group-caret{transform:rotate(180deg) /* Figma rotates the caret 180° */}
 .ifs-table__group-title{flex:1;min-width:0}
+/* Locked group (Nov 20): can't open; the note says when it opens */
+.ifs-table__group--locked{cursor:default}
+.ifs-table__group-note{margin-inline-start:var(--space-200);color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-table__group:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 
 /* ================= NotificationCard — notification-card (9943:5373) ================= */

@@ -788,11 +788,15 @@ Props:
     cell values by type: text → row[key]; number → row[key] (Figma Type=Number, right-aligned unless align is set); description → { text, description }; counter → { text, value, direction };
     badge → Badge props; status → { type, label, description }; check → label; user → { name, initials, type, description }.
   rows = [{ id, ...data }], groupBy = key or fn(row) → group title (group-row-molecule, expand/collapse), defaultCollapsed = [titles],
+  groups (Nov 20): collapsed / onCollapsedChange(titles) to control which are folded; groupOrder = [titles] (fixed order, groups with no
+  rows still show); groupInfo(title, rows) → { locked, note, end }: locked = a lock instead of the caret, can't open, rows hidden;
+  note = short text after the title ("Opens when Executive is approved"); end = node at the row's end (default: the row count);
+  headerPerGroup = the column header sits under each open group instead of once at the top (sectioned table, e.g. approval stages),
   sort / defaultSort = { key, dir: 'asc'|'desc' }, onSortChange, selectedId / onRowClick (row hover + selected),
   title (show-table-name), tabs (show-segmanted-control), search (right side of the bar). Without title/tabs/search it renders the bare table.
   rowHeight = content-row min height in px (default 60, Figma content-row-molecule),
   rowProps(row) → { className, style, ...attributes } merged onto that content row (drag states, data-* hooks).
-`function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, defaultSort = null, onSortChange, selectedId, onRowClick, rowKey = 'id', rowHeight, rowProps, title, tabs, search, className, ...rest })`
+`function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collapsed: collapsedProp, onCollapsedChange, groupOrder, groupInfo, headerPerGroup, sort, defaultSort = null, onSortChange, selectedId, onRowClick, rowKey = 'id', rowHeight, rowProps, title, tabs, search, className, ...rest })`
 
 ### NotificationCard
 **Tier:** Component
@@ -1370,9 +1374,13 @@ Props:
   view compact | full, details (full view: force the COMMENT / LAST NOTIFIED / action columns; default = when any row has that data), filterable (default: more than 3 approvers), onPush(approver) (owner's manual reminder on an awaiting row:
   shows the "Reminder sent." toast, stamps Last notified, then "Notified" + live countdown tooltip for pushCooldownHours, default 24),
   onNoteChange(approver, note|null, previous).
+  stages (Nov 20, several approval stages on one page): [{ id, label, approvers, locked, note, collapsed }] instead of approvers;
+    onStagesChange(stages). Built on the Table's groups: one group row per stage (caret, name, status + done/total at the end),
+    the column header under each open stage; locked = a lock, can't open, `note` says when it opens. Which stage is open, folded or
+    locked is the screen's call (stages don't have to run one after another). A fully approved stage starts folded.
 Rules built in (Figma notes): approvers add a note to their own row; the owner adds a note to any approver's row; only a
 note's author can edit or delete it; the filter applies live (state chips + name/role search, Clear all, "No results found").
-`function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, currentUserId, ownerId, view = 'compact', details, filterable, onPush, onNoteChange, pushCooldownHours = 24, className, ...rest })`
+`function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages, onStagesChange, currentUserId, ownerId, view = 'compact', details, filterable, onPush, onNoteChange, pushCooldownHours = 24, className, ...rest })`
 
 ## patterns-collaboration
 

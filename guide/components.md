@@ -370,7 +370,7 @@ Use: Draggable node in a side list, dropped onto the canvas.
 Use: The node on the framework/map canvas — the named exception that earns its own component because of canvas behaviour (drag/connect, map-tied selection).
 
 ### approval-chain-timeline · `ApprovalChain`
-Use: One approver step in an approval chain.
+Use: One approver step in an approval chain. Timeline or table by place: in a side panel or popover (checking progress: the Approval chain button) use the timeline; on a full approval page (managing who signs off) use `ApprovalChainTable` (rule 10 of the Approval chain pattern).
 
 ### version-history-timeline · `VersionHistory`
 Use: A version-history entry.
@@ -418,7 +418,7 @@ Use: Sticky column header: short, muted labels in sentence case; align to the co
 Use: Every table cell; pick Type by content. Text start-aligned, numbers end-aligned with consistent decimals, dates start-aligned in one format.
 
 ### group-row-molecule · `Table`
-Use: Collapsible group row in a grouped table.
+Use: Collapsible group row in a grouped table (`groupBy`). Three states: open (caret down, rows shown), collapsed (caret, rows hidden), locked (lock icon, can't open, a short `note` says when it opens). The end of the row shows the row count, or a status (`groupInfo` → `end`). The screen decides each group's state; groups don't have to open one after another. `headerPerGroup` puts the column header under each open group (sectioned table).
 
 ### content-row-molecule · `Table`
 Use: A table row (header or content) holding cells.
@@ -867,6 +867,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 7. The Comment column shows exactly what the approver wrote at decision time and updates when they edit it; empty if nothing. Never invent text.
 8. Push: only clock (awaiting) rows; manual push is attributed to the owner, has no threshold, 1 per reviewer per 24h; it stamps Last notified; the "Notified" tooltip shows a live countdown (hours rounded up, minutes under 1h). A reviewer pending for N days (§10 Open) is notified in-app (bell + toast) and by email; auto-reminders then every N days, 3 at most, impersonal. All stop when the reviewer acts, the version is withdrawn, the reviewer is replaced or the approval closes. Every push is logged in Activity; notification preferences apply.
 9. User filter: only with more than 3 approvers; applies live; chips (All, Approved, Awaiting, Rejected, Revisions required) are multi-select and All resets them; search matches name or role (✕ clears it); chips and search combine; the counter = 1 per chip other than All + 1 for a non-empty query; Clear all resets both; no match keeps the filter open with "No results found"; outside click closes. Awaiting also matches not-acted rows.
+10. **Several stages on one page** (Plan › Approve: Executive, Technical, Financial): one `ApprovalChainTable` with `stages`, not one table per stage. Each stage is a group row of the table (name, then status + done/total at the end; the column header under each open stage). A stage is open, folded or locked as the case needs: locked shows a lock and when it opens ("Opens when Executive is approved"); a fully approved stage folds. **Timeline or table by place:** the full approval page uses the table; a side panel or popover that only shows progress (the Approval chain button) uses the `ApprovalChain` timeline.
 
 ### Pattern: Confidence, trace & readiness
 

@@ -9,7 +9,7 @@ export default {
   component: IFS["ApprovalChain"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** approval-chain-timeline (1440:6174) (legacy) — built on activity-organism\n\n\nUse: One approver step in an approval chain." } },
+    docs: { description: { component: "**Figma:** approval-chain-timeline (1440:6174) (legacy) — built on activity-organism\n\n\nUse: One approver step in an approval chain. Timeline or table by place: in a side panel or popover (checking progress: the Approval chain button) use the timeline; on a full approval page (managing who signs off) use `ApprovalChainTable` (rule 10 of the Approval chain pattern)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-6174"},
   },
 };

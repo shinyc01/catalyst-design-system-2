@@ -281,15 +281,22 @@ function renderCell(col, row) {
 //     cell values by type: text → row[key]; number → row[key] (Figma Type=Number, right-aligned unless align is set); description → { text, description }; counter → { text, value, direction };
 //     badge → Badge props; status → { type, label, description }; check → label; user → { name, initials, type, description }.
 //   rows = [{ id, ...data }], groupBy = key or fn(row) → group title (group-row-molecule, expand/collapse), defaultCollapsed = [titles],
+//   groups (Nov 20): collapsed / onCollapsedChange(titles) to control which are folded; groupOrder = [titles] (fixed order, groups with no
+//   rows still show); groupInfo(title, rows) → { locked, note, end }: locked = a lock instead of the caret, can't open, rows hidden;
+//   note = short text after the title ("Opens when Executive is approved"); end = node at the row's end (default: the row count);
+//   headerPerGroup = the column header sits under each open group instead of once at the top (sectioned table, e.g. approval stages),
 //   sort / defaultSort = { key, dir: 'asc'|'desc' }, onSortChange, selectedId / onRowClick (row hover + selected),
 //   title (show-table-name), tabs (show-segmanted-control), search (right side of the bar). Without title/tabs/search it renders the bare table.
 //   rowHeight = content-row min height in px (default 60, Figma content-row-molecule),
 //   rowProps(row) → { className, style, ...attributes } merged onto that content row (drag states, data-* hooks).
-function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, defaultSort = null, onSortChange,
+function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collapsed: collapsedProp, onCollapsedChange, groupOrder, groupInfo, headerPerGroup,
+  sort, defaultSort = null, onSortChange,
   selectedId, onRowClick, rowKey = 'id', rowHeight, rowProps, title, tabs, search, className, ...rest }) {
   const [inner, setInner] = React.useState(defaultSort);
   const cur = sort !== undefined ? sort : inner;
-  const [collapsed, setCollapsed] = React.useState(() => new Set(defaultCollapsed));
+  const [collapsedInner, setCollapsedInner] = React.useState(() => new Set(defaultCollapsed));
+  const collapsed = collapsedProp !== undefined ? new Set(collapsedProp) : collapsedInner;
+  const setCollapsed = f => { const n = f(collapsed); if (collapsedProp === undefined) setCollapsedInner(n); onCollapsedChange && onCollapsedChange([...n]); };
   const setSort = s => { if (sort === undefined) setInner(s); onSortChange && onSortChange(s); };
   const cycle = key => setSort(!cur || cur.key !== key ? { key, dir: 'asc' } : cur.dir === 'asc' ? { key, dir: 'desc' } : null);
 
@@ -314,7 +321,8 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
     : /^\d*\.?\d+fr$/.test(String(c.width).trim()) ? flexCol(String(c.width).trim()) : c.width).join(' ');
   const groupOf = typeof groupBy === 'function' ? groupBy : groupBy ? r => r[groupBy] : null;
   const groups = [];
-  if (groupOf) { const map = new Map(); sorted.forEach(r => { const g = groupOf(r); if (!map.has(g)) { map.set(g, []); groups.push([g, map.get(g)]); } map.get(g).push(r); }); }
+  if (groupOf) { const map = new Map(); (groupOrder || []).forEach(g => { map.set(g, []); groups.push([g, map.get(g)]); });
+    sorted.forEach(r => { const g = groupOf(r); if (!map.has(g)) { map.set(g, []); groups.push([g, map.get(g)]); } map.get(g).push(r); }); }
 
   const renderRow = row => {
     const id = row[rowKey];
@@ -328,8 +336,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
     );
   };
 
-  const table = (
-    <div role="table" className={IFS.cx('ifs-table', !(title || tabs || search) && className)} style={{ '--cols': cols, ...(rowHeight != null && { '--ifs-table-row-h': `${rowHeight / 16}rem` }) }} {...(title || tabs || search ? {} : rest)}>
+  const headerRow = (
       <div role="row" className="ifs-table__row ifs-table__row--header">
         {columns.map(c => {
           const dir = cur && cur.key === c.key ? cur.dir : null;
@@ -347,16 +354,23 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
           );
         })}
       </div>
+  );
+  const table = (
+    <div role="table" className={IFS.cx('ifs-table', !(title || tabs || search) && className)} style={{ '--cols': cols, ...(rowHeight != null && { '--ifs-table-row-h': `${rowHeight / 16}rem` }) }} {...(title || tabs || search ? {} : rest)}>
+      {!(groupOf && headerPerGroup) && headerRow}
       {groupOf ? groups.map(([g, rs]) => {
-        const open = !collapsed.has(g);
+        const info = (groupInfo && groupInfo(g, rs)) || {};
+        const open = !info.locked && !collapsed.has(g);
         return (
           <React.Fragment key={String(g)}>
-            <button type="button" className="ifs-table__group" aria-expanded={open}
-              onClick={() => setCollapsed(s => { const n = new Set(s); open ? n.add(g) : n.delete(g); return n; })}>
-              <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-left-filled'} size={16} />
-              <span className="ifs-table__group-title">{g}</span>
-              <DataCounter>{rs.length}</DataCounter>
+            <button type="button" className={IFS.cx('ifs-table__group', info.locked && 'ifs-table__group--locked')} aria-expanded={info.locked ? undefined : open}
+              aria-disabled={info.locked || undefined} onClick={() => { if (!info.locked) setCollapsed(s => { const n = new Set(s); open ? n.add(g) : n.delete(g); return n; }); }}>
+              {info.locked ? <IFS.Icon name="lock" size={16} />
+                : <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-left-filled'} size={16} className="ifs-table__group-caret" />}
+              <span className="ifs-table__group-title">{g}{info.note && <span className="ifs-table__group-note">{info.note}</span>}</span>
+              {info.end !== undefined ? info.end : !info.locked && <DataCounter>{rs.length}</DataCounter>}
             </button>
+            {open && headerPerGroup && headerRow}
             {open && rs.map(renderRow)}
           </React.Fragment>
         );

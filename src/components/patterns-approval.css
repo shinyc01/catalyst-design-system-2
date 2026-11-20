@@ -143,3 +143,6 @@
 .ifs-apc__filter-clear{position:absolute;inset-block-start:var(--space-inset);inset-inline-end:var(--space-inset)} /* in the popover header (Figma) */
 .ifs-apc__filter .ifs-search{box-sizing:border-box;width:100%;min-width:0}
 .ifs-apc__chips{display:flex;flex-wrap:wrap;gap:var(--space-100)}
+
+/* Stage row end (Nov 20): status + done/total, 6 apart like an indicator and its counter elsewhere */
+.ifs-apc__stage-end{display:inline-flex;align-items:center;gap:var(--space-150)}

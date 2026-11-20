@@ -337,11 +337,19 @@ function ApcNote({ row, canAdd, canEdit, editing, onStartEdit, onSave, onCancel,
 //   view compact | full, details (full view: force the COMMENT / LAST NOTIFIED / action columns; default = when any row has that data), filterable (default: more than 3 approvers), onPush(approver) (owner's manual reminder on an awaiting row:
 //   shows the "Reminder sent." toast, stamps Last notified, then "Notified" + live countdown tooltip for pushCooldownHours, default 24),
 //   onNoteChange(approver, note|null, previous).
+//   stages (Nov 20, several approval stages on one page): [{ id, label, approvers, locked, note, collapsed }] instead of approvers;
+//     onStagesChange(stages). Built on the Table's groups: one group row per stage (caret, name, status + done/total at the end),
+//     the column header under each open stage; locked = a lock, can't open, `note` says when it opens. Which stage is open, folded or
+//     locked is the screen's call (stages don't have to run one after another). A fully approved stage starts folded.
 // Rules built in (Figma notes): approvers add a note to their own row; the owner adds a note to any approver's row; only a
 // note's author can edit or delete it; the filter applies live (state chips + name/role search, Clear all, "No results found").
-function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, currentUserId, ownerId, view = 'compact', details, filterable,
+function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages, onStagesChange, currentUserId, ownerId, view = 'compact', details, filterable,
   onPush, onNoteChange, pushCooldownHours = 24, className, ...rest }) {
-  const [list, setList] = useApValue(approvers, defaultApprovers, onChange);
+  // Stages: the approvers of every stage in one list (each tagged with its stage), split back into stages on change
+  const flat = stages ? stages.flatMap(st => (st.approvers || []).map(a => ({ ...a, stage: st.id }))) : undefined;
+  const toStages = l => stages.map(st => ({ ...st, approvers: l.filter(r => r.stage === st.id).map(({ stage, ...r }) => r) }));
+  const [list, setList] = useApValue(stages ? (onStagesChange ? flat : undefined) : approvers, stages ? flat : defaultApprovers,
+    stages ? (l => onStagesChange && onStagesChange(toStages(l))) : onChange);
   const [editing, setEditing] = React.useState(null);
   const [query, setQuery] = React.useState('');
   const [states, setStates] = React.useState([]);
@@ -457,7 +465,18 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
 
   return (
     <div ref={cardRef} className={apCx('ifs-table-card', 'ifs-apc', `ifs-apc--${viewClass}`, className)} {...rest}>
-      <IFS.Table columns={columns} rows={rows} aria-label="Approval chain" />
+      {stages ? <IFS.Table columns={columns} rows={rows} aria-label="Approval chain" headerPerGroup
+        groupBy={r => (stages.find(st => st.id === r.stage) || {}).label} groupOrder={stages.map(st => st.label)}
+        defaultCollapsed={stages.filter(st => st.collapsed || ((st.approvers || []).length && st.approvers.every(a => a.status === 'success'))).map(st => st.label)}
+        groupInfo={label => {
+          const st = stages.find(x => x.label === label) || {};
+          if (st.locked) return { locked: true, note: st.note, end: null };
+          const all = list.filter(r => r.stage === st.id), done = all.filter(r => r.status === 'success').length;
+          const rejected = all.some(r => r.status === 'rejected' || r.status === 'revisions');
+          const state = rejected ? ['red', 'Changes requested'] : done === all.length && all.length ? ['green', 'Approved'] : ['orange', 'Under review'];
+          return { note: st.note, end: <span className="ifs-apc__stage-end"><IFS.Indicator type={state[0]}>{state[1]}</IFS.Indicator><IFS.Counter>{`${done}/${all.length}`}</IFS.Counter></span> };
+        }} />
+        : <IFS.Table columns={columns} rows={rows} aria-label="Approval chain" />}
       {rows.length === 0 && <IFS.EmptyState cause="no-results" size="section" heading="No results found" body="Try another name or state." />}
       {filterAt && <div ref={popRef} className="ifs-apc__filter-pop" style={{ insetInlineStart: `${Math.max(0, filterAt.start)}px`, insetBlockStart: `calc(${filterAt.top}px + var(--space-100))` }}
         onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); closeFilter(true); } }}>
