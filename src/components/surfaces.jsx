@@ -241,8 +241,8 @@ function Drawer({ open, defaultOpen, onOpenChange, title, expanded, defaultExpan
 // Props: title, actions (node, header right, before the buttons), expanded / defaultExpanded=true / onExpandedChange
 // (Figma Expanded: 380px ↔ 48px rail holding only the ←| expand button), dot error|warning (status dot on the rail's button:
 // red = errors / open questions, orange = warnings only), showEvidence (show-evidence-chain, circle Tertiary S icon-button),
-// onEvidence, onClose (shows ✕ instead of the collapse toggle; the panel then never collapses), collapsible (default true; false = a panel
-// that is the step's task itself and can't fold: no toggle, always open, rule 4.6; Nov 20), full (fills the content area),
+// onEvidence, onClose (shows ✕ instead of the collapse toggle; the panel then never collapses), collapsible (default true: every panel can fold;
+// false only when a screen is specifically asked to stay open: no toggle, always open; rule 4.6, Nov 20), full (fills the content area),
 // children (Content slot). Lives in the page layout: no scrim, no focus trap.
 function Panel({ title, actions, expanded, defaultExpanded = true, onExpandedChange, dot, showEvidence = true, onEvidence, onClose, collapsible = true, full, children, className, style }) {
   const [isExp, setExp] = useSurfaceState(expanded, expanded === undefined ? defaultExpanded : undefined, onExpandedChange);
