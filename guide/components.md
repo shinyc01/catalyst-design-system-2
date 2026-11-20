@@ -33,7 +33,8 @@ How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a
 | Place in a hierarchy, go up a level | `Breadcrumb` | Ghost `Button` |
 | Step through items one at a time | `Pager` | table pagination |
 | Short hint on hover / focus | `Tooltip` | `Popover` (interactive) |
-| Error / warning / success | `Alert` | `Snackbar` (neutral confirmation, Undo) |
+| Error / warning | `Alert` | `Snackbar` (the result of the user's own action, Undo) |
+| News the user didn't cause (approved, finished) | Notification (`NotificationCard` in the tray) + a live `Snackbar` | a success `Alert` (rule 7.12) |
 | Blocking task | `Modal` | `Drawer` |
 | Larger on-demand task, same view | `Drawer` | `Panel` (always on) |
 | Always-on side context | `Panel` | `Drawer` |
