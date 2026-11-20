@@ -2504,10 +2504,11 @@ zoom-slider-atom (3275:483), used in the Explore bottom sheet. value 0–100 (Fi
 **In handovers:** placed 2,128× (Value, Build, Plan, Command, Explore) · usual: In progress true 97%
 Figma: base-bottom-sheet-organism (4406:25590), value-bottom-sheet-organism (789:37502), explore-bottom-sheet (72:4676)
 The Cooper entry point at the bottom of the content area, 40px tall, full width. Place it in AppShell's `bottom` slot.
-Props (all types): type base|value|explore (base = any tab; value = Value tab; explore = Explore tab),
+Props (all types): type base|documents|explore (base = broad pages; documents = every page inside one entity, rule 7.22;
+'value' is the old name for documents and still works; explore = Explore tab),
 prompts (labels → PromptButton M; Figma shows two), onPrompt(label), showPrompts (default true), showCooper (show-cooper, default true),
 onCooper (FAB click), cooperIndicator (FAB Show indicator; Figma sheets turn it off).
-type="value": inProgress (Figma In progress: shows the coverage bar), coverage 0–100, cooperContext (cooper-context, default true),
+type="documents" (or "value"): inProgress (Figma In progress: shows the coverage bar), coverage 0–100, cooperContext (cooper-context, default true),
   documents = { label, icon, onClick } (show-documents-button, tertiary M), onUpload (show-upload-button; omit on an Active framework = read-only).
 type="explore": fields [{ key, label, options, value, zoom }], values/onFieldChange(key, value), zoom/onZoomChange, lastSync,
   tools [{ icon, label, onClick }] (ghost S icon buttons). `left` replaces the whole left side for any type.
