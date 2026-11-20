@@ -456,6 +456,15 @@ title ("Phase"), onAddPhase (shows the header + on hover, Figma State=Hover), sl
 across all groups (Q1 2027 = 0, Q2 2027 = 1, … ).
 `function TimelineChart({ groups = [], phases = [], title = 'Phase', onAddPhase, state, className, ...rest })`
 
+### placeMapSlots
+**Tier:** Component
+placeMapSlots(el): place the top and bottom bars of one `.ifs-slots` container now (normally the kit does this for you)
+`function placeMapSlots(el)`
+
+### watchMapSlots
+**Tier:** Component
+`function watchMapSlots()`
+
 ## charts
 
 Examples (read before using any component below — shows the data shapes props expect): https://shinyc01.github.io/catalyst-design-system-2/src/gallery/charts.jsx

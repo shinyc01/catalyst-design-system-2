@@ -597,7 +597,63 @@ function TimelineChart({ groups = [], phases = [], title = 'Phase', onAddPhase, 
   );
 }
 
+/* ------------------------------------------------------------------------------------------ */
+// Map slots (rules 6.4–6.5): the part of the slot layout CSS can't do. The kit runs it for every `.ifs-slots` on the page
+// (watchMapSlots starts on load), so a screen only adds the slot classes; nothing to call.
+// Top bar: centred on the whole map; an open panel only nudges it aside a page gap; when it can't fit between the panels it
+// lines up with the start panel and the start panel moves down (sets .has-top-x + --slot-top-x, or .has-top-start + --slot-top-h).
+// Bottom bar (horizon): the same, and it shrinks to the space between the panels (.has-bottom-x + --slot-bottom-x / -w).
+// Placement runs before the browser paints (observer callbacks, not a timer), so the bars never flash in the wrong place.
+// Every size is read from the tokens at run time.
+const slotLen = (el, expr) => { // resolve a CSS length (tokens, calc) to px inside el
+  const p = document.createElement('div'); p.style.cssText = `position:absolute;visibility:hidden;inline-size:${expr}`;
+  el.appendChild(p); const w = p.getBoundingClientRect().width; p.remove(); return w;
+};
+const slotSheet = () => window.innerWidth < (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--bp-map-sheet')) || 0);
+const setVar = (el, k, v) => { if (el.style.getPropertyValue(k) !== v) el.style.setProperty(k, v); };
+// placeMapSlots(el): place the top and bottom bars of one `.ifs-slots` container now (normally the kit does this for you)
+function placeMapSlots(el) {
+  if (!el || !el.isConnected) return;
+  const W = el.getBoundingClientRect().width;
+  const bar = el.querySelector(':scope > .ifs-slot-top > *');
+  if (!bar) { el.classList.remove('has-top-start', 'has-top-x'); }
+  else {
+    const barW = Math.max(bar.getBoundingClientRect().width, bar.scrollWidth);
+    const s0 = slotLen(el, 'var(--slot-l)'), e0 = slotLen(el, 'var(--slot-top-r)');
+    const fits = barW <= W - s0 - e0 + 1;
+    el.classList.toggle('has-top-start', !fits);
+    el.classList.toggle('has-top-x', fits);
+    if (fits) setVar(el, '--slot-top-x', Math.min(Math.max((W - barW) / 2, s0), W - e0 - barW) + 'px');
+    setVar(el, '--slot-top-h', bar.getBoundingClientRect().height + 'px');
+  }
+  const bot = el.querySelector(':scope > .ifs-slot-bottom > *');
+  if (!bot || slotSheet()) { el.classList.remove('has-bottom-x'); return; }
+  const want = bot.classList.contains('ifs-slot-fill') ? slotLen(el, 'var(--region-map-bar)') : Math.max(bot.getBoundingClientRect().width, bot.scrollWidth);
+  const s0 = slotLen(el, 'var(--slot-l)'), e0 = slotLen(el, 'var(--slot-bottom-r)');
+  const w = Math.min(want, W - s0 - e0);
+  el.classList.add('has-bottom-x');
+  setVar(el, '--slot-bottom-w', w + 'px');
+  setVar(el, '--slot-bottom-x', Math.min(Math.max((W - w) / 2, s0), W - e0 - w) + 'px');
+}
+// watchMapSlots(): keep every `.ifs-slots` placed as panels open, close and resize. Started once on load; safe to call again.
+let slotWatch = null;
+function watchMapSlots() {
+  if (slotWatch || typeof window === 'undefined' || typeof MutationObserver === 'undefined') return;
+  let mo = null, busy = false;
+  // Placing measures with a probe element and toggles classes, which are DOM changes too: drop the records our own
+  // placement made, or the observer would keep calling itself
+  const placeAll = () => { if (busy) return; busy = true;
+    try { document.querySelectorAll('.ifs-slots').forEach(placeMapSlots); } finally { if (mo) mo.takeRecords(); busy = false; } };
+  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(placeAll) : null;
+  const watch = () => ro && document.querySelectorAll('.ifs-slots, .ifs-slot-top > *, .ifs-slot-bottom > *').forEach(e => ro.observe(e));
+  mo = new MutationObserver(() => { watch(); placeAll(); });
+  mo.observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] });
+  window.addEventListener('resize', placeAll);
+  slotWatch = { ro, mo }; watch(); placeAll();
+}
+if (typeof document !== 'undefined') { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watchMapSlots); else watchMapSlots(); }
+
 Object.assign(IFS, { ValueMapButton, MapToolbar, MapToolCluster, MapToolButton, MapToolDivider, NodeHoverActions, AddNodeButton,
-  NodeCard, SidebarNodeCard, MapPin, CanvasBackground, CanvasConnector, DropZone, SankeyNode, SankeyHeader, Sankey, TimelinePhase, TimelineChart });
+  NodeCard, SidebarNodeCard, MapPin, CanvasBackground, CanvasConnector, DropZone, SankeyNode, SankeyHeader, Sankey, TimelinePhase, TimelineChart, placeMapSlots, watchMapSlots });
 export { ValueMapButton, MapToolbar, MapToolCluster, MapToolButton, MapToolDivider, NodeHoverActions, AddNodeButton,
-  NodeCard, SidebarNodeCard, MapPin, CanvasBackground, CanvasConnector, DropZone, SankeyNode, SankeyHeader, Sankey, TimelinePhase, TimelineChart };
+  NodeCard, SidebarNodeCard, MapPin, CanvasBackground, CanvasConnector, DropZone, SankeyNode, SankeyHeader, Sankey, TimelinePhase, TimelineChart, placeMapSlots, watchMapSlots };
