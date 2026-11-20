@@ -14,7 +14,8 @@ How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a
 | Open Cooper | `FtaButton`; quick prompts `PromptButton` | — |
 | Single-line / multi-line text | `TextField` / `TextArea` | — |
 | Phone number | `PhoneField` | `TextField` |
-| Search by name or keyword | `Search` | `SmartSearch` (natural language, Cooper) |
+| Search (default: tables, libraries, pages) | `SmartSearch` (AI search: keywords or natural language) | — |
+| Simple keyword search, when the use case needs no AI (column filters, small lists) | `Search` | — |
 | A form on a page | `FormCard` | `Modal` (blocking task) |
 | One of 2–5 options, all visible | `SegmentedControl` | `Tabs` (peer views of a page) |
 | One of many options | `Select`; typeable or long → `Combobox` | `SegmentedControl` |
@@ -118,8 +119,7 @@ Use: Phone numbers; supports country/region selection and international format. 
 Use: Multi-line text. L full page (grows 140→300px), M compact (100→260px); then scrolls internally. Width 140–400px.
 
 ### search-regular-organism · `Search`
-Use: Keyword/name search over a list or table.
-Don't: Natural-language questions — that is the separate Cooper "Ask anything…" bar.
+Use: Simple keyword/name search where the use case needs no AI (column filters, small lists). The default search is `SmartSearch`; which one is the screen's call by use case (Nov 20).
 
 ### smart-search-organism · `SmartSearch`
 Use: Natural-language queries and prompts, where the system interprets intent instead of only matching names.

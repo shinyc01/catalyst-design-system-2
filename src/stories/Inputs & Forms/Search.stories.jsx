@@ -9,7 +9,7 @@ export default {
   component: IFS["Search"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** search-regular-organism (153:63462)\n\n\nUse: Keyword/name search over a list or table.\n\nDon't: Natural-language questions — that is the separate Cooper \"Ask anything…\" bar." } },
+    docs: { description: { component: "**Figma:** search-regular-organism (153:63462)\n\n\nUse: Simple keyword/name search where the use case needs no AI (column filters, small lists). The default search is `SmartSearch`; which one is the screen's call by use case (Nov 20)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=153-63462"},
   },
 };
