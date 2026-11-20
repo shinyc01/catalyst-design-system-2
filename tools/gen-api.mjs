@@ -93,8 +93,10 @@ await import(join(root, 'src/icons.js'));
 writeFileSync(join(root, 'dist/icons.txt'), Object.keys(window.IFS_ICONS).sort().join('\n') + '\n');
 // Every CSS token with its value, plus the text-style and effect classes, so prototypes use real names
 // (e.g. --gaps-gap-600 = 24px) instead of guessing from Figma's variable names.
-const css = readFileSync(join(root, 'src/tokens.css'), 'utf8');
-const tokens = [...css.matchAll(/(--[a-z0-9-]+):\s*([^;]+);/g)].map(m => `${m[1]}: ${m[2].trim()}`);
+// tokens.css plus the foundation files (layout, spacing, …), so tokens such as --layout-content-min are listed too (Nov 20)
+const css = [join(root, 'src/tokens.css'), ...readdirSync(join(root, 'src/foundations')).filter(f => f.endsWith('.css')).sort().map(f => join(root, 'src/foundations', f))]
+  .map(f => readFileSync(f, 'utf8')).join('\n');
+const tokens = [...css.matchAll(/(--[a-z0-9-]+):\s*([^;]+);/g)].map(m => `${m[1]}: ${m[2].trim()}`); // a token listed more than once = its density / breakpoint values
 const classes = [...css.matchAll(/^\.((?:t|fx)-[a-z0-9-]+)\{/gm)].map(m => `.${m[1]}`);
 writeFileSync(join(root, 'dist/tokens.txt'), [
   '# CSS custom properties (dark mode). Spacing scale: gaps/paddings 100 = 4px, 200 = 8px, 400 = 16px, 600 = 24px.',

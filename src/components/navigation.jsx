@@ -368,8 +368,9 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 // main button: always visible, last), progressLabel.
 const pageHeaderWarned = new Set();
 const pageHeaderWarnOnce = (k, msg) => { if (!pageHeaderWarned.has(k)) { pageHeaderWarned.add(k); console.warn(msg); } };
-// The title's minimum width in px, from the layout token (rem follows the user's text size)
-const headerTitleMin = el => { const v = getComputedStyle(el).getPropertyValue('--layout-header-title-min').trim(); return v.endsWith('rem') ? parseFloat(v) * rootPx() : parseFloat(v) || 0; };
+// Header sizes in px, read from the layout tokens (rem follows the user's text size)
+const headerLen = (el, name) => { const v = getComputedStyle(el).getPropertyValue(name).trim(); return v.endsWith('rem') ? parseFloat(v) * rootPx() : parseFloat(v) || 0; };
+const headerTitleMin = el => headerLen(el, '--layout-header-title-min');
 function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest }) {
   const ref = React.useRef(null);
   const [size, setSize] = React.useState('wide');
@@ -383,8 +384,8 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
     const el = ref.current; if (!el) return undefined;
     const read = () => {
       const w = el.getBoundingClientRect().width;
-      const k = rootPx() / 16; // 1100 / 720 follow the user's text size
-      setSize(w >= Math.max(1100 * k, needWide.current) ? 'wide' : w >= Math.max(720 * k, needRow.current) ? 'mid' : 'narrow');
+      // fold widths from the tokens (--bp-header-steps 1100, --bp-header-rows 720; rem, so they follow the user's text size)
+      setSize(w >= Math.max(headerLen(el, '--bp-header-steps'), needWide.current) ? 'wide' : w >= Math.max(headerLen(el, '--bp-header-rows'), needRow.current) ? 'mid' : 'narrow');
       setCentered(true);
     };
     read();
@@ -435,12 +436,11 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el || size !== 'mid') return;
     const bar = el.querySelector('.ifs-page-header__bar'); if (!bar) return;
-    const remPx = rootPx();
     const rowNeed = node => {
       if (!node) return 0;
       const kids = [...node.children];
       const g = parseFloat(getComputedStyle(node).columnGap) || 0;
-      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 15 * remPx)
+      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, headerLen(k, '--layout-header-title-mid'))
         : k.classList.contains('ifs-page-header__text') ? rowNeed(k) : k.getBoundingClientRect().width), 0) + Math.max(0, kids.length - 1) * g;
     };
     const gap = parseFloat(getComputedStyle(bar).columnGap) || 0;
