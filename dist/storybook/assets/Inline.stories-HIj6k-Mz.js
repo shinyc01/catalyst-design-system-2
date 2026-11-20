@@ -1,0 +1,4 @@
+import{I as a}from"./layout-D6lHfqe_.js";import{I as s}from"./patterns-trace-CDHgch6t.js";import"./index-B0WjJBI_.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-x-G-dxfr.js";import"./index-CwPCC0ZT.js";const i=a.find(n=>n.name==="Inline"),I={title:"Layout/Inline",component:s.Inline,tags:["autodocs"],parameters:{docs:{description:{component:"**Figma:** none (code-only layout primitive; Figma uses horizontal auto layout)"}}}},e={name:"All variants & states",render:()=>i.render()};var r,t,o;e.parameters={...e.parameters,docs:{...(r=e.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  name: 'All variants & states',
+  render: () => section.render()
+}`,...(o=(t=e.parameters)==null?void 0:t.docs)==null?void 0:o.source}}};const A=["AllVariants"];export{e as AllVariants,A as __namedExportsOrder,I as default};
