@@ -353,7 +353,7 @@ function CanvasConnector({ from, to, highlighted }) {
   const mx = (a.x + b.x) / 2;
   return (
     <svg className={IFS.cx('ifs-canvas-connector', highlighted && 'ifs-canvas-connector--on')} aria-hidden="true"
-      style={{ left: minX, top: minY - 1, width: w, height: h + 2 }} viewBox={`0 0 ${w} ${h + 2}`} preserveAspectRatio="none">
+      style={{ /* ltr: sankey geometry */ left: minX, top: minY - 1, width: w, height: h + 2 }} viewBox={`0 0 ${w} ${h + 2}`} preserveAspectRatio="none">
       <path d={`M${a.x} ${a.y} C${mx} ${a.y} ${mx} ${b.y} ${b.x} ${b.y}`} />
     </svg>
   );
@@ -452,9 +452,9 @@ function Sankey({ columns = [], nodes = [], links = [], height = 575, onNodeClic
             className={IFS.cx('ifs-sankey__band', related && (related.has(b.source) && related.has(b.target) ? 'ifs-sankey__band--on' : 'ifs-sankey__band--off'))} />)}
         </svg>
         {columns.map(c => c.header && layout.headers[c.id] &&
-          <SankeyHeader key={c.id} {...c.header} className="ifs-sankey__summary" style={{ left: layout.headers[c.id].x, top: layout.headers[c.id].y }} />)}
+          <SankeyHeader key={c.id} {...c.header} className="ifs-sankey__summary" style={{ /* ltr: sankey geometry */ left: layout.headers[c.id].x, top: layout.headers[c.id].y }} />)}
         {layout.placed.map(p => p.node.type === 'source' ? (
-          <div key={p.node.id} className="ifs-sankey__source" style={{ left: p.x, top: p.y, height: p.h, '--sankey-accent': SANKEY_COLOR[p.node.color] || SANKEY_COLOR.violet }}
+          <div key={p.node.id} className="ifs-sankey__source" style={{ /* ltr: sankey geometry */ left: p.x, top: p.y, height: p.h, '--sankey-accent': SANKEY_COLOR[p.node.color] || SANKEY_COLOR.violet }}
             onMouseEnter={() => setHover(p.node.id)} onMouseLeave={() => setHover(null)}>
             <span className="ifs-sankey__source-bar"><b>{p.node.count}</b>{p.node.countLabel || 'Goals'}</span>
             <span className="ifs-sankey__source-band" />
@@ -463,7 +463,7 @@ function Sankey({ columns = [], nodes = [], links = [], height = 575, onNodeClic
         ) : (
           <SankeyNode key={p.node.id} type={p.node.type} label={p.node.label} from={p.node.from} to={p.node.to} change={p.node.change}
             accent={p.accent} className={IFS.cx('ifs-sankey__node', related && !related.has(p.node.id) && 'ifs-sankey__node--off')}
-            style={{ left: p.x, top: p.y }} onMouseEnter={() => setHover(p.node.id)} onMouseLeave={() => setHover(null)}
+            style={{ /* ltr: sankey geometry */ left: p.x, top: p.y }} onMouseEnter={() => setHover(p.node.id)} onMouseLeave={() => setHover(null)}
             onClick={() => onNodeClick && onNodeClick(p.node)} />
         ))}
         {showFit && <ValueMapButton type="input" className="ifs-sankey__fit" onFit={onFit} />}
@@ -556,7 +556,7 @@ function TimelinePhase({ title, subtitle, badge, color = 'teal', start = 0, end 
             <IFS.IconButton size="s" icon="system-dots-horizont" label="More actions" onClick={onMore} />
           </span>
         </div>
-        <div className="ifs-timeline-phase__track">{grid}<span className="ifs-timeline-phase__bar" style={{ left: pct(start), width: pct(end - start) }} /></div>
+        <div className="ifs-timeline-phase__track">{grid}<span className="ifs-timeline-phase__bar" style={{ /* ltr: timeline axis does not mirror */ left: pct(start), width: pct(end - start) }} /></div>
       </div>
       {open && tasks.map((t, i) => (
         <div key={i} className="ifs-timeline-phase__task">
@@ -567,7 +567,7 @@ function TimelinePhase({ title, subtitle, badge, color = 'teal', start = 0, end 
             <span className="ifs-timeline-phase__when">{t.label}</span>
           </div>
           <div className="ifs-timeline-phase__track ifs-timeline-phase__track--task">
-            <span className="ifs-timeline-phase__bar ifs-timeline-phase__bar--task" style={{ left: pct(t.start), width: pct(t.end - t.start) }} />
+            <span className="ifs-timeline-phase__bar ifs-timeline-phase__bar--task" style={{ /* ltr: timeline axis does not mirror */ left: pct(t.start), width: pct(t.end - t.start) }} />
           </div>
         </div>
       ))}

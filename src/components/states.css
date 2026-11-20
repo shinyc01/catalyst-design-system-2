@@ -144,4 +144,4 @@
 .ifs-zoom__tick{width:1px;height:8px;flex:none;background:var(--border-selected)}
 .ifs-zoom__tick.is-after{background:var(--border-medium)}
 .ifs-zoom__tick.is-current{height:16px}
-.ifs-zoom__marker{position:absolute;top:-3px;width:4px;height:4px;margin-inline-start:calc(-1 * var(--border-widths-border-150));background:var(--icon-primary);clip-path:polygon(0 0,100% 0,50% 100%)}
+.ifs-zoom__marker{position:absolute;top:-3px;width:4px;height:4px;margin-left:calc(-1 * var(--border-widths-border-150));background:var(--icon-primary);clip-path:polygon(0 0,100% 0,50% 100%)} /* ltr: zoom marker placed by JS; click reads clientX */

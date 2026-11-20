@@ -27,7 +27,7 @@ function Floating({ anchorRef, floatRef, position = 'down', matchWidth = true, a
       let up = position === 'up';
       if (flip && fh) { if (!up && r.bottom + gap + fh > window.innerHeight && r.top - gap - fh >= 0) up = true; else if (up && r.top - gap - fh < 0) up = false; }
       const vw = document.documentElement.clientWidth;
-      setPos({ ...(align === 'end' ? { right: vw - r.right } : { left: r.left }), ...(matchWidth ? { width: r.width } : {}),
+      setPos({ ...(align === 'end' ? { /* ltr: popover placed from getBoundingClientRect */ right: vw - r.right } : { left: r.left }), ...(matchWidth ? { width: r.width } : {}),
         ...(up ? { bottom: window.innerHeight - r.top + gap } : { top: r.bottom + gap }) });
     };
     calc();

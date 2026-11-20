@@ -307,7 +307,7 @@ function ChartTip({ anchor, box, tip }) {
   }, [anchor && anchor.x, anchor && anchor.y, box.w, box.h, tip && tip.title]);
   if (!anchor || !tip) return null;
   return (
-    <div ref={ref} className="ifs-chart__tip" style={pos || { left: anchor.x, top: anchor.y + 16, visibility: 'hidden' }}>
+    <div ref={ref} className="ifs-chart__tip" style={pos || { /* ltr: chart tooltip placed from pointer */ left: anchor.x, top: anchor.y + 16, visibility: 'hidden' }}>
       <DataVizTooltip variant="chart" {...tip} />
     </div>
   );
@@ -1027,7 +1027,7 @@ function EvidenceStrength({ value = 0, thresholds = [70, 90], min = 50, title = 
       <span className="ifs-evidence__title">{title}</span>
       <div className="ifs-evidence__bar">
         {['reject', 'review', 'approve'].map((s, i) => <span key={s} className={IFS.cx('ifs-evidence__seg', `ifs-evidence__seg--${s}`, i === k && 'ifs-evidence__seg--on')} />)}
-        <span className="ifs-evidence__marker" style={{ left: `${pos}%` }}><span className="ifs-evidence__value">{value}%</span><span className="ifs-evidence__pointer" /></span>
+        <span className="ifs-evidence__marker" style={{ /* ltr: evidence scale reads left to right */ left: `${pos}%` }}><span className="ifs-evidence__value">{value}%</span><span className="ifs-evidence__pointer" /></span>
       </div>
       <div className="ifs-evidence__caption">{caps.map(c => <span key={c}>{c}</span>)}</div>
     </div>

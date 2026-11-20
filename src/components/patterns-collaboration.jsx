@@ -337,7 +337,7 @@ function CollaboratorsPanel({ controller: c, open, defaultOpen, onOpenChange, tr
   React.useLayoutEffect(() => {
     if (inline || !isOpen) return undefined;
     const calc = () => { const a = anchor.current; if (!a) return; const r = a.getBoundingClientRect();
-      setPos({ top: r.bottom + 12, right: Math.max(8, window.innerWidth - r.right) }); }; // 12 = gap-300 (Figma: panel 12px under the header button)
+      setPos({ top: r.bottom + 12, /* ltr: panel placed from getBoundingClientRect */ right: Math.max(8, window.innerWidth - r.right) }); }; // 12 = gap-300 (Figma: panel 12px under the header button)
     calc();
     window.addEventListener('scroll', calc, true); window.addEventListener('resize', calc);
     return () => { window.removeEventListener('scroll', calc, true); window.removeEventListener('resize', calc); };

@@ -320,7 +320,7 @@ function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper's
       const bar = root.current && (root.current.closest('.ifs-bottom-sheet') || root.current);
       if (!bar) return;
       const r = bar.getBoundingClientRect();
-      setPos({ left: r.left + popoverOffset, bottom: window.innerHeight - r.top + 4 });
+      setPos({ /* ltr: popover placed from getBoundingClientRect */ left: r.left + popoverOffset, bottom: window.innerHeight - r.top + 4 });
     };
     place();
     window.addEventListener('resize', place); window.addEventListener('scroll', place, true);
@@ -400,7 +400,7 @@ function DocumentsDropArea({ controller: c, children, className, style, ...rest 
       {children}
       {over && <IFS.DropZone className="ifs-docs-drop__overlay" aria-hidden="true" />}
       {over && pt && c.dragItems && (
-        <div className="ifs-docs-drop__ghosts" style={{ left: pt.x - 72, top: pt.y - 48 }} aria-hidden="true">
+        <div className="ifs-docs-drop__ghosts" style={{ /* ltr: drop ghosts follow the pointer */ left: pt.x - 72, top: pt.y - 48 }} aria-hidden="true">
           {c.dragItems.slice(0, 6).map(f => <IFS.NodeCard key={f.name} type="document" title={f.name.replace(/\.[^.]+$/, '')} caption={ext(f.name).toUpperCase()} stackIcons={false} />)}
         </div>
       )}

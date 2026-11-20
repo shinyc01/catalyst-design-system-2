@@ -729,7 +729,7 @@ const genericAnswer = q => ({
 // apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
 function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange,
   answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'],
-  onHistory, historyOpen, renderPanel, speed = 40, position = { right: 60, bottom: 131 }, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className }) {
+  onHistory, historyOpen, renderPanel, speed = 40, position = { /* ltr: prop keys; the default corner is applied as inset-inline-end */ right: 60, bottom: 131 }, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className }) {
   const [sz, setSz] = useCtl(size, defaultSize, onSizeChange);
   const [md, setMd] = useCtl(mode, defaultMode, onModeChange);
   const [msgs, setMsgs] = useCtl(messages, defaultMessages, onMessagesChange);
@@ -805,7 +805,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
     if (e.target.closest('button, textarea, input')) return;
     const box = e.currentTarget.closest('.ifs-cooper-float'); const stage = box && box.offsetParent; if (!box || !stage) return;
     const sr = stage.getBoundingClientRect(), br = box.getBoundingClientRect(); const dx = e.clientX - br.left, dy = e.clientY - br.top;
-    const move = ev => setPos({ left: Math.min(Math.max(0, ev.clientX - sr.left - dx), sr.width - br.width), top: Math.min(Math.max(0, ev.clientY - sr.top - dy), sr.height - br.height) });
+    const move = ev => setPos({ /* ltr: drag geometry from clientX */ left: Math.min(Math.max(0, ev.clientX - sr.left - dx), sr.width - br.width), top: Math.min(Math.max(0, ev.clientY - sr.top - dy), sr.height - br.height) });
     const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   };
@@ -815,7 +815,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
     const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   };
-  const floatStyle = pos ? { left: pos.left, top: pos.top } : { right: position.right, bottom: position.bottom };
+  const floatStyle = pos ? { left: pos.left, top: pos.top } : { insetInlineEnd: position.right, bottom: position.bottom }; // ltr: dragged position comes from clientX; the default corner follows direction
   const common = {
     type: md, title: ttl, newChat: msgs.length === 0, children: conversation, inputValue: input, onInputChange: setInput, onSend: q => send(q),
     analyzing: busy, onStop: stop, attachments: files, onRemoveAttachment: id => setFiles(files.filter(f => f.id !== id)), onAttach: attach,

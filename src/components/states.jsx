@@ -179,7 +179,7 @@ function ZoomSlider({ value, defaultValue = 20, onChange, label = 'Zoom', classN
       className={IFS.cx('ifs-zoom', className)} onClick={e => fromX(e.clientX)}
       onKeyDown={e => { if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); setV(Math.min(100, v + 5)); } if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); setV(Math.max(0, v - 5)); } }}>
       {Array.from({ length: ticks }, (_, i) => <span key={i} className={IFS.cx('ifs-zoom__tick', i === cur && 'is-current', i > cur && 'is-after')} />)}
-      <span className="ifs-zoom__marker" style={{ left: 2 + cur * 4 }} />
+      <span className="ifs-zoom__marker" style={{ /* ltr: zoom geometry; click reads clientX */ left: 2 + cur * 4 }} />
     </span>
   );
 }

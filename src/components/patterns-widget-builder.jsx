@@ -52,7 +52,7 @@ function PreviewWidgetCard({ type = 'strategic-objectives', title, className, ..
       <div className="ifs-preview-widget__dlabels">{bars.map(([, w], i) => sk(i, { width: w }))}</div>
       <div className="ifs-preview-widget__dplot">
         {bars.map(([v], i) => <span key={i} className="ifs-preview-widget__drow">
-          <i className={cx('ifs-preview-widget__sk', i === bars.length - 1 && 'ifs-preview-widget__sk--outline')} style={v < 0 ? { right: '50%', width: `${-v}%` } : { left: '50%', width: `${v / 2}%` }} />
+          <i className={cx('ifs-preview-widget__sk', i === bars.length - 1 && 'ifs-preview-widget__sk--outline')} style={v < 0 ? { /* ltr: preview chart geometry */ right: '50%', width: `${-v}%` } : { left: '50%', width: `${v / 2}%` }} />
         </span>)}
       </div>
     </div>;
@@ -421,7 +421,7 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
   /* ---------- drag & drop ---------- */
   const startDrag = (id, e, meta) => {
     const cell = boardRef.current.querySelector(`[data-wb-cell="${id}"]`);
-    const r = cell ? cell.getBoundingClientRect() : { left: e.clientX - 20, top: e.clientY - 20, width: meta.w || 360, height: meta.h || 140 };
+    const r = cell ? cell.getBoundingClientRect() : { /* ltr: drag geometry from clientX */ left: e.clientX - 20, top: e.clientY - 20, width: meta.w || 360, height: meta.h || 140 };
     const snap = snapshot();
     // The ghost is a copy at the widget's current width (notes 413:57113; frames draw ≈330px — notes win).
     const gw = r.width;
@@ -673,18 +673,18 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
       {drag && drag.target && !drag.preview && boardRect && (
         <DropIndicator orientation={drag.target.line.o === 'h' ? 'horizontal' : 'vertical'} className="wb-indicator"
           style={drag.target.line.o === 'h'
-            ? { left: drag.target.line.x - boardRect.left, top: drag.target.line.y - boardRect.top - 2, width: drag.target.line.w }
-            : { left: drag.target.line.x - boardRect.left - 2, top: drag.target.line.y - boardRect.top, height: drag.target.line.h }} />
+            ? { /* ltr: drag geometry from clientX */ left: drag.target.line.x - boardRect.left, top: drag.target.line.y - boardRect.top - 2, width: drag.target.line.w }
+            : { /* ltr: drag geometry from clientX */ left: drag.target.line.x - boardRect.left - 2, top: drag.target.line.y - boardRect.top, height: drag.target.line.h }} />
       )}
       {ghost && ReactDOM.createPortal(
         <div className={cx('wb-ghost', flyBack && 'wb-ghost--back')} aria-hidden="true"
-          style={flyBack ? { left: flyBack.src.left, top: flyBack.src.top, width: flyBack.w }
-            : { left: ghost.x - ghost.ox, top: ghost.y - ghost.oy, width: ghost.w }}>
+          style={flyBack ? { /* ltr: drag geometry from clientX */ left: flyBack.src.left, top: flyBack.src.top, width: flyBack.w }
+            : { /* ltr: drag geometry from clientX */ left: ghost.x - ghost.ox, top: ghost.y - ghost.oy, width: ghost.w }}>
           {ghost.external
               ? <WidgetCard title={ghost.title} description={(widgets[ghost.id] || {}).description} preview={(widgets[ghost.id] || {}).preview || 'strategic-objectives'} state="drag" />
               : <WidgetFrame title={widgets[ghost.id].title} state="ghost" bare={widgets[ghost.id].bare} onEditWithCooper={false}>{widgets[ghost.id].render({ state: 'ghost' })}</WidgetFrame>}
         </div>, document.body)}
-      {drag && drag.tip && ReactDOM.createPortal(<span className="wb-tip wb-tip--cursor" style={{ left: drag.x + 12, top: drag.y - 44 }}><IFS.Tooltip inline content={drag.tip} /></span>, document.body)}
+      {drag && drag.tip && ReactDOM.createPortal(<span className="wb-tip wb-tip--cursor" style={{ /* ltr: drag geometry from clientX */ left: drag.x + 12, top: drag.y - 44 }}><IFS.Tooltip inline content={drag.tip} /></span>, document.body)}
     </div>
   );
 }

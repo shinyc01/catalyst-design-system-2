@@ -355,13 +355,13 @@ function ColumnSettings({ columns = [], onChange, suggestions = [], onAdd, findC
           <div className="ifs-column-settings__list" ref={listRef}>
             {columns.map((c, i) => (
               <div key={c.key} data-col-row className={ptCx('ifs-column-settings__row', drag && drag.from === i && 'is-dragging')} style={{ position: 'relative' }}>
-                {drag && drag.over === i && drag.from !== i && drag.from !== i - 1 && <IFS.DropIndicator style={{ position: 'absolute', left: 0, right: 0, top: -4 }} />}
+                {drag && drag.over === i && drag.from !== i && drag.from !== i - 1 && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 0, insetInlineEnd: 0, top: -4 }} />}
                 <IFS.ContentCard size="s" state={drag && drag.from === i ? 'drag' : undefined}
                   title={<span className="ifs-column-settings__name"><span className="ifs-column-settings__handle" onPointerDown={e => startDrag(e, i)} aria-label={`Drag ${c.title}`} role="button" tabIndex={0}
                     onKeyDown={e => { const d = { ArrowUp: -1, ArrowDown: 1 }[e.key]; if (!d) return; e.preventDefault(); const j = i + d; if (j < 0 || j >= columns.length) return; const n = [...columns]; [n[i], n[j]] = [n[j], n[i]]; onChange && onChange(n); }}>
                     <IFS.Icon name="system-drag-and-drop" size={16} /></span><span className={c.hidden ? 'ifs-column-settings__hidden' : undefined}>{c.title}</span></span>}
                   iconButton={{ icon: c.hidden ? 'eye-closed' : 'eye-opened', label: c.hidden ? `Show ${c.title}` : `Hide ${c.title}`, onClick: () => toggle(c.key) }} />
-                {drag && drag.over === columns.length && i === columns.length - 1 && <IFS.DropIndicator style={{ position: 'absolute', left: 0, right: 0, bottom: -4 }} />}
+                {drag && drag.over === columns.length && i === columns.length - 1 && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 0, insetInlineEnd: 0, bottom: -4 }} />}
               </div>
             ))}
           </div>
@@ -624,7 +624,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
     else if (added[c.key]) out.render = () => <IFS.Skeleton width="60%" height={12} />;
     if (fk) out.filter = { applied: activeFilterCount(c.key) > 0, onClick: e => {
       e.stopPropagation(); const b = e.currentTarget.getBoundingClientRect(); const w = wrapRef.current.getBoundingClientRect();
-      setOpenFilter(o => (o && o.key === c.key ? null : { key: c.key, left: Math.min(b.left - w.left - 12, w.width - 244), top: b.bottom - w.top + 8 }));
+      setOpenFilter(o => (o && o.key === c.key ? null : { key: c.key, /* ltr: column filter placed from getBoundingClientRect */ left: Math.min(b.left - w.left - 12, w.width - 244), top: b.bottom - w.top + 8 }));
     } };
     if (c.name && ranked) out.title = <span className="ifs-data-table__name-th">{c.title}</span>;
     return out;
@@ -657,7 +657,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
     const nums = data.map(r => Number(valOf(filterCol, r))).filter(n => !isNaN(n));
     const presets = [{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This Year' }];
     return (
-      <div ref={filterRef} className="ifs-data-table__filter-pop" style={{ left: Math.max(0, openFilter.left), top: openFilter.top }}>
+      <div ref={filterRef} className="ifs-data-table__filter-pop" style={{ /* ltr: column filter placed from getBoundingClientRect */ left: Math.max(0, openFilter.left), top: openFilter.top }}>
         <ColumnFilter title="Filter"
           options={fk === 'range' ? [] : fk === 'presets' ? (filterCol.filterOptions || presets) : options}
           multiple={fk !== 'presets'} value={f.values || []} onChange={v => setFilter(k, { values: v })}
@@ -707,7 +707,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
       {!collapsed && <>
         {!toolbarOutside && !pageTop && toolbar}
         <div className="ifs-data-table__scroll">{body}</div>
-        {drag && drag.y != null && <IFS.DropIndicator style={{ position: 'absolute', left: 16, right: 16, top: drag.y }} />}        {fixedHeight && ordered.length > 0 && !searching && <div className="ifs-data-table__more">
+        {drag && drag.y != null && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 16, insetInlineEnd: 16, top: drag.y }} />}        {fixedHeight && ordered.length > 0 && !searching && <div className="ifs-data-table__more">
           <IFS.Button type="ghost" size="s" iconRight={expanded ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} onClick={() => setExpanded(!expanded)}>{expanded ? 'Show less' : 'Show more'}</IFS.Button>
         </div>}
         {filterPanel}

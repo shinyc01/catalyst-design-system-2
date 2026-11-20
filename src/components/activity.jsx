@@ -392,7 +392,7 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
   React.useLayoutEffect(() => {
     if (!matches.length) { if (menuPos) setMenuPos(null); return; }
     const r = fieldRef.current.getBoundingClientRect();
-    if (!menuPos || menuPos.left !== r.left || menuPos.top !== r.bottom + 4) setMenuPos({ left: r.left, top: r.bottom + 4 });
+    if (!menuPos || menuPos.left !== r.left || menuPos.top !== r.bottom + 4) setMenuPos({ /* ltr: mention menu placed from getBoundingClientRect */ left: r.left, top: r.bottom + 4 });
   });
   const pick = p => { setText((text || '').replace(/@([\w.-]*)$/, `@${p.name} `)); setActive(0); onMention && onMention(p); ref.current && ref.current.focus(); };
   const onKeyDown = e => {
@@ -422,7 +422,7 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
     </div>
   );
   const picker = matches.length > 0 && menuPos && createPortal(
-    <div className="ifs-composer__mention-pop" style={{ left: menuPos.left, top: menuPos.top }}>
+    <div className="ifs-composer__mention-pop" style={{ /* ltr: mention menu placed from getBoundingClientRect */ left: menuPos.left, top: menuPos.top }}>
       {(renderMentionMenu || (p => <CommentMentionMenu {...p} />))({ people: matches, query: q, activeIndex: ai, onPick: pick, onActiveChange: setActive })}
     </div>, document.body);
   const field = (

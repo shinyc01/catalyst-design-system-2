@@ -80,7 +80,7 @@ function ScrollBar({ location = 'top', height = 300, className }) {
 }
 
 // Arrow icon per direction: each arrow points at the hub (Figma defaults).
-const EXTRAS_ARROW = { left: 'arrow-right', right: 'arrow-left', top: 'arrow-down', bottom: 'arrow-up' };
+const EXTRAS_ARROW = { /* ltr: lookup keys, not a style */ left: 'arrow-right', right: 'arrow-left', top: 'arrow-down', bottom: 'arrow-up' };
 
 // Figma: circular-button-molecule (72:9983)
 // Props: direction left|right|top|bottom (Figma Type = which side of the hub it sits on), children = button label,
@@ -97,7 +97,7 @@ function CircularButton({ direction = 'left', children, hotkey, icon, state, cla
   );
 }
 
-const EXTRAS_DIR_DEG = { top: 0, right: 90, bottom: 180, left: 270 };
+const EXTRAS_DIR_DEG = { top: 0, /* ltr: lookup keys, not a style */ right: 90, bottom: 180, left: 270 };
 const EXTRAS_KEY_DIR = { ArrowUp: 'top', ArrowRight: 'right', ArrowDown: 'bottom', ArrowLeft: 'left' };
 const extrasIsMac = () => typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 // "Mod+1", "Ctrl+Shift+ArrowUp", "Alt+k" → does the event match? Mod = ⌘ on Mac, Ctrl elsewhere.
@@ -354,13 +354,13 @@ function SliderTrack({ type = 'default', min, max, step = 1, value, defaultValue
   else { a = 0; b = pct(vals[0]); }
   return (
     <div ref={track} className={IFS.cx('ifs-slider-track', disabled && 'ifs-slider-track--disabled', className)} style={style} onPointerDown={e => start(e)}>
-      <span className="ifs-slider-track__fill" style={{ left: `${a}%`, width: `${b - a}%` }} />
+      <span className="ifs-slider-track__fill" style={{ /* ltr: slider geometry from clientX */ left: `${a}%`, width: `${b - a}%` }} />
       {vals.map((v, i) => (
         <span key={i} role="slider" tabIndex={disabled ? -1 : 0} aria-disabled={disabled || undefined}
           aria-label={labels ? labels[i] : (type === 'range' ? `${label} ${i ? 'to' : 'from'}` : label)}
           aria-valuemin={type === 'range' && i === 1 ? vals[0] : lo} aria-valuemax={type === 'range' && i === 0 ? vals[1] : hi} aria-valuenow={v}
           aria-valuetext={formatValue ? String(formatValue(v)) : undefined}
-          data-state={thumbState} className={IFS.cx('ifs-slider-thumb', drag === i && 'is-dragging')} style={{ left: `${pct(v)}%` }}
+          data-state={thumbState} className={IFS.cx('ifs-slider-thumb', drag === i && 'is-dragging')} style={{ /* ltr: slider geometry from clientX */ left: `${pct(v)}%` }}
           onPointerDown={e => { e.stopPropagation(); start(e, i); }} onKeyDown={e => onKey(e, i)} />
       ))}
     </div>
