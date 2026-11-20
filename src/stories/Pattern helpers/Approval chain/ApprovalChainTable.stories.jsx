@@ -9,7 +9,7 @@ export default {
   component: IFS["ApprovalChainTable"],
   tags: ["autodocs","needs-review"],
   parameters: {
-    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The kit's ApprovalChain (cards, from the IFS DS timeline) vs this page's table-style chain: which is canonical?\n> - The library now publishes newer versions of parts used here: status b0bad471, review-investment-table, review-data-visualisation. The kit follows the Patterns file copies.\n\n**Figma:** Approval chain table [patterns] (157:114778)" } },
+    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Decided (Nov 19, 2.0.3): both are kept, for different uses (ApprovalChain timeline cards vs this table-style chain); revisit later. Rebuilding ApprovalChainTable on the base `Table` is parked.\n> - The library now publishes newer versions of parts used here: status b0bad471, review-investment-table, review-data-visualisation. The kit follows the Patterns file copies.\n\n**Figma:** Approval chain table [patterns] (157:114778)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=157-114778"},
   },
 };

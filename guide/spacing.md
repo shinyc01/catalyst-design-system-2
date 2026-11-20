@@ -19,7 +19,7 @@ One scale replaces Figma's four identical scales (gaps, paddings, margins, gutte
 
 | Role | Spacious | Comfortable | Compact | Use for |
 |---|---|---|---|---|
-| `--space-inset` | 20 | 16 | 12 | Padding of every container part, on all four sides: cards and table cards, panels, drawers, modals, popovers, forms. Not modals and form cards (`inset-l`) or table cards (`table-x`). |
+| `--space-inset` | 20 | 16 | 12 | Padding of every container part, on all four sides: cards, panels, drawers, popovers. Not modals and form cards (`inset-l`) or table cards (`table-x`). |
 | `--space-inset-l` | 24 | 20 | 16 | Padding of modals and form cards (one step roomier next to their H4 title; accepted from Flexy, Nov 19) |
 | `--space-table-x` | 20 | 16 | 16 | Table card padding and table cell left and right (Compact keeps 16) |
 | `--space-stack` | 16 | 12 | 8 | Gap between blocks inside a container (fields, cards in a panel, sections of a drawer) |
@@ -83,7 +83,7 @@ Cards placed on a page use the page gap; blocks inside a container use the stack
 ```jsx
 <IFS.Stack gap="stack">
   <IFS.Inline gap="200" align="center" justify="between">
-    <h2 className="t-heading-h4-medium">Investments</h2>
+    <h2 className="t-heading-h4-semibold">Investments</h2>
     <IFS.Inline gap="200"><IFS.Button type="secondary">Export</IFS.Button><IFS.Button type="primary">Add</IFS.Button></IFS.Inline>
   </IFS.Inline>
   <IFS.Table … />

@@ -120,7 +120,7 @@ function CompareDropdown({ groups = [], value, defaultValue = null, onChange, op
 // Figma: compare-header (0c79e831e79cbfa3259c5619e66bd0f64cc45b2a; Patterns copy 52:82780) — the "COMPARE TO" bar above a compare view.
 // A 440px blurred box (label + compare-dropdown) on a 42px full-width row; boolean "Show cooper-banner" adds a 398px
 // cooper-banner beside it (hidden by default; the banner itself is a separate component not built here).
-// Props: label (default "Compare to", drawn uppercase), cooperBanner (node → show-cooper-banner), every CompareDropdown prop.
+// Props: label (default "Compare to", sentence case, Label/M/medium), cooperBanner (node → show-cooper-banner), every CompareDropdown prop.
 function CompareHeader({ label = 'Compare to', cooperBanner, className, style, ...dropdown }) {
   return (
     <div className={paCx('ifs-compare-header', className)} style={style}>

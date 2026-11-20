@@ -552,7 +552,7 @@ function IconPicker({ icons = EXTRAS_PICKER_ICONS, value, defaultValue = null, o
   );
 }
 
-// Figma: weekday-atom (2704:74414) — the weekday header cell of the calendar (Caption/regular-UPPER, text/tertiary, 32×16).
+// Figma: weekday-atom (2704:74414) — the weekday header cell of the calendar (Label/M/medium in sentence case, text/tertiary, 32×16; Figma: Caption/regular-UPPER).
 // Props: children = day text (Figma "day", e.g. "Wed"). Figma's show-badge / timeline props are not wired to any layer.
 function Weekday({ children, className, ...rest }) {
   return <span role="columnheader" className={IFS.cx('ifs-weekday', className)} {...rest}>{children}</span>;

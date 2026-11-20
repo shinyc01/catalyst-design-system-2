@@ -9,7 +9,7 @@ export default {
   component: IFS["Weekday"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** weekday-atom (2704:74414)\n\n\n**Use for** (inferred) Weekday header cell in the calendar." } },
+    docs: { description: { component: "**Figma:** weekday-atom (2704:74414)\n\n\n**Use for** (inferred) Weekday header cell in the calendar.\n\n**Notes** (designer decision, Nov 19 2026) Weekday names and the first day of the week come from the user's locale (`IFS.format.weekStart()`), never a fixed Monday or Sunday." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2704-74414"},
   },
 };

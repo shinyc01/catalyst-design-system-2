@@ -22,7 +22,7 @@ These are three right-hand panels that all show the system's verdict on a framew
 - The collapsed 48 px rail is `Panel expanded={false}` with `dot`: `ArrowButton` (arrow-bar-left) with a red or orange dot.
 - Readiness Evaluation reuses `ReadinessEvaluation` / `ReadinessSection` / `ReadinessFacts` (patterns-approval) inside `Panel`. Reviewer notes are `SourceCard type="user"`. The header uses `SplitButton` (Approve ▾ → Request more info).
 - Screen: `AppShell`, `NavBar`, collapsed `SideNav`, `PageHeader` + `Stepper`, `BottomSheet type="value"`.
-  - On Review screens, the content is `Stat`, `Tabs`, `InvestmentValueImpact` and `TableReview`.
+  - On Review screens, the content is `StatCardsRow` / `StatCard`, `Tabs`, `InvestmentValueImpact` and `TableReview`.
   - On the map, it is `CanvasHeader`, `CanvasBackground`, `NodeCard` and `ValueMapButton`.
 
 ## Flows and states

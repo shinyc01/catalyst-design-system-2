@@ -169,7 +169,7 @@ function CollaboratorRow({ person, control, onOpen, onAdd, onRoleChange, onRemov
   );
 }
 
-// Section of the panel: H4 UPPER heading (text/secondary, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
+// Section of the panel: Label/M/medium heading (sentence case) (text/secondary, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
 function CollaboratorSection({ title, cooper, children }) {
   return (
     <section className="ifs-collab-section">

@@ -595,7 +595,7 @@ function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bot
   const job = panelMode || (React.isValidElement(panel) && panel.type && panel.type.panelMode) || 'push';
   const over = !!panel && job === 'over';
   const pushRail = !!panel && job === 'push' && narrow; // push panel with no room: rail + expands over
-  // Side nav folds to its rail below md, and also when a pushed panel would leave the page area under 840 (Nov 19:
+  // Side nav folds to its rail below md, and also when a pushed panel would leave the page area under 800 (Nov 19:
   // fold by available space, as Atlassian, Carbon and Material do); it can be opened again over the content.
   const navFold = !!sideNav && !narrow && !!panel && job === 'push' && !roomy;
   const navOverlay = !!sideNav && (narrow || navFold);

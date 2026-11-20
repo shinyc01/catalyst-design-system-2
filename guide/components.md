@@ -30,10 +30,10 @@ Layout rules (Foundations › Layout, Figma):
 - Desktop reference frame 1440 × 810. Breakpoints, columns, page margin and gutter: `guide/layout.md` §1 (xs < 600, sm 600, md 1024, lg 1440, xl 1920; 4 / 8 / 12 columns; by screen width, never density; the grid follows the content area).
 - Grid layout: 12 columns, centred, for dashboards and content pages. Sticky header spans full width above it. Cooper FAB anchored bottom-right.
 - Map layout: the map background is a draggable canvas filling all space between the sticky header and the bottom bar; bottom bar is sticky.
-- Spacing, padding, radius and border use semantic tokens (`paddings/padding-*`, `gap-*`, `radius-*`, `border-*`), never arbitrary values. Layout primitives: Box, Stack (vertical), Flex (horizontal), Visually Hidden (screen-reader-only labels).
+- Spacing, padding, radius and border use tokens, never arbitrary values: one `--space-*` scale and its roles (`--space-inset`, `--space-inset-l`, `--space-table-x`, `--space-stack`, `--space-section`; guide/spacing.md), `radius-*`, `border-*`. Figma's `paddings/padding-*` and `gap-*` names are old aliases: don't use them in new code. Layout primitives: Box, Stack (vertical), Flex (horizontal), Visually Hidden (screen-reader-only labels).
 - Log-in screen has no product chrome: split layout, brand panel + auth form (`log-in-form-pattern`). (Figma, Log in)
 
-Overlay layers, lowest to highest (Surfaces, Figma): panel (in layout) → popover (anchored to trigger) → drawer (edge, over content) → modal (centred, scrim, blocking). Toasts (`alert-organism`, `snackbar-organism`) float top-right over everything.
+Overlay layers, lowest to highest (Surfaces, Figma): panel → popover (anchored to trigger) → modal (centred, scrim, blocking). A side panel or drawer is `push` (in the layout) or `over` (over the content, no scrim) by its job, not by a fixed layer: guide/layout.md §5 (Nov 19, 2.0.3). Toasts (`alert-organism`, `snackbar-organism`) float top-right over everything.
 
 ---
 
@@ -42,7 +42,7 @@ Overlay layers, lowest to highest (Surfaces, Figma): panel (in layout) → popov
 Each rule is quoted from a canvas note (Figma) and cited by page.
 
 1. **Buttons, not links.** "Inline text links are not used in the interface — any page-to-page move, opening an object, going back a level … is a button." Exceptions: links inside user-authored content and external resources. Use Ghost button where a text link would go. — Action
-1b. **Two page headers.** Use `PageTop` on library/list pages (title, description, New action, tabs with counts and smart search) and `PageHeader` on a single object's page (slim bar: back, name, status, actions). (designer decision, Oct 2026)
+1b. **Three page headers.** `PageTop` on broad pages: tables, libraries, landing and category pages (H2 title, description, New action, tabs with counts and smart search). The thin `PageHeader` inside one entity: an idea, investment, value or strategy framework (slim bar: back, name, ID, status, actions; Label/M medium title), decided per header type. `ExploreHeader` is the thin map bar (the thin PageHeader's map variant). Narrow and short-screen rules: guide/layout.md §8. (designer decision, Oct 2026; three headers Nov 19 2026)
 2. **No table pagination.** "No hidden rows in tables. We don't paginate table content." Narrow with filters that carry counts: on a library/list page, **Tabs** with counts sit above the table card; inside a table card, a **SegmentedControl S** with counts sits in the card's bar (Idea Pad). The table scrolls with a sticky header. A fixed-height card (600px) may use "Show more". — Navigation, Data Display › Table; Patterns › Table (see guide/patterns/table.md)
 3. **Stepper is non-interactive.** "Users cannot click or tap a step to navigate between steps." A button or completion event advances it. — Navigation
 4. **Every visible field is required.** No asterisks or required markers; optional fields are not shown. — Inputs & Forms
@@ -55,7 +55,7 @@ Each rule is quoted from a canvas note (Figma) and cited by page.
 11. **Modal: at most two primary actions.** More means the modal is doing too much; split the flow. — Surfaces
 12. **Skeletons only inside the component that owns the async data.** Shell, nav, sidebar, header and static labels render immediately. Unknown shape → spinner; user-triggered action → button loading state. — Content States
 13. **Empty-state variant is chosen by cause, never by surface.** — Content States
-14. **Charts:** zero-based bars, one series = one colour group, exact values always available (tooltip + data-table fallback). — Data Visualisation
+14. **Charts:** zero-based bars, one series = one colour group, exact values always available (tooltip + data-table fallback). Charts and their legends use data-viz colours only; the neutral colour (base, other, no data) is `--icon-tertiary`. — Data Visualisation (colour rule: designer decision, Nov 19 2026)
 15. **Filters:** a surface is either instant (chips only) or deferred (contains fields, commits on Apply); "instant and deferred never mix on one surface." — Selection › Filter
 16. **Field size follows the surface:** L for full-page forms, M for modals/drawers/panels, S for footers/toolbars, XL for view-level selectors that change what the page shows. — Selection, Inputs & Forms
 17. **Layout spacing in screens uses `Stack` and `Inline`,** never a hand-written `display:flex; gap`. `gap` takes a role (`inset`, `stack`, `section`, `page-gap`) or a `--space-*` step (`"200"`); a number or px warns and falls back to `stack`. Cards on the page grid still use `.ifs-grid`. (designer decision, Nov 19 2026; guide/spacing.md §8)
@@ -248,7 +248,7 @@ key: cfb1a43e05a8a95ec29184aaf6ffb10a1a978792 · node: 2145:3758 · variants: Ty
 ### form-card-organism
 key: 392abc20ede4670b102f96d6d6006a6291614144 · node: 5826:24755 · variants: Type=[Default] · swap: Footer content, Content slot
 **Use for** (Figma) A surface that wraps a form on a consistent backdrop. Slots: header (title, optional description, one optional action) → optional divider → body (fields) → optional footer (actions).
-**Notes** (Figma) Width 464–680px (content slot min 400px, 32px padding); height hugs content up to the viewport, then the body scrolls between pinned header and footer. Primary stays enabled; on submit validate all fields. Loading = field skeletons; submitting = primary spinner, form locks.
+**Notes** (Figma) Width 464–680px (content slot min 400px); padding `--space-inset-l` 24 / 20 / 16 (Nov 19, 2.0.3; Figma showed 32); height hugs content up to the viewport, then the body scrolls between pinned header and footer. Primary stays enabled; on submit validate all fields. Loading = field skeletons; submitting = primary spinner, form locks.
 
 ### checkbox-atom
 key: 2fd66408cf49dad48be910477510d1ea6283ee7e · node: 153:60798 · variants: Type=[Unselected|Selected|Indeterminate] State=[Default|Hover|Pressed|Disabled|Focus]
@@ -374,6 +374,7 @@ key: cda4402e69b9c55d6cb27cc5af0f079a9d8269b6 · node: 5434:16926 · variants: P
 ### weekday-atom
 key: ea3dc8e507c3a96eeca1cc2a0b0ad4b68fc07dbf · node: 2704:74414 · variants: state=[dayItem] · bool: Show badge · text: day · swap: timeline
 **Use for** (inferred) Weekday header cell in the calendar.
+**Notes** (designer decision, Nov 19 2026) Weekday names and the first day of the week come from the user's locale (`IFS.format.weekStart()`), never a fixed Monday or Sunday.
 
 ### date-atom
 key: 3cd956aef880be83c45344518b64bf9e3e1b97de · node: 1440:5201 · variants: State=[Empty|Last|Default|Today|Next month|Selected|Focus|Endpoint|Hover|Event] · text: number
@@ -382,6 +383,7 @@ key: 3cd956aef880be83c45344518b64bf9e3e1b97de · node: 1440:5201 · variants: St
 ### date-picker-molecule
 key: 14442abad0a3dd37bf0cdbe5105a95229d8188a6 · node: 3406:9510 · variants: type=[calendar] · bool: show-apply-button · swap: Slot, title
 **Use for** (Figma) Single date: click a day commits and closes, no Apply. Range: two clicks, then Apply confirms. Field is typeable (DD.MM.YYYY) and stays in sync with the grid; header opens month/year view.
+**Notes** (designer decision, Nov 19 2026) Kit `Calendar`: the month/year title is H3; weekday names and first day from the user's locale. `fill` makes it take the full card width (the Command calendar): date cells keep 32 and spread across the width.
 
 ---
 

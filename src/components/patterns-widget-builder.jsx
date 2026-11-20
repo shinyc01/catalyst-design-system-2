@@ -24,7 +24,7 @@ function StatCardsRow({ rows = 1, cards = [], children, className, ...rest }) {
 
 /* ------------------------------------------------------------------------------------------ */
 // Figma: preview-widget-card-organism (key c30262b5a98acb4175dc9c5a891d9198ce782de6; Patterns copy 331:492728)
-// The thumbnail inside a widget card: a 7px uppercase heading over a skeleton of the chart the widget adds.
+// The thumbnail inside a widget card: a 7px sentence-case heading over a skeleton of the chart the widget adds.
 // Figma draws the skeleton as a raster image; here it is drawn with blank blocks (no data, never focusable).
 // Props: type strategic-objectives | framework-coverage | portfolio | investment-value, title (heading; defaults per type).
 const PREVIEW_TITLES = {
@@ -130,7 +130,7 @@ function DropIndicator({ orientation = 'horizontal', className, style, ...rest }
 /* ------------------------------------------------------------------------------------------ */
 // Figma: widget-view-change-position (Patterns local component 331:509936)
 // The compact chip a widget collapses into while its position is being changed (follows the cursor).
-// Props: title (Label/L/UPPER, text/tertiary). The ghost icon-button carries the drag mark.
+// Props: title (H4, sentence case, text/tertiary). The ghost icon-button carries the drag mark.
 function WidgetViewChangePosition({ title, className, ...rest }) {
   return (
     <div className={cx('ifs-widget-chip', className)} {...rest}>
@@ -151,7 +151,7 @@ const wbMenuItems = items => items.map(it => ({ label: it.label, icon: it.icon, 
     prefix: <span className={cx('wb-size-option__bars', sz.selected && 'is-selected')} aria-hidden="true">{[0, 1, 2].map(i => <i key={i} className={cx(i < sz.span && 'is-on')} />)}</span> })) }));
 
 // Pattern: WidgetFrame — the frame every widget on a dashboard / report is drawn in. It is the kit's chart frame
-// (DataVizCard variant chart: 6px padding, uppercase header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
+// (DataVizCard variant chart: 6px padding, sentence-case header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
 // widget ⋮ menu. Figma draws widgets as content-card-organism (Size M, 6px padding) with this header in its top slot.
 // Props: title, children (body), state hover | drag | ghost (forced), menu = [{ label, icon, onClick, disabled, items }],
 // onEditWithCooper, onCooper, grabProps (spread on the ⋮⋮ handle), bare (body has no padding — kit charts bring their own; a single

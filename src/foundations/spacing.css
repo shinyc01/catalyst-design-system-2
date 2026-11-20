@@ -6,7 +6,9 @@
              --size-*    Size ruler for dimensions only (heights, widths, icons, 1–3px optical nudges).
    2. Roles  change with density (Spacious / Comfortable / Compact):
              --space-inset    20 / 16 / 12  padding, on all four sides, of every container part:
-                                            cards and table cards, panels, drawers, modals, popovers, forms; table cell x
+                                            cards, panels, drawers, popovers
+             --space-inset-l  24 / 20 / 16  modals and form cards (2.0.3)
+             --space-table-x  20 / 16 / 16  table card edge and table cell sides (2.0.3)
              --space-stack    16 / 12 /  8  gap between blocks inside a container
              --space-section  40 / 32 / 24  gap between the sections of a page
    3. Page   --page-margin and --page-gap follow SCREEN WIDTH, not density: see foundations/layout.css.
@@ -56,11 +58,11 @@
   --gutters-gutter-lg:var(--space-600);--gutters-gutter-xl:var(--space-700);
 }
 :root,[data-density]{
-  --spacing-card:var(--space-inset);--spacing-card-compact:var(--space-inset);--spacing-card-gap:var(--space-stack);
+  --spacing-card:var(--space-inset);--spacing-card-compact:var(--space-stack);--spacing-card-gap:var(--space-stack);
   --spacing-card-actions:var(--space-inset);--spacing-card-text:var(--space-100);
-  --spacing-panel:var(--space-inset);--spacing-panel-gap:var(--space-stack);--spacing-modal:var(--space-inset);--spacing-modal-gap:var(--space-stack);
+  --spacing-panel:var(--space-inset);--spacing-panel-gap:var(--space-stack);--spacing-modal:var(--space-inset-l);--spacing-modal-gap:var(--space-stack);
   --spacing-popover:var(--space-100);--spacing-popover-content:var(--space-inset);
-  --spacing-form:var(--space-inset);--spacing-form-field-gap:var(--space-stack);
+  --spacing-form:var(--space-inset-l);--spacing-form-field-gap:var(--space-stack);
   --spacing-section:var(--space-section);--spacing-section-lg:var(--space-section);
-  --spacing-table-cell-x:var(--space-inset);--spacing-table-header-x:var(--space-inset);--spacing-table-cell-y:var(--space-stack);
+  --spacing-table-cell-x:var(--space-table-x);--spacing-table-header-x:var(--space-table-x);--spacing-table-cell-y:var(--space-0);
 }

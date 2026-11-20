@@ -78,6 +78,7 @@
 .ifs-overlay{position:fixed;inset:0;z-index:var(--z-index-z-modal-overlay);background:var(--overlay-screen-strong)}
 .ifs-overlay--strong{backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium))}
 .ifs-overlay--inline{position:absolute}
+.ifs-overlay.ifs-activity-panel__overlay{background:transparent} /* `over` panel: catches the outside click, no dimming (Nov 19) */
 
 /* ---------- Modal ---------- */
 .ifs-modal-layer{position:fixed;inset:0;z-index:var(--z-index-z-modal);display:flex;align-items:center;justify-content:center;padding:var(--space-600) /* scrim gutter */}
@@ -164,7 +165,7 @@
 @keyframes ifs-bar-in{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translateX(-50%)}}
 .ifs-floating-bar__context{display:flex;flex-direction:column;gap:var(--space-50);min-width:0;max-width:20rem}
 .ifs-floating-bar__category{display:flex;align-items:center;gap:var(--space-100);color:var(--text-tertiary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;min-width:0} /* Label/M/UPPER, one line */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;min-width:0} /* Label/M/medium, one line */
 .ifs-floating-bar__item{display:flex;align-items:center;gap:var(--space-200);color:var(--text-primary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium */
 .ifs-floating-bar__divider{flex:none;align-self:stretch;width:var(--size-16);display:flex;align-items:center;justify-content:center} /* 16px frame, 8px side padding, 1px line */

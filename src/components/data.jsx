@@ -22,7 +22,7 @@ function StatusIndicator({ state = 'default', stroke, label, className, ...rest 
 }
 
 // Figma: badge-atom (83:52162)
-// Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, uppercase caption; info = black fill
+// Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, sentence-case Label/M/medium caption; info = black fill
 // with text/info + icon/info, as the Patterns source-card draws it), borderless (drops the black badge's border/medium edge —
 // the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 // indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
@@ -141,8 +141,8 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
 }
 
 // Figma: stat-card-organism (3643:35055)
-// Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over an UPPERCASE
-// caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
+// Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
+// Label/M/medium caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
 // badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
 // compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;
 // without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
@@ -307,7 +307,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
   const primaryKey = (columns.find(c => c.primary) || columns.find(c => !c.type || ['text', 'description', 'custom'].includes(c.type)) || {}).key;
   // Columns keep a minimum width (Nov 19, reflow / 400% zoom): flexible columns never squash below --table-col-short-min;
   // when the card is narrower than the columns need, the table scrolls sideways inside its card instead. Fixed widths are in rem.
-  const flexCol = fr => `minmax(var(--table-col-short-min), ${fr})`;
+  const flexCol = fr => `minmax(max(var(--table-col-short-min), var(--table-col-flex-min)), ${fr})`; // 120, or 160 when the user enlarges text
   const cols = columns.map(c => c.width == null ? flexCol('1fr') : typeof c.width === 'number' ? `calc(${c.width / 16}rem * var(--density-scale))`
     : /^\d*\.?\d+fr$/.test(String(c.width).trim()) ? flexCol(String(c.width).trim()) : c.width).join(' ');
   const groupOf = typeof groupBy === 'function' ? groupBy : groupBy ? r => r[groupBy] : null;

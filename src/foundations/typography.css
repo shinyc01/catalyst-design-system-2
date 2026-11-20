@@ -39,7 +39,8 @@
   --text-display-s-weight:var(--font-weight-font-weight-medium);--text-display-s-tracking:var(--letter-spacing-letter-spacing--05);
   --text-display-s:var(--text-display-s-weight) var(--type-display-s) var(--font-family-display);
 
-  /* Headings — H2 page title (H1 hero/form pages, big numbers), H3 large sections, H4 panel/modal/drawer/card/chart titles */
+  /* Headings — H2 PageTop page title and big numbers (stat card M; H3 stat card S; never H1 for numbers), H3 large sections,
+     H4 panel/modal/drawer/card titles (chart card titles are Label/M/medium, tertiary) */
   --text-heading-h1-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h1-medium-tracking:var(--letter-spacing-letter-spacing--03);
   --text-heading-h1-medium:var(--text-heading-h1-medium-weight) var(--type-h1) var(--font-family-text);
   --text-heading-h2-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h2-medium-tracking:var(--letter-spacing-letter-spacing--02);

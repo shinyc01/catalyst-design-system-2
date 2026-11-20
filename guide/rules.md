@@ -30,10 +30,10 @@ Layout rules (Foundations › Layout, Figma):
 - Desktop reference frame 1440 × 810. Breakpoints, columns, page margin and gutter: `guide/layout.md` §1 (xs < 600, sm 600, md 1024, lg 1440, xl 1920; 4 / 8 / 12 columns; by screen width, never density; the grid follows the content area).
 - Grid layout: 12 columns, centred, for dashboards and content pages. Sticky header spans full width above it. Cooper FAB anchored bottom-right.
 - Map layout: the map background is a draggable canvas filling all space between the sticky header and the bottom bar; bottom bar is sticky.
-- Spacing, padding, radius and border use semantic tokens (`paddings/padding-*`, `gap-*`, `radius-*`, `border-*`), never arbitrary values. Layout primitives: Box, Stack (vertical), Flex (horizontal), Visually Hidden (screen-reader-only labels).
+- Spacing, padding, radius and border use tokens, never arbitrary values: one `--space-*` scale and its roles (`--space-inset`, `--space-inset-l`, `--space-table-x`, `--space-stack`, `--space-section`; guide/spacing.md), `radius-*`, `border-*`. Figma's `paddings/padding-*` and `gap-*` names are old aliases: don't use them in new code. Layout primitives: Box, Stack (vertical), Flex (horizontal), Visually Hidden (screen-reader-only labels).
 - Log-in screen has no product chrome: split layout, brand panel + auth form (`log-in-form-pattern`). (Figma, Log in)
 
-Overlay layers, lowest to highest (Surfaces, Figma): panel (in layout) → popover (anchored to trigger) → drawer (edge, over content) → modal (centred, scrim, blocking). Toasts (`alert-organism`, `snackbar-organism`) float top-right over everything.
+Overlay layers, lowest to highest (Surfaces, Figma): panel → popover (anchored to trigger) → modal (centred, scrim, blocking). A side panel or drawer is `push` (in the layout) or `over` (over the content, no scrim) by its job, not by a fixed layer: guide/layout.md §5 (Nov 19, 2.0.3). Toasts (`alert-organism`, `snackbar-organism`) float top-right over everything.
 
 ---
 
@@ -42,7 +42,7 @@ Overlay layers, lowest to highest (Surfaces, Figma): panel (in layout) → popov
 Each rule is quoted from a canvas note (Figma) and cited by page.
 
 1. **Buttons, not links.** "Inline text links are not used in the interface — any page-to-page move, opening an object, going back a level … is a button." Exceptions: links inside user-authored content and external resources. Use Ghost button where a text link would go. — Action
-1b. **Two page headers.** Use `PageTop` on library/list pages (title, description, New action, tabs with counts and smart search) and `PageHeader` on a single object's page (slim bar: back, name, status, actions). (designer decision, Oct 2026)
+1b. **Three page headers.** `PageTop` on broad pages: tables, libraries, landing and category pages (H2 title, description, New action, tabs with counts and smart search). The thin `PageHeader` inside one entity: an idea, investment, value or strategy framework (slim bar: back, name, ID, status, actions; Label/M medium title), decided per header type. `ExploreHeader` is the thin map bar (the thin PageHeader's map variant). Narrow and short-screen rules: guide/layout.md §8. (designer decision, Oct 2026; three headers Nov 19 2026)
 2. **No table pagination.** "No hidden rows in tables. We don't paginate table content." Narrow with filters that carry counts: on a library/list page, **Tabs** with counts sit above the table card; inside a table card, a **SegmentedControl S** with counts sits in the card's bar (Idea Pad). The table scrolls with a sticky header. A fixed-height card (600px) may use "Show more". — Navigation, Data Display › Table; Patterns › Table (see guide/patterns/table.md)
 3. **Stepper is non-interactive.** "Users cannot click or tap a step to navigate between steps." A button or completion event advances it. — Navigation
 4. **Every visible field is required.** No asterisks or required markers; optional fields are not shown. — Inputs & Forms
@@ -55,7 +55,7 @@ Each rule is quoted from a canvas note (Figma) and cited by page.
 11. **Modal: at most two primary actions.** More means the modal is doing too much; split the flow. — Surfaces
 12. **Skeletons only inside the component that owns the async data.** Shell, nav, sidebar, header and static labels render immediately. Unknown shape → spinner; user-triggered action → button loading state. — Content States
 13. **Empty-state variant is chosen by cause, never by surface.** — Content States
-14. **Charts:** zero-based bars, one series = one colour group, exact values always available (tooltip + data-table fallback). — Data Visualisation
+14. **Charts:** zero-based bars, one series = one colour group, exact values always available (tooltip + data-table fallback). Charts and their legends use data-viz colours only; the neutral colour (base, other, no data) is `--icon-tertiary`. — Data Visualisation (colour rule: designer decision, Nov 19 2026)
 15. **Filters:** a surface is either instant (chips only) or deferred (contains fields, commits on Apply); "instant and deferred never mix on one surface." — Selection › Filter
 16. **Field size follows the surface:** L for full-page forms, M for modals/drawers/panels, S for footers/toolbars, XL for view-level selectors that change what the page shows. — Selection, Inputs & Forms
 17. **Layout spacing in screens uses `Stack` and `Inline`,** never a hand-written `display:flex; gap`. `gap` takes a role (`inset`, `stack`, `section`, `page-gap`) or a `--space-*` step (`"200"`); a number or px warns and falls back to `stack`. Cards on the page grid still use `.ifs-grid`. (designer decision, Nov 19 2026; guide/spacing.md §8)

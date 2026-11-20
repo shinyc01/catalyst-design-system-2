@@ -347,7 +347,7 @@ const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
 
 // Figma: date-picker-molecule (3406:9510) with date-atom (1440:5201) cells
 // Props: value/defaultValue/onChange (Date; with range=true {start, end}), month/defaultMonth/onMonthChange (any Date in that month),
-// today (Date), events ({ 'YYYY-MM-DD': ['danger','warning','info'] }), weekStartsOn (default 1 = Monday), min/max (Dates).
+// today (Date), events ({ 'YYYY-MM-DD': ['danger','warning','info'] }), weekStartsOn (default: the user's locale, IFS.format.weekStart(); 0 = Sunday, 1 = Monday), min/max (Dates).
 // Keyboard: arrows move a day/week, PageUp/PageDown change month, Home/End week start/end, Enter/Space select.
 function Calendar({ value, defaultValue = null, onChange, range = false, month, defaultMonth, onMonthChange, today = new Date(),
   events = {}, weekStartsOn: weekStartProp, min, max, autoFocus, fill, className, ...rest }) {

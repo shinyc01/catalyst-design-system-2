@@ -17,7 +17,7 @@ Components and prototypes use only the semantic layer:
 .ifs-thing__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)}
 .ifs-thing__status{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 ```
-Never write a weight, size or letter-spacing number. A decision such as "uppercase is 500, +0.3px" now lives in one token. The semantic tokens are declared on `:root` and on every `[data-density]` container, so text follows the nearest density setting.
+Never write a weight, size or letter-spacing number. A decision such as "H4 titles are semibold" now lives in one token. The semantic tokens are declared on `:root` and on every `[data-density]` container, so text follows the nearest density setting.
 
 No exceptions: every text rule in the kit uses a semantic style, including chart SVG text and small component text.
 - Avatar initials: XL (56) H4 · L (40) and M (32) Label/M/medium (initials stay capitals) · S (24) Body/S · XS (20) and XXS (16) Body/S with one initial.
@@ -40,7 +40,7 @@ Three text levels plus headings. Steps are 2px.
 | Small | `--type-s` | 14/20 | 12/16 | 11/14 | **Rare, only where a spec names it**: disclaimers and footnotes, and text inside a fixed small shape (avatar initials at 24px and below, map pin counts, live-cursor tags, chart axis ticks, labels inside Sankey bars). Never labels, statuses, headers, meta or anything the user acts on. |
 | Body | `--type-m` | 16/24 | 14/20 | 12/16 | The default: all content, labels and meta (dates, authors, IDs, helper text, captions). |
 | Large | `--type-l` | 18/26 | 16/24 | 14/20 | H4 titles; text in L-size controls. |
-| H3 / H2 / H1 | `--type-h3/h2/h1` | 22/26/32 | 20/24/28 | 16/20/24 | Sections, page titles, hero pages, big numbers. |
+| H3 / H2 / H1 | `--type-h3/h2/h1` | 22/26/32 | 20/24/28 | 16/20/24 | Sections and page titles. Big numbers use H2 (stat card M) or H3 (stat card S), never H1. |
 | Display S/M/L | `--type-display-*` | 36/40/48 | 32/36/44 | 28/32/40 | Rare hero moments. Kept until the product Figma files are checked. |
 
 Caption (10px, smaller than Small) is retired: `--type-caption` now equals `--type-s`. Only Fluent has a 10px level; the others stop at 11–12. Compact Small is 11 (2.0.1 review: 10 was too small to read), so Small is 14 / 12 / 11.
@@ -70,7 +70,7 @@ Retired (the class still works and renders as its replacement): Code regular / m
 **Heading order**: headings follow the page structure, from the outside in.
 | Level | Use for | Example |
 |---|---|---|
-| H2 (H1 on hero or form pages) | The page title in `PageTop`, once per page: broad pages (tables, libraries, landing / category pages) | "Value library", "Executive Summary" |
+| H2 | The page title in `PageTop`, once per page: broad pages (tables, libraries, landing / category pages) | "Value library", "Executive Summary" |
 | Label/M/medium | The title in the thin `PageHeader` (inside one entity: an idea, investment, value or strategy framework) and the `ExploreHeader` map bar. The bar is thin by design, so its title stays Label/M; the content below starts at H3 / H4 | "Northgate feeder replacement" |
 | H3 | A page section that is not inside a card or panel (it sits on the page background) | "Recommended Alternative" with several cards under it |
 | H4 | The title of a container: card, panel, modal, drawer, chart. Every `ContentCard` title is H4, small or normal size, including readiness cards and Cooper's fix cards (Nov 19, 2.0.3). Exception: chart cards (`DataVizCard` header) and stat cards use Label/M/medium in tertiary grey, so a dashboard's charts and numbers read as one set | "Investment Value Impact", "Readiness Evaluation", "Start with Ideas" |
@@ -108,7 +108,7 @@ One status per object; a second state is a tag or an icon next to it. Status tex
 **By role**
 | Role | Style |
 |---|---|
-| Page title in `PageTop` (broad pages) | H2 (H1 for hero/form pages) |
+| Page title in `PageTop` (broad pages) | H2 |
 | Title in the thin `PageHeader` / `ExploreHeader` (inside an entity, map) | Label/M/medium |
 | Page section not inside a container | H3 |
 | Panel, modal, drawer, card title | H4 |

@@ -22,7 +22,7 @@ How data tables behave in the product: filtering, search, sorting, pinning and m
   - an actions column with the preview `IconButton` (`eye-opened`), `Menu more` (⋯) and `FollowButton` (icon-button-following).
   - `IFS.DropIndicator` (drop-indicator-atom, from the widget-builder family) while dragging.
 - **Surfaces**:
-  - `RecordPreview`: a sidebar shown in the layout, panel-organism in Figma.
+  - `RecordPreview`: an `over` panel (no scrim; outside click / Esc closes; clicking another row swaps the preview), panel-organism in Figma (guide/layout.md §5, Nov 19 2.0.3).
   - Columns drawer: `Drawer` + `ColumnSettings`, which uses `ContentCard` S rows.
   - `EmptyState` for no results.
   - `Skeleton` cells while loading.
@@ -136,5 +136,5 @@ How data tables behave in the product: filtering, search, sorting, pinning and m
 - **consolidated: "ai smart search" (cfb1a43e at an older version: `Property 1`, `input=text`) → `SmartSearch`.**
 - **consolidated: `table-filter-sort` (d0b0b2dd) = table-sort-atom.** Same key; this file caches it under its old name.
 - `page-top` → `PageTop` (designer decision, Oct 2026: library pages use PageTop; a single object's page uses PageHeader). `DataTable pageTop={…}` puts the row tabs and search in it.
-- **UNSURE: the table card is a local "section" frame (16px padding, 12px gap) vs `table-card-organism` (kit `Table` title/tabs/search: 12px padding, 8px gap).** None of these screens instance table-card-organism. `DataTable` follows the screens.
+- **Decided (Nov 19, 2.0.3): the table card padding is `--space-table-x` (20 / 16 / 16) and its gap is `--space-stack`** (Figma showed a local "section" frame, 16px padding / 12px gap, and `table-card-organism` 12 / 8). Every table uses `.ifs-table-card` (guide/spacing.md §5).
 - **UNSURE: the Table view section's Gantt "Table view"** (`table-header-timeline`, `cell-base-atom-timeline`, `row-timeline`, `section-header-timeline`, `today-line-atom-timeline`, 190:229607) is IFS DS but not in the kit, and was not built here. It is a timeline view, not a data table.

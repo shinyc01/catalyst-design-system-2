@@ -16,7 +16,7 @@ A page of widgets that people arrange themselves: add widgets from a catalog, re
 - Feedback: `toast` with Undo.
 
 ## Flows and states
-1. **Add a widget**: Widgets → drawer (overlay Base) → "+ Add" puts the widget on the page and removes its card from the list; toast `"<name>" widget added` + Undo. Or drag the card: the drawer steps aside, the card follows the cursor (WidgetCard Drag state), and it drops with the same indicators as a move. (Figma)
+1. **Add a widget**: Widgets → `WidgetsDrawer` (a `push` panel, 380; guide/layout.md §5) → "+ Add" puts the widget on the page and removes its card from the list; toast `"<name>" widget added` + Undo. Or drag the card: the drawer steps aside, the card follows the cursor (WidgetCard Drag state), and it drops with the same indicators as a move. (Figma)
 2. **Search the catalog**: the drawer's search filters cards by description; no match → empty state. (Figma frames: Search / Typing / Searching / Results yes / no)
 3. **Move (change position)**: hover → ⋮⋮ appears → drag starts after ~4 px → the ghost card follows the pointer and the source fades → indicator line → "+ Drop here to place" zone at the target after ~300 ms → release. Ghost and zone show together in every drag, on the board and from the drawer (designer decision). Toast `"<name>" widget moved` / "Block moved" + Undo. (Figma)
 4. **Resize**: hover an edge below the header → handle; drag → live reflow preview; release snaps; double-click the divider → Auto. Or ⋮ → Resize → S (1/3) / M (2/3) / L (3/3). (Figma)

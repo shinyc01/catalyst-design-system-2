@@ -4,9 +4,16 @@ The next version of the IFS DS code kit: a React code twin of the IFS Design Sys
 
 It started as a copy of the IFS DS kit (`shinyc01/new-cl-design-system`, folder `ifs-kit`) with the IFS DS polish values from Flexy (Nov 2026). That kit is unchanged and still powers the `catalyst-prototype` skill; this repo is a separate version.
 
+## 2.0.2 / 2.0.3 (Nov 19, 2026)
+- Spacing roles (Flexy's 2.0.2 integration, accepted): `--space-inset-l` 24 / 20 / 16 for modals and form cards; new `--space-table-x` 20 / 16 / 16 for the table card edge and cell sides (Compact keeps 16). Table header text is centred in its fixed height; cells have no top/bottom padding.
+- px → rem: Figma stays px; the code ships every size that holds text or icons, and the layout widths, in rem (16px base). Borders, radius, breakpoints and chart/map geometry stay px.
+- Type: Label/M/UPPER removed (style, tokens and class); only avatar initials and abbreviations are capitals. Card titles H4; chart card titles Label/M medium (tertiary); PageTop title H2; thin PageHeader / ExploreHeader title Label/M medium; big numbers H2 / H3, never H1.
+- Round 1 sizes: chips 28 / 24 / 24; search, Smart Search, popover search, phone picker, checkbox / radio rows 36 / 32 / 28; badges S 24 / 20 / 20, M 28 / 24 / 24, L 36 / 32 / 28; Compact small controls 24.
+- Layout: map slots (guide/layout.md §4), panel modes `push` / `over` by job (§5), three page headers (§8), side nav folds by available space (under 800 of page). Decisions log: `prototypes/flexy-compare/DECISIONS-NOV19-MASTER.md` in `new-cl-design-system`.
+
 ## 2.0.1 (Nov 18, 2026): spacing
-- One `--space-*` scale and three density roles: `--space-inset` 20 / 16 / 12 (padding of every card, panel, drawer, modal, popover and form, on all four sides), `--space-stack` 16 / 12 / 8 (gaps between blocks), `--space-section` 40 / 32 / 24 (between page sections). Page margin and the gap between cards follow screen width. No raw px spacing in components. Spec: [guide/spacing.md](guide/spacing.md).
-- Tables: fixed rows 64 / 52 / 40, headers 40 / 32 / 24 (no top padding); one table card for every table. Menus 4px from the trigger and 4px inside.
+- One `--space-*` scale and three density roles: `--space-inset` 20 / 16 / 12 (padding of every card, panel, drawer and popover, on all four sides; modals and form cards use `inset-l`, table cards `table-x` since 2.0.3), `--space-stack` 16 / 12 / 8 (gaps between blocks), `--space-section` 40 / 32 / 24 (between page sections). Page margin and the gap between cards follow screen width. No raw px spacing in components. Spec: [guide/spacing.md](guide/spacing.md).
+- Tables: fixed rows 64 / 52 / 40, headers 40 / 32 / 24 (text centred in the header height, no vertical padding since 2.0.3); one table card for every table. Menus 4px from the trigger and 4px inside.
 - Layout: breakpoints 600 / 1024 / 1440 / 1920, 12 columns, margin and gap by screen width; cards on columns, panels at fixed sizes (380 / 600), map slots. Spec: [guide/layout.md](guide/layout.md).
 
 ## 2.0.1 (Nov 17, 2026): typography
@@ -42,11 +49,11 @@ The pinned link always shows 1.0 exactly as it was, even if `master` changes. To
 ## What's new in 2.0: density
 Users pick how dense the UI is, as a system setting (three levels):
 
-| Setting | Body | Small | H4 / H3 / H2 / H1 | Display S / M / L | Controls S/M/L | Table row / header | Inset | Stack | Section |
-|---|---|---|---|---|---|---|---|---|---|
-| **Spacious** | 16/24 | 14 | 18 / 22 / 26 / 32 | 36 / 40 / 48 | 28 / 36 / 44 | 64 / 40 | 20 | 16 | 40 |
-| **Comfortable** (default) | 14/20 | 12 | 16 / 20 / 24 / 28 | 32 / 36 / 44 | 24 / 32 / 40 | 52 / 32 | 16 | 12 | 32 |
-| **Compact** | 12/16 | 11 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 24 / 28 / 32 | 40 / 24 | 12 | 8 | 24 |
+| Setting | Body | Small | H4 / H3 / H2 / H1 | Display S / M / L | Controls S/M/L | Table row / header | Inset | Inset-l | Table-x | Stack | Section |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Spacious** | 16/24 | 14 | 18 / 22 / 26 / 32 | 36 / 40 / 48 | 28 / 36 / 44 | 64 / 40 | 20 | 24 | 20 | 16 | 40 |
+| **Comfortable** (default) | 14/20 | 12 | 16 / 20 / 24 / 28 | 32 / 36 / 44 | 24 / 32 / 40 | 52 / 32 | 16 | 20 | 16 | 12 | 32 |
+| **Compact** | 12/16 | 11 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 24 / 28 / 32 | 40 / 24 | 12 | 16 | 16 | 8 | 24 |
 
 Page margin / gap between cards follow screen width, not density: 16 / 16 below 600, 24 / 16 from 600, 24 / 20 from 1440, 32 / 32 from 1920.
 
@@ -57,7 +64,7 @@ How it works:
 - Put `data-density="spacious"`, `"comfortable"` or `"compact"` on `<html>` (or any container). `IFS.setDensity('compact')` does this and remembers the choice; `IFS.getDensity()` reads it back.
 - Type is tokens in two layers (like the Figma library): primitives (families, weights, letter-spacing steps, and the `--type-s|m|l|h3|h2|h1|display-*` size/line-height pairs per density) and one semantic set per text style, `--text-<style>` + `-tracking` + `-weight` (`src/foundations/typography.css`). Components use only the semantic set. 16 styles; rules in `guide/typography.md`.
 - Control heights read `--control-h-s|m|l`, `--tab-h-m|l`, `--nav-row-h`, `--table-row-h`, `--table-header-h`.
-- Spacing: `src/foundations/spacing.css` (scale, roles, page grid). Type and control sizes: the Density block at the end of `src/tokens.css`. Old `--spacing-*`, `--gaps-*` and `--paddings-*` names still work as aliases.
+- Spacing: `src/foundations/spacing.css` (scale, roles, page grid). Type and control sizes: the Density block at the end of `src/tokens.css`. Old `--spacing-*`, `--gaps-*` and `--paddings-*` names are still defined as aliases and point to the 2.0.3 values (`--spacing-modal` / `--spacing-form` → `inset-l`, table cell sides → `table-x`, cell y → 0, card-compact → stack, matching Flexy's Figma). Don't use them in new code: use the `--space-*` roles.
 - The bundle exposes `window.Catalyst` (and `window.IFS`, so existing prototypes work unchanged).
 
 ---

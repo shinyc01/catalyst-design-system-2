@@ -56,12 +56,12 @@ Format (read by tools/gen-stories.mjs): `### <story section name>`, then one bul
 ## Patterns — Table
 
 ### Pattern: Library table (standard)
-- The table card in every screen is a local "section" frame (16 padding / 12 gap), not `table-card-organism` (12 / 8). The kit follows the screens.
+- The table card in every screen is a local "section" frame (16 padding / 12 gap), not `table-card-organism` (12 / 8). Resolved (Nov 19, 2.0.3): the table card padding is `--space-table-x` 20 / 16 / 16 and the gap is `--space-stack`.
 - Horizon and Modified filters mix instant chips with a period that applies on Apply. That conflicts with guide rule 15 ("instant and deferred never mix").
 - The Horizon notes say custom periods use fiscal years; the frames show a date picker. The kit uses the date picker. **Notes-win says fiscal years: needs a decision.**
 
 ### Pattern: Idea Pad table (ranked)
-- Ranked rows are 60px; library rows are 48px.
+- Resolved (Nov 19, 2.0.3): ranked rows and library rows both follow the table row height 64 / 52 / 40 (were 60 and 48).
 
 ### CollaborationBadge
 - A clickable badge-atom, which conflicts with "badges aren't clickable".
@@ -94,7 +94,7 @@ Format (read by tools/gen-stories.mjs): `### <story section name>`, then one bul
 - Figma builds the Plan tree from detached table cells; there is no tree component in the DS. The kit's tree is composed.
 
 ### ResponsiveNavBar (resolved 2.0.3: NavBar collapses by width itself)
-- The collapse breakpoint (800px) and sidebar rails below 1280px are inferred, not specified.
+- The nav bar collapse (hamburger below 800 of its own width) is decided. Resolved (Nov 19, 2.0.3): the side nav folds to its rail below md (1024) and when a pushed panel would leave less than 800 of page (`--layout-content-min`); no fixed 1280 point (guide/layout.md §5).
 
 ## Patterns — Collaboration
 
@@ -111,7 +111,7 @@ Format (read by tools/gen-stories.mjs): `### <story section name>`, then one bul
 ## Patterns — Activity & versions
 
 ### Pattern: Activity panel — version history
-- The Activity panel is panel-organism with an overlay, but the guide says panels have no scrim (that's a drawer). Figma also swaps the collapse toggle for ✕.
+- Resolved (Nov 19, 2.0.3): the Activity panel is an `over` panel: no scrim, the page stays usable, outside click / Esc closes it (guide/layout.md §5). Figma also swaps the collapse toggle for ✕.
 - The "Version history" and "Approval chain" sticky labels are swapped over their frames.
 
 ### Pattern: Compare versions
@@ -138,11 +138,11 @@ Format (read by tools/gen-stories.mjs): `### <story section name>`, then one bul
 - Budget envelope: a Warning type with a red icon (138:293545).
 
 ### ApprovalChainTable
-- The kit's ApprovalChain (cards, from the IFS DS timeline) vs this page's table-style chain: which is canonical?
+- Decided (Nov 19, 2.0.3): both are kept, for different uses (ApprovalChain timeline cards vs this table-style chain); revisit later. Rebuilding ApprovalChainTable on the base `Table` is parked.
 - The library now publishes newer versions of parts used here: status b0bad471, review-investment-table, review-data-visualisation. The kit follows the Patterns file copies.
 
-### Stat
-- `stat` and StatCardsRow are near-duplicates; stat adds a compare card.
+### Stat (resolved 2.0.3)
+- Resolved (Nov 19): one `StatCard` with a `compare` option; `Stat`, `QuickStatCard` and `CompareStatValue` are removed. Use `StatCardsRow` / `StatCard`.
 
 ## Patterns — Confidence, trace & readiness
 

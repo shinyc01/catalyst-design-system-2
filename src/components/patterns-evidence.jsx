@@ -47,7 +47,7 @@ function SourceCard({ type = 'file', title, icon = 'system-file', onOpen, user, 
 
 /* ------------------------------------------------------------------------------------------ */
 // Figma: the "Slot" blocks of the Evidence chain drawer (Patterns 31:76667 / 31:76673 / 31:76678): a 1px top rule, a
-// Caption/regular-UPPER title and a list of source cards (8px apart). Titles in Figma: "Why it's flagged", "Decisions",
+// Label/M/medium title (sentence case; Figma: Caption/regular-UPPER) and a list of source cards (8px apart). Titles in Figma: "Why it's flagged", "Decisions",
 // "Considered but not included". Props: title, items = [SourceCard props + key] or children.
 function EvidenceSection({ title, items, children, className, ...rest }) {
   const id = React.useId ? React.useId() : undefined;

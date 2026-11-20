@@ -68,8 +68,19 @@ The kit is being prepared for right-to-left languages (Arabic market). In RTL th
 - **All new and changed code** uses logical properties: `margin-inline-start/end`, `padding-inline-*`, `inset-inline-start/end`, `border-inline-*`, `text-align:start/end`; in JSX `marginInlineStart`, `insetInlineEnd`, …
 - Geometry that must not mirror (chart time axes, canvas coordinates) keeps physical values with a `/* ltr: reason */` comment.
 - Directional icons (arrows, chevrons, back) will flip in RTL; check marks, media, clocks, trends and logos never flip.
-- Progress: `node tools/check-direction.mjs` (171 physical declarations left on Nov 19). The conversion runs gradually (first pass scheduled Fri Nov 20 after 5 pm).
+- Progress: `node tools/check-direction.mjs` (171 physical declarations left on Nov 19). The conversion runs gradually (first pass scheduled Fri Nov 20, 3:30 pm).
 
 ## 7. Narrow and 400% zoom rules (Nov 19, 2.0.3)
-- **Tables** keep their columns: flexible columns never go below `--table-col-short-min` (120); when the card is narrower than the columns need, the table scrolls sideways inside its card (allowed 2D scroll for data, WCAG 1.4.10).
+- **Tables** keep their columns: short columns (dates, status, counts) never go below `--table-col-short-min` (120); flexible columns get a 160 minimum (`--table-col-flex-min`) only when the user's text size is larger than the default (guide/spacing.md §5); when the card is narrower than the columns need, the table scrolls sideways inside its card (allowed 2D scroll for data, WCAG 1.4.10).
 - **Bottom sheet**: below 720 wide the prompts hide; the Cooper button stays.
+
+## 8. Page headers (decided Nov 19, 2.0.3)
+Three headers, chosen by the page: **PageTop** on broad pages (tables, libraries, landing and category pages; H2 title), the thin **PageHeader** inside one entity (an idea, investment, value or strategy framework; Label/M medium title; decided per header type), and **ExploreHeader**, the thin PageHeader's map variant (Label/M medium title, same 36 / 32 / 32 format).
+
+Thin PageHeader as it narrows ("fine for now, revisit later"):
+- The title always stays (it truncates, never hides). The main (primary) button always stays.
+- The stepper stays in the bar from 1100 up (centred when both sides fit around it, otherwise between the title side and the buttons). When it doesn't fit, the progress goes under the status: hover or click the status for a popover with the steps. There is no separate progress row.
+- Buttons sit 8 apart.
+- Two rows: row 1 is the title (with its menu ▾); row 2 starts under the title (the back button keeps its own column) with the ID and the status together, then views and buttons. When the buttons wrap onto a third row, they start at the start edge (left-aligned in LTR), not at the end.
+- The Idea title menu ▾ is kept in every size.
+- **Short screens:** the thin header always stays fixed at the top; it never scrolls away.

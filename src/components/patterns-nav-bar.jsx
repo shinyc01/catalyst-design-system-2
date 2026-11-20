@@ -125,7 +125,7 @@ function HomeRowCard({ type = 'secondary', rank, title, badge, description, metr
 }
 
 // Pattern: SideNavTree — navigation-panel-organism (sidebar-organism View=Expanded/Collapsed) whose Content slot holds a
-// folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H3/UPPERCASE + collapse).
+// folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H4 in sentence case + collapse).
 // Tree row: 32px, padding 8/8/8/4, caret (folders) + chat-folder 16 + Body/M/medium label; children indent 18px with a
 // hairline guide. The open path (folders above the current row) gets a border/base outline; the current row also the
 // background/elevation-1/secondary fill. Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
@@ -191,9 +191,9 @@ function SideNavTree({ title, tree = [], sections = [], value, defaultValue, onS
 // "the sidebar collapses to an icon rail on narrow widths before it disappears".
 // Props: stages, value / defaultValue / onChange (stage), screens = { [stage]: { sideNav, header, bottom, content } } where each
 // entry may be a node or a function ({ stage, narrow, width }) → node; navBar = extra NavBar props;
-// collapseNavBelow (default 800), collapseSideBelow (default 1280, inferred), height.
+// collapseNavBelow (default 800), collapseSideBelow (default 1024 = md, the side-nav rule in guide/layout.md; was 1280), height.
 function StagedAppShell({ stages = NB_STAGES, value, defaultValue, onChange, screens = {}, navBar = {}, collapseNavBelow = 800,
-  collapseSideBelow = 1280, height, className, style, ...rest }) {
+  collapseSideBelow = 1024, height, className, style, ...rest }) {
   const [stage, setStage] = useNbValue(value, defaultValue !== undefined ? defaultValue : stages[0] && stages[0].value, onChange);
   const [ref, w] = useNbWidth();
   const ctx = { stage, width: w, narrow: w != null && w < collapseSideBelow, setStage };

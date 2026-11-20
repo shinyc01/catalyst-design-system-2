@@ -58,7 +58,7 @@
 .ifs-avatar__base{--ring:0 0 0 0 transparent;--edge:0 0 0 0 transparent;position:relative;display:flex;align-items:center;justify-content:center;
   width:100%;height:100%;box-sizing:border-box;margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);overflow:hidden;
   background:var(--av-fill,var(--collaboration-user-16));color:var(--av-text,var(--text-on-solid));box-shadow:var(--edge),var(--ring);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/UPPER: initials (M avatar, 32) */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/medium, capitals for initials (M avatar, 32) */
 button.ifs-avatar__base{cursor:pointer}
 /* initials type per organism size (Figma overrides the atom text per size) */
 .ifs-avatar--xxs .ifs-avatar__base,.ifs-avatar--xs .ifs-avatar__base{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: one initial (16 and 20 px avatars) */
@@ -187,7 +187,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-stat-card--m .ifs-stat-card__value{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)} /* Heading/H2 (review, Nov 18: H1 felt too big) */
 .ifs-stat-card--s .ifs-stat-card__value{font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking)} /* Heading/H3 */
 .ifs-stat-card__desc{flex:1;min-width:0;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-/* Figma pattern use (Widget Builder 331:493002): value over an UPPERCASE description (was Caption/regular-UPPER → Label/S/UPPER), gap 8 */
+/* Figma pattern use (Widget Builder 331:493002): value over a sentence-case description in Label/M/medium (Figma: Caption/regular-UPPER), gap 8 */
 .ifs-stat-card__stack{display:flex;flex-direction:column;gap:var(--space-200);min-width:0}
 .ifs-stat-card__desc--below{flex:none;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-stat-card__extra{display:flex;align-items:baseline;gap:var(--space-150)}

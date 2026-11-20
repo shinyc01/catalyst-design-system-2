@@ -399,9 +399,9 @@
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
    16 styles. Pick by role (guide/typography.md):
-     page title H2 (H1 hero/form) · panel/modal/drawer/card/chart title H4 · sub-section Label/M/medium
+     PageTop page title H2 · thin PageHeader / ExploreHeader title Label/M/medium · panel/modal/drawer/card title H4 · chart card title Label/M/medium (tertiary) · sub-section Label/M/medium
      content, typed text, menu items, meta Body/M/regular · disclaimers, footnotes, text in a fixed small shape Body/S/regular
-     names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2/H1 (Display for rare hero moments)
+     names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2 / H3, never H1 (Display for one hero number)
      No uppercase style (2.0.1): statuses, column headers, eyebrows and captions are sentence case in Label/M/medium. The old .t-*-upper classes now render as Label/M/medium. */
 .t-display-l{font:var(--text-display-l);letter-spacing:var(--text-display-l-tracking)}
 .t-display-m{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking)}
@@ -430,13 +430,13 @@
 .t-label-s-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* retired: renders as Label/M/medium */
 .t-label-l-semibold{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* -> H4 */
 .t-body-l-medium{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* -> Label/L/medium */
-.t-caption-regular-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER (Caption retired) */
-.t-caption-semibold-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER (Caption retired) */
+.t-caption-regular-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (Caption retired) */
+.t-caption-semibold-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium (Caption retired) */
 .t-body-m-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
-.t-heading-h3-uppercase{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
+.t-heading-h3-uppercase{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
 .t-heading-h4-medium{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
-.t-heading-h4-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
-.t-label-l-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/UPPER */
+.t-heading-h4-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
+.t-label-l-upper{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* -> Label/M/medium */
 
 /* Effect styles */
 .fx-elevation-1{box-shadow:var(--elevation-elevation-1-primary);backdrop-filter:blur(var(--blur-strong))}
@@ -464,8 +464,8 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
    taken as ratios to body size (S x0.85, H4 x1.11, H3 x1.38, H2 x1.66, H1 x1.97,
    Display x2.54) and applied to each density's body size, rounded to even px.
    Spacing roles and the page grid live in foundations/spacing.css (rules: guide/spacing.md).
-   Tables: fixed rows 64 / 52 / 40 with content centred; header text sits closer to its rows
-   (no top padding: the card padding or toolbar gap above is the space; below = stack).
+   Tables: fixed rows 64 / 52 / 40 with content centred; fixed header 40 / 32 / 24 with its text
+   centred in the header height (no vertical padding; cells have no top/bottom padding either).
    A user setting: put data-density="spacious" | "comfortable" (default) | "compact"
    on <html> or any container. Components read these tokens for text size, control
    heights, table rows, table column widths and container padding, so the whole UI
@@ -474,7 +474,8 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
      Comfortable = 14px body — default
      Compact     = 12px body
    Units (2.0.3): type, control, tab, nav and table sizes are rem at a 16px base (Figma stays in px:
-   14px = 0.875rem), so they follow the user's default text size. Borders, radius and layout widths stay px.
+   14px = 0.875rem), so they follow the user's default text size, and so are the layout widths (layout.css). Only borders, radius,
+   breakpoints and chart / map geometry stay px.
    ========================================================================== */
 /* Comfortable (default): 14px body */
 :root,[data-density="comfortable"]{

@@ -6,7 +6,7 @@ Source: IFS Design System Patterns › page **Activity, Versions** (12:339984), 
 The record's history: who did what (activity log), the saved versions of the record (version history), the approval chain, and a side-by-side comparison of two versions or benchmarks. Use `IFS.ActivityPanel` whenever a record (strategy framework, value framework, investment, study) offers "Activity". Use `IFS.CompareView` for the Compare view of a framework.
 
 ## Anatomy
-- **ActivityPanel**: `Overlay` (Type=Base) + `Panel` (380px, full height, title ACTIVITY, ✕).
+- **ActivityPanel**: an `over` panel (`Panel`, 380px, full height, title "Activity", ✕): no scrim, the page stays usable (guide/layout.md §5, Nov 19 2.0.3). The code still renders `Overlay` (Type=Base) with a dim scrim until it is changed to match.
   - `SegmentedControl` S, full width: Version History | Approval Chain.
   - `SmartSearch` ("Ask anything about version history / approval chain") with suggested questions.
   - Version history: the kit timeline base (`TimelineItem` with the M marker as expand toggle). Each version card has a title, a `Badge` "Current", a description, the last-activity author (`Avatar` XS) and time, and a ⋯ `Menu` (more).
@@ -14,7 +14,7 @@ The record's history: who did what (activity log), the saved versions of the rec
   - Approval chain: `ApprovalChain` (display-only steps).
   - `EmptyState` for no results and for no approval chain. `Modal` to confirm Restore. `toast` with Undo after a rename.
 - **CompareView**:
-  - `CompareHeader` (compare-header): the "COMPARE TO" box with a `CompareDropdown` (compare-dropdown + `CompareDropdownList`).
+  - `CompareHeader` (compare-header): the "Compare to" box with a `CompareDropdown` (compare-dropdown + `CompareDropdownList`).
   - Four `StatCard`s with `compare` (baseline → current).
   - `Sankey` with two source blocks: current and baseline.
 - **Page chrome**:
@@ -25,7 +25,7 @@ The record's history: who did what (activity log), the saved versions of the rec
 - **Open Activity**:
   - From a library row ⋮ › Activity.
   - From the framework title ⌄ › Activity.
-  - The panel slides over the page with a dim overlay. ✕, the overlay or Esc closes it.
+  - The panel slides over the page (`over`, no scrim; the page stays usable). ✕, an outside click or Esc closes it.
 - **Version history**:
   - Collapsed cards, newest first. The current version carries "Current".
   - Hovering a card shows ⋮.
@@ -47,7 +47,7 @@ The record's history: who did what (activity log), the saved versions of the rec
   - ✕ clears the baseline. Only current values show, and the Sankey has one source.
 
 ## Rules
-1. The panel holds two views behind a segmented control, and the control exists only when both views have something to show. A record with no approval process at all (e.g. a study) opens straight on Version history, with no control. The header still reads ACTIVITY and the search still searches the version history. Pass `approvals={undefined}`. (Figma)
+1. The panel holds two views behind a segmented control, and the control exists only when both views have something to show. A record with no approval process at all (e.g. a study) opens straight on Version history, with no control. The header still reads "Activity" and the search still searches the version history. Pass `approvals={undefined}`. (Figma)
 2. A record that has an approval process but no chain yet keeps the control and shows "No approval chain yet / Approvers appear here after you send this framework for approval". (Figma)
 3. The smart search filters the panel. Cooper reads the query (by author, date, status or what changed) and returns the same list with fewer items. It is not a chat answer. (Figma)
 4. Clicking a version card or name opens the record view for that version in read-only mode. (Figma)
@@ -88,8 +88,8 @@ The record's history: who did what (activity log), the saved versions of the rec
 - **consolidated: `sunkey-item` 3389a548 = sankey-atom → `SankeyNode`; `sunkey-item` 7b5c534e (an older copy without the `compare-data` boolean) → `SankeyNode` (leave out `change`); `sunkey-header` (ce04ed8a = IFS DS sunkey-canvas-header) → the column strip that `Sankey` draws.** All of these sit inside `Sankey` (52:84351).
 - **consolidated (as in table.md): `tableCell` / `tableHeader` legacy sets, `ai smart search` → `SmartSearch`, `overlay` → `Overlay`, `single-select-list-molecule` row menus → `Menu`, `panel-organism` → `Panel`.**
 - `page-top` → `PageTop` on the library screen (designer decision, Oct 2026); the framework screen keeps `PageHeader`.
-- **UNSURE: the Activity panel is `panel-organism` + `overlay`.**
-  - The Panel guide says a panel lives in the layout with no scrim, but this panel is on demand with a scrim, which is how the guide describes a drawer.
+- **Decided (Nov 19, 2.0.3): the Activity panel is an `over` panel with no scrim** (Figma draws `panel-organism` + `overlay`).
+  - The page stays usable; an outside click or Esc closes it (guide/layout.md §5).
   - Figma also replaces the panel's collapse toggle with ✕.
-  - Built as Panel + Overlay to match Figma.
+  - The code is still Panel + Overlay (with scrim) until it is changed to match.
 - **UNSURE: "drop-down list" inside compare-dropdown: this file caches key c5186fed, but IFS DS publishes "drop-down list" as ddd60a12.** Built as `CompareDropdownList`. It may duplicate the single-select list.
