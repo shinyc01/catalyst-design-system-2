@@ -5,7 +5,7 @@ import{I as r}from"./navigation-yiMRKX-J.js";import{I as i}from"./patterns-trace
 **Figma:** navigation-panel-organism (1545:2808)
 
 
-Use: Level 2 navigation: the sidebar listing the pages of where you are, a stage's sections or one entity's own pages (when to show it: rule 7.19). One sidebar for all of them; only the list changes. Only its header (level title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.`}},design:{type:"figma",url:"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1545-2808"}}},e={name:"All variants & states",render:()=>o.render()};var s,t,a;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`{
+Use: Level 2 navigation (what it lists and when it shows: rule 7.23). One sidebar for all levels; only the list changes. Only its header (level title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.`}},design:{type:"figma",url:"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1545-2808"}}},e={name:"All variants & states",render:()=>o.render()};var s,t,a;e.parameters={...e.parameters,docs:{...(s=e.parameters)==null?void 0:s.docs,source:{originalSource:`{
   name: 'All variants & states',
   render: () => section.render()
 }`,...(a=(t=e.parameters)==null?void 0:t.docs)==null?void 0:a.source}}};const v=["AllVariants"];export{e as AllVariants,v as __namedExportsOrder,g as default};

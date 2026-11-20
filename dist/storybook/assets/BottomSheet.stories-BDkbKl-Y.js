@@ -4,7 +4,7 @@ import{I as n}from"./states-BaNMYQfy.js";import{I as r}from"./patterns-trace-Fyp
 Use: Default bottom sheet for any tab: Cooper FAB + prompt chips.
 
 
-Use: Every page inside one entity (rule 7.22): base + the entity's documents and upload, which build Cooper's context; read-only (no upload) once a framework is Active. \`type="value"\` is the old name and still works.
+Use: base + the entity's documents and upload, which build Cooper's context (where: rule 7.22); read-only (no upload) once a framework is Active. \`type="value"\` is the old name and still works.
 
 
 Use: Explore tab only: base + map controls.`}},design:[{name:"base-bottom-sheet-organism",type:"figma",url:"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4406-25590"},{name:"value-bottom-sheet-organism",type:"figma",url:"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=789-37502"},{name:"explore-bottom-sheet",type:"figma",url:"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=72-4676"}]}},e={name:"All variants & states",render:()=>m.render()};var t,o,s;e.parameters={...e.parameters,docs:{...(t=e.parameters)==null?void 0:t.docs,source:{originalSource:`{

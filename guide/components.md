@@ -1,4 +1,4 @@
-# Catalyst Design System 2.0.3 — components and patterns
+# Catalyst Design System 2.0.4 — components and patterns
 
 The catalogue: which component to use for what, then how the patterns work. Rules live in [rules.md](rules.md) and are referenced by number, not repeated. Full props: [`dist/api.md`](../dist/api.md). Figma keys, node ids, variant axes and review items: [figma.json](figma.json).
 
@@ -27,7 +27,7 @@ How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a
 | Read-only status or category | `Badge`, `Indicator` | `Chip` |
 | Status that matters (risk, health) | `RiskStatus` | `StatusIndicator` (dot only) |
 | Readiness / completion gate | `ReadinessStatus` | `RiskStatus` |
-| Stages (L1) / a stage's sections or one entity's own pages (L2, rule 7.19) | `NavBar` / `SideNav` | `Tabs` |
+| Stages (L1) / a stage's sections or one entity's own pages (L2, rule 7.23) | `NavBar` / `SideNav` | `Tabs` |
 | Peer views in a page; table filter on a library page | `Tabs` | `SegmentedControl` |
 | Progress through steps | `Stepper` (non-interactive) | `Tabs` |
 | Place in a hierarchy, go up a level | `Breadcrumb` | Ghost `Button` |
@@ -236,7 +236,7 @@ Family note: Atoms are items; organisms are the containers with slots.
 Use: One sidebar row: section (Parent), sub-section (Child), group header (Subtitle).
 
 ### navigation-panel-organism · `SideNav`
-Use: Level 2 navigation: the sidebar listing the pages of where you are, a stage's sections or one entity's own pages (when to show it: rule 7.19). One sidebar for all of them; only the list changes. Only its header (level title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.
+Use: Level 2 navigation (what it lists and when it shows: rule 7.23). One sidebar for all levels; only the list changes. Only its header (level title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.
 
 ### tab · `Tabs`
 Use: One tab; use `show-counter` for table filter tabs.
@@ -370,7 +370,7 @@ Use: Draggable node in a side list, dropped onto the canvas.
 Use: The node on the framework/map canvas — the named exception that earns its own component because of canvas behaviour (drag/connect, map-tied selection).
 
 ### approval-chain-timeline · `ApprovalChain`
-Use: One approver step in the display-only approval history inside `ActivityPanel` (rule 7.9). The chain people act on, on the approval page and in the Approval chain panel, is `ApprovalChainTable` (Approval chain rule 10).
+Use: One step in the display-only approval history in `ActivityPanel` (rule 7.9).
 
 ### version-history-timeline · `VersionHistory`
 Use: A version-history entry.
@@ -570,7 +570,7 @@ Use: One stage tab in the nav bar; building block.
 Use: IFS Copperleaf logo in the nav bar and log-in screen.
 
 ### sidebar-pattern · `SideNav`
-Use: The ready-made L2 sidebar; one component, each stage or entity supplies its own page list (rule 7.19).
+Use: The ready-made L2 sidebar (rule 7.23); each stage or entity supplies its own page list.
 
 ### header-pattern · `PageHeader`
 Use: Figma's header pattern with toggles for stepper, canvas header, Cooper recommendation and collaborators; build it with `PageHeader`.
@@ -592,7 +592,7 @@ Use: The Explore and Study map bar (rules 5.1, 5.6).
 Use: Default bottom sheet for any tab: Cooper FAB + prompt chips.
 
 ### value-bottom-sheet-organism · `BottomSheet type="documents"`
-Use: Every page inside one entity (rule 7.22): base + the entity's documents and upload, which build Cooper's context; read-only (no upload) once a framework is Active. `type="value"` is the old name and still works.
+Use: base + the entity's documents and upload, which build Cooper's context (where: rule 7.22); read-only (no upload) once a framework is Active. `type="value"` is the old name and still works.
 
 ### explore-bottom-sheet · `BottomSheet type="explore"`
 Use: Explore tab only: base + map controls.
@@ -734,11 +734,11 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 ### Pattern: Nav bar
 
 **For:** the Level 1 bar that switches between stages, and what each stage brings: its own sidebar (or none), header, content and bottom sheet. On every product screen.
-**Parts:** `NavBar` (logo, stage tabs `NavBarItem`, search / settings / notifications, avatar; collapse: rule 5.7) · per stage: Command and Build no sidebar; Value `SideNav`; Plan `SideNavTree` (folder tree + "Ad hoc plans" with ＋); Explore no sidebar, `ExploreHeader` under the bar; Build and Plan entity steps also dock the System confidence panel on the right, open at the start (rule 4.6); Explore a 48 right-panel rail. Content: Command = `PageTop` (Cooper eyebrow, H2 greeting, Tabs with counts, SmartSearch), "Decisions to review" + `SegmentedControl` S, the ranked `HomeRowCard` list, a right column with Cooper's results, milestone `ProgressBar` and `Calendar` (rule 4.2); Value = `PageTop` + the standard `DataTable` (tabs and search in `PageTop`, outside the card); Build = `PageTop` with `Tabs` L (Idea Pad / Investments) + the ranked `DataTable` with the segmented filter; Explore = map with `MapPinDot` clusters, `MapToolbar` (views top start, default view bottom start), `FtaButton`; Plan = title, description and owner, planning-cycle cards, `StatCardsRow`, affected-area map. Bottom: `BottomSheet` with two screen-specific prompts (rule 7.22): broad pages (Command, Build Idea Pad, the Value library, Plan home) the base sheet, under the content column only beside a side nav; every page inside an entity (Build Shape and Refine, Plan Setup, Compare and Approve, a Value framework) `type="documents"` with the entity's documents ("16 Documents"); Explore none.
+**Parts:** `NavBar` (logo, stage tabs `NavBarItem`, search / settings / notifications, avatar; collapse: rule 5.7) · per stage: Command and the Build library no sidebar; Value `SideNav`; Plan `SideNavTree` (folder tree + "Ad hoc plans" with ＋); Explore no sidebar, `ExploreHeader` under the bar; Build and Plan entity steps also dock the System confidence panel on the right, open at the start (rule 4.6); Explore a 48 right-panel rail. Content: Command = `PageTop` (Cooper eyebrow, H2 greeting, Tabs with counts, SmartSearch), "Decisions to review" + `SegmentedControl` S, the ranked `HomeRowCard` list, a right column with Cooper's results, milestone `ProgressBar` and `Calendar` (rule 4.2); Value = `PageTop` + the standard `DataTable` (tabs and search in `PageTop`, outside the card); Build = `PageTop` with `Tabs` L (Idea Pad / Investments) + the ranked `DataTable` with the segmented filter; Explore = map with `MapPinDot` clusters, `MapToolbar` (views top start, default view bottom start), `FtaButton`; Plan = title, description and owner, planning-cycle cards, `StatCardsRow`, affected-area map. Bottom: `BottomSheet` by rule 7.22, with two screen-specific prompts; Explore none.
 **Rules:**
 1. One bar on every screen (rule 4.9): logo at the start, actions at the end, exactly one stage active.
 2. Stage order is fixed: Command, Value, Explore, Build, Plan, Results.
-3. The sidebar shows the pages of where you are (rule 7.19): a stage's sections, or one entity's own pages; a level with no pages to move between has no sidebar and gives the content the full width.
+3. Sidebar: rule 7.23; without one the content takes the full width.
 4. Switching a stage changes the whole shell below the bar. The active tab gets the header-item active fill.
 5. Sidebar rows: Value picks a section (title and table change). Plan: a row selects that plan and expands its folder; the caret toggles a folder without selecting; the open path is outlined, the current folder filled. `arrow-bar-left` / `-right` collapse and expand the sidebar.
 6. The hamburger list (rule 5.7) opens 4 under the button; picking a stage closes it.
@@ -867,11 +867,11 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 7. The Comment column shows exactly what the approver wrote at decision time and updates when they edit it; empty if nothing. Never invent text.
 8. Push: only clock (awaiting) rows; manual push is attributed to the owner, has no threshold, 1 per reviewer per 24h; it stamps Last notified; the "Notified" tooltip shows a live countdown (hours rounded up, minutes under 1h). A reviewer pending for N days (§10 Open) is notified in-app (bell + toast) and by email; auto-reminders then every N days, 3 at most, impersonal. All stop when the reviewer acts, the version is withdrawn, the reviewer is replaced or the approval closes. Every push is logged in Activity; notification preferences apply.
 9. User filter: only with more than 3 approvers; applies live; chips (All, Approved, Awaiting, Rejected, Revisions required) are multi-select and All resets them; search matches name or role (✕ clears it); chips and search combine; the counter = 1 per chip other than All + 1 for a non-empty query; Clear all resets both; no match keeps the filter open with "No results found"; outside click closes. Awaiting also matches not-acted rows.
-10. **Several stages on one page** (Plan › Approve: Executive, Technical, Financial): one `ApprovalChainTable` with `stages`, not one table per stage. Each stage is a group row of the table (name, then status + done/total at the end; the column header under each open stage). A stage is open, folded or locked as the case needs: locked shows a lock and when it opens ("Opens when Executive is approved"); a fully approved stage folds. The kit writes each stage's status itself: Approved (all approved), Changes requested (anyone rejected or asked for revisions), else Under review; a stage's `collapsed` sets how it starts. The Approval chain panel (the button on the framework, popover or sidebar) uses the same `ApprovalChainTable` in its compact view; the `ApprovalChain` timeline is only the display-only history in `ActivityPanel` (rule 7.9).
+10. **Several stages on one page** (Plan › Approve: Executive, Technical, Financial): one `ApprovalChainTable` with `stages`, not one table per stage. Each stage is a group row of the table (name, then status + done/total at the end; the column header under each open stage). A stage is open, folded or locked as the case needs: locked shows a lock and when it opens ("Opens when Executive is approved"); a fully approved stage folds. The kit writes each stage's status itself: Approved (all approved), Changes requested (anyone rejected or asked for revisions), else Under review; a stage's `collapsed` sets how it starts. Panel and timeline: rule 7.9.
 
 ### Pattern: Confidence, trace & readiness
 
-**For:** three right-hand panels with the system's verdict on a framework. **System Confidence**: for the author on the work steps inside an entity (Build › Shape and Refine, Plan › Setup and Compare; framework Review), open at the start (rule 4.6): readiness by gate + open questions and warnings. **Trace Report**: a reaction to a user change the system considers incorrect (errors, warnings, notes, one at a time). **Readiness Evaluation**: for a stakeholder reviewing someone else's framework (see Approval chain).
+**For:** three right-hand panels with the system's verdict on a framework. **System Confidence**: for the author on the work steps inside an entity (where, and open at the start: rule 4.6): readiness by gate + open questions and warnings. **Trace Report**: a reaction to a user change the system considers incorrect (errors, warnings, notes, one at a time). **Readiness Evaluation**: for a stakeholder reviewing someone else's framework (see Approval chain).
 **Parts:** `useIssueReport({ issues, kinds, gates, onResolvedAll })` with `CONFIDENCE_KINDS` (Open questions, Warnings) or `TRACE_KINDS` (Errors, Warnings, Notes) · `SystemConfidence` = `Panel` + `ContentCard` with `ConfidenceGates` (`ProgressRing`, a `ReadinessStatus` per gate with XS `Indicator`s and tooltips), `IssueKindSwitch` (`SegmentedControl` S with counters), `IssueNavigator` · `TraceReport` `type="drawer"` (floating over the canvas, collapse only) or `type="sidebar"` (`Panel`), footer Undo (Tertiary L) · `IssueNavigator`: `Pager progress="resolved"`, issue title (H3) and description, then solutions (`IssueSolution`), Upload file / My answer (`IssueAnswerField`), a single Okay, or the Applied / Answered card; "All" lists `IssueListItem`s · collapsed rail `Panel expanded={false}` with `dot`.
 **Rules:**
 1. Red = open questions or errors; orange = warnings. The rail dot follows (none when all is OK). The Approval readiness total matches the segmented counters.

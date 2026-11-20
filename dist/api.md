@@ -109,7 +109,7 @@ Props: items = TimelineItem props[] (each may carry `key`), or children = <Timel
 **In handovers:** placed 77× (Value) · usual: state=Success (81%)
 Figma: approval-chain-timeline (1440:6174) — legacy; rebuilt as a configuration of the timeline base (activity-organism 3713:13396).
 Props: steps = [{ key, state, name, position, avatar, date, comment, actions, role, roles, brief }], defaultSteps,
-onChange(steps) — clicking Approve / Reject on an awaiting step really moves it to success / rejected.
+onChange(steps) — demo only: in product screens the timeline is display-only history (rule 7.9); the chain people act on is ApprovalChainTable.
 onApprove(step, index) / onReject(step, index) also fire.
 `function ApprovalChain({ steps, defaultSteps = [], onChange, onApprove, onReject, className, ...rest })`
 
@@ -2008,7 +2008,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 274× (Explore, Command) · usual: Cooper badge no 63%
 Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
-Left (Figma "Content right slot"): smart-search-organism (248 wide, 28 tall, "Search for…") + icon-button-filter (round, 28).
+Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --control-h-s, "Search for…") + icon-button-filter (round, same height).
 Right ("container-left"): collaborators button (Button Tertiary S, users-group, "3/5") + icon-button-comment.
 Props: search = SmartSearch props (placeholder, onSubmit, suggestions…), onFilter, filtersApplied (filter dot),
 collaborators (label, default "3/5"; null hides), onCollaborators, onComments, hasNewComments, children (extra left content),
@@ -2051,7 +2051,7 @@ Figma: smart-search-organism (2145:3758) — the Cooper "Ask anything…" bar (s
 Props: type text|voice / defaultType / onTypeChange (Text shows the mic button, Voice shows the keyboard button and listens),
 placeholder, value / defaultValue / onChange(value), onSubmit(value) on Enter or suggestion pick, onClear,
 suggestions (strings or {label,type,query}; shown in a search-modal while focused), suggestionsTitle, listening (voice: "…" state),
-disabled, width (default 360, Figma), size l (40, default) | s (28 tall, padding 8/0/8/8, 28px mic: the explore-header instance),
+disabled, width (default 360, Figma), size l (default: --control-h-m, 36 / 32 / 28) | s (--control-h-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
 state hover|focus|pressed (gallery only), aria-label.
 Ask a natural-language question here; for keyword search over a list use IFS.Search (search-regular-organism).
 `function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear, suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, ...rest })`
