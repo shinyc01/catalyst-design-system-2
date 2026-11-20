@@ -129,7 +129,7 @@
 .ifs-column-settings__list{display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-column-settings__row.is-dragging{opacity:.6}
 .ifs-column-settings__name{display:inline-flex;align-items:center;gap:var(--space-200)}
-.ifs-column-settings__handle{display:inline-flex;color:var(--icon-tertiary);cursor:grab;touch-action:none}
+.ifs-column-settings__handle{display:inline-flex;align-items:center;justify-content:center;min-width:var(--target-min);min-height:var(--target-min);color:var(--icon-tertiary);cursor:grab;touch-action:none}
 .ifs-column-settings__hidden{color:var(--text-tertiary)}
 .ifs-column-settings__sep{height:1px;margin:var(--space-200) 0;background:var(--border-base)}
 .ifs-column-settings__none{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
@@ -168,7 +168,7 @@
 .ifs-data-table--ranked .ifs-table__td:first-child{padding-left:var(--space-50)}
 .ifs-data-table--ranked .ifs-table__th:first-child{padding-left:calc(var(--space-50) + var(--size-24) + var(--space-100)) /* raw in Figma: 2px cell pad + 24px pin + 4px gap */}
 .ifs-data-table__lead{position:relative;display:flex;align-items:center;flex:none}
-.ifs-data-table__handle{position:absolute;right:100%;margin-right:var(--space-150);display:inline-flex;color:var(--icon-tertiary);cursor:grab;touch-action:none}
+.ifs-data-table__handle{position:absolute;inset-inline-end:100%;margin-inline-end:var(--space-50);display:inline-flex;align-items:center;justify-content:center;width:var(--target-min);height:var(--target-min) /* 24 box; the icon stays where it was */;color:var(--icon-tertiary);cursor:grab;touch-action:none}
 .ifs-data-table__icon{flex:none;color:var(--icon-primary)}
 .ifs-data-table__stack{display:flex;flex-direction:column;gap:var(--space-100);min-width:0;flex:1}
 .ifs-data-table__code{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap} /* never truncated */

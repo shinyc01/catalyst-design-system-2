@@ -263,7 +263,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table__th:hover,.ifs-table__th[data-state=hover]{color:var(--text-secondary)}
 .ifs-table__th--right{justify-content:flex-end}
 .ifs-table__th--center{justify-content:center}
-.ifs-table__th-btn{all:unset;position:relative /* click area (_core.css) */;display:inline-flex;align-items:center;gap:var(--space-200);min-width:0;cursor:pointer;border-radius:var(--radius-radius-100)}
+.ifs-table__th-btn{all:unset;position:relative;display:inline-flex;min-height:var(--target-min);align-items:center;gap:var(--space-200);min-width:0;cursor:pointer;border-radius:var(--radius-radius-100)}
 /* Header text: one line; truncates with … when the column is narrower than the text (full text in the tooltip) */
 .ifs-table__th-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-table__th-btn:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
@@ -277,7 +277,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table-sort--asc::after,.ifs-table-sort--desc::after{bottom:0.20625rem;clip-path:polygon(0 0,100% 0,50% 100%)}
 .ifs-table-sort--asc::before,.ifs-table-sort--desc::after{background:var(--icon-primary)}
 /* table-filter-atom (1440:5932) */
-.ifs-table-filter{all:unset;position:relative;display:inline-flex;flex:none;width:var(--size-16);height:var(--size-16);cursor:pointer;color:var(--icon-tertiary);border-radius:var(--radius-radius-100)}
+.ifs-table-filter{all:unset;position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--target-min);height:var(--target-min) /* 24 box, 16 icon (Nov 19) */;cursor:pointer;color:var(--icon-tertiary);border-radius:var(--radius-radius-100)}
 .ifs-table-filter:hover,.ifs-table-filter[data-state=hover]{color:var(--icon-secondary)}
 .ifs-table-filter--applied{color:var(--icon-primary)}
 .ifs-table-filter--applied::after{content:"";position:absolute;right:1.5px;top:1.5px;width:3px;height:3px;border-radius:50%;background:var(--background-solid-accent-purple);box-shadow:0 0 0 1px var(--surface-primary)}

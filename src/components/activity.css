@@ -60,7 +60,7 @@
 .ifs-approval .ifs-tl-item{align-items:stretch}
 
 /* ================= VersionHistory (version-history-timeline 2277:5299 on the base) ================= */
-.ifs-version__toggle{display:flex;align-items:center;justify-content:center;width:var(--size-16);height:var(--size-16);padding:0;border:0;border-radius:50%;cursor:pointer;
+.ifs-version__toggle{display:flex;align-items:center;justify-content:center;width:var(--target-min);height:var(--target-min) /* 24 box (Nov 19) */;padding:0;border:0;border-radius:50%;cursor:pointer;
   background:var(--surface-tertiary-alpha);color:var(--icon-primary)}
 .ifs-version__toggle:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-version__content{display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-100) 0;min-width:0}
