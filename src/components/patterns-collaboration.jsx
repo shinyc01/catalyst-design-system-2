@@ -225,7 +225,7 @@ function useCollaboration({ people: init = [], suggested: sugInit = [], director
 // ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
 // Pattern component: modal-organism "Add Collaborator": person (content card, avatar L 40) + access select,
 // "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
-// Props: open, person, mode invite (Send invitation) | edit (Save; disabled until something changes), defaultAccess, defaultBrief,
+// Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 7.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
 //   onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 function InviteCollaboratorModal({ open, person, mode = 'invite', defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline }) {
   const [access, setAccess] = React.useState(defaultAccess);
@@ -233,12 +233,12 @@ function InviteCollaboratorModal({ open, person, mode = 'invite', defaultAccess 
   React.useEffect(() => { if (open) { setAccess(defaultAccess); setText(defaultBrief); } }, [open, person && person.id]);
   if (!person) return null;
   const changed = access !== defaultAccess || text !== defaultBrief;
-  const canSubmit = mode === 'invite' || changed;
+  const submit = () => { if (mode === 'edit' && !changed) { onCancel && onCancel(); return; } onSubmit && onSubmit({ access, brief: text }); };
   return (
     <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title="Add Collaborator" width={440} inline={inline}
       footer={<>
         <IFS.Button type="tertiary" size="l" onClick={onCancel}>Cancel</IFS.Button>
-        <IFS.Button type="primary" size="l" disabled={!canSubmit} onClick={() => canSubmit && onSubmit && onSubmit({ access, brief: text })}>
+        <IFS.Button type="primary" size="l" onClick={submit}>
           {mode === 'invite' ? 'Send invitation' : 'Save'}</IFS.Button>
       </>}>
       <div className="ifs-collab-invite">

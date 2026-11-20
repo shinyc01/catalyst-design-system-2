@@ -1471,7 +1471,7 @@ Props: controller, defaultOpen, open / onOpenChange.
 ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
 Pattern component: modal-organism "Add Collaborator": person (content card, avatar L 40) + access select,
 "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
-Props: open, person, mode invite (Send invitation) | edit (Save; disabled until something changes), defaultAccess, defaultBrief,
+Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 7.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
   onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 `function InviteCollaboratorModal({ open, person, mode = 'invite', defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline })`
 
