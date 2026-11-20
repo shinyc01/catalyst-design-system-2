@@ -88,7 +88,7 @@ function ScreenCooper({ bp, height }) {
           onCooper={() => setChat(c => (c === 'closed' ? 'full' : 'closed'))} />}>
         <div style={{ position: 'relative', height: '100%' }}>
           <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Strategy framework map" style={{ position: 'absolute', inset: 0 }}
-            overlay={<div style={{ position: 'absolute', left: 'var(--page-margin)', bottom: 'var(--space-300)' }}>
+            overlay={<div style={{ position: 'absolute', insetInlineStart: 'var(--page-margin)', bottom: 'var(--space-300)' }}>
               <ValueMapButton type="shape" defaultSelected="fit" onFit={fit} onExpand={() => toast('Expand all')} onCollapse={() => toast('Collapse all')} />
             </div>}>
             {cooperNodes.map(([t, title, count], i) => (
@@ -100,10 +100,10 @@ function ScreenCooper({ bp, height }) {
               <CanvasConnector key={i} from={{ x: i * COOPER_NODE_STEP + COOPER_NODE_W, y: COOPER_NODE_H / 2 }} to={{ x: (i + 1) * COOPER_NODE_STEP, y: COOPER_NODE_H / 2 }} />
             ))}
           </CanvasBackground>
-          {chat === 'full' && <div style={{ position: 'absolute', top: 'var(--space-300)', right: 'var(--page-margin)' }}>
+          {chat === 'full' && <div style={{ position: 'absolute', top: 'var(--space-300)', insetInlineEnd: 'var(--page-margin)' }}>
             <ChatFullPanel {...panelProps} onResize={() => setChat('compact')} style={{ width: 'var(--region-panel)', height: 688, maxHeight: 'calc(100% - 24px)' }} />
           </div>}
-          {chat === 'compact' && <div style={{ position: 'absolute', bottom: 'var(--space-300)', right: 'var(--page-margin)' }}>
+          {chat === 'compact' && <div style={{ position: 'absolute', bottom: 'var(--space-300)', insetInlineEnd: 'var(--page-margin)' }}>
             <ChatCompactPanel {...panelProps} onResize={() => setChat('full')} />
           </div>}
         </div>

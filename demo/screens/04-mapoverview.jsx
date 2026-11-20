@@ -123,18 +123,18 @@ function ScreenMapoverview({ bp, height }) {
           prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} onPrompt={p => toast(p)} onCooper={() => toast('Cooper')} />}>
         <div style={{ position: 'relative', height: '100%' }}>
           <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Strategy framework map" style={{ position: 'absolute', inset: 0 }}
-            overlay={<div style={{ position: 'absolute', left: 'var(--page-margin)', bottom: 'var(--space-300)' }}>
+            overlay={<div style={{ position: 'absolute', insetInlineStart: 'var(--page-margin)', bottom: 'var(--space-300)' }}>
               <ValueMapButton type="shape" defaultSelected="fit" onFit={() => api.current && api.current.fit({ x: 300, y: -150, width: 1950, height: 1500 })}
                 onExpand={() => toast('Expand all')} onCollapse={() => toast('Collapse all')} />
             </div>}>
             <MapovTree />
           </CanvasBackground>
-          {shown && <div style={{ position: 'absolute', top: 'var(--space-300)', right: 'var(--page-margin)', width: 'var(--region-panel)' }}>
+          {shown && <div style={{ position: 'absolute', top: 'var(--space-300)', insetInlineEnd: 'var(--page-margin)', width: 'var(--region-panel)' }}>
             <MapovTrace key={run} TraceReport={TraceReport} useIssueReport={useIssueReport}
               onDone={() => { setShown(false); toast('All issues resolved'); }}
               onUndo={() => { setShown(false); toast('Change undone'); }} />
           </div>}
-          {!shown && <div style={{ position: 'absolute', top: 'var(--space-300)', right: 'var(--page-margin)' }}>
+          {!shown && <div style={{ position: 'absolute', top: 'var(--space-300)', insetInlineEnd: 'var(--page-margin)' }}>
             <Button type="tertiary" size="s" iconLeft="arrow-refresh" onClick={() => { setRun(r => r + 1); setShown(true); }}>Replay the change</Button>
           </div>}
         </div>
