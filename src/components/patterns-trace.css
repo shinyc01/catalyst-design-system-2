@@ -9,7 +9,7 @@
 .ifs-trc-solution .ifs-content-card__head{gap:var(--space-200)}
 .ifs-trc-solution__body{display:flex;align-items:flex-start;gap:var(--space-200);min-width:0}
 /* Figma keeps the 24px icon-button column (+8 gap) on every row, so text wraps at the same width with or without it */
-.ifs-trc-solution:not(.ifs-trc-solution--applied) .ifs-trc-solution__body{margin-right:calc(var(--space-600) + var(--space-200))}
+.ifs-trc-solution:not(.ifs-trc-solution--applied) .ifs-trc-solution__body{margin-inline-end:calc(var(--space-600) + var(--space-200))}
 .ifs-trc-solution__cooper{flex:none;margin-top:var(--size-1)}
 .ifs-trc-solution__text{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
 .ifs-trc-solution__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);color:var(--text-primary)} /* H4: card title (Nov 19, 2.0.3) */

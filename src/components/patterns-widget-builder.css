@@ -40,7 +40,7 @@
 .ifs-preview-widget__dlabels{display:flex;flex-direction:column;gap:var(--space-150);padding-top:var(--space-150)}
 .ifs-preview-widget__dlabels .ifs-preview-widget__sk{max-width:100%}
 .ifs-preview-widget__dplot{position:relative;display:flex;flex-direction:column;gap:var(--space-150);padding:var(--space-150) 0;box-shadow:inset 0 0 0 0.5px var(--border-base)}
-.ifs-preview-widget__dplot::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:0.5px dashed var(--border-strong)}
+.ifs-preview-widget__dplot::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:0.5px dashed var(--border-strong)} /* ltr: centred plot line */
 .ifs-preview-widget__drow{position:relative;height:6px}
 .ifs-preview-widget__drow .ifs-preview-widget__sk{position:absolute;top:0}
 
@@ -55,16 +55,16 @@
 .ifs-widget-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-widget-card__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-24);color:var(--text-primary);
   font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking) /* H4, like every card title (Nov 19, 2.0.3) */}
-.ifs-widget-card__drag{position:absolute;left:0.125rem;top:1.0625rem;color:var(--icon-secondary)}
+.ifs-widget-card__drag{position:absolute;inset-inline-start:0.125rem;top:1.0625rem;color:var(--icon-secondary)}
 .ifs-widget-card__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-widget-card > .ifs-preview-widget{flex:none}
 
 /* ---------- resize-handle (key 190c6106…) ---------- */
 .ifs-resize-handle{position:relative;display:inline-block;width:var(--size-22);height:var(--size-64);color:var(--white-500)}
-.ifs-resize-handle__bar{position:absolute;left:var(--size-10);top:0;width:3px;height:100%;border-radius:var(--radius-radius-200);background:currentColor}
+.ifs-resize-handle__bar{position:absolute;left:var(--size-10);top:0;width:3px;height:100%;border-radius:var(--radius-radius-200);background:currentColor} /* ltr: resize handle art */
 .ifs-resize-handle__arrow{position:absolute;top:calc(50% - var(--size-6))}
-.ifs-resize-handle__arrow--left{left:-3px}
-.ifs-resize-handle__arrow--right{right:-3px}
+.ifs-resize-handle__arrow--left{left:-3px} /* ltr: resize handle art */
+.ifs-resize-handle__arrow--right{right:-3px} /* ltr: resize handle art */
 
 /* ---------- drop-indicator-atom (key f78ffb96…) ---------- */
 .ifs-drop-indicator{display:flex;align-items:center;pointer-events:none}
@@ -93,7 +93,7 @@
 /* ghost (content-card-organism State=Drag): surface/tertiary-alpha, border/strong 1 inside, blur 80 */
 .wb-frame--ghost{background:var(--surface-tertiary-alpha);box-shadow:inset 0 0 0 1px var(--border-strong),var(--drop-shadow-floating);backdrop-filter:blur(var(--blur-strong))}
 .wb-frame--ghost .ifs-dv-header__drag{display:inline-flex}
-.wb-frame--ghost .ifs-dv-header{padding-left:var(--space-100)}
+.wb-frame--ghost .ifs-dv-header{padding-inline-start:var(--space-100)}
 
 .wb-board{--wb-gap:var(--page-gap) /* widgets are dashboard cards: a page gap apart, like the Value dashboard (rule 4.2, Nov 20) */;position:relative;display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
 .wb-board--dragging,.wb-board--dragging *{cursor:grabbing !important;user-select:none}
@@ -107,7 +107,7 @@
 .wb-cell > *{flex:1}
 .wb-cell--source{opacity:0.3 /* notes: ~30% (frames draw 40%) */}
 .wb-cell--zone > .ifs-drop-zone{flex:1}
-.wb-edge{position:absolute;top:var(--size-40);bottom:0;width:var(--size-16);margin-left:calc(-1 * var(--space-200));display:flex;align-items:center;justify-content:center;cursor:ew-resize;z-index:2;touch-action:none}
+.wb-edge{position:absolute;top:var(--size-40);bottom:0;width:var(--size-16);margin-left:calc(-1 * var(--space-200));display:flex;align-items:center;justify-content:center;cursor:ew-resize;z-index:2;touch-action:none} /* ltr: JS drag geometry */
 .wb-edge > .ifs-resize-handle{max-height:100%}
 .wb-indicator{position:absolute;z-index:3}
 .wb-empty-zone{min-height:7.5rem}
@@ -116,7 +116,7 @@
 .wb-ghost__blank{border-radius:var(--radius-radius-100);background:var(--background-elevation-1-secondary)}
 .wb-tip{position:absolute;white-space:nowrap;pointer-events:none}
 .wb-tip--cursor{position:fixed;z-index:1001}
-.wb-tip--above{bottom:calc(100% + 4px);left:50%;transform:translateX(-50%)}
+.wb-tip--above{bottom:calc(100% + 4px);left:50%;transform:translateX(-50%)} /* ltr: centred with translateX */
 
 /* ⋮ menu (single-select-list visuals) with the Resize S / M / L submenu */
 .wb-size-option__bars{display:flex;gap:var(--space-50)}

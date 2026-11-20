@@ -10,6 +10,7 @@
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-source-card__text{align-self:stretch;margin:0;color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-source-card__text--quote{padding:var(--space-100) var(--space-200);box-shadow:inset 1px 0 0 var(--border-strong)}
+:where([dir="rtl"]) .ifs-source-card__text--quote{box-shadow:inset -1px 0 0 var(--border-strong)} /* rtl: one-side border mirrors */
 .ifs-source-card--loading .ifs-skeleton-bar{display:block}
 
 /* ================= evidence section ("Why it's flagged" / "Decisions" / "Considered but not included") ================= */
@@ -26,7 +27,7 @@
 .ifs-peer-benchmark__row{display:flex;align-items:center;min-height:var(--size-40);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha)}
 .ifs-peer-benchmark__key{flex:1 1 auto;margin:0;padding:var(--space-200) var(--space-300);color:var(--text-tertiary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-peer-benchmark__value{margin:0;padding:var(--space-300);color:var(--text-primary);text-align:right;white-space:nowrap;
+.ifs-peer-benchmark__value{margin:0;padding:var(--space-300);color:var(--text-primary);text-align:end;white-space:nowrap;
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 .ifs-peer-benchmark__scope{display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset);
   border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha)}
@@ -39,7 +40,7 @@
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-peer-benchmark__ytitle span{transform:rotate(-90deg)}
 .ifs-peer-benchmark__ticks{display:flex;flex-direction:column;justify-content:space-between;height:160px;color:var(--text-tertiary);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-align:right;font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-align:end;font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 .ifs-peer-benchmark__plot{display:flex;flex-direction:column;gap:var(--space-stack);padding-top:var(--space-200);min-width:0}
 .ifs-peer-benchmark__bars{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-50);height:156px;
   box-sizing:border-box;padding:var(--space-100)}

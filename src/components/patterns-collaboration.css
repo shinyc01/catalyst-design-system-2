@@ -3,7 +3,7 @@
 /* ---- cursor-atom: cursor-pointer 16 + pill (min 18 tall) offset 16 right, Body/S/regular ---- */
 .ifs-cursor{--cu:var(--collaboration-user-1);display:inline-flex;flex-direction:column;align-items:flex-start;pointer-events:none;user-select:none}
 .ifs-cursor__pointer{flex:none;width:var(--size-16);height:var(--size-16);overflow:visible}
-.ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--space-200);margin-left:var(--space-400);min-height:var(--size-18);box-sizing:border-box;
+.ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--space-200);margin-left:var(--space-400);min-height:var(--size-18);box-sizing:border-box; /* ltr: pill sits right of the cursor art, which points up-left */
   padding:var(--space-50) var(--space-150);border-radius:100px /* raw in Figma */;background:var(--cu);color:var(--text-primary);
   box-shadow:0 1px 4px rgba(0,0,0,.16) /* raw in Figma (drop shadow 0 1 4 #000 16%) */;overflow:hidden;white-space:nowrap}
 .ifs-cursor__name{position:relative;padding-bottom:var(--space-50);font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: ambient name tag */
@@ -11,7 +11,7 @@
 .ifs-cursor--cooper .ifs-cursor__pill{gap:var(--space-100)}
 .ifs-cursor__visual{position:absolute;inset:0;width:100%;height:100%}
 .ifs-cursor__cooper{position:relative;flex:none}
-.ifs-cursor--placed{position:absolute;left:0;top:0;transition:transform 1.4s cubic-bezier(.45,.05,.35,1);will-change:transform}
+.ifs-cursor--placed{position:absolute;left:0;top:0;transition:transform 1.4s cubic-bezier(.45,.05,.35,1);will-change:transform} /* ltr: canvas coordinates */
 @media (prefers-reduced-motion:reduce){.ifs-cursor--placed{transition:none}}
 .ifs-cursor--u1{--cu:var(--collaboration-user-1)} .ifs-cursor--u2{--cu:var(--collaboration-user-2)} .ifs-cursor--u3{--cu:var(--collaboration-user-3)}
 .ifs-cursor--u4{--cu:var(--collaboration-user-4)} .ifs-cursor--u5{--cu:var(--collaboration-user-5)} .ifs-cursor--u6{--cu:var(--collaboration-user-6)}
@@ -33,7 +33,7 @@
 .ifs-collab-panel__body > .ifs-empty-state{padding:var(--space-inset)}
 
 .ifs-collab-section{display:flex;flex-direction:column;gap:var(--space-200);padding-top:var(--space-100)}
-.ifs-collab-section__title{display:flex;align-items:center;gap:var(--space-200);margin:0;padding-left:var(--space-inset);
+.ifs-collab-section__title{display:flex;align-items:center;gap:var(--space-200);margin:0;padding-inline-start:var(--space-inset);
   color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-collab-section__title--cooper span{background:linear-gradient(to left,var(--text-accent-cooper),var(--text-primary)) /* Figma GRADIENT_LINEAR; same as CooperChip */;
   -webkit-background-clip:text;background-clip:text;color:transparent}
@@ -67,7 +67,7 @@
 .ifs-role-select__trigger.is-open{--f:var(--element-input-fill-typing);--b:var(--element-input-border-typing)}
 .ifs-role-select__trigger:focus-visible{--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-role-select__trigger.is-disabled{--f:var(--element-input-fill-disabled);--b:var(--element-input-border-disabled);color:var(--text-disabled);cursor:not-allowed}
-.ifs-role-select__list,.ifs-role-filter__list{position:absolute;top:calc(100% + var(--space-100));right:0;z-index:var(--z-index-z-popover);
+.ifs-role-select__list,.ifs-role-filter__list{position:absolute;top:calc(100% + var(--space-100));inset-inline-end:0;z-index:var(--z-index-z-popover);
   display:flex;flex-direction:column;box-sizing:border-box;width:10rem;padding:var(--space-100);border-radius:var(--radius-radius-100);
   background:var(--background-elevation-2-primary-base);box-shadow:inset 0 0 0 1px var(--border-base);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))} /* effect blur/strong */
@@ -82,7 +82,7 @@
 
 /* ---- RoleFilter (icon-button Secondary M + multiple-select-list-molecule) ---- */
 .ifs-role-filter{position:relative;flex:none}
-.ifs-role-filter__list{top:0;right:0;width:10rem}
+.ifs-role-filter__list{top:0;inset-inline-end:0;width:10rem}
 .ifs-role-filter__option{gap:var(--space-200)}
 .ifs-role-filter__option .ifs-checkbox{pointer-events:none}
 
@@ -94,7 +94,7 @@
 .ifs-collab-invite__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-collab-invite__title{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-collab-invite__brief{display:flex;flex-direction:column;gap:var(--space-200)}
-.ifs-collab-invite__brief .ifs-collab-section__title{padding-left:0}
+.ifs-collab-invite__brief .ifs-collab-section__title{padding-inline-start:0}
 .ifs-collab-invite__area.ifs-field--area .ifs-field__control{height:12.5rem} /* Figma resizes the M (100) text area to 200 to fit Cooper's brief */
 .ifs-collab-remove{display:flex;flex-direction:column;gap:var(--space-stack)}
 .ifs-collab-remove__card{display:flex;align-items:center;gap:var(--space-200);padding:var(--space-200);border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha)}
