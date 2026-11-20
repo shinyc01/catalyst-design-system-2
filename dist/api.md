@@ -2605,9 +2605,10 @@ Figma: panel-organism (4305:365421); collapsed rail = sidebar-organism View=Coll
 Props: title, actions (node, header right, before the buttons), expanded / defaultExpanded=true / onExpandedChange
 (Figma Expanded: 380px ↔ 48px rail holding only the ←| expand button), dot error|warning (status dot on the rail's button:
 red = errors / open questions, orange = warnings only), showEvidence (show-evidence-chain, circle Tertiary S icon-button),
-onEvidence, onClose (shows ✕ instead of the collapse toggle; the panel then never collapses), full (fills the content area),
+onEvidence, onClose (shows ✕ instead of the collapse toggle; the panel then never collapses), collapsible (default true; false = a panel
+that is the step's task itself and can't fold: no toggle, always open, rule 4.6; Nov 20), full (fills the content area),
 children (Content slot). Lives in the page layout: no scrim, no focus trap.
-`function Panel({ title, actions, expanded, defaultExpanded = true, onExpandedChange, dot, showEvidence = true, onEvidence, onClose, full, children, className, style })`
+`function Panel({ title, actions, expanded, defaultExpanded = true, onExpandedChange, dot, showEvidence = true, onEvidence, onClose, collapsible = true, full, children, className, style })`
 
 ### Popover
 **Tier:** Component
