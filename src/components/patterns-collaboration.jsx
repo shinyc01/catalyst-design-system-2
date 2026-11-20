@@ -262,10 +262,10 @@ function InviteCollaboratorModal({ open, person, mode = 'invite', title, default
 // ───────────────────────────── RemoveCollaboratorModal ─────────────────────────────
 // Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + "This action will revoke the collaborator's
 // invite to the framework" + Cancel / Remove. Props: open, person, onCancel, onConfirm, inline.
-function RemoveCollaboratorModal({ open, person, onCancel, onConfirm, inline }) {
+function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)
   if (!person) return null;
   return (
-    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title="Remove this collaborator?" width={440} inline={inline}
+    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title} width={440} inline={inline}
       secondaryAction={{ label: 'Cancel', onClick: onCancel }} primaryAction={{ label: 'Remove collaborator', onClick: onConfirm }}>
       <div className="ifs-collab-remove">
         <div className="ifs-collab-remove__card">

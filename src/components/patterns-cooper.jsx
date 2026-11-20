@@ -357,7 +357,7 @@ function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children,
 // header: onNewChat/onHistory/onResize (→ full panel)/onMore/onClose, onDragStart (drag the window by its title).
 function ChatCompactPanel(props) { return <ChatPanel size="compact" {...props} />; }
 
-// Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). 450px docked side panel.
+// Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). Full panel: floats a level above the page, one page margin in (rule 4.6).
 // Same props as ChatCompactPanel plus prompts (Figma show-chips: PromptButton L in the empty state) + onPrompt,
 // historyOpen, onResizeStart (pointerdown on the left edge: drag to make the panel wider/narrower).
 function ChatFullPanel(props) { return <ChatPanel size="full" {...props} />; }
@@ -466,7 +466,7 @@ function ChatReminderCard({ title, badge, due, active, onClick, onMore, state, c
   );
 }
 
-// Figma: history-panel-molecule (a0999afa6b27…) — "chat history" (Patterns 12:264137). 240px column docked left of the full panel.
+// Figma: history-panel-molecule (a0999afa6b27…) — "chat history" (Patterns 12:264137). 240px column at the start side of the full panel, inside the same floating panel.
 // Props: chats [{ id, title, time, group today|week|earlier, pinned }], folders [{ id, name, count, icon }], smart { reminders, recommendations, trash } counts,
 // activeChatId, onOpenChat(id), onNewChat, onSearch, onOpenFolder(id) ('reminders'|'recommendations'|'trash'|folder id), onCollapse,
 // folderLimit (default 3: "See all" expands), onFolderMore(folder, event), onChatMore(chat, event), onFoldersMore(event), onChatsMore(event),
@@ -719,7 +719,7 @@ const genericAnswer = q => ({
 
 // CooperChat — the whole Cooper chat behaviour (pattern component; Patterns "Chat" section 67:121910).
 // Sizes: closed (avatar + prompt chips in the bottom sheet) → bar (chat-collapsed-bar, voice by default) → compact (floating window)
-// → full (docked side panel). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n/total) →
+// → full (floating panel, one page margin in). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n/total) →
 // Streaming → Answered; Stop interrupts (keeps the user message; partial answer stays + Regenerate; before any text: Try again).
 // Props: size / defaultSize / onSizeChange ('closed'|'bar'|'compact'|'full'), mode / defaultMode ('voice'|'text'),
 // messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data

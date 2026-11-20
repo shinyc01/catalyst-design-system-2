@@ -48,9 +48,9 @@
   width:18.9375rem;max-width:100%;padding:var(--space-inset);padding-right:var(--space-700) /* Figma Error variant leaves 32px for the close button */;
   border-radius:var(--radius-radius-200);background:var(--surface-primary);color:var(--text-primary)}
 /* Effect styles inner-shadow/map-highlight/* — not in tokens.css yet */
-.ifs-alert--error{box-shadow:var(--inner-shadow-map-highlight-critical,inset 0 0 12px 7px rgba(238,60,59,0.4))}
-.ifs-alert--warning{box-shadow:var(--inner-shadow-map-highlight-moderate,inset 0 0 12px 7px rgba(255,175,46,0.4))}
-.ifs-alert--success{box-shadow:var(--inner-shadow-map-highlight-resolved,inset 0 0 12px 7px rgba(46,188,93,0.4))}
+.ifs-alert--error{box-shadow:var(--inner-shadow-map-highlight-critical)}
+.ifs-alert--warning{box-shadow:var(--inner-shadow-map-highlight-moderate)}
+.ifs-alert--success{box-shadow:var(--inner-shadow-map-highlight-resolved)}
 .ifs-alert__text{display:flex;flex-direction:column;gap:var(--space-100);align-self:stretch;min-width:0}
 .ifs-alert__header{display:flex;align-items:center;gap:var(--space-100)}
 .ifs-alert__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-primary)} /* Label/M/medium */

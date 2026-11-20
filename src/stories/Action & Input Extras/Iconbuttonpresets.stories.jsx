@@ -9,7 +9,7 @@ export default {
   component: IFS["Icon-button presets"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** icon-button-notification (357:53417), -comment (2563:8153), -filter (6955:768), -arrow (6349:61950)\n\n\nUse: The bell in `global-header`; True shows the unread dot." } },
+    docs: { description: { component: "**Figma:** icon-button-notification (357:53417), -comment (2563:8153), -filter (6955:768), -arrow (6349:61950)\n\n\nUse: The bell in `NavBar`; True shows the unread dot." } },
     design: [{"name":"icon-button-notification","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=357-53417"},{"name":"comment","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2563-8153"},{"name":"filter","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=6955-768"},{"name":"arrow","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=6349-61950"}],
   },
 };

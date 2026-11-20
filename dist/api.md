@@ -1178,7 +1178,7 @@ user = { initials, name } or avatar (node), actions (node: replaces the default 
 **In handovers:** placed 1,023× (Build, Value, Plan, Command) · usual: status progress bar 67%
 Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
+onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, a `SegmentedControl size="s"` of icons; a divider precedes it),
 center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 Narrow widths (Nov 19, measured on the header itself):
@@ -1218,7 +1218,7 @@ Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the 
 e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
 Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
-        whole page together (readiness evaluation, Cooper chat, comments, widgets, approval chain). Default.
+        whole page together (readiness evaluation, comments, widgets, approval chain). Default. The full Cooper chat is over (rule 4.6).
   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
         is context (row / record preview, evidence chain, activity). Outside click and Esc call onPanelClose
         (clicking another row closes and reopens, so the preview swaps).
@@ -1480,7 +1480,7 @@ Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule
 ───────────────────────────── RemoveCollaboratorModal ─────────────────────────────
 Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + "This action will revoke the collaborator's
 invite to the framework" + Cancel / Remove. Props: open, person, onCancel, onConfirm, inline.
-`function RemoveCollaboratorModal({ open, person, onCancel, onConfirm, inline })`
+`function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)`
 
 ### useCollaboration
 **Tier:** Pattern helper
@@ -1695,7 +1695,7 @@ header: onNewChat/onHistory/onResize (→ full panel)/onMore/onClose, onDragStar
 ### ChatFullPanel
 **Tier:** Component
 **In handovers:** placed 136× (Value, Build, Plan, Explore) · usual: Type text 98% · size default 100% · input type voice 92% · type chat ge 52% / gen 30%
-Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). 450px docked side panel.
+Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). Full panel: floats a level above the page, one page margin in (rule 4.6).
 Same props as ChatCompactPanel plus prompts (Figma show-chips: PromptButton L in the empty state) + onPrompt,
 historyOpen, onResizeStart (pointerdown on the left edge: drag to make the panel wider/narrower).
 `function ChatFullPanel(props) { return <ChatPanel size="full" {...props} />; }`
@@ -1741,7 +1741,7 @@ Props: title, badge ("In 4 days" — Badge Black M), due ("May 2"), active, onCl
 ### HistoryPanel
 **Tier:** Component
 **In handovers:** placed 52× (Value) · usual: Property 1=Default (79%)
-Figma: history-panel-molecule (a0999afa6b27…) — "chat history" (Patterns 12:264137). 240px column docked left of the full panel.
+Figma: history-panel-molecule (a0999afa6b27…) — "chat history" (Patterns 12:264137). 240px column at the start side of the full panel, inside the same floating panel.
 Props: chats [{ id, title, time, group today|week|earlier, pinned }], folders [{ id, name, count, icon }], smart { reminders, recommendations, trash } counts,
 activeChatId, onOpenChat(id), onNewChat, onSearch, onOpenFolder(id) ('reminders'|'recommendations'|'trash'|folder id), onCollapse,
 folderLimit (default 3: "See all" expands), onFolderMore(folder, event), onChatMore(chat, event), onFoldersMore(event), onChatsMore(event),
@@ -1806,7 +1806,7 @@ Props: title, description, impact, onBack, onDecline, onApply.
 **Tier:** Pattern helper
 CooperChat — the whole Cooper chat behaviour (pattern component; Patterns "Chat" section 67:121910).
 Sizes: closed (avatar + prompt chips in the bottom sheet) → bar (chat-collapsed-bar, voice by default) → compact (floating window)
-→ full (docked side panel). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n/total) →
+→ full (floating panel, one page margin in). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n/total) →
 Streaming → Answered; Stop interrupts (keeps the user message; partial answer stays + Regenerate; before any text: Try again).
 Props: size / defaultSize / onSizeChange ('closed'|'bar'|'compact'|'full'), mode / defaultMode ('voice'|'text'),
 messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data
@@ -2404,7 +2404,7 @@ filter(option, query), state. While loading and open, the list shows Figma's "Se
 **In handovers:** placed 511× (Build, Explore, Command, Plan, Value) · usual: Number 2 48% / 4 27% · Size s 100% · type 4 72%
 Figma: segmented-control-organism (1387:244501) built from segmented-control-atom (1387:244511)
 Props: options = [{ value, label, iconLeft, iconRight, counter, disabled, state }] (strings allowed), value/defaultValue/onChange,
-size m | s: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 2 smaller inside the track, each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
+size m | s: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 4 smaller inside the 2 track (20 inside 24 in Comfortable), each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
 `function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm', fullWidth = false, className, ...rest })`
 
 ### Chip
@@ -2546,7 +2546,7 @@ open/onOpenChange to control. `inline` renders the bubble alone (gallery).
 **Tier:** Component
 **In handovers:** placed 6× (Explore, Value) · usual: Type success 83%
 Figma: alert-organism (1440:5440)
-Props: type error|warning|success, title, children = Body text, showIcon (Figma show-icon, default off),
+Props: type error|warning (success = Figma variant only: screens never use a success Alert, rule 7.12), title, children = Body text, showIcon (Figma show-icon, default off),
 action = button label (Primary S; absent = show-button off), onAction, onClose (shows the close
 icon-button; Figma show-close-icon), closable=false to hide it.
 `function Alert({ type = 'error', title, children, showIcon = false, action, onAction, onClose, closable = true, className, ...rest })`

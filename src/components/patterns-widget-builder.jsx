@@ -508,7 +508,7 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
     const sec = layout.sections.find(s => s.id === ed.sec), row = sec.rows[ed.ri];
     const info = E.edgeInfo(layout, ed.sec, ed.ri, ed.li, ed.sectionEdge);
     const rr = rowEl(ed.sec, row.id).getBoundingClientRect();
-    const gap = 12, unit = (rr.width + gap) / 6;
+    const gap = parseFloat(getComputedStyle(rowEl(ed.sec, row.id)).columnGap) || 0, unit = (rr.width + gap) / 6; // the row's real gap (--wb-gap = page gap)
     const ws = E.widths(row), sumB = ws.slice(0, ed.li).reduce((a, b) => a + b, 0);
     const shrinkOnly = ed.sectionEdge;
     const opts = shrinkOnly ? info.opts.filter(w => w <= info.cur) : info.opts;

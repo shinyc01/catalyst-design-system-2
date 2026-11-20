@@ -70,7 +70,7 @@ Use: A small fixed set (2–4) of related actions tied to a point on a canvas/ma
 Don't: More than ~4 actions; actions not memorable by position; primary page actions (those belong in toolbars/labelled buttons).
 
 ### icon-button-notification · `NotificationButton`
-Use: The bell in `global-header`; True shows the unread dot.
+Use: The bell in `NavBar`; True shows the unread dot.
 
 ### icon-button-comment · `CommentButton`
 Use: Opening comments; True shows a new-comment dot.
@@ -122,7 +122,7 @@ Use: Multi-line text. L full page (grows 140→300px), M compact (100→260px); 
 Use: Simple keyword/name search where the use case needs no AI (column filters, small lists). The default search is `SmartSearch`; which one is the screen's call by use case (Nov 20).
 
 ### smart-search-organism · `SmartSearch`
-Use: Natural-language queries and prompts, where the system interprets intent instead of only matching names.
+Use: The default search (AI search): keywords or natural-language queries, where the system interprets intent instead of only matching names.
 Notes: Keep it visually distinct from column filters.
 
 ### form-card-organism · `FormCard`
@@ -770,8 +770,8 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 
 ### Pattern: Cooper
 
-**For:** the AI assistant on every stage screen: asking about the current screen, Cooper's proactive recommendations, and past conversations. Always over or docked into the content area of an AppShell screen; never a modal or a full page.
-**Parts:** entry = `BottomSheet` prompts (`PromptButton`) + `FtaButton`, shortcut `/` · three sizes: `ChatCollapsedBar` (320 pill above the bottom sheet), `ChatCompactPanel` (320×360 floating), `ChatFullPanel` (floating a level above the page, one `--page-margin` in from the top, end and bottom of the content area, the same inset as Explore's map tools; never docked); each with `ChatHeader`, `TextMessageInput` or `VoiceMessageInput`, `Attachment` · conversation: `UserMessage`, `CooperMessage` (`CooperProgress`, `ChatCard`, `ChatLink`, `Button`) · history: `HistoryPanel` (240, docked beside the full panel) with `FolderItem`, `SectionHeader`, `ChatHistoryCard`; `FolderContent`; `HistorySearch` + `SearchChatHistoryCard`; `Modal` + `ConfirmDeleteCard`; create folder `Modal` + `TextField` + `IconPicker` · recommendations: `CooperChip` in `PageHeader` → `AgentWindow` (`SpeakingControl`, `RecommendationGroup`, `RecommendationItem`, `RecommendationDetail`, `RecommendationImpact`) · behaviour: `CooperChat`, `CooperHistory`, `CooperRecommendations`.
+**For:** the AI assistant on every stage screen: asking about the current screen, Cooper's proactive recommendations, and past conversations. Always over the content area of an AppShell screen (the full chat floats one page margin in, rule 4.6); never docked, a modal or a full page.
+**Parts:** entry = `BottomSheet` prompts (`PromptButton`) + `FtaButton`, shortcut `/` · three sizes: `ChatCollapsedBar` (320 pill above the bottom sheet), `ChatCompactPanel` (320×360 floating), `ChatFullPanel` (floating a level above the page, rule 4.6); each with `ChatHeader`, `TextMessageInput` or `VoiceMessageInput`, `Attachment` · conversation: `UserMessage`, `CooperMessage` (`CooperProgress`, `ChatCard`, `ChatLink`, `Button`) · history: `HistoryPanel` (240, beside the full panel, inside the same floating panel) with `FolderItem`, `SectionHeader`, `ChatHistoryCard`; `FolderContent`; `HistorySearch` + `SearchChatHistoryCard`; `Modal` + `ConfirmDeleteCard`; create folder `Modal` + `TextField` + `IconPicker` · recommendations: `CooperChip` in `PageHeader` → `AgentWindow` (`SpeakingControl`, `RecommendationGroup`, `RecommendationItem`, `RecommendationDetail`, `RecommendationImpact`) · behaviour: `CooperChat`, `CooperHistory`, `CooperRecommendations`.
 **Rules:**
 1. Opens in voice mode ("Say anything, I'm listening") by "Hey Cooper", `/` or the avatar; the keyboard icon switches to text ("Write anything, I'm reading"), the mic back. In voice mode the transcript shows large while the user speaks. A prompt chip sends at once.
 2. "Hey Cooper": the avatar expands into the inline field, a sound plays, the chips hide; Cooper doesn't reply by voice. After ~1.5s of silence the question sends and the floating window opens; after ~6s with nothing said, it collapses back.
@@ -785,7 +785,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 10. Input: typing shows Send; multi-line (radius 12) moves the buttons below; files by + or drag onto the panel (any number; the input grows to 400 then scrolls; ✕ removes a file; a file can send without text). Hover your message to copy or edit; saving an edit resends.
 11. History: Search, Start a new chat, smart folders, your folders (See all after 3), chats grouped Today / This week / Earlier. Chat ⋯: Pin, Rename, Move to folder, Select, Delete. Section ⋯: chats Select, Delete all; folders Create folder, Select, Delete all. Select mode adds a footer (Move, Delete, "Selected n ✕"); Cancel clears the selection. ✕ on an item in a Delete or Move dialog only deselects it.
 12. Smart folders (Reminders, Recommendations, Trash) are system-managed; deleted chats stay in Trash 30 days. Users create, rename, give an icon to, bulk move and delete their own folders; deleting a folder never deletes its chats.
-13. Show the history panel only beside the full panel; from the compact window the history button first docks the chat.
+13. Show the history panel only beside the full panel; from the compact window the history button first switches to the full panel.
 14. Recommendations: chip → window grouped by framework column → expand an item (description, impact, Explore) → Shape walks through them (Back, Decline, Do it) → "Working on it: Applying…" → "I've added … Let's go to the next"; after the last, "All selected recommendations have been applied…" and the window closes. Every recommendation is saved as a chat in Recommendations. Decline removes it and updates the count (the chip disappears at 0; "Decline all" only with more than one); declined items stay in history. Each shows the two impact metrics the backend marks. Cooper never auto-commits.
 15. Recommendations and the chat are never open together; "Ask" switches to the chat.
 16. After a canvas change Cooper opens with a working message, then a result and Undo; Undo discards only Cooper's recalculation.
@@ -811,7 +811,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 **For:** a page of widgets people arrange: add from a catalog, reorder by drag, resize on a 3-column grid, remove. A dashboard (widgets on the page, one grid) or a report (blocks inside sections, one grid per section); same widgets and rules. Editing only while the page is in Draft.
 **Parts:** `AppShell` + `NavBar` + `SideNav` + `PageHeader` + `BottomSheet type="documents"` (optional `Panel`) · page intro with a secondary "Widgets" button · `StatCardsRow` (the metrics block) · `WidgetBoard` (grid engine) of `WidgetFrame`s (title, Cooper button; hover ⋮⋮, "Edit with Cooper", ⋮ menu) with kit charts inside (`bare`) · drag feedback: ghost (`WidgetFrame state="ghost"`, or `WidgetCard state="drag"` from the drawer), source at 30%, `DropIndicator`, then `DropZone` "+ Drop here to place", `Tooltip` for a blocked drop · resize: `ResizeHandle`, `Tooltip` · `WidgetsDrawer` (`Drawer` + search + `WidgetCard`s with `PreviewWidgetCard`) · `toast` + Undo.
 **Rules:**
-1. A section is a 3-column grid with a page gap (`--page-gap`, the same as cards on the Value dashboard, rule 4.2); widths only 1/3, 1/2, 2/3 or 3/3. A row holds 1–3 widgets, never spans sections, never leaves an empty column (the last widget fills the rest), and its widgets share the tallest height (height is never resized by hand).
+1. A section is a 3-column grid with a page gap (rule 4.2); widths only 1/3, 1/2, 2/3 or 3/3. A row holds 1–3 widgets, never spans sections, never leaves an empty column (the last widget fills the rest), and its widgets share the tallest height (height is never resized by hand).
 2. Auto widths: 1 → 3/3; 2 → 1/2 + 1/2; 3 → 1/3 each; chart + text → 2/3 + 1/3; chart + chart → 1/2 + 1/2, locked. A row of 2 may be 1/2 + 1/2, 1/3 + 2/3 or 2/3 + 1/3. Manual widths last until the count or order changes or the divider is double-clicked (→ Auto). Width is saved with the edition, the same for everyone.
 3. Limits: metrics block (1–3 stat cards of equal width) 3/3 only, no handle, not draggable; text 1/3–3/3; chart min 1/2, resizable only next to a text widget; wide chart or table 3/3 (proposed in Figma).
 4. Add: Widgets → drawer (`push`) → "+ Add" places the widget and removes its card, toast `"<name>" widget added` + Undo; or drag the card in (the drawer steps aside). The drawer search filters by description; no match → empty state.

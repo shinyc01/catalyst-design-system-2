@@ -353,7 +353,7 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 
 // Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 // page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-// onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
+// onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, a `SegmentedControl size="s"` of icons; a divider precedes it),
 // center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 // The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 // Narrow widths (Nov 19, measured on the header itself):
@@ -559,7 +559,7 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
 // Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
 //   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
-//         whole page together (readiness evaluation, Cooper chat, comments, widgets, approval chain). Default.
+//         whole page together (readiness evaluation, comments, widgets, approval chain). Default. The full Cooper chat is over (rule 4.6).
 //   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
 //         is context (row / record preview, evidence chain, activity). Outside click and Esc call onPanelClose
 //         (clicking another row closes and reopens, so the preview swaps).

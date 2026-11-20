@@ -73,6 +73,10 @@ Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IF
   - Cooper bar by page (`BottomSheet type="documents"` inside an entity).
   - Table groups open / collapsed / locked; `ApprovalChainTable stages` for several approval stages.
   - The kit places the map's top and bottom bars itself (`placeMapSlots`), no flash; StagedAppShell removed; Storybook Foundations pages.
+  - Workflow panels start open, and every panel can fold (`Panel collapsible={false}` only when a screen is asked to stay open).
+  - Feedback: Alerts are error or warning only; success = snackbar for the user's own action, notification (tray + live snackbar) for news.
+  - Small `SegmentedControl` at the control height outside, with full-height hit layers; widgets a page gap apart; the full Cooper chat floats one page margin in (over).
+  - `SmartSearch` is the default search; modal footers have one Primary; Evidence 90% is Review; collaboration Save always on; component text is the screen's content.
 
 Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).
 

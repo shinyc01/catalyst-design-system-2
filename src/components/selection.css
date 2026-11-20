@@ -130,7 +130,7 @@
 .ifs-segmented__item .ifs-icon{color:var(--icon-primary)}
 .ifs-segmented--m .ifs-segmented__item{height:var(--control-h-m);padding:var(--space-150) var(--space-250)}
 .ifs-segmented--s .ifs-segmented__item{position:relative;height:calc(var(--control-h-s) - 2 * var(--space-50));padding:0 var(--space-200)} /* S = control height outside (rule 3.5): items sit inside the 2 frame (Nov 20) */
-.ifs-segmented--s .ifs-segmented__item::after{content:'';position:absolute;inset-block:calc(-1 * var(--space-50));inset-inline:0} /* invisible hit layer: each option stays a full control height to click (rule 3.x hit layers) */
+.ifs-segmented--s .ifs-segmented__item::after{content:'';position:absolute;inset-block:calc(-1 * var(--space-50));inset-inline:0} /* invisible hit layer: each option stays a full control height to click (rule 3.9 hit layers) */
 .ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--element-segmented-control-off-fill-hover);--stroke:inset 0 0 0 1px rgba(255,255,255,.08) /* raw in Figma */}
 .ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--element-segmented-control-off-fill-pressed);--stroke:0 0 0 0 transparent;color:var(--text-tertiary)}
 .ifs-segmented__item.is-selected{--fill:var(--element-segmented-control-on-fill-default);--stroke:inset 0 0 0 1px var(--element-segmented-control-on-border-default)}
