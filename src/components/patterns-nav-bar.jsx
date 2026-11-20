@@ -3,7 +3,7 @@ import { IFS } from './registry.js';
 // Patterns › Nav bar (Patterns file KmmVU2D0kqWr0dC1xXNzWw, page 243:66369, section "nav bar" 244:119940).
 // 1. IFS DS components the kit lacked: explore-header (ExploreHeader), home-row-card-organism (HomeRowCard).
 // 2. Pattern composites (NavBar collapses by width itself since 2.0.3): SideNavTree (the Plan L2 sidebar: a folder tree in
-//    navigation-panel-organism's Content slot) and StagedAppShell (L1 stage → that stage's sidebar, header, content, bottom sheet).
+//    navigation-panel-organism's Content slot).
 
 const cx = (...a) => a.filter(Boolean).join(' ');
 
@@ -16,23 +16,6 @@ function useNbValue(value, defaultValue, onChange) {
   return [current, set];
 }
 
-// Width of an element (ResizeObserver). Returns [ref, width]; width is null until measured.
-function useNbWidth() {
-  const ref = React.useRef(null);
-  const [w, setW] = React.useState(null);
-  React.useLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return undefined;
-    const read = () => setW(el.getBoundingClientRect().width);
-    read();
-    const ro = window.ResizeObserver ? new ResizeObserver(read) : null;
-    ro && ro.observe(el);
-    return () => ro && ro.disconnect();
-  }, []);
-  return [ref, w];
-}
-
-const NB_STAGES = ['Command', 'Value', 'Explore', 'Build', 'Plan', 'Results'].map(l => ({ value: l.toLowerCase(), label: l }));
 
 // Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
 // Left (Figma "Content right slot"): smart-search-organism (248 wide, 28 tall, "Search for…") + icon-button-filter (round, 28).
@@ -185,30 +168,5 @@ function SideNavTree({ title, tree = [], sections = [], value, defaultValue, onS
   );
 }
 
-// Pattern: StagedAppShell — the three-level navigation model as one working shell: the L1 nav bar (NavBar, collapses by width) picks the
-// stage; each stage brings its own L2 sidebar, header, content and bottom sheet (IFS.AppShell slots). Below `collapseSideBelow`
-// the sidebar is handed `narrow: true` so it can start collapsed (icon rail) — inferred from the Navigation page rule
-// "the sidebar collapses to an icon rail on narrow widths before it disappears".
-// Props: stages, value / defaultValue / onChange (stage), screens = { [stage]: { sideNav, header, bottom, content } } where each
-// entry may be a node or a function ({ stage, narrow, width }) → node; navBar = extra NavBar props;
-// collapseNavBelow (default 800), collapseSideBelow (default 1024 = md, the side-nav rule in guide/rules.md 4.7; was 1280), height.
-function StagedAppShell({ stages = NB_STAGES, value, defaultValue, onChange, screens = {}, navBar = {}, collapseNavBelow = 800,
-  collapseSideBelow = 1024, height, className, style, ...rest }) {
-  const [stage, setStage] = useNbValue(value, defaultValue !== undefined ? defaultValue : stages[0] && stages[0].value, onChange);
-  const [ref, w] = useNbWidth();
-  const ctx = { stage, width: w, narrow: w != null && w < collapseSideBelow, setStage };
-  const s = screens[stage] || {};
-  const slot = k => (typeof s[k] === 'function' ? s[k](ctx) : s[k]);
-  return (
-    <div ref={ref} className={cx('ifs-staged-shell', className)} style={{ height, ...style }} {...rest}>
-      <IFS.AppShell height="100%"
-        navBar={<IFS.NavBar stages={stages} value={stage} onChange={setStage} collapseBelow={collapseNavBelow} {...navBar} />}
-        sideNav={slot('sideNav')} header={slot('header')} bottom={slot('bottom')}>
-        {slot('content')}
-      </IFS.AppShell>
-    </div>
-  );
-}
-
-Object.assign(IFS, { ExploreHeader, HomeRowCard, SideNavTree, StagedAppShell });
-export { ExploreHeader, HomeRowCard, SideNavTree, StagedAppShell };
+Object.assign(IFS, { ExploreHeader, HomeRowCard, SideNavTree });
+export { ExploreHeader, HomeRowCard, SideNavTree };

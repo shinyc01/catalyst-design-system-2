@@ -704,8 +704,8 @@ Use: Ready-made Home and Review screen sections.
 
 ## Layout (code only, not Figma components)
 
-### AppShell · `AppShell`, `StagedAppShell`
-Use: The product shell: nav bar, side nav, page header, content, optional panel, bottom sheet (rule 4.9). `panelMode` push | over (rule 4.6). `StagedAppShell` adds stage switching (Nav bar pattern).
+### AppShell · `AppShell`
+Use: The product shell: nav bar, side nav, page header, content, optional panel, bottom sheet (rule 4.9). `panelMode` push | over (rule 4.6).
 
 ### Stack and Inline · `Stack`, `Inline`
 Use: Layout spacing between things in a screen (rule 1.5).
@@ -734,7 +734,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 ### Pattern: Nav bar
 
 **For:** the Level 1 bar that switches between stages, and what each stage brings: its own sidebar (or none), header, content and bottom sheet. On every product screen.
-**Parts:** `NavBar` (logo, stage tabs `NavBarItem`, search / settings / notifications, avatar; collapse: rule 5.7) · `StagedAppShell` (`AppShell` + `NavBar` + a `screens` map from stage to `{ sideNav, header, content, bottom }`) · per stage: Command and Build no sidebar; Value `SideNav`; Plan `SideNavTree` (folder tree + "Ad hoc plans" with ＋); Explore no sidebar, `ExploreHeader` under the bar; Plan and Explore also a 48 collapsed right-panel rail. Content: Command = `PageTop` (Cooper eyebrow, H2 greeting, Tabs with counts, SmartSearch), "Decisions to review" + `SegmentedControl` S, the ranked `HomeRowCard` list, a right column with Cooper's results, milestone `ProgressBar` and `Calendar` (rule 4.2); Value = `PageTop` + the standard `DataTable` (tabs and search in `PageTop`, outside the card); Build = `PageTop` with `Tabs` L (Idea Pad / Investments) + the ranked `DataTable` with the segmented filter; Explore = map with `MapPinDot` clusters, `MapToolbar` (views top start, default view bottom start), `FtaButton`; Plan = title, description and owner, planning-cycle cards, `StatCardsRow`, affected-area map. Bottom: `BottomSheet` per stage with two screen-specific prompts: Command and Build the base sheet; Value the base sheet under the content column only; Plan `type="value"` with "16 Documents"; Explore none.
+**Parts:** `NavBar` (logo, stage tabs `NavBarItem`, search / settings / notifications, avatar; collapse: rule 5.7) · per stage: Command and Build no sidebar; Value `SideNav`; Plan `SideNavTree` (folder tree + "Ad hoc plans" with ＋); Explore no sidebar, `ExploreHeader` under the bar; Plan and Explore also a 48 collapsed right-panel rail. Content: Command = `PageTop` (Cooper eyebrow, H2 greeting, Tabs with counts, SmartSearch), "Decisions to review" + `SegmentedControl` S, the ranked `HomeRowCard` list, a right column with Cooper's results, milestone `ProgressBar` and `Calendar` (rule 4.2); Value = `PageTop` + the standard `DataTable` (tabs and search in `PageTop`, outside the card); Build = `PageTop` with `Tabs` L (Idea Pad / Investments) + the ranked `DataTable` with the segmented filter; Explore = map with `MapPinDot` clusters, `MapToolbar` (views top start, default view bottom start), `FtaButton`; Plan = title, description and owner, planning-cycle cards, `StatCardsRow`, affected-area map. Bottom: `BottomSheet` per stage with two screen-specific prompts: Command and Build the base sheet; Value the base sheet under the content column only; Plan `type="value"` with "16 Documents"; Explore none.
 **Rules:**
 1. One bar on every screen (rule 4.9): logo at the start, actions at the end, exactly one stage active.
 2. Stage order is fixed: Command, Value, Explore, Build, Plan, Results.
