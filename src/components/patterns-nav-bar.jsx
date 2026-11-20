@@ -34,7 +34,7 @@ function useNbWidth() {
 
 const NB_STAGES = ['Command', 'Value', 'Explore', 'Build', 'Plan', 'Results'].map(l => ({ value: l.toLowerCase(), label: l }));
 
-// Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the 40px bar under the nav bar on the Explore map.
+// Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
 // Left (Figma "Content right slot"): smart-search-organism (248 wide, 28 tall, "Search for…") + icon-button-filter (round, 28).
 // Right ("container-left"): collaborators button (Button Tertiary S, users-group, "3/5") + icon-button-comment.
 // Props: search = SmartSearch props (placeholder, onSubmit, suggestions…), onFilter, filtersApplied (filter dot),

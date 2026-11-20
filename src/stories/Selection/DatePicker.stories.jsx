@@ -9,7 +9,7 @@ export default {
   component: IFS["DatePicker"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** date-picker-molecule (3406:9510) · date-atom (1440:5201)\n\n\nUse: Single date: clicking a day commits and closes, no Apply. Range: two clicks, then Apply. The field is typeable and stays in sync with the grid; the header opens a month/year view.\n\nNotes: `Calendar` month/year title H3. `fill` takes the full card width (Command calendar): date cells keep 32 and spread.\n\n\nUse: One day cell in the calendar." } },
+    docs: { description: { component: "**Figma:** date-picker-molecule (3406:9510) · date-atom (1440:5201)\n\n\nUse: Single date: clicking a day commits and closes, no Apply. Range: two clicks, then Apply. The field is typeable and stays in sync with the grid; the header opens a month/year view.\n\nNotes: `Calendar` month/year title: rule 2.4. `fill` takes the full card width (Command calendar): date cells keep 32 and spread.\n\n\nUse: One day cell in the calendar." } },
     design: [{"name":"date-picker-molecule","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3406-9510"},{"name":"date-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5201"}],
   },
 };

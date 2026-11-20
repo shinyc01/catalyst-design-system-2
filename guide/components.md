@@ -226,7 +226,7 @@ Use: One day cell in the calendar.
 
 ### date-picker-molecule · `Calendar`, `DatePicker`
 Use: Single date: clicking a day commits and closes, no Apply. Range: two clicks, then Apply. The field is typeable and stays in sync with the grid; the header opens a month/year view.
-Notes: `Calendar` month/year title H3. `fill` takes the full card width (Command calendar): date cells keep 32 and spread.
+Notes: `Calendar` month/year title: rule 2.4. `fill` takes the full card width (Command calendar): date cells keep 32 and spread.
 
 ## Navigation
 

@@ -1,4 +1,4 @@
-// Screen 05 — Review (Approve step). Builder: data. Spec: specs/review.md
+// Screen 05 — Review (Approve step). Builder: data. Spec: guide/components.md
 const reviewStages = [
   { value: 'command', label: 'Home' }, { value: 'value', label: 'Value' }, { value: 'explore', label: 'Explore' },
   { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' },

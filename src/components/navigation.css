@@ -208,7 +208,7 @@
 .ifs-page-header__right{min-width:0;flex-wrap:wrap}
 /* Below 1100: the stepper opens from the status */
 .ifs-page-header__status{display:inline-flex;flex:none}
-.ifs-page-header__status-btn{display:inline-flex;align-items:center;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:var(--radius-radius-100)}
+.ifs-page-header__status-btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target-min) /* rule 3.9 */;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:var(--radius-radius-100)}
 .ifs-page-header__status-btn:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-page-header__progress{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-page-header__steps{display:flex;justify-content:center;padding:var(--space-100) 0}
@@ -227,7 +227,6 @@
 .ifs-page-header__id{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
 .ifs-page-header__divider{width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--border-medium);flex:none}
 .ifs-page-header__right{display:flex;align-items:center;gap:var(--space-200);flex:none} /* buttons 8 apart, like every button group (Nov 19; was 16) */
-/* title chevron: button Type=Tertiary Size=S with icon only, 12×20, padding 4/0 */
 /* Title menu ▾: a standard ghost IconButton S (Nov 19); the caret sits close to the title, the box overlaps the gap */
 .ifs-page-header__menu{margin-inline-start:calc((var(--size-16) - var(--control-h-s)) / 2)} /* the caret sits as close to the title as before; the 24 box overlaps the gap */
 

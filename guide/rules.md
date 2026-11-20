@@ -90,7 +90,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 - Never H1 for a number. Revisit if prototypes keep overriding this.
 2.7 **Small is rare.** Only disclaimers and footnotes, and text inside a fixed small shape: avatar initials at 24 and below, map pin counts, live-cursor name tags, chart axis ticks, labels inside Sankey bars. Never labels, statuses, headers, meta or anything the user acts on. Avatar initials: XL (56) H4; L (40) and M (32) Label/M/medium; S (24) and below Body/S (XS 20 and XXS 16 one initial). M and L map pins widen into a pill when the count needs it; a live-cursor tag grows with its text. In-plot chart values Label/M/medium. Widget thumbnails: title Label/M/medium, tiny text drawn as skeleton bars. Navbar wordmark fallback H3.
 2.8 **Weights mean something:** 400 content, 500 every label, name and control, 600 H4 only. A row with no name or key value is all regular. In tables the name column (`primary: true`, else the first text column; `.ifs-table__td--primary`) is medium; every other cell is regular. Bold words inside text use `--text-label-m-medium-weight`.
-2.9 **Case.** Title Case: page, section, card, chart, panel and modal titles, headings and navigation. Sentence case: buttons, dropdown triggers, statuses, tags, column headers, menu items, options, chips, field labels, Cooper prompts and answers, all content. No uppercase text: only avatar initials and abbreviations are capitals. Case is a string change, not CSS.
+2.9 **Case.** Title Case: page, section, card, chart, panel and modal titles, headings and navigation. Sentence case: buttons, dropdown triggers, statuses, column headers, menu items, options, field labels, Cooper prompts and answers, all content. Tags, badges and chips keep the case their text is written in (normal case, never forced). No uppercase text: only avatar initials and abbreviations are capitals. Case is a string change, not CSS.
 2.10 **Status vs tag.** A status shows the object's changing state: coloured dot + 1–3 words ("Draft", "Under review"). A tag or badge shows a category, stage, count or attribute: pill, no dot ("Shape", "0/4"). One status per object; a second state is a tag or an icon. Never make a tag look like a status.
 2.11 **Tabular figures** (`font-variant-numeric:var(--text-numeric)`, `.t-numeric`) for numbers people compare or watch change: table and list cells, big numbers, chart text, counters, progress and pager values. Numbers inside sentences keep normal figures.
 2.12 **Line length and truncation:**
@@ -116,7 +116,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 | `--space-stack` | 16 / 12 / 8 | Gap between blocks inside a container (fields, cards in a panel, toolbar to table) |
 | `--space-section` | 40 / 32 / 24 | Gap between page sections |
 
-3.3 **Containers.** Every part of a container (header, tabs, body, footer) has the same inset on all four sides. A container's height comes from its padding, never a fixed height. Chat, history and agent headers: vertical padding = inset − 4 (`--space-100`), i.e. 16 / 12 / 8, so the header is 60 / 48 / 40 tall.
+3.3 **Containers.** Every part of a container (header, tabs, body, footer) has the same inset on all four sides. A container's height comes from its padding, never a fixed height. Chat, history and agent headers: vertical padding = inset − 4 (`--space-100`), i.e. 16 / 12 / 8; the height = tallest item + that padding (chat and history headers 60 / 48 / 40; the agent window header 68 / 56 / 44, because it holds an M button).
 3.4 **Fixed steps only where a part scales by its own height:** inside controls (buttons, fields, selects, tabs, chips, prompts, chat input), the nav bar and side nav, chart geometry, table-like rows and cells, and gaps of 8 or less (icon to label, label to field). These stay the same in every density; each is commented in the CSS. The allowed kinds: list and note rows (fixed vertical step, inset sides); a tab row sits on its divider (no bottom padding); full-bleed lists leave side padding to their items; the collapsed panel rail; header bars (`PageHeader`, `ExploreHeader`): tallest part + 4 top and bottom, page margin at the sides, so the thin header is 50 / 46 / 42 and the ExploreHeader 36 / 32 / 32.
 3.5 **Control heights** (`--control-h-s|m|l`): S 28 / 24 / 24, M 36 / 32 / 28, L 44 / 40 / 32. Every control uses them, including small segmented controls, icon buttons, nav items and breadcrumbs. Tabs `--tab-h-m` 40 / 36 / 32 and `--tab-h-l` 48 / 40 / 36; nav rows `--nav-row-h` 44 / 40 / 36.
 3.6 **Fixed component sizes:** chips 28 / 24 / 24; search, Smart Search, popover search, phone picker, checkbox and radio rows 36 / 32 / 28 (the Explore map-bar search uses the small control height); badges S 24 / 20 / 20, M 28 / 24 / 24, L 36 / 32 / 28; small icon button square 28 / 24 / 24.
@@ -124,9 +124,9 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 3.8 **Menus, dropdowns and popovers:** 4px from the trigger and 4px inside the list, every density. Item height = control height 36 / 32 / 28 (large lists 44 / 40 / 32). `Menu` width s 200 (actions) or l 320 (items with descriptions).
 3.9 **Target size: nothing clickable is smaller than 24 × 24** (`--target-min`, WCAG 2.5.8):
 - The clickable component's own box is at least 24 (table filter and sort, version toggle, title menu ▾, select clear, drag handles, node-card buttons, readiness indicators, timeline and Cooper toggles). Icons keep their size; hover and focus fill the box. The Figma component gets a 24 frame.
-- An invisible 24 hit layer only where the control must look smaller: bare checkbox, small switch, slider thumb.
+- An invisible 24 hit layer only where the control must look smaller: bare checkbox, small switch, slider thumb, and the range-field stepper (it keeps its look; each 16 × 8 half gets an invisible area 24 wide and 12 tall, growing outward so the halves never overlap).
 - Map pins and chart points: to be decided in the map and data-viz rounds. Touch targets (44–48): with the tablet and mobile work.
-3.10 **Icon-only controls are always `IconButton`** (ghost S by default): select clear ×, table filter, node-card Open / Delete / Save / Cancel, compare clear, answer-field cancel / save, popover search clear, the timeline phase toggle (caret `IconButton` S; the phase name is plain text). Drag grips are 16 in a 24 box and use the ghost-button hover fill and focus ring.
+3.10 **Icon-only controls are always `IconButton`** (ghost S by default): select clear ×, table filter, node-card Open / Delete / Save / Cancel, compare clear, answer-field cancel / save, popover search clear, the timeline phase toggle (caret `IconButton` S; the phase name is plain text). Drag grips are 16 in a 24 box and use the ghost-button hover fill. The focus ring applies where the handle is keyboard-focusable (table row and column-settings handles); the node-card grip is pointer-only (the card itself takes keyboard focus).
 3.11 **Icons** follow body text: `--icon-scale` 1.143 / 1 / 0.857 (16 → 18 / 16 / 14). Figma sizes 24 / 16 / 12: `Button` L and M 16, `Button` S 12; `IconButton` 16 at every size; 16 in dense rows; 12 in badges and chips; 24 only for standalone icons. Every expand/collapse and dropdown caret is 16; trend arrows next to numbers stay small.
 3.12 **Small fixed gaps:** stat card title to number 4; empty state: icon, heading and text one inset apart (20 / 16 / 12), buttons one `section` below the text; Cooper's empty chat text sits two `section` above the bottom (80 / 64 / 48).
 3.13 **Density.** Users pick Spacious, Comfortable or Compact (`data-density="spacious|comfortable|compact"` on `<html>` or any container; `IFS.setDensity('compact')` sets and remembers it, `IFS.getDensity()` reads it). Type, roles, control and table sizes follow the nearest density; `--density-scale` 1.2 / 1.05 / 0.95 multiplies fixed table column widths; the page grid follows screen width, never density (rule 4.1). Figma builds Comfortable and Compact; the code also has Spacious.
@@ -135,7 +135,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 
 ## 4. Layout
 
-4.1 **Breakpoints and page grid, by screen width:**
+4.1 **Breakpoints and page grid, by screen width.** Designs use a 1440 × 810 desktop reference frame.
 
 | Name | Width | Columns | `--page-margin` | `--page-gap` (gutter) |
 |---|---|---|---|---|
@@ -153,7 +153,8 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 | Surface | Width | Token |
 |---|---|---|
 | Side nav / rail | 240 / 48 | `--region-sidenav` / `--region-rail` |
-| Side panel, drawer, Cooper full chat (resizable), widgets drawer | 380 (min 320, max 50%) | `--region-panel` |
+| Side panel, drawer, widgets drawer | 380 (min 320, max 50%) | `--region-panel` |
+| Cooper full chat | 380 by default; resizable by drag from 380 to 720 | `--region-panel` |
 | Large panel (Study) | 600 | `--region-panel-l` |
 | Popover (default; never under 160; wider only at `--overlay-width-m` 440 or `-l` 600), collaborators panel, Layers popover | 320 | `--overlay-width-s` |
 | Modal (default / wide) | 440 / 600 | `--overlay-width-m` / `-l` |
@@ -200,7 +201,7 @@ Docked panels sit flush against the content-area edge; the page beside them keep
 
 | Slot | Holds, one at a time | Size |
 |---|---|---|
-| `.ifs-slot-left` (start) | Hierarchy · Study library · Search results · Study | `--region-panel` 380; Study `--region-panel-l` 600 (`.has-left-l`) |
+| `.ifs-slot-left` (start) | Hierarchy · Study library (opens from the 2nd map-rail button, below Hierarchy) · Search results · Study | `--region-panel` 380; Study `--region-panel-l` 600 (`.has-left-l`) |
 | `.ifs-slot-right` (end) | Asset / group details · Trace report · Evidence chain · Cooper window, with Back (details → evidence → back to details) | `--region-panel` 380 |
 | `.ifs-slot-top` | Selected bar, or the draw bar while drawing | content, at most `--region-map-bar` 746 |
 | `.ifs-slot-bottom` | Horizon bar (`.ifs-slot-fill`), only when a study is open or a time layer is on | `--region-map-bar` 746, never wider than the gap |
@@ -324,7 +325,7 @@ Format every value with `IFS.format` (`dist/api.md` → format); it follows the 
 - Chips in narrow cards wrap more at Body size (Cooper saved scenarios): accept, or truncate them.
 - Status sizes XS and S share a text style: merge into one size.
 - Truncation: the kit has about 47 hand-written truncation rules; move them onto `.t-truncate` + tooltip and check none truncates a number, status or error.
-- H1 / H2 still used as panel titles (Cooper recommendation detail, widget-builder section, form card H1, some prototype titles): pick per case.
+- H1 / H2 still used inside panels (Cooper recommendation detail, widget-builder section, form card H1, the Cooper voice transcript H1, some prototype titles): pick per case.
 - Status vocabulary: one set of names (proposal: success, warning, error, info, neutral, accent, cooper, disabled); neutral dot colour (#4d4d4d vs #8c8c8c); dot size 8 / 6 / 4; keep or remove Badge's `indicator` dot.
 - Missing-value mark: em dash `—` (helpers) or en dash `–` (chart tables, Funnel).
 - capex vs CAPEX; whether role names (Portfolio Owner) are written as names.

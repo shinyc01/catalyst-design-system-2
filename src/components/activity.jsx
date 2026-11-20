@@ -375,10 +375,13 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
     el.style.height = el.scrollHeight + 'px';
     if (state === 'multi') return;
     const t = text || '';
+    // One test in both directions (the text, or the placeholder when empty, against the single-line width), so it can't flip back and forth
+    const fits = s => !/\n/.test(s) && actTextWidth(el, s) <= (singleW.current || el.clientWidth) - 8;
+    const probe = t || el.placeholder || '';
     if (!multi) {
       singleW.current = el.clientWidth;
-      if (el.scrollHeight > 24 || /\n/.test(t)) setMulti(true);
-    } else if (!/\n/.test(t) && singleW.current && actTextWidth(el, t) <= singleW.current - 8) setMulti(false);
+      if (!fits(probe)) setMulti(true);
+    } else if (fits(probe)) setMulti(false);
   }, [text, multi, state]);
   // Mention picker
   const q = mentionables && mentionables.length ? actMentionQuery(text) : null;

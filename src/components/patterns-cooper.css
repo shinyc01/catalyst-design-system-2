@@ -235,9 +235,10 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 /* ---------- agent-window-organism (Cooper recommendations window) ---------- */
 .ifs-agent{box-sizing:border-box;width:var(--region-panel) /* the panel span */;display:flex;flex-direction:column;border-radius:var(--radius-radius-300);
   box-shadow:0 0 0 1px var(--border-base),var(--elevation-elevation-3-primary);max-height:100%;overflow:hidden}
-.ifs-agent__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:var(--size-40);flex:none;box-shadow:inset 0 -1px 0 var(--border-base)}
+.ifs-agent__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);flex:none;box-sizing:border-box;
+  padding-block:calc(var(--space-inset) - var(--space-100)); /* same rule as the chat header: height from padding, inset minus one step (rule 3.3; was a fixed 40) */box-shadow:inset 0 -1px 0 var(--border-base)}
 .ifs-agent--collapsed .ifs-agent__head{box-shadow:none}
-.ifs-agent__brand{display:flex;align-items:center;gap:var(--space-200);padding:var(--space-200) var(--space-200) var(--space-200) var(--space-300);
+.ifs-agent__brand{display:flex;align-items:center;gap:var(--space-200);padding:0 var(--space-200) 0 var(--space-300);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-secondary);flex:none}
 .ifs-agent__mid{flex:1;display:flex;align-items:center;padding:0 var(--space-200);min-width:0}
 .ifs-agent__tools{display:flex;align-items:center;gap:var(--space-100);padding:0 var(--space-200);flex:none}

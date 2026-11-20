@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Layout & grid (Catalyst Design System 2.0.1). Rules: guide/rules.md §4–6
+   Layout & grid (Catalyst Design System 2.0.3). Rules: guide/rules.md §4–6
    Matches the standard (Material 3, Atlassian, Fluent 2, Carbon, Primer, Polaris). Cards on columns, panels at fixed sizes, map slots.
    Margins and gutters follow SCREEN WIDTH only, never density.
 
@@ -10,8 +10,8 @@
      lg     1440–1919     12          24            20   (review: 24 felt too big)
      xl     1920+         12          32            32
 
-   Content is capped at --layout-max-content-width (1600) and centred; data screens (tables, boards,
-   canvases) may use the wide (2240) or full width. CSS can't read custom properties in @media, so the
+   Content is capped at --layout-max-content-width (1600) and centred (rule 4.3). The wide token (2240) is unused
+   and undecided (guide/rules.md §10 Open). CSS can't read custom properties in @media, so the
    --bp-* tokens are for JS and docs and the media queries repeat the numbers.
    ========================================================================== */
 :root{
