@@ -3,7 +3,7 @@
 // React itself comes from the page (UMD script), so prototypes and the kit share one React.
 import { IFS } from './components/index.js';
 
-IFS.version = '2.0.4';
+IFS.version = '2.0.5';
 IFS.DENSITIES = ['spacious', 'comfortable', 'compact'];
 // Density is a user setting: sets data-density on <html> (or a given element) and remembers it.
 IFS.setDensity = (d, el = document.documentElement) => {
