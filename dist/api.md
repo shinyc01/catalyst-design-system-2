@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.3, generated 2026-11-20. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.4, generated 2026-11-20. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -912,7 +912,7 @@ Figma: slider-organism (3029:20689) — title (+ clue icon) and Number on top, o
 Props: label (Title; absent = show-title off), hint (clue-icon tooltip), description (Hint text), showValue (Number, default true),
 formatValue(v) for the Number, icon (show-left-icon: a Ghost S circle icon-button, e.g. "system-star-favourite"), iconLabel, onIconClick,
 and every SliderTrack prop (type, min, max, step, value/defaultValue/onChange, disabled, thumbState).
-Use <Slider> without label for the bare molecule.
+Use <Slider> without label for the bare molecule. The track fills its parent: inside a flex row give the Slider flex:1, or it shrinks to 60.
 `function Slider({ label, hint, description, showValue = true, formatValue, icon, iconLabel, onIconClick, value, defaultValue, onChange, className, style, ...track })`
 
 ### FormCard
@@ -1998,8 +1998,8 @@ actions (node: replaces the right side).
 **Tier:** Component
 **In handovers:** placed 164× (Command) · usual: Type secondary 84%
 Figma: home-row-card-organism (key c497ce96…; Patterns copy 244:117301). One ranked item on the Command (home) list.
-Type=Primary (124 tall: the top item; copper→white gradient stroke, metrics under the text, media on the right) |
-Secondary (72 tall: metrics in their own columns). State Default | Hover | Loading | Focus.
+Type=Primary (132 tall at every density: the top item; copper→white gradient stroke, metrics under the text, media on the right) |
+Secondary (80 tall at every density: metrics in their own columns). State Default | Hover | Loading | Focus.
 Props: type primary|secondary, rank (counter-atom S), title, badge (label → badge-atom White S), description,
 metrics [{ value, label }] (show-metric; Figma shows two: CPV and V/C), liveAlert = MapPinDefect props (show-live-alert),
 collaboration = Avatar props (show-collaboration), media (node: primary right side, e.g. a map), onOpen (card + arrow button),
@@ -2017,17 +2017,6 @@ Props: title, tree [{ id, label, folder (default: has children), children: [...]
 value / defaultValue / onSelect(id, item), expanded / defaultExpanded (ids) / onExpandedChange,
 collapsed / defaultCollapsed / onCollapsedChange.
 `function SideNavTree({ title, tree = [], sections = [], value, defaultValue, onSelect, expanded, defaultExpanded = [], onExpandedChange, collapsed, defaultCollapsed = false, onCollapsedChange, className, ...rest })`
-
-### StagedAppShell
-**Tier:** Pattern helper
-Pattern: StagedAppShell — the three-level navigation model as one working shell: the L1 nav bar (NavBar, collapses by width) picks the
-stage; each stage brings its own L2 sidebar, header, content and bottom sheet (IFS.AppShell slots). Below `collapseSideBelow`
-the sidebar is handed `narrow: true` so it can start collapsed (icon rail) — inferred from the Navigation page rule
-"the sidebar collapses to an icon rail on narrow widths before it disappears".
-Props: stages, value / defaultValue / onChange (stage), screens = { [stage]: { sideNav, header, bottom, content } } where each
-entry may be a node or a function ({ stage, narrow, width }) → node; navBar = extra NavBar props;
-collapseNavBelow (default 800), collapseSideBelow (default 1024 = md, the side-nav rule in guide/rules.md 4.7; was 1280), height.
-`function StagedAppShell({ stages = NB_STAGES, value, defaultValue, onChange, screens = {}, navBar = {}, collapseNavBelow = 800, collapseSideBelow = 1024, height, className, style, ...rest })`
 
 ## patterns-table
 
@@ -2394,7 +2383,7 @@ filter(option, query), state. While loading and open, the list shows Figma's "Se
 **In handovers:** placed 511× (Build, Explore, Command, Plan, Value) · usual: Number 2 48% / 4 27% · Size s 100% · type 4 72%
 Figma: segmented-control-organism (1387:244501) built from segmented-control-atom (1387:244511)
 Props: options = [{ value, label, iconLeft, iconRight, counter, disabled, state }] (strings allowed), value/defaultValue/onChange,
-size m (32) | s (24), fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
+size m | s: outer height 40 / 36 / 32 (m) and 32 / 28 / 28 (s), i.e. the segments (control height) plus a 2px track; fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
 `function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm', fullWidth = false, className, ...rest })`
 
 ### Chip
