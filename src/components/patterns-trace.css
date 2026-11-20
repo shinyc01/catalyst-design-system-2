@@ -40,10 +40,6 @@
 /* ---- IssueAnswerField — text-field-organism M + close / check ---- */
 .ifs-trc-answer{width:100%}
 .ifs-trc-answer__actions{display:inline-flex;align-items:center;gap:var(--space-200)}
-.ifs-trc-answer__btn{display:inline-flex;align-items:center;justify-content:center;padding:0;border:0;background:none;color:var(--icon-secondary);cursor:pointer;border-radius:var(--radius-radius-100)}
-.ifs-trc-answer__btn:hover{color:var(--icon-primary)}
-.ifs-trc-answer__btn:disabled{color:var(--icon-disabled);cursor:default}
-.ifs-trc-answer__btn:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 
 /* ---- IssueNavigator ---- */
 .ifs-trc-nav{display:flex;flex-direction:column;width:100%;min-width:0}

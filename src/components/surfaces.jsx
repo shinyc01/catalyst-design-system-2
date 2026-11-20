@@ -309,8 +309,8 @@ function Popover({ trigger, open, defaultOpen, onOpenChange, align = 'start', ti
           <input ref={searchInput} type="search" value={q} placeholder={typeof search === 'string' ? search : 'Search for...'}
             aria-label={typeof search === 'string' ? search : 'Search'} onChange={e => setQ(e.target.value)}
             onKeyDown={e => { if (e.key === 'Escape' && q) { e.stopPropagation(); setQ(''); } }} />
-          {q && <button type="button" className="ifs-popover__clear" aria-label="Clear search"
-            onClick={() => { setQ(''); searchInput.current && searchInput.current.focus(); }}><IFS.Icon name="system-close" size={12} /></button>}
+          {q && <IFS.IconButton icon="system-close" label="Clear search" type="ghost" size="s" className="ifs-popover__clear"
+            onClick={() => { setQ(''); searchInput.current && searchInput.current.focus(); }} />}
         </label>}
         {onFilter && <IFS.IconButton icon="system-filter" label="Filter" type="secondary" size="m" onClick={onFilter} />}
       </div>}

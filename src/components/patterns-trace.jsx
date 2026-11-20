@@ -136,8 +136,8 @@ function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCanc
     <IFS.TextField size="m" className={cx('ifs-trc-answer', className)} value={v} onChange={setV} placeholder={placeholder} autoFocus={autoFocus}
       aria-label="My answer" onKeyDown={e => { if (e.key === 'Enter') submit(); if (e.key === 'Escape') onCancel && onCancel(); }}
       suffix={<span className="ifs-trc-answer__actions">
-        <button type="button" className="ifs-trc-answer__btn" aria-label="Cancel" onClick={onCancel}><IFS.Icon name="system-close" size={16} /></button>
-        <button type="button" className="ifs-trc-answer__btn" aria-label="Save answer" disabled={!v.trim()} onClick={submit}><IFS.Icon name="system-check" size={16} /></button>
+        <IFS.IconButton icon="system-close" label="Cancel" type="ghost" size="s" onClick={onCancel} />
+        <IFS.IconButton icon="system-check" label="Save answer" type="ghost" size="s" disabled={!v.trim()} onClick={submit} />
       </span>} />
   );
 }

@@ -251,8 +251,8 @@ function VersionEntry({ title, badge, description, author, time, activity, expan
   const name = typeof title === 'string' ? title : 'version';
   return (
     <TimelineItem className={actCx('ifs-version', open && 'ifs-version--open', className)} markerSize="m" connector={last ? 'none' : 'solid'}
-      marker={<button type="button" className="ifs-version__toggle" aria-expanded={!!open} aria-label={open ? `Collapse ${name}` : `Show activity of ${name}`}
-        onClick={() => setOpen(!open)}><IFS.Icon name={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={16} /></button>}
+      marker={<IFS.IconButton icon={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} label={open ? `Collapse ${name}` : `Show activity of ${name}`}
+        type="tertiary" size="s" shape="circle" className="ifs-version__toggle" aria-expanded={!!open} onClick={() => setOpen(!open)} />}
       content={<div className="ifs-version__content">
         {card}
         {open && activity && activity.length > 0 && <Timeline className="ifs-version__activity" items={activity} />}
@@ -427,9 +427,8 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
       style={avatar ? undefined : style} onMouseDown={e => { if (e.target === e.currentTarget) { e.preventDefault(); ref.current && ref.current.focus(); } }}>
       <div className="ifs-composer__inner">
         <div className="ifs-composer__row">
-          {cooper && <button type="button" className="ifs-composer__cooper" aria-label="Leave Cooper mode" title="Leave Cooper mode" onClick={() => switchMode('text')}>
-            <IFS.Icon name="cooper-system-icon" variant="Insight" size={12} />
-          </button>}
+          {cooper && <IFS.IconButton icon="cooper-system-icon" iconVariant="Insight" label="Leave Cooper mode" type="ghost" size="s"
+            className="ifs-composer__cooper" onClick={() => switchMode('text')} />}
           <textarea ref={ref} rows={1} className="ifs-composer__input" value={text} placeholder={ph} disabled={disabled} autoFocus={autoFocus}
             aria-label={rest['aria-label'] || 'Comment'} aria-autocomplete={mentionables ? 'list' : undefined} aria-expanded={mentionables ? matches.length > 0 : undefined}
             onChange={e => setText(e.target.value)} onKeyDown={onKeyDown} />

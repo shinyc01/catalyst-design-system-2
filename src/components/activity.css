@@ -60,9 +60,7 @@
 .ifs-approval .ifs-tl-item{align-items:stretch}
 
 /* ================= VersionHistory (version-history-timeline 2277:5299 on the base) ================= */
-.ifs-version__toggle{display:flex;align-items:center;justify-content:center;width:var(--target-min);height:var(--target-min) /* 24 box (Nov 19) */;padding:0;border:0;border-radius:50%;cursor:pointer;
-  background:var(--surface-tertiary-alpha);color:var(--icon-primary)}
-.ifs-version__toggle:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+/* .ifs-version__toggle is IFS.IconButton tertiary S circle (Nov 19) */
 .ifs-version__content{display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-100) 0;min-width:0}
 .ifs-version .ifs-tl-item__content{padding-bottom:var(--space-inset)}
 .ifs-version__card{position:relative;display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-inset);
@@ -124,8 +122,7 @@
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
 .ifs-composer--cooper.ifs-composer--multi::after{border-radius:calc(var(--radius-radius-300) + 4.5px)}
 .ifs-composer--cooper .ifs-composer__row{gap:var(--space-200)}
-.ifs-composer__cooper{display:flex;align-items:center;justify-content:center;flex:none;width:var(--size-12);height:var(--size-12);padding:0;border:0;background:none;cursor:pointer}
-.ifs-composer__cooper:focus-visible{outline:none;border-radius:2px;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+/* .ifs-composer__cooper is IFS.IconButton ghost S (Nov 19) */
 .ifs-composer--disabled{cursor:not-allowed}
 .ifs-composer--disabled .ifs-composer__input{cursor:not-allowed;color:var(--text-disabled)}
 .ifs-composer-molecule{display:flex;gap:var(--space-200);min-width:0}

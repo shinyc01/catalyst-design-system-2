@@ -127,8 +127,8 @@ function AddNodeButton({ onAdd, onCancel, placeholder = 'Type...', disabled, edi
         onChange={e => setText(e.target.value)}
         onKeyDown={e => { if (e.key === 'Enter') confirm(); if (e.key === 'Escape') close(); }} />
       <span className="ifs-add-node__stack">
-        <button type="button" className="ifs-add-node__icon" aria-label="Cancel" onClick={close}><IFS.Icon name="system-close" size={16} /></button>
-        <button type="button" className="ifs-add-node__icon" aria-label="Confirm" disabled={!text.trim()} onClick={confirm}><IFS.Icon name="system-check" size={16} /></button>
+        <IFS.IconButton icon="system-close" label="Cancel" type="ghost" size="s" onClick={close} />
+        <IFS.IconButton icon="system-check" label="Confirm" type="ghost" size="s" disabled={!text.trim()} onClick={confirm} />
       </span>
     </div>
   );
@@ -544,10 +544,11 @@ function TimelinePhase({ title, subtitle, badge, color = 'teal', start = 0, end 
       <div className="ifs-timeline-phase__row">
         <div className="ifs-timeline-phase__cell">
           <div className="ifs-timeline-phase__text">
-            <button type="button" className="ifs-timeline-phase__toggle" aria-expanded={!!open} onClick={() => setOpen(!open)}>
-              <IFS.Icon name={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={16} />
+            <span className="ifs-timeline-phase__toggle">
+              <IFS.IconButton icon={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} type="ghost" size="s" label={`${open ? 'Collapse' : 'Expand'} ${typeof title === 'string' ? title : 'phase'}`}
+                aria-expanded={!!open} onClick={() => setOpen(!open)} />
               <span className="ifs-timeline-phase__title">{title}</span>
-            </button>
+            </span>
             {badge ? <IFS.Badge color="red" size="s">{badge}</IFS.Badge> : subtitle != null && <span className="ifs-timeline-phase__sub">{subtitle}</span>}
           </div>
           <span className="ifs-timeline-phase__actions">

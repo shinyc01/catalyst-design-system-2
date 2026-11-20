@@ -147,10 +147,6 @@
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-popover__search input::placeholder{color:var(--text-tertiary)}
 .ifs-popover__search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
-.ifs-popover__clear{display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-16);height:var(--size-16);margin:0;padding:0;border:0;
-  border-radius:var(--radius-radius-100);background:none;color:var(--icon-secondary);cursor:pointer}
-.ifs-popover__clear:hover{color:var(--icon-primary)}
-.ifs-popover__clear:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* Content slot: 0,16,12,16 (branch); 12 top after the title (0 after the search row) as the pattern instances set it */
 .ifs-popover__content{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;
   padding:var(--space-inset) var(--space-inset)}

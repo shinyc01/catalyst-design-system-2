@@ -103,10 +103,8 @@ function CompareDropdown({ groups = [], value, defaultValue = null, onChange, op
         <span className={paCx('ifs-compare-dd__value', !sel && 'ifs-compare-dd__value--empty')}>{sel ? sel.label : placeholder}</span>
         <span className="ifs-compare-dd__right">
           {sel && clearable && !isOpen && !disabled && (
-            <button type="button" className="ifs-compare-dd__clear" aria-label="Clear comparison"
-              onClick={e => { e.stopPropagation(); setVal(null, null); field.current && field.current.focus(); }}>
-              <IFS.Icon name="system-close" size={16} />
-            </button>
+            <IFS.IconButton icon="system-close" label="Clear comparison" type="ghost" size="s"
+              onClick={e => { e.stopPropagation(); setVal(null, null); field.current && field.current.focus(); }} />
           )}
           <IFS.Icon name={isOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} />
         </span>

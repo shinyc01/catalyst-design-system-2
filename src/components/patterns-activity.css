@@ -34,9 +34,6 @@
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-compare-dd__value--empty{color:var(--text-disabled)}
 .ifs-compare-dd__right{display:flex;align-items:center;gap:var(--space-200);flex:none;color:var(--icon-primary)}
-.ifs-compare-dd__clear{display:flex;padding:0;border:0;background:none;color:var(--icon-secondary);cursor:pointer;border-radius:var(--radius-radius-100)}
-.ifs-compare-dd__clear:hover{color:var(--icon-primary)}
-.ifs-compare-dd__clear:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 
 /* ================= compare-header (Patterns 52:82780) ================= */
 /* row: H gap 12, padding 0/12, 42px; box: 440px, H gap 8, padding 4/4/4/8, radius 8, elevation-1/secondary + blur/strong */
