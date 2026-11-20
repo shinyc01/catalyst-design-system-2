@@ -42,6 +42,11 @@
 }
 @media (max-width:1439px){:root{--panel-cols:4}}
 
+/* ---------- Page container (Nov 19): the page margin on all four sides (16 / 24 / 32 by width), content capped at 1600 and
+   centred, blocks a page gap apart. Wrap each page's content in it, inside AppShell; docked panels sit outside it. ---------- */
+.ifs-page{box-sizing:border-box;width:100%;max-width:calc(var(--layout-max-content-width) + 2 * var(--page-margin));margin-inline:auto;
+  padding:var(--page-margin);display:flex;flex-direction:column;gap:var(--page-gap);min-width:0}
+
 /* ---------- Panels: fixed sizes (hybrid). Cards and page regions use the columns; panels and overlays use this list ----------
      side panel / drawer   380   (min 320, max 50%)      --region-panel
      large panel           600   (Study)                 --region-panel-l

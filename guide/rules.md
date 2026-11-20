@@ -146,7 +146,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 | xl | 1920+ | 12 | 32 | 32 |
 
 4.2 **Cards and page regions snap to columns:** `.ifs-grid` with `.ifs-span-N`; `.ifs-span-panel` / `.ifs-span-rest` for a side column that is part of the page (3 columns, 4 below 1440; Command's right column is one of these, on columns). Below 1024 quarters become halves and wider spans go full width; below 600 everything is full width. Content inside a card follows the card, not the grid. Cards on a page are `page-gap` apart.
-4.3 **Content is capped** at `--layout-max-content-width` (1600) and centred.
+4.3 **Page container:** wrap each page's content in `.ifs-page`. It has the page margin on all four sides (top and bottom match the sides: 16 / 24 / 32 by width), caps content at `--layout-max-content-width` (1600), centres it, and spaces blocks a page gap apart. Docked panels sit outside it.
 4.4 **The grid follows the content area** (beside the side nav and any pushed panel). A pushed panel shrinks it and the columns step down (12 → 8 → 4) like a smaller screen. An `over` panel or overlay (floating Cooper chat, record preview, popover, modal) never changes the grid.
 4.5 **Fixed widths:**
 
