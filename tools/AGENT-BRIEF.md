@@ -3,17 +3,17 @@
 You are adding components to a React code kit that must match the Figma **IFS Design System** EXACTLY (file key `atgUmwcA1AE5sjFoWBT7ar`). Kit folder: `/Users/schu/Documents/CLAUDE_NEW/CODE/ifs-ds-kit`.
 
 ## Read first
-- `CONVENTIONS.md`: the rules.
+- `guide/rules.md`: the rules (section 1 is the code rules).
 - `src/components/button.css` + `button.jsx` + `src/gallery/button.jsx`: the reference implementation.
 - `src/tokens.css`: all tokens.
 - `tools/extract-spec.js`: the spec reader.
-- `guide/components.md`: usage rules. Search it for each of your components.
+- `guide/components.md`: when to use each component. Search it for each of your components; Figma keys and nodes are in `guide/figma.json`.
 - Skim `src/components/index.js` to see what already exists. Reuse kit components via `IFS.X` (Button, IconButton, Icon, Badge, Avatar, Tooltip, Popover, TextField, Select, Chip, Tabs, …) instead of redrawing them.
 
 ## Ownership (important: the designer is editing existing files while you work)
 - Write ONLY your own new files: `src/components/<family>.css`, `src/components/<family>.jsx`, `src/gallery/<family>.jsx`.
 - To try your family in Storybook, add its two import lines to `src/components/index.js` (`import './<family>.css';` and `export * from './<family>.jsx';`). That's the only shared file you may touch, and only to append your own lines.
-- Never edit other families, `tokens.css`, `_core.*`, `registry.js`, `build.mjs`, `.storybook/*`, `tools/*`, `CONVENTIONS.md`, `icons.js` or `guide/*`. If you need a shared change (a missing token, an icon, a fix in another component), describe it in your reply.
+- Never edit other families, `tokens.css`, `_core.*`, `registry.js`, `build.mjs`, `.storybook/*`, `tools/*`, `icons.js` or `guide/*`. If you need a shared change (a missing token, an icon, a fix in another component), describe it in your reply.
 - Never modify the Figma file. All Figma calls are read-only.
 
 ## Method per component

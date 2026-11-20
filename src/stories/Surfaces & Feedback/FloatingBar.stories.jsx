@@ -9,7 +9,7 @@ export default {
   component: IFS["FloatingBar"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** floating-bar-organism (7405:22521)\n\n\n**Use for** (Figma) Contextual action bar, top-centre, shown while something is selected on the map: what is selected + actions (secondary buttons, then one primary) + ✕ to clear.\n\n**Notes** (Figma) Multi-select shows a count and only actions valid for the whole set." } },
+    docs: { description: { component: "**Figma:** floating-bar-organism (7405:22521)\n\n\nUse: Contextual action bar, top-centre, shown while something is selected on the map: what is selected + actions (secondary buttons, then one primary) + ✕ to clear.\n\nNotes: Multi-select shows a count and only actions valid for the whole set." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=7405-22521"},
   },
 };

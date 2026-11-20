@@ -9,7 +9,7 @@ export default {
   component: IFS["Hotkey"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** hotkey-atom (67:6150)\n\n\n**Use for** (inferred) Keyboard-shortcut label inside tooltips, menus and circular buttons." } },
+    docs: { description: { component: "**Figma:** hotkey-atom (67:6150)\n\n\nUse: Keyboard-shortcut label inside tooltips, menus and circular buttons." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=67-6150"},
   },
 };

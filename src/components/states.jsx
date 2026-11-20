@@ -71,7 +71,7 @@ function EmptyState({ cause = 'first-run', size = 'section', heading, body, icon
 
 // Figma: empty-state-spinner-molecule (3782:24081)
 // Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."; the kit uses the
-// ellipsis character, guide/content.md), showText (show-text).
+// ellipsis character, guide/rules.md 8.23), showText (show-text).
 function Spinner({ text = 'Loading…', showText = true, className, ...rest }) {
   return (
     <div role="status" aria-live="polite" className={IFS.cx('ifs-spinner', className)} {...rest}>

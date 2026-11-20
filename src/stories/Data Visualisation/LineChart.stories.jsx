@@ -9,7 +9,7 @@ export default {
   component: IFS["LineChart"],
   tags: ["autodocs","needs-review"],
   parameters: {
-    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The y-axis starts at 80; Figma's starts at 60.\n\n**Figma:** chart-line (9863:11650)\n\n\n**Use for** (Figma, Line Chart) Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change." } },
+    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The y-axis starts at 80; Figma's starts at 60.\n\n**Figma:** chart-line (9863:11650)\n\n\nUse: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9863-11650"},
   },
 };

@@ -9,7 +9,7 @@ export default {
   component: IFS["Spinner"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** empty-state-spinner-molecule (3782:24081)\n\n\n**Use for** (Figma — mapping inferred) Indeterminate or shapeless waits where no layout can be previewed." } },
+    docs: { description: { component: "**Figma:** empty-state-spinner-molecule (3782:24081)\n\n\nUse: Indeterminate or shapeless waits where no layout can be previewed." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3782-24081"},
   },
 };

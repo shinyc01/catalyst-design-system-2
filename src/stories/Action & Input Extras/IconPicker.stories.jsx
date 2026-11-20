@@ -9,7 +9,7 @@ export default {
   component: IFS["IconPicker"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** icon-picker-atom (210:77686), icon-picker-organism (5434:16926)\n\n\n**Use for** (inferred) One selectable icon cell; building block.\n\n\n**Use for** (Figma) Choosing an icon for a user-created object (e.g. chat folder) from a curated set; single-select. Place it inside `popover-organism`." } },
+    docs: { description: { component: "**Figma:** icon-picker-atom (210:77686), icon-picker-organism (5434:16926)\n\n\nUse: One selectable icon cell; building block.\n\n\nUse: Choosing an icon for a user-created object (e.g. chat folder) from a curated set; single-select. Place it inside `popover-organism`." } },
     design: [{"name":"icon-picker-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=210-77686"},{"name":"icon-picker-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=5434-16926"}],
   },
 };

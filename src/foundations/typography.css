@@ -13,7 +13,7 @@
    Levels: Small (rare: disclaimers, footnotes, text inside a fixed small shape), Body (default; all content and labels),
    Large (H4 titles, L-size controls), H3/H2/H1, Display S/M/L. Caption is retired (= Small).
    Weights: 400 content · 500 every label, name and control · 600 H4 only.
-   Rules and reasons: guide/typography.md
+   Rules: guide/rules.md §2
    ========================================================================== */
 
 :root{

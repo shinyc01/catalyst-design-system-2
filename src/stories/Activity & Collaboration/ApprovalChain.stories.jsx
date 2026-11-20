@@ -9,7 +9,7 @@ export default {
   component: IFS["ApprovalChain"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** approval-chain-timeline (1440:6174) (legacy) — built on activity-organism\n\n\n**Use for** (inferred) One approver step in an approval chain. **Notes** (Figma) Legacy timeline; new ones use the timeline base (`activity-organism`)." } },
+    docs: { description: { component: "**Figma:** approval-chain-timeline (1440:6174) (legacy) — built on activity-organism\n\n\nUse: One approver step in an approval chain." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-6174"},
   },
 };

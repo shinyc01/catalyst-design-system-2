@@ -9,7 +9,7 @@ export default {
   component: IFS["Popover"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** popover-organism (4394:56471)\n\n\n**Use for** (Figma) A small floating surface anchored to its trigger: detail preview, small picker, quick action list, view switcher, compact display settings, searchable list behind a count (\"16 Documents\").\n\n**Don't use for** (Figma) Full tasks or long content (→ drawer), always-on context (→ panel), one-line hints (→ tooltip).\n\n**Notes** (Figma) 160–600px wide, max 600px tall; header/search pinned." } },
+    docs: { description: { component: "**Figma:** popover-organism (4394:56471)\n\n\nUse: Rule 7.14 (width rule 4.5). Examples: detail preview, small picker, quick action list, view switcher, display settings, searchable list behind a count (\"16 Documents\")." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4394-56471"},
   },
 };

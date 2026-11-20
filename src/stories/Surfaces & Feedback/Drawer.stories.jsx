@@ -9,7 +9,7 @@ export default {
   component: IFS["Drawer"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** drawer-organism (4394:21241)\n\n\n**Use for** (Figma) A focused, self-contained task or detail larger than a popover, opened on demand from a screen edge over the content (e.g. node details on the map).\n\n**Don't use for** (Figma) Always-on context (→ panel) or small anchored snippets (→ popover).\n\n**Notes** (Figma) Informative → close only; actionable → collapse + close; error/blocking → neither until resolved. Can expand to fill the content area." } },
+    docs: { description: { component: "**Figma:** drawer-organism (4394:21241)\n\n\nUse: Rule 7.14. Example: node details on the map. Can expand to fill the content area." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4394-21241"},
   },
 };

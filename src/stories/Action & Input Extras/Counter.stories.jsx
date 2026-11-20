@@ -9,7 +9,7 @@ export default {
   component: IFS["Counter"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** counter-atom (88:24147)\n\n\n**Use for** (inferred) Numeric count on tabs, chips, segmented controls." } },
+    docs: { description: { component: "**Figma:** counter-atom (88:24147)\n\n\nUse: Numeric count on tabs, chips, segmented controls." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=88-24147"},
   },
 };

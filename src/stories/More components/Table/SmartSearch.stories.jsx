@@ -9,7 +9,7 @@ export default {
   component: IFS["SmartSearch"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** smart-search-organism (2145:3758)\n\n\n**Use for** (Figma) Natural-language queries and prompts, where the system interprets intent instead of only matching names.\n\n**Notes** (Figma, Table) Keep it visually distinct from column filters." } },
+    docs: { description: { component: "**Figma:** smart-search-organism (2145:3758)\n\n\nUse: Natural-language queries and prompts, where the system interprets intent instead of only matching names.\n\nNotes: Keep it visually distinct from column filters." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2145-3758"},
   },
 };

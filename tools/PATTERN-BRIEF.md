@@ -5,9 +5,9 @@ You are adding one pattern page from the Figma file **IFS Design System Patterns
 Patterns are full screens and flows assembled from IFS Design System components, plus written rules on the canvas: sticky notes and description text. The kit must end up able to rebuild the pattern exactly, and the guide must teach an AI when and how to use it.
 
 ## Read first
-- `CONVENTIONS.md`, and `tools/AGENT-BRIEF.md` for the component method: spec reading, tokens, Icon, gallery and verification. Everything there applies, with the exceptions below.
+- `guide/rules.md` (section 1: code rules), and `tools/AGENT-BRIEF.md` for the component method: spec reading, tokens, Icon, gallery and verification. Everything there applies, with the exceptions below.
 - `dist/api.md`: every component the kit already has.
-- `guide/components.md`: the existing component guide. Each entry has `key: <component-set key>`.
+- `guide/components.md`: the component catalogue and the existing patterns. `guide/figma.json` → `components` has each set's `key`.
 
 ## Figma access (Patterns file)
 - Load the tools: ToolSearch `select:mcp__54cd42aa-78ef-4b68-8fb5-36c819ac886b__use_figma,mcp__54cd42aa-78ef-4b68-8fb5-36c819ac886b__get_screenshot,mcp__54cd42aa-78ef-4b68-8fb5-36c819ac886b__get_figma_skill`. Read `skill://figma/figma-use/SKILL.md` once.
@@ -23,7 +23,7 @@ Patterns are full screens and flows assembled from IFS Design System components,
 
 ## Step 2 — Classify every component the page uses
 For each distinct main component used (collect component-set keys):
-- **In the kit:** the key matches a `key:` in guide/components.md, and that component appears in api.md. Reuse it.
+- **In the kit:** the key matches a `key` in guide/figma.json `components`, and that component appears in api.md. Reuse it.
 - **IFS DS component missing from the kit:** published in IFS Design System (check with `search_design_system` and fileKey `KmmVU2D0kqWr0dC1xXNzWw`; the result shows `libraryName`) but not in the kit. Build it, unless another pattern agent owns it (see "Ownership" in your task).
 - **Duplicate or legacy:** not found as a current IFS DS component, or an older/alternate version of something the kit has. Examples: `tableCell`/`tableHeader` sets with keys other than table-cell-atom/table-header-molecule, a second `badge`, a second floating bar, `approval-chain-item`/`version-history` (legacy timelines). Do NOT build these.
   - If it clearly serves the same purpose and looks the same or near-identical, map it to the current kit component and record it as **consolidated: X → Y (why)**.
@@ -36,24 +36,18 @@ For each distinct main component used (collect component-set keys):
 - **Example**: the page's demo screens. They live only in the gallery file, as `Pattern …` sections, and are never exported.
 
 Don't edit guide/tiers.json. List your Components by export name in your reply, and the maintainer adds them.
-When frames and notes disagree, the notes win. Record each such conflict under a "Review" heading in your guide write-up, with node ids.
+When frames and notes disagree, the notes win. List each such conflict in your reply, with node ids; the maintainer adds it to `review` in guide/figma.json.
 
 ## Step 3 — Build
 Write ONLY these files; `<slug>` is given in your task:
-- `src/components/patterns-<slug>.css` and `src/components/patterns-<slug>.jsx`: the missing IFS DS components you own, following CONVENTIONS.md, with header comments `// Figma: <name> (<node id in IFS DS if known, else key>)`. Then add pattern components where Figma shows a reusable composite (e.g. `CooperChatPanel`): compositions of kit components with real behaviour, and no new visuals beyond what Figma draws.
+- `src/components/patterns-<slug>.css` and `src/components/patterns-<slug>.jsx`: the missing IFS DS components you own, following guide/rules.md section 1, with header comments `// Figma: <name> (<node id in IFS DS if known, else key>)`. Then add pattern components where Figma shows a reusable composite (e.g. `CooperChatPanel`): compositions of kit components with real behaviour, and no new visuals beyond what Figma draws.
 - `src/gallery/patterns-<slug>.jsx`:
   - One section per new component, with every variant and state. Its `figma` string is `'<name> (<node id>)'` for IFS DS node ids, or `'<name> [patterns] (<node id>)'` for nodes in the Patterns file.
   - One or more **"Pattern …"** sections (name must start with `Pattern`, e.g. `'Pattern: Cooper chat'`) that rebuild the main Figma frames as working screens. Use AppShell/NavBar/SideNav/PageHeader etc. exactly as the frames do, with realistic data, and every flow the frames show clickable. Their figma string uses `[patterns]` with the frame's node id.
-- `guide/patterns/<slug>.md`: the pattern write-up, concise and with each rule stated once:
-  - **What it is / when to use it**
-  - **Anatomy**: which kit components make it up, by kit name
-  - **Flows and states**
-  - **Rules**: from the canvas notes, each marked (Figma) or (inferred)
-  - **Don'ts**
-  - **Consolidated / unsure**: the list from step 2
+- The pattern write-up, in your reply (the maintainer adds it to `guide/components.md` › Patterns as `### Pattern: <page>`): **For** (what it is, when to use it), **Parts** (kit components by name), **Rules** (numbered, from the canvas notes; each rule once; point to `guide/rules.md` by number instead of repeating a rule there). The consolidated and UNSURE lists go to `guide/figma.json` (`patterns`, `review`).
 - Append your two lines to `src/components/index.js` (`import './patterns-<slug>.css';` and `export * from './patterns-<slug>.jsx';`). That is the only shared file you may touch.
 
-Never edit other families, tokens, tools, the guide's components.md, or other agents' files. If a kit component needs a change (a missing variant, a bug), describe it in your reply instead.
+Never edit other families, tokens, tools, `guide/*`, or other agents' files. If a kit component needs a change (a missing variant, a bug), describe it in your reply instead.
 
 ## Step 4 — Verify
 - `node build.mjs`, then `node tools/gen-stories.mjs`.

@@ -9,7 +9,7 @@ export default {
   component: IFS["FileCard"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** file-card (1440:5465) (legacy)\n\n\n**Use for** (inferred) An uploaded document. **Notes** (Figma) Legacy (\"Documents\"); can be `content-card-organism`." } },
+    docs: { description: { component: "**Figma:** file-card (1440:5465) (legacy)\n\n\nUse: An uploaded document." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5465"},
   },
 };

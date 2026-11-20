@@ -130,7 +130,7 @@ function VerticalBarChartItem({ segments = [{ value: 1, color: 4 }], value, max,
 }
 
 /* ------------------------------------------------------------------------------------------ */
-// Documents pattern (Patterns › Documents). Rules from the canvas notes live in guide/patterns/documents.md.
+// Documents pattern (Patterns › Documents). Rules from the canvas notes: guide/components.md › Pattern: Documents.
 const DOC_FORMATS = ['pdf', 'docx', 'xlsx', 'pptx', 'txt', 'csv'];
 const ext = name => { const m = /\.([^.]+)$/.exec(name || ''); return m ? m[1].toLowerCase() : ''; };
 const fmtSize = b => IFS.format.fileSize(b);

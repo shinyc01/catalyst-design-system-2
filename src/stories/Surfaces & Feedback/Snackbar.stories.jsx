@@ -9,7 +9,7 @@ export default {
   component: IFS["Snackbar"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** snackbar-organism (3795:29459)\n\n\n**Use for** (Figma) Neutral, transient confirmation of an action the user just took, with an optional recovery action (1–2 actions). Top-right, auto-dismiss ~4s, newest on top.\n\n**Don't use for** (Figma) Critical messages or red/amber/green intents — use `alert-organism`.\n\n\n---" } },
+    docs: { description: { component: "**Figma:** snackbar-organism (3795:29459)\n\n\nUse: Rule 7.12; show one with `IFS.toast`." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3795-29459"},
   },
 };

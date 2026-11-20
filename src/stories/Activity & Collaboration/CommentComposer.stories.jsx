@@ -9,7 +9,7 @@ export default {
   component: IFS["CommentComposer"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** comment-input-atom (2290:15642) + comment-input-molecule (1660:10933)\n\n\n**Use for** (Figma) The comment input pill; modes switch without clearing the draft; Cooper mode has an orange border (attribution).\n\n\n**Use for** (Figma) Input + current-user avatar; used inline on the canvas next to an anchor." } },
+    docs: { description: { component: "**Figma:** comment-input-atom (2290:15642) + comment-input-molecule (1660:10933)\n\n\nUse: The comment input pill; modes switch without clearing the draft; Cooper mode has an orange border (attribution).\n\n\nUse: Input + current-user avatar; used inline on the canvas next to an anchor." } },
     design: [{"name":"comment-input-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2290-15642"},{"name":"comment-input-molecule","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1660-10933"}],
   },
 };

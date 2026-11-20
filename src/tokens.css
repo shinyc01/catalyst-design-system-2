@@ -398,7 +398,7 @@
 }
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
-   16 styles. Pick by role (guide/typography.md):
+   16 styles. Pick by role (guide/rules.md §2):
      PageTop page title H2 · thin PageHeader / ExploreHeader title Label/M/medium · panel/modal/drawer/card title H4 · chart card title Label/M/medium (tertiary) · sub-section Label/M/medium
      content, typed text, menu items, meta Body/M/regular · disclaimers, footnotes, text in a fixed small shape Body/S/regular
      names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2 / H3, never H1 (Display for one hero number)
@@ -463,7 +463,7 @@ html,body{margin:0;background:var(--background-page);color:var(--text-primary);f
    Type ramp = average of Fluent 2, Atlassian, Carbon, Material 3, Apple HIG and Notion,
    taken as ratios to body size (S x0.85, H4 x1.11, H3 x1.38, H2 x1.66, H1 x1.97,
    Display x2.54) and applied to each density's body size, rounded to even px.
-   Spacing roles and the page grid live in foundations/spacing.css (rules: guide/spacing.md).
+   Spacing roles and the page grid live in foundations/spacing.css (rules: guide/rules.md §3–4).
    Tables: fixed rows 64 / 52 / 40 with content centred; fixed header 40 / 32 / 24 with its text
    centred in the header height (no vertical padding; cells have no top/bottom padding either).
    A user setting: put data-density="spacious" | "comfortable" (default) | "compact"

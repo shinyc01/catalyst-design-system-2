@@ -9,7 +9,7 @@ export default {
   component: IFS["TextArea"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** text-area-organism (3024:9383)\n\n\n**Use for** (Figma) Multi-line text. L full page (grows 140→300px), M compact (100→260px); then scrolls internally. Width 140–400px." } },
+    docs: { description: { component: "**Figma:** text-area-organism (3024:9383)\n\n\nUse: Multi-line text. L full page (grows 140→300px), M compact (100→260px); then scrolls internally. Width 140–400px." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3024-9383"},
   },
 };

@@ -9,7 +9,7 @@ export default {
   component: IFS["PhoneField"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** mobile-number-field-organism (8947:11306)\n\n\n**Use for** (Figma) Phone numbers; supports country/region selection and international format. L full page, M compact." } },
+    docs: { description: { component: "**Figma:** mobile-number-field-organism (8947:11306)\n\n\nUse: Phone numbers; supports country/region selection and international format. L full page, M compact." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=8947-11306"},
   },
 };

@@ -9,7 +9,7 @@ export default {
   component: IFS["DonutChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-donut (9866:12774)\n\n\n**Use for** (Figma, Donut Chart) Share of a whole; slices largest → smallest clockwise from top; one legend (right or bottom)." } },
+    docs: { description: { component: "**Figma:** chart-donut (9866:12774)\n\n\nUse: Share of a whole; slices largest → smallest clockwise from top; one legend (right or bottom)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-12774"},
   },
 };

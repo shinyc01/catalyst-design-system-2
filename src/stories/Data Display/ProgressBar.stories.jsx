@@ -9,7 +9,7 @@ export default {
   component: IFS["ProgressBar"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** progress-bar-molecule (1674:1902)\n\n\n**Use for** (inferred) Linear progress toward completion.\n\n**Notes** (Figma, Content States) Use a progress indicator for measurable work (uploads, steps)." } },
+    docs: { description: { component: "**Figma:** progress-bar-molecule (1674:1902)\n\n\nUse: Linear progress for measurable work (uploads, steps)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1674-1902"},
   },
 };

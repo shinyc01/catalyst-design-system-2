@@ -9,7 +9,7 @@ export default {
   component: IFS["MapToolbar"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** explore-map-button (7404:34866) + explore-map-button-base (7404:34867)\n\n\n**Use for** (inferred) Building block for `explore-map-button`.\n\n\n**Use for** (inferred) Building block for `explore-map-button`." } },
+    docs: { description: { component: "**Figma:** explore-map-button (7404:34866) + explore-map-button-base (7404:34867)\n\n\nUse: The Explore map's floating tool bar.\n\n\nUse: Building block for `explore-map-button`." } },
     design: [{"name":"explore-map-button","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=7404-34866"},{"name":"explore-map-button-base","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=7404-34867"}],
   },
 };

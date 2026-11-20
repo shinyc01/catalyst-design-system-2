@@ -9,7 +9,7 @@ export default {
   component: IFS["VersionCard"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** version-card (2104:4022) (legacy)\n\n\n**Use for** (inferred) A version entry with change list. **Notes** (Figma) Legacy; can be `content-card-organism`." } },
+    docs: { description: { component: "**Figma:** version-card (2104:4022) (legacy)\n\n\nUse: A version entry with change list." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2104-4022"},
   },
 };

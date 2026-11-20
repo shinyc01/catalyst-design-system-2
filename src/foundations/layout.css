@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Layout & grid (Catalyst Design System 2.0.1). Rules and reasons: guide/layout.md
+   Layout & grid (Catalyst Design System 2.0.1). Rules: guide/rules.md §4–6
    Matches the standard (Material 3, Atlassian, Fluent 2, Carbon, Primer, Polaris). Cards on columns, panels at fixed sizes, map slots.
    Margins and gutters follow SCREEN WIDTH only, never density.
 

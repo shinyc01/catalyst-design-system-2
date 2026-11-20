@@ -2,14 +2,14 @@
   "name": "catalyst-ds-2",
   "private": true,
   "version": "2.0.3",
-  "description": "Catalyst Design System 2.0: a separate copy of the IFS DS kit (polish branch values) with user-selectable density (Comfortable / Compact).",
+  "description": "Catalyst Design System 2.0: a separate copy of the IFS DS kit (polish branch values) with user-selectable density (Spacious / Comfortable / Compact).",
   "type": "module",
   "scripts": {
     "storybook": "node tools/gen-stories.mjs && storybook dev -p 6006",
     "stories": "node tools/gen-stories.mjs",
     "build": "node build.mjs",
     "build-storybook": "node tools/gen-stories.mjs && storybook build -o dist/storybook --quiet",
-    "release": "node tools/gen-stories.mjs && node build.mjs && node tools/gen-api.mjs && node tools/gen-rules.mjs && node tools/gen-examples.mjs && npm run demo && storybook build -o dist/storybook --quiet",
+    "release": "node tools/gen-stories.mjs && node build.mjs && node tools/gen-api.mjs && node tools/gen-examples.mjs && npm run demo && storybook build -o dist/storybook --quiet",
     "demo": "bash demo/build.sh"
   },
   "dependencies": {

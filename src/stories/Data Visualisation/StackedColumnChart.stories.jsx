@@ -9,7 +9,7 @@ export default {
   component: IFS["StackedColumnChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-stacked-column (9863:11139)\n\n\n**Use for** (inferred) Composition of a total per category." } },
+    docs: { description: { component: "**Figma:** chart-stacked-column (9863:11139)\n\n\nUse: Composition of a total per category." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9863-11139"},
   },
 };

@@ -9,7 +9,7 @@ export default {
   component: IFS["DataVizHeader"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** data-viz-header-molecule (2154:2068)\n\n\n**Use for** (inferred) Chart title row with optional view toggle or button." } },
+    docs: { description: { component: "**Figma:** data-viz-header-molecule (2154:2068)\n\n\nUse: Chart title row with optional view toggle or button." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2154-2068"},
   },
 };

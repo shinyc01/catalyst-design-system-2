@@ -191,7 +191,7 @@ function SideNavTree({ title, tree = [], sections = [], value, defaultValue, onS
 // "the sidebar collapses to an icon rail on narrow widths before it disappears".
 // Props: stages, value / defaultValue / onChange (stage), screens = { [stage]: { sideNav, header, bottom, content } } where each
 // entry may be a node or a function ({ stage, narrow, width }) → node; navBar = extra NavBar props;
-// collapseNavBelow (default 800), collapseSideBelow (default 1024 = md, the side-nav rule in guide/layout.md; was 1280), height.
+// collapseNavBelow (default 800), collapseSideBelow (default 1024 = md, the side-nav rule in guide/rules.md 4.7; was 1280), height.
 function StagedAppShell({ stages = NB_STAGES, value, defaultValue, onChange, screens = {}, navBar = {}, collapseNavBelow = 800,
   collapseSideBelow = 1024, height, className, style, ...rest }) {
   const [stage, setStage] = useNbValue(value, defaultValue !== undefined ? defaultValue : stages[0] && stages[0].value, onChange);

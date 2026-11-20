@@ -9,7 +9,7 @@ export default {
   component: IFS["ValueLabel"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** value-label-atom (4440:32611)\n\n\n**Use for** (inferred) Axis or data value label." } },
+    docs: { description: { component: "**Figma:** value-label-atom (4440:32611)\n\n\nUse: Axis or data value label." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4440-32611"},
   },
 };

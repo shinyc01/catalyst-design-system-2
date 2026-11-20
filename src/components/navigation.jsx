@@ -547,7 +547,7 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // Bar, sidebar, header and panel stay put; only content scrolls.
 // Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
 // e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
-// Panel mode (decided Nov 19, guide/layout.md): set by the panel's JOB, not the screen.
+// Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
 //   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
 //         whole page together (readiness evaluation, Cooper chat, comments, widgets, approval chain). Default.
 //   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page

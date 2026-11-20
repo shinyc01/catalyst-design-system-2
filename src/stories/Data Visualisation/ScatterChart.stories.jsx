@@ -9,7 +9,7 @@ export default {
   component: IFS["ScatterChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-scatter (9866:13245)\n\n\n**Use for** (inferred) Relationship between two measures; clusters and outliers." } },
+    docs: { description: { component: "**Figma:** chart-scatter (9866:13245)\n\n\nUse: Relationship between two measures; clusters and outliers." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-13245"},
   },
 };

@@ -9,7 +9,7 @@ export default {
   component: IFS["ProgressRing"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** progress-ring-molecule (4619:18187)\n\n\n**Use for** (inferred) Circular progress in tight spaces (cards, KPI tiles)." } },
+    docs: { description: { component: "**Figma:** progress-ring-molecule (4619:18187)\n\n\nUse: Circular progress in tight spaces (cards, KPI tiles)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4619-18187"},
   },
 };

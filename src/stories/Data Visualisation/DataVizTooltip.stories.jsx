@@ -9,7 +9,7 @@ export default {
   component: IFS["DataVizTooltip"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** data-viz-modal-organism (4440:32681)\n\n\n**Use for** (inferred) Chart tooltip / info pop-up showing exact values on hover." } },
+    docs: { description: { component: "**Figma:** data-viz-modal-organism (4440:32681)\n\n\nUse: Chart tooltip / info pop-up showing exact values on hover." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4440-32681"},
   },
 };

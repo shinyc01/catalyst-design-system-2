@@ -1,6 +1,6 @@
 import { IFS } from './registry.js';
 // IFS.format: one way to show money, numbers, percentages, dates, times and fiscal years everywhere.
-// Rules and examples: guide/content.md (section 6). Built on Intl, so it follows the locale; en-US is the default.
+// Rules and examples: guide/rules.md (section 8). Built on Intl, so it follows the locale; en-US is the default.
 //
 // IFS.format.money(v, { compact = 'auto', decimals, unit, sign, currency = 'USD', locale })
 //   compact 'auto' (default): under $10,000 in full ("$8,450"), then K / M / B with 3 significant digits

@@ -9,7 +9,7 @@ export default {
   component: IFS["EvidenceStrength"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** evidence-strength-bar-molecule (67:6634)\n\n\n**Use for** (inferred) Strength of evidence behind a Cooper recommendation, mapped to Reject/Review/Approve." } },
+    docs: { description: { component: "**Figma:** evidence-strength-bar-molecule (67:6634)\n\n\nUse: Strength of evidence behind a Cooper recommendation, mapped to Reject/Review/Approve." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=67-6634"},
   },
 };

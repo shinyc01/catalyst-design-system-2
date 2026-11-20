@@ -30,7 +30,7 @@ let out = `# IFS DS kit — component API
 
 Kit version ${pkg.version}, generated ${new Date().toISOString().slice(0, 10)}. Everything is available as \`IFS.<Name>\` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = \`Stack\` / \`Inline\`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
-read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant (details: guide/usage.md). \`IFS.Icon({ name, size: 12|16|24, variant })\` takes Figma icon names — see icons.txt.
+read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. \`IFS.Icon({ name, size: 12|16|24, variant })\` takes Figma icon names — see icons.txt.
 
 `;
 
@@ -73,7 +73,7 @@ function entries(file) {
   const src = readFileSync(join(comp, 'format.js'), 'utf8').split('\n');
   const head = [];
   for (const l of src.slice(1)) { if (!/^\s*\/\//.test(l)) break; head.push(l.replace(/^\s*\/\/ ?/, '')); }
-  out += `## format\n\n\`IFS.format\` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: ${PAGES}/guide/content.md\n\n\`\`\`\n${head.join('\n').trim()}\n\`\`\`\n\n`;
+  out += `## format\n\n\`IFS.format\` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: ${PAGES}/guide/rules.md (section 8)\n\n\`\`\`\n${head.join('\n').trim()}\n\`\`\`\n\n`;
 }
 
 for (const f of ['_core.jsx', ...families]) {

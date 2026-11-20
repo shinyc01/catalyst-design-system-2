@@ -1,82 +1,66 @@
 # Catalyst Design System 2.0
 
-The next version of the IFS DS code kit: a React code twin of the IFS Design System Figma library, with user-selectable density and a type and spacing scale set against best-in-class design systems.
+A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7ar`), with user-selectable density and a type and spacing scale set against best-in-class design systems. Current version: **2.0.3**.
 
-It started as a copy of the IFS DS kit (`shinyc01/new-cl-design-system`, folder `ifs-kit`) with the IFS DS polish values from Flexy (Nov 2026). That kit is unchanged and still powers the `catalyst-prototype` skill; this repo is a separate version.
-
-## 2.0.2 / 2.0.3 (Nov 19, 2026)
-- Spacing roles (Flexy's 2.0.2 integration, accepted): `--space-inset-l` 24 / 20 / 16 for modals and form cards; new `--space-table-x` 20 / 16 / 16 for the table card edge and cell sides (Compact keeps 16). Table header text is centred in its fixed height; cells have no top/bottom padding.
-- px → rem: Figma stays px; the code ships every size that holds text or icons, and the layout widths, in rem (16px base). Borders, radius, breakpoints and chart/map geometry stay px.
-- Type: Label/M/UPPER removed (style, tokens and class); only avatar initials and abbreviations are capitals. Card titles H4; chart card titles Label/M medium (tertiary); PageTop title H2; thin PageHeader / ExploreHeader title Label/M medium; big numbers H2 / H3, never H1.
-- Round 1 sizes: chips 28 / 24 / 24; search, Smart Search, popover search, phone picker, checkbox / radio rows 36 / 32 / 28; badges S 24 / 20 / 20, M 28 / 24 / 24, L 36 / 32 / 28; Compact small controls 24.
-- Layout: map slots (guide/layout.md §4), panel modes `push` / `over` by job (§5), three page headers (§8), side nav folds by available space (under 800 of page). Decisions log: `prototypes/flexy-compare/DECISIONS-NOV19-MASTER.md` in `new-cl-design-system`.
-
-## 2.0.1 (Nov 18, 2026): spacing
-- One `--space-*` scale and three density roles: `--space-inset` 20 / 16 / 12 (padding of every card, panel, drawer and popover, on all four sides; modals and form cards use `inset-l`, table cards `table-x` since 2.0.3), `--space-stack` 16 / 12 / 8 (gaps between blocks), `--space-section` 40 / 32 / 24 (between page sections). Page margin and the gap between cards follow screen width. No raw px spacing in components. Spec: [guide/spacing.md](guide/spacing.md).
-- Tables: fixed rows 64 / 52 / 40, headers 40 / 32 / 24 (text centred in the header height, no vertical padding since 2.0.3); one table card for every table. Menus 4px from the trigger and 4px inside.
-- Layout: breakpoints 600 / 1024 / 1440 / 1920, 12 columns, margin and gap by screen width; cards on columns, panels at fixed sizes (380 / 600), map slots. Spec: [guide/layout.md](guide/layout.md).
-
-## 2.0.1 (Nov 17, 2026): typography
-- Type tokens in two layers like the Figma library: primitives, then one semantic set per style (`--text-<style>`, `src/foundations/typography.css`). Components use only the semantic tokens; no hard-coded sizes, weights or letter-spacing anywhere.
-- 16 styles. Caption retired; Small is rare (disclaimers, footnotes, text inside small fixed shapes); Small is 14 / 12 / 11. Labels, statuses, table headers and meta text are Body size.
-- No uppercase style (2.0.1 review): statuses, column headers and captions are sentence case in Label/M/medium. Titles, headings and navigation are Title Case; buttons, dropdowns and all content are sentence case. Content is regular, names and key values medium.
-- Code follows Body size; tabular figures for numbers; reading text wraps at about 75 characters.
-- Full spec and rules: [guide/typography.md](guide/typography.md). Old `.t-*` class names still work.
-
-## Previous version: Catalyst Design System 1.0
-Version 1.0 is the original IFS DS code kit, before any of the 2.0 type, spacing or density changes (12 px body text, H1 20 px). It is kept as the record to compare against or go back to.
+## Use it
 
 | What | Where |
 |---|---|
-| Source, pinned to the 1.0 version (commit `f75244d`, Oct 29, 2026) | https://github.com/shinyc01/new-cl-design-system/tree/f75244d5834d044761e819a78313691005c4104f/ifs-kit |
-| Live source (folder `ifs-kit` on `master`; may change later) | https://github.com/shinyc01/new-cl-design-system/tree/master/ifs-kit |
-| Storybook (live; shows whatever `master` holds) | https://shinyc01.github.io/new-cl-design-system/ifs-kit/dist/storybook/ |
-
-The pinned link always shows 1.0 exactly as it was, even if `master` changes. To go back to it, copy `ifs-kit/` from that commit (`git checkout f75244d -- ifs-kit` in that repo). Flexy's 14 px polish values (the starting point of 2.0) were never published to that repo; they are the first commit of this one.
-
-## Look at it
-| What | Where |
-|---|---|
-| Storybook (every component, with the density switch in the toolbar) | https://shinyc01.github.io/catalyst-design-system-2/dist/storybook/ |
-| Demo: six Catalyst screens, Display settings behind the gear icon | https://shinyc01.github.io/catalyst-design-system-2/demo/ |
-| Prototype bundle (exposes `window.Catalyst` and `window.IFS`) | `dist/ifs-ds.js`, `dist/ifs-ds.css` |
-| Component API | `dist/api.md` |
-| Icon names | `dist/icons.txt` |
-| Usage guide | `guide/components.md` |
+| Prototype bundle (exposes `window.IFS` and `window.Catalyst`) | `dist/ifs-ds.js`, `dist/ifs-ds.css` |
+| Over the CDN (GitHub Pages) | `https://shinyc01.github.io/catalyst-design-system-2/dist/ifs-ds.js` (and `.css`) |
 | Prototype starter | `template.html` |
+| Storybook (every component, density switch in the toolbar) | https://shinyc01.github.io/catalyst-design-system-2/dist/storybook/ |
+| Demo: six Catalyst screens, Display settings behind the gear icon | https://shinyc01.github.io/catalyst-design-system-2/demo/ |
 
+Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IFS.format` formats numbers, money and dates; `IFS.Stack` / `IFS.Inline` lay out screens.
 
-## What's new in 2.0: density
-Users pick how dense the UI is, as a system setting (three levels):
+**Density.** Three levels, as a user setting: Spacious, Comfortable (default), Compact (rule 3.13 in `guide/rules.md`).
 
-| Setting | Body | Small | H4 / H3 / H2 / H1 | Display S / M / L | Controls S/M/L | Table row / header | Inset | Inset-l | Table-x | Stack | Section |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| **Spacious** | 16/24 | 14 | 18 / 22 / 26 / 32 | 36 / 40 / 48 | 28 / 36 / 44 | 64 / 40 | 20 | 24 | 20 | 16 | 40 |
-| **Comfortable** (default) | 14/20 | 12 | 16 / 20 / 24 / 28 | 32 / 36 / 44 | 24 / 32 / 40 | 52 / 32 | 16 | 20 | 16 | 12 | 32 |
-| **Compact** | 12/16 | 11 | 14 / 16 / 20 / 24 | 28 / 32 / 40 | 24 / 28 / 32 | 40 / 24 | 12 | 16 | 16 | 8 | 24 |
+## Files
 
-Page margin / gap between cards follow screen width, not density: 16 / 16 below 600, 24 / 16 from 600, 24 / 20 from 1440, 32 / 32 from 1920.
+| File | What it holds |
+|---|---|
+| `guide/rules.md` | The rulebook: tokens and code, type, spacing, layout, page headers, map slots, component use, content, accessibility, open questions |
+| `guide/components.md` | The catalogue: which component for what, and the patterns |
+| `guide/figma.json` | Figma keys, node ids and variant axes per component; pattern sources; Figma review items (Storybook warnings) |
+| `guide/tiers.json`, `guide/usage.json` | Data for the generators (component tiers; handover usage counts) |
+| `dist/api.md` | Every component's props (generated) |
+| `dist/icons.txt`, `dist/tokens.txt` | Icon names; every token with its value (generated) |
+| `src/tokens.css`, `src/foundations/*.css` | Tokens: colour, type, spacing, layout; `tokens.css` also holds the `.t-*` text-style and `.fx-*` effect classes |
+| `src/icons.js` | `window.IFS_ICONS`: SVG markup per icon and size, exported from Figma |
+| `src/components/<family>.css + .jsx` | Components, one pair per Figma family; `index.js` is the entry, `registry.js` the shared `IFS` object |
+| `src/gallery/<family>.jsx` | Every variant and state; the source of the Storybook stories |
+| `src/stories/` | Generated by `tools/gen-stories.mjs`; don't edit |
+| `src/docs/*.mdx` | Hand-written Storybook pages |
+| `build.mjs` | esbuild → `dist/ifs-ds.js` + `dist/ifs-ds.css`; `inline` makes single-file prototypes |
+| `tools/` | Generators, `extract-spec.js` (exact Figma specs), `check-direction.mjs` (RTL progress), `shot.sh` (screenshots), agent briefs |
 
-### Where the numbers come from
-Comfortable type is the average of six reference systems: Fluent 2, Atlassian, Carbon, Material 3, Apple HIG and Notion (Notion unofficial, from its CSS), taken as ratios to each system's body size and applied to ours, rounded to even px: Small x0.85, H4 x1.11, H3 x1.38, H2 x1.66, H1 x1.97, Display x2.54. Spacing started from the same systems' published averages and was then set in the 2.0.1 review with Flexy; the rules and values are in [guide/spacing.md](guide/spacing.md).
+## Versions
 
-How it works:
-- Put `data-density="spacious"`, `"comfortable"` or `"compact"` on `<html>` (or any container). `IFS.setDensity('compact')` does this and remembers the choice; `IFS.getDensity()` reads it back.
-- Type is tokens in two layers (like the Figma library): primitives (families, weights, letter-spacing steps, and the `--type-s|m|l|h3|h2|h1|display-*` size/line-height pairs per density) and one semantic set per text style, `--text-<style>` + `-tracking` + `-weight` (`src/foundations/typography.css`). Components use only the semantic set. 16 styles; rules in `guide/typography.md`.
-- Control heights read `--control-h-s|m|l`, `--tab-h-m|l`, `--nav-row-h`, `--table-row-h`, `--table-header-h`.
-- Spacing: `src/foundations/spacing.css` (scale, roles, page grid). Type and control sizes: the Density block at the end of `src/tokens.css`. Old `--spacing-*`, `--gaps-*` and `--paddings-*` names are still defined as aliases and point to the 2.0.3 values (`--spacing-modal` / `--spacing-form` → `inset-l`, table cell sides → `table-x`, cell y → 0, card-compact → stack, matching Flexy's Figma). Don't use them in new code: use the `--space-*` roles.
-- The bundle exposes `window.Catalyst` (and `window.IFS`, so existing prototypes work unchanged).
+- **2.0.1** (Nov 17–18, 2026): type and spacing. Two-layer type tokens and 16 styles; Small is rare and Compact Small is 11; no uppercase style; one `--space-*` scale with density roles (`inset`, `stack`, `section`); fixed table rows and headers; page grid by screen width.
+- **2.0.2** (Nov 18–19): layout. Breakpoints 600 / 1024 / 1440 / 1920 with 12 columns; cards on columns, panels at fixed sizes (380 / 600); Flexy's Figma integration.
+- **2.0.3** (Nov 19):
+  - Code in rem, Figma in px.
+  - New spacing roles `inset-l` and `table-x`; table header text centred, no cell padding.
+  - Title levels by role (PageTop, thin headers, cards, charts, HomeRowCard); no H1 for numbers; Label/M/UPPER removed.
+  - Round 1 sizes (chips, search, Smart Search, phone picker, checkbox / radio rows, badges); Compact small controls; minimum target size; icon-only controls are IconButtons.
+  - Panels by job (`push` / `over`); side nav folds by available space; the grid follows the content area.
+  - Three page headers and their narrow behaviour.
+  - Map slots: one panel per side, no map minimum, top and bottom bars nudged by panels, narrow overlay and sheet.
+  - One Menu, one StatCard, one NavBar, one EvidenceButton, one legend; charts use data-viz colours only.
+  - Calendar from the locale; tables scroll with column minimums; reflow at 400% in scope; start / end instead of left / right.
+  - Docs merged into `guide/rules.md` and `guide/components.md` (values live there).
 
----
+Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).
 
-## Kit notes
+## Work on it
 
-Components are rebuilt to match the Figma library (`atgUmwcA1AE5sjFoWBT7ar`): tokens exported from Figma variables, icons exported from Figma. The kit's own rules are in [CONVENTIONS.md](CONVENTIONS.md).
-
-## Working on it
 ```bash
-npm install        # public npm registry
-npm run storybook  # review at http://localhost:6006
-npm run release    # rebuild dist/ (bundle, API docs, Storybook) and demo/index.html before committing
+npm install
+npm run storybook        # http://localhost:6006
+node build.mjs           # bundle only
+npm run build-storybook  # static Storybook in dist/storybook
+npm run release          # stories, bundle, api.md, examples, demo and Storybook
 ```
-Commit `dist/` and `demo/index.html` with your change: GitHub Pages serves the files straight from `main`.
+
+Commit `dist/` and `demo/index.html` with your change: GitHub Pages serves them from `main`. Guides are hand-written; `tools/gen-stories.mjs` reads `guide/components.md` and `guide/figma.json` for the Storybook docs.

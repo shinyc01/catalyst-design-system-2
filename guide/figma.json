@@ -1,0 +1,523 @@
+{
+ "_about": "Figma data for the kit, kept out of the guides. files: the two Figma files. pages: Figma page ids by family. components: Figma component set name -> key, node, variant axes (VARIANT), bool (BOOLEAN), text (TEXT), swap (INSTANCE_SWAP / slots); the usage text is in guide/components.md under the same name. patterns: each pattern page with its Figma sections and the older or local Figma sets the kit consolidated into one component. libraryIssues: problems in the Figma library for the designer. review: per Storybook story, places where Figma disagrees with itself or the kit approximated or invented something (read by tools/gen-stories.mjs: the story shows a \"Needs review\" warning; delete an item once it is checked).",
+ "files": {
+  "library": "atgUmwcA1AE5sjFoWBT7ar (IFS Design System)",
+  "patterns": "KmmVU2D0kqWr0dC1xXNzWw (IFS Design System Patterns)"
+ },
+ "pages": {
+  "Action": "1399:9453",
+  "Inputs & Forms": "1399:17879",
+  "Selection": "1399:25312",
+  "Navigation": "1399:26124",
+  "Feedback": "3786:15406",
+  "Surfaces": "1399:13914",
+  "Data Display": "3501:10172",
+  "Data Visualisation": "3487:19894",
+  "Shell": "3487:24652",
+  "Content States": "4759:9172",
+  "Comments": "1399:9455",
+  "Cooper": "4174:209903",
+  "Map": "1399:13911",
+  "Icons": "1399:9134"
+ },
+ "components": {
+  "button": {"key":"4586a1ce53e8ee3578bf548ea04a80f4c4d3c610","node":"65:3211","variants":"Type=[Primary|Secondary|Tertiary|Ghost|Accent (Cooper)] State=[Default|Disabled|Hover|Pressed|focus] Size=[L (40)|M (32)|S (24)] Focus=[No|Yes]","bool":"show-icon-left, show-icon-right, show-label","text":"Button label","swap":"Icon left, Icon right","page":"Action"},
+  "icon-button": {"key":"582aeb6b8e507436ea2f1e38479b8905e14914ba","node":"71:4250","variants":"Shape=[Square|Circle] Type=[Ghost|Primary|Secondary|Tertiary] State=[Default|Hover|Pressed|Disabled|Focus] Size=[L (40)|M (32)|S (24)] Focus=[No|Yes]","swap":"Icon","page":"Action"},
+  "circular-button-molecule": {"key":"1f6b2300a76c2cecfdb5fb5406627bbd2e579d52","node":"72:9983","variants":"Type=[Left|Right|Bottom|Top] State=[Default|Hover|Pressed|Disabled|Focus] Focus=[False|True]","bool":"show-hotkey","text":"button label","swap":"icons-right, icon-left, icon-up, arrow-down","page":"Action"},
+  "circular-button-organism": {"key":"6e7baa1e2e8e9a1bf3ffd2d7b0b22b86549bc02b","node":"72:10235","variants":"Buttons number=[4|3|2] Hover=[False|Left|Right|Top|Bottom] State=[Default|Hover]","swap":"top/bottom/left/right × default/hover","page":"Action"},
+  "icon-button-notification": {"key":"7765a80b459106a12e7bc784588ee9950323fddb","node":"357:53417","variants":"Has new notiication?=[True|False] State=[Focus|Default]","swap":"Instance","page":"Action"},
+  "icon-button-comment": {"key":"a7a4c01882674becff0f88528ad6a670f786318a","node":"2563:8153","variants":"Has a new comment?=[False|True] State=[Default|Focus]","page":"Action"},
+  "icon-button-arrow": {"key":"3d9d366e342e3ebfd1eaab9dad3f21b849dd706e","node":"6349:61950","variants":"Has a new comment?=[False|True] State=[Default|Focus]","page":"Action"},
+  "icon-button-filter": {"key":"aad1dda484839677bec8e32bc7208281054dde05","node":"6955:768","variants":"Has a new comment?=[False|True] State=[Default|Focus]","page":"Action"},
+  "FTA button": {"key":"86d029a8385b902196b1d68d01f3979c7a909b75","node":"67:4758","variants":"State=[Default|Hover|Pressed|Disabled|Focus] Stroke=[True|False]","bool":"Show indicator","page":"Action"},
+  "prompt-button": {"key":"1f08a7fa657073060084e796a3ab50fe58e91a34","node":"67:2937","variants":"State=[Default|Hover|Pressed|Disabled|Focus] size=[L|M]","text":"Prompt label","page":"Action"},
+  "value-map-button": {"key":"d6f9202c20963796bfcba29f18b9d1711ee76ad8","node":"2590:20612","variants":"Type=[Input|Shape] Selected=[Default|Fit|Expand|Collapse]","page":"Action"},
+  "explore-map-button-base": {"key":"c24ad7cfbe456cd753e4f4632f5b258bae381833","node":"7404:34867","variants":"Type=[Component 1] Selected=[map-action-bar-molecule]","swap":"Content slot","page":"Action"},
+  "explore-map-button": {"key":"7c319d0f3bce5cabc95fb0a2244470e05a920559","node":"7404:34866","variants":"Property 1=[map-tool-bar-organism]","swap":"Content slot","page":"Action"},
+  "node-button": {"key":"3b1065e04d0764d228aa583bd159134a461e9e55","node":"1851:191153","variants":"Type=[Collapse|Expand|Isolate path|Submodel]","page":"Action"},
+  "add-node-button": {"key":"59936144c1e209d879c8e49d9cd36300523f91de","node":"2879:7311","variants":"State=[Default|Hover|Pressed|Typing|Disabled]","page":"Action"},
+  "text-field-organism": {"key":"f87f1ea7fbce08976308ea1626d2927f29d57b7f","node":"210:77559","variants":"State=[Default|Hover|Active|Typing|Filled|Overflow|Error|Disabled|Focus|Filled-active|Cooper|Cooper Generating] Size=[L (40)|M (32)]","bool":"show-right-text, show-title, show-text-hint, clue-icon, show-left-icon, show-right-icon, show-right-icon2","text":"Placeholder, Title, Hint text","page":"Inputs & Forms"},
+  "mobile-number-field-organism": {"key":"1ece9b6a46779254456e89febd0fad022c848ce1","node":"8947:11306","variants":"State=[Default|Hover|Active|Typing|Filled|Error|Disabled|Focus|Filled-active|Cooper|Cooper Generating] Size=[L (40)|M (32)]","bool/text":"same as text-field-organism","page":"Inputs & Forms"},
+  "text-area-organism": {"key":"6e70ce63c8eb1dec36e8451ffb4da387607cd408","node":"3024:9383","variants":"State=[Default|Hover|Focus|Typing|Filled|Error|Disabled|Active|Overflow|Cooper|Cooper Generated] Size=[L (140)|M (100)]","bool":"show-right-text, show-title, show-hont-text, show-clue-icon, show-input-icon, show-edit-icon","text":"Placeholder, Title, Hint text","page":"Inputs & Forms"},
+  "search-regular-organism": {"key":"ca0bad6ca0f94500ecdb651d4b6d0019c036ceab","node":"153:63462","variants":"State=[Default|Hover|Pressed|Typing|Filled|Disabled|Focus|Overflow]","bool":"Filter","page":"Inputs & Forms"},
+  "smart-search-organism": {"key":"cfb1a43e05a8a95ec29184aaf6ffb10a1a978792","node":"2145:3758","variants":"Type=[Text|Voice] State=[Default|Hover|Disabled|Focus|Pressed|Typing|Filled|Overflow|Recording|Listening]","page":"Inputs & Forms"},
+  "form-card-organism": {"key":"392abc20ede4670b102f96d6d6006a6291614144","node":"5826:24755","variants":"Type=[Default]","swap":"Footer content, Content slot","page":"Inputs & Forms"},
+  "checkbox-atom": {"key":"2fd66408cf49dad48be910477510d1ea6283ee7e","node":"153:60798","variants":"Type=[Unselected|Selected|Indeterminate] State=[Default|Hover|Pressed|Disabled|Focus]","page":"Inputs & Forms"},
+  "checkbox-molecule": {"key":"fe60581e1cb0f327a2b2e40acb463c7206a66e26","node":"153:61241","variants":"State=[Default|Hover|Pressed|Disabled|Focus] Selected=[True|False]","page":"Inputs & Forms"},
+  "radio-button-atom": {"key":"a23f78cc52294a66a4875c645c2935309465525d","node":"210:113374","variants":"Selected=[False|True] State=[Default|Hover|Pressed|Disabled|Focus]","page":"Inputs & Forms"},
+  "radio-button-molecule": {"key":"6ee4434fcab8fdd957c6d2689e814035ba5a377c","node":"1387:222956","variants":"Selected=[True|False] State=[Default|Hover|Pressed|Disabled|Focus]","page":"Inputs & Forms"},
+  "switch-atom": {"key":"2d6cad5c1d66427be5b7bc45abbb060275ce6b3d","node":"88:23960","variants":"Active=[True|False] State=[Default|Hover|Pressed|Disabled|Focus] size=[L (24)|S (12)]","page":"Inputs & Forms"},
+  "switch-molecule": {"key":"281f01b5b04a2d604569db7dc75847f32904a603","node":"88:22668","variants":"Active=[False|True] State=[Default|Hover|Pressed|Disabled|Focus] size=[M (24)|S (12)]","bool":"Show text","text":"Label","page":"Inputs & Forms"},
+  "sliter-atom": {"key":"d5efc4d25fa8afc167cff6c7642431bbb5d2aa8e","node":"3029:21077","variants":"State=[Default|Drag|Disabled|Focus|Hover]","page":"Inputs & Forms"},
+  "slider-molecule": {"key":"aeb56b2671755e1c030f6f5f27bb296496737c94","node":"3029:20933","variants":"Type=[Default|Centered|Range] State=[0 → −|0 → max|0 → +|0|Default]","swap":"Slot","page":"Inputs & Forms"},
+  "slider-organism": {"key":"cc1a72bf908afac72acdf852209f2f53f90b5d8a","node":"3029:20689","variants":"State=[Default|Drag|Hove|Focus|Disabled]","bool":"show-hint-text, show-clue-icon, show-title","text":"Number, Title, Hint text","swap":"show-left-icon, Slot","page":"Inputs & Forms"},
+  "single-select-atom": {"key":"11a0d893cc7607f610f6a47b65c61d410da787a4","node":"789:18085","variants":"Size=[S (28–24)|M (32)|L (40)|XL (44)] State=[Default|Hover|Focus|Open|Loading|Filled|Error|Overflow|Disabled|Overflow hover]","bool":"show-icon-left, show-remove-select, flag","swap":"icon-left","page":"Selection"},
+  "single-select-list-atom": {"key":"1e822b0788d92859ccef310dc14e833c0d4f7d4c","node":"153:61939","variants":"Size=[L (40)|S (28)|User] State=[Default|Hover|Select|Select hover|Active selected|Overflow|Overflow hover|Disabled|Active|Loading]","bool":"show-left-icon, description, show-right-icon, show-status, show-suggest, show-shortcut, Flag","text":"Text","page":"Selection"},
+  "single-select-list-molecule": {"key":"445715ffc4f2e6d072e576b8ceb05991fb5d72b2","node":"153:62054","variants":"State=[Default]","swap":"Slot","page":"Selection"},
+  "single-select-organism": {"key":"a75ef0a0942e69679ba6f4dd043aabdc29d3856a","node":"3273:26820","variants":"List position=[Down|Up]","page":"Selection"},
+  "multiple-select-atom": {"key":"6d063cd14644192f7429f82e652abed35c78d25e","node":"3200:7897","variants":"Size=[S (28–24)|M (32)|L (40)|XL (44)] State=[Default|Hover|Focus|Open|Loading|Filled|Overflow|Overflow hover|Error|Disabled]","bool":"show-icon-left, show-remove-select","swap":"icon-left, Slot … Slot 5","page":"Selection"},
+  "multiple-select-list-atom": {"key":"080824eec809ecd0e2b24b55ea838742323ea8e9","node":"3273:32692","variants":"Size=[L (40)|S (28)|User] State=[Default|Hover|Select|Select hover|Active|Overflow|Overflow hover|Disabled|Active selected|Loading]","bool":"show-left-icon, description, show-right-icon, show-status, show-suggest, show-shortcut","text":"Text","page":"Selection"},
+  "multiple-select-list-molecule": {"key":"92e610f9f6f23bb5eea7eec92bb51ec238cef3cd","node":"3273:33695","variants":"State=[Default]","swap":"Slot","page":"Selection"},
+  "multiple-select-organism": {"key":"cabd068dfbb1fd08f8ba59578c9a2d8bf54b913f","node":"3273:33904","variants":"List position=[Down|Up]","page":"Selection"},
+  "signle-combobox-organism": {"key":"d6ef5cb4a073c1115378c08060449b6139b41387","node":"3375:5415","variants":"Size=[M (32)|L (40)|XL (44)] State=[Default|Hover|Focus|Pressed|Loading|Results|No results|Filled|Overflow|Overflow hover|Error|Disabled]","bool":"show-icon-left, show-remove-select","swap":"Slot","page":"Selection"},
+  "multiple-combobox-organism": {"key":"d17ddcd252d013d1357d830fa198409a2d3e7901","node":"3375:17949","variants":"Size=[L (40)|XL (44)|M (32)] State=[Default|Hover|Focus|Pressed|Loading|Results|No results|Filled|Overflow|Overflow hover|Filled search|Error|Disabled]","bool":"show-remove-select","swap":"Slot","page":"Selection"},
+  "segmented-control-atom": {"key":"dd6a2aea2480832cf1e489af8fb9ab1d6d2e41ee","node":"1387:244511","variants":"State=[Default|Hover|Pressed|Disabled|Focus] Selected=[True|False] Size=[M (34)|S (24)]","bool":"show-left-icon, show-right-icon, show-counter, show-label, show indicator","text":"label","swap":"icon-left, iconl-right","page":"Selection"},
+  "segmented-control-organism": {"key":"8f0ba0e8233ecb28d0c394bc340f993d87fa036f","node":"1387:244501","variants":"Number=[2|3|4|5] Size=[S|M]","page":"Selection"},
+  "chips": {"key":"187f0c1deb6ce76d8ac35be18e8652e464af0101","node":"832:235895","variants":"Select=[False|True] State=[Default|Pressed|Disabled|Hover|Focus]","bool":"show-icon-left, show-icon-right, Show indicator, show-counter","text":"label","page":"Selection"},
+  "cooper-chip-atom": {"key":"5b2a67a2b679fd24555eb3ae89814bb8ddb67922","node":"3501:23480","variants":"State=[Default|Hover|Focus|Selected|Disabled]","page":"Selection"},
+  "icon-picker-atom": {"key":"37142e563e3da5e2983b5b4ae440f879e3e0d417","node":"210:77686","variants":"State=[Default|Hover|Selected]","page":"Selection"},
+  "icon-picker-variants": {"key":"9bd0e91f3149b83e74f6d254a0dc80ea37d400a2","node":"210:77815","variants":"Property 1=[Default]","page":"Selection"},
+  "icon-picker-organism": {"key":"cda4402e69b9c55d6cb27cc5af0f079a9d8269b6","node":"5434:16926","variants":"Property 1=[Container]","page":"Selection"},
+  "weekday-atom": {"key":"ea3dc8e507c3a96eeca1cc2a0b0ad4b68fc07dbf","node":"2704:74414","variants":"state=[dayItem]","bool":"Show badge","text":"day","swap":"timeline","page":"Selection"},
+  "date-atom": {"key":"3cd956aef880be83c45344518b64bf9e3e1b97de","node":"1440:5201","variants":"State=[Empty|Last|Default|Today|Next month|Selected|Focus|Endpoint|Hover|Event]","text":"number","page":"Selection"},
+  "date-picker-molecule": {"key":"14442abad0a3dd37bf0cdbe5105a95229d8188a6","node":"3406:9510","variants":"type=[calendar]","bool":"show-apply-button","swap":"Slot, title","page":"Selection"},
+  "navigation-panel-atom": {"key":"71e439562b5331b87a87e8d6d02eb0216868e575","node":"1544:2681","variants":"Type=[Parent|Child|Subtitle|Submenu] State=[Default|Hover|Active / Selected|Focus|Disabled]","bool":"show-icon, show-button, Cooper recommended","page":"Navigation"},
+  "navigation-panel-organism": {"key":"9e6ee63e434c3e6e0b902c2ad2bebd51f329a7c4","node":"1545:2808","variants":"View=[Expanded|Collapsed]","swap":"Content slot","page":"Navigation"},
+  "tab": {"key":"f88613869d94124c60166c995b6b21c0025e0b09","node":"1440:5039","variants":"Size=[M (36)|L (40)] State=[Default|Disabled|Focus|Hover|Selected]","bool":"show-counter","text":"Text","page":"Navigation"},
+  "tab-organism": {"key":"9de24e7425b53e593158bf9545205cde0983de19","node":"3412:32038","variants":"Size=[M (36)|L (40)]","swap":"Slot","page":"Navigation"},
+  "canvas-container-atom": {"key":"7d3041cd8cec779820a577b6cec9b63be6d982c7","node":"1440:5305","variants":"State=[Default]","page":"Navigation"},
+  "canvas-header": {"key":"d776a405e8007c5b16160c7b962ecc42be4b5f08","node":"1440:5321","variants":"State=[Default]","swap":"columns","page":"Navigation"},
+  "sunkey-canvas-header": {"key":"ce04ed8adbf361badb78d2f1174a863abc3b0b4c","node":"1865:15498","variants":"Expanded=[False|True]","page":"Navigation"},
+  "stepper-molecule": {"key":"c0f909fd7397868be1b10000e9a6587ca26e324f","node":"1219:169725","variants":"State=[Completed|In progress|Not started] Hover=[False|True] Active=[No|Yes]","text":"Text","page":"Navigation"},
+  "stepper-organism": {"key":"e41e57775d6407a432ca1ff680005332fd3b90b2","node":"3029:22750","variants":"State=[Default]","swap":"Slot","page":"Navigation"},
+  "breadcrumb-atom": {"key":"1f0dfbd6d7a5e86837e49589ffbb03275f6ffb61","node":"3492:9413","variants":"Type=[Previous|Current|Next] State=[Default|Hover|Focus|Disabled]","bool":"show-icon-left","page":"Navigation"},
+  "breadcrumb-organism": {"key":"cd2fc2f32033a183bdeab68914c9659037b6092b","node":"67:4698","variants":"State=[Default]","swap":"Slot","page":"Navigation"},
+  "pagination-organism": {"key":"f1d3bbde85fc0354bdef49638fab38f9e53b08f7","node":"3497:9660","variants":"State=[Default]","bool":"show-%, show-all-button, show left icon","page":"Navigation"},
+  "tooltip-organism": {"key":"746b91f06e64d6a6c02614c5f3fe2fc1ba7d4488","node":"67:6151","variants":"Color=[black|grey (for black bg)] Type=[Bottom|Top|Left|Righ] Arrow=[Left|Center|Right]","bool":"show-hotkey","text":"Label","swap":"Conetnt slot","page":"Feedback"},
+  "alert-organism": {"key":"cf5233607e4a9a48322a2b6862c2d052cbfe3ea8","node":"1440:5440","variants":"Type=[Error|Warning|Success]","bool":"show-button, show-icon, show-close-icon","text":"Body, Title","page":"Feedback"},
+  "snackbar-organism": {"key":"591596218d7f22f72eaa4036436a2837f5ca866c","node":"3795:29459","variants":"Property 1=[Default]","bool":"Show button, Show description, show-content-slot, show-actions, show-close-icon-button, show-primary-button, show-secondary-button","swap":"Content slot","page":"Feedback"},
+  "modal-organism": {"key":"5f4826b2338dec1eddf08575ee2e3b53b11047b0","node":"4169:208596","variants":"Color=[modal]","swap":"Content slot, Slot, stack","page":"Surfaces"},
+  "floating-bar-organism": {"key":"e09f61a3d506abeb1f2cbfc8e0f5d551a9bf7e9e","node":"7405:22521","variants":"Color=[floating bar]","swap":"Content slot, Slot, stack","page":"Surfaces"},
+  "panel-organism": {"key":"f0e3c9a42ff7672fb98146c09103ce63ae364044","node":"4305:365421","variants":"Expanded=[True|False]","bool":"show-evidence-chain","swap":"Content slot","page":"Surfaces"},
+  "popover-organism": {"key":"b1a1290539605f4cb6e823a69ae880e057eec65f","node":"4394:56471","variants":"State=[Default]","bool":"show-scroll-bar, show-search, show-title, show-filter","swap":"Content slot, Title slot","page":"Surfaces"},
+  "drawer-organism": {"key":"3c178c91da5d2bb92785e559d3150c4af26290be","node":"4394:21241","variants":"Expanded=[True|False]","bool":"show-segmented-control, show-subtitle, show-scroll-bar, show-tabs, show-button-close","swap":"Content slot, Header slot","page":"Surfaces"},
+  "canvas-background": {"key":"469b20dc88f36eb27b9051d17744419f31e4b176","node":"1395:196712","variants":"State=[Default|Image]","page":"Surfaces"},
+  "overlay-background": {"key":"29a182dbd1e5eec6fe8fb4b8271a62a5de4fc884","node":"338:21403","variants":"Type=[Strong|Base]","bool":"text","page":"Surfaces"},
+  "move-and-drop-background": {"key":"f7c32a9cbc4e55d8cfa64b7ae0d2ad6f026c1899","node":"4509:30446","variants":"Type=[change-position-overlay]","bool":"text","page":"Surfaces"},
+  "badge-atom": {"key":"452878e49ba2f0ac28993857d55f0d9f0522c910","node":"83:52162","variants":"Color=[White|Black|Red|False|Loading|Green|Orange] Size=[L (32)|M (24)|S (20)]","bool":"show-icon-left, show-icon-right, show-indicator, avatar, flag","text":"Text, Label","swap":"icon-left, icon-right","page":"Data Display"},
+  "avatar-atom": {"key":"d8d17241bdd28df16639fd1226171fb439167bca","node":"260:17144","variants":"Type=[Black|Red|Dark orange|Orange|Yellow|Brown|Dark blue|Blue|Light blue|Green|Lime|Dark purple|Purple|Light purple|Dark pink|Light pink|Image|Awaiting|Cooper|Inactive|Loading] State=[Default|Hover|Focus|Pressed] Focus=[False|True]","text":"Label","page":"Data Display"},
+  "avatar-organism": {"key":"816f2bea663ec437b58eedc5de21e1147ffe355d","node":"260:19923","variants":"Size=[XL (56)|L (40)|M (32)|S (24)|XS (16)]","bool":"show-status","page":"Data Display"},
+  "cursor-atom": {"key":"80c816a43cbc41bec71fac866f5e54a974d55234","node":"55:1645","variants":"User=[1…16|Cooper]","text":"user name","page":"Data Display"},
+  "content-card-organism": {"key":"99713332efed795904a7f1559ac2c03084a677d5","node":"3643:32067","variants":"Size=[S|M] State=[Default|Focus|Hover|Drag|Cooper|Loading|Selected]","bool":"show-top-content-slot, show-bottom-content-slot, show-icon-left, show-icon-right, show-checkbox, show-radio-button, show-switch, show-description, show-icon-button, show-buttons, show-tertiary-button, show-primary-button, show-avatar","swap":"Bottom-content-slot, Top-content-slot, Top-content-slot2","page":"Data Display"},
+  "stat-card-organism": {"key":"6702e8e153b03745386c71b217787a31fd26acbd","node":"3643:35055","variants":"Size=[M|S] Loading=[False|True]","bool":"show-title, show-trend, show-additional-content-slot, show-badge","swap":"Value-slot, Additional content slot","page":"Data Display"},
+  "marker-atom": {"key":"c048f05b9c277f8652fcceb6edf982798cc1a0cd","node":"3713:12836","variants":"Size=[M (32)|S (24)]","swap":"Slot","page":"Data Display"},
+  "connector-atom": {"key":"85326c8575fb30ef4816afcc998b3b6b170e76c8","node":"3713:12835","variants":"Type=[Dash|Solid]","page":"Data Display"},
+  "activity-organism": {"key":"8ba3870c0d51b9262604f15ac34f8f05d601454c","node":"3713:13396","variants":"Type=[timeline activity component]","swap":"Content slot","page":"Data Display"},
+  "question-card": {"key":"d3ecfa2e5f8620ad9de4b1b3b51d47a171e194fe","node":"2704:72490","variants":"State=[Default|Loading|Hover|Pressed|Focus]","page":"Data Display"},
+  "portfolio-card": {"key":"ce06c53dbb05702c1a90be68865a255d55a5f873","node":"1440:5847","variants":"Loading=[False|True]","page":"Data Display"},
+  "submodel-card": {"key":"ce27903940f94600cae5f50cd01c8b5bbea86c50","node":"2670:6376","variants":"State=[Default|Hover|Focus] Select=[False|True]","page":"Data Display"},
+  "version-card": {"key":"f0dd8a3fa252b83c2f062077b2091018fc71d077","node":"2104:4022","variants":"State=[Default|Hover|Loading]","swap":"List","page":"Data Display"},
+  "impact-usage-card": {"key":"43ba41516c42071a26820731ad55a53efdcddd5c","node":"1440:5297","variants":"Type=[Ready|In progress] Expand=[True|False]","bool":"show-badge-1, show-badge-2","text":"Label","page":"Data Display"},
+  "file-card": {"key":"c216b81e4d1814f9e33b9781d0662c01e11d1175","node":"1440:5465","variants":"State=[Default|Hover|Loading|error]","page":"Data Display"},
+  "photo-item": {"key":"32310d3dc14f8be8765ecd9cc213d15056cf7dcf","node":"4448:2460","variants":"Property 1=[Hover|Default|No image] Size=[L|S]","page":"Data Display"},
+  "photo-gallery": {"key":"89913362cbb1a7fb983cb568cd96e9b7f2b244d5","node":"4450:10180","variants":"state=[Default]","page":"Data Display"},
+  "stat-capital-flow-card": {"key":"35bab0755c38e4ea52ad43fb1f25359f15548085","node":"1858:15408","variants":"Type=[Metrics (M)|Metrics (S)|Default|Badges|Compare] Score=[Default|Up|Down] Loading=[False|True]","bool":"description, badge","text":"title, value, descr-text, number","page":"Data Display"},
+  "collaborator": {"key":"9c03ed9c19bfbc2a0acc10f891c9a91e8eb66851","node":"1440:6097","variants":"Type=[Joined|Awaiting|Recommended] State=[Default|Hover|Loading|Focus]","bool":"show-icon-button","page":"Data Display"},
+  "user-card": {"key":"44e5e704468d3fc2e1656cdc8ce46e6989ee71ca","node":"1440:5059","variants":"Type=[Assigned|Owner] State=[Default|Hover|Drag|Loading|Focus]","bool":"show-checkmark-icon","swap":"Slot","page":"Data Display"},
+  "capex-card": {"key":"68fd47d4cc84ea5a533bb2de20006a7cf02f5a34","node":"2095:9245","variants":"Type=[Expand|Default|Expand full] Loading=[True|False]","bool":"show-checkmark-icon","swap":"Slot","page":"Data Display"},
+  "source-card": {"key":"fafdbabda4e12538ef46da239997daad283c2291","node":"1440:5362","variants":"Type=[User|File] Content=[Map|Quote|Image|Text] Loading=[False|True]","page":"Data Display"},
+  "create-card": {"key":"99b13fe83f738c1ee3a0498f813df124cff3652c","node":"1557:2849","variants":"State=[Default|Hover|Pressed|Focus|Loading]","text":"Description, Title","page":"Data Display"},
+  "sidebar-node-card": {"key":"9bc97598536ce202f5c19ad91ddb1644f28fd37e","node":"2667:6608","variants":"State=[Default|Hover|Drag|Focus|Cooper hover|Coper drag]","page":"Data Display"},
+  "duplicate-framework-card": {"key":"0a5f42482d431ed542ea98c9ef5743df3bce26db","node":"2479:26951","variants":"State=[Default|Hover|Pressed|Focus|Loading]","bool":"Show source, Show cooper description, Show badge, checkbox","page":"Data Display"},
+  "node-card": {"key":"750f201be58e7755aac819efdb6b7b3ed3bb7290","node":"1440:4401","variants":"Type=[Strategic objective|Value model|Enterprise goal|Value framework|Document|Measure|Subnode|Skeleton|User] State=[Default|Hover|Drag|Select|Cooper|Focus|Cooper drag|Out of focus|Disabled|Checkbox|Edit|Loading]","bool":"show-caption-bottom, show-badge-top, show-counter, show-stack-icons","text":"Title, Caption","swap":"badge","page":"Data Display"},
+  "approval-chain-timeline": {"key":"40e7aa77d80a31efbd6aa77b304cd6ab967b3476","node":"1440:6174","variants":"State=[Awaiting|Success|Rejected|Empty|Setting|Disabled]","bool":"show-comment, show-date, show-buttons, show-brief","text":"Comment text, User name, Position, Date text","page":"Data Display"},
+  "version-history-timeline": {"key":"e90e29e6ecce4050feb291ae1a91f65329a31049","node":"2277:5299","variants":"State=[Default|Hover|Rename] Expand=[False|True]","bool":"show-badge","swap":"Timeline slot, content, content2","page":"Data Display"},
+  "activity-timeline": {"key":"bc78050b665650abad8881247451ab78062edaa7","node":"1440:5630","variants":"Type=[Action|Comment|Udpate]","page":"Data Display"},
+  "status-indicator-atom": {"key":"ffa7c941b362082a990cbd0a4da668c1d1d22c82","node":"789:39211","variants":"State=[Default|Error|Success|Cooper|Warning|Blue] Stroke=[False|True]","page":"Data Display"},
+  "status-risk-atom": {"key":"debedb08a6fea7536abfaf154793b70a4bdf6b7a","node":"260:18430","variants":"Type=[Online|Offline|Check|Warning|Error|Reload]","page":"Data Display"},
+  "status-readiness-atom": {"key":"0f8e5a391621bc46d0ef25ecfdf78ea3c2f8350f","node":"1440:6243","variants":"Type=[Success|Rejected|Awaiting|Empty]","page":"Data Display"},
+  "indicator-molecule": {"key":"b502bee1de01b0a19c389e8ec5999d82c94691a4","node":"1074:180251","variants":"Size=[S|XS] Type=[Orange|Green|Red|Blue|Purple|Gray|Cooper|Archive|Loading]","bool":"button right","text":"text","page":"Data Display"},
+  "status-readiness-molecule": {"key":"7e46b792a0b5f29535e4f66bd1d98990eaac66c3","node":"1440:5273","variants":"Type=[Done|Warning|In progress|Loading|Active] Right-section=[Text|Status]","text":"Label","page":"Data Display"},
+  "status-risk-molecule": {"key":"278dd7af4049ffb137c5db5679b59b99b62a6993","node":"69:1729","variants":"Type=[Success|Warning|Error|Evaluated] State=[Default|Hover|Disabled|Focus|Loading]","page":"Data Display"},
+  "hotkey-atom": {"key":"a2085d1d932d63599bf9eac687a3d9beff5b71cf","node":"67:6150","variants":"Property 1=[Default]","text":"hotkey","page":"Data Display"},
+  "counter-atom": {"key":"d1fbe5eba174501f6b3340a70cd928d127e1ae6b","node":"88:24147","variants":"Size=[S (18)|M (24)]","bool":"show-indicator","page":"Data Display"},
+  "scroll-bar-atom": {"key":"e0af1521d2c348787605e36a7c038d9db9efd8e3","node":"83:57650","variants":"Location=[Top|Center|Bottom]","page":"Data Display"},
+  "table-sort-atom": {"key":"d0b0b2ddb9d5196588f822cfe9487510e360fa61","node":"1440:5921","variants":"State=[Default|Hover|Selected up|Selected down]","page":"Data Display"},
+  "table-filter-atom": {"key":"98141b94b2ed7e1429cb0fe9ab5c9191fbf49d7b","node":"1440:5932","variants":"State=[Default|Hover|Applied]","page":"Data Display"},
+  "table-header-molecule": {"key":"da7b4eb424b891f91adde562bd02dfd924b4d8d8","node":"1440:5904","variants":"Type=[Column|Row] State=[Default|Hover|Empty]","bool":"show-sort, show-title, show-filter, show-clue-icon","text":"title-text","page":"Data Display"},
+  "table-cell-atom": {"key":"688040eb82c8d6fa44426f329b11676e7155e59c","node":"1440:5941","variants":"Type=[Text|Badge|Status|Check|In progress|Counter|Action|Action icons|User|User description|Comment|Text and button (hover)|Text + description|Text + counter] State=[Default|Hover|Edit|Loading]","bool":"show-description, show-acion, Show badge, Evidence","text":"Label, description-text, user-name","swap":"container, Slot","page":"Data Display"},
+  "group-row-molecule": {"key":"bca74fe30c1def518e280fae97fe03b9bc984049","node":"4833:19072","variants":"Expand=[True|False]","page":"Data Display"},
+  "content-row-molecule": {"key":"59fa4f1a0ba0eeb6dd0f00dc44c6a4499f7d84f0","node":"4835:3501","variants":"Type=[Header|Content]","swap":"Content slot","page":"Data Display"},
+  "table-card-organism": {"key":"25c7d3168ccea0f233a83f49870008d946efbd01","node":"4835:4031","variants":"State=[Default]","bool":"show-table-name, show-segmanted-control","swap":"Content slot, Content slot2","page":"Data Display"},
+  "notification-card": {"key":"cdb272f432a62ab202e69c42f3904218e9535928","node":"9943:5373","variants":"Type=[All|Specific|Grouped] Read=[Unread|Read]","bool":"show-critical, show-status, show-details, show-actions, show-action-required","text":"title, meta, time, details","page":"Data Display"},
+  "data-viz-card-organism": {"key":"c8f7de2643016ae6e5743710549e304b7e24323f","node":"4457:33030","variants":"State=[Default|Hover|Drag|Cooper]","swap":"Content slot","page":"Data Visualisation"},
+  "data-viz-header-molecule": {"key":"b323b7775864a732f980974ebcb25ef773c03e30","node":"2154:2068","variants":"State=[Default|Hover] Right element=[False|Segmented control|Button]","swap":"button-wrapper, button-wrapper2, button-wrapper3, Slot","page":"Data Visualisation"},
+  "data-viz-modal-organism": {"key":"9cb50333d44ceec89e04a79af8f04089bbf4c6f4","node":"4440:32681","variants":"State=[chart-info-modal]","bool":"show-value","swap":"content","page":"Data Visualisation"},
+  "indicator-atom": {"key":"bf0624ed66300f5689d56fd8c8eed609cc9edccb","node":"4440:32643","variants":"Type=[Default|Intended target|Selected]","bool":"show-value","page":"Data Visualisation"},
+  "value-label-atom": {"key":"21a7ab077caeced7dfceccf6b94566c82f1503f5","node":"4440:32611","variants":"State=[Primary|Secondary|Tertiary|Empty|Loading]","bool":"show-value","page":"Data Visualisation"},
+  "line-atom": {"key":"bd367cef6cfa7638ed82f88c457288c2ee81971d","node":"4440:32650","variants":"Dashed=[True|False]","page":"Data Visualisation"},
+  "legend-swatch-atom": {"key":"4b6f18b32314e18223626d18273c25d79561216f","node":"4440:32628","variants":"State=[Default|Hover|Out of hover|intended target]","bool":"show-value","page":"Data Visualisation"},
+  "bar-atom": {"key":"3fc09fd3ca10bf9bd417e4085083473ea48449c7","node":"4457:32996","variants":"State=[Default|Hover|Out of focus|Background|Loading]","bool":"show-value","page":"Data Visualisation"},
+  "grouped-bar-molecule": {"key":"9c57f4912d2699186e92628c197ca422b95a7b1e","node":"4457:37362","variants":"Type=[Horizontal|Vertical] Progress=[False|True]","swap":"Content slot","page":"Data Visualisation"},
+  "donut-chart-atom": {"key":"bc5be0933481cf9a89eb91186ccb2535f937b84a","node":"2393:2672","variants":"Property 1=[Variant3]","page":"Data Visualisation"},
+  "radar-chart-atom": {"key":"20efe1045ff2a683d816ff215a0fe13342944a17","node":"4457:42493","variants":"State=[Default]","page":"Data Visualisation"},
+  "progress-bar-molecule": {"key":"dd5fce1be40692bc8ac61c7d0eb6c2bb075fcc96","node":"1674:1902","variants":"%=[100|80|60|50|40|20|10|0]","page":"Data Visualisation"},
+  "progress-ring-molecule": {"key":"66485e7c2150ef45fef0c4182ec9d6c5b77e5b82","node":"4619:18187","variants":"%=[100|80|60|50|40|20|10|0]","page":"Data Visualisation"},
+  "evidence-strength-bar-molecule": {"key":"84d44038daa06f1e043442daaeda90138ada6dca","node":"67:6634","variants":"Type=[Reject|Review|Approve]","page":"Data Visualisation"},
+  "sankey-header": {"key":"51e1165aef83b131a258d998dcd3fef85bac0d53","node":"2698:64494","variants":"type=[column-header]","page":"Data Visualisation"},
+  "sankey-atom": {"key":"3389a5488a733b837c2c33c8f32a212af11b7a8e","node":"1853:12325","variants":"Type=[Default|Measure] state=[Default|hover|Disabled]","bool":"compare-data","page":"Data Visualisation"},
+  "sankey-chart": {"key":"16b4af67fa417f01e5fcad7ac956bb29009a24db","node":"1853:12398","variants":"Type=[Container|Sunkey]","swap":"Content slot","page":"Data Visualisation"},
+  "sankey-organism": {"key":"ac1c8cbd6b31f42b22a4ca3431a9b6b8b33118dd","node":"4457:53304","variants":"Type=[Card-body]","page":"Data Visualisation"},
+  "timiline-phase-molecule": {"key":"5e4ded3ec85a833d56c6702ec61d8d8d2651b7e9","node":"3967:1765","variants":"Expanded=[False|True] State=[Default|Hover] Badge=[False|True]","text":"Title","swap":"Content slot, List slot","page":"Data Visualisation"},
+  "timeline-chart-organism": {"key":"e9d0e868e8690eb4539b49e689597ab2fabe4b0c","node":"3967:38286","variants":"State=[Default|Hover]","swap":"Content slot","page":"Data Visualisation"},
+  "chart-column": {"key":"26ac44002bc42654a851e80bb6987cfcbcc4cc0a","node":"9862:12468","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-bar": {"key":"c7ded12ed119e336dacaa53339537cd96d21b310","node":"9862:12961","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-grouped-column": {"key":"1cf9a0d603150f23cc903ae3f2338f521867b5b1","node":"9862:13445","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-stacked-column": {"key":"2f30427861bb364075baa1bfff92d9287195c6e2","node":"9863:11139","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-line": {"key":"99e82665f301f00cb568f0f3442a41f919bf9d73","node":"9863:11650","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-area": {"key":"fc1f08170e72e2321189fb380fba2a3b86598baa","node":"9863:12167","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-histogram": {"key":"e527d2a15ad4d6d550911b71c0551d9271f04cb6","node":"9864:14012","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-pie": {"key":"715fa4d6878fec0a2c0f2448062430864713b865","node":"9866:12309","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-donut": {"key":"392ff23a56f74c11d0335f73212796503293e509","node":"9866:12774","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-scatter": {"key":"3d90c587bae013987119d07c6bf7693c605b8add","node":"9866:13245","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-bubble": {"key":"32d3b58873d7cf13fd30d4ad0db641b6b05eb7a3","node":"9866:13788","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-heatmap": {"key":"4dff675f1db6461b77aabd9f2f50619a4c66ad56","node":"9866:14280","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-box-plot": {"key":"55bc608ee4354b133688d4820bc1ab1554dc6d44","node":"9866:14997","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-radar": {"key":"701802771bd705aca1dd97d48ecdd1e73874bcd1","node":"9866:15559","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-waterfall": {"key":"87f6afe21601a27ba4b87c959c59f0f286e8d4b8","node":"9866:16075","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-treemap": {"key":"0ab799c152817b77416efcae920d41326606d42a","node":"9867:132","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-gauge": {"key":"974091cc4d290593f37ec6f1056a71a6cf47ad9a","node":"9867:618","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-funnel": {"key":"d5b0bfd196792b6096a9f7068a0b0adfd2626fa5","node":"9867:1065","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "chart-portfolio": {"key":"b6dd889617fd07025d4a3e4fa1e895910f1b1fa7","node":"2154:2497","variants":"Type=[By weight|By budget|Loading|Empty]","page":"Data Visualisation"},
+  "chart-projects": {"key":"684b42ac9b917ba6936950ced415b56b35cdede6","node":"2219:1161","variants":"Type=[Default|Empty]","page":"Data Visualisation"},
+  "chart-strategic-objectives-breakdown": {"key":"b85eb9de67b215577c1177ecd9c0f79aa02eab6e","node":"2154:2572","variants":"type=[By budget|By investment|empty|sceleton|vertical (S)]","swap":"bars, bars2","page":"Data Visualisation"},
+  "chart-strategic-objectives (1 of 5)": {"key":"d75eb31791d0016bf7d48b1d718fd734af1f8df7","node":"2219:1754","variants":"Type=[Default|Loading|Empty]","page":"Data Visualisation"},
+  "chart-strategic-objectives (2 of 5)": {"key":"5ca6446f186b91b8fb27fc3c0d1d85abf0f0e3ec","node":"4457:41517","variants":"Type=[Default|Loading|Empty]","page":"Data Visualisation"},
+  "chart-strategic-objectives (3 of 5)": {"key":"e4f32bc90f0455eedb6ba12faa4e50a01db4d32a","node":"4699:26724","variants":"Type=[Default|Loading|Empty]","page":"Data Visualisation"},
+  "chart-strategic-objectives (4 of 5)": {"key":"2c6877c2d0d3614cae92c550ebdebf7bfeecca9c","node":"4457:42683","variants":"Type=[Default|Loading|Empty]","page":"Data Visualisation"},
+  "chart-strategic-objectives (5 of 5)": {"key":"4fa95d2606136cbc34b924a739bdb08f63693fb8","node":"5967:55151","variants":"Type=[Default|Loading|Empty]","page":"Data Visualisation"},
+  "chart-coverage-measure": {"key":"9a4dedcbb18378474c1324b9f21bf84a15a8a34f","node":"2701:28167","variants":"Type=[Default]","page":"Data Visualisation"},
+  "Capex burn by quarter": {"key":"30c80a597171828b44d1f176edb7f42aedd36ceb","node":"2356:1498","variants":"Type=[Line|Bar] Cooper=[False|True]","page":"Data Visualisation"},
+  "chart-framework-coverage": {"key":"31142689c935c0d26dee1389f17565f02b46fba0","node":"4699:26635","variants":"State=[Default|Hover|Vertical (S)|Empty|Loading]","page":"Data Visualisation"},
+  "investment value": {"key":"a1ad172ac42f508d160cc95e9ca3d2b3e78113f5","node":"4699:27100","variants":"State=[Default|Empty|Sceleton]","swap":"bars","page":"Data Visualisation"},
+  "scatter chart": {"key":"0c11145d394f66b2dbd52f60181996288a55856a","node":"5967:55232","variants":"State=[Default|Empty|Sceleton]","swap":"bars","page":"Data Visualisation"},
+  "chart-draft-disposition": {"key":"ba4853eaa0d5ba8811248a70b2df296de07d9b7a","node":"9827:14449","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "chart-brief-to-decision": {"key":"0615c162d4ce5383116e2c12d2a0c670c42c4846","node":"9827:14789","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "chart-cooper-findings": {"key":"fb51572b86b2f3d59fce935d8bc0e39ea21a4d37","node":"9827:15042","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "chart-needs-you-flags": {"key":"8705d58ca2ad5e19d73fa74992983be13e6bc2aa","node":"9827:15249","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "chart-capital-by-cycle": {"key":"2f209b779f4d69d2f56e70ae755dba385b695385","node":"9827:15560","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "chart-decisions-by-source": {"key":"c4c34516bae8736300e30d97f1642c6126c220bf","node":"9827:15813","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "chart-benefits-realized": {"key":"c248099ae019f3f2c264e3d07d7cd6dcf5c06bda","node":"9827:16004","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "chart-risk-reduction": {"key":"d9910b2e54aff600040c04b9afabb5dbd345f077","node":"9827:16262","variants":"State=[Default|Empty|Loading|Hover|Cooper]","page":"Data Visualisation"},
+  "planned-vs-actual": {"key":"145d7e3b85b72f1a87358077c8e419fc3fc554ca","node":"9827:17573","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "retained-risk-by-feeder": {"key":"dfee28dfb25613923ca8e409fd6a39dd4dccaafa","node":"9827:17850","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "outage-minutes-vs-peers": {"key":"4ed72853c24183a728dec58d73f6e4fc59c921ed","node":"9827:18110","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "capex-variance-by-project": {"key":"12f60389900037adf898dcf8bd6db23c7bad04a6","node":"9827:18719","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "feeders-by-outage-minutes": {"key":"8d668dc7f86aaa795d759245ea6e7dae4f4270db","node":"9827:18294","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "cost-per-km-vs-peer-range": {"key":"8e1621f09c3d16c49c73348563f72a346dd85ee2","node":"9827:18525","variants":"State=[Default|Hover|Empty|Loading|Cooper]","page":"Data Visualisation"},
+  "global-header": {"key":"8a567522193088d557faa4ed26b701f83882cb74","node":"69:3736","variants":"state=[Default] page=[value]","bool":"Show recomendation","page":"Shell"},
+  "nav-bar-organism": {"key":"9083880d7e8eaf599782322f5b7ba3442abe33b6","node":"3412:29453","variants":"Type=[Default|Collapsed|Collapsed opened]","swap":"Pages slot, Actions slot","page":"Shell"},
+  "nav-bar-page-atom": {"key":"3a69091ef320fd3b62c876b8f0175f4fca8bbb2d","node":"69:4012","variants":"State=[Default|Hover|Pressed|Active|Disabled|Focus]","text":"Page name","page":"Shell"},
+  "logo": {"key":"cd50ca13da80980e20b45897cb2a2814e439f287","node":"788:52389","variants":"Property 1=[Default]","page":"Shell"},
+  "sidebar-pattern": {"key":"74a2a21caf87e028a7115c8d80334805fadd89cc","node":"4482:99996","variants":"Page=[Value|Build|Investment]","page":"Shell"},
+  "header-pattern": {"key":"1dca605202426cb234cd77fa51edae359142c6b4","node":"4485:119266","variants":"State=[Default]","bool":"show-canvas, show-stepper, show-recommendation, show-collaboration, show-button, show-overview, Show split-button, Show secondary button","swap":"Content right slot","page":"Shell"},
+  "page-header-pattern": {"key":"a66c690107f3282fdb0d83674f46e62441794963","node":"4485:119917","variants":"State=[Default]","bool":"show-button, show-content-slot","swap":"Content slot, text","page":"Shell"},
+  "page-header": {"key":"9175f001185d8545d21a5915e5794992587351cc","node":"1588:1971","page":"Shell"},
+  "page-top": {"key":"c5e4c47466b6a214434547fc54bd5678b6658fd1 (set; variant Type=Default 771d842501a13c89539875ae993aca11fbcbfa82)","node":"244:117279 (IFS Design System Patterns; not found in the published IFS Design System library)","variants":"Type=[Default]","bool":"cooper, show search, Show button","page":"Shell"},
+  "explore-header-pattern": {"key":"0f49a18bdc8ebc72618b4449574b2cf88757dc00","node":"7205:33581","variants":"show-cooper-badge=[no|yes]","bool":"show-selected, show-action-buttons, show-back-button","page":"Shell"},
+  "base-bottom-sheet-organism": {"key":"efe6a84561faffba92800a50ad90bd6b8896208f","node":"4406:25590","variants":"State=[Default]","bool":"show-cooper","page":"Shell"},
+  "value-bottom-sheet-organism": {"key":"492f095cf04285dd68a296c651207ba17897936a","node":"789:37502","variants":"In progress=[False|True]","bool":"show-prompts, cooper-context, show-cooper, show-upload-button","swap":"show-documents-button","page":"Shell"},
+  "explore-bottom-sheet": {"key":"57f61210740f9ada34f24e015e9bf954d5e10dca","node":"72:4676","variants":"State=[Default]","page":"Shell"},
+  "empty-state-organism": {"key":"3560062eec09e589b3ca8e5732db29394c4dd061","node":"3782:18464","variants":"Size=[Frame 2147228119]","bool":"show-media-icon, show-body-text, show-suggestion-chips, show-buttons, show-primary-button, show-tertiary-button","page":"Content States"},
+  "empty-state-spinner-molecule": {"key":"f838ccd0d5a224f91be002cddc557c2a40207162","node":"3782:24081","bool":"show-text","page":"Content States"},
+  "empty-state-loading-more-molecule": {"key":"505c9d42d9aaa8508e5715bf1915ee7b5e8fb650","node":"3782:24082","page":"Content States"},
+  "progress-bar-loading": {"key":"a1b0c5cd5518115be244af4b07a9f3cff4f5900e","node":"5530:11867","page":"Content States"},
+  "comment-input-atom": {"key":"fa669eb3c99a339f91be8c20943f72cf79306e27","node":"2290:15642","variants":"Type=[Text|Voice|Cooper] State=[Default|Filling|1 line|Multi line]","page":"Comments"},
+  "comment-input-molecule": {"key":"c29aecd3d1d9b5f862f1dbd70d16cb23ea88125f","node":"1660:10933","variants":"state=[Default]","bool":"avatar","swap":"Chat input","page":"Comments"},
+  "comment-input-organism": {"key":"adccc23151e65541029aa171a200b8bc375ec8c5","node":"4775:27174","variants":"Pressed=[False|True]","page":"Comments"},
+  "comment-pin-organism": {"key":"6c7355bdd0cde1b43c261757975f9681c3db6145","node":"260:47160","variants":"Type=[Unread|Read|Cooper] State=[Default|Hover]","bool":"show-3rd-avatar, Show replies, show-2nd-avatar","text":"Name, Time ago, Comment text, Qty replies","page":"Comments"},
+  "comment-popover-organism": {"key":"378d44d99e897855492862476458e3f0d113f122","node":"260:88500","variants":"Type=[Default|Cooper suggestion|Edit]","swap":"Content slot","page":"Comments"},
+  "comment-content-card": {"key":"8015b6ac39d1e24537ebd46bafb3e507e262a9d6","node":"260:86722","variants":"State=[Default|Hover] Tagged user=[False|True]","text":"Name, Time ago","page":"Comments"},
+  "comment-drawer-card": {"key":"548d968e242b55d861175f30fa949710d1d260ef","node":"1231:170874","variants":"Type=[Read|New|Cooper|Resolved] State=[Default|Hover|Selected|Focus]","bool":"show-2nd-avavtar, show-action-required","text":"User name, Time ago, Comment number, Place","page":"Comments"},
+  "agent-window-organism": {"key":"31ba15a9885c5b95097b519e85721b390ba77984","node":"67:4398","variants":"View=[Expanded|Collapsed] Type=[Speaking|Paused|Analyzing|Finished|User not speaking|User speaking|User not writing|User writing] Actor=[Cooper|User]","bool":"show-content-slot, show-tertiary-button, Show secondary button, Show all buttons","text":"Text","swap":"Content slot","page":"Cooper"},
+  "chat-collapsed-bar-organism": {"key":"cf1fb8a418622055eb26e01ef7ba82dbaf19488e","node":"83:34109","variants":"Type=[FAB button|Voice|Text] State=[Default|Active|Hover|Expand hover|Speaking / Typing|Speaking / Typing multi-line|Send|Send multi-line]","page":"Cooper"},
+  "chat-compact-panel-organism": {"key":"e56a350db527fcf6c6862cacd23774e7d1311974","node":"83:74896","variants":"Type=[Voice|Text] State=[Default|Speaking / Typing|Analyzing|Answered|Interrupted|Drop file]","bool":"show-cooper-text, show-scroll-bar","swap":"Content slot","page":"Cooper"},
+  "chat-full-panel-organism": {"key":"1b6802cb1c703de622674d239425e1ba4ef3ac85","node":"83:60542","variants":"Type=[Voice|Text] State=[Default|Speaking / Typing|Interrupted|Drop file|Analyzing|Answered]","bool":"show-chips","swap":"Content slot","page":"Cooper"},
+  "agent-bottom-sheet": {"key":"7c7b4439586398c735cf7bb3f85325d294bb1e01","node":"9155:26876","variants":"type=[Analyzing]","page":"Cooper"},
+  "speaking-control-molecule": {"key":"0944c5d2588c15d2671489c657a788d6b500390c","node":"9155:26809","variants":"State=[Speaking|Paused|Listening|Reading|Respondong]","page":"Cooper"},
+  "text-message-input-molecule": {"key":"2f407b5b2a200e59ca722cbaa0d1fdc80ab0f39d","node":"83:57015","variants":"State=[Typing multi-line|Typing|Default|Pressed|Analyzing]","bool":"Show top slot","swap":"Slot","page":"Cooper"},
+  "voice-message-input-molecule": {"key":"b66c51b2fbcf5d9e513652e4e581b69c62493a3d","node":"83:74957","variants":"State=[Default|Speaking|Analyzing]","bool":"Show top slot","swap":"Slot","page":"Cooper"},
+  "card-asset-organism": {"key":"980649df5ac9194a028e91f06f9f6a122819da5a","node":"3295:37852","variants":"Priority=[High|Medium|low] State=[Default|Hover|Applied]","page":"Map"},
+  "card-layer-organism": {"key":"0df762628e9ea558ef9f7a37658a4465d7af5887","node":"88:23410","variants":"Active=[True|False] State=[Default|Hover]","text":"label","page":"Map"},
+  "card-category-layer-organism": {"key":"efab07ce5c1a4862a348a9e851780739b7ce9d6c","node":"88:23459","variants":"Active=[False|True] State=[Default|Hover|Applied]","page":"Map"},
+  "map-pin-teardrop": {"key":"1e235ddf5a740ed928aa2b3ccb7cd96e4d7b6bfe","node":"43:2020","variants":"Asset icon=[No|Yes] Status=[Neutral|Error|Warning] State=[Default|Opened|Selected|Out of hover]","page":"Map"},
+  "map-status-risk": {"key":"afa87a85df441d6eb4a38fdfe293aa73c0bda334","node":"3639:4517","variants":"Type=[Error|Warning]","bool":"show-%","page":"Map"},
+  "map-status-event": {"key":"95f838ed32351ac18ab1679e7c88144818d00808","node":"85:6416","variants":"Title=[False|True]","page":"Map"},
+  "object-card-molecule": {"key":"4611c87ad7e72c51f397c195b35a6106d253862e","node":"3535:7844","variants":"Type=[Assets|Segement|Group]","swap":"Assent container slot, Segment container slot, Group container slot","page":"Map"},
+  "locationItem": {"key":"91460248c9b367204277859247f814a9001961b6","node":"233:14754","variants":"State=[Default|Hover|Applied]","bool":"show-coordinates","text":"Location, Coordinates","page":"Map"},
+  "hierarchy-slider-pattern": {"key":"da24ff1e034c167f4da74f9144a40ef675946058","node":"7406:25037","variants":"%=[modal-hierarchy]","page":"Map"},
+  "log-in-form-pattern": {"node":"4509:24703 (Log in)","page":"Other pattern pages"},
+  "home-row-card-organism, stat-cards-row, review-investment-table, review-data-visualisation": {"node":"3938:1011 (Home), 2757:9205, 2757:9283, 4850:46005 (Review)","page":"Other pattern pages"}
+ },
+ "patterns": {
+  "Nav bar": { "source": "Patterns › page Nav bar 243:66369, section 244:119940", "consolidated": [
+   "global-header (8a567522…, Plan home 244:120469) → NavBar (nav-bar-organism is marked 'use this')",
+   "Switcher / switcher container (9087521b… / 609a3312…, unpublished) → SegmentedControl size s",
+   "segmented-control-icon (882a35e9…, 244:119673) → IconButton secondary, or SegmentedControl with icon options",
+   "compare-quick-stat-card (35bab075… = stat-capital-flow-card) → StatCard in StatCardsRow",
+   "tableHeader / tableCell (609b40c3… / 81b10bef…) → DataTable",
+   "Evidence-strip-bar/all actions (4512b2ec…) → BottomSheet type=value",
+   "ai smart search → SmartSearch",
+   "page-top → PageTop (Build's is a detached copy: title only, Tabs L)",
+   "explore-header (ae9026ad…, used here) → ExploreHeader; the published explore-header-pattern (0f49a18b…, 7205:33581) has four toggles",
+   "Plan sidebar tree: detached tableCell frames in sidebar-organism → SideNavTree (no DS tree component)",
+   "sidebar-pattern Page=Value → SideNav"
+  ] },
+  "Table": { "source": "Patterns › page Table 92:16787, section 95:106476", "consolidated": [
+   "tableCell 4f4be618… and 81b10bef… (unpublished older copies) → table-cell-atom 688040eb (Table)",
+   "tableHeader 9c9ffe32… and 609b40c3… (unpublished) → table-header-molecule da7b4eb4 (Table)",
+   "ai-search b419c093 → Icon cooper-system-icon variant Smart search",
+   "ai smart search (cfb1a43e, older version) → SmartSearch",
+   "table-filter-sort (d0b0b2dd) = table-sort-atom",
+   "page-top → PageTop; DataTable pageTop puts the row tabs and search in it",
+   "Table view Gantt (table-header-timeline, cell-base-atom-timeline, row-timeline, section-header-timeline, today-line-atom-timeline, 190:229607): IFS DS, not built"
+  ] },
+  "Cooper": { "source": "Patterns › page Cooper 12:263487; sections Recommendation 67:107340, Chat 67:121910, Chat interactions 67:216492, prompt chips 67:307397", "consolidated": [
+   "cooper-dots / cooper-icons (272b6bfc) → Icon cooper-system-icon",
+   "prompt-chip (1f08a7fa = prompt-button) → PromptButton size l",
+   "FTA button / style=with stroke in the collapsed bar → FtaButton",
+   "counter (d1fbe5eb) → Counter; checkbox-item (2fd66408) → Checkbox atom look",
+   "chat-inline-quick-mode / floating-window / right-side-panel-chat / chat header / user-message-bubble / chat history = older local names for chat-collapsed-bar-organism / chat-compact-panel-organism / chat-full-panel-organism / chat-header-molecule / user-message-molecule / history-panel-molecule",
+   "Scroll bar (e0af1521) → native thin scrollbar (ScrollArea look); overlay (29a182db) → Overlay; popover-organism + single-select-list-molecule row menus → Menu",
+   "Not built: timeline set (2d17d0e2) and the Chat interactions widgets (other families)"
+  ] },
+  "Documents": { "source": "Patterns › page Documents 12:101272, section 12:111195", "consolidated": [
+   "Evidence-strip-bar/all actions (4512b2ec) → BottomSheet type=value",
+   "content-card-organism with Top/Bottom slots (investment cards) → DataVizCard",
+   "chart-strategic-objectives-breakdown By budget → VerticalBarChartItem; investment value → BarChartItem",
+   "tableHeader / tableCell (9c9ffe32, 4f4be618) in the investment card → plain key/value rows",
+   "the floating 'Share the context, I'm listening' input on the draft frame: not part of this pattern"
+  ] },
+  "Widget builder": { "source": "Patterns › page Widget Builder 331:492638; sections 331:551716 and 'Widget resize, drag&drop — rules & states' 413:44071", "consolidated": [
+   "change-position-overlay → DropZone (move-and-drop-background)",
+   "widget frames (content-card-organism M, 6 padding, header slot) → WidgetFrame on DataVizCard / DataVizHeader",
+   "widgets drawer frame → Drawer",
+   "coverage-item (747d414e…) → BottomSheet type=value inProgress",
+   "tableHeader / tableCell → Table; ⋮ menu (single-select-list-molecule) → Menu",
+   "Not built: Switcher (90875214…) in widget-view-change-position; identity (457552c0…); Generate / Edit widget with Cooper (331:512992, 331:516733)"
+  ] },
+  "Collaboration": { "source": "Patterns › page Collaboration 0:1, section 12:8435 (States 12:9422, Invite 12:10433, Invite suggested 12:12285, Push 12:12868, Edit brief 12:8849, Change role 12:8436, Remove 12:11812)", "consolidated": [
+   "collaborator rows = content-card-organism M with the top slot (not the legacy collaborator / user-card sets) → CollaboratorRow",
+   "single-select-atom M drawn 24 tall + list with a divider and Remove → RoleSelect",
+   "cooper-dots Property 1=insight → Icon cooper-system-icon Insight",
+   "header-pattern collaboration frame → CollaboratorsButton + CommentButton in PageHeader actions"
+  ] },
+  "Comments": { "source": "Patterns › page Comments 12:30065, section 12:33979; resolved looks 12:44840, 12:34278, 12:36500", "consolidated": [
+   "node-card 4e51d5a8… (legacy data input, 12:31161) → NodeCard type=subnode",
+   "node-action 3b1065e0… → NodeHoverActions (same key as node-button)",
+   "tableHeader / tableCell / tabItem / list-item in the agent window → Table / Tabs",
+   "single-select-list-molecule menus → Menu",
+   "own-comment Edit / Delete (12:47187, 12:47578) and mentions as a Badge (12:46402) built in CommentThread / CommentComposer"
+  ] },
+  "Approval chain": { "source": "Patterns › page Approval chain 12:157840; sections Stakeholder (Reviewer) 12:216578, Owner 12:220976", "consolidated": [
+   "tab (04fe5ad6) → Tabs",
+   "tableHeader / tableCell (da7b4eb4, 609b40c3, 9c9ffe32 / 688040eb, 81b10bef, 4f4be618) → Table",
+   "badge (452878e4) → Badge white m; counter (d1fbe5eb) → Counter",
+   "chart-header (b323b777) → DataVizHeader; cooper-evidence (23c26b5d) → Panel evidence button",
+   "sidebar-organism (9e6ee63e) → Panel; sidebar-value (7d91409b) / sidebar-pattern → SideNav; header-pattern → PageHeader; value-bottom-sheet-organism / Evidence-strip-bar → BottomSheet",
+   "single-select-list-molecule → SplitButton menu / Menu; snackbar-organism → toast; modal-organism + overlay → Modal; text-area-organism → TextArea; search + chips → the chain filter; empty-state-organism → EmptyState",
+   "stat → StatCardsRow + StatCard (compare)",
+   "the page's local chain table (157:106020, 157:114827) → ApprovalChainTable; approval-chain-item (40e7aa77) is the separate ApprovalChain timeline",
+   "Not built: Schedule publish (309:55377, 313:61635), Edit / Publish now from scheduled, Collaboration frame 157:119094, Strategy Framework list after publishing 309:55262"
+  ] },
+  "Confidence, trace & readiness": { "source": "Patterns › page 12:121114; sections System confidence 30:72980, Trace report 12:175763, Readiness Evaluation 12:192947", "consolidated": [
+   "sidebar-organism (9e6ee63e) with a custom slot → Panel (collapsed = Panel expanded=false, --region-rail)",
+   "nested content-card holding gate rows → plain list",
+   "tab (04fe5ad605) → Tabs",
+   "tableHeader / tableCell (9c9ffe32 / 4f4be618) in readiness sections → ReadinessFacts",
+   "readiness accordion (content-card with caret + badge) → ReadinessSection"
+  ] },
+  "Evidence chain": { "source": "Patterns › page Evidence Chain 12:339982, section 31:74911 (from a card 31:74912, from system confidence 31:76687, tabs 31:77235, confidence states 31:78104, peer benchmark empty 297:75583)", "consolidated": [
+   "hand-drawn Evidence strength frame (31:76682) → EvidenceStrength",
+   "Evidence-strip-bar/all actions (4512b2ec) → BottomSheet type=value",
+   "three local source card sets (fafdbabd 12:192927, c199d918 31:74307, 8c43da20 31:74839) → SourceCard",
+   "modal-organism used as the drawer on the empty-state frames (297:76633) → EvidenceChainDrawer",
+   "tabItem (f15b3452) → SegmentedControl s",
+   "tableHeader / tableCell (9c9ffe32 / 4f4be618) in Peer benchmark → PeerBenchmark rows",
+   "vertical-bar-chart-item → VerticalBarChartItem",
+   "sidebar-organism (31:76839) with System confidence + evidence button → Panel (show-evidence-chain)",
+   "to swap later: info-hint-item (d3dc02ed) → LegendSwatch; stat (c74437d8) → StatCardsRow; Investment-value-impact (fabd8e0b) and table-review (8bd2618e) are composed"
+  ] },
+  "Activity & versions": { "source": "Patterns › page Activity, Versions 12:339984, section Activity log 52:83648", "consolidated": [
+   "timeline activity component (bc78050b = activity-timeline) → Timeline / TimelineItem",
+   "version-history (e90e29e6 = version-history-timeline) → VersionHistory on the timeline base",
+   "compare-quick-stat-card (35bab075 = stat-capital-flow-card, 52:82588) → StatCard compare",
+   "sunkey-item 3389a548 = sankey-atom → SankeyNode; sunkey-item 7b5c534e (older) → SankeyNode without change; sunkey-header (ce04ed8a) → the Sankey column strip",
+   "tableCell / tableHeader, ai smart search, overlay, single-select-list-molecule row menus, panel-organism → Table, SmartSearch, Overlay, Menu, Panel",
+   "Figma draws panel-organism + overlay for Activity; the kit panel is over with a transparent outside-click layer (no scrim)",
+   "page-top → PageTop on the library screen"
+  ] }
+ },
+ "libraryIssues": [
+  "No canvas guidance (usage inferred only): avatar-atom, avatar-organism, hotkey-atom, counter-atom, scroll-bar-atom, indicator-molecule, status-readiness-molecule, status-risk-molecule; progress-bar-molecule, progress-ring-molecule, evidence-strength-bar-molecule, data-viz-card-organism, data-viz-header-molecule, data-viz-modal-organism, most base atoms; canvas-header, sunkey-canvas-header; explore-map-button(-base); icon-button-notification/-comment/-arrow/-filter; checkbox-*, radio-button-*, switch-* (no rule on when to choose each); all legacy charts and core chart types except bar, line, donut, radar, heatmap, sankey, timeline; global-header, page-header, explore-header-pattern, Home and Review screen sections.",
+  "Five sets named chart-strategic-objectives (2219:1754, 4457:41517, 4699:26724, 4457:42683, 5967:55151) with identical variants: which is canonical?",
+  "Two L1 nav bars: global-header (69:3736, no page parent; 15 handover uses) and nav-bar-organism ('use this'; 2,340 uses). The kit uses NavBar = nav-bar-organism.",
+  "Three page-header sets: page-header (1588:1971, 1,023 handover uses), page-header-pattern, header-pattern (never used). The kit has one PageHeader.",
+  "Select size labels conflict between notes (M=32 / L=40 / XL=44 vs 'M (40) modals', 'L (44) page-level'); segmented-control notes say S (28) / M (38) but the variants are S (24) / M (34).",
+  "Breadcrumb notes say crumbs 'are links', against the buttons-not-links rule.",
+  "Typo names: signle-combobox-organism, sliter-atom, timiline-phase-molecule, sunkey-canvas-header; option and property typos Righ, Hove, Udpate, Respondong, Coper drag, Segement, sceleton/Sceleton, 'Has new notiication?', show-hont-text, show-acion, show-segmanted-control, show-2nd-avavtar, Conetnt slot, Assent container slot, iconl-right.",
+  "Names in notes don't match sets: 'multiple-select-dropdown-organism' → multiple-select-organism; 'explore-bottom-sheet-organism' → explore-bottom-sheet; 'FAB Cooper Button' → FTA button.",
+  "Copied property names: icon-button-arrow and icon-button-filter use 'Has a new comment?'.",
+  "Placeholder axes: Property 1=…, empty-state-organism Size=[Frame 2147228119], donut-chart-atom Property 1=[Variant3], explore-map-button-base Type=[Component 1]; badge-atom Color includes False. Non-kebab names: Capex burn by quarter, investment value, scatter chart, FTA button, locationItem; scatter chart duplicates chart-scatter.",
+  "Undocumented compositions: Time Picker and Filter (Selection page) have rules but no component set; empty-state-organism has no cause or size variant although the notes define six causes and two sizes.",
+  "Stray notes: the Pagination frame holds unrelated objective-weighting copy; the Tab frame holds a Time Picker note; Drawer and Panel both claim the Approval chain full-screen example.",
+  "Three Status notes (colour-only / icon / readiness) are not tied to set names; the mapping in components.md is inferred.",
+  "notification-card (9943:5373) sits on the Data Display page outside any frame; it is the only set with a component description.",
+  "Legacy cards (16 sets) and legacy timelines (3) are kept for handover references; a deprecation flag in their names or descriptions would stop builders picking them.",
+  "The Navigation page describes a mini-map navigator but has no component for it, only a flat image.",
+  "Figma type styles: old names (Label/M/medium is 'Heading/H4/medium'), one mode with 12px body values, wrong bindings (Label/M/medium and Code bound to other styles' letter-spacing), stray styles from other files. Rename to the kit names, add Spacious / Comfortable / Compact modes to '4. Typography semantic', fix the bindings."
+ ],
+ "review": {
+  "SideNav": [
+   "Handovers vs the Nav bar pattern: the Nav bar pattern says Build has no sections and therefore no sidebar, yet the Build handover places `sidebar-organism` on most screens (~1,000 instances). The kit follows the pattern note. Which is right?"
+  ],
+  "PageTop": [
+   "Two masters in Patterns: standalone `page-top` 95:18889 and component set 244:117279 (set key c5e4c474…). The set's variant and the standalone share key 771d8425…; the set only adds the `cooper` eyebrow and the `show search` / `Show button` booleans. Neither turned up in a search of the published IFS Design System library. The kit follows the set.",
+   "The Command instance (244:119970) overrides the row gap to 12 (master 20) and its title row has no button. The kit passes `style={{ gap: 12 }}`.",
+   "The Build / Idea Pad page-top (244:120196, 95:106508 and the other Idea Pad frames) is a detached frame, not an instance: title only, description hidden, tabs `Size=L (40)` squeezed to 36. The kit uses `Tabs size=\"l\"` at 40, so the content sits 4px lower.",
+   "The Cooper eyebrow uses `cooper-icons State=Insight`; the kit draws `cooper-system-icon` Insight (same artwork). The eyebrow text is `text/tertiary`; the earlier hand-built intro used secondary.",
+   "Older instances still hold the legacy `tab` / `counter` / `ai smart search` parts; the set uses `tab` Size=M (36), `counter-atom` S and `smart-search-organism`."
+  ],
+  "Pattern: Widget builder — Investment overview": [
+   "Drag visuals: both shown together. The ghost card follows the pointer, and \"Drop here to place\" marks the target (designer decision). Frames: chip 331:509710, ghost 413:53329.",
+   "Source opacity while dragging: the notes say ~30%, the frames draw 40%. The kit uses 30% (notes win).",
+   "Ghost width: the notes say \"current width\", the frames draw ~330px. The kit keeps the full widget width (notes win).",
+   "Resize from the ⋮ menu (S/M/L, 331:507578) as well as edge handles (rules 413:44071 mention only handles). Both are built, with the same limits."
+  ],
+  "Pattern: Report widgets — resize, drag & drop rules": [
+   "Two charts in one row: the old frame 331:507955 shows a resize handle between them; the rules (413:56466) lock them at ½ + ½. The kit locks them (notes win)."
+  ],
+  "PreviewWidgetCard": [
+   "The Figma previews are raster images; the kit draws blank placeholder blocks."
+  ],
+  "Pattern: Cooper recommendations": [
+   "The recommendation card is the legacy `list-item` (capex-card, 68fd47d4) in 67:108505. Kept as drawn (`RecommendationItem`). Decide: keep it, or move to ContentCard."
+  ],
+  "CooperMessage": [
+   "Answer sources use the legacy `source card` (fafdbabd) in the frames. The kit shows them as `ChatLink type=\"source\"`, plus `SourceCard` (built by the Evidence pattern). Decide which belongs in chat answers.",
+   "The source link colour is raw white/850 in Figma; follow-ups use text/secondary.",
+   "The Cooper answer bubble: reasoning, text, cards, sources and follow-ups, assembled from a dev-note anatomy (67:134213). Is there, or should there be, a published `cooper-message` component?"
+  ],
+  "MapPinDot": [
+   "\"Success\" is drawn grey (fill/default), while the defect pin's \"Monitoring\" is green. Possibly a Figma binding bug."
+  ],
+  "BarChartItem": [
+   "Bars bind `data-viz/data-N` variables that aren't in the exported tokens; the kit uses the Figma values as fallbacks. The forecast bars use muted-purple."
+  ],
+  "Pattern: Documents — long names": [
+   "The hover frame shows a Download icon; the note says editable rows get ⋮ (Download / Remove). The kit follows the note."
+  ],
+  "Pattern: Documents on an investment (editable)": [
+   "One dev note says errors use a snackbar; the frames and the other notes use alert-organism. The kit uses the alert."
+  ],
+  "Pattern: Library table (standard)": [
+   "Horizon and Modified filters mix instant chips with a period that applies on Apply. That conflicts with rule 7.5 (instant and deferred never mix).",
+   "The Horizon notes say custom periods use fiscal years; the frames show a date picker. The kit uses the date picker. **Notes-win says fiscal years: needs a decision.**"
+  ],
+  "CollaborationBadge": [
+   "A clickable badge-atom, which conflicts with \"badges aren't clickable\"."
+  ],
+  "SourceCard": [
+   "The library source-card lists Map and Image content variants, but the Patterns file only uses older copies. The kit has File/User × Quote/Text + Loading (library 1440:5362 vs Patterns 12:192927).",
+   "The badge is info-coloured with no border; the kit's black badge draws a border."
+  ],
+  "Pattern: Evidence chain confidence states": [
+   "The middle strength caption reads \"87% Review\" on the 60% and 96% frames too. The kit shows `{value}% Review` inside the band and \"70–90% Review\" outside it.",
+   "At exactly 90%: the dev note says \">90% is Approve\"; the kit's EvidenceStrength treats 90 as Approve."
+  ],
+  "EvidenceChainDrawer": [
+   "The drawer instances use a black-base fill; the kit's Drawer uses surface/secondary-alpha."
+  ],
+  "PeerBenchmark": [
+   "The \"15+ feeders\" legend swatch is teal (#226d65) but its bars are indigo (#312262). Most bar fills are raw hex with no token."
+  ],
+  "ExploreHeader": [
+   "Built from `explore-header` (ae9026ad, no variants), but a published `explore-header-pattern` (0f49a18b, 7205:33581) has four toggles. Which is current?"
+  ],
+  "SideNavTree": [
+   "Figma builds the Plan tree from detached table cells; there is no tree component in the DS. The kit's tree is composed.",
+   "The Plan folder-tree sidebar. Figma builds it from detached table cells; there is no tree component."
+  ],
+  "LiveCursors": [
+   "**Invented.** The Collaboration section has no live cursors or presence lists, only a green online dot on avatars. The cursor art is the real cursor-atom (55:1645). Should live cursors appear on framework canvases at all?"
+  ],
+  "CollaboratorsPanel": [
+   "The no-results chips (12:11069) name people already on the record. The kit suggests people who can still be invited.",
+   "The filter says \"Field Lead\" but the job role is \"Field Team Lead\"; \"Jane Green\" shows initials LG (12:10913)."
+  ],
+  "InviteCollaboratorModal": [
+   "What's the difference between the Edit brief \"medium\" and \"high\" frames?"
+  ],
+  "Pattern: Activity panel — version history": [
+   "The \"Version history\" and \"Approval chain\" sticky labels are swapped over their frames."
+  ],
+  "Pattern: Compare versions": [
+   "The compare stat cards compare \"Best in class\", while the Sankey compares Version 4 with Version 3."
+  ],
+  "CompareDropdownList": [
+   "Cached in the Patterns file under key c5186fed; IFS DS publishes it as ddd60a12. It may duplicate the single-select list."
+  ],
+  "Pattern: Commenting on the canvas": [
+   "Editing your own reply now follows 12:47187: ⋯ → Edit/Delete, a white field with Cancel + Send, and no Mention button. Delete asks for confirmation, then shows Undo. Check it.",
+   "Posted @mentions are now a badge with the mention icon (12:46575). Check it.",
+   "Map nodes: the kit's NodeCard at zoom 0.6 is taller than Figma's 24px map bars."
+  ],
+  "CommentDrawerCard": [
+   "Read cards use an Inactive avatar, but the \"Comment open\" frames keep the opened author's avatar coloured."
+  ],
+  "Pattern: Approval chain — reviewer review & approve": [
+   "Note rights 253:53983 vs frames 138:292115 / 138:292305 disagree. Built per the notes.",
+   "Chip filter: multi-select (157:114730) vs single-select (157:119210). Built per the notes.",
+   "Budget envelope: a Warning type with a red icon (138:293545)."
+  ],
+  "ApprovalChainTable": [
+   "The library now publishes newer versions of parts used here: status b0bad471, review-investment-table, review-data-visualisation. The kit follows the Patterns file copies."
+  ],
+  "Pattern: Trace report": [
+   "The \"OVER BY $140M\" badge is bound to text/success but drawn red (12:194704). The kit draws it red.",
+   "The upload \"Answered\" frame (30:78117) shows typed text instead of a file name. The kit shows the file name.",
+   "Undo/cancel on Applied/Answered cards: the note (30:77198) says hover only; the frames show it at rest (30:76774, 30:77690, 30:78117). The kit uses hover only (notes win)."
+  ],
+  "CommentPin": [
+   "A blue unread dot on the sender's own new comment: frame 12:36031 shows it, but note 12:47974 says the dot means \"not yet viewed\". Removed (notes win)."
+  ],
+  "ContentCard": [
+   "Cooper state fixed (Oct 2026) to match content-card-organism 12:6669 / 12:6715: a 2px black gap, then a 2px ring, orange at bottom-right fading to white at the left (≈282°). It used to be a 4px diagonal gradient frame. Check it against the Figma component."
+  ],
+  "DataVizCard": [
+   "The Cooper ring gradient runs diagonally (225°, orange at top-right). That may have been copied from the old ContentCard rather than taken from Figma; ContentCard's real direction is ≈282°. Verify against data-viz-card-organism State=Cooper in the IFS DS file."
+  ],
+  "CommentThread": [
+   "The Cooper-mode composer ring uses the same 225° diagonal gradient. Verify its direction against the Comments Cooper input in Figma.",
+   "The resolved look is now rebuilt to match 12:44840: ⋯ (Unresolve, Copy link) and ✕, Inactive avatars, the composer kept, nothing dimmed. The invented look is gone.",
+   "Figma has two resolved looks: 12:44840 (above) and 12:36500 (green filled ✓, coloured avatars). Which is current?"
+  ],
+  "Canvas demo": [
+   "**Invented.** The mini-map is a stand-in. Figma describes a navigator but has no component for it."
+  ],
+  "LineChart": [
+   "The y-axis starts at 80; Figma's starts at 60."
+  ],
+  "ColumnChart": [
+   "The \"view as table\" toggle reuses the hover ⋮ button; Figma shows no table control."
+  ],
+  "WidgetFrame": [
+   "The frame every dashboard widget sits in (header, hover actions, ⋮ menu). Figma draws it as content-card variations. Candidate for a real `widget-frame` component."
+  ],
+  "WidgetBoard": [
+   "The drag/resize grid engine. It's behaviour, not visuals, so it should probably stay a helper."
+  ],
+  "ColumnFilter": [
+   "The table column filter panel (chips, presets, range). Composed from single-select-list + chips."
+  ],
+  "TableToolbar": [
+   "The table's filter, search and actions bar. Possibly part of table-card-organism."
+  ],
+  "DocumentRow": [
+   "One document row, built from the legacy file-card classes. Candidate for an updated file-card component."
+  ],
+  "SplitButton": [
+   "A primary button with an attached dropdown (Approval). Not in the DS: should it be?"
+  ]
+ }
+}

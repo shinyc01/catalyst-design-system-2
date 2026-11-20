@@ -186,7 +186,7 @@ export default IFS_GALLERY;
   }
   function InvestmentOverview() {
     // Figma: content-card-organism with Top (header) + Bottom slots; the kit ContentCard always draws its title block, so DataVizCard
-    // (same surface, data-viz-header-molecule header) stands in. See guide/patterns/documents.md › Consolidated.
+    // (same surface, data-viz-header-molecule header) stands in. See guide/figma.json › patterns › Documents.
     const card = (title, body) => <IFS.DataVizCard title={title} header={{ draggable: false, slot: evidenceBtn }}>{body}</IFS.DataVizCard>;
     return (
       <IFS.Stack gap="300" style={{ padding: '12px 12px 24px' }}>

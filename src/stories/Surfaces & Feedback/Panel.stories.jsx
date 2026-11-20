@@ -9,7 +9,7 @@ export default {
   component: IFS["Panel"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** panel-organism (4305:365421)\n\n\n**Use for** (Figma) Persistent, always-relevant side context inside the page layout (confidence/insight rail, inspector, secondary reading pane). 380px expanded / 48px collapsed rail, full height, divider not shadow.\n\n**Don't use for** (Figma) Temporary tasks or on-demand detail (→ drawer or popover); anything with a scrim or focus trap." } },
+    docs: { description: { component: "**Figma:** panel-organism (4305:365421)\n\n\nUse: Rule 7.14. Examples: confidence rail, inspector, reading pane. Full height, a divider (not a shadow) on its edge; widths and mode rules 4.5–4.6." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4305-365421"},
   },
 };

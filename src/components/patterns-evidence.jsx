@@ -1,7 +1,7 @@
 import React from 'react';
 import { IFS } from './registry.js';
 
-// Evidence Chain pattern (Patterns › Evidence Chain 12:339982, section 31:74911). Rules live in guide/patterns/evidence.md.
+// Evidence Chain pattern (Patterns › Evidence Chain 12:339982, section 31:74911). Rules: guide/components.md › Pattern: Evidence chain.
 
 const cx = (...a) => a.filter(Boolean).join(' ');
 function useCtl(value, def, onChange) {

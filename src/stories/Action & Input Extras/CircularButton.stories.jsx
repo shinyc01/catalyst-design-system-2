@@ -9,7 +9,7 @@ export default {
   component: IFS["CircularButton"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** circular-button-molecule (72:9983)\n\n\n**Use for** (inferred) One directional trigger inside `circular-button-organism`; not placed alone." } },
+    docs: { description: { component: "**Figma:** circular-button-molecule (72:9983)\n\n\nUse: One directional trigger inside `circular-button-organism`; not placed alone." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=72-9983"},
   },
 };

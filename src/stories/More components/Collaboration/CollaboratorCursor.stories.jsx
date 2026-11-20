@@ -9,7 +9,7 @@ export default {
   component: IFS["CollaboratorCursor"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** cursor-atom (55:1645)\n\n\n**Use for** (Figma) Live multiplayer cursor with name label; one stable colour per user (Collaboration colours, not data-viz palette)." } },
+    docs: { description: { component: "**Figma:** cursor-atom (55:1645)\n\n\nUse: Live multiplayer cursor with name label; one stable colour per user (rule 7.18)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=55-1645"},
   },
 };

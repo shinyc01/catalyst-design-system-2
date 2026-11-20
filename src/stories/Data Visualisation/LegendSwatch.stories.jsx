@@ -9,7 +9,7 @@ export default {
   component: IFS["LegendSwatch"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** legend-swatch-atom (4440:32628) + info-hint-item (12:121968)\n\n\n**Use for** (Figma, Donut/Radar — mapping inferred) Legend entry; follows slice/series order; hover-only, not clickable." } },
+    docs: { description: { component: "**Figma:** legend-swatch-atom (4440:32628) + info-hint-item (12:121968)\n\n\nUse: One legend entry (`LegendSwatch`; `Legend` for a whole legend). Rule 7.18." } },
     design: [{"name":"legend-swatch-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4440-32628"},{"name":"info-hint-item","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=12-121968"}],
   },
 };

@@ -58,7 +58,7 @@
 .ifs-activity-panel--static{position:relative}
 .ifs-activity-panel > .ifs-panel{flex:1 1 auto;height:auto}
 .ifs-activity-panel .ifs-panel__content{padding:var(--space-inset)}
-/* Figma's activity panel header carries only ✕ (no collapse toggle); see the kit-change note in guide/patterns/activity.md */
+/* Figma's activity panel header carries only ✕ (no collapse toggle); see guide/figma.json › patterns › Activity & versions */
 .ifs-activity-panel .ifs-panel__toggle{visibility:hidden}
 .ifs-activity-panel__close{position:absolute;top:var(--space-inset);right:var(--space-inset)}
 .ifs-activity-panel__search{flex:none}

@@ -9,7 +9,7 @@ export default {
   component: IFS["TimelineChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** timeline-chart-organism (3967:38286) + timiline-phase-molecule (3967:1765)\n\n\n**Use for** (Figma) Gantt: tasks/phases on a time axis (e.g. investment phases across a 5-year plan); shows sequential vs parallel work. Marked \"use this\".\n\n\nCore chart types (Plan & Portfolio · Core chart types). All share `variants: State=[Default|Hover|Empty|Loading|Cooper]` and have no other props. Use-for lines are (inferred) from the chart type unless a Figma chart-rules frame applies.\n\n\n**Use for** (inferred) One phase row of the Gantt; building block. Name typo (see Gaps)." } },
+    docs: { description: { component: "**Figma:** timeline-chart-organism (3967:38286) + timiline-phase-molecule (3967:1765)\n\n\nUse: Gantt: tasks/phases on a time axis (e.g. investment phases across a 5-year plan); shows sequential vs parallel work.\n\nNotes: A phase row expands and collapses with a caret `IconButton` S; the phase name is plain text, not a button (rule 3.10).\n\n\nCore chart types. All share the states Default, Hover, Empty, Loading, Cooper. Types with no kit component: box plot, radar, treemap.\n\n\nUse: One phase row of the Gantt; building block." } },
     design: [{"name":"timeline-chart-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3967-38286"},{"name":"timiline-phase-molecule","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3967-1765"}],
   },
 };

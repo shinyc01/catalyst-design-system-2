@@ -9,7 +9,7 @@ export default {
   component: IFS["SourceCard"],
   tags: ["autodocs","needs-review"],
   parameters: {
-    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The library source-card lists Map and Image content variants, but the Patterns file only uses older copies. The kit has File/User × Quote/Text + Loading (library 1440:5362 vs Patterns 12:192927).\n> - The badge is info-coloured with no border; the kit's black badge draws a border.\n\n**Figma:** source-card (1440:5362)\n\n\n**Use for** (inferred) Evidence/source behind a Cooper answer. **Notes** (Figma) Legacy; can be `content-card-organism`." } },
+    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The library source-card lists Map and Image content variants, but the Patterns file only uses older copies. The kit has File/User × Quote/Text + Loading (library 1440:5362 vs Patterns 12:192927).\n> - The badge is info-coloured with no border; the kit's black badge draws a border.\n\n**Figma:** source-card (1440:5362)\n\n\nUse: Evidence/source behind a Cooper answer." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5362"},
   },
 };

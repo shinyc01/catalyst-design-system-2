@@ -9,7 +9,7 @@ export default {
   component: IFS["FormCard"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** form-card-organism (5826:24755)\n\n\n**Use for** (Figma) A surface that wraps a form on a consistent backdrop. Slots: header (title, optional description, one optional action) → optional divider → body (fields) → optional footer (actions).\n\n**Notes** (Figma) Width 464–680px (content slot min 400px); padding `--space-inset-l` 24 / 20 / 16 (Nov 19, 2.0.3; Figma showed 32); height hugs content up to the viewport, then the body scrolls between pinned header and footer. Primary stays enabled; on submit validate all fields. Loading = field skeletons; submitting = primary spinner, form locks." } },
+    docs: { description: { component: "**Figma:** form-card-organism (5826:24755)\n\n\nUse: A surface that wraps a form: header (title, optional description, one optional action) → optional divider → body (fields) → optional footer (actions).\n\nNotes: Width and padding: rules 4.5, 3.2 (`inset-l`). Height hugs content up to the viewport, then the body scrolls between pinned header and footer. Validation: rule 7.4. Loading = field skeletons; submitting = primary spinner, form locks." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=5826-24755"},
   },
 };

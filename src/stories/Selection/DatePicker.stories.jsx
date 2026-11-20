@@ -9,7 +9,7 @@ export default {
   component: IFS["DatePicker"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** date-picker-molecule (3406:9510) · date-atom (1440:5201)\n\n\n**Use for** (Figma) Single date: click a day commits and closes, no Apply. Range: two clicks, then Apply confirms. Field is typeable (DD.MM.YYYY) and stays in sync with the grid; header opens month/year view.\n\n**Notes** (designer decision, Nov 19 2026) Kit `Calendar`: the month/year title is H3; weekday names and first day from the user's locale. `fill` makes it take the full card width (the Command calendar): date cells keep 32 and spread across the width.\n\n\n---\n\n\n**Use for** (inferred) One day cell in the calendar." } },
+    docs: { description: { component: "**Figma:** date-picker-molecule (3406:9510) · date-atom (1440:5201)\n\n\nUse: Single date: clicking a day commits and closes, no Apply. Range: two clicks, then Apply. The field is typeable and stays in sync with the grid; the header opens a month/year view.\n\nNotes: `Calendar` month/year title H3. `fill` takes the full card width (Command calendar): date cells keep 32 and spread.\n\n\nUse: One day cell in the calendar." } },
     design: [{"name":"date-picker-molecule","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3406-9510"},{"name":"date-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5201"}],
   },
 };

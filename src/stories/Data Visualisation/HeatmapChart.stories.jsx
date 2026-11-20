@@ -9,7 +9,7 @@ export default {
   component: IFS["HeatmapChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-heatmap (9866:14280)\n\n\n**Use for** (Figma, Rules) Ordered magnitude across a matrix, using a sequential ramp within one hue group." } },
+    docs: { description: { component: "**Figma:** chart-heatmap (9866:14280)\n\n\nUse: Ordered magnitude across a matrix, using a sequential ramp within one hue group." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-14280"},
   },
 };
