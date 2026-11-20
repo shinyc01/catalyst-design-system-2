@@ -83,8 +83,8 @@ Retired classes still work and render as: Code regular / medium → Code/M; Labe
 Exceptions (H3 inside a container): the Trace report issue title (the issue is the panel's main subject) and the `Calendar` month/year title.
 2.5 **Heading order** follows the page from the outside in: H2 page → H3 page section → H4 container → Label/M/medium sub-section. Don't skip a level: if cards are grouped into sections, each group gets an H3. H1 and H2 are never titles inside a card or panel. The HTML level is separate from the look: pick `<h1>`–`<h4>` so the screen-reader outline stays in order (the thin header's title is the page's top heading).
 2.6 **Big numbers** sit next to a label that says what they are:
-- H2 (stat card M): only the page's top-level row of key figures, the first stats under the page title (the Value overview, Build › Refine overview); also the donut centre, the Cooper chat card number and Command "1 Year".
-- H3 (stat card S): every number inside a card or a page section with other numbers beside it: alternatives (Build › Shape), comparison rows, before → after pairs inside a card, metric rows. Use `StatCard size="s"`, not loose heading text (Nov 20).
+- H3 (stat card S), the default: every stat card under a page title (`PageTop` H2 or the page's own heading, e.g. Plan › Setup, Approve, Plan home) and every number inside a card or section with other numbers beside it (alternatives on Build › Shape, comparison rows, before → after pairs inside a card, metric rows). A 24 number under a 24 or 20 title would compete with it. Use `StatCard size="s"`, not loose heading text (Nov 20).
+- H2 (stat card M): only a row of key figures that is the first thing on the page, with no page title above it (only the thin header), e.g. the Value overview; also the donut centre, the Cooper chat card number and Command "1 Year".
 - Display/M: one hero number that is the point of the view (gauge); at most one per screen.
 - Label/M/medium: numbers inside content (table cells, lists, sentences). A number in a table never uses a heading style.
 - Never H1 for a number. Revisit if prototypes keep overriding this.
