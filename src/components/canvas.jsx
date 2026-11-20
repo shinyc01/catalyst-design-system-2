@@ -218,14 +218,14 @@ function NodeCard({ type = 'strategic-objective', state, title = '{card-title}',
       {body}
       {type !== 'user' && counter != null && <span className="ifs-node-card__side"><span className="ifs-node-card__counter">{counter}</span></span>}
       {isEdit && <span className="ifs-node-card__side ifs-node-card__icons ifs-node-card__icons--edit">
-        <button type="button" aria-label="Cancel" onClick={e => { e.stopPropagation(); if (onCancelEdit) onCancelEdit(); }}><IFS.Icon name="system-close" size={12} /></button>
-        <button type="button" aria-label="Save" onClick={e => { e.stopPropagation(); if (onRename) onRename(draft); }}><IFS.Icon name="system-check" size={12} /></button>
+        <IFS.IconButton icon="system-close" type="ghost" size="s" label="Cancel" onClick={e => { e.stopPropagation(); if (onCancelEdit) onCancelEdit(); }} />
+        <IFS.IconButton icon="system-check" type="ghost" size="s" label="Save" onClick={e => { e.stopPropagation(); if (onRename) onRename(draft); }} />
       </span>}
       {actions && (type === 'document' || type === 'user') && <span className="ifs-node-card__side ifs-node-card__icons ifs-node-card__hover">
-        <button type="button" aria-label="Open" onClick={e => { e.stopPropagation(); if (onOpen) onOpen(e); }}><IFS.Icon name="chat-external-link" size={12} /></button>
-        {type === 'document' && <button type="button" aria-label="Delete" onClick={e => { e.stopPropagation(); if (onDelete) onDelete(e); }}><IFS.Icon name="system-trash-delete" size={12} /></button>}
+        <IFS.IconButton icon="chat-external-link" type="ghost" size="s" label="Open" onClick={e => { e.stopPropagation(); if (onOpen) onOpen(e); }} />
+        {type === 'document' && <IFS.IconButton icon="system-trash-delete" type="ghost" size="s" label="Delete" onClick={e => { e.stopPropagation(); if (onDelete) onDelete(e); }} />}
       </span>}
-      {actions && <span className="ifs-node-card__side ifs-node-card__hover ifs-node-card__grip" aria-hidden="true"><IFS.Icon name="system-drag-and-drop" size={12} /></span>}
+      {actions && <span className="ifs-node-card__side ifs-node-card__hover ifs-node-card__grip" aria-hidden="true"><IFS.Icon name="system-drag-and-drop" size={16} /></span>}
     </div>
   );
 }

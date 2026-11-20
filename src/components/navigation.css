@@ -231,6 +231,7 @@
 .ifs-page-header__menu{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:var(--target-min);height:var(--target-min) /* 24 box, 12 caret (Nov 19) */;flex:none;
   margin:0;padding:var(--space-100) 0;border:0;border-radius:var(--radius-radius-100);cursor:pointer;
   background:var(--element-button-tertiary-fill-default);color:var(--icon-secondary)}
+.ifs-page-header__menu{margin-inline-start:calc((var(--size-12) - var(--target-min)) / 2)} /* the caret sits as close to the title as before; the 24 box overlaps the gap */
 .ifs-page-header__menu:hover{background:var(--element-button-tertiary-fill-hover)}
 .ifs-page-header__menu:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 
