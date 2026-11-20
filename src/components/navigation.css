@@ -14,6 +14,7 @@
 .ifs-sidenav{box-sizing:border-box;display:flex;flex-direction:column;width:var(--region-sidenav);height:100%;
   padding:var(--space-300);background:var(--surface-primary);
   box-shadow:inset -1px 0 0 var(--border-base);overflow-y:auto}
+:where([dir="rtl"]) .ifs-sidenav{box-shadow:inset 1px 0 0 var(--border-base)} /* rtl: one-side border mirrors */
 .ifs-sidenav__menu{display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-sidenav__title{display:flex;align-items:center;gap:var(--space-100);height:calc(var(--control-h-s) + var(--space-100));box-sizing:border-box;
   padding:var(--space-100) var(--space-200) 0}
@@ -33,7 +34,7 @@
 /* Parent / Child / Submenu: 40px row, inner 28px title with 4/8 padding, radius 4 */
 .ifs-nav-item{box-sizing:border-box;display:flex;align-items:center;gap:var(--space-100);width:100%;height:var(--nav-row-h);
   margin:0;padding:0 var(--space-200);border:0;border-radius:var(--radius-radius-100);
-  background:transparent;color:var(--text-secondary);text-align:left;cursor:pointer;text-decoration:none;
+  background:transparent;color:var(--text-secondary);text-align:start;cursor:pointer;text-decoration:none;
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);transition:background-color .12s,color .12s}
 .ifs-nav-item__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-nav-item .ifs-icon{color:var(--icon-secondary)}
@@ -49,10 +50,10 @@
 .ifs-nav-item__cooper{flex:none;color:var(--icon-accent-cooper)}
 /* show-button: Child shows its icon-button on hover/focus; Parent shows it always when given */
 .ifs-nav-row{position:relative;display:flex;align-items:center}
-.ifs-nav-row > .ifs-icon-button{position:absolute;right:var(--space-200);top:50%;transform:translateY(-50%)}
+.ifs-nav-row > .ifs-icon-button{position:absolute;inset-inline-end:var(--space-200);top:50%;transform:translateY(-50%)}
 .ifs-nav-row--child > .ifs-icon-button{opacity:0}
 .ifs-nav-row--child:hover > .ifs-icon-button,.ifs-nav-row--child:focus-within > .ifs-icon-button,.ifs-nav-row--child[data-state=hover] > .ifs-icon-button{opacity:1}
-.ifs-nav-row:has(> .ifs-icon-button) .ifs-nav-item{padding-right:calc(var(--space-200) + var(--size-28))}
+.ifs-nav-row:has(> .ifs-icon-button) .ifs-nav-item{padding-inline-end:calc(var(--space-200) + var(--size-28))}
 /* Submenu: caret + Label/M/medium, tertiary; no fill on hover */
 .ifs-nav-item--submenu{gap:var(--space-100);color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-nav-item--submenu .ifs-icon{color:var(--icon-tertiary)}
@@ -62,7 +63,7 @@
 .ifs-nav-item--submenu[aria-expanded=true] .ifs-icon{color:var(--icon-tertiary)}
 /* Subtitle: section heading, 30px, Label/M/medium (sentence case) disabled colour */
 .ifs-nav-subtitle{box-sizing:border-box;display:flex;align-items:center;gap:var(--space-100);min-height:1.875rem;
-  padding:var(--space-300) var(--space-100) var(--space-100) var(--space-200);
+  padding-block:var(--space-300) var(--space-100);padding-inline:var(--space-200) var(--space-100);
   border-radius:var(--radius-radius-150)}
 .ifs-nav-subtitle__label{flex:1;min-width:0;margin:0;color:var(--text-disabled);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
@@ -87,7 +88,7 @@
 
 /* ---------- Breadcrumb: breadcrumb-organism + breadcrumb-atom ---------- */
 .ifs-breadcrumb{box-sizing:border-box;display:inline-flex;align-items:center;height:var(--control-h-s);
-  padding:0 var(--space-300) 0 var(--space-200);border-radius:var(--radius-radius-100);
+  padding-block:0;padding-inline:var(--space-200) var(--space-300);border-radius:var(--radius-radius-100);
   background:var(--background-elevation-1-primary-base);box-shadow:inset 0 0 0 1px var(--border-base)}
 .ifs-breadcrumb__list{display:flex;align-items:center;gap:var(--space-100);margin:0;padding:0;list-style:none}
 .ifs-breadcrumb__list > li{display:flex;align-items:center;gap:var(--space-100)}
@@ -122,7 +123,7 @@
 .ifs-step--not-started .ifs-step__line{background:var(--surface-tertiary-alpha)}
 .ifs-step--active{background:var(--background-elevation-1-secondary)}
 /* Hover=True: the step shows its tooltip (non-interactive) */
-.ifs-step__tip{position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%);z-index:5;pointer-events:none;
+.ifs-step__tip{position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%);z-index:5;pointer-events:none; /* ltr: centred with translateX */
   padding:var(--space-150) var(--space-200);border-radius:var(--radius-radius-100);
   background:var(--surface-tertiary-alpha);backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium));
   color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;opacity:0;transition:opacity .12s}
@@ -148,6 +149,7 @@
   background:var(--background-elevation-1-primary-base);backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
 .ifs-canvas-column{box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:var(--space-200);flex:1 1 0;min-width:0;
   height:var(--size-26);padding:0 var(--space-500) /* raw in Figma */;box-shadow:inset -1px 0 0 var(--border-base)}
+:where([dir="rtl"]) .ifs-canvas-column{box-shadow:inset 1px 0 0 var(--border-base)} /* rtl: one-side border mirrors */
 .ifs-canvas-column:last-child{box-shadow:none}
 .ifs-canvas-column__inner{display:flex;align-items:center;gap:var(--space-150) /* raw in Figma */;padding:var(--space-100);min-width:0}
 .ifs-canvas-column__label{color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
@@ -268,6 +270,7 @@
 .ifs-app-shell--nav-overlay .ifs-app-shell__side{width:var(--region-rail);z-index:4}
 .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){position:absolute;inset-block:0;inset-inline-start:0;
   box-shadow:inset -1px 0 0 var(--border-base),var(--elevation-elevation-3-primary)}
+:where([dir="rtl"]) .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){box-shadow:inset 1px 0 0 var(--border-base),var(--elevation-elevation-3-primary)} /* rtl: one-side border mirrors */
 /* Push panel with no room (below md): a rail; it expands over the content, which keeps a rail's width free */
 .ifs-app-shell--panel-rail .ifs-app-shell__content{margin-inline-end:var(--region-rail)}
 .ifs-app-shell--panel-rail .ifs-app-shell__panel{position:absolute;inset-block:0;inset-inline-end:0;z-index:2;box-shadow:var(--elevation-elevation-3-primary)}
