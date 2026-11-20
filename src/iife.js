@@ -11,5 +11,10 @@ IFS.setDensity = (d, el = document.documentElement) => {
   try { localStorage.setItem('catalyst-density', d); } catch (e) {}
 };
 IFS.getDensity = () => { try { return localStorage.getItem('catalyst-density') || 'comfortable'; } catch (e) { return 'comfortable'; } };
+// Direction follows the product language (Arabic = 'rtl'): sets dir on <html> (or a given element). Not remembered:
+// the page's language decides it. Layout mirrors through start/end CSS (rule 1.4); directional icons flip.
+IFS.DIRECTIONS = ['ltr', 'rtl'];
+IFS.setDirection = (d, el = document.documentElement) => { el.setAttribute('dir', d === 'rtl' ? 'rtl' : 'ltr'); };
+IFS.getDirection = (el = document.documentElement) => (el.getAttribute('dir') === 'rtl' ? 'rtl' : 'ltr');
 window.IFS = IFS;
 window.Catalyst = IFS;

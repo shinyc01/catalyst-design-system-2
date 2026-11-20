@@ -7,6 +7,11 @@ const withDensity = (Story, ctx) => {
   document.documentElement.setAttribute('data-density', ctx.globals.density || 'comfortable');
   return Story();
 };
+// Direction switch (sets dir on <html>, like IFS.setDirection): RTL for the Arabic market
+const withDirection = (Story, ctx) => {
+  document.documentElement.setAttribute('dir', ctx.globals.direction === 'rtl' ? 'rtl' : 'ltr');
+  return Story();
+};
 
 /** @type { import('@storybook/react').Preview } */
 export default {
@@ -23,8 +28,19 @@ export default {
         ],
       },
     },
+    direction: {
+      description: 'Direction (RTL for Arabic)',
+      defaultValue: 'ltr',
+      toolbar: {
+        title: 'Direction', icon: 'transfer', dynamicTitle: true,
+        items: [
+          { value: 'ltr', title: 'Left to right' },
+          { value: 'rtl', title: 'Right to left' },
+        ],
+      },
+    },
   },
-  decorators: [withDensity],
+  decorators: [withDensity, withDirection],
   parameters: {
     layout: 'padded',
     backgrounds: { default: 'page', values: [{ name: 'page', value: '#000000' }] },
