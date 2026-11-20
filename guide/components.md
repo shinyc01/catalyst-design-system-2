@@ -332,7 +332,7 @@ Use: Live multiplayer cursor with name label; one stable colour per user (rule 7
 Use: Every content card (content, selectable, settings, link, media; rule 7.8); vary it with props. M in primary areas, dashboards and full-width lists; S nested in drawers, side panels, popovers and dense lists. Short info beside the title ("9d left", a count, a date) goes in `meta`, not the description (rule 7.21).
 
 ### stat-card-organism · `StatCard`
-Use: One key metric: title + value + optional trend or badge; `compare` for from → to. Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6.
+Use: One key metric: title + value + optional trend or badge; `compare` for from → to. Size S by default; `size="m"` only by rule 2.6. Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6.
 
 ### marker-atom · `TimelineMarker`
 Use: Timeline marker (icon/avatar circle); building block of `activity-organism`.

@@ -9,7 +9,7 @@ export default {
   component: IFS["StatCard"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** stat-card-organism (3643:35055)\n\n\nUse: One key metric: title + value + optional trend or badge; `compare` for from → to. Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6." } },
+    docs: { description: { component: "**Figma:** stat-card-organism (3643:35055)\n\n\nUse: One key metric: title + value + optional trend or badge; `compare` for from → to. Size S by default; `size=\"m\"` only by rule 2.6. Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3643-35055"},
   },
 };

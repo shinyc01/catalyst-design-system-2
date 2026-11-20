@@ -98,7 +98,7 @@ function ScreenDashboard({ bp, height }) {
         header={header}
         bottom={<BottomSheet prompts={['Generate Cooper from chart', 'Compare to best practice']} onPrompt={l => toast(l)} onCooper={() => toast('Cooper')} />}>
         <IFS.Stack gap="page-gap" style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto', padding: 'var(--pg-gap) var(--pg-margin)' }}>
-          <div className="ifs-grid">{dashboardStats.map(c => <StatCard key={c.title} className="ifs-span-3" {...c} />)}</div>
+          <div className="ifs-grid">{dashboardStats.map(c => <StatCard key={c.title} size="m" className="ifs-span-3" {...c} />)}</div>
 
           <DataVizCard title="Portfolio under this framework"
             header={{ segments: [{ value: 'weight', label: 'By weight' }, { value: 'budget', label: 'By budget' }], segmentValue: pf, onSegmentChange: setPf }}
