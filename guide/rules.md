@@ -350,5 +350,6 @@ This section is writing guidance for screens, as in other large design systems (
 - Auto-reminder interval "N days" (Collaboration rule 8, Approval chain rule 8): a Figma placeholder; per tenant, not decided.
 - The grid CSS reads the window width for page margin, gap and `--panel-cols`; check it against rule 4.4.
 - RTL conversion to logical properties is gradual (rule 1.4).
+- RTL first pass (2.0.5, Nov 20): `node tools/check-direction.mjs` is at 0 (was 165); CSS and inline styles use start/end, the rest is marked `ltr:`. Switch with `IFS.setDirection('rtl')`. Left: JS geometry (canvas and map, WidgetBoard drag, sliders and zoom, column resize, popover and tooltip placement) and charts per family.
 - Should live cursors appear on framework canvases at all (`LiveCursors` is invented)?
 - Real names in stories: "DC Water" (nav-bar gallery) and a real person's name (approval gallery); replace unless cleared.
