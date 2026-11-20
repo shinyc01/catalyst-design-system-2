@@ -138,7 +138,7 @@ Format (read by tools/gen-stories.mjs): `### <story section name>`, then one bul
 - Budget envelope: a Warning type with a red icon (138:293545).
 
 ### ApprovalChainTable
-- Decided (Nov 19, 2.0.3): both are kept, for different uses (ApprovalChain timeline cards vs this table-style chain); revisit later. Rebuilding ApprovalChainTable on the base `Table` is parked.
+- Decided (Nov 19, 2.0.3): both are kept, for different uses (ApprovalChain timeline cards vs this table-style chain); revisit later. ApprovalChainTable is built on the base `Table` (Nov 19): same rows, header, padding and card as every table; the only difference is the Note column, a text area that grows the row.
 - The library now publishes newer versions of parts used here: status b0bad471, review-investment-table, review-data-visualisation. The kit follows the Patterns file copies.
 
 ### Stat (resolved 2.0.3)

@@ -296,7 +296,8 @@ const apcMatch = (status, sel) => sel.some(s => (s === 'awaiting' ? status === '
 const apcHours = (pushedAt, now, cooldown) => Math.max(0, cooldown * 36e5 - (now - pushedAt));
 const apcLeft = ms => (ms < 36e5 ? `${Math.max(1, Math.ceil(ms / 6e4))}m` : `${Math.ceil(ms / 36e5)}h`);
 
-// The note cell: text (with Edit / Delete for its author), "+ Add note", or the inline editor (saved on click outside).
+// The note cell: text (with Edit / Delete for its author), "+ Add note", or the kit TextArea editor (saved on click outside).
+// The editor grows with its text, so the row grows with the note (Nov 19: the only difference from the kit Table).
 function ApcNote({ row, canAdd, canEdit, editing, onStartEdit, onSave, onCancel, onDelete }) {
   const [draft, setDraft] = React.useState(row.note ? row.note.text : '');
   const ref = React.useRef(null);
@@ -324,8 +325,11 @@ function ApcNote({ row, canAdd, canEdit, editing, onStartEdit, onSave, onCancel,
   return canAdd ? <IFS.Button type="ghost" size="s" iconLeft="system-plus" onClick={onStartEdit}>Add note</IFS.Button> : null;
 }
 
-// Pattern helper: the approval chain table with note/push/filter rules — built from ApprovalStatus, Avatar, Button, Menu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table with a status rail (status + dashed connector),
-// USER (filter when > 3 approvers), NOTE, and in the full view COMMENT, LAST NOTIFIED and an action column.
+// Pattern helper: the approval chain table with note/push/filter rules — built on the kit Table (IFS.Table in a table card) with
+// ApprovalStatus, Avatar, Button, Menu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table
+// with a status rail (status + dashed connector), USER (filter when > 3 approvers), NOTE, and in the full view COMMENT,
+// LAST NOTIFIED and an action column. Rows, header, cells, spacing and sideways scroll are the kit Table's (Nov 19); the only
+// difference is the NOTE cell: a TextArea editor, so a row grows with its note (the row height token stays the minimum).
 // Props:
 //   approvers / defaultApprovers / onChange(approvers) — [{ id, name, role, avatar (Avatar props), status success|awaiting|empty|rejected|revisions,
 //     note: { text, authorId } | null, comment, lastNotified, pushedAt (ms), replaced: { name, avatar } (previous reviewer), action: { label, icon, onClick } }]
@@ -341,7 +345,10 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
   const [editing, setEditing] = React.useState(null);
   const [query, setQuery] = React.useState('');
   const [states, setStates] = React.useState([]);
+  const [filterAt, setFilterAt] = React.useState(null); // { start, top }: the open filter, placed under the column's funnel
   const [now, setNow] = React.useState(() => Date.now());
+  const cardRef = React.useRef(null);
+  const popRef = React.useRef(null);
   React.useEffect(() => { const t = setInterval(() => setNow(Date.now()), 30000); return () => clearInterval(t); }, []);
   // Full view adds COMMENT / LAST NOTIFIED / actions once any approver has that data (Figma: the owner's expanded chain shows only
   // USER + NOTE until reviewers comment or get notified); `details` forces them on/off.
@@ -353,7 +360,6 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
   const rows = list.filter(r => (!states.length || apcMatch(r.status, states))
     && (!q || `${r.name} ${r.role || ''}`.toLowerCase().includes(q)));
   const update = (id, patch) => setList(list.map(r => (r.id === id ? { ...r, ...patch } : r)));
-  const cols = full ? 'minmax(0,1.02fr) minmax(0,1fr) minmax(0,1fr) 8.75rem 6.3125rem' : 'minmax(0,1fr) minmax(0,1fr)';
   const viewClass = view === 'full' ? 'full' : 'compact';
 
   const saveNote = row => text => {
@@ -374,76 +380,99 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, curren
     IFS.toast({ title: 'Note deleted', duration: 4000 });
   };
 
-  const filter = showFilter && (
-    <IFS.Popover align="start" width={240} title="Filter" count={active || undefined} showClose={false}
-      trigger={<button type="button" aria-label="Filter approvers" className={apCx('ifs-table-filter', active > 0 && 'ifs-table-filter--applied')}><IFS.Icon name="system-filter" size={16} /></button>}>
-      <div className="ifs-apc__filter">
-        {active > 0 && <span className="ifs-apc__filter-clear"><IFS.Button type="ghost" size="s" onClick={() => { setQuery(''); setStates([]); }}>Clear all</IFS.Button></span>}
-        <IFS.Search placeholder="Search by name, role..." value={query} onChange={v => setQuery(v)} />
-        <div className="ifs-apc__chips" role="group" aria-label="Approval state">
-          <IFS.Chip selected={!states.length} onChange={() => setStates([])}>All</IFS.Chip>
-          {APC_STATES.map(s => <IFS.Chip key={s.value} selected={states.includes(s.value)}
-            onChange={on => setStates(on ? [...states, s.value] : states.filter(x => x !== s.value))}>{s.label}</IFS.Chip>)}
+  // The USER filter uses the Table's own header funnel; the popover sits in the table card (outside the Table's sideways
+  // scroll, which would clip it), under the funnel. Live: no Apply. Click outside or Esc closes it.
+  const funnel = () => cardRef.current && cardRef.current.querySelector('.ifs-table__row--header .ifs-table-filter');
+  const closeFilter = React.useCallback((refocus) => { setFilterAt(null); if (refocus) { const f = funnel(); f && f.focus(); } }, []);
+  const toggleFilter = e => {
+    if (filterAt) { closeFilter(); return; }
+    const b = e.currentTarget.getBoundingClientRect(), c = cardRef.current.getBoundingClientRect();
+    const rtl = getComputedStyle(cardRef.current).direction === 'rtl';
+    setFilterAt({ start: rtl ? c.right - b.right : b.left - c.left, top: b.bottom - c.top });
+  };
+  React.useEffect(() => { // the funnel announces its popover like a Popover trigger
+    const f = funnel(); if (!f) return;
+    f.setAttribute('aria-haspopup', 'dialog'); f.setAttribute('aria-expanded', filterAt ? 'true' : 'false');
+  });
+  React.useEffect(() => {
+    if (!filterAt) return undefined;
+    const down = e => { const f = funnel(); if (popRef.current && !popRef.current.contains(e.target) && !(f && f.contains(e.target))) closeFilter(); };
+    const id = requestAnimationFrame(() => { const i = popRef.current && popRef.current.querySelector('input'); i && i.focus({ preventScroll: true }); });
+    document.addEventListener('mousedown', down);
+    return () => { cancelAnimationFrame(id); document.removeEventListener('mousedown', down); };
+  }, [!!filterAt]);
+  React.useLayoutEffect(() => { // while open, the card is at least as tall as the filter, so a short result list doesn't clip it
+    const c = cardRef.current, p = popRef.current; if (!c) return;
+    if (p && filterAt) { // and it stays inside the card's width (a narrow sidebar), shifted back toward the start if needed
+      const pr = p.getBoundingClientRect(), cr = c.getBoundingClientRect();
+      const over = getComputedStyle(c).direction === 'rtl' ? cr.left - pr.left : pr.right - cr.right;
+      if (over > 0) p.style.insetInlineStart = `${Math.max(0, filterAt.start - over)}px`;
+    }
+    c.style.minBlockSize = p ? `calc(${p.offsetTop + p.offsetHeight}px + var(--space-table-x))` : '';
+  });
+
+  const columns = [
+    { key: 'status', title: <span className="ifs-sr-only">Status</span>, type: 'custom', width: 'calc(var(--size-32) + 2 * var(--space-table-x))',
+      render: r => <ApprovalStatus type={r.status === 'revisions' ? 'rejected' : (r.status || 'empty')} /> },
+    { key: 'user', title: 'User', type: 'user-description', primary: true,
+      filter: showFilter ? { applied: active > 0, onClick: toggleFilter } : undefined,
+      render: r => <>
+        {r.replaced && <span className="ifs-apc__replaced">
+          <IFS.Avatar size="s" name={r.replaced.name} type="auto" status="online" {...r.replaced.avatar} />
+          <IFS.Icon name="arrow-chevron-right" size={16} />
+        </span>}
+        <IFS.Avatar size="s" name={r.name} type="auto" {...r.avatar} />
+        <div className="ifs-table__stack ifs-table__stack--user">
+          <span className="ifs-table__username">{r.name}{r.id === currentUserId ? ' (You)' : ''}</span>
+          {r.role && <span className="ifs-table__desc">{r.role}</span>}
         </div>
-      </div>
-    </IFS.Popover>
-  );
+        {r.replaced && <IFS.Tooltip type="left" content="This reviewer was replaced by another stakeholder.">
+          <span className="ifs-apc__info" tabIndex={0} aria-label={`Replaced ${r.replaced.name}`}><IFS.Icon name="system-info-hint" size={16} /></span>
+        </IFS.Tooltip>}
+      </> },
+    { key: 'note', title: 'Note', type: 'custom',
+      render: r => <ApcNote row={r} canAdd={!r.note && (isOwner ? r.id !== ownerId : r.id === currentUserId)} canEdit={!!(r.note && r.note.authorId === currentUserId)}
+        editing={editing === r.id} onStartEdit={() => setEditing(r.id)} onCancel={() => setEditing(null)} onSave={saveNote(r)} onDelete={() => deleteNote(r)} /> },
+    ...(full ? [
+      { key: 'comment', title: 'Comment', type: 'custom', render: r => r.comment ? <span className="ifs-apc__text">{r.comment}</span> : null },
+      { key: 'lastNotified', title: 'Last notified', type: 'custom', width: 'calc(var(--table-col-short-min) * var(--density-scale))',
+        render: r => r.lastNotified ? <span className="ifs-table__ellipsis">{r.lastNotified}</span> : null },
+      { key: 'action', title: <span className="ifs-sr-only">Actions</span>, type: 'custom', align: 'right', width: 'calc(var(--table-col-short-max) * var(--density-scale))',
+        render: r => {
+          const status = r.status === 'revisions' ? 'rejected' : (r.status || 'empty');
+          const pushedLeft = r.pushedAt ? apcHours(r.pushedAt, now, pushCooldownHours) : 0;
+          return <>
+            {isOwner && status === 'awaiting' && (pushedLeft > 0
+              ? <IFS.Tooltip type="bottom" content={`You can push again in ${apcLeft(pushedLeft)}`}>
+                  <span className="ifs-apc__tip" tabIndex={0}><IFS.Button type="secondary" size="s" iconLeft="system-notification" disabled>Notified</IFS.Button></span>
+                </IFS.Tooltip>
+              : <IFS.IconButton type="secondary" size="s" icon="system-notification" label={`Push ${r.name}`}
+                  onClick={() => { const at = Date.now(); setNow(at); update(r.id, { pushedAt: at, lastNotified: new Date(at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) });
+                    IFS.toast({ title: 'Reminder sent.', description: `You can push again in ${pushCooldownHours}h.`, duration: 4000 }); onPush && onPush(r); }} />)}
+            {r.action && <IFS.Button type="secondary" size="s" iconLeft={r.action.icon} onClick={() => r.action.onClick && r.action.onClick(r)}>{r.action.label}</IFS.Button>}
+          </>;
+        } },
+    ] : []),
+  ];
 
   return (
-    <div className={apCx('ifs-apc', `ifs-apc--${viewClass}`, className)} style={{ '--apc-cols': cols }} role="table" aria-label="Approval chain" {...rest}>
-      <div className="ifs-apc__head" role="row">
-        <span role="columnheader" aria-label="Status" />
-        <span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="User">User</span>{filter}</span>
-        <span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="Note">Note</span></span>
-        {full && <><span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="Comment">Comment</span></span>
-          <span role="columnheader" className="ifs-apc__th"><span className="ifs-table__th-label" title="Last notified">Last notified</span></span><span role="columnheader" className="ifs-apc__th" aria-label="Actions" /></>}
-      </div>
-      {rows.length === 0 && <div className="ifs-apc__empty"><IFS.EmptyState cause="no-results" size="section" heading="No results found"
-        body="Try another name or state." /></div>}
-      {rows.map(r => {
-        const you = r.id === currentUserId;
-        const status = r.status === 'revisions' ? 'rejected' : (r.status || 'empty');
-        const canAdd = !r.note && (isOwner ? r.id !== ownerId : you);
-        const canEdit = !!(r.note && r.note.authorId === currentUserId);
-        const pushedLeft = r.pushedAt ? apcHours(r.pushedAt, now, pushCooldownHours) : 0;
-        return (
-          <div key={r.id} className="ifs-apc__row" role="row">
-            <span className="ifs-apc__rail" role="cell"><ApprovalStatus type={status} /></span>
-            <div className="ifs-apc__cell" role="cell">
-              {r.replaced && <span className="ifs-apc__replaced">
-                <IFS.Avatar size="s" name={r.replaced.name} type="auto" status="online" {...r.replaced.avatar} />
-                <IFS.Icon name="arrow-chevron-right" size={16} />
-              </span>}
-              <IFS.Avatar size="s" name={r.name} type="auto" {...r.avatar} />
-              <span className="ifs-apc__user">
-                <span className="ifs-apc__name">{r.name}{you ? ' (You)' : ''}</span>
-                {r.role && <span className="ifs-apc__role">{r.role}</span>}
-              </span>
-              {r.replaced && <IFS.Tooltip type="left" content="This reviewer was replaced by another stakeholder.">
-                <span className="ifs-apc__info" tabIndex={0} aria-label={`Replaced ${r.replaced.name}`}><IFS.Icon name="system-info-hint" size={16} /></span>
-              </IFS.Tooltip>}
+    <div ref={cardRef} className={apCx('ifs-table-card', 'ifs-apc', `ifs-apc--${viewClass}`, className)} {...rest}>
+      <IFS.Table columns={columns} rows={rows} aria-label="Approval chain" />
+      {rows.length === 0 && <IFS.EmptyState cause="no-results" size="section" heading="No results found" body="Try another name or state." />}
+      {filterAt && <div ref={popRef} className="ifs-apc__filter-pop" style={{ insetInlineStart: `${Math.max(0, filterAt.start)}px`, insetBlockStart: `calc(${filterAt.top}px + var(--space-100))` }}
+        onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); closeFilter(true); } }}>
+        <IFS.Popover inline width={240} title="Filter" count={active || undefined} showClose={false}>
+          <div className="ifs-apc__filter">
+            {active > 0 && <span className="ifs-apc__filter-clear"><IFS.Button type="ghost" size="s" onClick={() => { setQuery(''); setStates([]); }}>Clear all</IFS.Button></span>}
+            <IFS.Search placeholder="Search by name, role..." value={query} onChange={v => setQuery(v)} />
+            <div className="ifs-apc__chips" role="group" aria-label="Approval state">
+              <IFS.Chip selected={!states.length} onChange={() => setStates([])}>All</IFS.Chip>
+              {APC_STATES.map(s => <IFS.Chip key={s.value} selected={states.includes(s.value)}
+                onChange={on => setStates(on ? [...states, s.value] : states.filter(x => x !== s.value))}>{s.label}</IFS.Chip>)}
             </div>
-            <div className={apCx('ifs-apc__cell', (editing === r.id || (r.note && r.note.text)) && 'ifs-apc__cell--has-note')} role="cell">
-              <ApcNote row={r} canAdd={canAdd} canEdit={canEdit} editing={editing === r.id}
-                onStartEdit={() => setEditing(r.id)} onCancel={() => setEditing(null)} onSave={saveNote(r)} onDelete={() => deleteNote(r)} />
-            </div>
-            {full && <>
-              <div className="ifs-apc__cell ifs-apc__cell--text" role="cell">{r.comment}</div>
-              <div className="ifs-apc__cell ifs-apc__cell--text" role="cell"><span className="ifs-apc__date">{r.lastNotified}</span></div>
-              <div className="ifs-apc__cell ifs-apc__action" role="cell">
-                {isOwner && status === 'awaiting' && (pushedLeft > 0
-                  ? <IFS.Tooltip type="bottom" content={`You can push again in ${apcLeft(pushedLeft)}`}>
-                      <span className="ifs-apc__tip" tabIndex={0}><IFS.Button type="secondary" size="s" iconLeft="system-notification" disabled>Notified</IFS.Button></span>
-                    </IFS.Tooltip>
-                  : <IFS.IconButton type="secondary" size="s" icon="system-notification" label={`Push ${r.name}`}
-                      onClick={() => { const at = Date.now(); setNow(at); update(r.id, { pushedAt: at, lastNotified: new Date(at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) });
-                        IFS.toast({ title: 'Reminder sent.', description: `You can push again in ${pushCooldownHours}h.`, duration: 4000 }); onPush && onPush(r); }} />)}
-                {r.action && <IFS.Button type="secondary" size="s" iconLeft={r.action.icon} onClick={() => r.action.onClick && r.action.onClick(r)}>{r.action.label}</IFS.Button>}
-              </div>
-            </>}
           </div>
-        );
-      })}
+        </IFS.Popover>
+      </div>}
     </div>
   );
 }
