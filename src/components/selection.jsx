@@ -68,11 +68,9 @@ function Trigger({ size, label, placeholder, filled, children, iconLeft, isOpen,
           ? <IFS.Icon name="system-loader" size={12} className="ifs-select__loader" />
           : <>
             {clearable && filled && !disabled && (
-              <button type="button" tabIndex={-1} aria-label="Clear" className="ifs-select__clear"
-                onMouseDown={e => e.preventDefault()} onClick={e => { e.stopPropagation(); onClear(); }}>
-                <IFS.Icon name="system-close" size={16} />
-              </button>)}
-            <IFS.Icon name={isOpen || forcedOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={12} className="ifs-select__caret" />
+              <IFS.IconButton icon="system-close" type="ghost" size="s" label="Clear" tabIndex={-1} className="ifs-select__clear"
+                onMouseDown={e => e.preventDefault()} onClick={e => { e.stopPropagation(); onClear(); }} />)}
+            <IFS.Icon name={isOpen || forcedOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} className="ifs-select__caret" /* 16 like other control icons (Nov 19, was 12) */ />
           </>}
       </span>
     </div>

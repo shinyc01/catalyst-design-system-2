@@ -277,11 +277,9 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table-sort--asc::after,.ifs-table-sort--desc::after{bottom:0.20625rem;clip-path:polygon(0 0,100% 0,50% 100%)}
 .ifs-table-sort--asc::before,.ifs-table-sort--desc::after{background:var(--icon-primary)}
 /* table-filter-atom (1440:5932) */
-.ifs-table-filter{all:unset;position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--target-min);height:var(--target-min) /* 24 box, 16 icon (Nov 19) */;cursor:pointer;color:var(--icon-tertiary);border-radius:var(--radius-radius-100)}
-.ifs-table-filter:hover,.ifs-table-filter[data-state=hover]{color:var(--icon-secondary)}
+.ifs-table-filter{position:relative;flex:none} /* a standard ghost IconButton S (Nov 19); the applied dot sits on it */
 .ifs-table-filter--applied{color:var(--icon-primary)}
 .ifs-table-filter--applied::after{content:"";position:absolute;right:1.5px;top:1.5px;width:3px;height:3px;border-radius:50%;background:var(--background-solid-accent-purple);box-shadow:0 0 0 1px var(--surface-primary)}
-.ifs-table-filter:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 /* table-cell-atom (1440:5941) */
 .ifs-table__td{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;padding:0 var(--space-table-x); /* no top/bottom padding: the row height sets it (Flexy, accepted Nov 19) */
   color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);font-variant-numeric:var(--text-numeric)} /* Body/M/regular */

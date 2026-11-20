@@ -339,8 +339,8 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
                   <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span><TableSort dir={dir} />
                 </button>
               ) : c.title != null && c.title !== '' ? <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span> : c.title}
-              {c.filter && <button type="button" aria-label={`Filter ${c.title || ''}`} onClick={c.filter.onClick}
-                className={IFS.cx('ifs-table-filter', c.filter.applied && 'ifs-table-filter--applied')}><IFS.Icon name="system-filter" size={16} /></button>}
+              {c.filter && <IFS.IconButton icon="system-filter" type="ghost" size="s" label={`Filter ${c.title || ''}`} onClick={c.filter.onClick}
+                className={IFS.cx('ifs-table-filter', c.filter.applied && 'ifs-table-filter--applied')} />}
             </div>
           );
         })}

@@ -16,7 +16,7 @@
 .ifs-button--s{height:var(--control-h-s);padding:var(--space-50) var(--space-150);border-radius:var(--radius-radius-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-icon-button--l{width:var(--control-h-l);height:var(--control-h-l);padding:var(--space-300);border-radius:var(--radius-radius-200)}
 .ifs-icon-button--m{width:var(--control-h-m);height:var(--control-h-m);padding:var(--space-200);border-radius:var(--radius-radius-100)}
-.ifs-icon-button--s{width:var(--size-24);height:var(--control-h-s);padding:var(--space-100);border-radius:var(--radius-radius-100)}
+.ifs-icon-button--s{width:var(--control-h-s);height:var(--control-h-s) /* square at every density (was 24 wide, 28 tall at Spacious) */;padding:var(--space-100);border-radius:var(--radius-radius-100)}
 .ifs-icon-button--circle{border-radius:var(--radius-radius-full)}
 
 /* Types: fill + stroke per state, straight from element/button/<type>/{fill,border}/<state>.

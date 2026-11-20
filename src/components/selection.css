@@ -18,9 +18,8 @@
 .ifs-select__value{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-select__input{flex:1 1 auto;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;color:var(--text-primary);font:inherit;letter-spacing:inherit}
 .ifs-select__input::placeholder{color:var(--text-tertiary)}
+.ifs-select__clear{flex:none} /* a standard ghost IconButton S (Nov 19) */
 .ifs-select__caret,.ifs-select__loader,.ifs-select__icon{color:var(--ic)}
-.ifs-select__clear{display:inline-flex;align-items:center;justify-content:center;min-width:var(--target-min);min-height:var(--target-min);flex:none;margin:0;padding:0;border:0;background:none;cursor:pointer;color:var(--icon-secondary);border-radius:var(--radius-radius-100)}
-.ifs-select__clear:hover{color:var(--icon-primary)}
 .ifs-select__loader{animation:ifs-select-spin 1s linear infinite}
 @keyframes ifs-select-spin{to{transform:rotate(360deg)}}
 
