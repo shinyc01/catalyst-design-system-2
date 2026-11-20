@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.4, generated 2026-11-20. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.5, generated 2026-11-20. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -55,12 +55,14 @@ Examples (read before using any component below — shows the data shapes props 
 Figma: Icons page (1399:9134). `name` is the Figma icon set name, `size` one of 12 | 16 | 24.
 Figma draws every size from its own artwork, so pick the nearest exported size rather than scaling.
 A few sets (cooper-*-icon, voice-input-animation) vary by state instead of size: pass `variant`.
+Directional icons point along the reading direction, so they flip in RTL (class ifs-icon--mirror; CSS in _core.css).
+Never listed: check marks, media, clocks, trend up/down, logos, up/down carets.
 `function Icon({ name, size = 16, variant, className, style, title })`
 
 ### remOf
 **Tier:** Component
 A size prop given as a number is px at the default 16px text size; it comes out in rem so it follows the user's text size.
-`const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);  Object.assign(IFS, { Icon, cx, remOf }); export { Icon, cx, remOf }; `
+`const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);  Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS }); export { Icon, cx, remOf }; `
 
 ## activity
 
@@ -1814,7 +1816,7 @@ messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text
 onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact,
 fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 6.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
-`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position = { right: 60, bottom: 131 }, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
+`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position = { /* ltr: prop keys; the default corner is applied as inset-inline-end */ right: 60, bottom: 131 }, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
 
 ### 
 **Tier:** Pattern helper
