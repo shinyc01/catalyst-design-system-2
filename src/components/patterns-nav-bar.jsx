@@ -46,8 +46,8 @@ function ExploreHeader({ search = {}, onFilter, filtersApplied, collaborators = 
 }
 
 // Figma: home-row-card-organism (key c497ce96…; Patterns copy 244:117301). One ranked item on the Command (home) list.
-// Type=Primary (124 tall: the top item; copper→white gradient stroke, metrics under the text, media on the right) |
-// Secondary (72 tall: metrics in their own columns). State Default | Hover | Loading | Focus.
+// Type=Primary (132 tall at every density: the top item; copper→white gradient stroke, metrics under the text, media on the right) |
+// Secondary (80 tall at every density: metrics in their own columns). State Default | Hover | Loading | Focus.
 // Props: type primary|secondary, rank (counter-atom S), title, badge (label → badge-atom White S), description,
 // metrics [{ value, label }] (show-metric; Figma shows two: CPV and V/C), liveAlert = MapPinDefect props (show-live-alert),
 // collaboration = Avatar props (show-collaboration), media (node: primary right side, e.g. a map), onOpen (card + arrow button),

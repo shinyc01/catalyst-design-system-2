@@ -14,6 +14,18 @@ A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7a
 
 Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IFS.format` formats numbers, money and dates; `IFS.Stack` / `IFS.Inline` lay out screens.
 
+**Load it** (as in `template.html`): React, then the kit, then your screen.
+
+```html
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script> <!-- only if you write JSX in the page -->
+<link rel="stylesheet" href="https://shinyc01.github.io/catalyst-design-system-2/dist/ifs-ds.css">
+<script src="https://shinyc01.github.io/catalyst-design-system-2/dist/ifs-ds.js"></script>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">/* your screen: IFS.Button, IFS.DataTable … */</script>
+```
+
 **Density.** Three levels, as a user setting: Spacious, Comfortable (default), Compact (rule 3.13 in `guide/rules.md`).
 
 ## Files

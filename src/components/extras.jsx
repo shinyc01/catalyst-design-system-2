@@ -371,7 +371,7 @@ function SliderTrack({ type = 'default', min, max, step = 1, value, defaultValue
 // Props: label (Title; absent = show-title off), hint (clue-icon tooltip), description (Hint text), showValue (Number, default true),
 // formatValue(v) for the Number, icon (show-left-icon: a Ghost S circle icon-button, e.g. "system-star-favourite"), iconLabel, onIconClick,
 // and every SliderTrack prop (type, min, max, step, value/defaultValue/onChange, disabled, thumbState).
-// Use <Slider> without label for the bare molecule.
+// Use <Slider> without label for the bare molecule. The track fills its parent: inside a flex row give the Slider flex:1, or it shrinks to 60.
 function Slider({ label, hint, description, showValue = true, formatValue, icon, iconLabel, onIconClick, value, defaultValue, onChange,
   className, style, ...track }) {
   const type = track.type || 'default';
