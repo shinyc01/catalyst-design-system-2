@@ -95,7 +95,7 @@
 .wb-frame--ghost .ifs-dv-header__drag{display:inline-flex}
 .wb-frame--ghost .ifs-dv-header{padding-left:var(--space-100)}
 
-.wb-board{--wb-gap:var(--space-stack);position:relative;display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
+.wb-board{--wb-gap:var(--page-gap) /* widgets are dashboard cards: a page gap apart, like the Value dashboard (rule 4.2, Nov 20) */;position:relative;display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
 .wb-board--dragging,.wb-board--dragging *{cursor:grabbing !important;user-select:none}
 .wb-board--resizing,.wb-board--resizing *{cursor:ew-resize !important;user-select:none}
 .wb-section{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}

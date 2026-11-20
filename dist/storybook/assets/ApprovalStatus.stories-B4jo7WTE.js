@@ -1,0 +1,4 @@
+import{I as o}from"./patterns-approval-DobLwvG3.js";import{I as n}from"./patterns-trace-CG7fweh8.js";import"./index-B0WjJBI_.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-x-G-dxfr.js";import"./index-CwPCC0ZT.js";const p=o.find(e=>e.name==="ApprovalStatus"),u={title:"More components/Approval chain/ApprovalStatus",component:n.ApprovalStatus,tags:["autodocs"],parameters:{docs:{description:{component:"**Figma:** status (12:210060)"}},design:{type:"figma",url:"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=12-210060"}}},t={name:"All variants & states",render:()=>p.render()};var r,a,s;t.parameters={...t.parameters,docs:{...(r=t.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  name: 'All variants & states',
+  render: () => section.render()
+}`,...(s=(a=t.parameters)==null?void 0:a.docs)==null?void 0:s.source}}};const g=["AllVariants"];export{t as AllVariants,g as __namedExportsOrder,u as default};

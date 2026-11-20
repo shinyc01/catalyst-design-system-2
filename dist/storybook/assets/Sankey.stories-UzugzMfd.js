@@ -1,0 +1,7 @@
+import{I as n}from"./canvas-FF7-5M51.js";import{I as r}from"./patterns-trace-CG7fweh8.js";import"./index-B0WjJBI_.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-x-G-dxfr.js";import"./index-CwPCC0ZT.js";const i=n.find(o=>o.name==="Sankey"),u={title:"Map & Canvas/Sankey",component:r.Sankey,tags:["autodocs"],parameters:{docs:{description:{component:`**Figma:** sankey-organism (4457:53304)
+
+
+Use: Flow: how a total splits through stages (budget allocation, value decomposition, goal → objective → model lineage); band width = value.`}},design:{type:"figma",url:"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4457-53304"}}},e={name:"All variants & states",render:()=>i.render()};var a,t,s;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  name: 'All variants & states',
+  render: () => section.render()
+}`,...(s=(t=e.parameters)==null?void 0:t.docs)==null?void 0:s.source}}};const S=["AllVariants"];export{e as AllVariants,S as __namedExportsOrder,u as default};
