@@ -117,14 +117,14 @@
   border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha)}
 .ifs-apc__head,.ifs-apc__row{display:grid;grid-template-columns:var(--size-32) var(--apc-cols);align-items:start}
 .ifs-apc__head{min-height:var(--size-40);align-items:center}
-.ifs-apc__th{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;height:var(--table-header-h);padding:var(--table-header-pad-top) var(--space-inset) var(--table-header-pad-bottom);
+.ifs-apc__th{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;height:var(--table-header-h);padding:var(--table-header-pad-top) var(--space-table-x) var(--table-header-pad-bottom);
   color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium, sentence case */
 .ifs-apc__row{position:relative;min-height:var(--table-row-h);border-radius:var(--radius-radius-100);background:var(--surface-tertiary-alpha);transition:background-color .12s}
 .ifs-apc__row:hover,.ifs-apc__row[data-state=hover]{background:var(--element-card-state-fill-hover)}
 .ifs-apc__rail{position:relative;display:flex;align-items:flex-start;align-self:stretch;justify-content:center;padding-top:var(--space-250)}
 .ifs-apc__row:not(:last-child) .ifs-apc__rail::after{content:"";position:absolute;z-index:1;left:0.96875rem;top:var(--size-36);bottom:calc(-1 * var(--size-18));width:1px;
   background:repeating-linear-gradient(to bottom,var(--border-medium) 0 3px,transparent 3px 8px)} /* Figma dashed connector */
-.ifs-apc__cell{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;min-height:var(--table-row-h);padding:var(--space-200) var(--space-inset)}
+.ifs-apc__cell{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;min-height:var(--table-row-h);padding:var(--space-200) var(--space-table-x)} /* table spacing like every table (Nov 19); 8 top/bottom kept: cells hold two lines */
 .ifs-apc__cell--text{align-items:flex-start;padding-top:var(--space-400);padding-bottom:var(--space-400) /* raw in Figma (+1 for 14/20 text in a 52 row) */;color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:pre-wrap;overflow-wrap:anywhere}
 .ifs-apc__user{display:flex;flex-direction:column;gap:var(--space-50);min-width:0}
 .ifs-apc__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

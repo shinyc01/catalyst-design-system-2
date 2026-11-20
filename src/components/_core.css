@@ -4,3 +4,12 @@
 
 /* Figma focus ring: outer 3px focus-outer + inner 1.5px focus-inner, both outside. */
 .ifs-focus-ring{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+
+/* Click area (Nov 19, 2.0.3): every clickable thing is at least --target-min (24 x 24). Small controls keep their look; an invisible
+   layer grows the click area around them, centred, to 24 in each direction that is smaller. One rule for all, no extra markup. */
+:where(.ifs-table-filter,.ifs-version__toggle,.ifs-page-header__menu,.ifs-select__clear,.ifs-switch--s,.ifs-node-card__side button,
+  .ifs-trc-gates__ind,.ifs-column-settings__handle,.ifs-table__th-btn,.ifs-timeline-phase__toggle,.ifs-cooper-msg__toggle,.ifs-check){position:relative}
+:where(.ifs-table-filter,.ifs-version__toggle,.ifs-page-header__menu,.ifs-select__clear,.ifs-switch--s,.ifs-node-card__side button,
+  .ifs-trc-gates__ind,.ifs-column-settings__handle,.ifs-table__th-btn,.ifs-timeline-phase__toggle,.ifs-cooper-msg__toggle,.ifs-check,
+  .ifs-slider-thumb,.ifs-data-table__handle)::before{content:"";position:absolute;
+  inset-block:min(0px,calc(50% - var(--target-min) / 2));inset-inline:min(0px,calc(50% - var(--target-min) / 2))}

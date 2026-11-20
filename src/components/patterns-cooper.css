@@ -98,7 +98,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-cooper-msg__h{display:flex;align-items:center;justify-content:space-between;gap:var(--space-100);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-secondary)}
 .ifs-cooper-msg__h-aside{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);text-transform:none;color:var(--text-tertiary)}
-.ifs-cooper-msg__toggle{all:unset;display:inline-flex;align-items:center;gap:var(--space-100);cursor:pointer;color:var(--text-secondary);
+.ifs-cooper-msg__toggle{all:unset;position:relative /* click area (_core.css) */;display:inline-flex;align-items:center;gap:var(--space-100);cursor:pointer;color:var(--text-secondary);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);border-radius:var(--radius-radius-100)}
 .ifs-cooper-msg__toggle:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-cooper-msg__reasoning{display:flex;flex-direction:column;gap:var(--space-100);padding-bottom:var(--space-100)}
