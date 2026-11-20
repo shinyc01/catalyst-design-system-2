@@ -67,11 +67,11 @@
 .ifs-fta:disabled{cursor:not-allowed}
 .ifs-fta__orb{position:relative;display:block;width:var(--size-32);height:var(--size-32);flex:none}
 /* cooper-visual-icon "sphere" is drawn on an 18x16 box with the 16px disc at x≈0.56 */
-.ifs-fta__sphere{position:absolute;left:-0.06875rem;top:0;width:var(--size-36) !important;height:var(--size-32) !important;overflow:visible;
+.ifs-fta__sphere{position:absolute;left:-0.06875rem;top:0;width:var(--size-36) !important;height:var(--size-32) !important;overflow:visible; /* ltr: icon art offset */
   filter:drop-shadow(0 0 1.8px var(--element-cooper-fab-shadow)) /* effect style cooper/fab/shadow */}
 .ifs-fta:disabled .ifs-fta__sphere{filter:grayscale(1) /* LUMINOSITY blend in Figma */}
-.ifs-fta__mark{position:absolute;left:var(--size-8);top:var(--size-8)}
-.ifs-fta__dot{position:absolute;left:var(--size-24);top:0}
+.ifs-fta__mark{position:absolute;left:var(--size-8);top:var(--size-8)} /* ltr: icon art offset */
+.ifs-fta__dot{position:absolute;left:var(--size-24);top:0} /* ltr: icon art offset */
 .ifs-fta:focus-visible,.ifs-fta[data-state=focus]{outline:none;--ring:0 0 0 2px var(--focus-focus-inner),0 0 0 4px var(--focus-focus-outer)}
 
 /* ---------- prompt-button ---------- */
@@ -109,8 +109,8 @@
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
 .ifs-bottom-sheet--base{justify-content:flex-end}
 .ifs-bottom-sheet--value,.ifs-bottom-sheet--explore{justify-content:space-between}
-.ifs-bottom-sheet--explore{padding-left:var(--space-150)}
-.ifs-bottom-sheet__agent{display:flex;align-items:center;gap:var(--space-150);flex:0 1 auto;min-width:0;margin-left:auto}
+.ifs-bottom-sheet--explore{padding-inline-start:var(--space-150)}
+.ifs-bottom-sheet__agent{display:flex;align-items:center;gap:var(--space-150);flex:0 1 auto;min-width:0;margin-inline-start:auto}
 .ifs-bottom-sheet__agent > :not(.ifs-bottom-sheet__prompts){flex:none}
 .ifs-bottom-sheet__prompts{display:flex;align-items:center;gap:var(--space-100);min-width:0}
 .ifs-bottom-sheet__prompts > *{flex:none}
@@ -132,7 +132,7 @@
 .ifs-bottom-sheet__fields{display:flex;align-items:center;gap:var(--space-400);min-width:0}
 .ifs-bottom-sheet__fields > *,.ifs-bottom-sheet__map > :not(.ifs-bottom-sheet__fields){flex:none}
 .ifs-map-field{display:flex;flex-direction:column;gap:var(--space-100)}
-.ifs-map-field__label{padding-left:var(--space-150);color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap}
+.ifs-map-field__label{padding-inline-start:var(--space-150);color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap}
 .ifs-map-field__row{display:flex;align-items:center;gap:var(--space-50) /* raw in Figma */;height:var(--size-16)}
 .ifs-map-field__value{padding:0 var(--space-150);color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
 .ifs-bottom-sheet__divider{width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--border-medium);flex:none}
@@ -144,4 +144,4 @@
 .ifs-zoom__tick{width:1px;height:8px;flex:none;background:var(--border-selected)}
 .ifs-zoom__tick.is-after{background:var(--border-medium)}
 .ifs-zoom__tick.is-current{height:16px}
-.ifs-zoom__marker{position:absolute;top:-3px;width:4px;height:4px;margin-left:calc(-1 * var(--border-widths-border-150));background:var(--icon-primary);clip-path:polygon(0 0,100% 0,50% 100%)}
+.ifs-zoom__marker{position:absolute;top:-3px;width:4px;height:4px;margin-inline-start:calc(-1 * var(--border-widths-border-150));background:var(--icon-primary);clip-path:polygon(0 0,100% 0,50% 100%)}

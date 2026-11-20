@@ -72,7 +72,7 @@ button.ifs-avatar__base{cursor:pointer}
   background:linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0)) /* raw in Figma */;
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 /* "gradient": soft-light highlight on the top half, blurred */
-.ifs-avatar__base::after{content:"";position:absolute;left:0;right:0;top:-4%;height:50%;z-index:1;pointer-events:none;opacity:.8;mix-blend-mode:soft-light;
+.ifs-avatar__base::after{content:"";position:absolute;inset-inline-start:0;inset-inline-end:0;top:-4%;height:50%;z-index:1;pointer-events:none;opacity:.8;mix-blend-mode:soft-light;
   background:linear-gradient(0deg,rgba(255,255,255,.2),#fff) /* raw in Figma */;filter:blur(calc(var(--av) * .135))}
 /* hover / pressed overlay ("hoverLight") */
 .ifs-avatar__overlay{position:absolute;inset:0;border-radius:inherit;z-index:1;background:transparent;pointer-events:none}
@@ -109,7 +109,7 @@ button.ifs-avatar__base:hover .ifs-avatar__overlay,.ifs-avatar__base[data-state=
 button.ifs-avatar__base:active,.ifs-avatar__base[data-state=pressed]{--edge:0 0 0 1px var(--border-medium);color:var(--text-secondary)}
 button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state=pressed] .ifs-avatar__overlay{background:var(--overlay-screen-medium)}
 .ifs-avatar__base:focus-visible,.ifs-avatar__base[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
-.ifs-avatar__status{position:absolute;right:0;bottom:0;z-index:4;width:var(--av-status);height:var(--av-status)}
+.ifs-avatar__status{position:absolute;inset-inline-end:0;bottom:0;z-index:4;width:var(--av-status);height:var(--av-status)}
 .ifs-avatar__status .ifs-risk-atom{width:100%;height:100%}
 
 /* ---- status-risk-atom (260:18430): 16 box; circle 8 (online/offline) or 14 filled disc ---- */
@@ -124,7 +124,7 @@ button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state
 
 /* ================= RiskStatus — status-risk-molecule (69:1729) ================= */
 .ifs-risk{--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;
-  height:var(--size-24);margin:0;border:0;padding:var(--space-100) var(--space-200) var(--space-100) var(--space-100);
+  height:var(--size-24);margin:0;border:0;padding-block:var(--space-100);padding-inline:var(--space-100) var(--space-200);
   border-radius:100px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-primary);white-space:nowrap;
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px) /* raw in Figma */;
   box-shadow:var(--stroke),var(--ring),0 4px 24px rgba(0,0,0,.04) /* raw in Figma */;
@@ -144,7 +144,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-readiness__right--text{justify-content:flex-end}
 .ifs-readiness__icon{position:relative;display:flex;align-items:center;justify-content:center;flex:none;width:var(--size-16);height:var(--size-16);color:var(--icon-primary)}
 .ifs-readiness__label{flex:1;min-width:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;color:var(--text-primary)}
-.ifs-readiness__text{flex:1;min-width:0;text-align:right;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;color:var(--text-secondary)}
+.ifs-readiness__text{flex:1;min-width:0;text-align:end;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;color:var(--text-secondary)}
 .ifs-readiness--in-progress .ifs-readiness__label,.ifs-readiness--active .ifs-readiness__label{color:var(--text-secondary)}
 /* In progress / Loading: dashed ring (vector in Figma) */
 .ifs-readiness--in-progress .ifs-readiness__icon::before,.ifs-readiness--loading .ifs-readiness__icon::before{content:"";width:0.84375rem;height:0.84375rem;box-sizing:border-box;border-radius:50%;border:1.25px dashed var(--icon-tertiary)}
@@ -205,7 +205,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 /* ================= ContentCard — content-card-organism (3643:32067) ================= */
 .ifs-content-card{--fill:var(--element-card-state-fill-default);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
   position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;padding:var(--space-inset);
-  border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--text-primary);text-align:left;
+  border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--text-primary);text-align:start;
   transition:background-color .12s,box-shadow .12s}
 .ifs-content-card[role=button]{cursor:pointer}
 .ifs-content-card[role=button]:hover,.ifs-content-card[data-state=hover]{--fill:var(--element-card-state-fill-hover)}
@@ -274,20 +274,20 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table__th:hover .ifs-table-sort,.ifs-table-sort[data-state=hover]{color:var(--icon-secondary)}
 .ifs-table-sort--asc,.ifs-table-sort--desc{color:transparent}
 .ifs-table-sort--asc::before,.ifs-table-sort--asc::after,.ifs-table-sort--desc::before,.ifs-table-sort--desc::after{
-  content:"";position:absolute;left:0.30312rem;width:0.39375rem;height:0.23125rem;background:var(--icon-disabled)}
+  content:"";position:absolute;left:0.30312rem;width:0.39375rem;height:0.23125rem;background:var(--icon-disabled)} /* ltr: icon art offset */
 .ifs-table-sort--asc::before,.ifs-table-sort--desc::before{top:0.20625rem;clip-path:polygon(50% 0,100% 100%,0 100%)}
 .ifs-table-sort--asc::after,.ifs-table-sort--desc::after{bottom:0.20625rem;clip-path:polygon(0 0,100% 0,50% 100%)}
 .ifs-table-sort--asc::before,.ifs-table-sort--desc::after{background:var(--icon-primary)}
 /* table-filter-atom (1440:5932) */
 .ifs-table-filter{position:relative;flex:none} /* a standard ghost IconButton S (Nov 19); the applied dot sits on it */
 .ifs-table-filter--applied{color:var(--icon-primary)}
-.ifs-table-filter--applied::after{content:"";position:absolute;right:1.5px;top:1.5px;width:3px;height:3px;border-radius:50%;background:var(--background-solid-accent-purple);box-shadow:0 0 0 1px var(--surface-primary)}
+.ifs-table-filter--applied::after{content:"";position:absolute;right:1.5px;top:1.5px;width:3px;height:3px;border-radius:50%;background:var(--background-solid-accent-purple);box-shadow:0 0 0 1px var(--surface-primary)} /* ltr: badge offset on icon art */
 /* table-cell-atom (1440:5941) */
 .ifs-table__td{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;padding:0 var(--space-table-x); /* no top/bottom padding: the row height sets it (Flexy, accepted Nov 19) */
   color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);font-variant-numeric:var(--text-numeric)} /* Body/M/regular */
 /* Align=Right (Text, Text + description, Counter, Text + counter, Number): content and text end-aligned */
 .ifs-table__td--primary{font-weight:var(--text-label-m-medium-weight)} /* name / primary column keeps Label/M/medium; other cells are Body/M/regular */
-.ifs-table__td--right{justify-content:flex-end;text-align:right}
+.ifs-table__td--right{justify-content:flex-end;text-align:end}
 .ifs-table__td--right .ifs-table__stack{align-items:flex-end}
 .ifs-table__td--center{justify-content:center}
 .ifs-table__td--check{gap:var(--space-100)}
@@ -316,13 +316,13 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 
 /* ================= NotificationCard — notification-card (9943:5373) ================= */
 .ifs-notification{--fill:var(--element-card-state-fill-default);position:relative;display:flex;align-items:flex-start;gap:var(--space-stack);box-sizing:border-box;
-  padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--fill);text-align:left;transition:background-color .12s}
+  padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--fill);text-align:start;transition:background-color .12s}
 .ifs-notification[role=button]{cursor:pointer}
 .ifs-notification[role=button]:hover,.ifs-notification[data-state=hover]{--fill:var(--element-card-state-fill-hover)}
 .ifs-notification[role=button]:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
 .ifs-notification__lead{position:relative;flex:none;width:var(--size-32);height:var(--size-32)}
-.ifs-notification__critical{position:absolute;left:1.4375rem;top:-0.1875rem;display:inline-flex;color:var(--icon-danger)}
-.ifs-notification__count{position:absolute;left:var(--size-16);top:-0.5625rem;backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
+.ifs-notification__critical{position:absolute;left:1.4375rem;top:-0.1875rem;display:inline-flex;color:var(--icon-danger)} /* ltr: badge offset on icon art */
+.ifs-notification__count{position:absolute;left:var(--size-16);top:-0.5625rem;backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))} /* ltr: badge offset on icon art */
 .ifs-notification__content{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-notification__title-row{display:flex;align-items:flex-start;gap:var(--space-200)}
 .ifs-notification--has-tag .ifs-notification__title-row{min-height:var(--size-20)}
