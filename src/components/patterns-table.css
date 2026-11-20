@@ -182,3 +182,8 @@
 .ifs-data-table__drawer .ifs-drawer__subtitle{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);text-transform:none}
 .ifs-data-table__hover:has([aria-expanded=true]){visibility:visible} /* keep an open menu visible when the pointer leaves the row */
 .ifs-tooltip-anchor:has(> .ifs-truncate){display:flex;min-width:0;max-width:100%} /* let a truncated name keep its cell width inside the tooltip anchor */
+
+/* Drag handles look like ghost icon buttons (Nov 19): 24 box, hover fill, focus ring, grab cursor */
+.ifs-data-table__handle,.ifs-column-settings__handle{border-radius:var(--radius-radius-100)}
+.ifs-data-table__handle:hover,.ifs-column-settings__handle:hover{background:var(--element-button-ghost-fill-hover);color:var(--icon-secondary)}
+.ifs-data-table__handle:focus-visible,.ifs-column-settings__handle:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
