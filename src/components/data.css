@@ -228,6 +228,8 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-content-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-content-card__head{display:flex;align-items:center;gap:var(--space-150);min-height:var(--size-20)}
 .ifs-content-card__title{flex:1;min-width:0;color:var(--text-primary)}
+/* meta: short info at the end of the title row (Nov 20, rule 7.21); the title keeps priority, the meta truncates first */
+.ifs-content-card__meta{flex:0 1 auto;min-width:0;max-width:50%;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-content-card--m .ifs-content-card__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* H4: every card title (Nov 19, 2.0.3; was Label/M/medium) */
 .ifs-content-card--s .ifs-content-card__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* H4: every card title (Nov 19, 2.0.3; was Label/M/medium) */
 .ifs-content-card__head > .ifs-icon{color:var(--icon-primary)}

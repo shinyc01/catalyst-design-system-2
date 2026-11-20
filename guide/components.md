@@ -236,7 +236,7 @@ Family note: Atoms are items; organisms are the containers with slots.
 Use: One sidebar row: section (Parent), sub-section (Child), group header (Subtitle).
 
 ### navigation-panel-organism · `SideNav`
-Use: Level 2 navigation: the sidebar listing the sections of the active stage. One sidebar for all stages; only the list changes. Only its header (stage title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.
+Use: Level 2 navigation: the sidebar listing the pages of where you are, a stage's sections or one entity's own pages (when to show it: rule 7.19). One sidebar for all of them; only the list changes. Only its header (stage title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.
 
 ### tab · `Tabs`
 Use: One tab; use `show-counter` for table filter tabs.
@@ -329,7 +329,7 @@ Use: A person or Cooper anywhere in the UI (header user menu, cards, comments).
 Use: Live multiplayer cursor with name label; one stable colour per user (rule 7.18).
 
 ### content-card-organism · `ContentCard`
-Use: Every content card (content, selectable, settings, link, media; rule 7.8); vary it with props. M in primary areas, dashboards and full-width lists; S nested in drawers, side panels, popovers and dense lists.
+Use: Every content card (content, selectable, settings, link, media; rule 7.8); vary it with props. M in primary areas, dashboards and full-width lists; S nested in drawers, side panels, popovers and dense lists. Short info beside the title ("9d left", a count, a date) goes in `meta`, not the description (rule 7.21).
 
 ### stat-card-organism · `StatCard`
 Use: One key metric: title + value + optional trend or badge; `compare` for from → to. Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6.
@@ -734,7 +734,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 ### Pattern: Nav bar
 
 **For:** the Level 1 bar that switches between stages, and what each stage brings: its own sidebar (or none), header, content and bottom sheet. On every product screen.
-**Parts:** `NavBar` (logo, stage tabs `NavBarItem`, search / settings / notifications, avatar; collapse: rule 5.7) · per stage: Command and Build no sidebar; Value `SideNav`; Plan `SideNavTree` (folder tree + "Ad hoc plans" with ＋); Explore no sidebar, `ExploreHeader` under the bar; Plan and Explore also a 48 collapsed right-panel rail. Content: Command = `PageTop` (Cooper eyebrow, H2 greeting, Tabs with counts, SmartSearch), "Decisions to review" + `SegmentedControl` S, the ranked `HomeRowCard` list, a right column with Cooper's results, milestone `ProgressBar` and `Calendar` (rule 4.2); Value = `PageTop` + the standard `DataTable` (tabs and search in `PageTop`, outside the card); Build = `PageTop` with `Tabs` L (Idea Pad / Investments) + the ranked `DataTable` with the segmented filter; Explore = map with `MapPinDot` clusters, `MapToolbar` (views top start, default view bottom start), `FtaButton`; Plan = title, description and owner, planning-cycle cards, `StatCardsRow`, affected-area map. Bottom: `BottomSheet` per stage with two screen-specific prompts: Command and Build the base sheet; Value the base sheet under the content column only; Plan `type="value"` with "16 Documents"; Explore none.
+**Parts:** `NavBar` (logo, stage tabs `NavBarItem`, search / settings / notifications, avatar; collapse: rule 5.7) · per stage: Command and Build no sidebar; Value `SideNav`; Plan `SideNavTree` (folder tree + "Ad hoc plans" with ＋); Explore no sidebar, `ExploreHeader` under the bar; Build and Plan entity steps also dock the System confidence panel on the right, open at the start (rule 4.6); Explore a 48 right-panel rail. Content: Command = `PageTop` (Cooper eyebrow, H2 greeting, Tabs with counts, SmartSearch), "Decisions to review" + `SegmentedControl` S, the ranked `HomeRowCard` list, a right column with Cooper's results, milestone `ProgressBar` and `Calendar` (rule 4.2); Value = `PageTop` + the standard `DataTable` (tabs and search in `PageTop`, outside the card); Build = `PageTop` with `Tabs` L (Idea Pad / Investments) + the ranked `DataTable` with the segmented filter; Explore = map with `MapPinDot` clusters, `MapToolbar` (views top start, default view bottom start), `FtaButton`; Plan = title, description and owner, planning-cycle cards, `StatCardsRow`, affected-area map. Bottom: `BottomSheet` per stage with two screen-specific prompts: Command and Build the base sheet; Value the base sheet under the content column only; Plan `type="value"` with "16 Documents"; Explore none.
 **Rules:**
 1. One bar on every screen (rule 4.9): logo at the start, actions at the end, exactly one stage active.
 2. Stage order is fixed: Command, Value, Explore, Build, Plan, Results.

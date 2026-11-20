@@ -759,11 +759,12 @@ Figma: content-card-organism (3643:32067)
 Props: size m|s, title, description (show-description), avatar = Avatar props (show-avatar, L 40),
 control = node (show-checkbox / show-radio-button / show-switch → pass IFS.Checkbox etc.), iconRight = icon name (Figma arrow-right),
 iconLeft = icon name before the title (show-icon-left; Figma default arrow-caret-right-filled),
+meta = short read-only info at the end of the title row (a count, a date, time left, a value; Body/M secondary, truncates first; rule 7.21),
 iconButton = { icon, label, onClick } (show-icon-button), top / bottom = slot nodes (with no title/description/avatar/control/icons
 the title block is skipped, so a slots-only card holds just its slots),
 tertiaryAction / primaryAction = Button props incl. children (show-buttons, show-tertiary-button, show-primary-button),
 selected, cooper (Figma State=Cooper), loading, state (forced: hover|pressed|focus|drag|selected|cooper), onClick → focusable role=button.
-`function ContentCard({ size = 'm', title, description, avatar, control, iconLeft, iconRight, iconButton, top, bottom, tertiaryAction, primaryAction, selected, cooper, loading, state, onClick, className, ...rest })`
+`function ContentCard({ size = 'm', title, description, meta, avatar, control, iconLeft, iconRight, iconButton, top, bottom, tertiaryAction, primaryAction, selected, cooper, loading, state, onClick, className, ...rest })`
 
 ### Table
 **Tier:** Component
@@ -1163,7 +1164,7 @@ user = { initials, name } or avatar (node), actions (node: replaces the default 
 **In handovers:** placed 1,023× (Build, Value, Plan, Command) · usual: status progress bar 67%
 Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-onTitleMenu (chevron after the title), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
+onTitleMenu (the ⌄ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 Narrow widths (Nov 19, measured on the header itself):

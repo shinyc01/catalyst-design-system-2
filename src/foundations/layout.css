@@ -21,6 +21,7 @@
   /* Regions: min / default / max. Push the content at md and up; overlay below md. */
   --region-panel-min:20rem;--region-panel-max:50vw;
   --region-sidenav:var(--layout-sidebar-width);--region-rail:var(--layout-rail-width);
+  --layout-header-title-min:10rem; /* thin PageHeader title: never narrower than this (or its own text) before the header moves to two rows (rule 5.3; Nov 20, was a raw 10rem) */
   --layout-content-min:50rem; /* narrowest page area beside a pushed panel before the side nav folds to its rail (Nov 19: 800px = 50rem, so 1440 with a 380 panel keeps the nav open) */
   /* Overlay widths */
   --overlay-width-s:20rem;--overlay-width-m:27.5rem;--overlay-width-l:37.5rem;

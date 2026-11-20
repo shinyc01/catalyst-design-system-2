@@ -201,11 +201,12 @@ function StatCard({ size = 'm', title, value, description, descriptionPosition =
 // Props: size m|s, title, description (show-description), avatar = Avatar props (show-avatar, L 40),
 // control = node (show-checkbox / show-radio-button / show-switch → pass IFS.Checkbox etc.), iconRight = icon name (Figma arrow-right),
 // iconLeft = icon name before the title (show-icon-left; Figma default arrow-caret-right-filled),
+// meta = short read-only info at the end of the title row (a count, a date, time left, a value; Body/M secondary, truncates first; rule 7.21),
 // iconButton = { icon, label, onClick } (show-icon-button), top / bottom = slot nodes (with no title/description/avatar/control/icons
 // the title block is skipped, so a slots-only card holds just its slots),
 // tertiaryAction / primaryAction = Button props incl. children (show-buttons, show-tertiary-button, show-primary-button),
 // selected, cooper (Figma State=Cooper), loading, state (forced: hover|pressed|focus|drag|selected|cooper), onClick → focusable role=button.
-function ContentCard({ size = 'm', title, description, avatar, control, iconLeft, iconRight, iconButton, top, bottom, tertiaryAction, primaryAction,
+function ContentCard({ size = 'm', title, description, meta, avatar, control, iconLeft, iconRight, iconButton, top, bottom, tertiaryAction, primaryAction,
   selected, cooper, loading, state, onClick, className, ...rest }) {
   const bsize = size === 's' ? 's' : 'm';
   const hasMain = loading || title != null || description != null || avatar || control || iconLeft || iconRight || iconButton;
@@ -224,6 +225,7 @@ function ContentCard({ size = 'm', title, description, avatar, control, iconLeft
               {iconLeft
                 ? <span className="ifs-content-card__lead"><IFS.Icon name={iconLeft} size={16} /><span className="ifs-content-card__title">{title}</span></span>
                 : <span className="ifs-content-card__title">{title}</span>}
+              {meta != null && <span className="ifs-content-card__meta">{meta}</span>}
               {control}
               {iconRight && <IFS.Icon name={iconRight} size={16} />}
               {iconButton && IFS.IconButton && <IFS.IconButton type="ghost" size="s" {...iconButton} onClick={e => { e.stopPropagation(); iconButton.onClick && iconButton.onClick(e); }} />}

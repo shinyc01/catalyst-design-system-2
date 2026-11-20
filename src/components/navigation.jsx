@@ -353,7 +353,7 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 
 // Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 // page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-// onTitleMenu (chevron after the title), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
+// onTitleMenu (the ⌄ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 // center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 // The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 // Narrow widths (Nov 19, measured on the header itself):
@@ -366,6 +366,10 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 //           Row 2, starting under the title (not under back): id + status together, views, the other actions, primary last.
 // Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
 // main button: always visible, last), progressLabel.
+const pageHeaderWarned = new Set();
+const pageHeaderWarnOnce = (k, msg) => { if (!pageHeaderWarned.has(k)) { pageHeaderWarned.add(k); console.warn(msg); } };
+// The title's minimum width in px, from the layout token (rem follows the user's text size)
+const headerTitleMin = el => { const v = getComputedStyle(el).getPropertyValue('--layout-header-title-min').trim(); return v.endsWith('rem') ? parseFloat(v) * rootPx() : parseFloat(v) || 0; };
 function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest }) {
   const ref = React.useRef(null);
   const [size, setSize] = React.useState('wide');
@@ -391,13 +395,12 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   React.useLayoutEffect(() => {
     const el = ref.current; if (!el || size !== 'wide' || center == null) return;
     const bar = el.querySelector('.ifs-page-header__bar'); if (!bar) return;
-    // natural width of a row of parts: children + gaps; the title counts up to 160 (10rem, its min-width; it may truncate below that)
-    const remPx = rootPx(); // 160 / 240 follow the user's text size
+    // natural width of a row of parts: children + gaps; the title counts up to --layout-header-title-min (160; it may truncate below that)
     const rowNeed = node => {
       if (!node) return 0;
       const kids = [...node.children];
       const g = parseFloat(getComputedStyle(node).columnGap) || 0;
-      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, 10 * remPx)
+      return kids.reduce((sum, k) => sum + (k.classList.contains('ifs-page-header__title') ? Math.min(k.scrollWidth, headerTitleMin(k))
         : k.classList.contains('ifs-page-header__text') ? rowNeed(k) : k.getBoundingClientRect().width), 0) + Math.max(0, kids.length - 1) * g;
     };
     const gap = parseFloat(getComputedStyle(bar).columnGap) || 0;
@@ -461,12 +464,19 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
       </span>
     : status;
   const backBtn = onBack && <IFS.IconButton icon="arrow-chevron-left" label="Back" size="s" type="tertiary" onClick={onBack} />;
+  const menuBtn = onTitleMenu && <IFS.IconButton icon="arrow-chevron-down" type="ghost" size="s" label={`${title} activity`} onClick={onTitleMenu} className="ifs-page-header__menu" />;
   const titleBits = <>
     {backBtn}
     <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
-    {onTitleMenu && <IFS.IconButton icon="arrow-chevron-down" type="ghost" size="s" label={`${title} options`} onClick={onTitleMenu} className="ifs-page-header__menu" />}
   </>;
   const idNode = id && <span className="ifs-page-header__id">{id}</span>;
+  // The title hugs its text (the ID sits --space-200 after it) but never shrinks below --layout-header-title-min or its own width, whichever is smaller
+  React.useLayoutEffect(() => {
+    const t = ref.current && ref.current.querySelector('.ifs-page-header__title'); if (!t) return;
+    t.style.minWidth = ''; t.style.minWidth = Math.min(headerTitleMin(t), t.scrollWidth) + 'px';
+  });
+  // Rule 5.1: an entity header (it has an ID) always has the ⌄ that opens its Activity panel
+  React.useEffect(() => { if (id && !onTitleMenu) pageHeaderWarnOnce(String(title), `IFS PageHeader "${title}" has an ID but no title menu (onTitleMenu). An entity header needs the ⌄ that opens its Activity panel (rule 5.1).`); }, [id, !onTitleMenu, title]);
   // Two rows: the back button keeps its own column, so row 2 starts where the title starts; the ID and the status move together.
   if (narrow) return (
     <div ref={ref} data-size={size} className={IFS.cx('ifs-page-header', 'ifs-page-header--rows', className)} {...rest}>
@@ -476,7 +486,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
           <div className="ifs-page-header__row">
             <div className="ifs-page-header__text">
               <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
-              {onTitleMenu && <IFS.IconButton icon="arrow-chevron-down" type="ghost" size="s" label={`${title} options`} onClick={onTitleMenu} className="ifs-page-header__menu" />}
+              {menuBtn}
             </div>
           </div>
           {(idNode || statusNode || views || actions || primaryAction) && <div className="ifs-page-header__row ifs-page-header__row--meta">
@@ -491,7 +501,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   const bar = (
     <div className={IFS.cx('ifs-page-header__bar', hasSteps && !stepsOut && centered && 'ifs-page-header__bar--center')}>
       <div className="ifs-page-header__left">
-        <div className="ifs-page-header__text">{titleBits}{idNode}{statusNode}</div>
+        <div className="ifs-page-header__text">{titleBits}{idNode}{menuBtn}{statusNode}</div>
         {views && <><span className="ifs-page-header__divider" aria-hidden="true" />{views}</>}
       </div>
       {hasSteps && !stepsOut && <div className="ifs-page-header__center">{center}</div>}
