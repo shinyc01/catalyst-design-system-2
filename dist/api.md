@@ -1,16 +1,16 @@
 # IFS DS kit — component API
 
-Kit version 2.0.3, generated 2026-11-19. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.3, generated 2026-11-20. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
-read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant (details: guide/usage.md). `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
+read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
 ## format
 
-`IFS.format` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: https://shinyc01.github.io/catalyst-design-system-2/guide/content.md
+`IFS.format` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: https://shinyc01.github.io/catalyst-design-system-2/guide/rules.md (section 8)
 
 ```
 IFS.format: one way to show money, numbers, percentages, dates, times and fiscal years everywhere.
-Rules and examples: guide/content.md (section 6). Built on Intl, so it follows the locale; en-US is the default.
+Rules and examples: guide/rules.md (section 8). Built on Intl, so it follows the locale; en-US is the default.
 
 IFS.format.money(v, { compact = 'auto', decimals, unit, sign, currency = 'USD', locale })
   compact 'auto' (default): under $10,000 in full ("$8,450"), then K / M / B with 3 significant digits
@@ -693,7 +693,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 363× (Explore, Build, Command, Plan, Value) · usual: Color white 84% · Size s (20) 64%
 Figma: badge-atom (83:52162)
-Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, uppercase caption; info = black fill
+Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, sentence-case Label/M/medium caption; info = black fill
 with text/info + icon/info, as the Patterns source-card draws it), borderless (drops the black badge's border/medium edge —
 the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
@@ -745,8 +745,8 @@ buttonRight = icon name (Figma "button right": tertiary S icon-button), onButton
 **Tier:** Component
 **In handovers:** placed 104× (Plan) · usual: Size m 100% · Loading false 100%
 Figma: stat-card-organism (3643:35055)
-Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over an UPPERCASE
-caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
+Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
+Label/M/medium caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
 badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
 compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;
 without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
@@ -945,7 +945,7 @@ Keyboard: one tab stop; arrows move, Home/End, Enter/Space select.
 ### Weekday
 **Tier:** Component
 **In handovers:** only inside other components (322×); don't place on its own
-Figma: weekday-atom (2704:74414) — the weekday header cell of the calendar (Caption/regular-UPPER, text/tertiary, 32×16).
+Figma: weekday-atom (2704:74414) — the weekday header cell of the calendar (Label/M/medium in sentence case, text/tertiary, 32×16; Figma: Caption/regular-UPPER).
 Props: children = day text (Figma "day", e.g. "Wed"). Figma's show-badge / timeline props are not wired to any layer.
 `function Weekday({ children, className, ...rest })`
 
@@ -1201,7 +1201,7 @@ AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map 
 Bar, sidebar, header and panel stay put; only content scrolls.
 Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
 e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
-Panel mode (decided Nov 19, guide/layout.md): set by the panel's JOB, not the screen.
+Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
         whole page together (readiness evaluation, Cooper chat, comments, widgets, approval chain). Default.
   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
@@ -1247,7 +1247,7 @@ state open (gallery), aria-label. Keyboard: Enter / Space / ↓ open; ↑ ↓ mo
 Figma: compare-header (0c79e831e79cbfa3259c5619e66bd0f64cc45b2a; Patterns copy 52:82780) — the "COMPARE TO" bar above a compare view.
 A 440px blurred box (label + compare-dropdown) on a 42px full-width row; boolean "Show cooper-banner" adds a 398px
 cooper-banner beside it (hidden by default; the banner itself is a separate component not built here).
-Props: label (default "Compare to", drawn uppercase), cooperBanner (node → show-cooper-banner), every CompareDropdown prop.
+Props: label (default "Compare to", sentence case, Label/M/medium), cooperBanner (node → show-cooper-banner), every CompareDropdown prop.
 `function CompareHeader({ label = 'Compare to', cooperBanner, className, style, ...dropdown })`
 
 ### CompareView
@@ -1348,8 +1348,11 @@ style (position the popover), children.
 
 ### ApprovalChainTable
 **Tier:** Pattern helper
-Pattern helper: the approval chain table with note/push/filter rules — built from ApprovalStatus, Avatar, Button, Menu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table with a status rail (status + dashed connector),
-USER (filter when > 3 approvers), NOTE, and in the full view COMMENT, LAST NOTIFIED and an action column.
+Pattern helper: the approval chain table with note/push/filter rules — built on the kit Table (IFS.Table in a table card) with
+ApprovalStatus, Avatar, Button, Menu, Popover, Search, Chip, TextArea, Tooltip, EmptyState. Figma draws it on this page — a table
+with a status rail (status + dashed connector), USER (filter when > 3 approvers), NOTE, and in the full view COMMENT,
+LAST NOTIFIED and an action column. Rows, header, cells, spacing and sideways scroll are the kit Table's (Nov 19); the only
+difference is the NOTE cell: a TextArea editor, so a row grows with its note (the row height token stays the minimum).
 Props:
   approvers / defaultApprovers / onChange(approvers) — [{ id, name, role, avatar (Avatar props), status success|awaiting|empty|rejected|revisions,
     note: { text, authorId } | null, comment, lastNotified, pushedAt (ms), replaced: { name, avatar } (previous reviewer), action: { label, icon, onClick } }]
@@ -1412,7 +1415,7 @@ Props: person { id, name, initials, title (job role), avatar: Avatar props, acce
 
 ### CollaboratorSection
 **Tier:** Pattern helper
-Section of the panel: H4 UPPER heading (text/secondary, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
+Section of the panel: Label/M/medium heading (sentence case) (text/secondary, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
 `function CollaboratorSection({ title, cooper, children })`
 
 ### RoleFilter
@@ -1426,7 +1429,7 @@ Props: roles, value (array; empty = All) / onChange.
 ### CollaboratorsPanel
 **Tier:** Pattern helper
 ───────────────────────────── CollaboratorsPanel ─────────────────────────────
-Pattern component: popover-organism "Collaborators" (360 wide) opened from CollaboratorsButton.
+Pattern component: popover-organism "Collaborators" (small popover width, 320; Nov 19, was 360) opened from CollaboratorsButton.
 Default: IN PROJECT (owner first, then joined) · AWAITING · SUGGESTED PEOPLE BY COOPER. Search "Invite by name or role…" + role filter:
   focused and empty → Suggested + Recently; typing → RESULTS (name or job role, filtered by role); nothing → empty-state-organism with
   suggestion chips that fill the query. Hovering a person who can be invited shows "+"; clicking opens InviteCollaboratorModal.
@@ -1940,7 +1943,7 @@ loading (Figma Loading=True skeleton).
 **Tier:** Pattern helper
 ------------------------------------------------------------------------------------------ 
 Figma: the "Slot" blocks of the Evidence chain drawer (Patterns 31:76667 / 31:76673 / 31:76678): a 1px top rule, a
-Caption/regular-UPPER title and a list of source cards (8px apart). Titles in Figma: "Why it's flagged", "Decisions",
+Label/M/medium title (sentence case; Figma: Caption/regular-UPPER) and a list of source cards (8px apart). Titles in Figma: "Why it's flagged", "Decisions",
 "Considered but not included". Props: title, items = [SourceCard props + key] or children.
 `function EvidenceSection({ title, items, children, className, ...rest })`
 
@@ -1983,7 +1986,7 @@ Examples (read before using any component below — shows the data shapes props 
 ### ExploreHeader
 **Tier:** Component
 **In handovers:** placed 274× (Explore, Command) · usual: Cooper badge no 63%
-Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the 40px bar under the nav bar on the Explore map.
+Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
 Left (Figma "Content right slot"): smart-search-organism (248 wide, 28 tall, "Search for…") + icon-button-filter (round, 28).
 Right ("container-left"): collaborators button (Button Tertiary S, users-group, "3/5") + icon-button-comment.
 Props: search = SmartSearch props (placeholder, onSubmit, suggestions…), onFilter, filtersApplied (filter dot),
@@ -2006,7 +2009,7 @@ openLabel (arrow name, default "Open"), loading, state hover|focus (forced, gall
 ### SideNavTree
 **Tier:** Pattern helper
 Pattern: SideNavTree — navigation-panel-organism (sidebar-organism View=Expanded/Collapsed) whose Content slot holds a
-folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H3/UPPERCASE + collapse).
+folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H4 in sentence case + collapse).
 Tree row: 32px, padding 8/8/8/4, caret (folders) + chat-folder 16 + Body/M/medium label; children indent 18px with a
 hairline guide. The open path (folders above the current row) gets a border/base outline; the current row also the
 background/elevation-1/secondary fill. Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
@@ -2023,8 +2026,8 @@ the sidebar is handed `narrow: true` so it can start collapsed (icon rail) — i
 "the sidebar collapses to an icon rail on narrow widths before it disappears".
 Props: stages, value / defaultValue / onChange (stage), screens = { [stage]: { sideNav, header, bottom, content } } where each
 entry may be a node or a function ({ stage, narrow, width }) → node; navBar = extra NavBar props;
-collapseNavBelow (default 800), collapseSideBelow (default 1280, inferred), height.
-`function StagedAppShell({ stages = NB_STAGES, value, defaultValue, onChange, screens = {}, navBar = {}, collapseNavBelow = 800, collapseSideBelow = 1280, height, className, style, ...rest })`
+collapseNavBelow (default 800), collapseSideBelow (default 1024 = md, the side-nav rule in guide/rules.md 4.7; was 1280), height.
+`function StagedAppShell({ stages = NB_STAGES, value, defaultValue, onChange, screens = {}, navBar = {}, collapseNavBelow = 800, collapseSideBelow = 1024, height, className, style, ...rest })`
 
 ## patterns-table
 
@@ -2247,7 +2250,7 @@ A row of stat-card-organism (StatCard). Props: rows 1 | 2 (Figma Type "1 row" = 
 **In handovers:** only inside other components (38×); don't place on its own
 ------------------------------------------------------------------------------------------ 
 Figma: preview-widget-card-organism (key c30262b5a98acb4175dc9c5a891d9198ce782de6; Patterns copy 331:492728)
-The thumbnail inside a widget card: a 7px uppercase heading over a skeleton of the chart the widget adds.
+The thumbnail inside a widget card: a 7px sentence-case heading over a skeleton of the chart the widget adds.
 Figma draws the skeleton as a raster image; here it is drawn with blank blocks (no data, never focusable).
 Props: type strategic-objectives | framework-coverage | portfolio | investment-value, title (heading; defaults per type).
 `function PreviewWidgetCard({ type = 'strategic-objectives', title, className, ...rest })`
@@ -2290,13 +2293,13 @@ pattern notes ask for it — drawn as the same atom turned 90°).
 ------------------------------------------------------------------------------------------ 
 Figma: widget-view-change-position (Patterns local component 331:509936)
 The compact chip a widget collapses into while its position is being changed (follows the cursor).
-Props: title (Label/L/UPPER, text/tertiary). The ghost icon-button carries the drag mark.
+Props: title (H4, sentence case, text/tertiary). The ghost icon-button carries the drag mark.
 `function WidgetViewChangePosition({ title, className, ...rest })`
 
 ### WidgetFrame
 **Tier:** Pattern helper
 Pattern: WidgetFrame — the frame every widget on a dashboard / report is drawn in. It is the kit's chart frame
-(DataVizCard variant chart: 6px padding, uppercase header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
+(DataVizCard variant chart: 6px padding, sentence-case header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
 widget ⋮ menu. Figma draws widgets as content-card-organism (Size M, 6px padding) with this header in its top slot.
 Props: title, children (body), state hover | drag | ghost (forced), menu = [{ label, icon, onClick, disabled, items }],
 onEditWithCooper, onCooper, grabProps (spread on the ⋮⋮ handle), bare (body has no padding — kit charts bring their own; a single
@@ -2408,9 +2411,9 @@ remove control, default system-close; Delete/Backspace also removes), disabled, 
 **In handovers:** placed 3× (Build, Command) · usual: type calendar 100%
 Figma: date-picker-molecule (3406:9510) with date-atom (1440:5201) cells
 Props: value/defaultValue/onChange (Date; with range=true {start, end}), month/defaultMonth/onMonthChange (any Date in that month),
-today (Date), events ({ 'YYYY-MM-DD': ['danger','warning','info'] }), weekStartsOn (default 1 = Monday), min/max (Dates).
+today (Date), events ({ 'YYYY-MM-DD': ['danger','warning','info'] }), weekStartsOn (default: the user's locale, IFS.format.weekStart(); 0 = Sunday, 1 = Monday), min/max (Dates).
 Keyboard: arrows move a day/week, PageUp/PageDown change month, Home/End week start/end, Enter/Space select.
-`function Calendar({ value, defaultValue = null, onChange, range = false, month, defaultMonth, onMonthChange, today = new Date(), events = {}, weekStartsOn: weekStartProp, min, max, autoFocus, className, ...rest })`
+`function Calendar({ value, defaultValue = null, onChange, range = false, month, defaultMonth, onMonthChange, today = new Date(), events = {}, weekStartsOn: weekStartProp, min, max, autoFocus, fill, className, ...rest })`
 
 ### DatePicker
 **Tier:** Component
@@ -2443,7 +2446,7 @@ primaryAction / secondaryAction = { label, icon, onClick, type } (show-primary-b
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: empty-state-spinner-molecule (3782:24081)
 Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."; the kit uses the
-ellipsis character, guide/content.md), showText (show-text).
+ellipsis character, guide/rules.md 8.23), showText (show-text).
 `function Spinner({ text = 'Loading…', showText = true, className, ...rest })`
 
 ### LoadingMore

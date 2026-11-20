@@ -500,6 +500,9 @@
 --inner-shadow-map-highlight-evaluated: inset 0 0 12px 7px rgba(43,127,255,0.4)
 --inner-shadow-map-highlight-grey: inset 0 0 12px 7px rgba(84,84,84,0.4)
 --drop-shadow-pin: 0 0 10px 0 rgba(10,14,21,0.2)
+--badge-h-s: var(--size-20)
+--badge-h-m: var(--size-24)
+--badge-h-l: var(--size-32)
 --type-caption: var(--type-s) /* retired: Caption = Small */
 --type-s: 0.75rem/1rem
 --type-m: 0.875rem/1.25rem
@@ -520,8 +523,11 @@
 --table-row-h: 3.25rem
 --table-header-h: 2rem
 --table-header-pad-top: var(--space-0)
---table-header-pad-bottom: var(--space-stack)
+--table-header-pad-bottom: var(--space-0)
 --density-scale: 1.05
+--badge-h-s: var(--size-24)
+--badge-h-m: var(--size-28)
+--badge-h-l: var(--size-36)
 --type-caption: var(--type-s) /* retired: Caption = Small */
 --type-s: 0.875rem/1.25rem
 --type-m: 1rem/1.5rem
@@ -542,8 +548,11 @@
 --table-row-h: 4rem
 --table-header-h: 2.5rem
 --table-header-pad-top: var(--space-0)
---table-header-pad-bottom: var(--space-stack)
+--table-header-pad-bottom: var(--space-0)
 --density-scale: 1.2
+--badge-h-s: var(--size-20)
+--badge-h-m: var(--size-24)
+--badge-h-l: var(--size-28)
 --type-caption: var(--type-s) /* retired: Caption = Small */
 --type-s: 0.6875rem/0.875rem /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */
 --type-m: 0.75rem/1rem
@@ -564,7 +573,7 @@
 --table-row-h: 2.5rem
 --table-header-h: 1.5rem
 --table-header-pad-top: var(--space-0)
---table-header-pad-bottom: var(--space-stack)
+--table-header-pad-bottom: var(--space-0)
 --density-scale: 0.95
 
 # Text-style classes (Figma text styles) and effect classes
@@ -581,7 +590,6 @@
 .t-body-s-regular
 .t-label-l-medium
 .t-label-m-medium
-.t-label-m-upper
 .t-code-m-regular
 .t-code-m-medium
 .t-code-s-regular
