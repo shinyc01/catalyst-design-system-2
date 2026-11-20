@@ -891,7 +891,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 **Rules:**
 1. The trigger shows wherever Cooper-written content exists, at every confidence level (never hidden because confidence is high).
 2. From a card: the drawer floats over the content area top-end, 12 in from the page header, the end edge and the bottom sheet. Another card's button switches the chain; the same button, ✕ or Esc closes it and focus returns. From System confidence: it opens in the panel's place, below the nav bar, over the page header, ending 12 above the bottom sheet. One chain at a time; its trigger shows as expanded.
-3. Confidence zones set what Cooper does: under 70% Reject (Cooper doesn't apply; a reviewer decides), 70–90% Review (Cooper fills in and waits for a person), over 90% Approve (applied automatically; the chain stays available). Exactly 90 is Approve. Every value carries its own confidence.
+3. Confidence zones set what Cooper does: under 70% Reject (Cooper doesn't apply; a reviewer decides), 70–90% Review (Cooper fills in and waits for a person), over 90% Approve (applied automatically; the chain stays available). Exactly 90 is Review; Approve starts above 90 (2.0.4). Every value carries its own confidence.
 4. The drawer layout is the same in every zone: only the marker and the behaviour change.
 5. Rationale is never empty: Why it's flagged → Decisions → Considered but not included; sections 12 apart with a 1px top rule and a Label/M/medium title; cards 8 apart.
 6. Peer benchmark compares records of the same type, age band and duty. It is the only tab that can be empty: "Peer benchmark isn't available", no action; the tab stays rendered and selectable. The tab choice persists while the drawer is open.

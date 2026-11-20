@@ -1997,7 +1997,7 @@ Placement is the screen's job: it floats over the content, top-right, 12px in (s
 **Tier:** Pattern helper
 ------------------------------------------------------------------------------------------ 
 Confidence zones (Figma dev note 31:79279): <70 % Reject, 70–90 % Review, >90 % Approve. Boundaries follow EvidenceStrength
-(value < 70 reject, < 90 review, else approve) so the bar and the behaviour never disagree. Returns { zone, label, autoApply, behaviour } for a value. Thresholds are the EvidenceStrength defaults.
+(value < 70 reject, 70 to 90 review, over 90 approve; exactly 90 is Review) so the bar and the behaviour never disagree. Returns { zone, label, autoApply, behaviour } for a value. Thresholds are the EvidenceStrength defaults.
 `function evidenceZone(value, thresholds = [70, 90])`
 
 ## patterns-nav-bar

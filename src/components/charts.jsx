@@ -1015,7 +1015,7 @@ function ProgressRing({ value = 0, size = 24, label = 'Progress', className, ...
 // labels = [reject, review, approve] captions. Type (Reject|Review|Approve) follows the value: the active band is drawn solid.
 function EvidenceStrength({ value = 0, thresholds = [70, 90], min = 50, title = 'Evidence strength', labels, className, ...rest }) {
   const [t1, t2] = thresholds;
-  const type = value < t1 ? 'reject' : value < t2 ? 'review' : 'approve';
+  const type = value < t1 ? 'reject' : value <= t2 ? 'review' : 'approve'; // exactly t2 (90) is still Review
   const caps = labels || [`<${t1}% Reject`, `${t1}–${t2}% Review`, `>${t2}% Approve`];
   const seg = [[min, t1], [t1, t2], [t2, 100]];
   const k = type === 'reject' ? 0 : type === 'review' ? 1 : 2;

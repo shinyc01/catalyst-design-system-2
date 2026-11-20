@@ -116,12 +116,12 @@ function PeerBenchmark({ description, summary = [], scope, empty, emptyHeading =
 
 /* ------------------------------------------------------------------------------------------ */
 // Confidence zones (Figma dev note 31:79279): <70 % Reject, 70–90 % Review, >90 % Approve. Boundaries follow EvidenceStrength
-// (value < 70 reject, < 90 review, else approve) so the bar and the behaviour never disagree. Returns { zone, label, autoApply, behaviour } for a value. Thresholds are the EvidenceStrength defaults.
+// (value < 70 reject, 70 to 90 review, over 90 approve; exactly 90 is Review) so the bar and the behaviour never disagree. Returns { zone, label, autoApply, behaviour } for a value. Thresholds are the EvidenceStrength defaults.
 function evidenceZone(value, thresholds = [70, 90]) {
   const [t1, t2] = thresholds;
   if (value < t1) return { zone: 'reject', label: 'Reject', autoApply: false, fills: false,
     behaviour: 'Cooper doesn’t apply the value — a reviewer decides manually.' };
-  if (value < t2) return { zone: 'review', label: 'Review', autoApply: false, fills: true,
+  if (value <= t2) return { zone: 'review', label: 'Review', autoApply: false, fills: true,
     behaviour: 'Cooper proposes the value and fills it in, then waits for a human to check it.' };
   return { zone: 'approve', label: 'Approve', autoApply: true, fills: true,
     behaviour: 'Cooper applies the value automatically; the Evidence chain stays open to inspection.' };
