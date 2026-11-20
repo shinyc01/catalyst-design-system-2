@@ -635,8 +635,8 @@ function placeMapSlots(el) {
   setVar(el, '--slot-bottom-w', w + 'px');
   setVar(el, '--slot-bottom-x', Math.min(Math.max((W - w) / 2, s0), W - e0 - w) + 'px');
 }
-// watchMapSlots(): keep every `.ifs-slots` placed as panels open, close and resize. Started once on load; safe to call again.
 let slotWatch = null;
+// watchMapSlots(): keep every `.ifs-slots` placed as panels open, close and resize. Started once on load; safe to call again.
 function watchMapSlots() {
   if (slotWatch || typeof window === 'undefined' || typeof MutationObserver === 'undefined') return;
   let mo = null, busy = false;

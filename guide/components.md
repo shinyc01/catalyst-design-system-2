@@ -27,7 +27,7 @@ How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a
 | Read-only status or category | `Badge`, `Indicator` | `Chip` |
 | Status that matters (risk, health) | `RiskStatus` | `StatusIndicator` (dot only) |
 | Readiness / completion gate | `ReadinessStatus` | `RiskStatus` |
-| Stages (L1) / sections in a stage (L2) | `NavBar` / `SideNav` | `Tabs` |
+| Stages (L1) / a stage's sections or one entity's own pages (L2, rule 7.19) | `NavBar` / `SideNav` | `Tabs` |
 | Peer views in a page; table filter on a library page | `Tabs` | `SegmentedControl` |
 | Progress through steps | `Stepper` (non-interactive) | `Tabs` |
 | Place in a hierarchy, go up a level | `Breadcrumb` | Ghost `Button` |
@@ -236,7 +236,7 @@ Family note: Atoms are items; organisms are the containers with slots.
 Use: One sidebar row: section (Parent), sub-section (Child), group header (Subtitle).
 
 ### navigation-panel-organism · `SideNav`
-Use: Level 2 navigation: the sidebar listing the pages of where you are, a stage's sections or one entity's own pages (when to show it: rule 7.19). One sidebar for all of them; only the list changes. Only its header (stage title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.
+Use: Level 2 navigation: the sidebar listing the pages of where you are, a stage's sections or one entity's own pages (when to show it: rule 7.19). One sidebar for all of them; only the list changes. Only its header (level title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7.
 
 ### tab · `Tabs`
 Use: One tab; use `show-counter` for table filter tabs.
@@ -370,7 +370,7 @@ Use: Draggable node in a side list, dropped onto the canvas.
 Use: The node on the framework/map canvas — the named exception that earns its own component because of canvas behaviour (drag/connect, map-tied selection).
 
 ### approval-chain-timeline · `ApprovalChain`
-Use: One approver step in an approval chain. Timeline or table by place: in a side panel or popover (checking progress: the Approval chain button) use the timeline; on a full approval page (managing who signs off) use `ApprovalChainTable` (rule 10 of the Approval chain pattern).
+Use: One approver step in the display-only approval history inside `ActivityPanel` (rule 7.9). The chain people act on, on the approval page and in the Approval chain panel, is `ApprovalChainTable` (Approval chain rule 10).
 
 ### version-history-timeline · `VersionHistory`
 Use: A version-history entry.
@@ -570,7 +570,7 @@ Use: One stage tab in the nav bar; building block.
 Use: IFS Copperleaf logo in the nav bar and log-in screen.
 
 ### sidebar-pattern · `SideNav`
-Use: The ready-made L2 sidebar for a stage; one component, each stage supplies its own section list.
+Use: The ready-made L2 sidebar; one component, each stage or entity supplies its own page list (rule 7.19).
 
 ### header-pattern · `PageHeader`
 Use: Figma's header pattern with toggles for stepper, canvas header, Cooper recommendation and collaborators; build it with `PageHeader`.
@@ -738,7 +738,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 **Rules:**
 1. One bar on every screen (rule 4.9): logo at the start, actions at the end, exactly one stage active.
 2. Stage order is fixed: Command, Value, Explore, Build, Plan, Results.
-3. The sidebar belongs to the stage; a stage with no sections has no sidebar and gives the content the full width.
+3. The sidebar shows the pages of where you are (rule 7.19): a stage's sections, or one entity's own pages; a level with no pages to move between has no sidebar and gives the content the full width.
 4. Switching a stage changes the whole shell below the bar. The active tab gets the header-item active fill.
 5. Sidebar rows: Value picks a section (title and table change). Plan: a row selects that plan and expands its folder; the caret toggles a folder without selecting; the open path is outlined, the current folder filled. `arrow-bar-left` / `-right` collapse and expand the sidebar.
 6. The hamburger list (rule 5.7) opens 4 under the button; picking a stage closes it.
@@ -867,11 +867,11 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 7. The Comment column shows exactly what the approver wrote at decision time and updates when they edit it; empty if nothing. Never invent text.
 8. Push: only clock (awaiting) rows; manual push is attributed to the owner, has no threshold, 1 per reviewer per 24h; it stamps Last notified; the "Notified" tooltip shows a live countdown (hours rounded up, minutes under 1h). A reviewer pending for N days (§10 Open) is notified in-app (bell + toast) and by email; auto-reminders then every N days, 3 at most, impersonal. All stop when the reviewer acts, the version is withdrawn, the reviewer is replaced or the approval closes. Every push is logged in Activity; notification preferences apply.
 9. User filter: only with more than 3 approvers; applies live; chips (All, Approved, Awaiting, Rejected, Revisions required) are multi-select and All resets them; search matches name or role (✕ clears it); chips and search combine; the counter = 1 per chip other than All + 1 for a non-empty query; Clear all resets both; no match keeps the filter open with "No results found"; outside click closes. Awaiting also matches not-acted rows.
-10. **Several stages on one page** (Plan › Approve: Executive, Technical, Financial): one `ApprovalChainTable` with `stages`, not one table per stage. Each stage is a group row of the table (name, then status + done/total at the end; the column header under each open stage). A stage is open, folded or locked as the case needs: locked shows a lock and when it opens ("Opens when Executive is approved"); a fully approved stage folds. **Timeline or table by place:** the full approval page uses the table; a side panel or popover that only shows progress (the Approval chain button) uses the `ApprovalChain` timeline.
+10. **Several stages on one page** (Plan › Approve: Executive, Technical, Financial): one `ApprovalChainTable` with `stages`, not one table per stage. Each stage is a group row of the table (name, then status + done/total at the end; the column header under each open stage). A stage is open, folded or locked as the case needs: locked shows a lock and when it opens ("Opens when Executive is approved"); a fully approved stage folds. The kit writes each stage's status itself: Approved (all approved), Changes requested (anyone rejected or asked for revisions), else Under review; a stage's `collapsed` sets how it starts. The Approval chain panel (the button on the framework, popover or sidebar) uses the same `ApprovalChainTable` in its compact view; the `ApprovalChain` timeline is only the display-only history in `ActivityPanel` (rule 7.9).
 
 ### Pattern: Confidence, trace & readiness
 
-**For:** three right-hand panels with the system's verdict on a framework. **System Confidence**: for the author on Review (readiness by gate + open questions and warnings). **Trace Report**: a reaction to a user change the system considers incorrect (errors, warnings, notes, one at a time). **Readiness Evaluation**: for a stakeholder reviewing someone else's framework (see Approval chain).
+**For:** three right-hand panels with the system's verdict on a framework. **System Confidence**: for the author on the work steps inside an entity (Build › Shape and Refine, Plan › Setup and Compare; framework Review), open at the start (rule 4.6): readiness by gate + open questions and warnings. **Trace Report**: a reaction to a user change the system considers incorrect (errors, warnings, notes, one at a time). **Readiness Evaluation**: for a stakeholder reviewing someone else's framework (see Approval chain).
 **Parts:** `useIssueReport({ issues, kinds, gates, onResolvedAll })` with `CONFIDENCE_KINDS` (Open questions, Warnings) or `TRACE_KINDS` (Errors, Warnings, Notes) · `SystemConfidence` = `Panel` + `ContentCard` with `ConfidenceGates` (`ProgressRing`, a `ReadinessStatus` per gate with XS `Indicator`s and tooltips), `IssueKindSwitch` (`SegmentedControl` S with counters), `IssueNavigator` · `TraceReport` `type="drawer"` (floating over the canvas, collapse only) or `type="sidebar"` (`Panel`), footer Undo (Tertiary L) · `IssueNavigator`: `Pager progress="resolved"`, issue title (H3) and description, then solutions (`IssueSolution`), Upload file / My answer (`IssueAnswerField`), a single Okay, or the Applied / Answered card; "All" lists `IssueListItem`s · collapsed rail `Panel expanded={false}` with `dot`.
 **Rules:**
 1. Red = open questions or errors; orange = warnings. The rail dot follows (none when all is OK). The Approval readiness total matches the segmented counters.
@@ -902,7 +902,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 **For:** a record's history: the activity log, saved versions, the approval chain, and comparing two versions or benchmarks. `ActivityPanel` wherever a record offers "Activity"; `CompareView` for a framework's Compare view.
 **Parts:** `ActivityPanel` (`over` panel, 380, "Activity", ✕): `SegmentedControl` S Version History | Approval Chain, `SmartSearch` with suggested questions, `VersionHistory` (version cards on the timeline base: title, "Current" `Badge`, description, last-activity author `Avatar` XS and time, ⋯ `Menu`; expanded: nested `Timeline` of entries with type `Badge` Comment / Action / Auto-action, Cooper `Avatar type="cooper"`), `ApprovalChain` (display only), `EmptyState`, `Modal`, `toast` · `CompareView`: `CompareHeader` + `CompareDropdown` (`CompareDropdownList`), four `StatCard`s with `compare`, `Sankey` with current and baseline sources.
 **Rules:**
-1. Open from a library row ⋯ › Activity or the framework title ⌄ › Activity.
+1. Open from a library row ⋯ › Activity, or the entity header's title menu ▾ (after the ID; rule 5.1).
 2. The segmented control exists only when both views have content. A record with no approval process (e.g. a study) opens on Version history with no control (`approvals={undefined}`). A record with a process but no chain yet keeps it and shows "No approval chain yet / Approvers appear here after you send this framework for approval".
 3. Search filters the panel (author, date, status, what changed: "What did A. Singh do?", "Show comments only", "What did Cooper change automatically?"; also version names, descriptions, authors, dates and log text); matching versions expand to the matching entries. It never answers in a chat bubble. No match: "No results found" + chips; ✕ clears.
 4. Versions: collapsed, newest first; ⋯ on hover; the caret opens the version's full log (the author row hides). Each card shows the last person who changed that version. Click a card or name to open that version read-only.

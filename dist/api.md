@@ -457,12 +457,13 @@ across all groups (Q1 2027 = 0, Q2 2027 = 1, … ).
 `function TimelineChart({ groups = [], phases = [], title = 'Phase', onAddPhase, state, className, ...rest })`
 
 ### placeMapSlots
-**Tier:** Component
+**Tier:** Utility (function; the kit runs it for you)
 placeMapSlots(el): place the top and bottom bars of one `.ifs-slots` container now (normally the kit does this for you)
 `function placeMapSlots(el)`
 
 ### watchMapSlots
-**Tier:** Component
+**Tier:** Utility (function; the kit runs it for you)
+watchMapSlots(): keep every `.ifs-slots` placed as panels open, close and resize. Started once on load; safe to call again.
 `function watchMapSlots()`
 
 ## charts
@@ -754,7 +755,7 @@ buttonRight = icon name (Figma "button right": tertiary S icon-button), onButton
 **Tier:** Component
 **In handovers:** placed 104× (Plan) · usual: Size m 100% · Loading false 100%
 Figma: stat-card-organism (3643:35055)
-Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
+Props: size m|s (pass size="s" unless rule 2.6 says M: S under any page title and inside cards; M only for a key-figure row with no title above), title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
 Label/M/medium caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
 badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
 compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;
@@ -1177,7 +1178,7 @@ user = { initials, name } or avatar (node), actions (node: replaces the default 
 **In handovers:** placed 1,023× (Build, Value, Plan, Command) · usual: status progress bar 67%
 Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-onTitleMenu (the ⌄ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
+onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 Narrow widths (Nov 19, measured on the header itself):
@@ -1226,6 +1227,8 @@ Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the
 Side nav below md: starts as a rail and expands over the content; outside click and Esc collapse it again.
 The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a
 panel with a controlled `expanded`, is left alone.
+Content (rule 4.3): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
+pages (rule 4.10) fill the content area instead.
 `function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, className, style, ...rest })`
 
 ## patterns-activity

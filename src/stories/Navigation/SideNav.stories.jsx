@@ -9,7 +9,7 @@ export default {
   component: IFS["SideNav"],
   tags: ["autodocs","needs-review"],
   parameters: {
-    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Handovers vs the Nav bar pattern: the Nav bar pattern says Build has no sections and therefore no sidebar, yet the Build handover places `sidebar-organism` on most screens (~1,000 instances). The kit follows the pattern note. Which is right?\n\n**Figma:** navigation-panel-organism (1545:2808)\n\n\nUse: Level 2 navigation: the sidebar listing the pages of where you are, a stage's sections or one entity's own pages (when to show it: rule 7.19). One sidebar for all of them; only the list changes. Only its header (stage title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7." } },
+    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Handovers vs the Nav bar pattern: the Nav bar pattern says Build has no sections and therefore no sidebar, yet the Build handover places `sidebar-organism` on most screens (~1,000 instances). The kit follows the pattern note. Which is right?\n\n**Figma:** navigation-panel-organism (1545:2808)\n\n\nUse: Level 2 navigation: the sidebar listing the pages of where you are, a stage's sections or one entity's own pages (when to show it: rule 7.19). One sidebar for all of them; only the list changes. Only its header (level title + collapse) is sticky when the list scrolls. Exactly one item is current. Folding: rule 4.7." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1545-2808"},
   },
 };

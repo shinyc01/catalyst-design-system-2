@@ -1,6 +1,6 @@
 # Catalyst Design System 2.0
 
-A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7ar`), with user-selectable density and a type and spacing scale set against best-in-class design systems. Current version: **2.0.3**.
+A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7ar`), with user-selectable density and a type and spacing scale set against best-in-class design systems. Current version: **2.0.4**.
 
 ## Use it
 
@@ -63,6 +63,16 @@ Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IF
   - One Menu, one StatCard, one NavBar, one EvidenceButton, one legend; charts use data-viz colours only.
   - Calendar from the locale; tables scroll with column minimums; reflow at 400% in scope; start / end instead of left / right.
   - Docs merged into `guide/rules.md` and `guide/components.md` (values live there).
+
+- **2.0.4** (Nov 20):
+  - Side nav shows the pages of where you are; none on a stepper flow inside an entity.
+  - Page container `.ifs-page` (page margin on all four sides).
+  - Thin header height from its content; entity header = back, name, ID, title menu ▾ (Activity), status, the same on every step.
+  - Workflow panels (System confidence) start open; extra-information panels start folded.
+  - Card title row = title · meta · actions (`ContentCard meta`); stat card S under page titles and inside cards, M only with no title above.
+  - Cooper bar by page (`BottomSheet type="documents"` inside an entity).
+  - Table groups open / collapsed / locked; `ApprovalChainTable stages` for several approval stages.
+  - The kit places the map's top and bottom bars itself (`placeMapSlots`), no flash; StagedAppShell removed; Storybook Foundations pages.
 
 Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).
 

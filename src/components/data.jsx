@@ -141,7 +141,7 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
 }
 
 // Figma: stat-card-organism (3643:35055)
-// Props: size m|s, title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
+// Props: size m|s (pass size="s" unless rule 2.6 says M: S under any page title and inside cards; M only for a key-figure row with no title above), title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
 // Label/M/medium caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
 // badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
 // compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;

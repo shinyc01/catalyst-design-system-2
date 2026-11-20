@@ -353,7 +353,7 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 
 // Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 // page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-// onTitleMenu (the ⌄ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
+// onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, e.g. segmented icon control; a divider precedes it),
 // center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 // The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 // Narrow widths (Nov 19, measured on the header itself):
@@ -568,6 +568,8 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // Side nav below md: starts as a rail and expands over the content; outside click and Esc collapse it again.
 // The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a
 // panel with a controlled `expanded`, is left alone.
+// Content (rule 4.3): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
+// pages (rule 4.10) fill the content area instead.
 const SHELL_SIZES = [[1920, 'xl'], [1440, 'lg'], [1024, 'md'], [600, 'sm'], [0, 'xs']];
 const shellSizeOf = w => SHELL_SIZES.find(([min]) => w >= min * rootPx() / 16)[1];
 // Outside pointer-down or Esc while `active` → onDismiss (ignores clicks inside `ref`).

@@ -24,7 +24,8 @@ const usageLine = name => {
   if (parts && usage.components[parts]) return `**In handovers:** designers place the single ${parts} items (${usage.components[parts].placed.toLocaleString('en-US')}×) in a row; use this for the row\n`;
   return usage.unused.includes(name) ? '**In handovers:** no handover screen uses it yet (may be newer than the handovers)\n' : '';
 };
-const tierOf = (fam, name) => fam === 'layout' ? 'Layout primitive' : !fam.startsWith('patterns-') || tiers.components.includes(name) ? 'Component' : 'Pattern helper';
+const UTILITIES = ['placeMapSlots', 'watchMapSlots']; // functions, not components (Nov 20)
+const tierOf = (fam, name) => UTILITIES.includes(name) ? 'Utility (function; the kit runs it for you)' : fam === 'layout' ? 'Layout primitive' : !fam.startsWith('patterns-') || tiers.components.includes(name) ? 'Component' : 'Pattern helper';
 
 let out = `# IFS DS kit — component API
 
