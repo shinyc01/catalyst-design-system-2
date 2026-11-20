@@ -137,7 +137,7 @@ function evidenceZone(value, thresholds = [70, 90]) {
 //   Peer benchmark = PeerBenchmark props (`benchmark`; null/{ empty: true} → empty state, tab stays selectable).
 // Props: open / defaultOpen / onOpenChange (✕ and Esc close), value (confidence %), thresholds,
 // tab / defaultTab ('rationale') / onTabChange, title, floating (slide-in animation), className, style.
-// Placement is the screen's job: it floats over the content, top-right, 12px in (see the pattern screens).
+// Placement is the screen's job: it floats over the content, top-end, --space-300 in (components.md Evidence rule 2).
 function EvidenceChainDrawer({ open, defaultOpen = true, onOpenChange, value = 87, thresholds = [70, 90], tab, defaultTab = 'rationale', onTabChange,
   rationale = [], benchmark, title = 'Evidence chain', floating = true, className, style }) {
   const [isOpen, setOpen] = useCtl(open, defaultOpen, onOpenChange);

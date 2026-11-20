@@ -344,7 +344,7 @@ This section is writing guidance for screens, as in other large design systems (
 - Data viz round: stacked column (VerticalBarChartItem vs DataVizGroupedBar) and bar colours.
 - Map: details panel in two columns or stacked; Build → map preview entry; the folded Study rail looks poor.
 - ApprovalChain timeline vs ApprovalChainTable: both kept; revisit.
-- Sizes not yet on tokens: drawer floating offset (16), table filter popover (240), prompt button and risk pill heights, ApprovalChainPanel collapsed rail (84 vs 48), fixed heights (Cooper compact chat 360, history 400, chart empty state 388).
+- Sizes not yet on tokens: table filter popover (240), prompt button and risk pill heights, ApprovalChainPanel collapsed rail (84 vs 48), fixed heights (Cooper compact chat 360, history 400, chart empty state 388).
 - Round 1 sizing, decisions still in progress: density rule, card title row (height), pattern heights, app chrome.
 - Wide content: `--layout-max-content-width-wide` (2240) exists for data screens but has no class and nothing uses it; document a class or delete the token.
 - Auto-reminder interval "N days" (Collaboration rule 8, Approval chain rule 8): a Figma placeholder; per tenant, not decided.

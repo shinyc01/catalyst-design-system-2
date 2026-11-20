@@ -95,9 +95,9 @@
 .ifs-drawer{display:flex;flex-direction:column;width:var(--region-panel);min-width:min(var(--region-panel-min),100%);max-width:min(var(--region-panel-max),100%);overflow:hidden;
   border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha);color:var(--text-primary);
   box-shadow:inset 0 0 0 1px var(--border-base);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
-.ifs-drawer--floating{position:fixed;top:16px;bottom:16px;z-index:var(--z-index-z-floating);animation:ifs-drawer-in .2s ease-out}
-.ifs-drawer--floating.ifs-drawer--right{right:16px}
-.ifs-drawer--floating.ifs-drawer--left{left:16px}
+.ifs-drawer--floating{position:fixed;top:var(--space-400);bottom:var(--space-400);z-index:var(--z-index-z-floating);animation:ifs-drawer-in .2s ease-out}
+.ifs-drawer--floating.ifs-drawer--right{right:var(--space-400)}
+.ifs-drawer--floating.ifs-drawer--left{left:var(--space-400)}
 .ifs-drawer--floating.ifs-drawer--collapsed{bottom:auto}
 @keyframes ifs-drawer-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 .ifs-drawer__header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-50);flex:none;padding:var(--space-inset) /* height comes from the inset (was a fixed 56) */}
