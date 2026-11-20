@@ -361,7 +361,7 @@ function ChatCompactPanel(props) { return <ChatPanel size="compact" {...props} /
 // Same props as ChatCompactPanel plus prompts (Figma show-chips: PromptButton L in the empty state) + onPrompt,
 // historyOpen, onResizeStart (pointerdown on the left edge: drag to make the panel wider/narrower).
 function ChatFullPanel(props) { return <ChatPanel size="full" {...props} />; }
-ChatFullPanel.panelMode = 'push'; // AppShell panel mode by job (Nov 19): used together with the whole page
+ChatFullPanel.panelMode = 'over'; // AppShell panel mode by job (Nov 20): floats a level above the page; push is a 2.0.5+ question (PRIORITY)
 
 // ============================================================ history
 
