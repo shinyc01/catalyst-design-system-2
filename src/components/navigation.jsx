@@ -464,7 +464,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   const titleBits = <>
     {backBtn}
     <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
-    {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={16} /></button>}
+    {onTitleMenu && <IFS.IconButton icon="arrow-chevron-down" type="ghost" size="s" label={`${title} options`} onClick={onTitleMenu} className="ifs-page-header__menu" />}
   </>;
   const idNode = id && <span className="ifs-page-header__id">{id}</span>;
   // Two rows: the back button keeps its own column, so row 2 starts where the title starts; the ID and the status move together.
@@ -476,7 +476,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
           <div className="ifs-page-header__row">
             <div className="ifs-page-header__text">
               <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
-              {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={16} /></button>}
+              {onTitleMenu && <IFS.IconButton icon="arrow-chevron-down" type="ghost" size="s" label={`${title} options`} onClick={onTitleMenu} className="ifs-page-header__menu" />}
             </div>
           </div>
           {(idNode || statusNode || views || actions || primaryAction) && <div className="ifs-page-header__row ifs-page-header__row--meta">
