@@ -69,7 +69,7 @@ Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IF
   - Page container `.ifs-page` (page margin on all four sides).
   - Thin header height from its content; entity header = back, name, ID, title menu ▾ (Activity), status, the same on every step.
   - Workflow panels (System confidence) start open; extra-information panels start folded.
-  - Card title row = title · meta · actions (`ContentCard meta`); stat card S under page titles and inside cards, M only with no title above.
+  - Card title row = title · meta · actions (`ContentCard meta`); stat card S by default (`StatCard` with no `size`), `size="m"` only for a key-figure row at the top of the page with no title above.
   - Cooper bar by page (`BottomSheet type="documents"` inside an entity).
   - Table groups open / collapsed / locked; `ApprovalChainTable stages` for several approval stages.
   - The kit places the map's top and bottom bars itself (`placeMapSlots`), no flash; StagedAppShell removed; Storybook Foundations pages.
