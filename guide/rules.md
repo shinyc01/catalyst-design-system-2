@@ -256,6 +256,8 @@ Docked panels sit flush against the content-area edge; the page beside them keep
 
 Format every value with `IFS.format` (`dist/api.md` → format); it follows the user's locale (en-US default; `IFS.format.configure({ locale, currency, fyStartMonth })`). Readers are experts short of time making decisions worth millions: words are exact, short and calm.
 
+This section is writing guidance for screens, as in other large design systems (Material's writing guidelines, Carbon's and Polaris's content guidelines). Text in components (dialog titles, empty states, alerts, labels) is the screen's content, passed as props; the words in the kit's patterns and examples are samples, not rules (Nov 20).
+
 **Voice**
 8.1 Catalyst sounds like a trusted planning analyst. Conclusion first, then the reason ("Reliability is 1.1 min over target. The June storm caused most of it.").
 8.2 Specific: name the thing, the number and the time ("6 investments are 10 weeks late").
