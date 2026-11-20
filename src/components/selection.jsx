@@ -282,7 +282,7 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
 
 // Figma: segmented-control-organism (1387:244501) built from segmented-control-atom (1387:244511)
 // Props: options = [{ value, label, iconLeft, iconRight, counter, disabled, state }] (strings allowed), value/defaultValue/onChange,
-// size m | s: outer height 40 / 36 / 32 (m) and 32 / 28 / 28 (s), i.e. the segments (control height) plus a 2px track; fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
+// size m | s: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 2 smaller inside the track, each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
 function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm', fullWidth = false, className, ...rest }) {
   const opts = options.map(norm);
   const [val, setVal] = useControlled(value, defaultValue !== undefined ? defaultValue : (opts[0] && opts[0].value), onChange);
