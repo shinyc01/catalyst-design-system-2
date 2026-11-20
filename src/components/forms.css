@@ -85,7 +85,7 @@
   box-shadow:var(--ring),inset 0 0 0 1px var(--border) /* INSIDE stroke */;
   color:var(--icon-secondary);cursor:text;transition:box-shadow .12s;
 }
-.ifs-search--has-action{padding-right:var(--space-100)}
+.ifs-search--has-action{padding-inline-end:var(--space-100)}
 .ifs-search__input{
   flex:1;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;
   color:var(--text-primary);caret-color:var(--text-accent-cooper);text-overflow:ellipsis;
@@ -161,14 +161,14 @@
   position:relative;flex:none;width:var(--size-44);height:var(--size-24);margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);
   background:var(--fill);box-shadow:var(--ring),inset 0 0 0 1px var(--border);cursor:pointer;transition:background-color .15s,box-shadow .15s;
 }
-.ifs-switch__knob{position:absolute;top:50%;left:var(--size-6);width:var(--size-12);height:var(--size-12);border-radius:50%;background:var(--knob);transform:translateY(-50%);transition:left .15s,width .15s,height .15s}
+.ifs-switch__knob{position:absolute;top:50%;inset-inline-start:var(--size-6);width:var(--size-12);height:var(--size-12);border-radius:50%;background:var(--knob);transform:translateY(-50%);transition:inset-inline-start .15s,width .15s,height .15s}
 .ifs-switch--s{width:var(--size-22);height:var(--size-12)}
-.ifs-switch--s .ifs-switch__knob{left:0.1875rem;width:0.4375rem;height:0.4375rem}
+.ifs-switch--s .ifs-switch__knob{inset-inline-start:0.1875rem;width:0.4375rem;height:0.4375rem}
 .ifs-switch:hover,.ifs-switch[data-state=hover],.ifs-switch-row:hover .ifs-switch{--fill:var(--element-toggle-off-fill-hover);--border:var(--element-toggle-off-border-hover)}
 .ifs-switch:active,.ifs-switch[data-state=pressed]{--fill:var(--element-toggle-off-fill-pressed);--border:var(--element-toggle-off-border-pressed)}
 .ifs-switch[aria-checked=true]{--fill:var(--element-toggle-on-fill-default);--border:transparent;--knob:var(--icon-primary-inverse)}
-.ifs-switch[aria-checked=true] .ifs-switch__knob{left:1.4375rem;width:var(--size-18);height:var(--size-18)}
-.ifs-switch--s[aria-checked=true] .ifs-switch__knob{left:var(--size-11);width:var(--size-10);height:var(--size-10)}
+.ifs-switch[aria-checked=true] .ifs-switch__knob{inset-inline-start:1.4375rem;width:var(--size-18);height:var(--size-18)}
+.ifs-switch--s[aria-checked=true] .ifs-switch__knob{inset-inline-start:var(--size-11);width:var(--size-10);height:var(--size-10)}
 .ifs-switch[aria-checked=true]:hover,.ifs-switch[aria-checked=true][data-state=hover],.ifs-switch-row:hover .ifs-switch[aria-checked=true]{--fill:var(--element-toggle-on-fill-hover);--border:transparent}
 .ifs-switch[aria-checked=true]:active,.ifs-switch[aria-checked=true][data-state=pressed]{--fill:var(--element-toggle-on-fill-pressed);--border:transparent}
 .ifs-switch:focus-visible,.ifs-switch[data-state=focus]{outline:none;--ring:0 0 0 1px var(--focus-focus-inner),0 0 0 2px var(--focus-focus-outer)}
