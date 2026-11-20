@@ -398,7 +398,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
   return (
     <div className={cx('ifs-calendar', fill && 'ifs-calendar--fill', className)} {...rest}>
       <div className="ifs-calendar__head">
-        <span className="ifs-calendar__title" aria-live="polite">{title}<IFS.Icon name="arrow-caret-down-filled" size={12} /></span>
+        <span className="ifs-calendar__title" aria-live="polite">{title}<IFS.Icon name="arrow-caret-down-filled" size={16} /></span>
         <span className="ifs-calendar__nav">
           <IFS.IconButton type="secondary" size="s" icon="arrow-chevron-left" label="Previous month" onClick={() => goMonth(-1)} />
           <IFS.IconButton type="secondary" size="s" icon="arrow-chevron-right" label="Next month" onClick={() => goMonth(1)} />
@@ -512,7 +512,7 @@ function MenuList({ items, label, width, size = 's', onRun, listRef, sub, setSub
               {it.description && <span className="ifs-menu__description">{it.description}</span>}
             </span>
             {it.shortcut && <span className="ifs-menu__shortcut">{it.shortcut}</span>}
-            {it.items && <IFS.Icon name={submenuSide === 'left' ? 'arrow-caret-left-filled' : 'arrow-caret-right-filled'} size={12} className="ifs-menu__caret" />}
+            {it.items && <IFS.Icon name={submenuSide === 'left' ? 'arrow-caret-left-filled' : 'arrow-caret-right-filled'} size={16} className="ifs-menu__caret" />}
             {it.selected && <IFS.Icon name="system-check" size={12} className="ifs-menu__check" />}
           </button>
         );

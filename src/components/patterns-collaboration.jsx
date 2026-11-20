@@ -118,7 +118,7 @@ function RoleSelect({ value, defaultValue = 'editor', onChange, onRemove, disabl
         className={ccx('ifs-role-select__trigger', open && 'is-open', disabled && 'is-disabled')}
         onClick={() => { if (!disabled) { setOpen(!open); setActive(-1); } }} onKeyDown={onKey}>
         <span className="ifs-role-select__value">{ROLE_LABEL[val] || val}</span>
-        <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={12} />
+        <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} />
       </div>
       {open && <div role="listbox" className="ifs-role-select__list" onMouseDown={e => e.preventDefault()}>
         {items.map((it, i) => <React.Fragment key={it.value}>

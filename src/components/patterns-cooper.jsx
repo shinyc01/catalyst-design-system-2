@@ -234,7 +234,7 @@ function CooperMessage({ status = 'answered', step, reasoning = [], reasoningOpe
       {full && reasoning.length > 0 && (
         <div className="ifs-cooper-msg__reasoning">
           <button type="button" className="ifs-cooper-msg__toggle" aria-expanded={open} onClick={() => setOpen(!open)}>
-            Analyzed your request <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={12} />
+            Analyzed your request <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} />
           </button>
           {open && <ul>{reasoning.map((r, i) => <li key={i}>{r}</li>)}</ul>}
         </div>
@@ -259,7 +259,7 @@ function CooperMessage({ status = 'answered', step, reasoning = [], reasoningOpe
         {children}
         {sources && sources.length > 0 && <div className="ifs-cooper-msg__block">
           <button type="button" className="ifs-cooper-msg__toggle" aria-expanded={srcOpen} onClick={() => setSrcOpen(!srcOpen)}>
-            Supporting evidence <IFS.Icon name={srcOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={12} />
+            Supporting evidence <IFS.Icon name={srcOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} />
           </button>
           {srcOpen && <div className="ifs-cooper-msg__list">{sources.map((s, i) => <ChatLink key={i} type="source" number={i + 1} onClick={s.onClick}>{s.label}</ChatLink>)}</div>}
         </div>}
@@ -504,7 +504,7 @@ function HistoryPanel({ chats = [], folders = [], smart = {}, activeChatId, onOp
                 renaming={renamingId === f.id} onRename={name => onRename && onRename(f.id, name)} onCancelRename={onCancelRename}>{f.name}</FolderItem>))}
             </div> : <div className="ifs-history__empty">No folders yet</div>}
             {folders.length > folderLimit && <button type="button" className="ifs-history__see-all" aria-expanded={allFolders} onClick={() => setAllFolders(!allFolders)}>
-              {allFolders ? 'Show less' : 'See all'} <IFS.Icon name={allFolders ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={12} /></button>}
+              {allFolders ? 'Show less' : 'See all'} <IFS.Icon name={allFolders ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} /></button>}
           </div>
           <div className="ifs-history__section">
             <SectionHeader heading="Chats" count={chats.length} actions={onChatsMore ? [{ icon: 'system-dots-horizont', label: 'Chat actions', onClick: onChatsMore }] : []} />

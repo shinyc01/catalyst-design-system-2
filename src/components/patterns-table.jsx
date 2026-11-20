@@ -701,7 +701,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
       style={{ ...(capped ? { maxHeight } : null), ...style }} ref={wrapRef} aria-label={typeof title === 'string' ? title : undefined}>
       {title && <div className="ifs-data-table__header">
         <button type="button" className="ifs-data-table__title" aria-expanded={!collapsed} onClick={collapsible ? () => setCollapsed(!collapsed) : undefined} disabled={!collapsible}>
-          {collapsible && <IFS.Icon name={collapsed ? 'arrow-caret-down-filled' : 'arrow-caret-up-filled'} size={12} />}{title}</button>
+          {collapsible && <IFS.Icon name={collapsed ? 'arrow-caret-down-filled' : 'arrow-caret-up-filled'} size={16} />}{title}</button>
         {headerAction}
       </div>}
       {!collapsed && <>

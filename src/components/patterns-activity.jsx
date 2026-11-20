@@ -108,7 +108,7 @@ function CompareDropdown({ groups = [], value, defaultValue = null, onChange, op
               <IFS.Icon name="system-close" size={16} />
             </button>
           )}
-          <IFS.Icon name={isOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={12} />
+          <IFS.Icon name={isOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} />
         </span>
       </div>
       {isOpen && <CompareDropdownList id={listId} groups={groups} value={val} activeValue={active} onActiveChange={setActive} onSelect={pick} />}

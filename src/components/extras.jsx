@@ -277,7 +277,7 @@ function PhoneField({ size = 'l', label, hint, description, error, disabled, pla
           aria-label={`Country code: ${c.name} ${c.dial}`} onClick={() => open ? setOpen(false) : openList()} onKeyDown={onBtnKey}>
           <ExtrasFlag code={c.code} flag={c.flag} />
           <span>{c.code} {c.dial}</span>
-          <IFS.Icon name="arrow-caret-down-filled" size={12} />
+          <IFS.Icon name="arrow-caret-down-filled" size={16} />
         </button>
         {open && (
           <div ref={list} id={`${fid}-cc`} role="listbox" aria-label="Country" className="ifs-phone__menu">

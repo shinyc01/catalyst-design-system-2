@@ -163,7 +163,7 @@ function SideNavTree({ title, tree = [], sections = [], value, defaultValue, onS
           onClick={() => { setCurrent(n.id, n); if (kids.length && !isOpen) toggle(n.id); }}>
           {isFolder && (kids.length
             ? <span className="ifs-nav-tree__caret" role="presentation" onClick={e => { e.stopPropagation(); toggle(n.id); }}>
-                <IFS.Icon name={isOpen ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={12} /></span>
+                <IFS.Icon name={isOpen ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={16} /></span>
             : <span className="ifs-nav-tree__caret" />)}
           {isFolder && <IFS.Icon name="chat-folder" size={16} />}
           <span className="ifs-nav-tree__label" title={n.label}>{n.label}</span>

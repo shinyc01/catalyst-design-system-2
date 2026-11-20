@@ -455,7 +455,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
           if (!v && hovering.current && !pinned.current) { pinned.current = true; setTipOpen(true); return; } // click while hovering: pin
           pinned.current = v; setTipOpen(v); }} showClose={false} width="var(--overlay-width-m)"
           trigger={<button type="button" className="ifs-page-header__status-btn" aria-label={`${progressLabel}: show steps`}>
-            {status || <span className="ifs-page-header__progress"><IFS.Icon name="arrow-chevron-down" size={12} />{progressLabel}</span>}</button>}>
+            {status || <span className="ifs-page-header__progress"><IFS.Icon name="arrow-chevron-down" size={16} />{progressLabel}</span>}</button>}>
           <div className="ifs-page-header__steps">{center}</div>
         </IFS.Popover>
       </span>
@@ -464,7 +464,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
   const titleBits = <>
     {backBtn}
     <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
-    {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={12} /></button>}
+    {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={16} /></button>}
   </>;
   const idNode = id && <span className="ifs-page-header__id">{id}</span>;
   // Two rows: the back button keeps its own column, so row 2 starts where the title starts; the ID and the status move together.
@@ -476,7 +476,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
           <div className="ifs-page-header__row">
             <div className="ifs-page-header__text">
               <h1 className="ifs-page-header__title" title={typeof title === 'string' ? title : undefined}>{title}</h1>
-              {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={12} /></button>}
+              {onTitleMenu && <button type="button" className="ifs-page-header__menu" aria-label={`${title} options`} onClick={onTitleMenu}><IFS.Icon name="arrow-chevron-down" size={16} /></button>}
             </div>
           </div>
           {(idNode || statusNode || views || actions || primaryAction) && <div className="ifs-page-header__row ifs-page-header__row--meta">

@@ -351,7 +351,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], sort, 
           <React.Fragment key={String(g)}>
             <button type="button" className="ifs-table__group" aria-expanded={open}
               onClick={() => setCollapsed(s => { const n = new Set(s); open ? n.add(g) : n.delete(g); return n; })}>
-              <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-left-filled'} size={12} />
+              <IFS.Icon name={open ? 'arrow-caret-up-filled' : 'arrow-caret-left-filled'} size={16} />
               <span className="ifs-table__group-title">{g}</span>
               <DataCounter>{rs.length}</DataCounter>
             </button>

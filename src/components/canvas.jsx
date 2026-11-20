@@ -545,7 +545,7 @@ function TimelinePhase({ title, subtitle, badge, color = 'teal', start = 0, end 
         <div className="ifs-timeline-phase__cell">
           <div className="ifs-timeline-phase__text">
             <button type="button" className="ifs-timeline-phase__toggle" aria-expanded={!!open} onClick={() => setOpen(!open)}>
-              <IFS.Icon name={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={12} />
+              <IFS.Icon name={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={16} />
               <span className="ifs-timeline-phase__title">{title}</span>
             </button>
             {badge ? <IFS.Badge color="red" size="s">{badge}</IFS.Badge> : subtitle != null && <span className="ifs-timeline-phase__sub">{subtitle}</span>}

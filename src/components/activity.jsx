@@ -252,7 +252,7 @@ function VersionEntry({ title, badge, description, author, time, activity, expan
   return (
     <TimelineItem className={actCx('ifs-version', open && 'ifs-version--open', className)} markerSize="m" connector={last ? 'none' : 'solid'}
       marker={<button type="button" className="ifs-version__toggle" aria-expanded={!!open} aria-label={open ? `Collapse ${name}` : `Show activity of ${name}`}
-        onClick={() => setOpen(!open)}><IFS.Icon name={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={12} /></button>}
+        onClick={() => setOpen(!open)}><IFS.Icon name={open ? 'arrow-caret-down-filled' : 'arrow-caret-right-filled'} size={16} /></button>}
       content={<div className="ifs-version__content">
         {card}
         {open && activity && activity.length > 0 && <Timeline className="ifs-version__activity" items={activity} />}
