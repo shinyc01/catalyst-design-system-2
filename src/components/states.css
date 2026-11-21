@@ -8,13 +8,13 @@
 .ifs-state-media{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-40);height:var(--size-40);
   border-radius:var(--radius-radius-full);color:var(--icon-primary);isolation:isolate;
   outline:1px solid var(--border-base);outline-offset:-.5px;
-  background:radial-gradient(closest-side,var(--grey-1000-base,#464646),var(--element-status-fade-grey))}
+  background:radial-gradient(closest-side,var(--element-status-grey-center),var(--element-status-fade-grey))}
 /* Success / warning tone: surface/secondary-alpha + a 30% radial tint from the top-left corner */
 .ifs-state-media--success,.ifs-state-media--warning{background:var(--surface-secondary-alpha)}
 .ifs-state-media--success::before,.ifs-state-media--warning::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:.3;
   background:radial-gradient(circle at 0 0,var(--fade) 0,var(--tint) 160%)}
-.ifs-state-media--success{--fade:var(--element-status-fade-success);--tint:var(--system-success-700,#1b7138)}
-.ifs-state-media--warning{--fade:var(--element-status-fade-warning);--tint:var(--system-warning-700,#99691c)}
+.ifs-state-media--success{--fade:var(--element-status-fade-success);--tint:var(--element-status-tint-success)}
+.ifs-state-media--warning{--fade:var(--element-status-fade-warning);--tint:var(--element-status-tint-warning)}
 
 /* ---------- empty-state-organism ---------- */
 .ifs-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-inset) /* one step above stack: 20 / 16 / 12 (review, Nov 18) */;

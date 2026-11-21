@@ -105,7 +105,7 @@
 /* ================= data-viz-modal-organism (4440:32681) / chart-info-modal tooltip ================= */
 .ifs-dv-tooltip{display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;width:16rem;padding:var(--space-inset);
   border-radius:var(--radius-radius-200);background:var(--background-elevation-1-primary-base);backdrop-filter:blur(var(--blur-strong));
-  box-shadow:inset 0 0 0 1px var(--border-fieldborder-alpha,rgba(255,255,255,0.1));color:var(--text-primary);text-align:left}
+  box-shadow:inset 0 0 0 1px var(--border-base);color:var(--text-primary);text-align:left}
 .ifs-dv-tooltip--chart{width:20rem}
 .ifs-dv-tooltip__head{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-dv-tooltip__titlerow{display:flex;align-items:flex-end;gap:var(--space-200)}
@@ -117,7 +117,7 @@
 .ifs-dv-tooltip__delta{display:inline-flex;align-items:center;gap:var(--space-50)}
 .ifs-dv-tooltip__delta .ifs-icon{color:var(--icon-success)}
 .ifs-dv-tooltip__delta--negative .ifs-icon{color:var(--icon-danger)}
-.ifs-dv-tooltip__divider{display:block;height:1px;background:var(--border-fieldborder-alpha,rgba(255,255,255,0.1))}
+.ifs-dv-tooltip__divider{display:block;height:1px;background:var(--border-base)}
 .ifs-dv-tooltip__items{display:flex;flex-direction:column}
 .ifs-dv-tooltip__item{display:flex;align-items:center;gap:var(--space-200);padding:var(--space-150) 0;font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-dv-tooltip__dot{flex:none;width:var(--size-8);height:var(--size-8);border-radius:50%}
@@ -135,11 +135,11 @@
 .ifs-chart__center{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking); /* H2: no H1 for numbers (Nov 19) */fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-chart__gauge-value{font:var(--text-display-m);letter-spacing:var(--text-display-m-tracking);fill:var(--text-primary);font-variant-numeric:var(--text-numeric)}
 .ifs-chart__grid{stroke:var(--border-base);stroke-dasharray:2 4;stroke-linecap:round}
-.ifs-chart__baseline{stroke:var(--white-alpha-30,rgba(255,255,255,0.3))}
+.ifs-chart__baseline{stroke:var(--data-viz-baseline)}
 .ifs-chart__guide{stroke:var(--border-medium);stroke-dasharray:2 4}
 .ifs-chart__refline{stroke:#ffffff /* raw in Figma */;stroke-width:1.5;stroke-dasharray:4 4}
 .ifs-chart__refline--thin{stroke-width:1}
-.ifs-chart__connector{stroke:var(--white-alpha-30,rgba(255,255,255,0.3));stroke-dasharray:2 3;stroke-linecap:round}
+.ifs-chart__connector{stroke:var(--data-viz-baseline);stroke-dasharray:2 3;stroke-linecap:round}
 .ifs-chart__slice{stroke:#0f0f0f /* raw in Figma */;stroke-width:2;stroke-linejoin:round}
 .ifs-chart__band{fill:transparent}
 .ifs-chart__band--on{fill:var(--surface-secondary-alpha)}
