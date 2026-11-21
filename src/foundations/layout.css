@@ -30,6 +30,8 @@
   --overlay-width-s:20rem;--overlay-width-m:27.5rem;--overlay-width-l:37.5rem;
   /* Menus: two widths (2.0.3). S for action menus (Carbon 180–288, Material 112–280); L = the popover width, for items with descriptions */
   --menu-width-s:12.5rem;--menu-width-l:var(--overlay-width-s);
+  /* Cooper: the full chat can be dragged from the panel width (--region-panel, 380) up to 720 (rule 4.5); the compact window's default place, 60 from the end and 131 from the bottom */
+  --layout-chat-width-max:45rem;--cooper-compact-end:3.75rem;--cooper-compact-bottom:8.1875rem;
 }
 @media (min-width:600px){:root{--layout-columns:8;--page-margin:var(--space-600)}}
 @media (min-width:1024px){:root{--layout-columns:12}}
