@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.4, generated 2026-11-20. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.4, generated 2026-11-21. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -1811,10 +1811,10 @@ Streaming → Answered; Stop interrupts (keeps the user message; partial answer 
 Props: size / defaultSize / onSizeChange ('closed'|'bar'|'compact'|'full'), mode / defaultMode ('voice'|'text'),
 messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data
 (default canned answers), prompts (empty-state chips in the full panel), renderPanel (wrap the full panel, e.g. with HistoryPanel),
-onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact,
+onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact (default: --cooper-compact-end / --cooper-compact-bottom),
 fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 6.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
-`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position = { right: 60, bottom: 131 }, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
+`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
 
 ### 
 **Tier:** Pattern helper
@@ -1938,7 +1938,7 @@ Pattern: DocumentsFeedback — top-right stack under the page header (place it i
 Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
 Removal = snackbar-organism "The document has been removed" + Undo: 4 s, paused on hover/focus, ✕ dismisses.
-Props: controller, top (px, default 88 = under nav bar + page header).
+Props: controller, top (px; default = the nav bar + 40, --layout-global-header-height + --size-40).
 `function DocumentsFeedback({ controller: c, top })`
 
 ## patterns-evidence
