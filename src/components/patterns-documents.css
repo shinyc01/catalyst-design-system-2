@@ -112,10 +112,9 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-drop__overlay{position:absolute;inset:0;z-index:var(--z-index-z-floating);min-height:0;border-radius:0;pointer-events:none}
 .ifs-docs-drop__ghosts{position:absolute;z-index:var(--z-index-z-floating);display:grid;grid-template-columns:repeat(2,auto);gap:var(--space-200);pointer-events:none}
 .ifs-docs-drop__ghosts .ifs-node-card{width:230px}
-.ifs-docs-drop__count{position:absolute;left:62px;top:42px}
 
 /* Feedback stack (alerts + snackbars), top-right under the page header. */
-.ifs-docs-feedback{position:absolute;top:var(--docs-feedback-top,88px);right:var(--space-300);z-index:var(--z-index-z-toast);
+.ifs-docs-feedback{position:absolute;top:var(--docs-feedback-top,calc(var(--layout-global-header-height) + var(--size-40)));inset-inline-end:var(--space-300);z-index:var(--z-index-z-toast);
   display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-200);pointer-events:none}
 .ifs-docs-feedback > *{pointer-events:auto;animation:ifs-toast-in .2s ease-out}
 .ifs-docs-feedback .ifs-alert{width:18.9375rem}

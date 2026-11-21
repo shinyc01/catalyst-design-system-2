@@ -412,7 +412,7 @@ function DocumentsDropArea({ controller: c, children, className, style, ...rest 
 // Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 // "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
 // Removal = snackbar-organism "The document has been removed" + Undo: 4 s, paused on hover/focus, ✕ dismisses.
-// Props: controller, top (px, default 88 = under nav bar + page header).
+// Props: controller, top (px; default = the nav bar + 40, --layout-global-header-height + --size-40).
 function DocumentsFeedback({ controller: c, top }) {
   const ref = React.useRef(null);
   const [details, setDetails] = React.useState(null);

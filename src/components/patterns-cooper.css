@@ -161,7 +161,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 .ifs-chat-panel__bottom{position:absolute;left:0;right:0;bottom:0;padding:var(--space-inset);
   background:linear-gradient(180deg,transparent,var(--element-cooper-insight-fill-strong) 16px) /* blur overlay (GRADIENT_LINEAR + blur 80) */;
   backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium))}
-.ifs-chat-panel__drop{position:absolute;inset:44px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-200);
+.ifs-chat-panel__drop{position:absolute;inset:var(--size-44) 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-200);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary);pointer-events:none}
 .ifs-chat-panel__resize{position:absolute;left:-3px;top:0;bottom:0;width:6px;cursor:ew-resize}
 
