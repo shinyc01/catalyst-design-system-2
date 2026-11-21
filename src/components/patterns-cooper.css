@@ -270,6 +270,6 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--foc
 
 /* ---------- pattern screen helpers ---------- */
 .ifs-cooper-stage{position:relative;width:100%;height:100%;overflow:hidden}
-.ifs-cooper-float{position:absolute;z-index:5}
+.ifs-cooper-float{position:absolute;z-index:5;inset-inline-end:var(--cooper-compact-end);bottom:var(--cooper-compact-bottom)} /* default place; the position prop and dragging override it */
 .ifs-cooper-fade{animation:ifs-cooper-in var(--motion-duration-medium,200ms) ease-out}
 @keyframes ifs-cooper-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
