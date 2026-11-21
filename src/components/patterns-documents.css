@@ -19,7 +19,7 @@
 .ifs-pin-dot--s .ifs-pin-dot__fill,.ifs-pin-dot--xs .ifs-pin-dot__fill{padding:0}
 .ifs-pin-dot--selected{box-shadow:0 0 0 2px var(--element-map-pin-border-active),var(--drop-shadow-pin)}
 .ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 1px var(--element-map-pin-border-active),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
-.ifs-pin-dot--dimmed{background:var(--background-color-alpha-white-base);backdrop-filter:blur(20px) /* raw in Figma: background blur 40 */;
+.ifs-pin-dot--dimmed{background:var(--background-color-alpha-white-base);backdrop-filter:blur(var(--blur-soft));-webkit-backdrop-filter:blur(var(--blur-soft)) /* code 20; Figma says 40 (= --blur-medium): open question */;
   box-shadow:0 0 0 1px var(--border-base),0 0 10px 0 rgba(10,14,21,.2) /* raw in Figma */}
 .ifs-pin-dot--dimmed .ifs-pin-dot__fill{opacity:.4}
 /* higlight=yes: a ring twice the pin's size behind it (overlay fill + status hairline, 40 %) with the map-highlight glow. */

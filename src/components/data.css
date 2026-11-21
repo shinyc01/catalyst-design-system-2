@@ -126,7 +126,7 @@ button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state
 .ifs-risk{--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;
   height:var(--size-24);margin:0;border:0;padding:var(--space-100) var(--space-200) var(--space-100) var(--space-100);
   border-radius:100px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-primary);white-space:nowrap;
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px) /* raw in Figma */;
+  backdrop-filter:blur(var(--blur-soft));-webkit-backdrop-filter:blur(var(--blur-soft)) /* Figma background blur 20 */;
   box-shadow:var(--stroke),var(--ring),0 4px 24px rgba(0,0,0,.04) /* raw in Figma */;
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium: statuses are sentence case */
 button.ifs-risk{cursor:pointer}
