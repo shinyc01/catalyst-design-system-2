@@ -78,7 +78,7 @@
 /* ---------- widget-view-change-position (Patterns 331:509936) ---------- */
 .ifs-widget-chip{display:inline-flex;align-items:center;gap:var(--space-100);box-sizing:border-box;width:11.875rem;height:var(--size-48);
   padding:var(--space-300) /* a chip: fixed, like other controls */;border-radius:var(--radius-radius-100);background:var(--surface-secondary-alpha);
-  box-shadow:0 0 0 1px var(--border-base);backdrop-filter:blur(4px) /* raw in Figma: background blur 4 */}
+  box-shadow:0 0 0 1px var(--border-base);backdrop-filter:blur(var(--blur-faint));-webkit-backdrop-filter:blur(var(--blur-faint)) /* Figma background blur 4 */}
 .ifs-widget-chip__title{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--text-tertiary);
   font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking) /* H4, like every card title (Nov 19, 2.0.3) */}
 

@@ -1,5 +1,8 @@
 import React from 'react';
 import { IFS } from './registry.js';
+// A size token in px (rem tokens follow the root font size), as cssPx in navigation.jsx.
+const cooperPx = (el, name) => { const v = getComputedStyle(el || document.documentElement).getPropertyValue(name).trim(); const n = parseFloat(v);
+  return /rem$/.test(v) ? n * (parseFloat(getComputedStyle(document.documentElement).fontSize) || 16) : n; };
 
 // Cooper pattern family (Patterns file page "Cooper" 12:263487): the Cooper chat in three sizes, its messages,
 // chat history with folders and search, and the Cooper recommendations window.
@@ -724,12 +727,12 @@ const genericAnswer = q => ({
 // Props: size / defaultSize / onSizeChange ('closed'|'bar'|'compact'|'full'), mode / defaultMode ('voice'|'text'),
 // messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data
 // (default canned answers), prompts (empty-state chips in the full panel), renderPanel (wrap the full panel, e.g. with HistoryPanel),
-// onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact,
+// onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact (default: --cooper-compact-end / --cooper-compact-bottom),
 // fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 6.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 // apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
 function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange,
   answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'],
-  onHistory, historyOpen, renderPanel, speed = 40, position = { /* ltr: prop keys; the default corner is applied as inset-inline-end */ right: 60, bottom: 131 }, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className }) {
+  onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className }) {
   const [sz, setSz] = useCtl(size, defaultSize, onSizeChange);
   const [md, setMd] = useCtl(mode, defaultMode, onModeChange);
   const [msgs, setMsgs] = useCtl(messages, defaultMessages, onMessagesChange);
@@ -810,12 +813,15 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   };
   const resizeFull = e => {
-    const start = e.clientX, w0 = width ?? (e.currentTarget.closest('.ifs-chat-panel')?.getBoundingClientRect().width || 380);
-    const move = ev => setWidth(Math.min(720, Math.max(380, w0 + (start - ev.clientX))));
+    const panel = e.currentTarget.closest('.ifs-chat-panel');
+    const min = cooperPx(panel, '--region-panel'), max = cooperPx(panel, '--layout-chat-width-max'); // 380 and 720 (rule 4.5), rem so they follow the text size
+    const start = e.clientX, w0 = width ?? (panel?.getBoundingClientRect().width || min);
+    const move = ev => setWidth(Math.min(max, Math.max(min, w0 + (start - ev.clientX))));
     const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
     window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
   };
-  const floatStyle = pos ? { left: pos.left, top: pos.top } : { insetInlineEnd: position.right, bottom: position.bottom }; // ltr: dragged position comes from clientX; the default corner follows direction
+  // default place: CSS (.ifs-cooper-float, inset-inline-end); once dragged, left/top replace it (right/bottom auto so the box doesn't stretch)
+  const floatStyle = pos ? { left: pos.left, top: pos.top, right: 'auto', bottom: 'auto' } : position ? { insetInlineEnd: position.right, bottom: position.bottom } : undefined; // ltr: dragged position comes from clientX; the default corner follows direction
   const common = {
     type: md, title: ttl, newChat: msgs.length === 0, children: conversation, inputValue: input, onInputChange: setInput, onSend: q => send(q),
     analyzing: busy, onStop: stop, attachments: files, onRemoveAttachment: id => setFiles(files.filter(f => f.id !== id)), onAttach: attach,

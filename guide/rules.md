@@ -154,7 +154,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 |---|---|---|
 | Side nav / rail | 240 / 48 | `--region-sidenav` / `--region-rail` |
 | Side panel, drawer, widgets drawer | 380 (min 320, max 50%) | `--region-panel` |
-| Cooper full chat | 380 by default; resizable by drag from 380 to 720 | `--region-panel` |
+| Cooper full chat | 380 by default; resizable by drag from 380 to 720 | `--region-panel` … `--layout-chat-width-max` |
 | Large panel (Study) | 600 | `--region-panel-l` |
 | Popover (default; never under 160; wider only at `--overlay-width-m` 440 or `-l` 600), collaborators panel, Layers popover | 320 | `--overlay-width-s` |
 | Modal (default / wide) | 440 / 600 | `--overlay-width-m` / `-l` |

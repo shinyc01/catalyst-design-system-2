@@ -28,7 +28,7 @@
 }
 .ifs-field--m .ifs-field__input{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-field__input::placeholder{color:var(--text-tertiary);opacity:1}
-.ifs-field__suffix{flex:none;color:var(--white-alpha-85,rgba(255,255,255,.85));font:var(--text-body-l-regular);letter-spacing:var(--text-body-l-regular-tracking)}
+.ifs-field__suffix{flex:none;color:var(--text-on-solid-secondary) /* same value; the field suffix probably wants --text-secondary: colour round */;font:var(--text-body-l-regular);letter-spacing:var(--text-body-l-regular-tracking)}
 .ifs-field--m .ifs-field__suffix{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-field__loader{flex:none;color:var(--icon-primary)}
 
