@@ -3,9 +3,9 @@
    (collections "3. Typography primitives" and "4. Typography semantic").
 
    1. Primitives: font families (tokens.css), weights (tokens.css), letter-spacing steps (below),
-      and the size scale --type-s|m|l|h3|h2|h1|display-* (size/line-height pairs per density,
+      and the size scale --font-size-s|m|l|h3|h2|h1|display-* (size/line-height pairs per density,
       Density block in tokens.css).
-   2. Semantic: one set per text style, named like its .t-* class (.t-body-m-regular -> --text-body-m-regular). Components and prototypes use ONLY these:
+   2. Semantic: one set per text style, named like its .t-* class (.t-body-m-regular -> --font-body-m-regular). Components and prototypes use ONLY these:
         font:var(--text-<style>);letter-spacing:var(--text-<style>-tracking)
       --text-<style>-weight is there for
       rules that only change the weight.
@@ -18,57 +18,57 @@
 
 :root{
   /* Letter-spacing primitives (Figma "letter-spacing/letter-spacing-*"; --05 = -0.5px, 03 = +0.3px) */
-  --letter-spacing-letter-spacing--06:-0.6px;--letter-spacing-letter-spacing--05:-0.5px;
-  --letter-spacing-letter-spacing--03:-0.3px;--letter-spacing-letter-spacing--02:-0.2px;
-  --letter-spacing-letter-spacing--015:-0.15px;--letter-spacing-letter-spacing--01:-0.1px;
-  --letter-spacing-letter-spacing-0:0px;--letter-spacing-letter-spacing-01:0.1px;
-  --letter-spacing-letter-spacing-02:0.2px;--letter-spacing-letter-spacing-03:0.3px;
+  --font-tracking-minus-06:-0.6px;--font-tracking-minus-05:-0.5px;
+  --font-tracking-minus-03:-0.3px;--font-tracking-minus-02:-0.2px;
+  --font-tracking-minus-015:-0.15px;--font-tracking-minus-01:-0.1px;
+  --font-tracking-0:0px;--font-tracking-plus-01:0.1px;
+  --font-tracking-plus-02:0.2px;--font-tracking-plus-03:0.3px;
   /* Numbers people compare or watch change: same-width digits (tables, big numbers, charts, counters). Not for numbers in sentences. */
-  --text-numeric:tabular-nums;
+  --font-numeric:tabular-nums;
   /* Reading measure: reading text (descriptions, Cooper answers, help, empty-state text) stops at about 75 characters per line */
-  --text-measure:75ch;
+  --font-measure:75ch;
 }
 
 /* Semantic styles. Declared on every density container so the size follows the nearest data-density. */
 :root,[data-density]{
   /* Display S / M / L — rare: hero numbers, landing moments */
-  --text-display-l-weight:var(--font-weight-font-weight-medium);--text-display-l-tracking:var(--letter-spacing-letter-spacing--05);
-  --text-display-l:var(--text-display-l-weight) var(--type-display-l) var(--font-family-display);
-  --text-display-m-weight:var(--font-weight-font-weight-medium);--text-display-m-tracking:var(--letter-spacing-letter-spacing--05);
-  --text-display-m:var(--text-display-m-weight) var(--type-display-m) var(--font-family-display);
-  --text-display-s-weight:var(--font-weight-font-weight-medium);--text-display-s-tracking:var(--letter-spacing-letter-spacing--05);
-  --text-display-s:var(--text-display-s-weight) var(--type-display-s) var(--font-family-display);
+  --font-display-l-weight:var(--font-weight-medium);--font-display-l-tracking:var(--font-tracking-minus-05);
+  --font-display-l:var(--font-display-l-weight) var(--font-size-display-l) var(--font-family-display);
+  --font-display-m-weight:var(--font-weight-medium);--font-display-m-tracking:var(--font-tracking-minus-05);
+  --font-display-m:var(--font-display-m-weight) var(--font-size-display-m) var(--font-family-display);
+  --font-display-s-weight:var(--font-weight-medium);--font-display-s-tracking:var(--font-tracking-minus-05);
+  --font-display-s:var(--font-display-s-weight) var(--font-size-display-s) var(--font-family-display);
 
   /* Headings — H2 PageTop page title and big numbers (stat card M; H3 stat card S; never H1 for numbers), H3 large sections,
      H4 panel/modal/drawer/card titles (chart card titles are Label/M/medium, tertiary) */
-  --text-heading-h1-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h1-medium-tracking:var(--letter-spacing-letter-spacing--03);
-  --text-heading-h1-medium:var(--text-heading-h1-medium-weight) var(--type-h1) var(--font-family-text);
-  --text-heading-h2-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h2-medium-tracking:var(--letter-spacing-letter-spacing--02);
-  --text-heading-h2-medium:var(--text-heading-h2-medium-weight) var(--type-h2) var(--font-family-text);
-  --text-heading-h3-medium-weight:var(--font-weight-font-weight-medium);--text-heading-h3-medium-tracking:var(--letter-spacing-letter-spacing--01);
-  --text-heading-h3-medium:var(--text-heading-h3-medium-weight) var(--type-h3) var(--font-family-text);
-  --text-heading-h4-semibold-weight:var(--font-weight-font-weight-semibold);--text-heading-h4-semibold-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-heading-h4-semibold:var(--text-heading-h4-semibold-weight) var(--type-l) var(--font-family-text);
+  --font-heading-h1-medium-weight:var(--font-weight-medium);--font-heading-h1-medium-tracking:var(--font-tracking-minus-03);
+  --font-heading-h1-medium:var(--font-heading-h1-medium-weight) var(--font-size-h1) var(--font-family-text);
+  --font-heading-h2-medium-weight:var(--font-weight-medium);--font-heading-h2-medium-tracking:var(--font-tracking-minus-02);
+  --font-heading-h2-medium:var(--font-heading-h2-medium-weight) var(--font-size-h2) var(--font-family-text);
+  --font-heading-h3-medium-weight:var(--font-weight-medium);--font-heading-h3-medium-tracking:var(--font-tracking-minus-01);
+  --font-heading-h3-medium:var(--font-heading-h3-medium-weight) var(--font-size-h3) var(--font-family-text);
+  --font-heading-h4-semibold-weight:var(--font-weight-semibold);--font-heading-h4-semibold-tracking:var(--font-tracking-0);
+  --font-heading-h4-semibold:var(--font-heading-h4-semibold-weight) var(--font-size-l) var(--font-family-text);
 
   /* Body — content and meta. Body/M is the default; Body/S only where a spec names it */
-  --text-body-l-regular-weight:var(--font-weight-font-weight-regular);--text-body-l-regular-tracking:var(--letter-spacing-letter-spacing--01);
-  --text-body-l-regular:var(--text-body-l-regular-weight) var(--type-l) var(--font-family-text);
-  --text-body-m-regular-weight:var(--font-weight-font-weight-regular);--text-body-m-regular-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-body-m-regular:var(--text-body-m-regular-weight) var(--type-m) var(--font-family-text);
-  --text-body-s-regular-weight:var(--font-weight-font-weight-regular);--text-body-s-regular-tracking:var(--letter-spacing-letter-spacing-01);
-  --text-body-s-regular:var(--text-body-s-regular-weight) var(--type-s) var(--font-family-text);
+  --font-body-l-regular-weight:var(--font-weight-regular);--font-body-l-regular-tracking:var(--font-tracking-minus-01);
+  --font-body-l-regular:var(--font-body-l-regular-weight) var(--font-size-l) var(--font-family-text);
+  --font-body-m-regular-weight:var(--font-weight-regular);--font-body-m-regular-tracking:var(--font-tracking-0);
+  --font-body-m-regular:var(--font-body-m-regular-weight) var(--font-size-m) var(--font-family-text);
+  --font-body-s-regular-weight:var(--font-weight-regular);--font-body-s-regular-tracking:var(--font-tracking-plus-01);
+  --font-body-s-regular:var(--font-body-s-regular-weight) var(--font-size-s) var(--font-family-text);
 
   /* Labels — names, key values, controls, sub-section titles. Label/M/UPPER removed in 2.0.3: nothing is uppercase except avatar initials and abbreviations */
-  --text-label-l-medium-weight:var(--font-weight-font-weight-medium);--text-label-l-medium-tracking:var(--letter-spacing-letter-spacing--015);
-  --text-label-l-medium:var(--text-label-l-medium-weight) var(--type-l) var(--font-family-text);
-  --text-label-m-medium-weight:var(--font-weight-font-weight-medium);--text-label-m-medium-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-label-m-medium:var(--text-label-m-medium-weight) var(--type-m) var(--font-family-text);
+  --font-label-l-medium-weight:var(--font-weight-medium);--font-label-l-medium-tracking:var(--font-tracking-minus-015);
+  --font-label-l-medium:var(--font-label-l-medium-weight) var(--font-size-l) var(--font-family-text);
+  --font-label-m-medium-weight:var(--font-weight-medium);--font-label-m-medium-tracking:var(--font-tracking-0);
+  --font-label-m-medium:var(--font-label-m-medium-weight) var(--font-size-m) var(--font-family-text);
 
   /* Code — code, formulas, JSON. Code/M matches Body (default, also inline in Body text); Code/S only inside Small text (regular, like Body/S) */
-  --text-code-m-regular-weight:var(--font-weight-font-weight-regular);--text-code-m-regular-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-code-m-regular:var(--text-code-m-regular-weight) var(--type-m) var(--font-family-mono);
-  --text-code-m-medium-weight:var(--font-weight-font-weight-medium);--text-code-m-medium-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-code-m-medium:var(--text-code-m-medium-weight) var(--type-m) var(--font-family-mono);
-  --text-code-s-regular-weight:var(--font-weight-font-weight-regular);--text-code-s-regular-tracking:var(--letter-spacing-letter-spacing-0);
-  --text-code-s-regular:var(--text-code-s-regular-weight) var(--type-s) var(--font-family-mono);
+  --font-code-m-regular-weight:var(--font-weight-regular);--font-code-m-regular-tracking:var(--font-tracking-0);
+  --font-code-m-regular:var(--font-code-m-regular-weight) var(--font-size-m) var(--font-family-mono);
+  --font-code-m-medium-weight:var(--font-weight-medium);--font-code-m-medium-tracking:var(--font-tracking-0);
+  --font-code-m-medium:var(--font-code-m-medium-weight) var(--font-size-m) var(--font-family-mono);
+  --font-code-s-regular-weight:var(--font-weight-regular);--font-code-s-regular-tracking:var(--font-tracking-0);
+  --font-code-s-regular:var(--font-code-s-regular-weight) var(--font-size-s) var(--font-family-mono);
 }

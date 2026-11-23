@@ -1,446 +1,276 @@
-# CSS custom properties (dark mode). Spacing scale: gaps/paddings 100 = 4px, 200 = 8px, 400 = 16px, 600 = 24px.
---surface-primary: #000000
---surface-secondary-alpha: rgba(255,255,255,0.05)
---surface-tertiary-alpha: rgba(255,255,255,0.15)
---surface-primary-alpha: rgba(0,0,0,0.85)
---surface-primary-inverse: #ffffff
---surface-primary-inverse-alpha: rgba(255,255,255,0.85)
---background-page: #000000
---background-canvas-primary: rgba(255,255,255,0.05)
---background-elevation-1-primary-base: rgba(0,0,0,0.6)
---background-elevation-1-secondary: rgba(255,255,255,0.1)
---background-elevation-1-tertiary: rgba(255,255,255,0.15)
---background-elevation-2-primary-base: rgba(70,70,70,0.6)
---background-elevation-2-secondary: rgba(255,255,255,0.1)
---background-elevation-2-tertiary: rgba(255,255,255,0.15)
---background-elevation-3-primary-base: rgba(255,255,255,0.1)
---background-elevation-3-secondary: rgba(255,255,255,0.1)
---background-elevation-3-tertiary: rgba(255,255,255,0.15)
---background-solid-black: #000000
---background-solid-white: #ffffff
---background-solid-accent-cooper: #c87941
---background-solid-accent-purple: #8366f7
---background-solid-blue: #5599ff
---background-solid-dark-blue: #1a4d9a
---background-solid-dark-purple: #4f3d95
---background-solid-dark-green: #1c7138
---background-solid-dark-orange: #481212
---background-solid-dark-pink: #691766
---background-system-info: #2b7fff
---background-system-success: #2ebc5d
---background-system-danger: #ee3c3b
---background-system-warning: #ffaf2e
---background-color-alpha-blue-base: rgba(43,127,255,0.1)
---background-color-alpha-blue-strong: rgba(43,127,255,0.25)
---background-color-alpha-cooper-base: rgba(200,121,65,0.1)
---background-color-alpha-cooper-strong: rgba(200,121,65,0.25)
---background-color-alpha-purple-base: rgba(131,102,247,0.1)
---background-color-alpha-purple-strong: rgba(131,102,247,0.25)
---background-color-alpha-black-base: rgba(0,0,0,0.05)
---background-color-alpha-black-strong: rgba(0,0,0,0.1)
---background-color-alpha-white-base: rgba(255,255,255,0.1)
---background-color-alpha-white-strong: rgba(255,255,255,0.2)
---background-color-alpha-red-base: rgba(238,60,59,0.1)
---background-color-alpha-green-base: rgba(46,188,93,0.1)
---background-color-alpha-warning-base: rgba(255,175,46,0.1)
---text-primary: #ffffff
---text-secondary: #cccccc
---text-tertiary: #8c8c8c
---text-disabled: #4d4d4d
---text-focus: #80b2ff
---text-accent-cooper: #c87941
---text-accent-purple: #8366f7
---text-primary-inverse: #000000
---text-secondary-inverse: #4d4d4d
---text-tertiary-inverse: #8c8c8c
---text-disabled-inverse: #cccccc
---text-info: #80b2ff
---text-success: #2ebc5d
---text-danger: #ee3c3b
---text-warning: #ffaf2e
---text-on-solid: #ffffff
---text-on-solid-secondary: rgba(255,255,255,0.85)
---text-on-solid-dark: #000000
---icon-primary: #ffffff
---icon-secondary: #cccccc
---icon-tertiary: #8c8c8c
---icon-disabled: #4d4d4d
---icon-focus: #80b2ff
---icon-accent-cooper: #c87941
---icon-accent-purple: #8366f7
---icon-primary-inverse: #000000
---icon-secondary-inverse: #4d4d4d
---icon-tertiary-inverse: #8c8c8c
---icon-disabled-inverse: #cccccc
---icon-info: #80b2ff
---icon-success: #2ebc5d
---icon-danger: #ee3c3b
---icon-warning: #ffaf2e
---border-base: rgba(255,255,255,0.1)
---border-medium: rgba(255,255,255,0.2)
---border-strong: rgba(255,255,255,0.4)
---border-base-inverse: rgba(0,0,0,0.1)
---border-medium-inverse: rgba(0,0,0,0.2)
---border-strong-inverse: rgba(0,0,0,0.4)
---border-white: #ffffff
---border-black: #000000
---border-accent-cooper: #c87941
---border-accent-purple: #8366f7
---border-info: #80b2ff
+# CSS custom properties (Dark mode). Names: every token starts with its type word (--color-*, --space-*, --size-*, --radius-*, --font-*, --motion-*).
+# Spacing scale: --space-100 = 4px, 200 = 8px, 400 = 16px, 600 = 24px. Components use colour roles only (--color-*), never --palette-*.
+--color-surface-primary: var(--palette-core-0)
+--color-surface-secondary: var(--palette-white-alpha-5)
+--color-surface-tertiary: var(--palette-white-alpha-15)
+--color-surface-overlay: var(--palette-black-alpha-85)
+--color-surface-primary-inverse: var(--palette-core-1000)
+--color-surface-overlay-inverse: var(--palette-white-alpha-85)
+--color-surface-elevation-1: var(--palette-black-alpha-60)
+--color-surface-elevation-2: var(--palette-grey-600)
+--color-surface-elevation-3: var(--palette-white-alpha-10)
+--color-surface-canvas: var(--palette-white-alpha-5)
+--color-surface-page: var(--palette-core-0)
+--color-surface-raised: var(--palette-white-alpha-5)
+--color-surface-raised-hover: var(--palette-white-alpha-15)
+--color-surface-raised-pressed: var(--palette-white-alpha-10)
+--color-surface-row: var(--palette-white-alpha-5)
+--color-text: var(--palette-core-1000)
+--color-text-soft: var(--palette-core-750)
+--color-text-softer: var(--palette-core-550)
+--color-text-disabled: var(--palette-core-300)
+--color-text-focus: var(--palette-info-300)
+--color-text-accent-purple: var(--palette-purple-500)
+--color-text-inverse: var(--palette-core-0)
+--color-text-soft-inverse: var(--palette-core-300)
+--color-text-softer-inverse: var(--palette-core-550)
+--color-text-disabled-inverse: var(--palette-core-750)
+--color-text-info: var(--palette-info-300)
+--color-text-success: var(--palette-success-500)
+--color-text-danger: var(--palette-danger-500)
+--color-text-warning: var(--palette-warning-500)
+--color-text-on-solid: var(--palette-core-1000)
+--color-text-on-solid-soft: var(--palette-white-alpha-85)
+--color-text-on-solid-dark: var(--palette-core-0)
+--color-icon: var(--palette-core-1000)
+--color-icon-soft: var(--palette-core-750)
+--color-icon-softer: var(--palette-core-550)
+--color-icon-disabled: var(--palette-core-300)
+--color-icon-focus: var(--palette-info-300)
+--color-icon-accent-purple: var(--palette-purple-500)
+--color-icon-inverse: var(--palette-core-0)
+--color-icon-soft-inverse: var(--palette-core-300)
+--color-icon-softer-inverse: var(--palette-core-550)
+--color-icon-disabled-inverse: var(--palette-core-750)
+--color-icon-info: var(--palette-info-300)
+--color-icon-success: var(--palette-success-500)
+--color-icon-danger: var(--palette-danger-500)
+--color-icon-warning: var(--palette-warning-500)
+--color-border-soft: var(--palette-white-alpha-10)
+--color-border: var(--palette-white-alpha-20)
+--color-border-strong: var(--palette-white-alpha-40)
+--color-border-soft-inverse: var(--palette-black-alpha-10)
+--color-border-inverse: var(--palette-black-alpha-20)
+--color-border-strong-inverse: var(--palette-black-alpha-40)
+--color-border-on-solid: var(--palette-core-1000)
+--color-border-on-solid-dark: var(--palette-core-0)
+--color-border-accent-purple: var(--palette-purple-500)
+--color-border-info: var(--palette-info-300)
+--color-border-success: var(--palette-success-500)
+--color-border-danger: var(--palette-danger-500)
+--color-border-warning: var(--palette-warning-500)
+--color-border-accent-grey: var(--palette-grey-1000)
+--color-border-selected: var(--palette-core-1000)
+--color-border-transparent: var(--palette-white-alpha-0)
+--color-border-softer: var(--palette-white-alpha-5)
+--color-border-input: var(--palette-white-alpha-10)
+--color-border-input-hover: var(--palette-white-alpha-20)
+--color-border-input-focus: var(--palette-white-alpha-55)
+--color-border-input-disabled: var(--palette-white-alpha-5)
+--color-border-control: var(--palette-white-alpha-60)
+--color-border-selected-hover: var(--palette-white-alpha-85)
+--color-border-selected-pressed: var(--palette-white-alpha-60)
+--color-border-selected-soft: var(--palette-white-alpha-50)
+--color-focus-inner: var(--palette-core-0)
+--color-focus-outer: var(--palette-info-400)
+--color-background-neutral-soft: var(--palette-white-alpha-10)
+--color-background-neutral: var(--palette-white-alpha-15)
+--color-background-accent-black-strong: var(--palette-core-0)
+--color-background-accent-white-strong: var(--palette-core-1000)
+--color-background-accent-purple-strong: var(--palette-purple-500)
+--color-background-accent-blue-strong: var(--palette-info-400)
+--color-background-accent-dark-blue-strong: var(--palette-info-700)
+--color-background-accent-dark-purple-strong: var(--palette-purple-700)
+--color-background-accent-dark-green-strong: var(--palette-success-700)
+--color-background-accent-dark-red-strong: var(--palette-danger-850)
+--color-background-accent-dark-pink-strong: var(--palette-rose-700)
+--color-background-neutral-stronger: var(--palette-core-1000)
+--color-background-neutral-stronger-hover: var(--palette-white-alpha-85)
+--color-background-neutral-stronger-pressed: var(--palette-white-alpha-60)
+--color-background-neutral-softer: var(--palette-white-alpha-5)
+--color-background-neutral-soft-inverse: var(--palette-black-alpha-10)
+--color-background-danger-strong: var(--palette-danger-500)
+--color-background-danger-strong-hover: var(--palette-danger-400)
+--color-background-danger-strong-pressed: var(--palette-danger-600)
+--color-background-danger-strong-disabled: var(--palette-danger-800)
+--color-background-input: var(--palette-white-alpha-10)
+--color-background-transparent: var(--palette-black-alpha-0)
+--color-background-neutral-strong: var(--palette-white-alpha-20)
+--color-background-info-soft: var(--palette-info-500-alpha-10)
+--color-background-info: var(--palette-info-500-alpha-25)
+--color-background-accent-purple-soft: var(--palette-purple-500-alpha-10)
+--color-background-accent-purple: var(--palette-purple-500-alpha-25)
+--color-background-accent-black-soft: var(--palette-black-alpha-5)
+--color-background-accent-black: var(--palette-black-alpha-10)
+--color-background-accent-white-soft: var(--palette-white-alpha-10)
+--color-background-accent-white: var(--palette-white-alpha-20)
+--color-background-danger-soft: var(--palette-danger-500-alpha-10)
+--color-background-success-soft: var(--palette-success-500-alpha-10)
+--color-background-warning-soft: var(--palette-warning-500-alpha-10)
+--color-background-info-strong: var(--palette-info-500)
+--color-background-success-strong: var(--palette-success-500)
+--color-background-warning-strong: var(--palette-warning-500)
+--color-background-track: var(--palette-black-alpha-60)
+--color-background-accent-grey-strong: var(--palette-grey-1000)
+--color-background-accent-dark-amber-strong: var(--palette-warning-700)
+--color-background-comment-pin: var(--palette-info-600)
+--color-overlay-element: var(--palette-white-alpha-20)
+--color-overlay-screen: var(--palette-black-alpha-30)
+--color-overlay-screen-strong: var(--palette-black-alpha-60)
+--color-shadow-elevation-1: var(--palette-black-alpha-25)
+--color-shadow-elevation-2: var(--palette-black-alpha-25)
+--color-shadow-elevation-3: var(--palette-black-alpha-35)
+--color-shadow-floating: var(--palette-black-alpha-25)
+--color-shadow-card-rest: var(--palette-black-alpha-25)
+--color-shadow-card-hover: var(--palette-black-alpha-40)
+--color-cooper-text: var(--palette-cooper-500)
+--color-cooper-icon: var(--palette-cooper-500)
+--color-cooper-border: var(--palette-cooper-500)
+--color-cooper-background-strong: var(--palette-cooper-500)
+--color-cooper-logo: var(--palette-core-1000)
+--color-cooper-logo-soft: var(--palette-white-alpha-50)
+--color-cooper-logo-softer: var(--palette-white-alpha-10)
+--color-cooper-insight-strong: var(--palette-black-alpha-85)
+--color-cooper-insight: var(--palette-black-alpha-10)
+--color-cooper-insight-inverse: var(--palette-white-alpha-5)
+--color-cooper-background-soft: var(--palette-cooper-500-alpha-10)
+--color-cooper-background: var(--palette-cooper-500-alpha-25)
+--color-cooper-glow-center: rgba(200,121,65,0.2)
+--color-cooper-glow-edge: var(--palette-black-alpha-20)
+--color-cooper-speaking-center: rgba(131,102,247,0.48)
+--color-cooper-speaking-edge: rgba(0,0,0,0.24)
+--color-cooper-button-fill: var(--palette-black-alpha-60)
+--color-cooper-button-fill-pressed: var(--palette-black-alpha-60)
+--color-cooper-button-glow: var(--palette-cooper-500)
+--color-cooper-button-glow-hover: var(--palette-cooper-500)
+--color-cooper-button-glow-pressed: var(--palette-cooper-700)
+--color-cooper-button-glow-edge: var(--palette-black-alpha-0)
+--color-cooper-button-rim: rgba(218,209,253,0.25)
+--color-cooper-button-rim-center: var(--palette-black-alpha-0)
+--color-cooper-highlight-purple-strong: rgba(79,61,149,0.24)
+--color-cooper-highlight-purple: rgba(79,61,149,0.6)
+--color-cooper-highlight-edge: var(--palette-black-alpha-60)
+--color-cooper-fab-rim: var(--palette-core-1000)
+--color-cooper-fab-shadow: var(--palette-purple-300)
+--color-collaboration-user-1: var(--palette-coral-orange-500)
+--color-collaboration-user-2: var(--palette-steel-blue-700)
+--color-collaboration-user-3: var(--palette-success-600)
+--color-collaboration-user-4: var(--palette-info-200)
+--color-collaboration-user-5: var(--palette-fuchsia-500)
+--color-collaboration-user-6: var(--palette-lime-500)
+--color-collaboration-user-7: var(--palette-coral-orange-300)
+--color-collaboration-user-8: var(--palette-violet-500)
+--color-collaboration-user-9: var(--palette-danger-900)
+--color-collaboration-user-10: var(--palette-electric-blue-500)
+--color-collaboration-user-11: var(--palette-violet-200)
+--color-collaboration-user-12: var(--palette-danger-500)
+--color-collaboration-user-13: var(--palette-warning-500)
+--color-collaboration-user-14: var(--palette-violet-300)
+--color-collaboration-user-15: var(--palette-fuchsia-200)
+--color-collaboration-user-16: var(--palette-core-0)
+--color-data-viz-rose-data-1: var(--palette-rose-100)
+--color-data-viz-rose-data-2: var(--palette-rose-200)
+--color-data-viz-rose-data-3: var(--palette-rose-300)
+--color-data-viz-rose-data-4: var(--palette-rose-400)
+--color-data-viz-rose-data-5: var(--palette-rose-500)
+--color-data-viz-rose-data-6: var(--palette-rose-600)
+--color-data-viz-rose-data-7: var(--palette-rose-700)
+--color-data-viz-rose-data-8: var(--palette-rose-800)
+--color-data-viz-rose-data-9: var(--palette-rose-900)
+--color-data-viz-rose-data-10: var(--palette-rose-950)
+--color-data-viz-muted-purple-data-1: var(--palette-muted-purple-100)
+--color-data-viz-muted-purple-data-2: var(--palette-muted-purple-200)
+--color-data-viz-muted-purple-data-3: var(--palette-muted-purple-300)
+--color-data-viz-muted-purple-data-4: var(--palette-muted-purple-400)
+--color-data-viz-muted-purple-data-5: var(--palette-muted-purple-500)
+--color-data-viz-muted-purple-data-6: var(--palette-muted-purple-600)
+--color-data-viz-muted-purple-data-7: var(--palette-muted-purple-700)
+--color-data-viz-muted-purple-data-8: var(--palette-muted-purple-800)
+--color-data-viz-muted-purple-data-9: var(--palette-muted-purple-900)
+--color-data-viz-muted-purple-data-10: var(--palette-muted-purple-950)
+--color-data-viz-teal-data-1: var(--palette-teal-100)
+--color-data-viz-teal-data-2: var(--palette-teal-200)
+--color-data-viz-teal-data-3: var(--palette-teal-300)
+--color-data-viz-teal-data-4: var(--palette-teal-400)
+--color-data-viz-teal-data-5: var(--palette-teal-500)
+--color-data-viz-teal-data-6: var(--palette-teal-600)
+--color-data-viz-teal-data-7: var(--palette-teal-700)
+--color-data-viz-teal-data-8: var(--palette-teal-800)
+--color-data-viz-teal-data-9: var(--palette-teal-900)
+--color-data-viz-teal-data-10: var(--palette-teal-950)
+--color-data-viz-steel-blue-data-1: var(--palette-steel-blue-100)
+--color-data-viz-steel-blue-data-2: var(--palette-steel-blue-200)
+--color-data-viz-steel-blue-data-3: var(--palette-steel-blue-300)
+--color-data-viz-steel-blue-data-4: var(--palette-steel-blue-400)
+--color-data-viz-steel-blue-data-5: var(--palette-steel-blue-500)
+--color-data-viz-steel-blue-data-6: var(--palette-steel-blue-600)
+--color-data-viz-steel-blue-data-7: var(--palette-steel-blue-700)
+--color-data-viz-steel-blue-data-8: var(--palette-steel-blue-800)
+--color-data-viz-steel-blue-data-9: var(--palette-steel-blue-900)
+--color-data-viz-steel-blue-data-10: var(--palette-steel-blue-950)
+--color-data-viz-deep-green-data-1: var(--palette-deep-green-100)
+--color-data-viz-deep-green-data-2: var(--palette-deep-green-200)
+--color-data-viz-deep-green-data-3: var(--palette-deep-green-300)
+--color-data-viz-deep-green-data-4: var(--palette-deep-green-400)
+--color-data-viz-deep-green-data-5: var(--palette-deep-green-500)
+--color-data-viz-deep-green-data-6: var(--palette-deep-green-600)
+--color-data-viz-deep-green-data-7: var(--palette-deep-green-700)
+--color-data-viz-deep-green-data-8: var(--palette-deep-green-800)
+--color-data-viz-deep-green-data-9: var(--palette-deep-green-900)
+--color-data-viz-deep-green-data-10: var(--palette-deep-green-950)
+--color-data-viz-alert-data-1: var(--palette-danger-100)
+--color-data-viz-alert-data-2: var(--palette-danger-200)
+--color-data-viz-alert-data-3: var(--palette-danger-300)
+--color-data-viz-alert-data-4: var(--palette-danger-400)
+--color-data-viz-alert-data-5: var(--palette-danger-500)
+--color-data-viz-alert-data-6: var(--palette-danger-600)
+--color-data-viz-alert-data-7: var(--palette-danger-700)
+--color-data-viz-alert-data-8: var(--palette-danger-800)
+--color-data-viz-alert-data-9: var(--palette-danger-850)
+--color-data-viz-alert-data-10: var(--palette-danger-900)
+--color-data-viz-violet-data-1: var(--palette-violet-100)
+--color-data-viz-violet-data-2: var(--palette-violet-200)
+--color-data-viz-violet-data-3: var(--palette-violet-300)
+--color-data-viz-violet-data-4: var(--palette-violet-400)
+--color-data-viz-violet-data-5: var(--palette-violet-500)
+--color-data-viz-violet-data-6: var(--palette-violet-600)
+--color-data-viz-violet-data-7: var(--palette-violet-700)
+--color-data-viz-violet-data-8: var(--palette-violet-800)
+--color-data-viz-violet-data-9: var(--palette-violet-850)
+--color-data-viz-violet-data-10: var(--palette-violet-950)
+--color-data-viz-cyan-data-1: var(--palette-cyan-100)
+--color-data-viz-cyan-data-2: var(--palette-cyan-200)
+--color-data-viz-cyan-data-3: var(--palette-cyan-300)
+--color-data-viz-cyan-data-4: var(--palette-cyan-400)
+--color-data-viz-cyan-data-5: var(--palette-cyan-500)
+--color-data-viz-cyan-data-6: var(--palette-cyan-600)
+--color-data-viz-cyan-data-7: var(--palette-cyan-700)
+--color-data-viz-cyan-data-8: var(--palette-cyan-800)
+--color-data-viz-cyan-data-9: var(--palette-cyan-850)
+--color-data-viz-cyan-data-10: var(--palette-cyan-900)
+--color-data-viz-neutral: var(--color-icon-softer)
+--color-data-viz-reference: var(--palette-core-1000)
+--color-data-viz-target: rgba(255,255,255,0.9)
+--color-data-viz-band: rgba(255,255,255,0.16)
+--color-data-viz-baseline: var(--palette-white-alpha-30)
+--color-data-viz-data-1: var(--palette-danger-600)
+--color-data-viz-data-2: #a06d1c
+--color-data-viz-data-3: #176932
+--color-data-viz-data-4: #5238a4
+--color-data-viz-data-5: #3556a0
+--color-data-viz-data-6: #167bb6
+--color-data-viz-data-7: #692917
+--color-data-viz-data-8: #6a1766
+--color-data-viz-data-9: #1e1e1e
+--color-data-viz-data-10: #313131
 --border-blue: #2b7fff
---border-success: #2ebc5d
---border-danger: #ee3c3b
---border-warning: #ffaf2e
---border-grey: #464646
---border-selected: #ffffff
---focus-focus-inner: #000000
---focus-focus-outer: #5599ff
---overlay-element-light: rgba(255,255,255,0.2)
---overlay-screen-medium: rgba(0,0,0,0.3)
---overlay-screen-strong: rgba(0,0,0,0.6)
---shadow-elevation-1: rgba(0,0,0,0.25)
---shadow-elevation-2: rgba(0,0,0,0.25)
---shadow-elevation-3: rgba(0,0,0,0.35)
---shadow-floating: rgba(0,0,0,0.25)
---element-button-primary-fill-default: #ffffff
---element-button-primary-fill-hover: rgba(255,255,255,0.85)
---element-button-primary-fill-pressed: rgba(255,255,255,0.6)
---element-button-primary-fill-disabled: rgba(255,255,255,0.1)
---element-button-primary-border-default: rgba(255,255,255,0.1)
---element-button-primary-border-hover: rgba(255,255,255,0.1)
---element-button-primary-border-pressed: rgba(255,255,255,0.1)
---element-button-primary-border-disabled: rgba(255,255,255,0)
---element-button-secondary-fill-default: rgba(255,255,255,0.1)
---element-button-secondary-fill-hover: rgba(255,255,255,0.15)
---element-button-secondary-fill-pressed: rgba(255,255,255,0.05)
---element-button-secondary-fill-disabled: rgba(255,255,255,0.1)
---element-button-secondary-border-default: rgba(255,255,255,0.1)
---element-button-secondary-border-hover: rgba(255,255,255,0.4)
---element-button-secondary-border-pressed: rgba(255,255,255,0.1)
---element-button-secondary-border-disabled: rgba(255,255,255,0.05)
---element-button-tertiary-fill-default: rgba(0,0,0,0.1)
---element-button-tertiary-fill-hover: rgba(0,0,0,0.1)
---element-button-tertiary-fill-pressed: rgba(0,0,0,0.1)
---element-button-tertiary-fill-disabled: rgba(0,0,0,0.1)
---element-button-tertiary-border-default: rgba(255,255,255,0.2)
---element-button-tertiary-border-hover: rgba(255,255,255,0.4)
---element-button-tertiary-border-pressed: rgba(255,255,255,0.1)
---element-button-tertiary-border-disabled: rgba(255,255,255,0.2)
---element-button-negative-fill-default: #ee3c3b
---element-button-negative-fill-hover: #f16362
---element-button-negative-fill-pressed: #bf302f
---element-button-negative-fill-disabled: #601818
---element-button-negative-border-default: rgba(255,255,255,0)
---element-button-negative-border-hover: rgba(255,255,255,0)
---element-button-negative-border-pressed: rgba(255,255,255,0)
---element-button-negative-border-disabled: rgba(255,255,255,0)
---element-button-ghost-fill-default: rgba(0,0,0,0)
---element-button-ghost-fill-hover: rgba(255,255,255,0.15)
---element-button-ghost-fill-pressed: rgba(255,255,255,0.15)
---element-button-ghost-fill-disabled: rgba(0,0,0,0)
---element-button-ghost-border-default: rgba(255,255,255,0)
---element-button-ghost-border-hover: rgba(255,255,255,0)
---element-button-ghost-border-pressed: rgba(255,255,255,0)
---element-button-ghost-border-disabled: rgba(255,255,255,0)
+--element-checkbox-off-border-pressed: rgba(255,255,255,0.15)
+--element-radiobutton-off-border-pressed: rgba(255,255,255,0.15)
 --element-button-circular-fill-default: rgba(255,255,255,0.2)
 --element-button-circular-fill-hover: rgba(255,255,255,0.6)
 --element-button-circular-fill-pressed: rgba(255,255,255,0.5)
---element-button-circular-fill-disabled: rgba(255,255,255,0.1)
---element-button-circular-border-default: rgba(255,255,255,0.1)
---element-button-circular-border-hover: rgba(255,255,255,0.4)
---element-button-circular-border-pressed: rgba(255,255,255,0.1)
---element-button-circular-border-disabled: rgba(255,255,255,0.05)
---element-button-circular-hover-ring: #ffffff
---element-button-draw-bar-fill-default: rgba(0,0,0,0)
---element-button-draw-bar-fill-hover: rgba(255,255,255,0.05)
---element-button-draw-bar-fill-pressed: rgba(255,255,255,0.15)
---element-button-draw-bar-fill-disabled: rgba(0,0,0,0)
---element-input-fill-default: rgba(255,255,255,0.1)
---element-input-fill-hover: rgba(255,255,255,0.1)
---element-input-fill-typing: rgba(255,255,255,0.1)
---element-input-fill-disabled: rgba(255,255,255,0.05)
---element-input-fill-danger: rgba(255,255,255,0.1)
---element-input-border-default: rgba(255,255,255,0.1)
---element-input-border-hover: rgba(255,255,255,0.2)
---element-input-border-typing: rgba(255,255,255,0.55)
---element-input-border-disabled: rgba(255,255,255,0.05)
---element-input-border-danger: #ee3c3b
---element-search-border-default: rgba(255,255,255,0.1)
---element-search-border-hover: rgba(255,255,255,0.2)
---element-search-border-typing: rgba(255,255,255,0.4)
---element-search-border-disabled: rgba(255,255,255,0.05)
---element-header-item-fill-default: rgba(0,0,0,0)
---element-header-item-fill-hover: rgba(255,255,255,0.15)
---element-header-item-fill-pressed: rgba(255,255,255,0.15)
---element-header-item-fill-active: rgba(255,255,255,0.1)
---element-header-item-fill-disabled: rgba(0,0,0,0)
---element-breadcrumb-border-default: rgba(255,255,255,0.1)
---element-breadcrumb-border-hover: rgba(255,255,255,0.4)
---element-breadcrumb-border-pressed: rgba(255,255,255,0.2)
---element-breadcrumb-border-disabled: rgba(255,255,255,0.05)
---element-dropdown-fill-default: rgba(255,255,255,0.1)
---element-dropdown-fill-hover: rgba(255,255,255,0.2)
---element-dropdown-fill-active: rgba(255,255,255,0.15)
---element-dropdown-fill-disabled: rgba(255,255,255,0.05)
---element-toggle-off-fill-default: rgba(255,255,255,0.1)
---element-toggle-off-fill-hover: rgba(255,255,255,0.15)
---element-toggle-off-fill-pressed: rgba(255,255,255,0.05)
---element-toggle-off-fill-disabled: rgba(255,255,255,0.1)
---element-toggle-off-border-default: rgba(255,255,255,0.1)
---element-toggle-off-border-hover: rgba(255,255,255,0.4)
---element-toggle-off-border-pressed: rgba(255,255,255,0.1)
---element-toggle-off-border-disabled: rgba(255,255,255,0.05)
---element-toggle-on-fill-default: #ffffff
---element-toggle-on-fill-hover: rgba(255,255,255,0.85)
---element-toggle-on-fill-pressed: rgba(255,255,255,0.6)
---element-toggle-on-fill-disabled: rgba(255,255,255,0.1)
---element-checkbox-off-border-default: rgba(255,255,255,0.6)
---element-checkbox-off-border-hover: rgba(255,255,255,0.4)
---element-checkbox-off-border-pressed: rgba(255,255,255,0.15)
---element-checkbox-off-border-disabled: rgba(255,255,255,0.1)
---element-checkbox-on-fill-default: #ffffff
---element-checkbox-on-fill-hover: rgba(255,255,255,0.85)
---element-checkbox-on-fill-pressed: rgba(255,255,255,0.6)
---element-checkbox-on-fill-disabled: rgba(255,255,255,0.1)
---element-radiobutton-off-border-default: rgba(255,255,255,0.6)
---element-radiobutton-off-border-hover: rgba(255,255,255,0.4)
---element-radiobutton-off-border-pressed: rgba(255,255,255,0.15)
---element-radiobutton-off-border-disabled: rgba(255,255,255,0.05)
---element-radiobutton-on-fill-default: #ffffff
---element-radiobutton-on-fill-hover: rgba(255,255,255,0.85)
---element-radiobutton-on-fill-pressed: rgba(255,255,255,0.6)
---element-radiobutton-on-fill-disabled: rgba(255,255,255,0.1)
---element-radiobutton-on-border-default: #ffffff
---element-radiobutton-on-border-hover: rgba(255,255,255,0.85)
---element-radiobutton-on-border-pressed: rgba(255,255,255,0.6)
---element-radiobutton-on-border-disabled: rgba(255,255,255,0.1)
---element-chips-off-fill-default: rgba(255,255,255,0.1)
---element-chips-off-fill-hover: rgba(255,255,255,0.15)
---element-chips-off-fill-pressed: rgba(255,255,255,0.05)
---element-chips-off-fill-disabled: rgba(255,255,255,0.1)
---element-chips-off-border-default: rgba(255,255,255,0.1)
---element-chips-off-border-hover: rgba(255,255,255,0.4)
---element-chips-off-border-pressed: rgba(255,255,255,0.1)
---element-chips-off-border-disabled: rgba(255,255,255,0.05)
---element-chips-on-fill-default: #ffffff
---element-chips-on-fill-hover: rgba(255,255,255,0.85)
---element-chips-on-fill-pressed: rgba(255,255,255,0.6)
---element-chips-on-fill-disabled: rgba(255,255,255,0.1)
---element-segmented-control-container-fill: rgba(0,0,0,0.6)
---element-segmented-control-off-fill-default: rgba(255,255,255,0)
---element-segmented-control-off-fill-hover: rgba(255,255,255,0.1)
---element-segmented-control-off-fill-pressed: rgba(255,255,255,0.05)
---element-segmented-control-off-fill-disabled: rgba(255,255,255,0)
---element-segmented-control-on-fill-default: rgba(255,255,255,0.15)
---element-segmented-control-on-fill-hover: rgba(255,255,255,0.1)
---element-segmented-control-on-fill-pressed: rgba(255,255,255,0.05)
---element-segmented-control-on-fill-disabled: rgba(255,255,255,0)
---element-segmented-control-on-border-default: rgba(255,255,255,0.1)
---element-segmented-control-on-border-hover: rgba(255,255,255,0.2)
---element-segmented-control-on-border-pressed: rgba(255,255,255,0.05)
---element-segmented-control-on-border-disabled: rgba(255,255,255,0.1)
---element-card-state-fill-default: rgba(255,255,255,0.05)
---element-card-state-fill-hover: rgba(255,255,255,0.15)
---element-card-state-fill-pressed: rgba(255,255,255,0.1)
---element-card-state-fill-focus: rgba(255,255,255,0.05)
---element-card-state-fill-selected: rgba(255,255,255,0.05)
---element-card-state-fill-drag: rgba(255,255,255,0.15)
---element-card-state-fill-disabled: rgba(255,255,255,0.05)
---element-card-state-border-default: rgba(255,255,255,0.1)
---element-card-state-border-hover: rgba(255,255,255,0.2)
---element-card-state-border-pressed: rgba(255,255,255,0.2)
---element-card-state-border-selected: rgba(255,255,255,0.4)
---element-card-state-border-drag: rgba(255,255,255,0.4)
---element-card-state-border-disabled: rgba(255,255,255,0.1)
---element-map-pin-fill-default: #8c8c8c
---element-map-pin-fill-success: #2ebc5d
---element-map-pin-fill-error: #ee3c3b
---element-map-pin-fill-warning: #ffaf2e
---element-map-pin-fill-info: #2b7fff
---element-map-pin-border-default: #8c8c8c
---element-map-pin-border-error: #ee3c3b
---element-map-pin-border-warning: #ffaf2e
---element-map-pin-border-active: rgba(255,255,255,0.5)
---element-map-pin-overlay-error: rgba(238,60,59,0.1)
---element-map-pin-overlay-warning: rgba(255,175,46,0.1)
---element-cooper-icon-white-1000: #ffffff
---element-cooper-icon-white-500: rgba(255,255,255,0.5)
---element-text-area-fill-typing: rgba(255,255,255,0.1)
---element-text-area-border-default: rgba(255,255,255,0.1)
 --white-500: rgba(255,255,255,0.5)
 --white-alpha-50: rgba(255,255,255,0.5)
---element-cooper-icon-white-100: rgba(255,255,255,0.1)
---element-cooper-insight-fill-strong: rgba(0,0,0,0.85)
---element-cooper-insight-fill-base: rgba(0,0,0,0.1)
---element-cooper-insight-fill-inverse: rgba(255,255,255,0.05)
---element-cooper-glow-center: rgba(200,121,65,0.2)
---element-cooper-glow-edge: rgba(0,0,0,0.2)
---element-cooper-speaking-center: rgba(131,102,247,0.48)
---element-cooper-speaking-edge: rgba(0,0,0,0.24)
---element-cooper-button-fill: rgba(0,0,0,0.6)
---element-cooper-button-fill-pressed: rgba(0,0,0,0.6)
---element-cooper-button-glow: #c87941
---element-cooper-button-glow-hover: #c87941
---element-cooper-button-glow-pressed: #784927
---element-cooper-button-glow-edge: rgba(0,0,0,0)
---element-cooper-button-rim: rgba(218,209,253,0.25)
---element-cooper-button-rim-center: rgba(0,0,0,0)
---element-cooper-highlight-purple-strong: rgba(79,61,149,0.24)
---element-cooper-highlight-purple-base: rgba(79,61,149,0.6)
---element-cooper-highlight-edge: rgba(0,0,0,0.6)
---element-cooper-fab-rim: #ffffff
---element-cooper-fab-shadow: #b5a3fa
---element-status-fade-danger: rgba(0,0,0,0)
---element-status-fade-warning: rgba(0,0,0,0)
---element-status-fade-success: rgba(0,0,0,0)
---element-status-fade-cooper: rgba(0,0,0,0)
---element-status-fade-purple: rgba(0,0,0,0)
---element-status-fade-grey: rgba(0,0,0,0)
---element-status-grey-band-start: rgba(255,255,255,0)
---element-status-grey-band-light: #ffffff
---element-status-grey-center: #464646
---element-status-tint-success: var(--background-solid-dark-green)
---element-status-tint-warning: #99691c
---collaboration-user-1: #ef5533
---collaboration-user-2: #25324d
---collaboration-user-3: #25964a
---collaboration-user-4: #aaccff
---collaboration-user-5: #f531b3
---collaboration-user-6: #a9d10a
---collaboration-user-7: #f48e76
---collaboration-user-8: #9c18fb
---collaboration-user-9: #300c0c
---collaboration-user-10: #3056ee
---collaboration-user-11: #c992ff
---collaboration-user-12: #ee3c3b
---collaboration-user-13: #ffaf2e
---collaboration-user-14: #b46dff
---collaboration-user-15: #f58adb
---collaboration-user-16: #000000
---data-viz-neutral: var(--icon-tertiary)
---data-viz-reference: #ffffff
---data-viz-target: rgba(255,255,255,0.9)
---data-viz-band: rgba(255,255,255,0.16)
---data-viz-baseline: rgba(255,255,255,0.3)
---data-viz-data-1: #bf302f
---data-viz-data-2: #a06d1c
---data-viz-data-3: #176932
---data-viz-data-4: #5238a4
---data-viz-data-5: #3556a0
---data-viz-data-6: #167bb6
---data-viz-data-7: #692917
---data-viz-data-8: #6a1766
---data-viz-data-9: #1e1e1e
---data-viz-data-10: #313131
---data-viz-rose-data-1: #f3d1f2
---data-viz-rose-data-2: #e8b0e5
---data-viz-rose-data-3: #d598d2
---data-viz-rose-data-4: #ba78b7
---data-viz-rose-data-5: #9f579c
---data-viz-rose-data-6: #843781
---data-viz-rose-data-7: #691766
---data-viz-rose-data-8: #541252
---data-viz-rose-data-9: #350533
---data-viz-rose-data-10: #210020
---data-viz-muted-purple-data-1: #dad3e7
---data-viz-muted-purple-data-2: #afa2cd
---data-viz-muted-purple-data-3: #8d82b4
---data-viz-muted-purple-data-4: #6f6298
---data-viz-muted-purple-data-5: #50427d
---data-viz-muted-purple-data-6: #433374
---data-viz-muted-purple-data-7: #32255f
---data-viz-muted-purple-data-8: #221844
---data-viz-muted-purple-data-9: #17102e
---data-viz-muted-purple-data-10: #0f0a1e
---data-viz-teal-data-1: #d2e7e7
---data-viz-teal-data-2: #94c2c2
---data-viz-teal-data-3: #6fa9a9
---data-viz-teal-data-4: #539191
---data-viz-teal-data-5: #427d7d
---data-viz-teal-data-6: #376868
---data-viz-teal-data-7: #2d5555
---data-viz-teal-data-8: #244444
---data-viz-teal-data-9: #162c2c
---data-viz-teal-data-10: #0f1d1d
---data-viz-steel-blue-data-1: #d6dce8
---data-viz-steel-blue-data-2: #9caac9
---data-viz-steel-blue-data-3: #7a88b1
---data-viz-steel-blue-data-4: #5a6997
---data-viz-steel-blue-data-5: #35466a
---data-viz-steel-blue-data-6: #2d3c5c
---data-viz-steel-blue-data-7: #25324d
---data-viz-steel-blue-data-8: #1e2940
---data-viz-steel-blue-data-9: #131a29
---data-viz-steel-blue-data-10: #0c111b
---data-viz-deep-green-data-1: #cfe8da
---data-viz-deep-green-data-2: #8fc3a8
---data-viz-deep-green-data-3: #68ab89
---data-viz-deep-green-data-4: #4a936f
---data-viz-deep-green-data-5: #28875f
---data-viz-deep-green-data-6: #237a52
---data-viz-deep-green-data-7: #1e6344
---data-viz-deep-green-data-8: #184e36
---data-viz-deep-green-data-9: #103525
---data-viz-deep-green-data-10: #0a2319
---data-viz-alert-data-1: #fcd8d8
---data-viz-alert-data-2: #f8b1b1
---data-viz-alert-data-3: #f58a89
---data-viz-alert-data-4: #f16362
---data-viz-alert-data-5: #ee3c3b
---data-viz-alert-data-6: #bf302f
---data-viz-alert-data-7: #8f2423
---data-viz-alert-data-8: #601818
---data-viz-alert-data-9: #481212
---data-viz-alert-data-10: #300c0c
---data-viz-violet-data-1: #e6ccff
---data-viz-violet-data-2: #c992ff
---data-viz-violet-data-3: #b46dff
---data-viz-violet-data-4: #a14bff
---data-viz-violet-data-5: #9c18fb
---data-viz-violet-data-6: #8400e6
---data-viz-violet-data-7: #6b00c2
---data-viz-violet-data-8: #52009a
---data-viz-violet-data-9: #3b0073
---data-viz-violet-data-10: #140026
---data-viz-cyan-data-1: #ccf6fa
---data-viz-cyan-data-2: #80e6ef
---data-viz-cyan-data-3: #4ddce7
---data-viz-cyan-data-4: #1ad1e0
---data-viz-cyan-data-5: #00b5ce
---data-viz-cyan-data-6: #0090a6
---data-viz-cyan-data-7: #006f82
---data-viz-cyan-data-8: #005763
---data-viz-cyan-data-9: #004652
---data-viz-cyan-data-10: #003741
---size-ruler-master-0: 0px
---size-ruler-master-0-5: 0.5px
---size-ruler-master-1: 1px
---size-ruler-master-2: 2px
---size-ruler-master-3: 3px
---size-ruler-master-4: 0.25rem
---size-ruler-master-6: 0.375rem
---size-ruler-master-8: 0.5rem
---size-ruler-master-10: 0.625rem
---size-ruler-master-12: 0.75rem
---size-ruler-master-14: 0.875rem
---size-ruler-master-16: 1rem
---size-ruler-master-20: 1.25rem
---size-ruler-master-24: 1.5rem
---size-ruler-master-28: 1.75rem
---size-ruler-master-32: 2rem
---size-ruler-master-36: 2.25rem
---size-ruler-master-40: 2.5rem
---size-ruler-master-44: 2.75rem
---size-ruler-master-48: 3rem
---size-ruler-master-52: 3.25rem
---size-ruler-master-56: 3.5rem
---size-ruler-master-60: 3.75rem
---size-ruler-master-64: 4rem
---size-ruler-master-68: 4.25rem
---size-ruler-master-72: 4.5rem
---size-ruler-master-76: 4.75rem
---size-ruler-master-80: 5rem
---size-ruler-master-1000: 1000px
 --table-col-primary-min: 15rem
 --table-col-primary-max: 30rem
 --table-col-short-min: 7.5rem
@@ -456,50 +286,63 @@
 --layout-max-content-width: 100rem
 --layout-global-header-height: 3rem
 --layout-sidebar-width: 15rem
---layout-side-panel-width: 23.75rem
+--layout-panel-width: 23.75rem
 --layout-rail-width: 3rem
---layout-side-panel-collapsed-width: 5.25rem
---border-widths-border-0: 0px
---border-widths-border-100: 1px
---border-widths-border-150: 1.5px
---border-widths-border-200: 2px
---border-widths-border-300: 3px
---border-widths-border-400: 4px
---radius-radius-0: 0px
---radius-radius-100: 4px
---radius-radius-150: 6px
---radius-radius-200: 8px
---radius-radius-300: 12px
---radius-radius-full: 1000px
---z-index-z-base: 0
---z-index-z-sticky: 50
---z-index-z-panels: 100
---z-index-z-floating: 200
---z-index-z-popover: 300
---z-index-z-selection-overlay: 400
---z-index-z-modal-overlay: 500
---z-index-z-modal: 600
---z-index-z-toast: 700
---z-index-z-max: 999
+--layout-panel-width-collapsed: 5.25rem
+--border-width-0: 0px
+--border-width-100: 1px
+--border-width-150: 1.5px
+--border-width-200: 2px
+--border-width-300: 3px
+--border-width-400: 4px
+--border-width-default: var(--border-width-100)
+--border-width-selected: var(--border-width-200)
+--border-width-emphasis: var(--border-width-400)
+--radius-0: 0px
+--radius-100: 4px
+--radius-150: 6px
+--radius-200: 8px
+--radius-300: 12px
+--radius-full: 1000px
+--radius-50: 2px
+--radius-mark: var(--radius-50)
+--radius-control: var(--radius-100)
+--radius-card: var(--radius-100)
+--radius-floating: var(--radius-200)
+--radius-floating-l: var(--radius-300)
+--radius-pill: var(--radius-full)
+--z-index-base: 0
+--z-index-sticky: 50
+--z-index-panels: 100
+--z-index-floating: 200
+--z-index-popover: 300
+--z-index-selection-overlay: 400
+--z-index-modal-overlay: 500
+--z-index-modal: 600
+--z-index-toast: 700
+--z-index-tooltip: 800
+--z-index-max: 999
 --font-family-display: "Inter", system-ui, sans-serif
 --font-family-text: "Inter", system-ui, sans-serif
 --font-family-mono: "JetBrains Mono", ui-monospace, monospace
---font-weight-font-weight-regular: 400
---font-weight-font-weight-medium: 500
---font-weight-font-weight-semibold: 600
---blur-max: 100px
---blur-strong: 80px
---blur-medium: 40px
---blur-soft: 20px
---blur-light: 10px
---blur-faint: 4px
---drop-shadow-elevation-1: 0 4px 8px 0 rgba(0,0,0,0.1)
---drop-shadow-elevation-2: 0 8px 12px -1px rgba(0,0,0,0.25)
---drop-shadow-elevation-3: 0 12px 16px -2px rgba(0,0,0,0.35)
+--font-weight-regular: 400
+--font-weight-medium: 500
+--font-weight-semibold: 600
+--blur-100: 100px
+--blur-80: 80px
+--blur-40: 40px
+--blur-20: 20px
+--blur-10: 10px
+--blur-4: 4px
+--drop-shadow-elevation-1: /* deprecated: differs from --elevation-1 (10% vs 25%)
 --drop-shadow-floating: 0 4px 8px 0 rgba(0,0,0,0.25)
---elevation-elevation-1-primary: 0 4px 8px 0 rgba(0,0,0,0.25)
---elevation-elevation-2-primary: 0 8px 12px -1px rgba(0,0,0,0.25)
---elevation-elevation-3-primary: 0 12px 16px -2px rgba(0,0,0,0.35)
+--elevation-1: 0 4px 8px 0 rgba(0,0,0,0.25)
+--elevation-2: 0 8px 12px -1px rgba(0,0,0,0.25)
+--elevation-3: 0 12px 16px -2px rgba(0,0,0,0.35)
+--elevation-raised: none
+--elevation-floating: 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-2)
+--elevation-modal: 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-3)
+--elevation-floating-filter: drop-shadow(0 4px 8px var(--color-shadow-floating))
 --inner-shadow-map-highlight-resolved: inset 0 0 12px 7px rgba(46,188,93,0.4)
 --inner-shadow-map-highlight-critical: inset 0 0 12px 7px rgba(238,60,59,0.4)
 --inner-shadow-map-highlight-moderate: inset 0 0 12px 7px rgba(255,175,46,0.4)
@@ -507,78 +350,78 @@
 --inner-shadow-map-highlight-evaluated: inset 0 0 12px 7px rgba(43,127,255,0.4)
 --inner-shadow-map-highlight-grey: inset 0 0 12px 7px rgba(84,84,84,0.4)
 --drop-shadow-pin: 0 0 10px 0 rgba(10,14,21,0.2)
---badge-h-s: var(--size-20)
---badge-h-m: var(--size-24)
---badge-h-l: var(--size-32)
---type-caption: var(--type-s) /* retired: Caption = Small */
---type-s: 0.75rem/1rem
---type-m: 0.875rem/1.25rem
---type-l: 1rem/1.5rem
---type-h3: 1.25rem/1.75rem
---type-h2: 1.5rem/2rem
---type-h1: 1.75rem/2.25rem
---type-display-s: 2rem/2.5rem
---type-display-m: 2.25rem/2.75rem
---type-display-l: 2.75rem/3.25rem
---control-h-s: 1.5rem
---control-h-m: 2rem
---control-h-l: 2.5rem
+--size-badge-s: var(--size-20)
+--size-badge-m: var(--size-24)
+--size-badge-l: var(--size-32)
+--font-size-caption: var(--font-size-s)
+--font-size-s: 0.75rem/1rem
+--font-size-m: 0.875rem/1.25rem
+--font-size-l: 1rem/1.5rem
+--font-size-h3: 1.25rem/1.75rem
+--font-size-h2: 1.5rem/2rem
+--font-size-h1: 1.75rem/2.25rem
+--font-size-display-s: 2rem/2.5rem
+--font-size-display-m: 2.25rem/2.75rem
+--font-size-display-l: 2.75rem/3.25rem
+--size-control-s: 1.5rem
+--size-control-m: 2rem
+--size-control-l: 2.5rem
 --icon-scale: 1
---tab-h-m: 2.25rem
---tab-h-l: 2.5rem
---nav-row-h: 2.5rem
---table-row-h: 3.25rem
---table-header-h: 2rem
+--size-tab-m: 2.25rem
+--size-tab-l: 2.5rem
+--size-nav-row: 2.5rem
+--size-table-row: 3.25rem
+--size-table-header: 2rem
 --table-header-pad-top: var(--space-0)
 --table-header-pad-bottom: var(--space-0)
 --density-scale: 1.05
---badge-h-s: var(--size-24)
---badge-h-m: var(--size-28)
---badge-h-l: var(--size-36)
---type-caption: var(--type-s) /* retired: Caption = Small */
---type-s: 0.875rem/1.25rem
---type-m: 1rem/1.5rem
---type-l: 1.125rem/1.625rem
---type-h3: 1.375rem/1.75rem
---type-h2: 1.625rem/2rem
---type-h1: 2rem/2.5rem
---type-display-s: 2.25rem/2.75rem
---type-display-m: 2.5rem/3rem
---type-display-l: 3rem/3.5rem
---control-h-s: 1.75rem
---control-h-m: 2.25rem
---control-h-l: 2.75rem
---icon-scale: 1.143 /* follows body text 16 / 14 */
---tab-h-m: 2.5rem
---tab-h-l: 3rem
---nav-row-h: 2.75rem
---table-row-h: 4rem
---table-header-h: 2.5rem
+--size-badge-s: var(--size-24)
+--size-badge-m: var(--size-28)
+--size-badge-l: var(--size-36)
+--font-size-caption: var(--font-size-s)
+--font-size-s: 0.875rem/1.25rem
+--font-size-m: 1rem/1.5rem
+--font-size-l: 1.125rem/1.625rem
+--font-size-h3: 1.375rem/1.75rem
+--font-size-h2: 1.625rem/2rem
+--font-size-h1: 2rem/2.5rem
+--font-size-display-s: 2.25rem/2.75rem
+--font-size-display-m: 2.5rem/3rem
+--font-size-display-l: 3rem/3.5rem
+--size-control-s: 1.75rem
+--size-control-m: 2.25rem
+--size-control-l: 2.75rem
+--icon-scale: 1.143
+--size-tab-m: 2.5rem
+--size-tab-l: 3rem
+--size-nav-row: 2.75rem
+--size-table-row: 4rem
+--size-table-header: 2.5rem
 --table-header-pad-top: var(--space-0)
 --table-header-pad-bottom: var(--space-0)
 --density-scale: 1.2
---badge-h-s: var(--size-20)
---badge-h-m: var(--size-24)
---badge-h-l: var(--size-28)
---type-caption: var(--type-s) /* retired: Caption = Small */
---type-s: 0.6875rem/0.875rem /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */
---type-m: 0.75rem/1rem
---type-l: 0.875rem/1.25rem
---type-h3: 1rem/1.5rem
---type-h2: 1.25rem/1.75rem
---type-h1: 1.5rem/2rem
---type-display-s: 1.75rem/2.25rem
---type-display-m: 2rem/2.5rem
---type-display-l: 2.5rem/3rem
---control-h-s: 1.5rem /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */
---control-h-m: 1.75rem
---control-h-l: 2rem
---icon-scale: 0.857 /* follows body text 12 / 14 */
---tab-h-m: 2rem
---tab-h-l: 2.25rem
---nav-row-h: 2.25rem
---table-row-h: 2.5rem
---table-header-h: 1.5rem
+--size-badge-s: var(--size-20)
+--size-badge-m: var(--size-24)
+--size-badge-l: var(--size-28)
+--font-size-caption: var(--font-size-s)
+--font-size-s: 0.6875rem/0.875rem
+--font-size-m: 0.75rem/1rem
+--font-size-l: 0.875rem/1.25rem
+--font-size-h3: 1rem/1.5rem
+--font-size-h2: 1.25rem/1.75rem
+--font-size-h1: 1.5rem/2rem
+--font-size-display-s: 1.75rem/2.25rem
+--font-size-display-m: 2rem/2.5rem
+--font-size-display-l: 2.5rem/3rem
+--size-control-s: 1.5rem
+--size-control-m: 1.75rem
+--size-control-l: 2rem
+--icon-scale: 0.857
+--size-tab-m: 2rem
+--size-tab-l: 2.25rem
+--size-nav-row: 2.25rem
+--size-table-row: 2.5rem
+--size-table-header: 1.5rem
 --table-header-pad-top: var(--space-0)
 --table-header-pad-bottom: var(--space-0)
 --density-scale: 0.95
@@ -589,6 +432,7 @@
 --layout-columns: 4
 --page-margin: var(--space-400)
 --page-gap: var(--space-400)
+--float-inset: var(--page-margin)
 --layout-max-content-width-wide: 140rem
 --region-panel-min: 20rem
 --region-panel-max: 50vw
@@ -599,11 +443,11 @@
 --layout-header-title-mid: 15rem
 --layout-header-title-min: 10rem
 --layout-content-min: 50rem
---overlay-width-s: 20rem
---overlay-width-m: 27.5rem
---overlay-width-l: 37.5rem
+--layout-popover-width: 20rem
+--layout-modal-width-m: 27.5rem
+--layout-modal-width-l: 37.5rem
 --menu-width-s: 12.5rem
---menu-width-l: var(--overlay-width-s)
+--menu-width-l: var(--layout-popover-width)
 --layout-chat-width-max: 45rem
 --cooper-compact-end: 3.75rem
 --cooper-compact-bottom: 8.1875rem
@@ -614,7 +458,7 @@
 @media (min-width:1920px){:root{--page-margin:var(--space-700)
 --page-gap: var(--space-700)}}
 
-/* ---------- Column width (for page regions and the review overlay) ---------- */
+
 :root{
   --layout-content:calc(min(100cqw, var(--layout-max-content-width) + 2 * var(--page-margin)) - 2 * var(--page-margin))
 --layout-inset: calc((100cqw - var(--layout-content)) / 2)
@@ -636,8 +480,8 @@
 
 /* ---------- Page container (Nov 19): the page margin on all four sides (16 / 24 / 32 by width), content capped at 1600 and
    centred, blocks a page gap apart. Wrap each page's content in it, inside AppShell
---region-panel: var(--layout-side-panel-width)
---region-panel-l: var(--overlay-width-l)}
+--region-panel: var(--layout-panel-width)
+--region-panel-l: var(--layout-modal-width-l)}
 
 /* ---------- Map slots (2.0.3, Nov 19): one panel per side, bars between them, nothing overlaps ----------
    On the map container (.ifs-slots). Agreed rules: one panel per side (opening another replaces it), centre bars between the
@@ -649,31 +493,31 @@
 --region-map-bar: 46.625rem
 --bp-map-overlay: 1100px
 --bp-map-sheet: 720px
---slot-inset: var(--page-margin) /* every slot sits this far in from the map's edges: tops, bottoms and the end edge line up */
+--slot-inset: var(--page-margin)
 --slot-top: var(--slot-inset)
---slot-tools: calc(var(--control-h-m) + var(--space-150))
+--slot-tools: calc(var(--size-control-m) + var(--space-150))
 --slot-fab: var(--size-48)
 --slot-left-w: var(--region-panel)
 --slot-l: calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))
 --slot-r: var(--slot-inset)}
 .ifs-slots.has-left-l{--slot-left-w:var(--region-panel-l)}
-.ifs-slots.has-exit{--slot-top:calc(var(--slot-inset) + var(--control-h-m) + var(--page-gap))}
+.ifs-slots.has-exit{--slot-top:calc(var(--slot-inset) + var(--size-control-m) + var(--page-gap))}
 .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap) + var(--slot-left-w) + var(--page-gap))}
 .ifs-slots.has-right{--slot-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
 .ifs-slot-left{position:absolute
 --slot-top-r: var(--slot-inset)}
-.ifs-slots.has-right{--slot-top-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))} /* the top bar always clears the end panel, even when it overlays the map */
+.ifs-slots.has-right{--slot-top-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))} 
 .ifs-slot-top{top:var(--slot-top)
 --slot-bottom-r: calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap))}
 .ifs-slots.has-right{--slot-bottom-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
 .ifs-slots.has-bottom-x .ifs-slot-bottom{inset-inline-start:var(--slot-bottom-x)
---slot-legend-w: 210px /* map legend width (layout geometry) */}
+--slot-legend-w: 210px }
 .ifs-slot-legend{position:absolute
 --bp-map-overlay: the end panel sits over the map
 --slot-r: var(--slot-inset)}
   .ifs-slot-right{z-index:650}
 }
-@media (max-width:719px){ /* = --bp-map-sheet: panels become a bottom sheet (half the map) */
+@media (max-width:719px){ 
   .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))}
   .ifs-slot-left,.ifs-slot-right{inset-inline:var(--slot-inset)
 --layout-columns: 8}
@@ -688,21 +532,333 @@
 }
 
 /* ==========================================================================
-   Spacing (Catalyst Design System 2.0.1). Rules: guide/rules.md §3
-   Figma source: "5. Measurements" (size-ruler, gaps, paddings, margins, gutters, spacing/*).
-
-   1. Scale  --space-*   ONE spacing scale for padding, gap and margin (100 = 4px). Same in every density.
-             --size-*    Size ruler for dimensions only (heights, widths, icons, 1–3px optical nudges).
-   2. Roles  change with density (Spacious / Comfortable / Compact):
-             --space-inset    20 / 16 / 12  padding, on all four sides, of every container part:
-                                            cards, panels, drawers, popovers
-             --space-inset-l  24 / 20 / 16  modals and form cards (2.0.3)
-             --space-table-x  20 / 16 / 16  table card edge and table cell sides (2.0.3)
-             --space-stack    16 / 12 /  8  gap between blocks inside a container
-             --space-section  40 / 32 / 24  gap between the sections of a page
-   3. Page   --page-margin and --page-gap follow SCREEN WIDTH, not density: see foundations/layout.css.
-
-   Which to use: a role for containers and the gaps between blocks
+   Motion (Catalyst Design System 2.0.5
+--motion-duration-0: 0ms
+--motion-duration-50: 50ms
+--motion-duration-100: 100ms
+--motion-duration-200: 200ms
+--motion-duration-300: 300ms
+--motion-ease-standard: cubic-bezier(0.4, 0, 0.2, 1)
+--motion-ease-enter: cubic-bezier(0, 0, 0.2, 1)
+--motion-ease-exit: cubic-bezier(0.4, 0, 1, 1)
+--motion-ease-linear: linear
+--motion-distance-2: 2px
+--motion-distance-16: 16px
+--motion-loop-spin: 1000ms
+--motion-loop-pulse: 1600ms
+--palette-core-0: #000000
+--palette-core-50: #0d0d0d
+--palette-white-alpha-0: rgba(255,255,255,0)
+--palette-white-alpha-5: rgba(255,255,255,0.05)
+--palette-core-100: #1a1a1a
+--palette-white-alpha-10: rgba(255,255,255,0.1)
+--palette-core-150: #262626
+--palette-white-alpha-15: rgba(255,255,255,0.15)
+--palette-core-200: #333333
+--palette-white-alpha-20: rgba(255,255,255,0.2)
+--palette-core-300: #4d4d4d
+--palette-white-alpha-30: rgba(255,255,255,0.3)
+--palette-core-400: #666666
+--palette-white-alpha-40: rgba(255,255,255,0.4)
+--palette-core-500: #808080
+--palette-white-alpha-50: rgba(255,255,255,0.5)
+--palette-core-550: #8c8c8c
+--palette-white-alpha-55: rgba(255,255,255,0.55)
+--palette-core-600: #999999
+--palette-white-alpha-60: rgba(255,255,255,0.6)
+--palette-core-750: #cccccc
+--palette-white-alpha-75: rgba(255,255,255,0.75)
+--palette-core-850: #d9d9d9
+--palette-core-900: #f6f6f6
+--palette-white-alpha-85: rgba(255,255,255,0.85)
+--palette-core-1000: #ffffff
+--palette-black-alpha-0: rgba(0,0,0,0)
+--palette-grey-0: rgba(70,70,70,0)
+--palette-grey-600: rgba(70,70,70,0.6)
+--palette-grey-1000: #464646
+--palette-black-alpha-5: rgba(0,0,0,0.05)
+--palette-black-alpha-10: rgba(0,0,0,0.1)
+--palette-black-alpha-15: rgba(0,0,0,0.15)
+--palette-black-alpha-20: rgba(0,0,0,0.2)
+--palette-black-alpha-30: rgba(0,0,0,0.3)
+--palette-black-alpha-40: rgba(0,0,0,0.4)
+--palette-black-alpha-45: rgba(0,0,0,0.45)
+--palette-black-alpha-50: rgba(0,0,0,0.5)
+--palette-black-alpha-60: rgba(0,0,0,0.6)
+--palette-black-alpha-80: rgba(0,0,0,0.8)
+--palette-black-alpha-85: rgba(0,0,0,0.85)
+--palette-success-50: #eaf8ef
+--palette-success-100: #d5f2df
+--palette-success-150: #c0ebce
+--palette-success-200: #abe4be
+--palette-success-300: #82d79e
+--palette-success-400: #58c97d
+--palette-success-500: #2ebc5d
+--palette-success-500-alpha-0: rgba(46,188,93,0)
+--palette-success-500-alpha-10: rgba(46,188,93,0.1)
+--palette-success-600: #25964a
+--palette-success-700: #1c7138
+--palette-success-700-alpha-0: rgba(28,113,56,0)
+--palette-success-800: #124b25
+--palette-success-850: #0e381c
+--palette-success-900: #092613
+--palette-success-950: #051309
+--palette-danger-50: #fdebeb
+--palette-danger-100: #fcd8d8
+--palette-danger-150: #fac4c4
+--palette-danger-200: #f8b1b1
+--palette-danger-300: #f58a89
+--palette-danger-400: #f16362
+--palette-danger-500: #ee3c3b
+--palette-danger-500-alpha-0: rgba(238,60,59,0)
+--palette-danger-500-alpha-10: rgba(238,60,59,0.1)
+--palette-danger-600: #bf302f
+--palette-danger-700: #8f2423
+--palette-danger-700-alpha-0: rgba(143,36,35,0)
+--palette-danger-800: #601818
+--palette-danger-850: #481212
+--palette-danger-900: #300c0c
+--palette-danger-950: #190606
+--palette-warning-50: #fff7ea
+--palette-warning-100: #ffefd5
+--palette-warning-150: #ffe7c0
+--palette-warning-200: #ffdfab
+--palette-warning-300: #ffcf82
+--palette-warning-400: #ffbf58
+--palette-warning-500: #ffaf2e
+--palette-warning-500-alpha-0: rgba(255,175,46,0)
+--palette-warning-500-alpha-10: rgba(255,175,46,0.1)
+--palette-warning-600: #cc8c25
+--palette-warning-700: #99691c
+--palette-warning-800: #664612
+--palette-warning-800-alpha-0: rgba(102,70,18,0)
+--palette-warning-850: #4d350e
+--palette-warning-900: #332309
+--palette-warning-950: #1a1205
+--palette-info-50: #eaf2ff
+--palette-info-100: #d5e5ff
+--palette-info-150: #bfd9ff
+--palette-info-200: #aaccff
+--palette-info-300: #80b2ff
+--palette-info-400: #5599ff
+--palette-info-400-alpha-0: rgba(85,153,255,0)
+--palette-info-400-alpha-10: rgba(85,153,255,0.1)
+--palette-info-500: #2b7fff
+--palette-info-500-alpha-10: rgba(43,127,255,0.1)
+--palette-info-500-alpha-25: rgba(43,127,255,0.25)
+--palette-info-600: #2266cc
+--palette-info-700: #1a4d9a
+--palette-info-800: #113367
+--palette-info-800-alpha-0: rgba(17,51,103,0)
+--palette-info-850: #0d274e
+--palette-info-900: #091a35
+--palette-info-950: #040e1b
+--palette-purple-50: #f3f0fe
+--palette-purple-100: #e6e0fd
+--palette-purple-150: #dad1fd
+--palette-purple-200: #cdc2fc
+--palette-purple-300: #b5a3fa
+--palette-purple-400: #9c85f9
+--palette-purple-500: #8366f7
+--palette-purple-500-alpha-0: rgba(131,102,247,0)
+--palette-purple-500-alpha-10: rgba(131,102,247,0.1)
+--palette-purple-500-alpha-25: rgba(131,102,247,0.25)
+--palette-purple-600: #6952c6
+--palette-purple-700: #4f3d95
+--palette-purple-700-alpha-40: rgba(79,61,149,0.4)
+--palette-purple-800: #352964
+--palette-purple-850: #281f4c
+--palette-purple-900: #1b1433
+--palette-purple-950: #0e0a1b
+--palette-purple-950-alpha-4: rgba(14,10,27,0.04)
+--palette-purple-950-alpha-5: rgba(14,10,27,0.05)
+--palette-purple-950-alpha-10: rgba(14,10,27,0.1)
+--palette-purple-950-alpha-15: rgba(14,10,27,0.15)
+--palette-purple-950-alpha-20: rgba(14,10,27,0.2)
+--palette-purple-950-alpha-40: rgba(14,10,27,0.4)
+--palette-cooper-50: #f9f2ec
+--palette-cooper-100: #f4e4d9
+--palette-cooper-150: #eed7c6
+--palette-cooper-200: #e9c9b3
+--palette-cooper-300: #deaf8d
+--palette-cooper-400: #d39467
+--palette-cooper-500: #c87941
+--palette-cooper-500-alpha-0: rgba(200,121,65,0)
+--palette-cooper-500-alpha-10: rgba(200,121,65,0.1)
+--palette-cooper-500-alpha-25: rgba(200,121,65,0.25)
+--palette-cooper-600: #a06134
+--palette-cooper-700: #784927
+--palette-cooper-800: #50301a
+--palette-cooper-850: #3c2414
+--palette-cooper-900: #28180d
+--palette-cooper-950: #140c07
+--palette-lavender-25: #fcfbff
+--palette-lavender-50: #f7f7f9
+--palette-lavender-100: #f3f2f6
+--palette-lavender-200: #d7d4e9
+--palette-lavender-200-alpha-60: rgba(215,212,233,0.6)
+--palette-lavender-400: #9a97ab
+--palette-lavender-500: #625f78
+--palette-lavender-700: #45425a
+--palette-rose-50: #fff2fe
+--palette-rose-100: #f3d1f2
+--palette-rose-150: #ecbde9
+--palette-rose-200: #e8b0e5
+--palette-rose-300: #d598d2
+--palette-rose-400: #ba78b7
+--palette-rose-500: #9f579c
+--palette-rose-600: #843781
+--palette-rose-700: #691766
+--palette-rose-800: #541252
+--palette-rose-850: #450943
+--palette-rose-900: #350533
+--palette-rose-950: #210020
+--palette-muted-purple-50: #edeaf3
+--palette-muted-purple-100: #dad3e7
+--palette-muted-purple-150: #c6bcdb
+--palette-muted-purple-200: #afa2cd
+--palette-muted-purple-300: #8d82b4
+--palette-muted-purple-400: #6f6298
+--palette-muted-purple-500: #50427d
+--palette-muted-purple-500-alpha-5: rgba(80,66,125,0.05)
+--palette-muted-purple-500-alpha-10: rgba(80,66,125,0.1)
+--palette-muted-purple-500-alpha-15: rgba(80,66,125,0.15)
+--palette-muted-purple-500-alpha-20: rgba(80,66,125,0.22)
+--palette-muted-purple-500-alpha-40: rgba(80,66,125,0.4)
+--palette-muted-purple-600: #433374
+--palette-muted-purple-700: #32255f
+--palette-muted-purple-800: #221844
+--palette-muted-purple-850: #221844
+--palette-muted-purple-900: #17102e
+--palette-muted-purple-950: #0f0a1e
+--palette-steel-blue-50: #eef1f6
+--palette-steel-blue-100: #d6dce8
+--palette-steel-blue-150: #bcc6da
+--palette-steel-blue-200: #9caac9
+--palette-steel-blue-300: #7a88b1
+--palette-steel-blue-400: #5a6997
+--palette-steel-blue-500: #35466a
+--palette-steel-blue-600: #2d3c5c
+--palette-steel-blue-700: #25324d
+--palette-steel-blue-800: #1e2940
+--palette-steel-blue-850: #192236
+--palette-steel-blue-900: #131a29
+--palette-steel-blue-950: #0c111b
+--palette-teal-50: #ebf5f5
+--palette-teal-100: #d2e7e7
+--palette-teal-150: #b7d7d7
+--palette-teal-200: #94c2c2
+--palette-teal-300: #6fa9a9
+--palette-teal-400: #539191
+--palette-teal-500: #427d7d
+--palette-teal-600: #376868
+--palette-teal-700: #2d5555
+--palette-teal-800: #244444
+--palette-teal-850: #1e3a3a
+--palette-teal-900: #162c2c
+--palette-teal-950: #0f1d1d
+--palette-deep-green-50: #eaf5ef
+--palette-deep-green-100: #cfe8da
+--palette-deep-green-150: #b2d8c3
+--palette-deep-green-200: #8fc3a8
+--palette-deep-green-300: #68ab89
+--palette-deep-green-400: #4a936f
+--palette-deep-green-500: #28875f
+--palette-deep-green-600: #237a52
+--palette-deep-green-700: #1e6344
+--palette-deep-green-800: #184e36
+--palette-deep-green-850: #14422e
+--palette-deep-green-900: #103525
+--palette-deep-green-950: #0a2319
+--palette-fuchsia-50: #fdeaf7
+--palette-fuchsia-100: #fbcff0
+--palette-fuchsia-150: #f8b3e7
+--palette-fuchsia-200: #f58adb
+--palette-fuchsia-200-alpha-0: rgba(245,138,219,0)
+--palette-fuchsia-200-alpha-10: rgba(245,138,219,0.1)
+--palette-fuchsia-300: #f65ccb
+--palette-fuchsia-400: #f63dbf
+--palette-fuchsia-500: #f531b3
+--palette-fuchsia-600: #d81a9e
+--palette-fuchsia-700: #b10086
+--palette-fuchsia-800: #8c006f
+--palette-fuchsia-850: #6b004f
+--palette-fuchsia-900: #4a0037
+--palette-fuchsia-900-alpha-0: rgba(74,0,55,0)
+--palette-fuchsia-950: #2d001f
+--palette-violet-50: #f5e9ff
+--palette-violet-100: #e6ccff
+--palette-violet-150: #d7afff
+--palette-violet-200: #c992ff
+--palette-violet-300: #b46dff
+--palette-violet-400: #a14bff
+--palette-violet-500: #9c18fb
+--palette-violet-500-alpha-0: rgba(156,24,251,0)
+--palette-violet-500-alpha-10: rgba(156,24,251,0.1)
+--palette-violet-600: #8400e6
+--palette-violet-700: #6b00c2
+--palette-violet-800: #52009a
+--palette-violet-850: #3b0073
+--palette-violet-900: #25004d
+--palette-violet-900-alpha-0: rgba(37,0,77,0)
+--palette-violet-950: #140026
+--palette-electric-blue-50: #ebf0ff
+--palette-electric-blue-100: #d6e0ff
+--palette-electric-blue-150: #c2d1ff
+--palette-electric-blue-200: #a8bdff
+--palette-electric-blue-300: #7f9cff
+--palette-electric-blue-400: #557aff
+--palette-electric-blue-500: #3056ee
+--palette-electric-blue-500-alpha-0: rgba(48,86,238,0)
+--palette-electric-blue-500-alpha-10: rgba(48,86,238,0.1)
+--palette-electric-blue-600: #1e40d9
+--palette-electric-blue-700: #1736c0
+--palette-electric-blue-800: #0b249a
+--palette-electric-blue-850: #040081
+--palette-electric-blue-850-alpha-0: rgba(4,0,129,0)
+--palette-electric-blue-900: #05025d
+--palette-electric-blue-950: #03013b
+--palette-coral-orange-50: #fef0ec
+--palette-coral-orange-100: #fcddd6
+--palette-coral-orange-150: #fac7bc
+--palette-coral-orange-200: #f7ae9e
+--palette-coral-orange-300: #f48e76
+--palette-coral-orange-400: #f16b4f
+--palette-coral-orange-500: #ef5533
+--palette-coral-orange-500-alpha-0: rgba(239,85,51,0)
+--palette-coral-orange-500-alpha-10: rgba(239,85,51,0.1)
+--palette-coral-orange-600: #d73f20
+--palette-coral-orange-700: #b32f12
+--palette-coral-orange-800: #8f2207
+--palette-coral-orange-850: #811e00
+--palette-coral-orange-850-alpha-0: rgba(129,30,0,0)
+--palette-coral-orange-900: #5e1400
+--palette-coral-orange-950: #3a0b00
+--palette-cyan-50: #e6fbfd
+--palette-cyan-100: #ccf6fa
+--palette-cyan-150: #b3f0f6
+--palette-cyan-200: #80e6ef
+--palette-cyan-300: #4ddce7
+--palette-cyan-400: #1ad1e0
+--palette-cyan-500: #00b5ce
+--palette-cyan-500-alpha-0: rgba(0,181,206,0)
+--palette-cyan-500-alpha-10: rgba(0,181,206,0.1)
+--palette-cyan-600: #0090a6
+--palette-cyan-700: #006f82
+--palette-cyan-800: #005763
+--palette-cyan-800-alpha-0: rgba(0,87,99,0)
+--palette-cyan-850: #004652
+--palette-cyan-900: #003741
+--palette-cyan-950: #00252b
+--palette-lime-50: #f3fbe3
+--palette-lime-100: #e6f7c6
+--palette-lime-150: #d9f2a6
+--palette-lime-200: #cbef82
+--palette-lime-300: #b7e85a
+--palette-lime-400: #aee345
+--palette-lime-500: #a9d10a
+--palette-black-alpha-25: rgba(0,0,0,0.25)
+--palette-black-alpha-35: rgba(0,0,0,0.35)
 --space-0: 0rem
 --space-50: 0.125rem
 --space-100: 0.25rem
@@ -740,7 +896,7 @@
 --size-32: 2rem
 --size-36: 2.25rem
 --size-40: 2.5rem
---target-min: var(--size-24)
+--size-target-min: var(--size-24)
 --size-44: 2.75rem
 --size-48: 3rem
 --size-52: 3.25rem
@@ -768,123 +924,72 @@
 --space-stack: var(--space-200)
 --space-section: var(--space-600)}
 
-/* Old names, kept only so existing prototypes keep working. Don't use them in new code. */
-:root{
-  --gaps-gap-0:var(--space-0)
---gaps-gap-50: var(--space-50)
---gaps-gap-100: var(--space-100)
---gaps-gap-150: var(--space-150)
---gaps-gap-200: var(--space-200)
---gaps-gap-250: var(--space-250)
---gaps-gap-300: var(--space-300)
---gaps-gap-400: var(--space-400)
---gaps-gap-500: var(--space-500)
---gaps-gap-600: var(--space-600)
---gaps-gap-700: var(--space-700)
---gaps-gap-800: var(--space-800)
---gaps-gap-900: var(--space-900)
---gaps-gap-1000: var(--space-1000)
---gaps-gap-1100: var(--space-1100)
---paddings-padding-0: var(--space-0)
---paddings-padding-50: var(--space-50)
---paddings-padding-100: var(--space-100)
---paddings-padding-150: var(--space-150)
---paddings-padding-200: var(--space-200)
---paddings-padding-250: var(--space-250)
---paddings-padding-300: var(--space-300)
---paddings-padding-400: var(--space-400)
---paddings-padding-500: var(--space-500)
---paddings-padding-600: var(--space-600)
---paddings-padding-700: var(--space-700)
---paddings-padding-800: var(--space-800)
---paddings-padding-900: var(--space-900)
---paddings-padding-1000: var(--space-1000)
---paddings-padding-1100: var(--space-1100)
---margins-layout-margin-xs: var(--space-300)
---margins-layout-margin-sm: var(--space-400)
---margins-layout-margin-md: var(--space-500)
---margins-layout-margin-lg: var(--space-600)
---margins-layout-margin-xl: var(--space-800)
---gutters-gutter-xs: var(--space-300)
---gutters-gutter-sm: var(--space-400)
---gutters-gutter-md: var(--space-500)
---gutters-gutter-lg: var(--space-600)
---gutters-gutter-xl: var(--space-700)
---spacing-card: var(--space-inset)
---spacing-card-compact: var(--space-stack)
---spacing-card-gap: var(--space-stack)
---spacing-card-actions: var(--space-inset)
---spacing-card-text: var(--space-100)
---spacing-panel: var(--space-inset)
---spacing-panel-gap: var(--space-stack)
---spacing-modal: var(--space-inset-l)
---spacing-modal-gap: var(--space-stack)
---spacing-popover: var(--space-100)
---spacing-popover-content: var(--space-inset)
---spacing-form: var(--space-inset-l)
---spacing-form-field-gap: var(--space-stack)
---spacing-section: var(--space-section)
---spacing-section-lg: var(--space-section)
---spacing-table-cell-x: var(--space-table-x)
---spacing-table-header-x: var(--space-table-x)
---spacing-table-cell-y: var(--space-0)
---letter-spacing-letter-spacing--06: -0.6px
---letter-spacing-letter-spacing--05: -0.5px
---letter-spacing-letter-spacing--03: -0.3px
---letter-spacing-letter-spacing--02: -0.2px
---letter-spacing-letter-spacing--015: -0.15px
---letter-spacing-letter-spacing--01: -0.1px
---letter-spacing-letter-spacing-0: 0px
---letter-spacing-letter-spacing-01: 0.1px
---letter-spacing-letter-spacing-02: 0.2px
---letter-spacing-letter-spacing-03: 0.3px
---text-numeric: tabular-nums
---text-measure: 75ch
---text-display-l-weight: var(--font-weight-font-weight-medium)
---text-display-l-tracking: var(--letter-spacing-letter-spacing--05)
---text-display-l: var(--text-display-l-weight) var(--type-display-l) var(--font-family-display)
---text-display-m-weight: var(--font-weight-font-weight-medium)
---text-display-m-tracking: var(--letter-spacing-letter-spacing--05)
---text-display-m: var(--text-display-m-weight) var(--type-display-m) var(--font-family-display)
---text-display-s-weight: var(--font-weight-font-weight-medium)
---text-display-s-tracking: var(--letter-spacing-letter-spacing--05)
---text-display-s: var(--text-display-s-weight) var(--type-display-s) var(--font-family-display)
---text-heading-h1-medium-weight: var(--font-weight-font-weight-medium)
---text-heading-h1-medium-tracking: var(--letter-spacing-letter-spacing--03)
---text-heading-h1-medium: var(--text-heading-h1-medium-weight) var(--type-h1) var(--font-family-text)
---text-heading-h2-medium-weight: var(--font-weight-font-weight-medium)
---text-heading-h2-medium-tracking: var(--letter-spacing-letter-spacing--02)
---text-heading-h2-medium: var(--text-heading-h2-medium-weight) var(--type-h2) var(--font-family-text)
---text-heading-h3-medium-weight: var(--font-weight-font-weight-medium)
---text-heading-h3-medium-tracking: var(--letter-spacing-letter-spacing--01)
---text-heading-h3-medium: var(--text-heading-h3-medium-weight) var(--type-h3) var(--font-family-text)
---text-heading-h4-semibold-weight: var(--font-weight-font-weight-semibold)
---text-heading-h4-semibold-tracking: var(--letter-spacing-letter-spacing-0)
---text-heading-h4-semibold: var(--text-heading-h4-semibold-weight) var(--type-l) var(--font-family-text)
---text-body-l-regular-weight: var(--font-weight-font-weight-regular)
---text-body-l-regular-tracking: var(--letter-spacing-letter-spacing--01)
---text-body-l-regular: var(--text-body-l-regular-weight) var(--type-l) var(--font-family-text)
---text-body-m-regular-weight: var(--font-weight-font-weight-regular)
---text-body-m-regular-tracking: var(--letter-spacing-letter-spacing-0)
---text-body-m-regular: var(--text-body-m-regular-weight) var(--type-m) var(--font-family-text)
---text-body-s-regular-weight: var(--font-weight-font-weight-regular)
---text-body-s-regular-tracking: var(--letter-spacing-letter-spacing-01)
---text-body-s-regular: var(--text-body-s-regular-weight) var(--type-s) var(--font-family-text)
---text-label-l-medium-weight: var(--font-weight-font-weight-medium)
---text-label-l-medium-tracking: var(--letter-spacing-letter-spacing--015)
---text-label-l-medium: var(--text-label-l-medium-weight) var(--type-l) var(--font-family-text)
---text-label-m-medium-weight: var(--font-weight-font-weight-medium)
---text-label-m-medium-tracking: var(--letter-spacing-letter-spacing-0)
---text-label-m-medium: var(--text-label-m-medium-weight) var(--type-m) var(--font-family-text)
---text-code-m-regular-weight: var(--font-weight-font-weight-regular)
---text-code-m-regular-tracking: var(--letter-spacing-letter-spacing-0)
---text-code-m-regular: var(--text-code-m-regular-weight) var(--type-m) var(--font-family-mono)
---text-code-m-medium-weight: var(--font-weight-font-weight-medium)
---text-code-m-medium-tracking: var(--letter-spacing-letter-spacing-0)
---text-code-m-medium: var(--text-code-m-medium-weight) var(--type-m) var(--font-family-mono)
---text-code-s-regular-weight: var(--font-weight-font-weight-regular)
---text-code-s-regular-tracking: var(--letter-spacing-letter-spacing-0)
---text-code-s-regular: var(--text-code-s-regular-weight) var(--type-s) var(--font-family-mono)
+/* ==========================================================================
+   Typography tokens (Catalyst Design System 2.0) — two layers, like the Figma library
+   (collections "3. Typography primitives" and "4. Typography semantic").
+
+   1. Primitives: font families (tokens.css), weights (tokens.css), letter-spacing steps (below),
+      and the size scale --font-size-s|m|l|h3|h2|h1|display-* (size/line-height pairs per density,
+      Density block in tokens.css).
+   2. Semantic: one set per text style, named like its .t-* class (.t-body-m-regular -> --font-body-m-regular). Components and prototypes use ONLY these:
+        font:var(--text-<style>)
+--font-tracking-minus-06: -0.6px
+--font-tracking-minus-05: -0.5px
+--font-tracking-minus-03: -0.3px
+--font-tracking-minus-02: -0.2px
+--font-tracking-minus-015: -0.15px
+--font-tracking-minus-01: -0.1px
+--font-tracking-0: 0px
+--font-tracking-plus-01: 0.1px
+--font-tracking-plus-02: 0.2px
+--font-tracking-plus-03: 0.3px
+--font-numeric: tabular-nums
+--font-measure: 75ch
+--font-display-l-weight: var(--font-weight-medium)
+--font-display-l-tracking: var(--font-tracking-minus-05)
+--font-display-l: var(--font-display-l-weight) var(--font-size-display-l) var(--font-family-display)
+--font-display-m-weight: var(--font-weight-medium)
+--font-display-m-tracking: var(--font-tracking-minus-05)
+--font-display-m: var(--font-display-m-weight) var(--font-size-display-m) var(--font-family-display)
+--font-display-s-weight: var(--font-weight-medium)
+--font-display-s-tracking: var(--font-tracking-minus-05)
+--font-display-s: var(--font-display-s-weight) var(--font-size-display-s) var(--font-family-display)
+--font-heading-h1-medium-weight: var(--font-weight-medium)
+--font-heading-h1-medium-tracking: var(--font-tracking-minus-03)
+--font-heading-h1-medium: var(--font-heading-h1-medium-weight) var(--font-size-h1) var(--font-family-text)
+--font-heading-h2-medium-weight: var(--font-weight-medium)
+--font-heading-h2-medium-tracking: var(--font-tracking-minus-02)
+--font-heading-h2-medium: var(--font-heading-h2-medium-weight) var(--font-size-h2) var(--font-family-text)
+--font-heading-h3-medium-weight: var(--font-weight-medium)
+--font-heading-h3-medium-tracking: var(--font-tracking-minus-01)
+--font-heading-h3-medium: var(--font-heading-h3-medium-weight) var(--font-size-h3) var(--font-family-text)
+--font-heading-h4-semibold-weight: var(--font-weight-semibold)
+--font-heading-h4-semibold-tracking: var(--font-tracking-0)
+--font-heading-h4-semibold: var(--font-heading-h4-semibold-weight) var(--font-size-l) var(--font-family-text)
+--font-body-l-regular-weight: var(--font-weight-regular)
+--font-body-l-regular-tracking: var(--font-tracking-minus-01)
+--font-body-l-regular: var(--font-body-l-regular-weight) var(--font-size-l) var(--font-family-text)
+--font-body-m-regular-weight: var(--font-weight-regular)
+--font-body-m-regular-tracking: var(--font-tracking-0)
+--font-body-m-regular: var(--font-body-m-regular-weight) var(--font-size-m) var(--font-family-text)
+--font-body-s-regular-weight: var(--font-weight-regular)
+--font-body-s-regular-tracking: var(--font-tracking-plus-01)
+--font-body-s-regular: var(--font-body-s-regular-weight) var(--font-size-s) var(--font-family-text)
+--font-label-l-medium-weight: var(--font-weight-medium)
+--font-label-l-medium-tracking: var(--font-tracking-minus-015)
+--font-label-l-medium: var(--font-label-l-medium-weight) var(--font-size-l) var(--font-family-text)
+--font-label-m-medium-weight: var(--font-weight-medium)
+--font-label-m-medium-tracking: var(--font-tracking-0)
+--font-label-m-medium: var(--font-label-m-medium-weight) var(--font-size-m) var(--font-family-text)
+--font-code-m-regular-weight: var(--font-weight-regular)
+--font-code-m-regular-tracking: var(--font-tracking-0)
+--font-code-m-regular: var(--font-code-m-regular-weight) var(--font-size-m) var(--font-family-mono)
+--font-code-m-medium-weight: var(--font-weight-medium)
+--font-code-m-medium-tracking: var(--font-tracking-0)
+--font-code-m-medium: var(--font-code-m-medium-weight) var(--font-size-m) var(--font-family-mono)
+--font-code-s-regular-weight: var(--font-weight-regular)
+--font-code-s-regular-tracking: var(--font-tracking-0)
+--font-code-s-regular: var(--font-code-s-regular-weight) var(--font-size-s) var(--font-family-mono)
 
 # Text-style classes (Figma text styles) and effect classes
 .t-display-l
@@ -934,3 +1039,627 @@
 .fx-map-highlight-cooper
 .fx-map-highlight-evaluated
 .fx-map-highlight-grey
+
+# Deprecated names (still work until 3.0; use the name after the arrow)
+--surface-primary → --color-surface-primary
+--surface-secondary-alpha → --color-surface-secondary
+--surface-tertiary-alpha → --color-surface-tertiary
+--surface-primary-alpha → --color-surface-overlay
+--surface-primary-inverse → --color-surface-primary-inverse
+--surface-primary-inverse-alpha → --color-surface-overlay-inverse
+--background-elevation-1-primary-base → --color-surface-elevation-1
+--background-elevation-1-secondary → --color-background-neutral-soft
+--background-elevation-1-tertiary → --color-background-neutral
+--text-primary → --color-text
+--text-secondary → --color-text-soft
+--text-tertiary → --color-text-softer
+--text-disabled → --color-text-disabled
+--text-focus → --color-text-focus
+--text-accent-cooper → --color-cooper-text
+--text-accent-purple → --color-text-accent-purple
+--text-primary-inverse → --color-text-inverse
+--text-secondary-inverse → --color-text-soft-inverse
+--text-tertiary-inverse → --color-text-softer-inverse
+--text-disabled-inverse → --color-text-disabled-inverse
+--text-info → --color-text-info
+--text-success → --color-text-success
+--text-danger → --color-text-danger
+--text-warning → --color-text-warning
+--text-on-solid → --color-text-on-solid
+--text-on-solid-secondary → --color-text-on-solid-soft
+--text-on-solid-dark → --color-text-on-solid-dark
+--icon-primary → --color-icon
+--icon-secondary → --color-icon-soft
+--icon-tertiary → --color-icon-softer
+--icon-disabled → --color-icon-disabled
+--icon-focus → --color-icon-focus
+--icon-accent-cooper → --color-cooper-icon
+--icon-accent-purple → --color-icon-accent-purple
+--icon-primary-inverse → --color-icon-inverse
+--icon-secondary-inverse → --color-icon-soft-inverse
+--icon-tertiary-inverse → --color-icon-softer-inverse
+--icon-disabled-inverse → --color-icon-disabled-inverse
+--icon-info → --color-icon-info
+--icon-success → --color-icon-success
+--icon-danger → --color-icon-danger
+--icon-warning → --color-icon-warning
+--border-base → --color-border-soft
+--border-medium → --color-border
+--border-strong → --color-border-strong
+--border-base-inverse → --color-border-soft-inverse
+--border-medium-inverse → --color-border-inverse
+--border-strong-inverse → --color-border-strong-inverse
+--border-white → --color-border-on-solid
+--border-black → --color-border-on-solid-dark
+--border-accent-cooper → --color-cooper-border
+--border-accent-purple → --color-border-accent-purple
+--border-info → --color-border-info
+--border-success → --color-border-success
+--border-danger → --color-border-danger
+--border-warning → --color-border-warning
+--border-grey → --color-border-accent-grey
+--border-selected → --color-border-selected
+--focus-focus-inner → --color-focus-inner
+--focus-focus-outer → --color-focus-outer
+--background-elevation-2-primary-base → --color-surface-elevation-2
+--background-elevation-2-secondary → --color-background-neutral-soft
+--background-elevation-2-tertiary → --color-background-neutral
+--background-elevation-3-primary-base → --color-surface-elevation-3
+--background-elevation-3-secondary → --color-background-neutral-soft
+--background-elevation-3-tertiary → --color-background-neutral
+--background-solid-black → --color-background-accent-black-strong
+--background-solid-white → --color-background-accent-white-strong
+--background-solid-accent-cooper → --color-cooper-background-strong
+--background-solid-accent-purple → --color-background-accent-purple-strong
+--background-solid-blue → --color-background-accent-blue-strong
+--background-solid-dark-blue → --color-background-accent-dark-blue-strong
+--background-solid-dark-purple → --color-background-accent-dark-purple-strong
+--background-solid-dark-green → --color-background-accent-dark-green-strong
+--background-solid-dark-orange → --color-background-accent-dark-red-strong
+--background-solid-dark-pink → --color-background-accent-dark-pink-strong
+--element-button-primary-fill-default → --color-background-neutral-stronger
+--element-button-primary-fill-hover → --color-background-neutral-stronger-hover
+--element-button-primary-fill-pressed → --color-background-neutral-stronger-pressed
+--element-button-primary-fill-disabled → --color-background-neutral-soft
+--element-button-primary-border-default → --color-border-soft
+--element-button-primary-border-hover → --color-border-soft
+--element-button-primary-border-pressed → --color-border-soft
+--element-button-primary-border-disabled → --color-border-transparent
+--element-button-secondary-fill-default → --color-background-neutral-soft
+--element-button-secondary-fill-hover → --color-background-neutral
+--element-button-secondary-fill-pressed → --color-background-neutral-softer
+--element-button-secondary-fill-disabled → --color-background-neutral-soft
+--element-button-secondary-border-default → --color-border-soft
+--element-button-secondary-border-hover → --color-border-strong
+--element-button-secondary-border-pressed → --color-border-soft
+--element-button-secondary-border-disabled → --color-border-softer
+--element-button-tertiary-fill-default → --color-background-neutral-soft-inverse
+--element-button-tertiary-fill-hover → --color-background-neutral-soft-inverse
+--element-button-tertiary-fill-pressed → --color-background-neutral-soft-inverse
+--element-button-tertiary-fill-disabled → --color-background-neutral-soft-inverse
+--element-button-tertiary-border-default → --color-border
+--element-button-tertiary-border-hover → --color-border-strong
+--element-button-tertiary-border-pressed → --color-border-soft
+--element-button-tertiary-border-disabled → --color-border
+--element-button-negative-fill-default → --color-background-danger-strong
+--element-button-negative-fill-hover → --color-background-danger-strong-hover
+--element-button-negative-fill-pressed → --color-background-danger-strong-pressed
+--element-button-negative-fill-disabled → --color-background-danger-strong-disabled
+--element-button-negative-border-default → --color-border-transparent
+--element-button-negative-border-hover → --color-border-transparent
+--element-button-negative-border-pressed → --color-border-transparent
+--element-button-negative-border-disabled → --color-border-transparent
+--element-input-fill-default → --color-background-input
+--element-input-fill-hover → --color-background-input
+--element-input-fill-typing → --color-background-input
+--element-input-fill-disabled → --color-background-neutral-softer
+--element-input-fill-danger → --color-background-input
+--element-input-border-default → --color-border-input
+--element-input-border-hover → --color-border-input-hover
+--element-input-border-typing → --color-border-input-focus
+--element-input-border-disabled → --color-border-input-disabled
+--element-input-border-danger → --color-border-danger
+--collaboration-user-1 → --color-collaboration-user-1
+--collaboration-user-2 → --color-collaboration-user-2
+--collaboration-user-3 → --color-collaboration-user-3
+--collaboration-user-4 → --color-collaboration-user-4
+--collaboration-user-5 → --color-collaboration-user-5
+--collaboration-user-6 → --color-collaboration-user-6
+--collaboration-user-7 → --color-collaboration-user-7
+--collaboration-user-8 → --color-collaboration-user-8
+--collaboration-user-9 → --color-collaboration-user-9
+--collaboration-user-10 → --color-collaboration-user-10
+--collaboration-user-11 → --color-collaboration-user-11
+--collaboration-user-12 → --color-collaboration-user-12
+--collaboration-user-13 → --color-collaboration-user-13
+--collaboration-user-14 → --color-collaboration-user-14
+--collaboration-user-15 → --color-collaboration-user-15
+--collaboration-user-16 → --color-collaboration-user-16
+--element-search-border-default → --color-border-input
+--element-search-border-hover → --color-border-input-hover
+--element-search-border-typing → --color-border-strong
+--element-search-border-disabled → --color-border-input-disabled
+--element-cooper-icon-white-1000 → --color-cooper-logo
+--element-cooper-icon-white-500 → --color-cooper-logo-soft
+--element-cooper-icon-white-100 → --color-cooper-logo-softer
+--element-cooper-insight-fill-strong → --color-cooper-insight-strong
+--element-cooper-insight-fill-base → --color-cooper-insight
+--element-cooper-insight-fill-inverse → --color-cooper-insight-inverse
+--element-header-item-fill-default → --color-background-transparent
+--element-header-item-fill-hover → --color-background-neutral
+--element-header-item-fill-pressed → --color-background-neutral
+--element-header-item-fill-active → --color-background-neutral-soft
+--element-header-item-fill-disabled → --color-background-transparent
+--element-breadcrumb-border-default → --color-border-soft
+--element-breadcrumb-border-hover → --color-border-strong
+--element-breadcrumb-border-pressed → --color-border
+--element-breadcrumb-border-disabled → --color-border-softer
+--element-dropdown-fill-default → --color-background-neutral-soft
+--element-dropdown-fill-hover → --color-background-neutral-strong
+--element-dropdown-fill-active → --color-background-neutral
+--element-dropdown-fill-disabled → --color-background-neutral-softer
+--element-toggle-off-fill-default → --color-background-neutral-soft
+--element-toggle-off-fill-hover → --color-background-neutral
+--element-toggle-off-fill-pressed → --color-background-neutral-softer
+--element-toggle-off-fill-disabled → --color-background-neutral-soft
+--element-checkbox-off-border-default → --color-border-control
+--element-checkbox-off-border-hover → --color-border-strong
+--element-checkbox-off-border-disabled → --color-border-soft
+--element-checkbox-on-fill-default → --color-background-neutral-stronger
+--element-checkbox-on-fill-hover → --color-background-neutral-stronger-hover
+--element-checkbox-on-fill-pressed → --color-background-neutral-stronger-pressed
+--element-checkbox-on-fill-disabled → --color-background-neutral-soft
+--element-toggle-off-border-default → --color-border-soft
+--element-toggle-off-border-hover → --color-border-strong
+--element-toggle-off-border-pressed → --color-border-soft
+--element-toggle-off-border-disabled → --color-border-softer
+--element-toggle-on-fill-default → --color-background-neutral-stronger
+--element-toggle-on-fill-hover → --color-background-neutral-stronger-hover
+--element-toggle-on-fill-pressed → --color-background-neutral-stronger-pressed
+--element-toggle-on-fill-disabled → --color-background-neutral-soft
+--element-radiobutton-off-border-default → --color-border-control
+--element-radiobutton-off-border-hover → --color-border-strong
+--element-radiobutton-off-border-disabled → --color-border-softer
+--element-radiobutton-on-fill-default → --color-background-neutral-stronger
+--element-radiobutton-on-fill-hover → --color-background-neutral-stronger-hover
+--element-radiobutton-on-fill-pressed → --color-background-neutral-stronger-pressed
+--element-radiobutton-on-fill-disabled → --color-background-neutral-soft
+--element-radiobutton-on-border-default → --color-border-selected
+--element-radiobutton-on-border-hover → --color-border-selected-hover
+--element-radiobutton-on-border-pressed → --color-border-selected-pressed
+--element-radiobutton-on-border-disabled → --color-border-soft
+--background-color-alpha-blue-base → --color-background-info-soft
+--background-color-alpha-blue-strong → --color-background-info
+--background-color-alpha-cooper-base → --color-cooper-background-soft
+--background-color-alpha-cooper-strong → --color-cooper-background
+--background-color-alpha-purple-base → --color-background-accent-purple-soft
+--background-color-alpha-purple-strong → --color-background-accent-purple
+--background-color-alpha-black-base → --color-background-accent-black-soft
+--background-color-alpha-black-strong → --color-background-accent-black
+--background-color-alpha-white-base → --color-background-accent-white-soft
+--background-color-alpha-white-strong → --color-background-accent-white
+--background-color-alpha-red-base → --color-background-danger-soft
+--background-color-alpha-green-base → --color-background-success-soft
+--background-color-alpha-warning-base → --color-background-warning-soft
+--background-system-info → --color-background-info-strong
+--background-system-success → --color-background-success-strong
+--background-system-danger → --color-background-danger-strong
+--background-system-warning → --color-background-warning-strong
+--overlay-element-light → --color-overlay-element
+--overlay-screen-medium → --color-overlay-screen
+--overlay-screen-strong → --color-overlay-screen-strong
+--element-button-ghost-fill-default → --color-background-transparent
+--element-button-ghost-fill-hover → --color-background-neutral
+--element-button-ghost-fill-pressed → --color-background-neutral
+--element-button-ghost-fill-disabled → --color-background-transparent
+--element-button-ghost-border-default → --color-border-transparent
+--element-button-ghost-border-hover → --color-border-transparent
+--element-button-ghost-border-pressed → --color-border-transparent
+--element-button-ghost-border-disabled → --color-border-transparent
+--background-canvas-primary → --color-surface-canvas
+--element-button-circular-fill-disabled → --color-background-neutral-soft
+--element-button-circular-border-default → --color-border-soft
+--element-button-circular-border-hover → --color-border-strong
+--element-button-circular-border-pressed → --color-border-soft
+--element-button-circular-border-disabled → --color-border-softer
+--element-chips-off-fill-default → --color-background-neutral-soft
+--element-chips-off-fill-hover → --color-background-neutral
+--element-chips-off-fill-pressed → --color-background-neutral-softer
+--element-chips-off-fill-disabled → --color-background-neutral-soft
+--element-chips-off-border-default → --color-border-soft
+--element-chips-off-border-hover → --color-border-strong
+--element-chips-off-border-pressed → --color-border-soft
+--element-chips-off-border-disabled → --color-border-softer
+--element-chips-on-fill-default → --color-background-neutral-stronger
+--element-chips-on-fill-hover → --color-background-neutral-stronger-hover
+--element-chips-on-fill-pressed → --color-background-neutral-stronger-pressed
+--element-chips-on-fill-disabled → --color-background-neutral-soft
+--element-segmented-control-off-fill-default → --color-background-transparent
+--element-segmented-control-off-fill-hover → --color-background-neutral-soft
+--element-segmented-control-off-fill-pressed → --color-background-neutral-softer
+--element-segmented-control-off-fill-disabled → --color-background-transparent
+--element-segmented-control-on-fill-default → --color-background-neutral
+--element-segmented-control-on-fill-hover → --color-background-neutral-soft
+--element-segmented-control-on-fill-pressed → --color-background-neutral-softer
+--element-segmented-control-on-fill-disabled → --color-background-transparent
+--element-segmented-control-on-border-default → --color-border-soft
+--element-segmented-control-on-border-hover → --color-border
+--element-segmented-control-on-border-pressed → --color-border-softer
+--element-segmented-control-on-border-disabled → --color-border-soft
+--element-button-draw-bar-fill-default → --color-background-transparent
+--element-button-draw-bar-fill-hover → --color-background-neutral-softer
+--element-button-draw-bar-fill-pressed → --color-background-neutral
+--element-button-draw-bar-fill-disabled → --color-background-transparent
+--element-map-pin-fill-default → --color-icon-softer
+--element-map-pin-fill-success → --color-icon-success
+--element-map-pin-fill-error → --color-icon-danger
+--element-map-pin-fill-warning → --color-icon-warning
+--element-map-pin-fill-info → --color-background-info-strong
+--element-map-pin-border-default → --color-icon-softer
+--element-map-pin-border-error → --color-icon-danger
+--element-map-pin-border-warning → --color-icon-warning
+--element-map-pin-border-active → --color-border-selected-soft
+--element-map-pin-overlay-error → --color-background-danger-soft
+--element-map-pin-overlay-warning → --color-background-warning-soft
+--element-segmented-control-container-fill → --color-background-track
+--element-cooper-glow-center → --color-cooper-glow-center
+--element-cooper-glow-edge → --color-cooper-glow-edge
+--element-cooper-speaking-center → --color-cooper-speaking-center
+--element-cooper-speaking-edge → --color-cooper-speaking-edge
+--element-cooper-button-fill → --color-cooper-button-fill
+--element-cooper-button-fill-pressed → --color-cooper-button-fill-pressed
+--element-cooper-button-glow → --color-cooper-button-glow
+--element-cooper-button-glow-hover → --color-cooper-button-glow-hover
+--element-cooper-button-glow-pressed → --color-cooper-button-glow-pressed
+--element-cooper-button-glow-edge → --color-cooper-button-glow-edge
+--element-cooper-button-rim → --color-cooper-button-rim
+--element-cooper-button-rim-center → --color-cooper-button-rim-center
+--element-cooper-highlight-purple-strong → --color-cooper-highlight-purple-strong
+--element-cooper-highlight-purple-base → --color-cooper-highlight-purple
+--element-cooper-highlight-edge → --color-cooper-highlight-edge
+--element-status-fade-danger → --color-background-transparent
+--element-status-fade-warning → --color-background-transparent
+--element-status-fade-success → --color-background-transparent
+--element-status-fade-cooper → --color-background-transparent
+--element-status-fade-purple → --color-background-transparent
+--element-status-fade-grey → --color-background-transparent
+--element-status-grey-band-start → --color-background-transparent
+--element-status-grey-band-light → --color-background-accent-white-strong
+--element-button-circular-hover-ring → --color-border-selected
+--data-viz-rose-data-1 → --color-data-viz-rose-data-1
+--data-viz-rose-data-2 → --color-data-viz-rose-data-2
+--data-viz-rose-data-3 → --color-data-viz-rose-data-3
+--data-viz-rose-data-4 → --color-data-viz-rose-data-4
+--data-viz-rose-data-5 → --color-data-viz-rose-data-5
+--data-viz-rose-data-6 → --color-data-viz-rose-data-6
+--data-viz-rose-data-7 → --color-data-viz-rose-data-7
+--data-viz-rose-data-8 → --color-data-viz-rose-data-8
+--data-viz-rose-data-9 → --color-data-viz-rose-data-9
+--data-viz-rose-data-10 → --color-data-viz-rose-data-10
+--data-viz-muted-purple-data-1 → --color-data-viz-muted-purple-data-1
+--data-viz-muted-purple-data-2 → --color-data-viz-muted-purple-data-2
+--data-viz-muted-purple-data-3 → --color-data-viz-muted-purple-data-3
+--data-viz-muted-purple-data-4 → --color-data-viz-muted-purple-data-4
+--data-viz-muted-purple-data-5 → --color-data-viz-muted-purple-data-5
+--data-viz-muted-purple-data-6 → --color-data-viz-muted-purple-data-6
+--data-viz-muted-purple-data-7 → --color-data-viz-muted-purple-data-7
+--data-viz-muted-purple-data-8 → --color-data-viz-muted-purple-data-8
+--data-viz-muted-purple-data-9 → --color-data-viz-muted-purple-data-9
+--data-viz-muted-purple-data-10 → --color-data-viz-muted-purple-data-10
+--data-viz-teal-data-1 → --color-data-viz-teal-data-1
+--data-viz-teal-data-2 → --color-data-viz-teal-data-2
+--data-viz-teal-data-3 → --color-data-viz-teal-data-3
+--data-viz-teal-data-4 → --color-data-viz-teal-data-4
+--data-viz-teal-data-5 → --color-data-viz-teal-data-5
+--data-viz-teal-data-6 → --color-data-viz-teal-data-6
+--data-viz-teal-data-7 → --color-data-viz-teal-data-7
+--data-viz-teal-data-8 → --color-data-viz-teal-data-8
+--data-viz-teal-data-9 → --color-data-viz-teal-data-9
+--data-viz-teal-data-10 → --color-data-viz-teal-data-10
+--data-viz-steel-blue-data-1 → --color-data-viz-steel-blue-data-1
+--data-viz-steel-blue-data-2 → --color-data-viz-steel-blue-data-2
+--data-viz-steel-blue-data-3 → --color-data-viz-steel-blue-data-3
+--data-viz-steel-blue-data-4 → --color-data-viz-steel-blue-data-4
+--data-viz-steel-blue-data-5 → --color-data-viz-steel-blue-data-5
+--data-viz-steel-blue-data-6 → --color-data-viz-steel-blue-data-6
+--data-viz-steel-blue-data-7 → --color-data-viz-steel-blue-data-7
+--data-viz-steel-blue-data-8 → --color-data-viz-steel-blue-data-8
+--data-viz-steel-blue-data-9 → --color-data-viz-steel-blue-data-9
+--data-viz-steel-blue-data-10 → --color-data-viz-steel-blue-data-10
+--data-viz-deep-green-data-1 → --color-data-viz-deep-green-data-1
+--data-viz-deep-green-data-2 → --color-data-viz-deep-green-data-2
+--data-viz-deep-green-data-3 → --color-data-viz-deep-green-data-3
+--data-viz-deep-green-data-4 → --color-data-viz-deep-green-data-4
+--data-viz-deep-green-data-5 → --color-data-viz-deep-green-data-5
+--data-viz-deep-green-data-6 → --color-data-viz-deep-green-data-6
+--data-viz-deep-green-data-7 → --color-data-viz-deep-green-data-7
+--data-viz-deep-green-data-8 → --color-data-viz-deep-green-data-8
+--data-viz-deep-green-data-9 → --color-data-viz-deep-green-data-9
+--data-viz-deep-green-data-10 → --color-data-viz-deep-green-data-10
+--data-viz-alert-data-1 → --color-data-viz-alert-data-1
+--data-viz-alert-data-2 → --color-data-viz-alert-data-2
+--data-viz-alert-data-3 → --color-data-viz-alert-data-3
+--data-viz-alert-data-4 → --color-data-viz-alert-data-4
+--data-viz-alert-data-5 → --color-data-viz-alert-data-5
+--data-viz-alert-data-6 → --color-data-viz-alert-data-6
+--data-viz-alert-data-7 → --color-data-viz-alert-data-7
+--data-viz-alert-data-8 → --color-data-viz-alert-data-8
+--data-viz-alert-data-9 → --color-data-viz-alert-data-9
+--data-viz-alert-data-10 → --color-data-viz-alert-data-10
+--data-viz-violet-data-1 → --color-data-viz-violet-data-1
+--data-viz-violet-data-2 → --color-data-viz-violet-data-2
+--data-viz-violet-data-3 → --color-data-viz-violet-data-3
+--data-viz-violet-data-4 → --color-data-viz-violet-data-4
+--data-viz-violet-data-5 → --color-data-viz-violet-data-5
+--data-viz-violet-data-6 → --color-data-viz-violet-data-6
+--data-viz-violet-data-7 → --color-data-viz-violet-data-7
+--data-viz-violet-data-8 → --color-data-viz-violet-data-8
+--data-viz-violet-data-9 → --color-data-viz-violet-data-9
+--data-viz-violet-data-10 → --color-data-viz-violet-data-10
+--data-viz-cyan-data-1 → --color-data-viz-cyan-data-1
+--data-viz-cyan-data-2 → --color-data-viz-cyan-data-2
+--data-viz-cyan-data-3 → --color-data-viz-cyan-data-3
+--data-viz-cyan-data-4 → --color-data-viz-cyan-data-4
+--data-viz-cyan-data-5 → --color-data-viz-cyan-data-5
+--data-viz-cyan-data-6 → --color-data-viz-cyan-data-6
+--data-viz-cyan-data-7 → --color-data-viz-cyan-data-7
+--data-viz-cyan-data-8 → --color-data-viz-cyan-data-8
+--data-viz-cyan-data-9 → --color-data-viz-cyan-data-9
+--data-viz-cyan-data-10 → --color-data-viz-cyan-data-10
+--shadow-elevation-1 → --color-shadow-elevation-1
+--shadow-elevation-2 → --color-shadow-elevation-2
+--shadow-elevation-3 → --color-shadow-elevation-3
+--shadow-floating → --color-shadow-floating
+--shadow-card-rest → --color-shadow-card-rest
+--shadow-card-hover → --color-shadow-card-hover
+--background-page → --color-surface-page
+--element-cooper-fab-rim → --color-cooper-fab-rim
+--element-cooper-fab-shadow → --color-cooper-fab-shadow
+--element-card-state-fill-default → --color-surface-raised
+--element-card-state-fill-hover → --color-surface-raised-hover
+--element-card-state-fill-pressed → --color-surface-raised-pressed
+--element-card-state-fill-focus → --color-surface-raised
+--element-card-state-fill-selected → --color-surface-raised
+--element-card-state-fill-drag → --color-surface-raised-hover
+--element-card-state-fill-disabled → --color-background-neutral-softer
+--element-card-state-border-default → --color-border-soft
+--element-card-state-border-hover → --color-border
+--element-card-state-border-pressed → --color-border
+--element-card-state-border-selected → --color-border-strong
+--element-card-state-border-drag → --color-border-strong
+--element-card-state-border-disabled → --color-border-soft
+--element-counter-fill → --color-background-neutral-soft
+--element-badge-neutral-fill → --color-background-neutral-soft
+--element-table-row-fill → --color-surface-row
+--element-prompt-button-fill → --color-surface-raised
+--element-text-area-fill-typing → --color-background-input
+--element-text-area-border-default → --color-border-input
+--element-status-grey-center → --color-background-accent-grey-strong
+--element-status-tint-success → --color-background-accent-dark-green-strong
+--element-status-tint-warning → --color-background-accent-dark-amber-strong
+--data-viz-neutral → --color-data-viz-neutral
+--data-viz-reference → --color-data-viz-reference
+--data-viz-target → --color-data-viz-target
+--data-viz-band → --color-data-viz-band
+--data-viz-baseline → --color-data-viz-baseline
+--data-viz-data-1 → --color-data-viz-data-1
+--data-viz-data-2 → --color-data-viz-data-2
+--data-viz-data-3 → --color-data-viz-data-3
+--data-viz-data-4 → --color-data-viz-data-4
+--data-viz-data-5 → --color-data-viz-data-5
+--data-viz-data-6 → --color-data-viz-data-6
+--data-viz-data-7 → --color-data-viz-data-7
+--data-viz-data-8 → --color-data-viz-data-8
+--data-viz-data-9 → --color-data-viz-data-9
+--data-viz-data-10 → --color-data-viz-data-10
+--size-ruler-master-0 → --size-0
+--size-ruler-master-0-5 → --size-0-5
+--size-ruler-master-1 → --size-1
+--size-ruler-master-2 → --size-2
+--size-ruler-master-3 → --size-3
+--size-ruler-master-4 → --size-4
+--size-ruler-master-6 → --size-6
+--size-ruler-master-8 → --size-8
+--size-ruler-master-10 → --size-10
+--size-ruler-master-11 → --size-11
+--size-ruler-master-12 → --size-12
+--size-ruler-master-14 → --size-14
+--size-ruler-master-16 → --size-16
+--size-ruler-master-18 → --size-18
+--size-ruler-master-20 → --size-20
+--size-ruler-master-22 → --size-22
+--size-ruler-master-24 → --size-24
+--size-ruler-master-26 → --size-26
+--size-ruler-master-28 → --size-28
+--size-ruler-master-32 → --size-32
+--size-ruler-master-36 → --size-36
+--size-ruler-master-40 → --size-40
+--size-ruler-master-44 → --size-44
+--size-ruler-master-48 → --size-48
+--size-ruler-master-52 → --size-52
+--size-ruler-master-56 → --size-56
+--size-ruler-master-60 → --size-60
+--size-ruler-master-64 → --size-64
+--size-ruler-master-68 → --size-68
+--size-ruler-master-72 → --size-72
+--size-ruler-master-76 → --size-76
+--size-ruler-master-80 → --size-80
+--size-ruler-master-1000 → --size-1000
+--border-widths-border-0 → --border-width-0
+--border-widths-border-100 → --border-width-100
+--border-widths-border-150 → --border-width-150
+--border-widths-border-200 → --border-width-200
+--border-widths-border-300 → --border-width-300
+--border-widths-border-400 → --border-width-400
+--radius-radius-0 → --radius-0
+--radius-radius-100 → --radius-100
+--radius-radius-150 → --radius-150
+--radius-radius-200 → --radius-200
+--radius-radius-300 → --radius-300
+--radius-radius-full → --radius-full
+--z-index-z-base → --z-index-base
+--z-index-z-sticky → --z-index-sticky
+--z-index-z-panels → --z-index-panels
+--z-index-z-floating → --z-index-floating
+--z-index-z-popover → --z-index-popover
+--z-index-z-selection-overlay → --z-index-selection-overlay
+--z-index-z-modal-overlay → --z-index-modal-overlay
+--z-index-z-modal → --z-index-modal
+--z-index-z-toast → --z-index-toast
+--z-index-z-max → --z-index-max
+--font-weight-font-weight-regular → --font-weight-regular
+--font-weight-font-weight-medium → --font-weight-medium
+--font-weight-font-weight-semibold → --font-weight-semibold
+--letter-spacing-letter-spacing--06 → --font-tracking-minus-06
+--letter-spacing-letter-spacing--05 → --font-tracking-minus-05
+--letter-spacing-letter-spacing--03 → --font-tracking-minus-03
+--letter-spacing-letter-spacing--02 → --font-tracking-minus-02
+--letter-spacing-letter-spacing--015 → --font-tracking-minus-015
+--letter-spacing-letter-spacing--01 → --font-tracking-minus-01
+--letter-spacing-letter-spacing-0 → --font-tracking-0
+--letter-spacing-letter-spacing-01 → --font-tracking-plus-01
+--letter-spacing-letter-spacing-02 → --font-tracking-plus-02
+--letter-spacing-letter-spacing-03 → --font-tracking-plus-03
+--type-s → --font-size-s
+--type-m → --font-size-m
+--type-l → --font-size-l
+--type-h3 → --font-size-h3
+--type-h2 → --font-size-h2
+--type-h1 → --font-size-h1
+--type-display-s → --font-size-display-s
+--type-display-m → --font-size-display-m
+--type-display-l → --font-size-display-l
+--type-caption → --font-size-caption
+--control-h-s → --size-control-s
+--control-h-m → --size-control-m
+--control-h-l → --size-control-l
+--tab-h-m → --size-tab-m
+--tab-h-l → --size-tab-l
+--nav-row-h → --size-nav-row
+--table-row-h → --size-table-row
+--table-header-h → --size-table-header
+--badge-h-s → --size-badge-s
+--badge-h-m → --size-badge-m
+--badge-h-l → --size-badge-l
+--target-min → --size-target-min
+--layout-side-panel-width → --layout-panel-width
+--layout-side-panel-collapsed-width → --layout-panel-width-collapsed
+--overlay-width-m → --layout-modal-width-m
+--overlay-width-l → --layout-modal-width-l
+--overlay-width-s → --layout-popover-width
+--text-display-l → --font-display-l
+--text-display-l-tracking → --font-display-l-tracking
+--text-display-l-weight → --font-display-l-weight
+--text-display-m → --font-display-m
+--text-display-m-tracking → --font-display-m-tracking
+--text-display-m-weight → --font-display-m-weight
+--text-display-s → --font-display-s
+--text-display-s-tracking → --font-display-s-tracking
+--text-display-s-weight → --font-display-s-weight
+--text-heading-h1-medium → --font-heading-h1-medium
+--text-heading-h1-medium-tracking → --font-heading-h1-medium-tracking
+--text-heading-h1-medium-weight → --font-heading-h1-medium-weight
+--text-heading-h2-medium → --font-heading-h2-medium
+--text-heading-h2-medium-tracking → --font-heading-h2-medium-tracking
+--text-heading-h2-medium-weight → --font-heading-h2-medium-weight
+--text-heading-h3-medium → --font-heading-h3-medium
+--text-heading-h3-medium-tracking → --font-heading-h3-medium-tracking
+--text-heading-h3-medium-weight → --font-heading-h3-medium-weight
+--text-heading-h4-semibold → --font-heading-h4-semibold
+--text-heading-h4-semibold-tracking → --font-heading-h4-semibold-tracking
+--text-heading-h4-semibold-weight → --font-heading-h4-semibold-weight
+--text-body-l-regular → --font-body-l-regular
+--text-body-l-regular-tracking → --font-body-l-regular-tracking
+--text-body-l-regular-weight → --font-body-l-regular-weight
+--text-body-m-regular → --font-body-m-regular
+--text-body-m-regular-tracking → --font-body-m-regular-tracking
+--text-body-m-regular-weight → --font-body-m-regular-weight
+--text-body-s-regular → --font-body-s-regular
+--text-body-s-regular-tracking → --font-body-s-regular-tracking
+--text-body-s-regular-weight → --font-body-s-regular-weight
+--text-label-l-medium → --font-label-l-medium
+--text-label-l-medium-tracking → --font-label-l-medium-tracking
+--text-label-l-medium-weight → --font-label-l-medium-weight
+--text-label-m-medium → --font-label-m-medium
+--text-label-m-medium-tracking → --font-label-m-medium-tracking
+--text-label-m-medium-weight → --font-label-m-medium-weight
+--text-code-m-regular → --font-code-m-regular
+--text-code-m-regular-tracking → --font-code-m-regular-tracking
+--text-code-m-regular-weight → --font-code-m-regular-weight
+--text-code-m-medium → --font-code-m-medium
+--text-code-m-medium-tracking → --font-code-m-medium-tracking
+--text-code-m-medium-weight → --font-code-m-medium-weight
+--text-code-s-regular → --font-code-s-regular
+--text-code-s-regular-tracking → --font-code-s-regular-tracking
+--text-code-s-regular-weight → --font-code-s-regular-weight
+--text-numeric → --font-numeric
+--text-measure → --font-measure
+--blur-faint → --blur-4
+--blur-light → --blur-10
+--blur-soft → --blur-20
+--blur-medium → --blur-40
+--blur-strong → --blur-80
+--blur-max → --blur-100
+--elevation-elevation-1-primary → --elevation-1
+--elevation-elevation-2-primary → --elevation-2
+--elevation-elevation-3-primary → --elevation-3
+--drop-shadow-elevation-2 → --elevation-2
+--drop-shadow-elevation-3 → --elevation-3
+--gaps-gap-0 → --space-0
+--gaps-gap-50 → --space-50
+--gaps-gap-100 → --space-100
+--gaps-gap-150 → --space-150
+--gaps-gap-200 → --space-200
+--gaps-gap-250 → --space-250
+--gaps-gap-300 → --space-300
+--gaps-gap-400 → --space-400
+--gaps-gap-500 → --space-500
+--gaps-gap-600 → --space-600
+--gaps-gap-700 → --space-700
+--gaps-gap-800 → --space-800
+--gaps-gap-900 → --space-900
+--gaps-gap-1000 → --space-1000
+--gaps-gap-1100 → --space-1100
+--paddings-padding-0 → --space-0
+--paddings-padding-50 → --space-50
+--paddings-padding-100 → --space-100
+--paddings-padding-150 → --space-150
+--paddings-padding-200 → --space-200
+--paddings-padding-250 → --space-250
+--paddings-padding-300 → --space-300
+--paddings-padding-400 → --space-400
+--paddings-padding-500 → --space-500
+--paddings-padding-600 → --space-600
+--paddings-padding-700 → --space-700
+--paddings-padding-800 → --space-800
+--paddings-padding-900 → --space-900
+--paddings-padding-1000 → --space-1000
+--paddings-padding-1100 → --space-1100
+--margins-layout-margin-xs → --space-300
+--margins-layout-margin-sm → --space-400
+--margins-layout-margin-md → --space-500
+--margins-layout-margin-lg → --space-600
+--margins-layout-margin-xl → --space-800
+--gutters-gutter-xs → --space-300
+--gutters-gutter-sm → --space-400
+--gutters-gutter-md → --space-500
+--gutters-gutter-lg → --space-600
+--gutters-gutter-xl → --space-700
+--spacing-card → --space-inset
+--spacing-card-compact → --space-stack
+--spacing-card-gap → --space-stack
+--spacing-card-actions → --space-inset
+--spacing-card-text → --space-100
+--spacing-panel → --space-inset
+--spacing-panel-gap → --space-stack
+--spacing-modal → --space-inset-l
+--spacing-modal-gap → --space-stack
+--spacing-popover → --space-100
+--spacing-popover-content → --space-inset
+--spacing-form → --space-inset-l
+--spacing-form-field-gap → --space-stack
+--spacing-section → --space-section
+--spacing-section-lg → --space-section
+--spacing-table-cell-x → --space-table-x
+--spacing-table-header-x → --space-table-x
+--spacing-table-cell-y → --space-0

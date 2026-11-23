@@ -1,8 +1,12 @@
 // Kit entry: styles, icons and every component family. Import from here, not from family files.
+import '../foundations/palette.css';
 import '../tokens.css';
 import '../foundations/spacing.css';
+import '../foundations/motion.css';
 import '../foundations/layout.css';
 import '../foundations/typography.css';
+// Old token names (aliases until 3.0); after the foundations so every alias resolves to its new name.
+import '../foundations/deprecated.css';
 import './_core.css';
 import './button.css';
 import './data.css';

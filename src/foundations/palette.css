@@ -1,0 +1,364 @@
+/* Colour primitives (N8, Nov 23): Figma "1. Colors primitives", exported 2026-11-17 (tools/figma/colors-primitives.txt).
+   Name = the Figma path without the family folder, "-base" and spaces: system/danger/500-base -> --palette-danger-500.
+   Roles (tokens.css) point at these, so a theme is a remap of roles. Components never use --palette-* (node tools/color-lint.mjs).
+   PLACEHOLDER (not final in Figma, don't use): the expressive families (fuchsia, violet, electric blue, lime, coral orange). */
+:root{
+/* core */
+--palette-core-0:#000000;
+--palette-core-50:#0d0d0d;
+/* white */
+--palette-white-alpha-0:rgba(255,255,255,0);
+--palette-white-alpha-5:rgba(255,255,255,0.05);
+/* core */
+--palette-core-100:#1a1a1a;
+/* white */
+--palette-white-alpha-10:rgba(255,255,255,0.1);
+/* core */
+--palette-core-150:#262626;
+/* white */
+--palette-white-alpha-15:rgba(255,255,255,0.15);
+/* core */
+--palette-core-200:#333333;
+/* white */
+--palette-white-alpha-20:rgba(255,255,255,0.2);
+/* core */
+--palette-core-300:#4d4d4d;
+/* white */
+--palette-white-alpha-30:rgba(255,255,255,0.3);
+/* core */
+--palette-core-400:#666666;
+/* white */
+--palette-white-alpha-40:rgba(255,255,255,0.4);
+/* core */
+--palette-core-500:#808080;
+/* white */
+--palette-white-alpha-50:rgba(255,255,255,0.5);
+/* core */
+--palette-core-550:#8c8c8c;
+/* white */
+--palette-white-alpha-55:rgba(255,255,255,0.55);
+/* core */
+--palette-core-600:#999999;
+/* white */
+--palette-white-alpha-60:rgba(255,255,255,0.6);
+/* core */
+--palette-core-750:#cccccc;
+/* white */
+--palette-white-alpha-75:rgba(255,255,255,0.75);
+/* core */
+--palette-core-850:#d9d9d9;
+--palette-core-900:#f6f6f6;
+/* white */
+--palette-white-alpha-85:rgba(255,255,255,0.85);
+/* core */
+--palette-core-1000:#ffffff;
+/* black */
+--palette-black-alpha-0:rgba(0,0,0,0);
+/* grey */
+--palette-grey-0:rgba(70,70,70,0);
+--palette-grey-600:rgba(70,70,70,0.6);
+--palette-grey-1000:#464646;
+/* black */
+--palette-black-alpha-5:rgba(0,0,0,0.05);
+--palette-black-alpha-10:rgba(0,0,0,0.1);
+--palette-black-alpha-15:rgba(0,0,0,0.15);
+--palette-black-alpha-20:rgba(0,0,0,0.2);
+--palette-black-alpha-30:rgba(0,0,0,0.3);
+--palette-black-alpha-40:rgba(0,0,0,0.4);
+--palette-black-alpha-45:rgba(0,0,0,0.45);
+--palette-black-alpha-50:rgba(0,0,0,0.5);
+--palette-black-alpha-60:rgba(0,0,0,0.6);
+--palette-black-alpha-80:rgba(0,0,0,0.8);
+--palette-black-alpha-85:rgba(0,0,0,0.85);
+/* system/success */
+--palette-success-50:#eaf8ef;
+--palette-success-100:#d5f2df;
+--palette-success-150:#c0ebce;
+--palette-success-200:#abe4be;
+--palette-success-300:#82d79e;
+--palette-success-400:#58c97d;
+--palette-success-500:#2ebc5d;
+--palette-success-500-alpha-0:rgba(46,188,93,0);
+--palette-success-500-alpha-10:rgba(46,188,93,0.1);
+--palette-success-600:#25964a;
+--palette-success-700:#1c7138;
+--palette-success-700-alpha-0:rgba(28,113,56,0);
+--palette-success-800:#124b25;
+--palette-success-850:#0e381c;
+--palette-success-900:#092613;
+--palette-success-950:#051309;
+/* system/danger */
+--palette-danger-50:#fdebeb;
+--palette-danger-100:#fcd8d8;
+--palette-danger-150:#fac4c4;
+--palette-danger-200:#f8b1b1;
+--palette-danger-300:#f58a89;
+--palette-danger-400:#f16362;
+--palette-danger-500:#ee3c3b;
+--palette-danger-500-alpha-0:rgba(238,60,59,0);
+--palette-danger-500-alpha-10:rgba(238,60,59,0.1);
+--palette-danger-600:#bf302f;
+--palette-danger-700:#8f2423;
+--palette-danger-700-alpha-0:rgba(143,36,35,0);
+--palette-danger-800:#601818;
+--palette-danger-850:#481212;
+--palette-danger-900:#300c0c;
+--palette-danger-950:#190606;
+/* system/warning */
+--palette-warning-50:#fff7ea;
+--palette-warning-100:#ffefd5;
+--palette-warning-150:#ffe7c0;
+--palette-warning-200:#ffdfab;
+--palette-warning-300:#ffcf82;
+--palette-warning-400:#ffbf58;
+--palette-warning-500:#ffaf2e;
+--palette-warning-500-alpha-0:rgba(255,175,46,0);
+--palette-warning-500-alpha-10:rgba(255,175,46,0.1);
+--palette-warning-600:#cc8c25;
+--palette-warning-700:#99691c;
+--palette-warning-800:#664612;
+--palette-warning-800-alpha-0:rgba(102,70,18,0);
+--palette-warning-850:#4d350e;
+--palette-warning-900:#332309;
+--palette-warning-950:#1a1205;
+/* system/info */
+--palette-info-50:#eaf2ff;
+--palette-info-100:#d5e5ff;
+--palette-info-150:#bfd9ff;
+--palette-info-200:#aaccff;
+--palette-info-300:#80b2ff;
+--palette-info-400:#5599ff;
+--palette-info-400-alpha-0:rgba(85,153,255,0);
+--palette-info-400-alpha-10:rgba(85,153,255,0.1);
+--palette-info-500:#2b7fff;
+--palette-info-500-alpha-10:rgba(43,127,255,0.1);
+--palette-info-500-alpha-25:rgba(43,127,255,0.25);
+--palette-info-600:#2266cc;
+--palette-info-700:#1a4d9a;
+--palette-info-800:#113367;
+--palette-info-800-alpha-0:rgba(17,51,103,0);
+--palette-info-850:#0d274e;
+--palette-info-900:#091a35;
+--palette-info-950:#040e1b;
+/* brand/purple */
+--palette-purple-50:#f3f0fe;
+--palette-purple-100:#e6e0fd;
+--palette-purple-150:#dad1fd;
+--palette-purple-200:#cdc2fc;
+--palette-purple-300:#b5a3fa;
+--palette-purple-400:#9c85f9;
+--palette-purple-500:#8366f7;
+--palette-purple-500-alpha-0:rgba(131,102,247,0);
+--palette-purple-500-alpha-10:rgba(131,102,247,0.1);
+--palette-purple-500-alpha-25:rgba(131,102,247,0.25);
+--palette-purple-600:#6952c6;
+--palette-purple-700:#4f3d95;
+--palette-purple-700-alpha-40:rgba(79,61,149,0.4);
+--palette-purple-800:#352964;
+--palette-purple-850:#281f4c;
+--palette-purple-900:#1b1433;
+--palette-purple-950:#0e0a1b;
+--palette-purple-950-alpha-4:rgba(14,10,27,0.04);
+--palette-purple-950-alpha-5:rgba(14,10,27,0.05);
+--palette-purple-950-alpha-10:rgba(14,10,27,0.1);
+--palette-purple-950-alpha-15:rgba(14,10,27,0.15);
+--palette-purple-950-alpha-20:rgba(14,10,27,0.2);
+--palette-purple-950-alpha-40:rgba(14,10,27,0.4);
+/* brand/cooper */
+--palette-cooper-50:#f9f2ec;
+--palette-cooper-100:#f4e4d9;
+--palette-cooper-150:#eed7c6;
+--palette-cooper-200:#e9c9b3;
+--palette-cooper-300:#deaf8d;
+--palette-cooper-400:#d39467;
+--palette-cooper-500:#c87941;
+--palette-cooper-500-alpha-0:rgba(200,121,65,0);
+--palette-cooper-500-alpha-10:rgba(200,121,65,0.1);
+--palette-cooper-500-alpha-25:rgba(200,121,65,0.25);
+--palette-cooper-600:#a06134;
+--palette-cooper-700:#784927;
+--palette-cooper-800:#50301a;
+--palette-cooper-850:#3c2414;
+--palette-cooper-900:#28180d;
+--palette-cooper-950:#140c07;
+/* neutral/lavender */
+--palette-lavender-25:#fcfbff;
+--palette-lavender-50:#f7f7f9;
+--palette-lavender-100:#f3f2f6;
+--palette-lavender-200:#d7d4e9;
+--palette-lavender-200-alpha-60:rgba(215,212,233,0.6);
+--palette-lavender-400:#9a97ab;
+--palette-lavender-500:#625f78;
+--palette-lavender-700:#45425a;
+/* neutral/rose */
+--palette-rose-50:#fff2fe;
+--palette-rose-100:#f3d1f2;
+--palette-rose-150:#ecbde9;
+--palette-rose-200:#e8b0e5;
+--palette-rose-300:#d598d2;
+--palette-rose-400:#ba78b7;
+--palette-rose-500:#9f579c;
+--palette-rose-600:#843781;
+--palette-rose-700:#691766;
+--palette-rose-800:#541252;
+--palette-rose-850:#450943;
+--palette-rose-900:#350533;
+--palette-rose-950:#210020;
+/* neutral/muted purple */
+--palette-muted-purple-50:#edeaf3;
+--palette-muted-purple-100:#dad3e7;
+--palette-muted-purple-150:#c6bcdb;
+--palette-muted-purple-200:#afa2cd;
+--palette-muted-purple-300:#8d82b4;
+--palette-muted-purple-400:#6f6298;
+--palette-muted-purple-500:#50427d;
+--palette-muted-purple-500-alpha-5:rgba(80,66,125,0.05);
+--palette-muted-purple-500-alpha-10:rgba(80,66,125,0.1);
+--palette-muted-purple-500-alpha-15:rgba(80,66,125,0.15);
+--palette-muted-purple-500-alpha-20:rgba(80,66,125,0.22);
+--palette-muted-purple-500-alpha-40:rgba(80,66,125,0.4);
+--palette-muted-purple-600:#433374;
+--palette-muted-purple-700:#32255f;
+--palette-muted-purple-800:#221844;
+--palette-muted-purple-850:#221844;
+--palette-muted-purple-900:#17102e;
+--palette-muted-purple-950:#0f0a1e;
+/* neutral/steel blue */
+--palette-steel-blue-50:#eef1f6;
+--palette-steel-blue-100:#d6dce8;
+--palette-steel-blue-150:#bcc6da;
+--palette-steel-blue-200:#9caac9;
+--palette-steel-blue-300:#7a88b1;
+--palette-steel-blue-400:#5a6997;
+--palette-steel-blue-500:#35466a;
+--palette-steel-blue-600:#2d3c5c;
+--palette-steel-blue-700:#25324d;
+--palette-steel-blue-800:#1e2940;
+--palette-steel-blue-850:#192236;
+--palette-steel-blue-900:#131a29;
+--palette-steel-blue-950:#0c111b;
+/* neutral/teal */
+--palette-teal-50:#ebf5f5;
+--palette-teal-100:#d2e7e7;
+--palette-teal-150:#b7d7d7;
+--palette-teal-200:#94c2c2;
+--palette-teal-300:#6fa9a9;
+--palette-teal-400:#539191;
+--palette-teal-500:#427d7d;
+--palette-teal-600:#376868;
+--palette-teal-700:#2d5555;
+--palette-teal-800:#244444;
+--palette-teal-850:#1e3a3a;
+--palette-teal-900:#162c2c;
+--palette-teal-950:#0f1d1d;
+/* neutral/deep green */
+--palette-deep-green-50:#eaf5ef;
+--palette-deep-green-100:#cfe8da;
+--palette-deep-green-150:#b2d8c3;
+--palette-deep-green-200:#8fc3a8;
+--palette-deep-green-300:#68ab89;
+--palette-deep-green-400:#4a936f;
+--palette-deep-green-500:#28875f;
+--palette-deep-green-600:#237a52;
+--palette-deep-green-700:#1e6344;
+--palette-deep-green-800:#184e36;
+--palette-deep-green-850:#14422e;
+--palette-deep-green-900:#103525;
+--palette-deep-green-950:#0a2319;
+/* expressive/fuchsia */
+--palette-fuchsia-50:#fdeaf7;
+--palette-fuchsia-100:#fbcff0;
+--palette-fuchsia-150:#f8b3e7;
+--palette-fuchsia-200:#f58adb;
+--palette-fuchsia-200-alpha-0:rgba(245,138,219,0);
+--palette-fuchsia-200-alpha-10:rgba(245,138,219,0.1);
+--palette-fuchsia-300:#f65ccb;
+--palette-fuchsia-400:#f63dbf;
+--palette-fuchsia-500:#f531b3;
+--palette-fuchsia-600:#d81a9e;
+--palette-fuchsia-700:#b10086;
+--palette-fuchsia-800:#8c006f;
+--palette-fuchsia-850:#6b004f;
+--palette-fuchsia-900:#4a0037;
+--palette-fuchsia-900-alpha-0:rgba(74,0,55,0);
+--palette-fuchsia-950:#2d001f;
+/* expressive/violet */
+--palette-violet-50:#f5e9ff;
+--palette-violet-100:#e6ccff;
+--palette-violet-150:#d7afff;
+--palette-violet-200:#c992ff;
+--palette-violet-300:#b46dff;
+--palette-violet-400:#a14bff;
+--palette-violet-500:#9c18fb;
+--palette-violet-500-alpha-0:rgba(156,24,251,0);
+--palette-violet-500-alpha-10:rgba(156,24,251,0.1);
+--palette-violet-600:#8400e6;
+--palette-violet-700:#6b00c2;
+--palette-violet-800:#52009a;
+--palette-violet-850:#3b0073;
+--palette-violet-900:#25004d;
+--palette-violet-900-alpha-0:rgba(37,0,77,0);
+--palette-violet-950:#140026;
+/* expressive/electric blue */
+--palette-electric-blue-50:#ebf0ff;
+--palette-electric-blue-100:#d6e0ff;
+--palette-electric-blue-150:#c2d1ff;
+--palette-electric-blue-200:#a8bdff;
+--palette-electric-blue-300:#7f9cff;
+--palette-electric-blue-400:#557aff;
+--palette-electric-blue-500:#3056ee;
+--palette-electric-blue-500-alpha-0:rgba(48,86,238,0);
+--palette-electric-blue-500-alpha-10:rgba(48,86,238,0.1);
+--palette-electric-blue-600:#1e40d9;
+--palette-electric-blue-700:#1736c0;
+--palette-electric-blue-800:#0b249a;
+--palette-electric-blue-850:#040081;
+--palette-electric-blue-850-alpha-0:rgba(4,0,129,0);
+--palette-electric-blue-900:#05025d;
+--palette-electric-blue-950:#03013b;
+/* expressive/coral orange */
+--palette-coral-orange-50:#fef0ec;
+--palette-coral-orange-100:#fcddd6;
+--palette-coral-orange-150:#fac7bc;
+--palette-coral-orange-200:#f7ae9e;
+--palette-coral-orange-300:#f48e76;
+--palette-coral-orange-400:#f16b4f;
+--palette-coral-orange-500:#ef5533;
+--palette-coral-orange-500-alpha-0:rgba(239,85,51,0);
+--palette-coral-orange-500-alpha-10:rgba(239,85,51,0.1);
+--palette-coral-orange-600:#d73f20;
+--palette-coral-orange-700:#b32f12;
+--palette-coral-orange-800:#8f2207;
+--palette-coral-orange-850:#811e00;
+--palette-coral-orange-850-alpha-0:rgba(129,30,0,0);
+--palette-coral-orange-900:#5e1400;
+--palette-coral-orange-950:#3a0b00;
+/* expressive/cyan */
+--palette-cyan-50:#e6fbfd;
+--palette-cyan-100:#ccf6fa;
+--palette-cyan-150:#b3f0f6;
+--palette-cyan-200:#80e6ef;
+--palette-cyan-300:#4ddce7;
+--palette-cyan-400:#1ad1e0;
+--palette-cyan-500:#00b5ce;
+--palette-cyan-500-alpha-0:rgba(0,181,206,0);
+--palette-cyan-500-alpha-10:rgba(0,181,206,0.1);
+--palette-cyan-600:#0090a6;
+--palette-cyan-700:#006f82;
+--palette-cyan-800:#005763;
+--palette-cyan-800-alpha-0:rgba(0,87,99,0);
+--palette-cyan-850:#004652;
+--palette-cyan-900:#003741;
+--palette-cyan-950:#00252b;
+/* expressive/lime */
+--palette-lime-50:#f3fbe3;
+--palette-lime-100:#e6f7c6;
+--palette-lime-150:#d9f2a6;
+--palette-lime-200:#cbef82;
+--palette-lime-300:#b7e85a;
+--palette-lime-400:#aee345;
+--palette-lime-500:#a9d10a;
+/* black */
+--palette-black-alpha-25:rgba(0,0,0,0.25);
+--palette-black-alpha-35:rgba(0,0,0,0.35);
+}

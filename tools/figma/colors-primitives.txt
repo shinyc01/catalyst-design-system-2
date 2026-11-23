@@ -1,0 +1,315 @@
+# Figma file atgUmwcA1AE5sjFoWBT7ar, collection "1. Colors primitives" (single mode), exported 2026-11-17.
+# name|value. Kept in Figma order. Booleans in this collection (show-scroll-bar, show-label, show-description) are left out.
+core/0-base|#000000
+core/50|#0d0d0d
+white/aplha-0|rgba(255,255,255,0)
+white/alpha-5|rgba(255,255,255,0.05)
+core/100|#1a1a1a
+white/alpha-10|rgba(255,255,255,0.1)
+core/150|#262626
+white/alpha-15|rgba(255,255,255,0.15)
+core/200|#333333
+white/alpha-20|rgba(255,255,255,0.2)
+core/300|#4d4d4d
+white/alpha-30|rgba(255,255,255,0.3)
+core/400|#666666
+white/alpha-40|rgba(255,255,255,0.4)
+core/500|#808080
+white/alpha-50|rgba(255,255,255,0.5)
+core/550|#8c8c8c
+white/alpha-55|rgba(255,255,255,0.55)
+core/600|#999999
+white/alpha-60|rgba(255,255,255,0.6)
+core/750|#cccccc
+white/alpha-75|rgba(255,255,255,0.75)
+core/850|#d9d9d9
+core/900|#f6f6f6
+white/alpha-85|rgba(255,255,255,0.85)
+core/1000-base|#ffffff
+black/alpha-0|rgba(0,0,0,0)
+grey/0|rgba(70,70,70,0)
+grey/600|rgba(70,70,70,0.6)
+grey/1000-base|#464646
+black/alpha-5|rgba(0,0,0,0.05)
+black/alpha-10|rgba(0,0,0,0.1)
+black/alpha-15|rgba(0,0,0,0.15)
+black/alpha-20|rgba(0,0,0,0.2)
+black/alpha-30|rgba(0,0,0,0.3)
+black/alpha-40|rgba(0,0,0,0.4)
+black/alpha-45|rgba(0,0,0,0.45)
+black/alpha-50|rgba(0,0,0,0.5)
+black/alpha-60|rgba(0,0,0,0.6)
+black/alpha-80|rgba(0,0,0,0.8)
+black/alpha-85|rgba(0,0,0,0.85)
+system/success/50|#eaf8ef
+system/success/100|#d5f2df
+system/success/150|#c0ebce
+system/success/200|#abe4be
+system/success/300|#82d79e
+system/success/400|#58c97d
+system/success/500-base|#2ebc5d
+system/success/500-base-alpha-0|rgba(46,188,93,0)
+system/success/500-base-alpha-10|rgba(46,188,93,0.1)
+system/success/600|#25964a
+system/success/700|#1c7138
+system/success/700-alpha-0|rgba(28,113,56,0)
+system/success/800|#124b25
+system/success/850|#0e381c
+system/success/900|#092613
+system/success/950|#051309
+system/danger/50|#fdebeb
+system/danger/100|#fcd8d8
+system/danger/150|#fac4c4
+system/danger/200|#f8b1b1
+system/danger/300|#f58a89
+system/danger/400|#f16362
+system/danger/500-base|#ee3c3b
+system/danger/500-base-alpha-0|rgba(238,60,59,0)
+system/danger/500-base-alpha-10|rgba(238,60,59,0.1)
+system/danger/600|#bf302f
+system/danger/700|#8f2423
+system/danger/700-alpha-0|rgba(143,36,35,0)
+system/danger/800|#601818
+system/danger/850|#481212
+system/danger/900|#300c0c
+system/danger/950|#190606
+system/warning/50|#fff7ea
+system/warning/100|#ffefd5
+system/warning/150|#ffe7c0
+system/warning/200|#ffdfab
+system/warning/300|#ffcf82
+system/warning/400|#ffbf58
+system/warning/500-base|#ffaf2e
+system/warning/500-base-alpha-0|rgba(255,175,46,0)
+system/warning/500-base-alpha-10|rgba(255,175,46,0.1)
+system/warning/600|#cc8c25
+system/warning/700|#99691c
+system/warning/800|#664612
+system/warning/800-alpha-0|rgba(102,70,18,0)
+system/warning/850|#4d350e
+system/warning/900|#332309
+system/warning/950|#1a1205
+system/info/50|#eaf2ff
+system/info/100|#d5e5ff
+system/info/150|#bfd9ff
+system/info/200|#aaccff
+system/info/300|#80b2ff
+system/info/400|#5599ff
+system/info/400-alpha-0|rgba(85,153,255,0)
+system/info/400-alpha-10|rgba(85,153,255,0.1)
+system/info/500-base|#2b7fff
+system/info/500-base-alpha-10|rgba(43,127,255,0.1)
+system/info/500-base-alpha-25|rgba(43,127,255,0.25)
+system/info/600|#2266cc
+system/info/700|#1a4d9a
+system/info/800|#113367
+system/info/800-alpha-0|rgba(17,51,103,0)
+system/info/850|#0d274e
+system/info/900|#091a35
+system/info/950|#040e1b
+brand/purple/50|#f3f0fe
+brand/purple/100|#e6e0fd
+brand/purple/150|#dad1fd
+brand/purple/200|#cdc2fc
+brand/purple/300|#b5a3fa
+brand/purple/400|#9c85f9
+brand/purple/500-base|#8366f7
+brand/purple/500-base-alpha-0|rgba(131,102,247,0)
+brand/purple/500-base-alpha-10|rgba(131,102,247,0.1)
+brand/purple/500-base-alpha-25|rgba(131,102,247,0.25)
+brand/purple/600|#6952c6
+brand/purple/700|#4f3d95
+brand/purple/700-alpha-40|rgba(79,61,149,0.4)
+brand/purple/800|#352964
+brand/purple/850|#281f4c
+brand/purple/900|#1b1433
+brand/purple/950|#0e0a1b
+brand/purple/950-alpha-4|rgba(14,10,27,0.04)
+brand/purple/950-alpha-5|rgba(14,10,27,0.05)
+brand/purple/950-alpha-10|rgba(14,10,27,0.1)
+brand/purple/950-alpha-15|rgba(14,10,27,0.15)
+brand/purple/950-alpha-20|rgba(14,10,27,0.2)
+brand/purple/950-alpha-40|rgba(14,10,27,0.4)
+brand/cooper/50|#f9f2ec
+brand/cooper/100|#f4e4d9
+brand/cooper/150|#eed7c6
+brand/cooper/200|#e9c9b3
+brand/cooper/300|#deaf8d
+brand/cooper/400|#d39467
+brand/cooper/500-base|#c87941
+brand/cooper/500-base-alpha-0|rgba(200,121,65,0)
+brand/cooper/500-base-alpha-10|rgba(200,121,65,0.1)
+brand/cooper/500-base-alpha-25|rgba(200,121,65,0.25)
+brand/cooper/600|#a06134
+brand/cooper/700|#784927
+brand/cooper/800|#50301a
+brand/cooper/850|#3c2414
+brand/cooper/900|#28180d
+brand/cooper/950|#140c07
+neutral/lavender/25|#fcfbff
+neutral/lavender/50|#f7f7f9
+neutral/lavender/100|#f3f2f6
+neutral/lavender/200|#d7d4e9
+neutral/lavender/200-alpha-60|rgba(215,212,233,0.6)
+neutral/lavender/400|#9a97ab
+neutral/lavender/500|#625f78
+neutral/lavender/700|#45425a
+neutral/rose/50|#fff2fe
+neutral/rose/100|#f3d1f2
+neutral/rose/150|#ecbde9
+neutral/rose/200|#e8b0e5
+neutral/rose/300|#d598d2
+neutral/rose/400|#ba78b7
+neutral/rose/500-base|#9f579c
+neutral/rose/600|#843781
+neutral/rose/700|#691766
+neutral/rose/800|#541252
+neutral/rose/850|#450943
+neutral/rose/900|#350533
+neutral/rose/950|#210020
+neutral/muted purple/50|#edeaf3
+neutral/muted purple/100|#dad3e7
+neutral/muted purple/150|#c6bcdb
+neutral/muted purple/200|#afa2cd
+neutral/muted purple/300|#8d82b4
+neutral/muted purple/400|#6f6298
+neutral/muted purple/500-base|#50427d
+neutral/muted purple/500-base-alpha-5|rgba(80,66,125,0.05)
+neutral/muted purple/500-base-alpha-10|rgba(80,66,125,0.1)
+neutral/muted purple/500-base-alpha-15|rgba(80,66,125,0.15)
+neutral/muted purple/500-base-alpha-20|rgba(80,66,125,0.22)
+neutral/muted purple/500-base-alpha-40|rgba(80,66,125,0.4)
+neutral/muted purple/600|#433374
+neutral/muted purple/700|#32255f
+neutral/muted purple/800|#221844
+neutral/muted purple/850|#221844
+neutral/muted purple/900|#17102e
+neutral/muted purple/950|#0f0a1e
+neutral/steel blue/50|#eef1f6
+neutral/steel blue/100|#d6dce8
+neutral/steel blue/150|#bcc6da
+neutral/steel blue/200|#9caac9
+neutral/steel blue/300|#7a88b1
+neutral/steel blue/400|#5a6997
+neutral/steel blue/500-base|#35466a
+neutral/steel blue/600|#2d3c5c
+neutral/steel blue/700|#25324d
+neutral/steel blue/800|#1e2940
+neutral/steel blue/850|#192236
+neutral/steel blue/900|#131a29
+neutral/steel blue/950|#0c111b
+neutral/teal/50|#ebf5f5
+neutral/teal/100|#d2e7e7
+neutral/teal/150|#b7d7d7
+neutral/teal/200|#94c2c2
+neutral/teal/300|#6fa9a9
+neutral/teal/400|#539191
+neutral/teal/500-base|#427d7d
+neutral/teal/600|#376868
+neutral/teal/700|#2d5555
+neutral/teal/800|#244444
+neutral/teal/850|#1e3a3a
+neutral/teal/900|#162c2c
+neutral/teal/950|#0f1d1d
+neutral/deep green/50|#eaf5ef
+neutral/deep green/100|#cfe8da
+neutral/deep green/150|#b2d8c3
+neutral/deep green/200|#8fc3a8
+neutral/deep green/300|#68ab89
+neutral/deep green/400|#4a936f
+neutral/deep green/500-base|#28875f
+neutral/deep green/600|#237a52
+neutral/deep green/700|#1e6344
+neutral/deep green/800|#184e36
+neutral/deep green/850|#14422e
+neutral/deep green/900|#103525
+neutral/deep green/950|#0a2319
+expressive/fuchsia/50|#fdeaf7
+expressive/fuchsia/100|#fbcff0
+expressive/fuchsia/150|#f8b3e7
+expressive/fuchsia/200|#f58adb
+expressive/fuchsia/200-alpha-0|rgba(245,138,219,0)
+expressive/fuchsia/200-alpha-10|rgba(245,138,219,0.1)
+expressive/fuchsia/300|#f65ccb
+expressive/fuchsia/400|#f63dbf
+expressive/fuchsia/500-base|#f531b3
+expressive/fuchsia/600|#d81a9e
+expressive/fuchsia/700|#b10086
+expressive/fuchsia/800|#8c006f
+expressive/fuchsia/850|#6b004f
+expressive/fuchsia/900|#4a0037
+expressive/fuchsia/900-alpha-0|rgba(74,0,55,0)
+expressive/fuchsia/950|#2d001f
+expressive/violet/50|#f5e9ff
+expressive/violet/100|#e6ccff
+expressive/violet/150|#d7afff
+expressive/violet/200|#c992ff
+expressive/violet/300|#b46dff
+expressive/violet/400|#a14bff
+expressive/violet/500-base|#9c18fb
+expressive/violet/500-base-alpha-0|rgba(156,24,251,0)
+expressive/violet/500-base-alpha-10|rgba(156,24,251,0.1)
+expressive/violet/600|#8400e6
+expressive/violet/700|#6b00c2
+expressive/violet/800|#52009a
+expressive/violet/850|#3b0073
+expressive/violet/900|#25004d
+expressive/violet/900-alpha-0|rgba(37,0,77,0)
+expressive/violet/950|#140026
+expressive/electric blue/50|#ebf0ff
+expressive/electric blue/100|#d6e0ff
+expressive/electric blue/150|#c2d1ff
+expressive/electric blue/200|#a8bdff
+expressive/electric blue/300|#7f9cff
+expressive/electric blue/400|#557aff
+expressive/electric blue/500-base|#3056ee
+expressive/electric blue/500-base-alpha-0|rgba(48,86,238,0)
+expressive/electric blue/500-base-alpha-10|rgba(48,86,238,0.1)
+expressive/electric blue/600|#1e40d9
+expressive/electric blue/700|#1736c0
+expressive/electric blue/800|#0b249a
+expressive/electric blue/850|#040081
+expressive/electric blue/850-alpha-0|rgba(4,0,129,0)
+expressive/electric blue/900|#05025d
+expressive/electric blue/950|#03013b
+expressive/coral orange/50|#fef0ec
+expressive/coral orange/100|#fcddd6
+expressive/coral orange/150|#fac7bc
+expressive/coral orange/200|#f7ae9e
+expressive/coral orange/300|#f48e76
+expressive/coral orange/400|#f16b4f
+expressive/coral orange/500-base|#ef5533
+expressive/coral orange/500-base-alpha-0|rgba(239,85,51,0)
+expressive/coral orange/500-base-alpha-10|rgba(239,85,51,0.1)
+expressive/coral orange/600|#d73f20
+expressive/coral orange/700|#b32f12
+expressive/coral orange/800|#8f2207
+expressive/coral orange/850|#811e00
+expressive/coral orange/850-alpha-0|rgba(129,30,0,0)
+expressive/coral orange/900|#5e1400
+expressive/coral orange/950|#3a0b00
+expressive/cyan/50|#e6fbfd
+expressive/cyan/100|#ccf6fa
+expressive/cyan/150|#b3f0f6
+expressive/cyan/200|#80e6ef
+expressive/cyan/300|#4ddce7
+expressive/cyan/400|#1ad1e0
+expressive/cyan/500-base|#00b5ce
+expressive/cyan/500-base-alpha-0|rgba(0,181,206,0)
+expressive/cyan/500-base-alpha-10|rgba(0,181,206,0.1)
+expressive/cyan/600|#0090a6
+expressive/cyan/700|#006f82
+expressive/cyan/800|#005763
+expressive/cyan/800-alpha-0|rgba(0,87,99,0)
+expressive/cyan/850|#004652
+expressive/cyan/900|#003741
+expressive/cyan/950|#00252b
+expressive/lime/50|#f3fbe3
+expressive/lime/100|#e6f7c6
+expressive/lime/150|#d9f2a6
+expressive/lime/200|#cbef82
+expressive/lime/300|#b7e85a
+expressive/lime/400|#aee345
+expressive/lime/500-base|#a9d10a
+black/alpha-25|rgba(0,0,0,0.25)
+black/alpha-35|rgba(0,0,0,0.35)

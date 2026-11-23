@@ -1,0 +1,686 @@
+family	old Figma name	old CSS name	new Figma name	new CSS name	kind	Dark value	uses in src/components	note
+colour	surface/primary	--surface-primary	color/surface/primary	--color-surface-primary	rename (type word)	same	14	
+colour	surface/secondary-alpha	--surface-secondary-alpha	color/surface/secondary	--color-surface-secondary	rename	same	55	
+colour	surface/tertiary-alpha	--surface-tertiary-alpha	color/surface/tertiary	--color-surface-tertiary	rename	same	16	
+colour	surface/primary-alpha	--surface-primary-alpha	color/surface/overlay	--color-surface-overlay	rename	same	6	
+colour	surface/primary-inverse	--surface-primary-inverse	color/surface/primary-inverse	--color-surface-primary-inverse	rename (type word)	same	0	
+colour	surface/primary-inverse-alpha	--surface-primary-inverse-alpha	color/surface/overlay-inverse	--color-surface-overlay-inverse	rename	same	2	
+colour	background/elevation-1/primary (base)	--background-elevation-1-primary-base	color/surface/elevation-1	--color-surface-elevation-1	rename	same	14	
+colour	background/elevation-1/secondary	--background-elevation-1-secondary	color/background/neutral/soft	--color-background-neutral-soft	merge	same	36	
+colour	background/elevation-1/tertiary	--background-elevation-1-tertiary	color/background/neutral	--color-background-neutral	merge	same	18	
+colour	text/primary	--text-primary	color/text	--color-text	rename (type word)	same	210	
+colour	text/secondary	--text-secondary	color/text/soft	--color-text-soft	rename (type word)	same	116	
+colour	text/tertiary	--text-tertiary	color/text/softer	--color-text-softer	rename (type word)	same	98	
+colour	text/disabled	--text-disabled	color/text/disabled	--color-text-disabled	rename (type word)	same	42	
+colour	text/focus	--text-focus	color/text/focus	--color-text-focus	rename (type word)	same	1	
+colour	text/accent-cooper	--text-accent-cooper	color/cooper/text	--color-cooper-text	rename	same	15	
+colour	text/accent-purple	--text-accent-purple	color/text/accent/purple	--color-text-accent-purple	rename	same	1	
+colour	text/primary-inverse	--text-primary-inverse	color/text/inverse	--color-text-inverse	rename (type word)	same	8	
+colour	text/secondary-inverse	--text-secondary-inverse	color/text/soft-inverse	--color-text-soft-inverse	rename (type word)	same	0	
+colour	text/tertiary-inverse	--text-tertiary-inverse	color/text/softer-inverse	--color-text-softer-inverse	rename (type word)	same	0	
+colour	text/disabled-inverse	--text-disabled-inverse	color/text/disabled-inverse	--color-text-disabled-inverse	rename (type word)	same	0	
+colour	text/info	--text-info	color/text/info	--color-text-info	rename (type word)	same	3	
+colour	text/success	--text-success	color/text/success	--color-text-success	rename (type word)	same	6	
+colour	text/danger	--text-danger	color/text/danger	--color-text-danger	rename (type word)	same	10	
+colour	text/warning	--text-warning	color/text/warning	--color-text-warning	rename (type word)	same	1	
+colour	text/on-solid	--text-on-solid	color/text/on-solid	--color-text-on-solid	rename (type word)	same	3	
+colour	text/on-solid-secondary	--text-on-solid-secondary	color/text/on-solid-soft	--color-text-on-solid-soft	rename (type word)	same	3	
+colour	text/on-solid-dark	--text-on-solid-dark	color/text/on-solid-dark	--color-text-on-solid-dark	rename (type word)	same	6	
+colour	icon/primary	--icon-primary	color/icon	--color-icon	rename (type word)	same	56	
+colour	icon/secondary	--icon-secondary	color/icon/soft	--color-icon-soft	rename (type word)	same	23	
+colour	icon/tertiary	--icon-tertiary	color/icon/softer	--color-icon-softer	rename (type word)	same	25	
+colour	icon/disabled	--icon-disabled	color/icon/disabled	--color-icon-disabled	rename (type word)	same	21	
+colour	icon/focus	--icon-focus	color/icon/focus	--color-icon-focus	rename (type word)	same	2	
+colour	icon/accent-cooper	--icon-accent-cooper	color/cooper/icon	--color-cooper-icon	rename	same	5	
+colour	icon/accent-purple	--icon-accent-purple	color/icon/accent/purple	--color-icon-accent-purple	rename	same	0	
+colour	icon/primary-inverse	--icon-primary-inverse	color/icon/inverse	--color-icon-inverse	rename (type word)	same	10	
+colour	icon/secondary-inverse	--icon-secondary-inverse	color/icon/soft-inverse	--color-icon-soft-inverse	rename (type word)	same	0	
+colour	icon/tertiary-inverse	--icon-tertiary-inverse	color/icon/softer-inverse	--color-icon-softer-inverse	rename (type word)	same	0	
+colour	icon/disabled-inverse	--icon-disabled-inverse	color/icon/disabled-inverse	--color-icon-disabled-inverse	rename (type word)	same	1	
+colour	icon/info	--icon-info	color/icon/info	--color-icon-info	rename (type word)	same	5	
+colour	icon/success	--icon-success	color/icon/success	--color-icon-success	rename (type word)	same	10	
+colour	icon/danger	--icon-danger	color/icon/danger	--color-icon-danger	rename (type word)	same	10	
+colour	icon/warning	--icon-warning	color/icon/warning	--color-icon-warning	rename (type word)	same	7	
+colour	border/base	--border-base	color/border/soft	--color-border-soft	rename (type word)	same	139	
+colour	border/medium	--border-medium	color/border	--color-border	rename (type word)	same	38	
+colour	border/strong	--border-strong	color/border/strong	--color-border-strong	rename (type word)	same	18	
+colour	border/base-inverse	--border-base-inverse	color/border/soft-inverse	--color-border-soft-inverse	rename (type word)	same	0	
+colour	border/medium-inverse	--border-medium-inverse	color/border/inverse	--color-border-inverse	rename (type word)	same	0	
+colour	border/strong-inverse	--border-strong-inverse	color/border/strong-inverse	--color-border-strong-inverse	rename (type word)	same	0	
+colour	border/white	--border-white	color/border/on-solid	--color-border-on-solid	rename	same	2	
+colour	border/black	--border-black	color/border/on-solid-dark	--color-border-on-solid-dark	rename	same	1	
+colour	border/accent-cooper	--border-accent-cooper	color/cooper/border	--color-cooper-border	rename	same	3	
+colour	border/accent-purple	--border-accent-purple	color/border/accent/purple	--color-border-accent-purple	rename	same	3	
+colour	border/info	--border-info	color/border/info	--color-border-info	rename (type word)	same	0	
+colour	border/blue	--border-blue	border/blue	--border-blue	held (unchanged)	would change Dark: see RENAME-MAP §4	0	held for the values / states round
+colour	border/success	--border-success	color/border/success	--color-border-success	rename (type word)	same	0	
+colour	border/danger	--border-danger	color/border/danger	--color-border-danger	rename (type word)	same	1	
+colour	border/warning	--border-warning	color/border/warning	--color-border-warning	rename (type word)	same	0	
+colour	border/grey	--border-grey	color/border/accent/grey	--color-border-accent-grey	rename	same	0	
+colour	border/selected	--border-selected	color/border/selected	--color-border-selected	rename (type word)	same	6	
+colour	focus/focus-inner	--focus-focus-inner	color/focus/inner	--color-focus-inner	rename (type word)	same	77	
+colour	focus/focus-outer	--focus-focus-outer	color/focus/outer	--color-focus-outer	rename (type word)	same	72	
+colour	background/elevation-2/primary (base)	--background-elevation-2-primary-base	color/surface/elevation-2	--color-surface-elevation-2	rename	same	10	
+colour	background/elevation-2/secondary	--background-elevation-2-secondary	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
+colour	background/elevation-2/tertiary	--background-elevation-2-tertiary	color/background/neutral	--color-background-neutral	merge	same	0	
+colour	background/elevation-3/primary (base)	--background-elevation-3-primary-base	color/surface/elevation-3	--color-surface-elevation-3	rename	same	0	
+colour	background/elevation-3/secondary	--background-elevation-3-secondary	color/background/neutral/soft	--color-background-neutral-soft	merge	same	0	
+colour	background/elevation-3/tertiary	--background-elevation-3-tertiary	color/background/neutral	--color-background-neutral	merge	same	0	
+colour	background/solid/black	--background-solid-black	color/background/accent/black/strong	--color-background-accent-black-strong	rename	same	2	
+colour	background/solid/white	--background-solid-white	color/background/accent/white/strong	--color-background-accent-white-strong	rename	same	7	
+colour	background/solid/accent-cooper	--background-solid-accent-cooper	color/cooper/background/strong	--color-cooper-background-strong	rename	same	1	
+colour	background/solid/accent-purple	--background-solid-accent-purple	color/background/accent/purple/strong	--color-background-accent-purple-strong	rename	same	3	
+colour	background/solid/blue	--background-solid-blue	color/background/accent/blue/strong	--color-background-accent-blue-strong	rename	same	3	
+colour	background/solid/dark-blue	--background-solid-dark-blue	color/background/accent/dark-blue/strong	--color-background-accent-dark-blue-strong	rename	same	1	
+colour	background/solid/dark-purple	--background-solid-dark-purple	color/background/accent/dark-purple/strong	--color-background-accent-dark-purple-strong	rename	same	1	
+colour	background/solid/dark-green	--background-solid-dark-green	color/background/accent/dark-green/strong	--color-background-accent-dark-green-strong	rename	same	1	
+colour	background/solid/dark-orange	--background-solid-dark-orange	color/background/accent/dark-red/strong	--color-background-accent-dark-red-strong	rename	same	1	
+colour	background/solid/dark-pink	--background-solid-dark-pink	color/background/accent/dark-pink/strong	--color-background-accent-dark-pink-strong	rename	same	1	
+colour	element/button/primary/fill/default	--element-button-primary-fill-default	color/background/neutral/stronger	--color-background-neutral-stronger	merge	same	1	
+colour	element/button/primary/fill/hover	--element-button-primary-fill-hover	color/background/neutral/stronger/hover	--color-background-neutral-stronger-hover	merge	same	1	
+colour	element/button/primary/fill/pressed	--element-button-primary-fill-pressed	color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	merge	same	1	
+colour	element/button/primary/fill/disabled	--element-button-primary-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
+colour	element/button/primary/border/default	--element-button-primary-border-default	color/border/soft	--color-border-soft	merge	same	3	
+colour	element/button/primary/border/hover	--element-button-primary-border-hover	color/border/soft	--color-border-soft	merge	same	3	
+colour	element/button/primary/border/pressed	--element-button-primary-border-pressed	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/button/primary/border/disabled	--element-button-primary-border-disabled	color/border/transparent	--color-border-transparent	merge	same	1	
+colour	element/button/secondary/fill/default	--element-button-secondary-fill-default	color/background/neutral/soft	--color-background-neutral-soft	merge	same	4	LIGHT DIFFERS: rgba(80,66,125,0.15) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/button/secondary/fill/hover	--element-button-secondary-fill-hover	color/background/neutral	--color-background-neutral	merge	same	10	LIGHT DIFFERS: rgba(80,66,125,0.22) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/button/secondary/fill/pressed	--element-button-secondary-fill-pressed	color/background/neutral/softer	--color-background-neutral-softer	merge	same	2	LIGHT DIFFERS: rgba(80,66,125,0.1) (group rgba(0,0,0,0.05), role rgba(80,66,125,0.05))
+colour	element/button/secondary/fill/disabled	--element-button-secondary-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	2	
+colour	element/button/secondary/border/default	--element-button-secondary-border-default	color/border/soft	--color-border-soft	merge	same	2	
+colour	element/button/secondary/border/hover	--element-button-secondary-border-hover	color/border/strong	--color-border-strong	merge	same	3	
+colour	element/button/secondary/border/pressed	--element-button-secondary-border-pressed	color/border/soft	--color-border-soft	merge	same	2	
+colour	element/button/secondary/border/disabled	--element-button-secondary-border-disabled	color/border/softer	--color-border-softer	merge	same	2	
+colour	element/button/tertiary/fill/default	--element-button-tertiary-fill-default	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	5	
+colour	element/button/tertiary/fill/hover	--element-button-tertiary-fill-hover	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	3	
+colour	element/button/tertiary/fill/pressed	--element-button-tertiary-fill-pressed	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	1	
+colour	element/button/tertiary/fill/disabled	--element-button-tertiary-fill-disabled	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	2	
+colour	element/button/tertiary/border/default	--element-button-tertiary-border-default	color/border	--color-border	merge	same	4	
+colour	element/button/tertiary/border/hover	--element-button-tertiary-border-hover	color/border/strong	--color-border-strong	merge	same	3	
+colour	element/button/tertiary/border/pressed	--element-button-tertiary-border-pressed	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/button/tertiary/border/disabled	--element-button-tertiary-border-disabled	color/border	--color-border	merge	same	2	
+colour	element/button/negative/fill/default	--element-button-negative-fill-default	color/background/danger/strong	--color-background-danger-strong	merge	same	0	
+colour	element/button/negative/fill/hover	--element-button-negative-fill-hover	color/background/danger/strong/hover	--color-background-danger-strong-hover	rename	same	0	
+colour	element/button/negative/fill/pressed	--element-button-negative-fill-pressed	color/background/danger/strong/pressed	--color-background-danger-strong-pressed	rename	same	0	
+colour	element/button/negative/fill/disabled	--element-button-negative-fill-disabled	color/background/danger/strong/disabled	--color-background-danger-strong-disabled	rename	same	0	
+colour	element/button/negative/border/default	--element-button-negative-border-default	color/border/transparent	--color-border-transparent	merge	same	0	
+colour	element/button/negative/border/hover	--element-button-negative-border-hover	color/border/transparent	--color-border-transparent	merge	same	0	
+colour	element/button/negative/border/pressed	--element-button-negative-border-pressed	color/border/transparent	--color-border-transparent	merge	same	0	
+colour	element/button/negative/border/disabled	--element-button-negative-border-disabled	color/border/transparent	--color-border-transparent	merge	same	0	
+colour	element/input/fill/default	--element-input-fill-default	color/background/input	--color-background-input	rename	same	7	
+colour	element/input/fill/hover	--element-input-fill-hover	color/background/input	--color-background-input	merge	same	3	
+colour	element/input/fill/typing	--element-input-fill-typing	color/background/input	--color-background-input	merge	same	3	
+colour	element/input/fill/disabled	--element-input-fill-disabled	color/background/neutral/softer	--color-background-neutral-softer	merge	same	3	
+colour	element/input/fill/danger	--element-input-fill-danger	color/background/input	--color-background-input	merge	same	2	
+colour	element/input/border/default	--element-input-border-default	color/border/input	--color-border-input	rename	same	6	
+colour	element/input/border/hover	--element-input-border-hover	color/border/input/hover	--color-border-input-hover	rename	same	4	
+colour	element/input/border/typing	--element-input-border-typing	color/border/input/focus	--color-border-input-focus	rename	same	4	
+colour	element/input/border/disabled	--element-input-border-disabled	color/border/input/disabled	--color-border-input-disabled	rename	same	3	
+colour	element/input/border/danger	--element-input-border-danger	color/border/danger	--color-border-danger	merge	same	3	LIGHT DIFFERS: #ee3c3b (group #bf302f, role #bf302f)
+colour	collaboration/user-1	--collaboration-user-1	color/collaboration/user-1	--color-collaboration-user-1	rename (type word)	same	3	
+colour	collaboration/user-2	--collaboration-user-2	color/collaboration/user-2	--color-collaboration-user-2	rename (type word)	same	2	
+colour	collaboration/user-3	--collaboration-user-3	color/collaboration/user-3	--color-collaboration-user-3	rename (type word)	same	2	
+colour	collaboration/user-4	--collaboration-user-4	color/collaboration/user-4	--color-collaboration-user-4	rename (type word)	same	2	
+colour	collaboration/user-5	--collaboration-user-5	color/collaboration/user-5	--color-collaboration-user-5	rename (type word)	same	2	
+colour	collaboration/user-6	--collaboration-user-6	color/collaboration/user-6	--color-collaboration-user-6	rename (type word)	same	2	
+colour	collaboration/user-7	--collaboration-user-7	color/collaboration/user-7	--color-collaboration-user-7	rename (type word)	same	2	
+colour	collaboration/user-8	--collaboration-user-8	color/collaboration/user-8	--color-collaboration-user-8	rename (type word)	same	2	
+colour	collaboration/user-9	--collaboration-user-9	color/collaboration/user-9	--color-collaboration-user-9	rename (type word)	same	2	
+colour	collaboration/user-10	--collaboration-user-10	color/collaboration/user-10	--color-collaboration-user-10	rename (type word)	same	2	
+colour	collaboration/user-11	--collaboration-user-11	color/collaboration/user-11	--color-collaboration-user-11	rename (type word)	same	2	
+colour	collaboration/user-12	--collaboration-user-12	color/collaboration/user-12	--color-collaboration-user-12	rename (type word)	same	2	
+colour	collaboration/user-13	--collaboration-user-13	color/collaboration/user-13	--color-collaboration-user-13	rename (type word)	same	2	
+colour	collaboration/user-14	--collaboration-user-14	color/collaboration/user-14	--color-collaboration-user-14	rename (type word)	same	2	
+colour	collaboration/user-15	--collaboration-user-15	color/collaboration/user-15	--color-collaboration-user-15	rename (type word)	same	2	
+colour	collaboration/user-16	--collaboration-user-16	color/collaboration/user-16	--color-collaboration-user-16	rename (type word)	same	4	
+colour	element/search/border/default	--element-search-border-default	color/border/input	--color-border-input	merge	same	7	
+colour	element/search/border/hover	--element-search-border-hover	color/border/input/hover	--color-border-input-hover	merge	same	3	
+colour	element/search/border/typing	--element-search-border-typing	color/border/strong	--color-border-strong	merge	same	2	
+colour	element/search/border/disabled	--element-search-border-disabled	color/border/input/disabled	--color-border-input-disabled	merge	same	2	
+colour	element/cooper/icon/white-1000	--element-cooper-icon-white-1000	color/cooper/logo	--color-cooper-logo	rename	same	1	
+colour	element/cooper/icon/white-500	--element-cooper-icon-white-500	color/cooper/logo/soft	--color-cooper-logo-soft	rename	same	0	
+colour	element/cooper/icon/white-100	--element-cooper-icon-white-100	color/cooper/logo/softer	--color-cooper-logo-softer	rename	same	0	
+colour	element/cooper/insight/fill-strong	--element-cooper-insight-fill-strong	color/cooper/insight/strong	--color-cooper-insight-strong	rename	same	2	
+colour	element/cooper/insight/fill-base	--element-cooper-insight-fill-base	color/cooper/insight	--color-cooper-insight	rename	same	3	
+colour	element/cooper/insight/fill-inverse	--element-cooper-insight-fill-inverse	color/cooper/insight/inverse	--color-cooper-insight-inverse	rename	same	1	
+colour	element/header-item/fill/default	--element-header-item-fill-default	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/header-item/fill/hover	--element-header-item-fill-hover	color/background/neutral	--color-background-neutral	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.05) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/header-item/fill/pressed	--element-header-item-fill-pressed	color/background/neutral	--color-background-neutral	merge	same	1	
+colour	element/header-item/fill/active	--element-header-item-fill-active	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.1) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/header-item/fill/disabled	--element-header-item-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/breadcrumb/border/default	--element-breadcrumb-border-default	color/border/soft	--color-border-soft	merge	same	0	
+colour	element/breadcrumb/border/hover	--element-breadcrumb-border-hover	color/border/strong	--color-border-strong	merge	same	0	
+colour	element/breadcrumb/border/pressed	--element-breadcrumb-border-pressed	color/border	--color-border	merge	same	0	
+colour	element/breadcrumb/border/disabled	--element-breadcrumb-border-disabled	color/border/softer	--color-border-softer	merge	same	0	
+colour	element/dropdown/fill/default	--element-dropdown-fill-default	color/background/neutral/soft	--color-background-neutral-soft	merge	same	0	
+colour	element/dropdown/fill/hover	--element-dropdown-fill-hover	color/background/neutral/strong	--color-background-neutral-strong	merge	same	0	
+colour	element/dropdown/fill/active	--element-dropdown-fill-active	color/background/neutral	--color-background-neutral	merge	same	0	LIGHT DIFFERS: rgba(0,0,0,0.15) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/dropdown/fill/disabled	--element-dropdown-fill-disabled	color/background/neutral/softer	--color-background-neutral-softer	merge	same	0	
+colour	element/toggle/off/fill/default	--element-toggle-off-fill-default	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.1) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/toggle/off/fill/hover	--element-toggle-off-fill-hover	color/background/neutral	--color-background-neutral	merge	same	1	
+colour	element/toggle/off/fill/pressed	--element-toggle-off-fill-pressed	color/background/neutral/softer	--color-background-neutral-softer	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.22) (group rgba(0,0,0,0.05), role rgba(80,66,125,0.05))
+colour	element/toggle/off/fill/disabled	--element-toggle-off-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(0,0,0,0.05) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/checkbox/off/border/default	--element-checkbox-off-border-default	color/border/control	--color-border-control	merge	same	3	
+colour	element/checkbox/off/border/hover	--element-checkbox-off-border-hover	color/border/strong	--color-border-strong	merge	same	2	
+colour	element/checkbox/off/border/pressed	--element-checkbox-off-border-pressed	element/checkbox/off/border/pressed	--element-checkbox-off-border-pressed	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
+colour	element/checkbox/off/border/disabled	--element-checkbox-off-border-disabled	color/border/soft	--color-border-soft	merge	same	2	
+colour	element/checkbox/on/fill/default	--element-checkbox-on-fill-default	color/background/neutral/stronger	--color-background-neutral-stronger	merge	same	3	
+colour	element/checkbox/on/fill/hover	--element-checkbox-on-fill-hover	color/background/neutral/stronger/hover	--color-background-neutral-stronger-hover	merge	same	2	
+colour	element/checkbox/on/fill/pressed	--element-checkbox-on-fill-pressed	color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	merge	same	1	
+colour	element/checkbox/on/fill/disabled	--element-checkbox-on-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	2	
+colour	element/toggle/off/border/default	--element-toggle-off-border-default	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/toggle/off/border/hover	--element-toggle-off-border-hover	color/border/strong	--color-border-strong	merge	same	1	LIGHT DIFFERS: rgba(0,0,0,0.2) (group rgba(0,0,0,0.4), role rgba(14,10,27,0.4))
+colour	element/toggle/off/border/pressed	--element-toggle-off-border-pressed	color/border/soft	--color-border-soft	merge	same	2	
+colour	element/toggle/off/border/disabled	--element-toggle-off-border-disabled	color/border/softer	--color-border-softer	merge	same	0	
+colour	element/toggle/on/fill/default	--element-toggle-on-fill-default	color/background/neutral/stronger	--color-background-neutral-stronger	merge	same	1	
+colour	element/toggle/on/fill/hover	--element-toggle-on-fill-hover	color/background/neutral/stronger/hover	--color-background-neutral-stronger-hover	merge	same	1	
+colour	element/toggle/on/fill/pressed	--element-toggle-on-fill-pressed	color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	merge	same	1	
+colour	element/toggle/on/fill/disabled	--element-toggle-on-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
+colour	element/radiobutton/off/border/default	--element-radiobutton-off-border-default	color/border/control	--color-border-control	merge	same	1	
+colour	element/radiobutton/off/border/hover	--element-radiobutton-off-border-hover	color/border/strong	--color-border-strong	merge	same	1	
+colour	element/radiobutton/off/border/pressed	--element-radiobutton-off-border-pressed	element/radiobutton/off/border/pressed	--element-radiobutton-off-border-pressed	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
+colour	element/radiobutton/off/border/disabled	--element-radiobutton-off-border-disabled	color/border/softer	--color-border-softer	merge	same	1	
+colour	element/radiobutton/on/fill/default	--element-radiobutton-on-fill-default	color/background/neutral/stronger	--color-background-neutral-stronger	merge	same	1	
+colour	element/radiobutton/on/fill/hover	--element-radiobutton-on-fill-hover	color/background/neutral/stronger/hover	--color-background-neutral-stronger-hover	merge	same	1	
+colour	element/radiobutton/on/fill/pressed	--element-radiobutton-on-fill-pressed	color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	merge	same	1	
+colour	element/radiobutton/on/fill/disabled	--element-radiobutton-on-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
+colour	element/radiobutton/on/border/default	--element-radiobutton-on-border-default	color/border/selected	--color-border-selected	merge	same	1	
+colour	element/radiobutton/on/border/hover	--element-radiobutton-on-border-hover	color/border/selected/hover	--color-border-selected-hover	merge	same	1	
+colour	element/radiobutton/on/border/pressed	--element-radiobutton-on-border-pressed	color/border/selected/pressed	--color-border-selected-pressed	merge	same	1	
+colour	element/radiobutton/on/border/disabled	--element-radiobutton-on-border-disabled	color/border/soft	--color-border-soft	merge	same	1	
+colour	background/color-alpha/blue-base	--background-color-alpha-blue-base	color/background/info/soft	--color-background-info-soft	rename	same	0	
+colour	background/color-alpha/blue-strong	--background-color-alpha-blue-strong	color/background/info	--color-background-info	rename	same	0	
+colour	background/color-alpha/cooper-base	--background-color-alpha-cooper-base	color/cooper/background/soft	--color-cooper-background-soft	rename	same	3	
+colour	background/color-alpha/cooper-strong	--background-color-alpha-cooper-strong	color/cooper/background	--color-cooper-background	rename	same	1	
+colour	background/color-alpha/purple-base	--background-color-alpha-purple-base	color/background/accent/purple/soft	--color-background-accent-purple-soft	rename	same	1	
+colour	background/color-alpha/purple-strong	--background-color-alpha-purple-strong	color/background/accent/purple	--color-background-accent-purple	rename	same	2	
+colour	background/color-alpha/black-base	--background-color-alpha-black-base	color/background/accent/black/soft	--color-background-accent-black-soft	rename	same	1	
+colour	background/color-alpha/black-strong	--background-color-alpha-black-strong	color/background/accent/black	--color-background-accent-black	rename	same	4	
+colour	background/color-alpha/white-base	--background-color-alpha-white-base	color/background/accent/white/soft	--color-background-accent-white-soft	rename	same	8	
+colour	background/color-alpha/white-strong	--background-color-alpha-white-strong	color/background/accent/white	--color-background-accent-white	rename	same	3	
+colour	background/color-alpha/red-base	--background-color-alpha-red-base	color/background/danger/soft	--color-background-danger-soft	rename	same	2	
+colour	background/color-alpha/green-base	--background-color-alpha-green-base	color/background/success/soft	--color-background-success-soft	rename	same	1	
+colour	background/color-alpha/warning-base	--background-color-alpha-warning-base	color/background/warning/soft	--color-background-warning-soft	rename	same	0	
+colour	background/system/info	--background-system-info	color/background/info/strong	--color-background-info-strong	rename	same	0	
+colour	background/system/success	--background-system-success	color/background/success/strong	--color-background-success-strong	rename	same	5	
+colour	background/system/danger	--background-system-danger	color/background/danger/strong	--color-background-danger-strong	rename	same	4	
+colour	background/system/warning	--background-system-warning	color/background/warning/strong	--color-background-warning-strong	rename	same	3	
+colour	overlay/element-light	--overlay-element-light	color/overlay/element	--color-overlay-element	rename (type word)	same	1	
+colour	overlay/screen-medium	--overlay-screen-medium	color/overlay/screen	--color-overlay-screen	rename (type word)	same	1	
+colour	overlay/screen-strong	--overlay-screen-strong	color/overlay/screen/strong	--color-overlay-screen-strong	rename (type word)	same	2	
+colour	element/button/ghost/fill/default	--element-button-ghost-fill-default	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/button/ghost/fill/hover	--element-button-ghost-fill-hover	color/background/neutral	--color-background-neutral	merge	same	4	
+colour	element/button/ghost/fill/pressed	--element-button-ghost-fill-pressed	color/background/neutral	--color-background-neutral	merge	same	3	LIGHT DIFFERS: rgba(80,66,125,0.22) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/button/ghost/fill/disabled	--element-button-ghost-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/button/ghost/border/default	--element-button-ghost-border-default	color/border/transparent	--color-border-transparent	merge	same	1	
+colour	element/button/ghost/border/hover	--element-button-ghost-border-hover	color/border/transparent	--color-border-transparent	merge	same	0	
+colour	element/button/ghost/border/pressed	--element-button-ghost-border-pressed	color/border/transparent	--color-border-transparent	merge	same	0	
+colour	element/button/ghost/border/disabled	--element-button-ghost-border-disabled	color/border/transparent	--color-border-transparent	merge	same	0	
+colour	background/canvas/primary	--background-canvas-primary	color/surface/canvas	--color-surface-canvas	rename	same	2	
+colour	element/button/circular/fill/default	--element-button-circular-fill-default	element/button/circular/fill/default	--element-button-circular-fill-default	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
+colour	element/button/circular/fill/hover	--element-button-circular-fill-hover	element/button/circular/fill/hover	--element-button-circular-fill-hover	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
+colour	element/button/circular/fill/pressed	--element-button-circular-fill-pressed	element/button/circular/fill/pressed	--element-button-circular-fill-pressed	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
+colour	element/button/circular/fill/disabled	--element-button-circular-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(0,0,0,0.05) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/button/circular/border/default	--element-button-circular-border-default	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/button/circular/border/hover	--element-button-circular-border-hover	color/border/strong	--color-border-strong	merge	same	1	
+colour	element/button/circular/border/pressed	--element-button-circular-border-pressed	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/button/circular/border/disabled	--element-button-circular-border-disabled	color/border/softer	--color-border-softer	merge	same	1	
+colour	element/chips/off/fill/default	--element-chips-off-fill-default	color/background/neutral/soft	--color-background-neutral-soft	merge	same	0	LIGHT DIFFERS: rgba(80,66,125,0.15) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/chips/off/fill/hover	--element-chips-off-fill-hover	color/background/neutral	--color-background-neutral	merge	same	0	LIGHT DIFFERS: rgba(0,0,0,0.15) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/chips/off/fill/pressed	--element-chips-off-fill-pressed	color/background/neutral/softer	--color-background-neutral-softer	merge	same	0	
+colour	element/chips/off/fill/disabled	--element-chips-off-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
+colour	element/chips/off/border/default	--element-chips-off-border-default	color/border/soft	--color-border-soft	merge	same	2	
+colour	element/chips/off/border/hover	--element-chips-off-border-hover	color/border/strong	--color-border-strong	merge	same	1	
+colour	element/chips/off/border/pressed	--element-chips-off-border-pressed	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/chips/off/border/disabled	--element-chips-off-border-disabled	color/border/softer	--color-border-softer	merge	same	1	
+colour	element/chips/on/fill/default	--element-chips-on-fill-default	color/background/neutral/stronger	--color-background-neutral-stronger	merge	same	1	
+colour	element/chips/on/fill/hover	--element-chips-on-fill-hover	color/background/neutral/stronger/hover	--color-background-neutral-stronger-hover	merge	same	1	
+colour	element/chips/on/fill/pressed	--element-chips-on-fill-pressed	color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	merge	same	1	
+colour	element/chips/on/fill/disabled	--element-chips-on-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
+colour	element/segmented-control/off/fill/default	--element-segmented-control-off-fill-default	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/segmented-control/off/fill/hover	--element-segmented-control-off-fill-hover	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
+colour	element/segmented-control/off/fill/pressed	--element-segmented-control-off-fill-pressed	color/background/neutral/softer	--color-background-neutral-softer	merge	same	1	
+colour	element/segmented-control/off/fill/disabled	--element-segmented-control-off-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/segmented-control/on/fill/default	--element-segmented-control-on-fill-default	color/background/neutral	--color-background-neutral	merge	same	1	LIGHT DIFFERS: #ffffff (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/segmented-control/on/fill/hover	--element-segmented-control-on-fill-hover	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(255,255,255,0.85) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/segmented-control/on/fill/pressed	--element-segmented-control-on-fill-pressed	color/background/neutral/softer	--color-background-neutral-softer	merge	same	1	LIGHT DIFFERS: rgba(255,255,255,0.6) (group rgba(0,0,0,0.05), role rgba(80,66,125,0.05))
+colour	element/segmented-control/on/fill/disabled	--element-segmented-control-on-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	1	LIGHT DIFFERS: rgba(255,255,255,0.1) (group rgba(0,0,0,0), role rgba(0,0,0,0))
+colour	element/segmented-control/on/border/default	--element-segmented-control-on-border-default	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/segmented-control/on/border/hover	--element-segmented-control-on-border-hover	color/border	--color-border	merge	same	1	
+colour	element/segmented-control/on/border/pressed	--element-segmented-control-on-border-pressed	color/border/softer	--color-border-softer	merge	same	1	
+colour	element/segmented-control/on/border/disabled	--element-segmented-control-on-border-disabled	color/border/soft	--color-border-soft	merge	same	1	
+colour	element/button/draw-bar/fill/default	--element-button-draw-bar-fill-default	color/background/transparent	--color-background-transparent	merge	same	0	
+colour	element/button/draw-bar/fill/hover	--element-button-draw-bar-fill-hover	color/background/neutral/softer	--color-background-neutral-softer	merge	same	0	
+colour	element/button/draw-bar/fill/pressed	--element-button-draw-bar-fill-pressed	color/background/neutral	--color-background-neutral	merge	same	0	LIGHT DIFFERS: rgba(0,0,0,0.15) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/button/draw-bar/fill/disabled	--element-button-draw-bar-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	0	
+colour	element/map-pin/fill/default	--element-map-pin-fill-default	color/icon/softer	--color-icon-softer	merge	same	3	LIGHT DIFFERS: #999999 (group #625f78, role #625f78)
+colour	element/map-pin/fill/success	--element-map-pin-fill-success	color/icon/success	--color-icon-success	merge	same	1	
+colour	element/map-pin/fill/error	--element-map-pin-fill-error	color/icon/danger	--color-icon-danger	merge	same	4	
+colour	element/map-pin/fill/warning	--element-map-pin-fill-warning	color/icon/warning	--color-icon-warning	merge	same	4	
+colour	element/map-pin/fill/info	--element-map-pin-fill-info	color/background/info/strong	--color-background-info-strong	merge	same	2	LIGHT DIFFERS: #2266cc (group #2b7fff, role #2b7fff)
+colour	element/map-pin/border/default	--element-map-pin-border-default	color/icon/softer	--color-icon-softer	merge	same	3	LIGHT DIFFERS: #f6f6f6 (group #625f78, role #625f78)
+colour	element/map-pin/border/error	--element-map-pin-border-error	color/icon/danger	--color-icon-danger	merge	same	3	
+colour	element/map-pin/border/warning	--element-map-pin-border-warning	color/icon/warning	--color-icon-warning	merge	same	3	
+colour	element/map-pin/border/active	--element-map-pin-border-active	color/border/selected/soft	--color-border-selected-soft	purpose role	same	5	the ring on a selected pin or mark (white 50%)
+colour	element/map-pin/overlay/error	--element-map-pin-overlay-error	color/background/danger/soft	--color-background-danger-soft	merge	same	1	
+colour	element/map-pin/overlay/warning	--element-map-pin-overlay-warning	color/background/warning/soft	--color-background-warning-soft	merge	same	2	
+colour	element/segmented-control/container/fill	--element-segmented-control-container-fill	color/background/track	--color-background-track	purpose role	same	1	the dark track behind a set of options (segmented control)
+colour	element/cooper/glow/center	--element-cooper-glow-center	color/cooper/glow/center	--color-cooper-glow-center	rename	same	4	
+colour	element/cooper/glow/edge	--element-cooper-glow-edge	color/cooper/glow/edge	--color-cooper-glow-edge	rename	same	4	
+colour	element/cooper/speaking/center	--element-cooper-speaking-center	color/cooper/speaking/center	--color-cooper-speaking-center	rename	same	0	
+colour	element/cooper/speaking/edge	--element-cooper-speaking-edge	color/cooper/speaking/edge	--color-cooper-speaking-edge	rename	same	0	
+colour	element/cooper/button/fill	--element-cooper-button-fill	color/cooper/button/fill	--color-cooper-button-fill	rename	same	0	
+colour	element/cooper/button/fill-pressed	--element-cooper-button-fill-pressed	color/cooper/button/fill/pressed	--color-cooper-button-fill-pressed	rename	same	0	
+colour	element/cooper/button/glow	--element-cooper-button-glow	color/cooper/button/glow	--color-cooper-button-glow	rename	same	1	
+colour	element/cooper/button/glow-hover	--element-cooper-button-glow-hover	color/cooper/button/glow/hover	--color-cooper-button-glow-hover	rename	same	1	
+colour	element/cooper/button/glow-pressed	--element-cooper-button-glow-pressed	color/cooper/button/glow/pressed	--color-cooper-button-glow-pressed	rename	same	1	
+colour	element/cooper/button/glow-edge	--element-cooper-button-glow-edge	color/cooper/button/glow-edge	--color-cooper-button-glow-edge	rename	same	1	
+colour	element/cooper/button/rim	--element-cooper-button-rim	color/cooper/button/rim	--color-cooper-button-rim	rename	same	1	
+colour	element/cooper/button/rim-center	--element-cooper-button-rim-center	color/cooper/button/rim-center	--color-cooper-button-rim-center	rename	same	1	
+colour	element/cooper/highlight/purple-strong	--element-cooper-highlight-purple-strong	color/cooper/highlight/purple/strong	--color-cooper-highlight-purple-strong	rename	same	0	
+colour	element/cooper/highlight/purple-base	--element-cooper-highlight-purple-base	color/cooper/highlight/purple	--color-cooper-highlight-purple	rename	same	0	
+colour	element/cooper/highlight/edge	--element-cooper-highlight-edge	color/cooper/highlight/edge	--color-cooper-highlight-edge	rename	same	0	
+colour	element/status/fade/danger	--element-status-fade-danger	color/background/transparent	--color-background-transparent	merge	same	0	
+colour	element/status/fade/warning	--element-status-fade-warning	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/status/fade/success	--element-status-fade-success	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/status/fade/cooper	--element-status-fade-cooper	color/background/transparent	--color-background-transparent	merge	same	0	
+colour	element/status/fade/purple	--element-status-fade-purple	color/background/transparent	--color-background-transparent	merge	same	0	
+colour	element/status/fade/grey	--element-status-fade-grey	color/background/transparent	--color-background-transparent	merge	same	1	
+colour	element/status/grey-band/start	--element-status-grey-band-start	color/background/transparent	--color-background-transparent	merge	same	0	
+colour	element/status/grey-band/light	--element-status-grey-band-light	color/background/accent/white/strong	--color-background-accent-white-strong	merge	same	0	LIGHT DIFFERS: #8c8c8c (group #f6f6f6, role #f6f6f6)
+colour	element/button/circular/hover-ring	--element-button-circular-hover-ring	color/border/selected	--color-border-selected	merge	same	1	LIGHT DIFFERS: #8366f7 (group #000000, role #000000)
+colour	data-viz/rose/data-1	--data-viz-rose-data-1	color/data-viz/rose/data-1	--color-data-viz-rose-data-1	rename (type word)	same	0	
+colour	data-viz/rose/data-2	--data-viz-rose-data-2	color/data-viz/rose/data-2	--color-data-viz-rose-data-2	rename (type word)	same	0	
+colour	data-viz/rose/data-3	--data-viz-rose-data-3	color/data-viz/rose/data-3	--color-data-viz-rose-data-3	rename (type word)	same	0	
+colour	data-viz/rose/data-4	--data-viz-rose-data-4	color/data-viz/rose/data-4	--color-data-viz-rose-data-4	rename (type word)	same	1	
+colour	data-viz/rose/data-5	--data-viz-rose-data-5	color/data-viz/rose/data-5	--color-data-viz-rose-data-5	rename (type word)	same	0	
+colour	data-viz/rose/data-6	--data-viz-rose-data-6	color/data-viz/rose/data-6	--color-data-viz-rose-data-6	rename (type word)	same	0	
+colour	data-viz/rose/data-7	--data-viz-rose-data-7	color/data-viz/rose/data-7	--color-data-viz-rose-data-7	rename (type word)	same	0	
+colour	data-viz/rose/data-8	--data-viz-rose-data-8	color/data-viz/rose/data-8	--color-data-viz-rose-data-8	rename (type word)	same	0	
+colour	data-viz/rose/data-9	--data-viz-rose-data-9	color/data-viz/rose/data-9	--color-data-viz-rose-data-9	rename (type word)	same	0	
+colour	data-viz/rose/data-10	--data-viz-rose-data-10	color/data-viz/rose/data-10	--color-data-viz-rose-data-10	rename (type word)	same	0	
+colour	data-viz/muted purple/data-1	--data-viz-muted-purple-data-1	color/data-viz/muted purple/data-1	--color-data-viz-muted-purple-data-1	rename (type word)	same	0	
+colour	data-viz/muted purple/data-2	--data-viz-muted-purple-data-2	color/data-viz/muted purple/data-2	--color-data-viz-muted-purple-data-2	rename (type word)	same	0	
+colour	data-viz/muted purple/data-3	--data-viz-muted-purple-data-3	color/data-viz/muted purple/data-3	--color-data-viz-muted-purple-data-3	rename (type word)	same	0	
+colour	data-viz/muted purple/data-4	--data-viz-muted-purple-data-4	color/data-viz/muted purple/data-4	--color-data-viz-muted-purple-data-4	rename (type word)	same	0	
+colour	data-viz/muted purple/data-5	--data-viz-muted-purple-data-5	color/data-viz/muted purple/data-5	--color-data-viz-muted-purple-data-5	rename (type word)	same	0	
+colour	data-viz/muted purple/data-6	--data-viz-muted-purple-data-6	color/data-viz/muted purple/data-6	--color-data-viz-muted-purple-data-6	rename (type word)	same	0	
+colour	data-viz/muted purple/data-7	--data-viz-muted-purple-data-7	color/data-viz/muted purple/data-7	--color-data-viz-muted-purple-data-7	rename (type word)	same	0	
+colour	data-viz/muted purple/data-8	--data-viz-muted-purple-data-8	color/data-viz/muted purple/data-8	--color-data-viz-muted-purple-data-8	rename (type word)	same	0	
+colour	data-viz/muted purple/data-9	--data-viz-muted-purple-data-9	color/data-viz/muted purple/data-9	--color-data-viz-muted-purple-data-9	rename (type word)	same	0	
+colour	data-viz/muted purple/data-10	--data-viz-muted-purple-data-10	color/data-viz/muted purple/data-10	--color-data-viz-muted-purple-data-10	rename (type word)	same	0	
+colour	data-viz/teal/data-1	--data-viz-teal-data-1	color/data-viz/teal/data-1	--color-data-viz-teal-data-1	rename (type word)	same	0	
+colour	data-viz/teal/data-2	--data-viz-teal-data-2	color/data-viz/teal/data-2	--color-data-viz-teal-data-2	rename (type word)	same	0	
+colour	data-viz/teal/data-3	--data-viz-teal-data-3	color/data-viz/teal/data-3	--color-data-viz-teal-data-3	rename (type word)	same	0	
+colour	data-viz/teal/data-4	--data-viz-teal-data-4	color/data-viz/teal/data-4	--color-data-viz-teal-data-4	rename (type word)	same	0	
+colour	data-viz/teal/data-5	--data-viz-teal-data-5	color/data-viz/teal/data-5	--color-data-viz-teal-data-5	rename (type word)	same	2	
+colour	data-viz/teal/data-6	--data-viz-teal-data-6	color/data-viz/teal/data-6	--color-data-viz-teal-data-6	rename (type word)	same	0	
+colour	data-viz/teal/data-7	--data-viz-teal-data-7	color/data-viz/teal/data-7	--color-data-viz-teal-data-7	rename (type word)	same	0	
+colour	data-viz/teal/data-8	--data-viz-teal-data-8	color/data-viz/teal/data-8	--color-data-viz-teal-data-8	rename (type word)	same	0	
+colour	data-viz/teal/data-9	--data-viz-teal-data-9	color/data-viz/teal/data-9	--color-data-viz-teal-data-9	rename (type word)	same	0	
+colour	data-viz/teal/data-10	--data-viz-teal-data-10	color/data-viz/teal/data-10	--color-data-viz-teal-data-10	rename (type word)	same	0	
+colour	data-viz/steel blue/data-1	--data-viz-steel-blue-data-1	color/data-viz/steel blue/data-1	--color-data-viz-steel-blue-data-1	rename (type word)	same	0	
+colour	data-viz/steel blue/data-2	--data-viz-steel-blue-data-2	color/data-viz/steel blue/data-2	--color-data-viz-steel-blue-data-2	rename (type word)	same	0	
+colour	data-viz/steel blue/data-3	--data-viz-steel-blue-data-3	color/data-viz/steel blue/data-3	--color-data-viz-steel-blue-data-3	rename (type word)	same	0	
+colour	data-viz/steel blue/data-4	--data-viz-steel-blue-data-4	color/data-viz/steel blue/data-4	--color-data-viz-steel-blue-data-4	rename (type word)	same	0	
+colour	data-viz/steel blue/data-5	--data-viz-steel-blue-data-5	color/data-viz/steel blue/data-5	--color-data-viz-steel-blue-data-5	rename (type word)	same	0	
+colour	data-viz/steel blue/data-6	--data-viz-steel-blue-data-6	color/data-viz/steel blue/data-6	--color-data-viz-steel-blue-data-6	rename (type word)	same	0	
+colour	data-viz/steel blue/data-7	--data-viz-steel-blue-data-7	color/data-viz/steel blue/data-7	--color-data-viz-steel-blue-data-7	rename (type word)	same	0	
+colour	data-viz/steel blue/data-8	--data-viz-steel-blue-data-8	color/data-viz/steel blue/data-8	--color-data-viz-steel-blue-data-8	rename (type word)	same	0	
+colour	data-viz/steel blue/data-9	--data-viz-steel-blue-data-9	color/data-viz/steel blue/data-9	--color-data-viz-steel-blue-data-9	rename (type word)	same	0	
+colour	data-viz/steel blue/data-10	--data-viz-steel-blue-data-10	color/data-viz/steel blue/data-10	--color-data-viz-steel-blue-data-10	rename (type word)	same	0	
+colour	data-viz/deep green/data-1	--data-viz-deep-green-data-1	color/data-viz/deep green/data-1	--color-data-viz-deep-green-data-1	rename (type word)	same	0	
+colour	data-viz/deep green/data-2	--data-viz-deep-green-data-2	color/data-viz/deep green/data-2	--color-data-viz-deep-green-data-2	rename (type word)	same	0	
+colour	data-viz/deep green/data-3	--data-viz-deep-green-data-3	color/data-viz/deep green/data-3	--color-data-viz-deep-green-data-3	rename (type word)	same	0	
+colour	data-viz/deep green/data-4	--data-viz-deep-green-data-4	color/data-viz/deep green/data-4	--color-data-viz-deep-green-data-4	rename (type word)	same	0	
+colour	data-viz/deep green/data-5	--data-viz-deep-green-data-5	color/data-viz/deep green/data-5	--color-data-viz-deep-green-data-5	rename (type word)	same	0	
+colour	data-viz/deep green/data-6	--data-viz-deep-green-data-6	color/data-viz/deep green/data-6	--color-data-viz-deep-green-data-6	rename (type word)	same	0	
+colour	data-viz/deep green/data-7	--data-viz-deep-green-data-7	color/data-viz/deep green/data-7	--color-data-viz-deep-green-data-7	rename (type word)	same	0	
+colour	data-viz/deep green/data-8	--data-viz-deep-green-data-8	color/data-viz/deep green/data-8	--color-data-viz-deep-green-data-8	rename (type word)	same	0	
+colour	data-viz/deep green/data-9	--data-viz-deep-green-data-9	color/data-viz/deep green/data-9	--color-data-viz-deep-green-data-9	rename (type word)	same	0	
+colour	data-viz/deep green/data-10	--data-viz-deep-green-data-10	color/data-viz/deep green/data-10	--color-data-viz-deep-green-data-10	rename (type word)	same	0	
+colour	data-viz/alert/data-1	--data-viz-alert-data-1	color/data-viz/alert/data-1	--color-data-viz-alert-data-1	rename (type word)	same	0	
+colour	data-viz/alert/data-2	--data-viz-alert-data-2	color/data-viz/alert/data-2	--color-data-viz-alert-data-2	rename (type word)	same	0	
+colour	data-viz/alert/data-3	--data-viz-alert-data-3	color/data-viz/alert/data-3	--color-data-viz-alert-data-3	rename (type word)	same	0	
+colour	data-viz/alert/data-4	--data-viz-alert-data-4	color/data-viz/alert/data-4	--color-data-viz-alert-data-4	rename (type word)	same	0	
+colour	data-viz/alert/data-5	--data-viz-alert-data-5	color/data-viz/alert/data-5	--color-data-viz-alert-data-5	rename (type word)	same	0	
+colour	data-viz/alert/data-6	--data-viz-alert-data-6	color/data-viz/alert/data-6	--color-data-viz-alert-data-6	rename (type word)	same	0	
+colour	data-viz/alert/data-7	--data-viz-alert-data-7	color/data-viz/alert/data-7	--color-data-viz-alert-data-7	rename (type word)	same	0	
+colour	data-viz/alert/data-8	--data-viz-alert-data-8	color/data-viz/alert/data-8	--color-data-viz-alert-data-8	rename (type word)	same	0	
+colour	data-viz/alert/data-9	--data-viz-alert-data-9	color/data-viz/alert/data-9	--color-data-viz-alert-data-9	rename (type word)	same	0	
+colour	data-viz/alert/data-10	--data-viz-alert-data-10	color/data-viz/alert/data-10	--color-data-viz-alert-data-10	rename (type word)	same	0	
+colour	data-viz/violet/data-1	--data-viz-violet-data-1	color/data-viz/violet/data-1	--color-data-viz-violet-data-1	rename (type word)	same	0	
+colour	data-viz/violet/data-2	--data-viz-violet-data-2	color/data-viz/violet/data-2	--color-data-viz-violet-data-2	rename (type word)	same	0	
+colour	data-viz/violet/data-3	--data-viz-violet-data-3	color/data-viz/violet/data-3	--color-data-viz-violet-data-3	rename (type word)	same	1	
+colour	data-viz/violet/data-4	--data-viz-violet-data-4	color/data-viz/violet/data-4	--color-data-viz-violet-data-4	rename (type word)	same	0	
+colour	data-viz/violet/data-5	--data-viz-violet-data-5	color/data-viz/violet/data-5	--color-data-viz-violet-data-5	rename (type word)	same	0	
+colour	data-viz/violet/data-6	--data-viz-violet-data-6	color/data-viz/violet/data-6	--color-data-viz-violet-data-6	rename (type word)	same	0	
+colour	data-viz/violet/data-7	--data-viz-violet-data-7	color/data-viz/violet/data-7	--color-data-viz-violet-data-7	rename (type word)	same	0	
+colour	data-viz/violet/data-8	--data-viz-violet-data-8	color/data-viz/violet/data-8	--color-data-viz-violet-data-8	rename (type word)	same	0	
+colour	data-viz/violet/data-9	--data-viz-violet-data-9	color/data-viz/violet/data-9	--color-data-viz-violet-data-9	rename (type word)	same	0	
+colour	data-viz/violet/data-10	--data-viz-violet-data-10	color/data-viz/violet/data-10	--color-data-viz-violet-data-10	rename (type word)	same	0	
+colour	data-viz/cyan/data-1	--data-viz-cyan-data-1	color/data-viz/cyan/data-1	--color-data-viz-cyan-data-1	rename (type word)	same	0	
+colour	data-viz/cyan/data-2	--data-viz-cyan-data-2	color/data-viz/cyan/data-2	--color-data-viz-cyan-data-2	rename (type word)	same	0	
+colour	data-viz/cyan/data-3	--data-viz-cyan-data-3	color/data-viz/cyan/data-3	--color-data-viz-cyan-data-3	rename (type word)	same	0	
+colour	data-viz/cyan/data-4	--data-viz-cyan-data-4	color/data-viz/cyan/data-4	--color-data-viz-cyan-data-4	rename (type word)	same	0	
+colour	data-viz/cyan/data-5	--data-viz-cyan-data-5	color/data-viz/cyan/data-5	--color-data-viz-cyan-data-5	rename (type word)	same	0	
+colour	data-viz/cyan/data-6	--data-viz-cyan-data-6	color/data-viz/cyan/data-6	--color-data-viz-cyan-data-6	rename (type word)	same	0	
+colour	data-viz/cyan/data-7	--data-viz-cyan-data-7	color/data-viz/cyan/data-7	--color-data-viz-cyan-data-7	rename (type word)	same	0	
+colour	data-viz/cyan/data-8	--data-viz-cyan-data-8	color/data-viz/cyan/data-8	--color-data-viz-cyan-data-8	rename (type word)	same	0	
+colour	data-viz/cyan/data-9	--data-viz-cyan-data-9	color/data-viz/cyan/data-9	--color-data-viz-cyan-data-9	rename (type word)	same	0	
+colour	data-viz/cyan/data-10	--data-viz-cyan-data-10	color/data-viz/cyan/data-10	--color-data-viz-cyan-data-10	rename (type word)	same	0	
+colour	shadow/elevation-1	--shadow-elevation-1	color/shadow/elevation-1	--color-shadow-elevation-1	rename (type word)	same	0	
+colour	shadow/elevation-2	--shadow-elevation-2	color/shadow/elevation-2	--color-shadow-elevation-2	rename (type word)	same	0	
+colour	shadow/elevation-3	--shadow-elevation-3	color/shadow/elevation-3	--color-shadow-elevation-3	rename (type word)	same	0	
+colour	shadow/floating	--shadow-floating	color/shadow/floating	--color-shadow-floating	rename (type word)	same	0	
+colour	shadow/card-rest	--shadow-card-rest	color/shadow/card-rest	--color-shadow-card-rest	rename (type word)	same	0	Figma only (no CSS token today)
+colour	shadow/card-hover	--shadow-card-hover	color/shadow/card-hover	--color-shadow-card-hover	rename (type word)	same	0	Figma only (no CSS token today)
+colour	background/page	--background-page	color/surface/page	--color-surface-page	rename	same	1	
+colour	element/cooper/fab/rim	--element-cooper-fab-rim	color/cooper/fab/rim	--color-cooper-fab-rim	rename	same	0	
+colour	element/cooper/fab/shadow	--element-cooper-fab-shadow	color/cooper/fab/shadow	--color-cooper-fab-shadow	rename	same	1	
+colour	element/card/state/fill/default	--element-card-state-fill-default	color/surface/raised	--color-surface-raised	rename	same	7	
+colour	element/card/state/fill/hover	--element-card-state-fill-hover	color/surface/raised/hover	--color-surface-raised-hover	rename	same	8	
+colour	element/card/state/fill/pressed	--element-card-state-fill-pressed	color/surface/raised/pressed	--color-surface-raised-pressed	rename	same	1	
+colour	element/card/state/fill/focus	--element-card-state-fill-focus	color/surface/raised	--color-surface-raised	merge	same	0	
+colour	element/card/state/fill/selected	--element-card-state-fill-selected	color/surface/raised	--color-surface-raised	merge	same	1	
+colour	element/card/state/fill/drag	--element-card-state-fill-drag	color/surface/raised/hover	--color-surface-raised-hover	merge	same	2	LIGHT DIFFERS: #ffffff (group #f7f7f9, role #f7f7f9)
+colour	element/card/state/fill/disabled	--element-card-state-fill-disabled	color/background/neutral/softer	--color-background-neutral-softer	merge	same	0	
+colour	element/card/state/border/default	--element-card-state-border-default	color/border/soft	--color-border-soft	merge	same	2	
+colour	element/card/state/border/hover	--element-card-state-border-hover	color/border	--color-border	merge	same	4	
+colour	element/card/state/border/pressed	--element-card-state-border-pressed	color/border	--color-border	merge	same	1	
+colour	element/card/state/border/selected	--element-card-state-border-selected	color/border/strong	--color-border-strong	merge	same	3	LIGHT DIFFERS: rgba(80,66,125,0.4) (group rgba(0,0,0,0.4), role rgba(14,10,27,0.4))
+colour	element/card/state/border/drag	--element-card-state-border-drag	color/border/strong	--color-border-strong	merge	same	3	
+colour	element/card/state/border/disabled	--element-card-state-border-disabled	color/border/soft	--color-border-soft	merge	same	0	
+colour	element/counter/fill	--element-counter-fill	color/background/neutral/soft	--color-background-neutral-soft	merge	same	0	same Dark and Light value as the neutral soft fill; Figma only (no CSS token today)
+colour	element/badge/neutral/fill	--element-badge-neutral-fill	color/background/neutral/soft	--color-background-neutral-soft	merge	same	0	same Dark and Light value as the neutral soft fill; Figma only (no CSS token today)
+colour	element/table/row/fill	--element-table-row-fill	color/surface/row	--color-surface-row	purpose role	same	0	a row surface in a list or table (Figma only today); Figma only (no CSS token today)
+colour	element/prompt-button/fill	--element-prompt-button-fill	color/surface/raised	--color-surface-raised	merge	same	0	Figma only (no CSS token today); LIGHT DIFFERS: #f7f7f9 (group #ffffff, role #ffffff)
+colour	(new)		color/background/transparent	--color-background-transparent	new			Dark rgba(255,255,255,0) / Light rgba(0,0,0,0)
+colour	(new)		color/background/neutral/softer	--color-background-neutral-softer	new			Dark rgba(255,255,255,0.05) / Light rgba(80,66,125,0.05)
+colour	(new)		color/background/neutral/soft	--color-background-neutral-soft	new			Dark rgba(255,255,255,0.1) / Light rgba(80,66,125,0.1)
+colour	(new)		color/background/neutral	--color-background-neutral	new			Dark rgba(255,255,255,0.15) / Light rgba(80,66,125,0.15)
+colour	(new)		color/background/neutral/strong	--color-background-neutral-strong	new			Dark rgba(255,255,255,0.2) / Light rgba(80,66,125,0.22)
+colour	(new)		color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	new			Dark rgba(0,0,0,0.1) / Light rgba(255,255,255,0.1)
+colour	(new)		color/background/neutral/stronger	--color-background-neutral-stronger	new			Dark #ffffff / Light #0e0a1b
+colour	(new)		color/background/neutral/stronger/hover	--color-background-neutral-stronger-hover	new			Dark rgba(255,255,255,0.85) / Light rgba(0,0,0,0.85)
+colour	(new)		color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	new			Dark rgba(255,255,255,0.6) / Light rgba(0,0,0,0.6)
+colour	(new)		color/border/transparent	--color-border-transparent	new			Dark rgba(255,255,255,0) / Light rgba(0,0,0,0)
+colour	(new)		color/border/softer	--color-border-softer	new			Dark rgba(255,255,255,0.05) / Light rgba(14,10,27,0.04)
+colour	(new)		color/border/control	--color-border-control	new			Dark rgba(255,255,255,0.6) / Light rgba(0,0,0,0.6)
+colour	(new)		color/border/selected/hover	--color-border-selected-hover	new			Dark rgba(255,255,255,0.85) / Light rgba(0,0,0,0.85)
+colour	(new)		color/border/selected/pressed	--color-border-selected-pressed	new			Dark rgba(255,255,255,0.6) / Light rgba(0,0,0,0.6)
+colour	(CSS only)	--element-text-area-fill-typing	color/background/input	--color-background-input	merge	same	1	CSS-only token, no Figma variable
+colour	(CSS only)	--element-text-area-border-default	color/border/input	--color-border-input	merge	same	1	CSS-only token, no Figma variable
+colour	(CSS only)	--white-500	--white-500	--white-500	held (unchanged)	would change Dark: rgba(255,255,255,0.5) -> #8c8c8c	1	held
+colour	(CSS only)	--element-status-grey-center	color/background/accent/grey/strong	--color-background-accent-grey-strong	purpose role	same	1	state media centre (Figma grey/1000-base)
+colour	(CSS only)	--element-status-tint-success	color/background/accent/dark-green/strong	--color-background-accent-dark-green-strong	merge	same	1	state media tint; same value as the dark green accent
+colour	(CSS only)	--element-status-tint-warning	color/background/accent/dark-amber/strong	--color-background-accent-dark-amber-strong	purpose role	same	1	state media tint (Figma system/warning/700)
+colour	white/alpha-50 (primitive bound in code)	--white-alpha-50	--white-alpha-50	--white-alpha-50	held (unchanged)	would change Dark: rgba(255,255,255,0.5) -> #8c8c8c	1	held
+colour	(CSS only)	--data-viz-neutral	color/data/viz-neutral	--color-data-viz-neutral	rename (type word)	same	3	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-reference	color/data/viz-reference	--color-data-viz-reference	rename (type word)	same	2	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-target	color/data/viz-target	--color-data-viz-target	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-band	color/data/viz-band	--color-data-viz-band	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-baseline	color/data/viz-baseline	--color-data-viz-baseline	rename (type word)	same	2	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-1	color/data/viz-data-1	--color-data-viz-data-1	rename (type word)	same	2	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-2	color/data/viz-data-2	--color-data-viz-data-2	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-3	color/data/viz-data-3	--color-data-viz-data-3	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-4	color/data/viz-data-4	--color-data-viz-data-4	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-5	color/data/viz-data-5	--color-data-viz-data-5	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-6	color/data/viz-data-6	--color-data-viz-data-6	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-7	color/data/viz-data-7	--color-data-viz-data-7	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-8	color/data/viz-data-8	--color-data-viz-data-8	rename (type word)	same	0	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-9	color/data/viz-data-9	--color-data-viz-data-9	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(CSS only)	--data-viz-data-10	color/data/viz-data-10	--color-data-viz-data-10	rename (type word)	same	1	CSS-only, Dark-only: Figma variable or removal decided in the data-viz round
+colour	(new)		color/background/comment-pin	--color-background-comment-pin	new			C4: Dark #2266cc (was background/solid/blue #5599ff, pin only)
+measure/type	size-ruler (master)/0	--size-ruler-master-0	size/0	--size-0	rename		0	
+measure/type	size-ruler (master)/0,5	--size-ruler-master-0-5	size/0-5	--size-0-5	rename		0	
+measure/type	size-ruler (master)/1	--size-ruler-master-1	size/1	--size-1	rename		0	
+measure/type	size-ruler (master)/2	--size-ruler-master-2	size/2	--size-2	rename		0	
+measure/type	size-ruler (master)/3	--size-ruler-master-3	size/3	--size-3	rename		0	
+measure/type	size-ruler (master)/4	--size-ruler-master-4	size/4	--size-4	rename		0	
+measure/type	size-ruler (master)/6	--size-ruler-master-6	size/6	--size-6	rename		0	
+measure/type	size-ruler (master)/8	--size-ruler-master-8	size/8	--size-8	rename		0	
+measure/type	size-ruler (master)/10	--size-ruler-master-10	size/10	--size-10	rename		0	
+measure/type	size-ruler (master)/11	--size-ruler-master-11	size/11	--size-11	rename		0	old CSS name does not exist today
+measure/type	size-ruler (master)/12	--size-ruler-master-12	size/12	--size-12	rename		0	
+measure/type	size-ruler (master)/14	--size-ruler-master-14	size/14	--size-14	rename		0	
+measure/type	size-ruler (master)/16	--size-ruler-master-16	size/16	--size-16	rename		0	
+measure/type	size-ruler (master)/18	--size-ruler-master-18	size/18	--size-18	rename		0	old CSS name does not exist today
+measure/type	size-ruler (master)/20	--size-ruler-master-20	size/20	--size-20	rename		0	
+measure/type	size-ruler (master)/22	--size-ruler-master-22	size/22	--size-22	rename		0	old CSS name does not exist today
+measure/type	size-ruler (master)/24	--size-ruler-master-24	size/24	--size-24	rename		0	
+measure/type	size-ruler (master)/26	--size-ruler-master-26	size/26	--size-26	rename		0	old CSS name does not exist today
+measure/type	size-ruler (master)/28	--size-ruler-master-28	size/28	--size-28	rename		0	
+measure/type	size-ruler (master)/32	--size-ruler-master-32	size/32	--size-32	rename		0	
+measure/type	size-ruler (master)/36	--size-ruler-master-36	size/36	--size-36	rename		0	
+measure/type	size-ruler (master)/40	--size-ruler-master-40	size/40	--size-40	rename		0	
+measure/type	size-ruler (master)/44	--size-ruler-master-44	size/44	--size-44	rename		0	
+measure/type	size-ruler (master)/48	--size-ruler-master-48	size/48	--size-48	rename		0	
+measure/type	size-ruler (master)/52	--size-ruler-master-52	size/52	--size-52	rename		0	
+measure/type	size-ruler (master)/56	--size-ruler-master-56	size/56	--size-56	rename		0	
+measure/type	size-ruler (master)/60	--size-ruler-master-60	size/60	--size-60	rename		0	
+measure/type	size-ruler (master)/64	--size-ruler-master-64	size/64	--size-64	rename		0	
+measure/type	size-ruler (master)/68	--size-ruler-master-68	size/68	--size-68	rename		0	
+measure/type	size-ruler (master)/72	--size-ruler-master-72	size/72	--size-72	rename		0	
+measure/type	size-ruler (master)/76	--size-ruler-master-76	size/76	--size-76	rename		0	
+measure/type	size-ruler (master)/80	--size-ruler-master-80	size/80	--size-80	rename		0	
+measure/type	size-ruler (master)/1000	--size-ruler-master-1000	size/1000	--size-1000	rename		0	
+measure/type	gaps/gap-0	--gaps-gap-0	space/0	--space-0	remove (alias stays)		0	
+measure/type	paddings/padding-0	--paddings-padding-0	space/0	--space-0	remove (alias stays)		0	
+measure/type	gaps/gap-50	--gaps-gap-50	space/50	--space-50	remove (alias stays)		0	
+measure/type	paddings/padding-50	--paddings-padding-50	space/50	--space-50	remove (alias stays)		0	
+measure/type	gaps/gap-100	--gaps-gap-100	space/100	--space-100	remove (alias stays)		0	
+measure/type	paddings/padding-100	--paddings-padding-100	space/100	--space-100	remove (alias stays)		0	
+measure/type	gaps/gap-150	--gaps-gap-150	space/150	--space-150	remove (alias stays)		0	
+measure/type	paddings/padding-150	--paddings-padding-150	space/150	--space-150	remove (alias stays)		0	
+measure/type	gaps/gap-200	--gaps-gap-200	space/200	--space-200	remove (alias stays)		0	
+measure/type	paddings/padding-200	--paddings-padding-200	space/200	--space-200	remove (alias stays)		0	
+measure/type	gaps/gap-250	--gaps-gap-250	space/250	--space-250	remove (alias stays)		0	
+measure/type	paddings/padding-250	--paddings-padding-250	space/250	--space-250	remove (alias stays)		0	
+measure/type	gaps/gap-300	--gaps-gap-300	space/300	--space-300	remove (alias stays)		0	
+measure/type	paddings/padding-300	--paddings-padding-300	space/300	--space-300	remove (alias stays)		0	
+measure/type	gaps/gap-400	--gaps-gap-400	space/400	--space-400	remove (alias stays)		0	
+measure/type	paddings/padding-400	--paddings-padding-400	space/400	--space-400	remove (alias stays)		0	
+measure/type	gaps/gap-500	--gaps-gap-500	space/500	--space-500	remove (alias stays)		0	
+measure/type	paddings/padding-500	--paddings-padding-500	space/500	--space-500	remove (alias stays)		0	
+measure/type	gaps/gap-600	--gaps-gap-600	space/600	--space-600	remove (alias stays)		0	
+measure/type	paddings/padding-600	--paddings-padding-600	space/600	--space-600	remove (alias stays)		0	
+measure/type	gaps/gap-700	--gaps-gap-700	space/700	--space-700	remove (alias stays)		0	
+measure/type	paddings/padding-700	--paddings-padding-700	space/700	--space-700	remove (alias stays)		0	
+measure/type	gaps/gap-800	--gaps-gap-800	space/800	--space-800	remove (alias stays)		0	
+measure/type	paddings/padding-800	--paddings-padding-800	space/800	--space-800	remove (alias stays)		0	
+measure/type	gaps/gap-900	--gaps-gap-900	space/900	--space-900	remove (alias stays)		0	
+measure/type	paddings/padding-900	--paddings-padding-900	space/900	--space-900	remove (alias stays)		0	
+measure/type	gaps/gap-1000	--gaps-gap-1000	space/1000	--space-1000	remove (alias stays)		0	
+measure/type	paddings/padding-1000	--paddings-padding-1000	space/1000	--space-1000	remove (alias stays)		0	
+measure/type	gaps/gap-1100	--gaps-gap-1100	space/1100	--space-1100	remove (alias stays)		0	
+measure/type	paddings/padding-1100	--paddings-padding-1100	space/1100	--space-1100	remove (alias stays)		0	
+measure/type	margins/layout-margin-xs	--margins-layout-margin-xs	page/margin	--page-margin	remove (alias stays)		0	alias keeps its fixed value
+measure/type	gutters/gutter-xs	--gutters-gutter-xs	page/gap	--page-gap	remove (alias stays)		0	alias keeps its fixed value
+measure/type	margins/layout-margin-sm	--margins-layout-margin-sm	page/margin	--page-margin	remove (alias stays)		0	alias keeps its fixed value
+measure/type	gutters/gutter-sm	--gutters-gutter-sm	page/gap	--page-gap	remove (alias stays)		0	alias keeps its fixed value
+measure/type	margins/layout-margin-md	--margins-layout-margin-md	page/margin	--page-margin	remove (alias stays)		0	alias keeps its fixed value
+measure/type	gutters/gutter-md	--gutters-gutter-md	page/gap	--page-gap	remove (alias stays)		0	alias keeps its fixed value
+measure/type	margins/layout-margin-lg	--margins-layout-margin-lg	page/margin	--page-margin	remove (alias stays)		0	alias keeps its fixed value
+measure/type	gutters/gutter-lg	--gutters-gutter-lg	page/gap	--page-gap	remove (alias stays)		0	alias keeps its fixed value
+measure/type	margins/layout-margin-xl	--margins-layout-margin-xl	page/margin	--page-margin	remove (alias stays)		0	alias keeps its fixed value
+measure/type	gutters/gutter-xl	--gutters-gutter-xl	page/gap	--page-gap	remove (alias stays)		0	alias keeps its fixed value
+measure/type	spacing/card	--spacing-card	space/inset	--space-inset	remove (alias stays)		0	
+measure/type	spacing/card-compact	--spacing-card-compact	space/stack	--space-stack	remove (alias stays)		0	
+measure/type	spacing/card-gap	--spacing-card-gap	space/stack	--space-stack	remove (alias stays)		0	
+measure/type	spacing/card-actions	--spacing-card-actions	space/inset	--space-inset	remove (alias stays)		0	
+measure/type	spacing/card-text	--spacing-card-text	space/100	--space-100	remove (alias stays)		0	
+measure/type	spacing/panel	--spacing-panel	space/inset	--space-inset	remove (alias stays)		0	
+measure/type	spacing/panel-gap	--spacing-panel-gap	space/stack	--space-stack	remove (alias stays)		0	
+measure/type	spacing/modal	--spacing-modal	space/inset-l	--space-inset-l	remove (alias stays)		0	
+measure/type	spacing/modal-gap	--spacing-modal-gap	space/stack	--space-stack	remove (alias stays)		0	
+measure/type	spacing/popover	--spacing-popover	space/100	--space-100	remove (alias stays)		0	
+measure/type	spacing/popover-content	--spacing-popover-content	space/inset	--space-inset	remove (alias stays)		0	
+measure/type	spacing/form	--spacing-form	space/inset-l	--space-inset-l	remove (alias stays)		0	
+measure/type	spacing/form-field-gap	--spacing-form-field-gap	space/stack	--space-stack	remove (alias stays)		0	
+measure/type	spacing/section	--spacing-section	space/section	--space-section	remove (alias stays)		0	
+measure/type	spacing/section-lg	--spacing-section-lg	space/section	--space-section	remove (alias stays)		0	
+measure/type	spacing/table-cell-x	--spacing-table-cell-x	space/table-x	--space-table-x	remove (alias stays)		0	
+measure/type	spacing/table-cell-y	--spacing-table-cell-y	space/0	--space-0	remove (alias stays)		0	
+measure/type	spacing/table-header-x	--spacing-table-header-x	space/table-x	--space-table-x	remove (alias stays)		0	
+measure/type	border-widths/border-0	--border-widths-border-0	border-width/0	--border-width-0	rename		0	
+measure/type	border-widths/border-100	--border-widths-border-100	border-width/100	--border-width-100	rename		4	
+measure/type	border-widths/border-150	--border-widths-border-150	border-width/150	--border-width-150	rename		3	focus ring only, until the Focus round
+measure/type	border-widths/border-200	--border-widths-border-200	border-width/200	--border-width-200	rename		0	
+measure/type	border-widths/border-300	--border-widths-border-300	border-width/300	--border-width-300	rename		0	
+measure/type	border-widths/border-400	--border-widths-border-400	border-width/400	--border-width-400	rename		0	
+measure/type	(new, B1)		border-width/default	--border-width-default	new role			= border-width/100: every stroke, divider and edge
+measure/type	(new, B1)		border-width/selected	--border-width-selected	new role			= border-width/200: selected cards and table rows; pins and slider drag
+measure/type	(new, B1)		border-width/emphasis	--border-width-emphasis	new role			= border-width/400: drag outline, comment-pin focus
+measure/type	(new, B2)		radius/50	--radius-50	new			2px primitive for marks
+measure/type	radius/radius-0	--radius-radius-0	radius/0	--radius-0	rename		0	
+measure/type	radius/radius-100	--radius-radius-100	radius/100	--radius-100	rename		113	
+measure/type	radius/radius-150	--radius-radius-150	radius/150	--radius-150	rename		8	
+measure/type	radius/radius-200	--radius-radius-200	radius/200	--radius-200	rename		37	
+measure/type	radius/radius-300	--radius-radius-300	radius/300	--radius-300	rename		12	
+measure/type	radius/radius-full	--radius-radius-full	radius/full	--radius-full	rename		32	
+measure/type	(new, B2)		radius/mark	--radius-mark	new role			= radius/50: 2: chart marks, tiny skeletons
+measure/type	(new, B2)		radius/control	--radius-control	new role			= radius/100: 4: every control at every size, menu items, tooltip
+measure/type	(new, B2)		radius/card	--radius-card	new role			= radius/100: 4: every card, table card
+measure/type	(new, B2)		radius/floating	--radius-floating	new role			= radius/200: 8: popover, menu, snackbar, alert, modal, drawer, floating bar, form card
+measure/type	(new, B2)		radius/floating-l	--radius-floating-l	new role			= radius/300: 12: Cooper chat and agent window
+measure/type	(new, B2)		radius/pill	--radius-pill	new role			= radius/full: chips, badges, avatars, switch, counters
+measure/type	z-index/z-base	--z-index-z-base	z-index/base	--z-index-base	rename		0	
+measure/type	z-index/z-sticky	--z-index-z-sticky	z-index/sticky	--z-index-sticky	rename		0	
+measure/type	z-index/z-panels	--z-index-z-panels	z-index/panels	--z-index-panels	rename		0	
+measure/type	z-index/z-floating	--z-index-z-floating	z-index/floating	--z-index-floating	rename		4	
+measure/type	z-index/z-popover	--z-index-z-popover	z-index/popover	--z-index-popover	rename		13	
+measure/type	z-index/z-selection-overlay	--z-index-z-selection-overlay	z-index/selection-overlay	--z-index-selection-overlay	rename		0	
+measure/type	z-index/z-modal-overlay	--z-index-z-modal-overlay	z-index/modal-overlay	--z-index-modal-overlay	rename		1	
+measure/type	z-index/z-modal	--z-index-z-modal	z-index/modal	--z-index-modal	rename		2	
+measure/type	z-index/z-toast	--z-index-z-toast	z-index/toast	--z-index-toast	rename		3	
+measure/type	z-index/z-max	--z-index-z-max	z-index/max	--z-index-max	rename		1	
+measure/type	(new, C2)		z-index/tooltip	--z-index-tooltip	new			800: tooltips only
+measure/type	font-weight/font-weight-regular	--font-weight-font-weight-regular	font/weight/regular	--font-weight-regular	rename		0	
+measure/type	font-weight/font-weight-medium	--font-weight-font-weight-medium	font/weight/medium	--font-weight-medium	rename		0	
+measure/type	font-weight/font-weight-semibold	--font-weight-font-weight-semibold	font/weight/semibold	--font-weight-semibold	rename		0	
+measure/type	(code only)	--letter-spacing-letter-spacing--06	font/tracking/minus-06	--font-tracking-minus-06	rename		0	
+measure/type	letter-spacing/letter-spacing--05	--letter-spacing-letter-spacing--05	font/tracking/minus-05	--font-tracking-minus-05	rename		0	
+measure/type	letter-spacing/letter-spacing--03	--letter-spacing-letter-spacing--03	font/tracking/minus-03	--font-tracking-minus-03	rename		0	
+measure/type	letter-spacing/letter-spacing--02	--letter-spacing-letter-spacing--02	font/tracking/minus-02	--font-tracking-minus-02	rename		0	
+measure/type	letter-spacing/letter-spacing--015	--letter-spacing-letter-spacing--015	font/tracking/minus-015	--font-tracking-minus-015	rename		0	
+measure/type	letter-spacing/letter-spacing--01	--letter-spacing-letter-spacing--01	font/tracking/minus-01	--font-tracking-minus-01	rename		0	
+measure/type	letter-spacing/letter-spacing-0	--letter-spacing-letter-spacing-0	font/tracking/0	--font-tracking-0	rename		0	
+measure/type	letter-spacing/letter-spacing-01	--letter-spacing-letter-spacing-01	font/tracking/plus-01	--font-tracking-plus-01	rename		0	
+measure/type	letter-spacing/letter-spacing-02	--letter-spacing-letter-spacing-02	font/tracking/plus-02	--font-tracking-plus-02	rename		0	
+measure/type	letter-spacing/letter-spacing-03	--letter-spacing-letter-spacing-03	font/tracking/plus-03	--font-tracking-plus-03	rename		0	
+measure/type	(type size s)	--type-s	font/size/s	--font-size-s	CSS rename		0	size/line-height pair per density
+measure/type	(type size m)	--type-m	font/size/m	--font-size-m	CSS rename		1	size/line-height pair per density
+measure/type	(type size l)	--type-l	font/size/l	--font-size-l	CSS rename		0	size/line-height pair per density
+measure/type	(type size h3)	--type-h3	font/size/h3	--font-size-h3	CSS rename		0	size/line-height pair per density
+measure/type	(type size h2)	--type-h2	font/size/h2	--font-size-h2	CSS rename		0	size/line-height pair per density
+measure/type	(type size h1)	--type-h1	font/size/h1	--font-size-h1	CSS rename		0	size/line-height pair per density
+measure/type	(type size display-s)	--type-display-s	font/size/display-s	--font-size-display-s	CSS rename		0	size/line-height pair per density
+measure/type	(type size display-m)	--type-display-m	font/size/display-m	--font-size-display-m	CSS rename		0	size/line-height pair per density
+measure/type	(type size display-l)	--type-display-l	font/size/display-l	--font-size-display-l	CSS rename		0	size/line-height pair per density
+measure/type	(type size caption)	--type-caption	font/size/caption	--font-size-caption	CSS rename		0	retired: = font/size/s
+measure/type	control/height-s	--control-h-s	size/control-s	--size-control-s	rename		22	A1 ladder
+measure/type	control/height-m	--control-h-m	size/control-m	--size-control-m	rename		17	A1 ladder
+measure/type	control/height-l	--control-h-l	size/control-l	--size-control-l	rename		8	A1 ladder
+measure/type	(new, A1)		size/control-xs	--size-control-xs	new			A1: 24 / 20 / 20
+measure/type	(new, A1)		size/control-xl	--size-control-xl	new			A1: 52 / 48 / 40
+measure/type	control/tab-height-m	--tab-h-m	size/tab-m	--size-tab-m	rename		1	row size (own token, A1)
+measure/type	control/tab-height-l	--tab-h-l	size/tab-l	--size-tab-l	rename		1	row size (own token, A1)
+measure/type	control/nav-row-height	--nav-row-h	size/nav-row	--size-nav-row	rename		1	row size (own token, A1)
+measure/type	table/row-height	--table-row-h	size/table-row	--size-table-row	rename		2	row size (own token, A1)
+measure/type	table/header-height	--table-header-h	size/table-header	--size-table-header	rename		3	row size (own token, A1)
+measure/type	badge/height-s	--badge-h-s	size/badge-s	--size-badge-s	rename		1	= size/control-xs (A1)
+measure/type	badge/height-m	--badge-h-m	size/badge-m	--size-badge-m	rename		1	= size/control-s (A1)
+measure/type	badge/height-l	--badge-h-l	size/badge-l	--size-badge-l	rename		1	= size/control-m (A1)
+measure/type	size/target-min	--target-min	size/target-min	--size-target-min	CSS rename		15	
+measure/type	layout/side-panel-width	--layout-side-panel-width	layout/panel-width	--layout-panel-width	rename		0	--region-panel stays as the layout helper
+measure/type	layout/side-panel-collapsed-width	--layout-side-panel-collapsed-width	layout/panel-width-collapsed	--layout-panel-width-collapsed	rename		1	
+measure/type	layout/modal-width	--overlay-width-m	layout/modal-width-m	--layout-modal-width-m	rename		3	
+measure/type	layout/modal-width-l	--overlay-width-l	layout/modal-width-l	--layout-modal-width-l	rename		2	
+measure/type	layout/popover-width	--overlay-width-s	layout/popover-width	--layout-popover-width	CSS rename		3	
+measure/type	(text style display-l)	--text-display-l	font/display-l	--font-display-l	CSS rename		0	
+measure/type	(text style display-l)	--text-display-l-tracking	font/display-l/tracking	--font-display-l-tracking	CSS rename		0	
+measure/type	(text style display-l)	--text-display-l-weight	font/display-l/weight	--font-display-l-weight	CSS rename		0	
+measure/type	(text style display-m)	--text-display-m	font/display-m	--font-display-m	CSS rename		1	
+measure/type	(text style display-m)	--text-display-m-tracking	font/display-m/tracking	--font-display-m-tracking	CSS rename		1	
+measure/type	(text style display-m)	--text-display-m-weight	font/display-m/weight	--font-display-m-weight	CSS rename		0	
+measure/type	(text style display-s)	--text-display-s	font/display-s	--font-display-s	CSS rename		0	
+measure/type	(text style display-s)	--text-display-s-tracking	font/display-s/tracking	--font-display-s-tracking	CSS rename		0	
+measure/type	(text style display-s)	--text-display-s-weight	font/display-s/weight	--font-display-s-weight	CSS rename		0	
+measure/type	(text style heading-h1-medium)	--text-heading-h1-medium	font/heading-h1-medium	--font-heading-h1-medium	CSS rename		2	
+measure/type	(text style heading-h1-medium)	--text-heading-h1-medium-tracking	font/heading-h1-medium/tracking	--font-heading-h1-medium-tracking	CSS rename		2	
+measure/type	(text style heading-h1-medium)	--text-heading-h1-medium-weight	font/heading-h1-medium/weight	--font-heading-h1-medium-weight	CSS rename		0	
+measure/type	(text style heading-h2-medium)	--text-heading-h2-medium	font/heading-h2-medium	--font-heading-h2-medium	CSS rename		8	
+measure/type	(text style heading-h2-medium)	--text-heading-h2-medium-tracking	font/heading-h2-medium/tracking	--font-heading-h2-medium-tracking	CSS rename		7	
+measure/type	(text style heading-h2-medium)	--text-heading-h2-medium-weight	font/heading-h2-medium/weight	--font-heading-h2-medium-weight	CSS rename		0	
+measure/type	(text style heading-h3-medium)	--text-heading-h3-medium	font/heading-h3-medium	--font-heading-h3-medium	CSS rename		6	
+measure/type	(text style heading-h3-medium)	--text-heading-h3-medium-tracking	font/heading-h3-medium/tracking	--font-heading-h3-medium-tracking	CSS rename		5	
+measure/type	(text style heading-h3-medium)	--text-heading-h3-medium-weight	font/heading-h3-medium/weight	--font-heading-h3-medium-weight	CSS rename		0	
+measure/type	(text style heading-h4-semibold)	--text-heading-h4-semibold	font/heading-h4-semibold	--font-heading-h4-semibold	CSS rename		18	
+measure/type	(text style heading-h4-semibold)	--text-heading-h4-semibold-tracking	font/heading-h4-semibold/tracking	--font-heading-h4-semibold-tracking	CSS rename		18	
+measure/type	(text style heading-h4-semibold)	--text-heading-h4-semibold-weight	font/heading-h4-semibold/weight	--font-heading-h4-semibold-weight	CSS rename		0	
+measure/type	(text style body-l-regular)	--text-body-l-regular	font/body-l-regular	--font-body-l-regular	CSS rename		3	
+measure/type	(text style body-l-regular)	--text-body-l-regular-tracking	font/body-l-regular/tracking	--font-body-l-regular-tracking	CSS rename		3	
+measure/type	(text style body-l-regular)	--text-body-l-regular-weight	font/body-l-regular/weight	--font-body-l-regular-weight	CSS rename		0	
+measure/type	(text style body-m-regular)	--text-body-m-regular	font/body-m-regular	--font-body-m-regular	CSS rename		135	
+measure/type	(text style body-m-regular)	--text-body-m-regular-tracking	font/body-m-regular/tracking	--font-body-m-regular-tracking	CSS rename		136	
+measure/type	(text style body-m-regular)	--text-body-m-regular-weight	font/body-m-regular/weight	--font-body-m-regular-weight	CSS rename		1	
+measure/type	(text style body-s-regular)	--text-body-s-regular	font/body-s-regular	--font-body-s-regular	CSS rename		8	
+measure/type	(text style body-s-regular)	--text-body-s-regular-tracking	font/body-s-regular/tracking	--font-body-s-regular-tracking	CSS rename		8	
+measure/type	(text style body-s-regular)	--text-body-s-regular-weight	font/body-s-regular/weight	--font-body-s-regular-weight	CSS rename		0	
+measure/type	(text style label-l-medium)	--text-label-l-medium	font/label-l-medium	--font-label-l-medium	CSS rename		13	
+measure/type	(text style label-l-medium)	--text-label-l-medium-tracking	font/label-l-medium/tracking	--font-label-l-medium-tracking	CSS rename		13	
+measure/type	(text style label-l-medium)	--text-label-l-medium-weight	font/label-l-medium/weight	--font-label-l-medium-weight	CSS rename		0	
+measure/type	(text style label-m-medium)	--text-label-m-medium	font/label-m-medium	--font-label-m-medium	CSS rename		146	
+measure/type	(text style label-m-medium)	--text-label-m-medium-tracking	font/label-m-medium/tracking	--font-label-m-medium-tracking	CSS rename		146	
+measure/type	(text style label-m-medium)	--text-label-m-medium-weight	font/label-m-medium/weight	--font-label-m-medium-weight	CSS rename		4	
+measure/type	(text style code-m-regular)	--text-code-m-regular	font/code-m-regular	--font-code-m-regular	CSS rename		0	
+measure/type	(text style code-m-regular)	--text-code-m-regular-tracking	font/code-m-regular/tracking	--font-code-m-regular-tracking	CSS rename		0	
+measure/type	(text style code-m-regular)	--text-code-m-regular-weight	font/code-m-regular/weight	--font-code-m-regular-weight	CSS rename		0	
+measure/type	(text style code-m-medium)	--text-code-m-medium	font/code-m-medium	--font-code-m-medium	CSS rename		0	
+measure/type	(text style code-m-medium)	--text-code-m-medium-tracking	font/code-m-medium/tracking	--font-code-m-medium-tracking	CSS rename		0	
+measure/type	(text style code-m-medium)	--text-code-m-medium-weight	font/code-m-medium/weight	--font-code-m-medium-weight	CSS rename		0	
+measure/type	(text style code-s-regular)	--text-code-s-regular	font/code-s-regular	--font-code-s-regular	CSS rename		0	
+measure/type	(text style code-s-regular)	--text-code-s-regular-tracking	font/code-s-regular/tracking	--font-code-s-regular-tracking	CSS rename		0	
+measure/type	(text style code-s-regular)	--text-code-s-regular-weight	font/code-s-regular/weight	--font-code-s-regular-weight	CSS rename		0	
+measure/type	(code only)	--text-numeric	font/numeric	--font-numeric	CSS rename		32	
+measure/type	(code only)	--text-measure	font/measure	--font-measure	CSS rename		9	
+measure/type	label/M/UPPER/*	(none)	-	-	remove		0	style retired in 2.0.1; Figma variables still there
+measure/type	blur/faint	--blur-faint	blur/4	--blur-4	rename		2	H1: blur steps named by value
+measure/type	blur/light	--blur-light	blur/10	--blur-10	rename		17	H1: blur steps named by value
+measure/type	blur/soft	--blur-soft	blur/20	--blur-20	rename		8	H1: blur steps named by value
+measure/type	blur/medium	--blur-medium	blur/40	--blur-40	rename		16	H1: blur steps named by value
+measure/type	blur/strong	--blur-strong	blur/80	--blur-80	rename		70	H1: blur steps named by value
+measure/type	blur/max	--blur-max	blur/100	--blur-100	rename		1	H1: blur steps named by value
+measure/type	elevation/elevation-1/primary	--elevation-elevation-1-primary	elevation/1	--elevation-1	rename		3	shadow primitive
+measure/type	elevation/elevation-2/primary	--elevation-elevation-2-primary	elevation/2	--elevation-2	rename		1	shadow primitive
+measure/type	elevation/elevation-3/primary	--elevation-elevation-3-primary	elevation/3	--elevation-3	rename		12	shadow primitive
+measure/type	drop-shadow/elevation-2	--drop-shadow-elevation-2	elevation/2	--elevation-2	remove (alias stays)		1	duplicate
+measure/type	drop-shadow/elevation-3	--drop-shadow-elevation-3	elevation/3	--elevation-3	remove (alias stays)		0	duplicate
+measure/type	drop-shadow/elevation-1	--drop-shadow-elevation-1	-	--drop-shadow-elevation-1	keep (deprecated)		0	value differs from elevation/1 (10% vs 25%); unused in the kit, kept as is
+measure/type	drop-shadow/floating	--drop-shadow-floating	-	--drop-shadow-floating	keep (deprecated)		1	box-shadow form, used by .fx-floating; the tooltip uses --elevation-floating-filter
+measure/type	(new, C1)		elevation/floating-filter	--elevation-floating-filter	new			level 2 as a filter drop-shadow(), for shapes with an arrow (tooltip)
+measure/type	(new, C1)		elevation/raised	--elevation-raised	new role			none: cards, docked panels
+measure/type	(new, C1)		elevation/floating	--elevation-floating	new role			elevation/2 + hairline: popover, menu, select list, date picker, tooltip, snackbar, floating bar and drawer, form card, map panels, Cooper chat and button
+measure/type	(new, C1)		elevation/modal	--elevation-modal	new role			elevation/3 + hairline, over the scrim; dragged items
+measure/type	(new, C4)		float-inset	--float-inset	new			= page/margin, below the header, above the bottom sheet, from the window edge
+measure/type	motion/duration/instant	(none)	motion/duration/0	--motion-duration-0	add to code		0	M1
+measure/type	motion/duration/fast	(none)	motion/duration/100	--motion-duration-100	add to code		0	M1
+measure/type	motion/duration/moderate	(none)	motion/duration/200	--motion-duration-200	add to code		0	M1
+measure/type	motion/duration/slow	(none)	motion/duration/300	--motion-duration-300	add to code		0	M1
+measure/type	(new, M1)		motion/duration/50	--motion-duration-50	add to code			M1: every colour change
+measure/type	motion/duration/extra-slow	(none)	-	-	remove		0	M3: unused
+measure/type	motion/duration/extended	(none)	-	-	remove		0	M3: unused
+measure/type	motion/ease/linear	(none)	motion/ease/linear	--motion-ease-linear	add to code		0	M2
+measure/type	motion/ease/standard	(none)	motion/ease/standard	--motion-ease-standard	add to code		0	M2
+measure/type	motion/ease/decelerate	(none)	motion/ease/enter	--motion-ease-enter	add to code		0	M2
+measure/type	motion/ease/accelerate	(none)	motion/ease/exit	--motion-ease-exit	add to code		0	M2
+measure/type	motion/ease/emphasize	(none)	-	-	remove		0	M3: unused
+measure/type	(new, M3)		motion/distance/2	--motion-distance-2	add to code			opening surfaces
+measure/type	(new, M3)		motion/distance/16	--motion-distance-16	add to code			snackbars, notifications (from the end side)
+measure/type	(new, M1)		motion/loop/spin	--motion-loop-spin	add to code			1000ms
+measure/type	(new, M1)		motion/loop/pulse	--motion-loop-pulse	add to code			1600ms
+measure/type	show-scroll-bar	(none)	component-toggle/show-scroll-bar	-	rename (Figma only)		0	booleans for Figma component props; never CSS
+measure/type	show-label	(none)	component-toggle/show-label	-	rename (Figma only)		0	booleans for Figma component props; never CSS
+measure/type	show-description	(none)	component-toggle/show-description	-	rename (Figma only)		0	booleans for Figma component props; never CSS

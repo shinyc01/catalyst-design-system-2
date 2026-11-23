@@ -17,6 +17,7 @@
 :root{
   --bp-sm:600px;--bp-md:1024px;--bp-lg:1440px;--bp-xl:1920px;
   --layout-columns:4;--page-margin:var(--space-400);--page-gap:var(--space-400);
+  --float-inset:var(--page-margin); /* C4: floating panels, the snackbar stack and map slots sit one page margin in, below the header, above the bottom sheet, from the window edge */
   --layout-max-content-width-wide:140rem;
   /* Regions: min / default / max. Push the content at md and up; overlay below md. */
   --region-panel-min:20rem;--region-panel-max:50vw;
@@ -27,9 +28,9 @@
   --layout-header-title-min:10rem; /* thin PageHeader title: never narrower than this (or its own text) before the header moves to two rows (rule 5.3; Nov 20, was a raw 10rem) */
   --layout-content-min:50rem; /* narrowest page area beside a pushed panel before the side nav folds to its rail (Nov 19: 800px = 50rem, so 1440 with a 380 panel keeps the nav open) */
   /* Overlay widths */
-  --overlay-width-s:20rem;--overlay-width-m:27.5rem;--overlay-width-l:37.5rem;
+  --layout-popover-width:20rem;--layout-modal-width-m:27.5rem;--layout-modal-width-l:37.5rem;
   /* Menus: two widths (2.0.3). S for action menus (Carbon 180–288, Material 112–280); L = the popover width, for items with descriptions */
-  --menu-width-s:12.5rem;--menu-width-l:var(--overlay-width-s);
+  --menu-width-s:12.5rem;--menu-width-l:var(--layout-popover-width);
   /* Cooper: the full chat can be dragged from the panel width (--region-panel, 380) up to 720 (rule 4.5); the compact window's default place, 60 from the end and 131 from the bottom */
   --layout-chat-width-max:45rem;--cooper-compact-end:3.75rem;--cooper-compact-bottom:8.1875rem;
 }
@@ -56,10 +57,10 @@
 /* ---------- Panels: fixed sizes (hybrid). Cards and page regions use the columns; panels and overlays use this list ----------
      side panel / drawer   380   (min 320, max 50%)      --region-panel
      large panel           600   (Study)                 --region-panel-l
-     modal                 440 / 600                     --overlay-width-m / -l
-     popover               320                           --overlay-width-s
+     modal                 440 / 600                     --layout-modal-width-m / -l
+     popover               320                           --layout-popover-width
    Docked panels sit flush against the content-area edge. Floating panels on a map sit in slots (below). */
-:root{--region-panel:var(--layout-side-panel-width);--region-panel-l:var(--overlay-width-l)}
+:root{--region-panel:var(--layout-panel-width);--region-panel-l:var(--layout-modal-width-l)}
 
 /* ---------- Map slots (2.0.3, Nov 19): one panel per side, bars between them, nothing overlaps ----------
    On the map container (.ifs-slots). Agreed rules: one panel per side (opening another replaces it), centre bars between the
@@ -72,7 +73,7 @@
                         and the start panel moves down below it (Nov 19)
      .ifs-slot-bottom   horizon bar (.ifs-slot-fill: up to --region-map-bar): same rule as the top bar, shrinks to the space between panels
                         when it's wider; snackbars stack above it
-     .ifs-slot-popover  the Layers popover, beside the bottom tool bar (--overlay-width-s)
+     .ifs-slot-popover  the Layers popover, beside the bottom tool bar (--layout-popover-width)
      .ifs-slot-fab      Cooper button, end-bottom corner
      .ifs-slot-exit     "Exit map preview" (arriving from Build), start-top corner above everything: add .has-exit
    State on .ifs-slots: .has-left (+ .has-left-l), .has-right, .has-exit. Centre bars are at most --region-map-bar wide.
@@ -83,10 +84,10 @@
   --bp-map-overlay:1100px;--bp-map-sheet:720px;
 }
 .ifs-slots{--slot-inset:var(--page-margin) /* every slot sits this far in from the map's edges: tops, bottoms and the end edge line up */;
-  --slot-top:var(--slot-inset);--slot-tools:calc(var(--control-h-m) + var(--space-150));--slot-fab:var(--size-48);--slot-left-w:var(--region-panel);
+  --slot-top:var(--slot-inset);--slot-tools:calc(var(--size-control-m) + var(--space-150));--slot-fab:var(--size-48);--slot-left-w:var(--region-panel);
   --slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));--slot-r:var(--slot-inset)}
 .ifs-slots.has-left-l{--slot-left-w:var(--region-panel-l)}
-.ifs-slots.has-exit{--slot-top:calc(var(--slot-inset) + var(--control-h-m) + var(--page-gap))}
+.ifs-slots.has-exit{--slot-top:calc(var(--slot-inset) + var(--size-control-m) + var(--page-gap))}
 .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap) + var(--slot-left-w) + var(--page-gap))}
 .ifs-slots.has-right{--slot-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
 .ifs-slot-left{position:absolute;z-index:600;display:flex;top:var(--slot-top);bottom:var(--slot-inset);
@@ -122,7 +123,7 @@
 .ifs-slot-tools{top:var(--slot-top)}
 .ifs-slot-tools-bottom{bottom:var(--slot-inset)}
 .ifs-slot-popover{position:absolute;z-index:650;bottom:var(--slot-inset);inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--space-200));
-  width:var(--overlay-width-s);max-width:calc(100% - 2 * var(--slot-inset));max-height:calc(100% - var(--slot-top) - var(--slot-inset));display:flex}
+  width:var(--layout-popover-width);max-width:calc(100% - 2 * var(--slot-inset));max-height:calc(100% - var(--slot-top) - var(--slot-inset));display:flex}
 .ifs-slot-popover > *{flex:1;min-width:0}
 .ifs-slot-fab{position:absolute;z-index:500;inset-inline-end:var(--slot-inset);bottom:var(--slot-inset)}
 .ifs-slot-exit{position:absolute;z-index:700;inset-inline-start:var(--slot-inset);top:var(--slot-inset)}

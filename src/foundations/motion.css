@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Motion (Catalyst Design System 2.0.5; decided Nov 23: M1–M4). Rules: guide/rules.md §1 Motion.
+   Durations by value (Figma motion/duration/*): 0 press, focus ring, tooltip closing · 50 every colour change, closing small
+   surfaces · 100 small movement, opening small surfaces, closing large ones · 200 opening large surfaces, size and layout
+   changes · 300 the tooltip's pointer wait. Closing is one step faster than opening.
+   Curves by purpose: standard (on-screen changes) · enter (opening) · exit (closing) · linear (loops).
+   Distances: 2 = the small drop or rise of anything opening · 16 = arrivals (snackbars, notifications, from the end side).
+   Loops: spin 1000 · pulse 1600, not in step. Never animates: the focus ring, numbers and chart data, page changes.
+   ========================================================================== */
+:root{
+  --motion-duration-0:0ms;--motion-duration-50:50ms;--motion-duration-100:100ms;--motion-duration-200:200ms;--motion-duration-300:300ms;
+  --motion-ease-standard:cubic-bezier(0.4, 0, 0.2, 1);--motion-ease-enter:cubic-bezier(0, 0, 0.2, 1);--motion-ease-exit:cubic-bezier(0.4, 0, 1, 1);--motion-ease-linear:linear;
+  --motion-distance-2:2px;--motion-distance-16:16px;
+  --motion-loop-spin:1000ms;--motion-loop-pulse:1600ms;
+}

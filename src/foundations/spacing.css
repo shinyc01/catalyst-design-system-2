@@ -31,7 +31,7 @@
   --size-0:0px;--size-0-5:0.5px;--size-1:1px;--size-2:2px;--size-3:3px;--size-4:0.25rem;--size-6:0.375rem;--size-8:0.5rem;
   --size-10:0.625rem;--size-11:0.6875rem;--size-12:0.75rem;--size-14:0.875rem;--size-16:1rem;--size-18:1.125rem;--size-20:1.25rem;
   --size-22:1.375rem;--size-24:1.5rem;--size-26:1.625rem;--size-28:1.75rem;--size-32:2rem;--size-36:2.25rem;--size-40:2.5rem;
-  --target-min:var(--size-24); /* smallest click / tap area (WCAG 2.5.8 AA): every clickable thing is at least 24 x 24 */
+  --size-target-min:var(--size-24); /* smallest click / tap area (WCAG 2.5.8 AA): every clickable thing is at least 24 x 24 */
   --size-44:2.75rem;--size-48:3rem;--size-52:3.25rem;--size-56:3.5rem;--size-60:3.75rem;--size-64:4rem;--size-68:4.25rem;
   --size-72:4.5rem;--size-76:4.75rem;--size-80:5rem;--size-1000:1000px;
 
@@ -41,29 +41,3 @@
 :root,[data-density="comfortable"]{--space-inset:var(--space-400);--space-inset-l:var(--space-500);--space-table-x:var(--space-400);--space-stack:var(--space-300);--space-section:var(--space-700)}
 [data-density="spacious"]{--space-inset:var(--space-500);--space-inset-l:var(--space-600);--space-table-x:var(--space-500);--space-stack:var(--space-400);--space-section:var(--space-800)}
 [data-density="compact"]{--space-inset:var(--space-300);--space-inset-l:var(--space-400);--space-table-x:var(--space-400);--space-stack:var(--space-200);--space-section:var(--space-600)}
-
-/* Old names, kept only so existing prototypes keep working. Don't use them in new code. */
-:root{
-  --gaps-gap-0:var(--space-0);--gaps-gap-50:var(--space-50);--gaps-gap-100:var(--space-100);--gaps-gap-150:var(--space-150);
-  --gaps-gap-200:var(--space-200);--gaps-gap-250:var(--space-250);--gaps-gap-300:var(--space-300);--gaps-gap-400:var(--space-400);
-  --gaps-gap-500:var(--space-500);--gaps-gap-600:var(--space-600);--gaps-gap-700:var(--space-700);--gaps-gap-800:var(--space-800);
-  --gaps-gap-900:var(--space-900);--gaps-gap-1000:var(--space-1000);--gaps-gap-1100:var(--space-1100);
-  --paddings-padding-0:var(--space-0);--paddings-padding-50:var(--space-50);--paddings-padding-100:var(--space-100);
-  --paddings-padding-150:var(--space-150);--paddings-padding-200:var(--space-200);--paddings-padding-250:var(--space-250);
-  --paddings-padding-300:var(--space-300);--paddings-padding-400:var(--space-400);--paddings-padding-500:var(--space-500);
-  --paddings-padding-600:var(--space-600);--paddings-padding-700:var(--space-700);--paddings-padding-800:var(--space-800);
-  --paddings-padding-900:var(--space-900);--paddings-padding-1000:var(--space-1000);--paddings-padding-1100:var(--space-1100);
-  --margins-layout-margin-xs:var(--space-300);--margins-layout-margin-sm:var(--space-400);--margins-layout-margin-md:var(--space-500);
-  --margins-layout-margin-lg:var(--space-600);--margins-layout-margin-xl:var(--space-800);
-  --gutters-gutter-xs:var(--space-300);--gutters-gutter-sm:var(--space-400);--gutters-gutter-md:var(--space-500);
-  --gutters-gutter-lg:var(--space-600);--gutters-gutter-xl:var(--space-700);
-}
-:root,[data-density]{
-  --spacing-card:var(--space-inset);--spacing-card-compact:var(--space-stack);--spacing-card-gap:var(--space-stack);
-  --spacing-card-actions:var(--space-inset);--spacing-card-text:var(--space-100);
-  --spacing-panel:var(--space-inset);--spacing-panel-gap:var(--space-stack);--spacing-modal:var(--space-inset-l);--spacing-modal-gap:var(--space-stack);
-  --spacing-popover:var(--space-100);--spacing-popover-content:var(--space-inset);
-  --spacing-form:var(--space-inset-l);--spacing-form-field-gap:var(--space-stack);
-  --spacing-section:var(--space-section);--spacing-section-lg:var(--space-section);
-  --spacing-table-cell-x:var(--space-table-x);--spacing-table-header-x:var(--space-table-x);--spacing-table-cell-y:var(--space-0);
-}

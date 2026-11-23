@@ -93,13 +93,18 @@ globalThis.window = {};
 await import(join(root, 'src/icons.js'));
 writeFileSync(join(root, 'dist/icons.txt'), Object.keys(window.IFS_ICONS).sort().join('\n') + '\n');
 // Every CSS token with its value, plus the text-style and effect classes, so prototypes use real names
-// (e.g. --gaps-gap-600 = 24px) instead of guessing from Figma's variable names.
-// tokens.css plus the foundation files (layout, spacing, …), so tokens such as --layout-content-min are listed too (Nov 20)
-const css = [join(root, 'src/tokens.css'), ...readdirSync(join(root, 'src/foundations')).filter(f => f.endsWith('.css')).sort().map(f => join(root, 'src/foundations', f))]
+// (e.g. --space-600 = 24px) instead of guessing from Figma's variable names. tokens.css plus the foundation files;
+// the old names (foundations/deprecated.css) are listed last, each with the name that replaces it (removed in 3.0).
+const fdir = join(root, 'src/foundations');
+const css = [join(root, 'src/tokens.css'), ...readdirSync(fdir).filter(f => f.endsWith('.css') && f !== 'deprecated.css').sort().map(f => join(fdir, f))]
   .map(f => readFileSync(f, 'utf8')).join('\n');
-const tokens = [...css.matchAll(/(--[a-z0-9-]+):\s*([^;]+);/g)].map(m => `${m[1]}: ${m[2].trim()}`); // a token listed more than once = its density / breakpoint values
+const tokens = [...css.matchAll(/(--[a-z0-9-]+):\s*([^;]+);/g)].map(m => `${m[1]}: ${m[2].replace(/\/\*.*?\*\//g, '').trim()}`); // a token listed more than once = its density / breakpoint values
 const classes = [...css.matchAll(/^\.((?:t|fx)-[a-z0-9-]+)\{/gm)].map(m => `.${m[1]}`);
+const deprecated = [...readFileSync(join(fdir, 'deprecated.css'), 'utf8').matchAll(/(--[a-z0-9-]+):var\((--[a-z0-9-]+)\);/g)].map(m => `${m[1]} → ${m[2]}`);
 writeFileSync(join(root, 'dist/tokens.txt'), [
-  '# CSS custom properties (dark mode). Spacing scale: gaps/paddings 100 = 4px, 200 = 8px, 400 = 16px, 600 = 24px.',
-  ...tokens, '', '# Text-style classes (Figma text styles) and effect classes', ...classes, ''].join('\n'));
+  '# CSS custom properties (Dark mode). Names: every token starts with its type word (--color-*, --space-*, --size-*, --radius-*, --font-*, --motion-*).',
+  '# Spacing scale: --space-100 = 4px, 200 = 8px, 400 = 16px, 600 = 24px. Components use colour roles only (--color-*), never --palette-*.',
+  ...tokens, '', '# Text-style classes (Figma text styles) and effect classes', ...classes, '',
+  '# Deprecated names (still work until 3.0; use the name after the arrow)', ...deprecated, ''].join('\n'));
+await import(join(root, 'tools/gen-tokens-json.mjs'));
 console.log(`api.md: ${out.length} chars · icons.txt: ${Object.keys(window.IFS_ICONS).length} names · tokens.txt: ${tokens.length} tokens`);
