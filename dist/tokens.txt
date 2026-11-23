@@ -267,6 +267,29 @@
 --color-data-viz-data-8: #6a1766
 --color-data-viz-data-9: #1e1e1e
 --color-data-viz-data-10: #313131
+--color-background-skeleton: var(--palette-white-alpha-10)
+--color-background-skeleton-soft: rgba(255,255,255,0.04)
+--color-background-sheen: var(--palette-white-alpha-40)
+--color-background-sheen-from: var(--palette-black-alpha-20)
+--color-background-sheen-to: rgba(102,102,102,0.2)
+--color-background-accent-purple-glow: rgba(128,120,255,0.25)
+--color-icon-handle: #9e9ea8
+--color-border-chart-gap: #0f0f0f
+--color-border-on-overlay: #1f1f1f
+--color-border-soft-hover: rgba(255,255,255,0.08)
+--color-border-pin-label: #2d3238
+--color-shadow-label: rgba(0,0,0,0.7)
+--color-text-on-solid-softer: rgba(255,255,255,0.75)
+--color-shadow-soft: var(--palette-black-alpha-15)
+--color-shadow-softer: rgba(0,0,0,0.04)
+--color-shadow-cursor: rgba(0,0,0,0.16)
+--color-shadow-pin: rgba(10,14,21,0.2)
+--color-cooper-button-shade: rgba(0,0,0,0.36)
+--color-cooper-button-fill-disabled: rgba(0,0,0,0.03)
+--color-cooper-art-light: var(--palette-core-1000)
+--color-cooper-art-pink: #fbc4e6
+--color-cooper-art-copper: #cd9579
+--color-cooper-art-violet: #5a12bf
 --border-blue: #2b7fff
 --element-checkbox-off-border-pressed: rgba(255,255,255,0.15)
 --element-radiobutton-off-border-pressed: rgba(255,255,255,0.15)
@@ -353,7 +376,7 @@
 --inner-shadow-map-highlight-cooper: inset 0 0 12px 7px rgba(200,121,65,0.4)
 --inner-shadow-map-highlight-evaluated: inset 0 0 12px 7px rgba(43,127,255,0.4)
 --inner-shadow-map-highlight-grey: inset 0 0 12px 7px rgba(84,84,84,0.4)
---drop-shadow-pin: 0 0 10px 0 rgba(10,14,21,0.2)
+--drop-shadow-pin: 0 0 10px 0 var(--color-shadow-pin)
 --size-badge-s: var(--size-control-xs)
 --size-badge-m: var(--size-control-s)
 --size-badge-l: var(--size-control-m)

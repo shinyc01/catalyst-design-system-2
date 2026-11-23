@@ -16,6 +16,8 @@ for (const f of readdirSync(dir).filter(f => /\.(css|jsx?)$/.test(f))) {
     const at = `${f}:${i + 1}`;
     for (const m of l.matchAll(/var\((--palette-[a-z0-9-]+)/g)) out.primitive.push(`${at} ${m[1]}`);
     for (const m of l.matchAll(/var\((--element-[a-z0-9-]+)/g)) if (!HELD.test(m[1])) out.element.push(`${at} ${m[1]}`);
+    // Exempt: CSS masks (#000 is alpha, not a colour), flag artwork (FLAG_ART in extras.jsx), and a line marked /* raw-ok: reason */.
+    if (/mask|FLAG_ART|raw-ok:/.test(l) || (f === 'extras.jsx' && /<path|<rect|<circle|fill=/.test(l))) return;
     if (/\.css$/.test(f) || /style|color|fill|stroke/i.test(l)) for (const m of l.replace(/\/\*.*?\*\//g, '').matchAll(/#[0-9a-fA-F]{3,8}\b|rgba?\([^)]*\)/g)) out.raw.push(`${at} ${m[0]}`);
   });
 }

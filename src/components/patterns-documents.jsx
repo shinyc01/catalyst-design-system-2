@@ -230,7 +230,7 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
     if (onOpen) return onOpen(doc);
     if (doc.file) { window.open(URL.createObjectURL(doc.file), '_blank', 'noopener'); return; }
     const w = window.open('', '_blank');
-    if (w) { w.document.title = doc.name; w.document.body.style.cssText = 'font:14px system-ui;padding:24px;background:#111;color:#eee'; w.document.body.textContent = `Preview of ${doc.name}`; }
+    if (w) { w.document.title = doc.name; w.document.body.style.cssText = 'font:14px system-ui;padding:24px;background:#111;color:#eee'; /* raw-ok: a new browser window without the kit CSS */ w.document.body.textContent = `Preview of ${doc.name}`; }
   }, [onOpen]);
 
   const download = React.useCallback(doc => {

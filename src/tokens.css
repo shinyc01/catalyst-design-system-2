@@ -206,6 +206,22 @@
 --color-data-viz-baseline:var(--palette-white-alpha-30); /* chart baseline and connector lines (Figma white/alpha-30) */
 --color-data-viz-data-1:var(--palette-danger-600);--color-data-viz-data-2:#a06d1c;--color-data-viz-data-3:#176932;--color-data-viz-data-4:#5238a4;--color-data-viz-data-5:#3556a0;
 --color-data-viz-data-6:#167bb6;--color-data-viz-data-7:#692917;--color-data-viz-data-8:#6a1766;--color-data-viz-data-9:#1e1e1e;--color-data-viz-data-10:#313131;
+/* Purpose roles added Nov 23 night (C3 P1: no raw colours in components). Same Dark values as the raw ones they replace. */
+--color-background-skeleton:var(--palette-white-alpha-10);--color-background-skeleton-soft:rgba(255,255,255,0.04); /* skeleton shimmer */
+--color-background-sheen:var(--palette-white-alpha-40); /* light rim on avatars and media */
+--color-background-sheen-from:var(--palette-black-alpha-20);--color-background-sheen-to:rgba(102,102,102,0.2); /* hover / drag sheen on canvas cards */
+--color-background-accent-purple-glow:rgba(128,120,255,0.25); /* file preview tile art */
+--color-icon-handle:#9e9ea8; /* drag handle on chart cards */
+--color-border-chart-gap:#0f0f0f; /* the gap stroke between pie and donut slices */
+--color-border-on-overlay:#1f1f1f; /* field edge on an overlay surface (compare dropdown) */
+--color-border-soft-hover:rgba(255,255,255,0.08); /* segmented item hover edge */
+--color-border-pin-label:#2d3238;--color-shadow-label:rgba(0,0,0,0.7); /* text outline and glow on map pin labels */
+--color-text-on-solid-softer:rgba(255,255,255,0.75); /* tertiary text on a solid fill */
+--color-shadow-soft:var(--palette-black-alpha-15);--color-shadow-softer:rgba(0,0,0,0.04);--color-shadow-cursor:rgba(0,0,0,0.16);
+--color-shadow-pin:rgba(10,14,21,0.2); /* map and document pins */
+--color-cooper-button-shade:rgba(0,0,0,0.36);--color-cooper-button-fill-disabled:rgba(0,0,0,0.03);
+--color-cooper-art-light:var(--palette-core-1000);--color-cooper-art-pink:#fbc4e6;--color-cooper-art-copper:#cd9579;--color-cooper-art-violet:#5a12bf; /* Cooper avatar artwork */
+
 /* Held (Nov 23): these 8 would change a Dark value if folded onto a role; they keep their names and values until the component review */
 --border-blue:#2b7fff;
 --element-checkbox-off-border-pressed:rgba(255,255,255,0.15);
@@ -274,7 +290,7 @@
 --inner-shadow-map-highlight-cooper:inset 0 0 12px 7px rgba(200,121,65,0.4);
 --inner-shadow-map-highlight-evaluated:inset 0 0 12px 7px rgba(43,127,255,0.4);
 --inner-shadow-map-highlight-grey:inset 0 0 12px 7px rgba(84,84,84,0.4);
---drop-shadow-pin:0 0 10px 0 rgba(10,14,21,0.2);
+--drop-shadow-pin:0 0 10px 0 var(--color-shadow-pin);
 }
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.

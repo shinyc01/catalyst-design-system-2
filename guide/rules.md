@@ -50,7 +50,7 @@ Cards on the page grid use `.ifs-grid` (rule 4.2). Components keep their own CSS
 - Closing is one step faster than opening. Opening surfaces move 2; snackbars and notifications slide 16 from the end side; drawers slide from their edge. Tab changes: rows swap at once, the table height glides; push panels animate their width. Cooper's grow-from-the-orb (90%) is a Cooper pattern exception. Snackbar dwell 4000, paused on hover and focus (rule 7.12).
 - Never animates: the focus ring, numbers (they never count up) and chart data, page changes.
 - Reduced motion: rule 9.11.
-- Still to build: exit animations (the kit unmounts closed surfaces), the tab-change table-height glide and the push-panel width animation. Enter animations are built.
+- Built in the kit: enters, exits (`IFS.useExit(open, ms)` keeps a closing surface mounted with `.is-leaving`), the table-height glide when rows change, push-panel width (AppShell fires one resize at the end so maps and canvases redraw once). Not built yet: the chevron turn and the side-nav fold width.
 
 ---
 
@@ -446,7 +446,8 @@ This section is writing guidance for screens, as in other large design systems (
 - RTL first pass (2.0.5, Nov 20): `node tools/check-direction.mjs` is at 0 (was 165); CSS and inline styles use start/end, the rest is marked `ltr:`. Switch with `IFS.setDirection('rtl')`. Left: JS geometry (canvas and map, WidgetBoard drag, sliders and zoom, column resize, popover and tooltip placement) and charts per family.
 - Should live cursors appear on framework canvases at all (`LiveCursors` is invented)?
 - Not decided yet, no rules: states and focus (S1–S3; the focus ring stays as rule 1.6), loading (L1–L4), data viz (D1–D9).
-- Motion still to build (rule 1.8): exit animations, the tab-change table-height glide, push-panel width animation.
+- Motion still to build (rule 1.8): the chevron turn and the side-nav fold width.
+- Select XL inner field: 36 today (2.0.4); on the ladder it would be m (32 in Comfortable). Not decided.
 - Light theme: `color-scheme` and `IFS.setTheme` are in; the Light values come right after phase 1. Primary button hover: to decide.
 - `FormCard`: "a form on a page" (components.md) vs a card built like a dialog; settle the wording.
 - Cooper orb gap: 12 or 24.

@@ -66,7 +66,7 @@
 .ifs-node-card--user{width:280px;min-height:5.375rem}
 /* Hover / drag: Figma adds a 20% linear gradient (#000 → #666) over the fill. */
 .ifs-node-card--solid:hover,.ifs-node-card--solid[data-state=hover],.ifs-node-card--solid.ifs-node-card--drag{
-  background:linear-gradient(135deg,rgba(0,0,0,.2),rgba(102,102,102,.2)) /* raw in Figma */,var(--nc-fill);--nc-stroke:var(--color-border-soft)}
+  background:linear-gradient(135deg,var(--color-background-sheen-from),var(--color-background-sheen-to)) /* raw in Figma */,var(--nc-fill);--nc-stroke:var(--color-border-soft)}
 .ifs-node-card:not(.ifs-node-card--solid):hover,.ifs-node-card:not(.ifs-node-card--solid)[data-state=hover],.ifs-node-card:not(.ifs-node-card--solid).ifs-node-card--drag{
   --nc-fill:var(--color-background-neutral)}
 .ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-3);cursor:grabbing}
@@ -144,7 +144,7 @@
 /* ---------- map-pin-teardrop (43:2020) ---------- */ /* px on purpose: map pins are map geometry and keep their size at any text size */
 .ifs-map-pin{--pin:var(--color-icon-softer);--pin-border:var(--color-icon-softer);--pin-bw:0.72px /* raw in Figma */;
   position:relative;display:inline-block;width:25px;height:31px;margin:0;padding:0;border:0;background:none;cursor:pointer;
-  filter:drop-shadow(0 0 3.6px rgba(0,0,0,.25)) /* raw in Figma: DROP_SHADOW 7.2 */}
+  filter:drop-shadow(0 0 3.6px var(--color-shadow-floating)) /* raw in Figma: DROP_SHADOW 7.2 */}
 .ifs-map-pin--error{--pin:var(--color-icon-danger);--pin-border:var(--color-icon-danger)}
 .ifs-map-pin--warning{--pin:var(--color-icon-warning);--pin-border:var(--color-icon-warning)}
 /* Teardrop = 23px circle + tail, white fill, status stroke OUTSIDE. */
@@ -157,7 +157,7 @@
 .ifs-map-pin--selected{width:27px;height:33px;--pin-bw:var(--border-width-selected);filter:drop-shadow(var(--drop-shadow-pin))}
 .ifs-map-pin--selected .ifs-map-pin__shape{left:2px;top:2.5px} /* ltr: map pin art */
 .ifs-map-pin--selected .ifs-map-pin__circle{left:3.5px;top:4px} /* ltr: map pin art */
-.ifs-map-pin--opened{filter:drop-shadow(0 0 5px rgba(0,0,0,.25)) /* raw in Figma */}
+.ifs-map-pin--opened{filter:drop-shadow(0 0 5px var(--color-shadow-floating)) /* raw in Figma */}
 .ifs-map-pin--dimmed{opacity:.5}
 .ifs-map-pin:focus-visible{outline:none}
 .ifs-map-pin:focus-visible .ifs-map-pin__shape{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
@@ -166,7 +166,7 @@
 /* Figma: surface/primary + background/canvas/primary + a pattern of 4px white-5% dots (scaled 0.7, ≈20px grid). */
 .ifs-canvas{position:relative;overflow:hidden;box-sizing:border-box;width:100%;height:100%;min-height:200px;outline:none;cursor:grab;touch-action:none; /* px: canvas area */
   background-color:var(--color-surface-primary);
-  background-image:radial-gradient(circle,rgba(255,255,255,.05) 1.4px,transparent 1.6px) /* raw in Figma: pattern dot */,
+  background-image:radial-gradient(circle,var(--color-background-neutral-softer) 1.4px,transparent 1.6px) /* raw in Figma: pattern dot */,
     linear-gradient(var(--color-surface-canvas),var(--color-surface-canvas));
   background-size:var(--dot-size,20px) var(--dot-size,20px),100% 100%;
   background-position:var(--dot-x,0) var(--dot-y,0),0 0}

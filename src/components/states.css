@@ -39,7 +39,7 @@
 /* Skeleton blocks. Same fill as the skeleton bars inside the Figma Loading variants (data.css .ifs-skeleton-bar),
    plus the single shared shimmer the Skeleton notes ask for (rule 6), off under reduced motion. */
 .ifs-sk{display:block;flex:none;border-radius:var(--radius-control);
-  background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.04),rgba(255,255,255,.1)) /* raw in Figma */;
+  background:linear-gradient(90deg,var(--color-background-skeleton),var(--color-background-skeleton-soft),var(--color-background-skeleton)) /* raw in Figma */;
   background-size:200% 100%;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
 .ifs-sk--circle{border-radius:var(--radius-pill)}
 .ifs-sk--block{border-radius:var(--radius-card)}

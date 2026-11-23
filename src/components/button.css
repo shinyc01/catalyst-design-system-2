@@ -57,7 +57,7 @@
   background:
     radial-gradient(ellipse 86% 98% at 50% 2%,var(--color-cooper-button-rim-center),var(--color-cooper-button-rim)),
     radial-gradient(ellipse var(--glow-size) at 99% 88%,var(--glow),var(--color-cooper-button-glow-edge)),
-    rgba(0,0,0,.36) /* element/cooper/button/fill at 60% layer opacity */;
+    var(--color-cooper-button-shade) /* element/cooper/button/fill at 60% layer opacity */;
 }
 /* Figma enlarges the glow ~2x on hover/pressed */
 .ifs-button--cooper:hover,.ifs-button--cooper[data-state=hover]{--glow:var(--color-cooper-button-glow-hover);--glow-size:135% 400%}
@@ -69,7 +69,7 @@
 .ifs-button--secondary:disabled,.ifs-icon-button--secondary:disabled{--fill:var(--color-background-neutral-soft);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
 .ifs-button--tertiary:disabled,.ifs-icon-button--tertiary:disabled{--fill:var(--color-background-neutral-soft-inverse);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-button--ghost:disabled,.ifs-icon-button--ghost:disabled{--fill:var(--color-background-transparent)}
-.ifs-button--cooper:disabled{background:rgba(0,0,0,.03)}
+.ifs-button--cooper:disabled{background:var(--color-cooper-button-fill-disabled)}
 .ifs-icon-button:disabled{color:var(--color-icon-disabled)}
 
 /* Focus */

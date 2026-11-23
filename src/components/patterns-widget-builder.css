@@ -50,7 +50,7 @@
 .ifs-widget-card--grabbable{cursor:grab;touch-action:none}
 .ifs-widget-card--drag{background:var(--color-background-neutral);cursor:grabbing;backdrop-filter:blur(var(--blur-10));
   /* Figma: border/black 3px OUTSIDE on the card, a raw #ffffff 4px OUTSIDE ring on the component, drop shadow 0 4 10.3 #000@25% */
-  box-shadow:0 0 0 3px var(--color-border-on-solid-dark),0 0 0 var(--border-width-emphasis) #ffffff /* raw in Figma */,0 4px 10.3px rgba(0,0,0,0.25)}
+  box-shadow:0 0 0 3px var(--color-border-on-solid-dark),0 0 0 var(--border-width-emphasis) var(--color-border-selected) /* raw in Figma */,0 4px 10.3px var(--color-shadow-floating)}
 .ifs-widget-card__head{display:flex;align-items:flex-start;gap:var(--space-stack)}
 .ifs-widget-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-widget-card__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-24);color:var(--color-text);

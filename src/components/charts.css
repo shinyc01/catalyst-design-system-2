@@ -39,7 +39,7 @@
 .ifs-dv-value--tertiary{color:var(--color-text-softer)}
 .ifs-dv-value--empty{min-width:1.875rem}
 .ifs-dv-value__skeleton{display:block;width:1.875rem;height:var(--size-16);
-  background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.04),rgba(255,255,255,.1)) /* raw in Figma */}
+  background:linear-gradient(90deg,var(--color-background-skeleton),var(--color-background-skeleton-soft),var(--color-background-skeleton)) /* raw in Figma */}
 
 /* ================= legend-swatch-atom (4440:32628) + info-hint-item (12:121968): one entry, layout inline | row ================= */
 .ifs-dv-legend{display:inline-flex;align-items:center;gap:var(--space-200);min-width:0;padding:var(--space-150) 0;white-space:nowrap;
@@ -66,7 +66,7 @@
 .ifs-dv-header__left{flex:1;display:flex;align-items:center;gap:var(--space-100);min-width:0}
 .ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-softer); /* same colour as the stat card title (Nov 19) */
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium: chart cards match the stat cards beside them on dashboards (Nov 19, 2.0.3; was H4) */
-.ifs-dv-header__drag{display:none;color:#9e9ea8 /* raw in Figma */;cursor:grab}
+.ifs-dv-header__drag{display:none;color:var(--color-icon-handle) /* raw in Figma */;cursor:grab}
 .ifs-dv-header__hover{display:flex;align-items:center;gap:var(--space-200);opacity:0;pointer-events:none}
 .ifs-dv-header__divider{width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
 /* Hover row: real hover / keyboard focus of the header or its card, or forced (data-state=hover) */
@@ -137,10 +137,10 @@
 .ifs-chart__grid{stroke:var(--color-border-soft);stroke-dasharray:2 4;stroke-linecap:round}
 .ifs-chart__baseline{stroke:var(--color-data-viz-baseline)}
 .ifs-chart__guide{stroke:var(--color-border);stroke-dasharray:2 4}
-.ifs-chart__refline{stroke:#ffffff /* raw in Figma */;stroke-width:1.5;stroke-dasharray:4 4}
+.ifs-chart__refline{stroke:var(--color-data-viz-reference) /* raw in Figma */;stroke-width:1.5;stroke-dasharray:4 4}
 .ifs-chart__refline--thin{stroke-width:1}
 .ifs-chart__connector{stroke:var(--color-data-viz-baseline);stroke-dasharray:2 3;stroke-linecap:round}
-.ifs-chart__slice{stroke:#0f0f0f /* raw in Figma */;stroke-width:2;stroke-linejoin:round}
+.ifs-chart__slice{stroke:var(--color-border-chart-gap) /* raw in Figma */;stroke-width:2;stroke-linejoin:round}
 .ifs-chart__band{fill:transparent}
 .ifs-chart__band--on{fill:var(--color-surface-secondary)}
 .ifs-chart__hit,.ifs-chart__overlay{outline:none}
