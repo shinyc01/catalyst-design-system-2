@@ -49,9 +49,9 @@ function ApprovalStatus({ type = 'empty', label, className, ...rest }) {
 
 /* ===================================================== Investment-value-impact ===================================================== */
 const IVI_TONE = {
-  loss: step => `var(--data-viz-alert-data-${step || 4})`,
-  gain: step => `var(--data-viz-deep-green-data-${step || 4})`,
-  unchanged: () => 'var(--data-viz-neutral)',
+  loss: step => `var(--color-data-viz-alert-data-${step || 4})`,
+  gain: step => `var(--color-data-viz-deep-green-data-${step || 4})`,
+  unchanged: () => 'var(--color-data-viz-neutral)',
 };
 const IVI_METRICS = [
   { title: 'Investments re-scored', value: '1,621' },

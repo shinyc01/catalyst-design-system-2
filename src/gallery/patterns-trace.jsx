@@ -11,8 +11,8 @@ export default IFS_GALLERY;
   const Row = ({ label, children }) => <div className="g-row" style={{ alignItems: 'flex-start' }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const W = ({ children, w = 340 }) => <div style={{ width: w }}>{children}</div>;
   const STAGES = ['Command', 'Value', 'Explore', 'Build', 'Plan', 'Results'].map(l => ({ value: l.toLowerCase(), label: l }));
-  const Screen = ({ children, label }) => <div aria-label={label} style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--border-base)', background: 'var(--surface-primary)' }}>{children}</div>;
-  const Demo = ({ children }) => <IFS.Inline gap="200" align="center" className="t-body-m-regular" style={{ color: 'var(--text-secondary)', margin: '0 0 8px' }}>{children}</IFS.Inline>;
+  const Screen = ({ children, label }) => <div aria-label={label} style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--color-border-soft)', background: 'var(--color-surface-primary)' }}>{children}</div>;
+  const Demo = ({ children }) => <IFS.Inline gap="200" align="center" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', margin: '0 0 8px' }}>{children}</IFS.Inline>;
 
   /* ---------------- data ---------------- */
   const GATES = [{ id: 'obj', label: 'Objective weighting' }, { id: 'strat', label: 'Strategic alignment' }, { id: 'risk', label: 'Risk balance' }, { id: 'gov', label: 'Governance flags' }];
@@ -106,7 +106,7 @@ export default IFS_GALLERY;
     return (
       <IFS.Stack gap="300" ref={ref} className="ifs-scroll" style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 12 }}>
         <div><h2 className="t-heading-h1-medium" style={{ margin: 0 }}>Executive summary</h2>
-          <p className="t-body-l-regular" style={{ color: 'var(--text-secondary)', margin: '8px 0 0' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p></div>
+          <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: '8px 0 0' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p></div>
         <IFS.StatCardsRow cards={STATS} />
         <div style={{ flex: 'none' }}><IFS.Tabs items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'align', label: 'Strategic Alignment' }]} defaultValue="impact" /></div>
         <IFS.InvestmentValueImpact style={{ flex: 'none' }} />
@@ -189,7 +189,7 @@ export default IFS_GALLERY;
     <IFS.SourceCard type="user" user={{ name: 'John Thomson' }}>"7 feeder sections show deteriorating condition indicators and increasing likelihood of reliability issues."</IFS.SourceCard>
     <IFS.SourceCard type="user" user={{ name: 'James R.', initials: 'IN', type: 'purple' }}>"Current feeder loading is approaching operational limits, reducing flexibility during future demand growth or outages."</IFS.SourceCard>
   </IFS.Stack>;
-  const P = t => <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--text-secondary)' }}>{t}</p>;
+  const P = t => <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--color-text-soft)' }}>{t}</p>;
   const BASE_SECTIONS = [
     { id: 'impact', title: 'Portfolio impact', badge: { label: '+4.8%', tone: 'success', icon: 'arrow-caret-up-filled' }, content: <>{P('Net portfolio value rises under the proposed framework, with a modest short-term trade-off across re-scored investments.')}<IFS.ReadinessFacts rows={[['Proposed value', '$2.24B ▴ 3.1%']]} /></> },
     { id: 'rescored', title: 'Investments re-scored', badge: '1,621', content: <>{P('1,621 investments were re-evaluated against the proposed objective weights.')}<IFS.ReadinessFacts rows={[['Gained', '357'], ['Lost', '519'], ['Unchanged', '745']]} /></> },

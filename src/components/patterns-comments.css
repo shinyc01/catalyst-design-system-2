@@ -3,14 +3,14 @@
 /* ---------- CommentPin — comment-pin-organism (260:47160) ----------
    Default: hug, padding 4, avatars gap -8, radius 30/100/100/2 (TL/TR/BR/BL), border/base 1px OUTSIDE.
    Hover: vertical card 347 wide, padding 12, gap 12, radius 20/20/20/2, avatars gap 6. */
-.ifs-cpin{--pin-fill:var(--background-solid-blue);all:unset;box-sizing:border-box;display:inline-flex;flex-direction:column;align-items:flex-start;
+.ifs-cpin{--pin-fill:var(--color-background-accent-blue-strong);all:unset;box-sizing:border-box;display:inline-flex;flex-direction:column;align-items:flex-start;
   gap:var(--space-300);padding:var(--space-100);
   border-radius:20px 20px 20px 2px /* raw in Figma: 30/100/100/2, which Figma clamps to half the 40px height */;background:var(--pin-fill);
-  box-shadow:0 0 0 1px var(--border-base);cursor:pointer;color:var(--text-primary);transition:border-radius .12s}
-.ifs-cpin--read{--pin-fill:var(--background-elevation-1-primary-base);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
-.ifs-cpin--cooper{--pin-fill:var(--background-solid-accent-cooper)}
+  box-shadow:0 0 0 1px var(--color-border-soft);cursor:pointer;color:var(--color-text);transition:border-radius .12s}
+.ifs-cpin--read{--pin-fill:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
+.ifs-cpin--cooper{--pin-fill:var(--color-cooper-background-strong)}
 .ifs-cpin{pointer-events:auto}
-.ifs-cpin:focus-visible{box-shadow:0 0 0 1px var(--border-base),0 0 0 2.5px var(--focus-focus-inner),0 0 0 4px var(--focus-focus-outer)}
+.ifs-cpin:focus-visible{box-shadow:0 0 0 1px var(--color-border-soft),0 0 0 2.5px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
 .ifs-cpin__avatars{display:flex;align-items:center}
 .ifs-cpin__avatars > * + *{margin-inline-start:calc(-1 * var(--space-200))}
 .ifs-cpin--open{width:21.6875rem;padding:var(--space-300);border-radius:20px 20px 20px 2px /* raw in Figma */;z-index:1}
@@ -18,27 +18,27 @@
 .ifs-cpin--open .ifs-cpin__avatars > * + *{margin-inline-start:0}
 .ifs-cpin__body{display:flex;flex-direction:column;gap:var(--space-150) /* raw in Figma */;width:100%;min-width:0}
 .ifs-cpin__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-20)}
-.ifs-cpin__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-cpin__time,.ifs-cpin__replies{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-cpin__text{color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
+.ifs-cpin__name{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-cpin__time,.ifs-cpin__replies{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cpin__text{color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
 
 /* ---------- CommentDrawerCard — comment-drawer-card (1231:170874) ----------
    380 wide, padding 12/16, gap 8. Hover: background/elevation-1/secondary. Selected: padding 4/8 around an 8px-radius box
    (background/elevation-1/secondary, border/base inside, padding 8). Focus: focus ring. */
-.ifs-cdcard{position:relative;box-sizing:border-box;padding:0;cursor:pointer;outline:none;color:var(--text-primary)}
+.ifs-cdcard{position:relative;box-sizing:border-box;padding:0;cursor:pointer;outline:none;color:var(--color-text)}
 .ifs-cdcard__box{display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-inset) var(--space-inset)}
-.ifs-cdcard:hover,.ifs-cdcard[data-state=hover],.ifs-cdcard--menu{background:var(--background-elevation-1-secondary)}
+.ifs-cdcard:hover,.ifs-cdcard[data-state=hover],.ifs-cdcard--menu{background:var(--color-background-neutral-soft)}
 .ifs-cdcard--selected,.ifs-cdcard--selected:hover{background:none;padding:var(--space-100) var(--space-200)}
 .ifs-cdcard--selected .ifs-cdcard__box{padding:var(--space-200);border-radius:var(--radius-radius-200);
-  background:var(--background-elevation-1-secondary);box-shadow:inset 0 0 0 1px var(--border-base)}
-.ifs-cdcard:focus-visible,.ifs-cdcard[data-state=focus]{border-radius:var(--radius-radius-100);box-shadow:inset 0 0 0 1.5px var(--focus-focus-inner),inset 0 0 0 3px var(--focus-focus-outer)}
+  background:var(--color-background-neutral-soft);box-shadow:inset 0 0 0 1px var(--color-border-soft)}
+.ifs-cdcard:focus-visible,.ifs-cdcard[data-state=focus]{border-radius:var(--radius-radius-100);box-shadow:inset 0 0 0 1.5px var(--color-focus-inner),inset 0 0 0 3px var(--color-focus-outer)}
 .ifs-cdcard__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:var(--size-32)}
 .ifs-cdcard__avatars{display:flex;align-items:center}
 .ifs-cdcard__avatars > * + *{margin-inline-start:calc(-1 * var(--space-200))}
 .ifs-cdcard__meta{display:flex;align-items:center;gap:var(--space-stack)}
-.ifs-cdcard__dot{width:var(--size-8);height:var(--size-8);border-radius:50%;background:var(--background-solid-blue);flex:none}
+.ifs-cdcard__dot{width:var(--size-8);height:var(--size-8);border-radius:50%;background:var(--color-background-accent-blue-strong);flex:none}
 .ifs-cdcard__buttons{display:none;align-items:center;gap:var(--space-150) /* raw in Figma */;align-self:flex-start}
 .ifs-cdcard:hover .ifs-cdcard__buttons,.ifs-cdcard:focus-within .ifs-cdcard__buttons,.ifs-cdcard[data-state] .ifs-cdcard__buttons,
 .ifs-cdcard--selected .ifs-cdcard__buttons,.ifs-cdcard--menu .ifs-cdcard__buttons{display:flex}
@@ -46,12 +46,12 @@
 .ifs-cdcard--selected .ifs-cdcard__meta,.ifs-cdcard--menu .ifs-cdcard__meta{display:none}
 .ifs-cdcard[data-state=focus] .ifs-cdcard__buttons{display:none}
 .ifs-cdcard__comment{display:flex;flex-direction:column;gap:var(--space-150) /* raw in Figma */;min-width:0}
-.ifs-cdcard__where{display:flex;align-items:center;gap:var(--space-150) /* raw in Figma */;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-cdcard__bullet{width:var(--size-4);height:var(--size-4);border-radius:50%;background:var(--icon-disabled);flex:none}
+.ifs-cdcard__where{display:flex;align-items:center;gap:var(--space-150) /* raw in Figma */;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cdcard__bullet{width:var(--size-4);height:var(--size-4);border-radius:50%;background:var(--color-icon-disabled);flex:none}
 .ifs-cdcard__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-20)}
-.ifs-cdcard__name{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-cdcard__time{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-cdcard__text{color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
+.ifs-cdcard__name{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-cdcard__time{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cdcard__text{color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 
 /* ---------- CommentCallout (kit CommentThread: resolved look, menus and @ picker are the kit's) ---------- */

@@ -17,11 +17,11 @@ const dashboardStats = [
 
 // Series fills (portfolio rows) and legend
 const dashboardSeries = [
-  { label: 'Reliability', fill: 'var(--data-viz-muted-purple-data-5)', legend: 'var(--data-viz-muted-purple-data-6)', proj: 'var(--data-viz-muted-purple-data-7)' },
-  { label: 'Financial', fill: 'var(--data-viz-steel-blue-data-4)', legend: 'var(--data-viz-steel-blue-data-4)', proj: 'var(--data-viz-steel-blue-data-6)' },
-  { label: 'Environment', fill: 'var(--data-viz-deep-green-data-5)', legend: 'var(--data-viz-deep-green-data-7)', proj: 'var(--data-viz-deep-green-data-7)' },
-  { label: 'Social', fill: 'var(--data-viz-cyan-data-6)', legend: 'var(--data-viz-cyan-data-8)', proj: 'var(--data-viz-cyan-data-8)' },
-  { label: 'Governance', fill: 'var(--data-viz-teal-data-3)', legend: 'var(--data-viz-teal-data-6)', proj: 'var(--data-viz-teal-data-6)' },
+  { label: 'Reliability', fill: 'var(--color-data-viz-muted-purple-data-5)', legend: 'var(--color-data-viz-muted-purple-data-6)', proj: 'var(--color-data-viz-muted-purple-data-7)' },
+  { label: 'Financial', fill: 'var(--color-data-viz-steel-blue-data-4)', legend: 'var(--color-data-viz-steel-blue-data-4)', proj: 'var(--color-data-viz-steel-blue-data-6)' },
+  { label: 'Environment', fill: 'var(--color-data-viz-deep-green-data-5)', legend: 'var(--color-data-viz-deep-green-data-7)', proj: 'var(--color-data-viz-deep-green-data-7)' },
+  { label: 'Social', fill: 'var(--color-data-viz-cyan-data-6)', legend: 'var(--color-data-viz-cyan-data-8)', proj: 'var(--color-data-viz-cyan-data-8)' },
+  { label: 'Governance', fill: 'var(--color-data-viz-teal-data-3)', legend: 'var(--color-data-viz-teal-data-6)', proj: 'var(--color-data-viz-teal-data-6)' },
 ];
 const dashboardPortfolio = {
   weight: [['You', [40, 35, 13, 7, 5]], ['Peer avg', [35, 25, 16, 8, 16]], ['Best in class', [38, 28, 19, 4, 11]]],
@@ -29,7 +29,7 @@ const dashboardPortfolio = {
   budget: [['You', [44, 31, 12, 6, 7]], ['Peer avg', [37, 27, 15, 9, 12]], ['Best in class', [36, 30, 18, 5, 11]]],
 };
 
-const dashboardDv = (g, n) => `var(--data-viz-${g}-data-${n})`;
+const dashboardDv = (g, n) => `var(--color-data-viz-${g}-data-${n})`;
 const dashboardColumns = {
   budget: [
     ['Reliability', [[32, dashboardDv('muted-purple', 3)], [21, dashboardDv('muted-purple', 4)], [20, dashboardDv('muted-purple', 5)], [230, dashboardDv('muted-purple', 7)]]],
@@ -87,8 +87,8 @@ function ScreenDashboard({ bp, height }) {
       actions={<CooperChip onClick={() => goScreen('cooper')}>1 Recommendation</CooperChip>} />
   );
 
-  const label = { color: 'var(--text-primary)' };
-  const muted = { color: 'var(--text-tertiary)' };
+  const label = { color: 'var(--color-text)' };
+  const muted = { color: 'var(--color-text-softer)' };
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
@@ -110,7 +110,7 @@ function ScreenDashboard({ bp, height }) {
                   <IFS.Inline gap="50" style={{ flex: '1 1 0', minWidth: 0 }}>
                     {vals.map((v, i) => (
                       <BarChartItem key={i} fill={dashboardSeries[i].fill} title={`${dashboardSeries[i].label}: ${v}%`}
-                        style={{ flex: `${v} 1 0`, ...(r > 0 ? { color: 'var(--text-on-solid-secondary)' } : null) }}>{v}%</BarChartItem>
+                        style={{ flex: `${v} 1 0`, ...(r > 0 ? { color: 'var(--color-text-on-solid-soft)' } : null) }}>{v}%</BarChartItem>
                     ))}
                   </IFS.Inline>
                 </IFS.Inline>

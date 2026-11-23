@@ -268,7 +268,7 @@ function CooperMessage({ status = 'answered', step, reasoning = [], reasoningOpe
         </div>}
         {options ? <div className="ifs-cooper-msg__block">
           {options.title && <div className="ifs-cooper-msg__h">{options.title}</div>}
-          {options.intro && <p className="ifs-cooper-msg__text" style={{ color: 'var(--text-tertiary)', font: '400 var(--type-m) var(--font-family-text)' }}>{options.intro}</p>}
+          {options.intro && <p className="ifs-cooper-msg__text" style={{ color: 'var(--color-text-softer)', font: '400 var(--type-m) var(--font-family-text)' }}>{options.intro}</p>}
           <div className="ifs-cooper-options">
             <div className="ifs-cooper-options__head"><span>Options</span><IFS.Counter>{options.items.length}</IFS.Counter></div>
             {options.items.map(o => <button key={o} type="button" className="ifs-cooper-option" onClick={() => onOption && onOption(o)}>{o}</button>)}

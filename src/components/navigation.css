@@ -8,17 +8,17 @@
 /* ---------- Shared: focus ring ---------- */
 .ifs-nav-item:focus-visible,.ifs-nav-item[data-state=focus],
 .ifs-navbar__item:focus-visible,.ifs-navbar__item[data-state=focus]{
-  outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+  outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 
 /* ---------- SideNav: navigation-panel-organism ---------- */
 .ifs-sidenav{box-sizing:border-box;display:flex;flex-direction:column;width:var(--region-sidenav);height:100%;
-  padding:var(--space-300);background:var(--surface-primary);
-  box-shadow:inset -1px 0 0 var(--border-base);overflow-y:auto}
-:where([dir="rtl"]) .ifs-sidenav{box-shadow:inset 1px 0 0 var(--border-base)} /* rtl: one-side border mirrors */
+  padding:var(--space-300);background:var(--color-surface-primary);
+  box-shadow:inset -1px 0 0 var(--color-border-soft);overflow-y:auto}
+:where([dir="rtl"]) .ifs-sidenav{box-shadow:inset 1px 0 0 var(--color-border-soft)} /* rtl: one-side border mirrors */
 .ifs-sidenav__menu{display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-sidenav__title{display:flex;align-items:center;gap:var(--space-100);height:calc(var(--control-h-s) + var(--space-100));box-sizing:border-box;
   padding:var(--space-100) var(--space-200) 0}
-.ifs-sidenav__title-text{flex:1;min-width:0;margin:0;color:var(--text-primary);
+.ifs-sidenav__title-text{flex:1;min-width:0;margin:0;color:var(--color-text);
   font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-sidenav__content{display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-300) 0;margin:0;list-style:none}
@@ -34,20 +34,20 @@
 /* Parent / Child / Submenu: 40px row, inner 28px title with 4/8 padding, radius 4 */
 .ifs-nav-item{box-sizing:border-box;display:flex;align-items:center;gap:var(--space-100);width:100%;height:var(--nav-row-h);
   margin:0;padding:0 var(--space-200);border:0;border-radius:var(--radius-radius-100);
-  background:transparent;color:var(--text-secondary);text-align:start;cursor:pointer;text-decoration:none;
+  background:transparent;color:var(--color-text-soft);text-align:start;cursor:pointer;text-decoration:none;
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);transition:background-color .12s,color .12s}
 .ifs-nav-item__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ifs-nav-item .ifs-icon{color:var(--icon-secondary)}
+.ifs-nav-item .ifs-icon{color:var(--color-icon-soft)}
 .ifs-nav-item:hover,.ifs-nav-item[data-state=hover],
-.ifs-nav-item[aria-current=page],.ifs-nav-item--active{background:var(--background-elevation-1-secondary);color:var(--text-primary)}
+.ifs-nav-item[aria-current=page],.ifs-nav-item--active{background:var(--color-background-neutral-soft);color:var(--color-text)}
 .ifs-nav-item:hover .ifs-icon,.ifs-nav-item[data-state=hover] .ifs-icon,
-.ifs-nav-item[aria-current=page] .ifs-icon,.ifs-nav-item--active .ifs-icon{color:var(--icon-primary)}
-.ifs-nav-item:disabled,.ifs-nav-item[aria-disabled=true]{background:transparent;color:var(--text-disabled);cursor:not-allowed}
-.ifs-nav-item:disabled .ifs-icon,.ifs-nav-item[aria-disabled=true] .ifs-icon{color:var(--icon-disabled)}
+.ifs-nav-item[aria-current=page] .ifs-icon,.ifs-nav-item--active .ifs-icon{color:var(--color-icon)}
+.ifs-nav-item:disabled,.ifs-nav-item[aria-disabled=true]{background:transparent;color:var(--color-text-disabled);cursor:not-allowed}
+.ifs-nav-item:disabled .ifs-icon,.ifs-nav-item[aria-disabled=true] .ifs-icon{color:var(--color-icon-disabled)}
 /* Child: corner arrow, gap 2 */
 .ifs-nav-item--child{gap:var(--space-50)}
 /* Cooper recommended marker (cooper-system-icon 14px) */
-.ifs-nav-item__cooper{flex:none;color:var(--icon-accent-cooper)}
+.ifs-nav-item__cooper{flex:none;color:var(--color-cooper-icon)}
 /* show-button: Child shows its icon-button on hover/focus; Parent shows it always when given */
 .ifs-nav-row{position:relative;display:flex;align-items:center}
 .ifs-nav-row > .ifs-icon-button{position:absolute;inset-inline-end:var(--space-200);top:50%;transform:translateY(-50%)}
@@ -55,55 +55,55 @@
 .ifs-nav-row--child:hover > .ifs-icon-button,.ifs-nav-row--child:focus-within > .ifs-icon-button,.ifs-nav-row--child[data-state=hover] > .ifs-icon-button{opacity:1}
 .ifs-nav-row:has(> .ifs-icon-button) .ifs-nav-item{padding-inline-end:calc(var(--space-200) + var(--size-28))}
 /* Submenu: caret + Label/M/medium, tertiary; no fill on hover */
-.ifs-nav-item--submenu{gap:var(--space-100);color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-nav-item--submenu .ifs-icon{color:var(--icon-tertiary)}
-.ifs-nav-item--submenu:hover,.ifs-nav-item--submenu[data-state=hover]{background:transparent;color:var(--text-secondary)}
-.ifs-nav-item--submenu:hover .ifs-icon,.ifs-nav-item--submenu[data-state=hover] .ifs-icon{color:var(--icon-secondary)}
-.ifs-nav-item--submenu[aria-expanded=true]{background:transparent;color:var(--text-tertiary)}
-.ifs-nav-item--submenu[aria-expanded=true] .ifs-icon{color:var(--icon-tertiary)}
+.ifs-nav-item--submenu{gap:var(--space-100);color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-nav-item--submenu .ifs-icon{color:var(--color-icon-softer)}
+.ifs-nav-item--submenu:hover,.ifs-nav-item--submenu[data-state=hover]{background:transparent;color:var(--color-text-soft)}
+.ifs-nav-item--submenu:hover .ifs-icon,.ifs-nav-item--submenu[data-state=hover] .ifs-icon{color:var(--color-icon-soft)}
+.ifs-nav-item--submenu[aria-expanded=true]{background:transparent;color:var(--color-text-softer)}
+.ifs-nav-item--submenu[aria-expanded=true] .ifs-icon{color:var(--color-icon-softer)}
 /* Subtitle: section heading, 30px, Label/M/medium (sentence case) disabled colour */
 .ifs-nav-subtitle{box-sizing:border-box;display:flex;align-items:center;gap:var(--space-100);min-height:1.875rem;
   padding-block:var(--space-300) var(--space-100);padding-inline:var(--space-200) var(--space-100);
   border-radius:var(--radius-radius-150)}
-.ifs-nav-subtitle__label{flex:1;min-width:0;margin:0;color:var(--text-disabled);
+.ifs-nav-subtitle__label{flex:1;min-width:0;margin:0;color:var(--color-text-disabled);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 
 /* ---------- Tabs: tab-organism + tab ---------- */
-.ifs-tabs{display:flex;align-items:stretch;box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--border-base);overflow-x:auto;scrollbar-width:none}
+.ifs-tabs{display:flex;align-items:stretch;box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--color-border-soft);overflow-x:auto;scrollbar-width:none}
 .ifs-tab{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-150) /* raw in Figma */;flex:none;
-  margin:0;border:0;background:transparent;cursor:pointer;white-space:nowrap;color:var(--text-secondary);
+  margin:0;border:0;background:transparent;cursor:pointer;white-space:nowrap;color:var(--color-text-soft);
   --line:transparent;box-shadow:inset 0 -1px 0 var(--line);transition:color .12s,box-shadow .12s}
 .ifs-tab--m{height:var(--tab-h-m);padding:0 var(--space-200);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-tab--l{height:var(--tab-h-l);padding:0 var(--space-300);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
-.ifs-tab:hover,.ifs-tab[data-state=hover]{color:var(--text-primary)}
-.ifs-tab[aria-selected=true]{color:var(--text-primary);--line:var(--border-selected)}
+.ifs-tab:hover,.ifs-tab[data-state=hover]{color:var(--color-text)}
+.ifs-tab[aria-selected=true]{color:var(--color-text);--line:var(--color-border-selected)}
 /* Figma Focus = 1px focus-outer underline, label primary */
-.ifs-tab:focus-visible,.ifs-tab[data-state=focus]{outline:none;color:var(--text-primary);--line:var(--focus-focus-outer)}
-.ifs-tab:disabled,.ifs-tab[aria-disabled=true]{color:var(--text-disabled);cursor:not-allowed;--line:transparent}
+.ifs-tab:focus-visible,.ifs-tab[data-state=focus]{outline:none;color:var(--color-text);--line:var(--color-focus-outer)}
+.ifs-tab:disabled,.ifs-tab[aria-disabled=true]{color:var(--color-text-disabled);cursor:not-allowed;--line:transparent}
 /* counter-atom Size=S (18) */
 .ifs-tab__counter{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;height:var(--size-18);min-width:var(--size-18);
   padding:var(--space-50) var(--space-200);border-radius:10px /* raw in Figma */;
-  background:var(--surface-secondary-alpha);color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
-.ifs-tab:disabled .ifs-tab__counter,.ifs-tab[aria-disabled=true] .ifs-tab__counter{color:var(--text-disabled)}
+  background:var(--color-surface-secondary);color:var(--color-text-soft);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
+.ifs-tab:disabled .ifs-tab__counter,.ifs-tab[aria-disabled=true] .ifs-tab__counter{color:var(--color-text-disabled)}
 
 /* ---------- Breadcrumb: breadcrumb-organism + breadcrumb-atom ---------- */
 .ifs-breadcrumb{box-sizing:border-box;display:inline-flex;align-items:center;height:var(--control-h-s);
   padding-block:0;padding-inline:var(--space-200) var(--space-300);border-radius:var(--radius-radius-100);
-  background:var(--background-elevation-1-primary-base);box-shadow:inset 0 0 0 1px var(--border-base)}
+  background:var(--color-surface-elevation-1);box-shadow:inset 0 0 0 1px var(--color-border-soft)}
 .ifs-breadcrumb__list{display:flex;align-items:center;gap:var(--space-100);margin:0;padding:0;list-style:none}
 .ifs-breadcrumb__list > li{display:flex;align-items:center;gap:var(--space-100)}
-.ifs-breadcrumb__sep{width:2px;height:2px;border-radius:50%;background:var(--icon-tertiary);flex:none}
+.ifs-breadcrumb__sep{width:2px;height:2px;border-radius:50%;background:var(--color-icon-softer);flex:none}
 .ifs-crumb{display:inline-flex;align-items:center;gap:var(--space-50);height:calc(var(--control-h-s) - var(--space-100));margin:0;padding:0;border:0;background:none;
-  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;color:var(--text-tertiary);cursor:pointer}
-.ifs-crumb .ifs-icon{color:var(--icon-tertiary)}
-.ifs-crumb:hover,.ifs-crumb[data-state=hover]{color:var(--text-primary)}
-.ifs-crumb:hover .ifs-icon,.ifs-crumb[data-state=hover] .ifs-icon{color:var(--icon-primary)}
-.ifs-crumb:focus-visible,.ifs-crumb[data-state=focus]{outline:none;color:var(--text-focus)}
-.ifs-crumb:focus-visible .ifs-icon,.ifs-crumb[data-state=focus] .ifs-icon{color:var(--icon-focus)}
-.ifs-crumb:disabled,.ifs-crumb[aria-disabled=true]{color:var(--text-disabled);cursor:not-allowed}
-.ifs-crumb:disabled .ifs-icon,.ifs-crumb[aria-disabled=true] .ifs-icon{color:var(--icon-disabled)}
-.ifs-crumb--current{color:var(--text-primary);cursor:default}
-.ifs-crumb--current[aria-disabled=true]{color:var(--text-disabled)}
+  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;color:var(--color-text-softer);cursor:pointer}
+.ifs-crumb .ifs-icon{color:var(--color-icon-softer)}
+.ifs-crumb:hover,.ifs-crumb[data-state=hover]{color:var(--color-text)}
+.ifs-crumb:hover .ifs-icon,.ifs-crumb[data-state=hover] .ifs-icon{color:var(--color-icon)}
+.ifs-crumb:focus-visible,.ifs-crumb[data-state=focus]{outline:none;color:var(--color-text-focus)}
+.ifs-crumb:focus-visible .ifs-icon,.ifs-crumb[data-state=focus] .ifs-icon{color:var(--color-icon-focus)}
+.ifs-crumb:disabled,.ifs-crumb[aria-disabled=true]{color:var(--color-text-disabled);cursor:not-allowed}
+.ifs-crumb:disabled .ifs-icon,.ifs-crumb[aria-disabled=true] .ifs-icon{color:var(--color-icon-disabled)}
+.ifs-crumb--current{color:var(--color-text);cursor:default}
+.ifs-crumb--current[aria-disabled=true]{color:var(--color-text-disabled)}
 
 /* ---------- Stepper: stepper-organism + stepper-molecule (non-interactive) ---------- */
 .ifs-stepper{display:flex;align-items:center;margin:0;padding:0;list-style:none}
@@ -111,77 +111,77 @@
 .ifs-stepper > li{flex:0 0 8rem;min-width:0;display:flex}
 .ifs-step{position:relative;box-sizing:border-box;display:flex;flex-direction:column;gap:var(--space-150) /* raw in Figma */;flex:1;min-width:0;
   padding:var(--space-100);border-radius:var(--radius-radius-100)}
-.ifs-step__text{display:flex;align-items:center;gap:var(--space-100);min-width:0;color:var(--text-primary);
+.ifs-step__text{display:flex;align-items:center;gap:var(--space-100);min-width:0;color:var(--color-text);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-step__text .ifs-icon{color:var(--icon-primary)}
+.ifs-step__text .ifs-icon{color:var(--color-icon)}
 .ifs-step__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-step__line{height:var(--size-4);border-radius:100px;overflow:hidden}
-.ifs-step--completed .ifs-step__line{background:var(--icon-primary)}
+.ifs-step--completed .ifs-step__line{background:var(--color-icon)}
 /* In progress: Figma draws 1px diagonal hairlines in border/selected, 12px tall vectors at -12 gap (approximated) */
-.ifs-step--in-progress .ifs-step__line{background:repeating-linear-gradient(-60deg,var(--border-selected) 0 1px,transparent 1px 4px) /* approximates Figma's line vectors */}
-.ifs-step--not-started .ifs-step__text{color:var(--text-secondary)}
-.ifs-step--not-started .ifs-step__line{background:var(--surface-tertiary-alpha)}
-.ifs-step--active{background:var(--background-elevation-1-secondary)}
+.ifs-step--in-progress .ifs-step__line{background:repeating-linear-gradient(-60deg,var(--color-border-selected) 0 1px,transparent 1px 4px) /* approximates Figma's line vectors */}
+.ifs-step--not-started .ifs-step__text{color:var(--color-text-soft)}
+.ifs-step--not-started .ifs-step__line{background:var(--color-surface-tertiary)}
+.ifs-step--active{background:var(--color-background-neutral-soft)}
 /* Hover=True: the step shows its tooltip (non-interactive) */
 .ifs-step__tip{position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%);z-index:5;pointer-events:none; /* ltr: centred with translateX */
   padding:var(--space-150) var(--space-200);border-radius:var(--radius-radius-100);
-  background:var(--surface-tertiary-alpha);backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium));
-  color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;opacity:0;transition:opacity .12s}
+  background:var(--color-surface-tertiary);backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium));
+  color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;opacity:0;transition:opacity .12s}
 .ifs-step:hover .ifs-step__tip,.ifs-step[data-state=hover] .ifs-step__tip{opacity:1}
 
 /* ---------- Pager: pagination-organism ---------- */
 .ifs-pager{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-100);
   height:var(--size-44);padding:var(--space-200) 0}
 .ifs-pager__status{display:flex;align-items:center;gap:var(--space-100);white-space:nowrap}
-.ifs-pager__status .ifs-icon{color:var(--icon-success)}
-.ifs-pager__count{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking);color:var(--text-primary);font-variant-numeric:var(--text-numeric)}
-.ifs-pager__total{color:var(--text-disabled)}
-.ifs-pager__pct{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking);color:var(--text-tertiary);font-variant-numeric:var(--text-numeric)}
+.ifs-pager__status .ifs-icon{color:var(--color-icon-success)}
+.ifs-pager__count{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking);color:var(--color-text);font-variant-numeric:var(--text-numeric)}
+.ifs-pager__total{color:var(--color-text-disabled)}
+.ifs-pager__pct{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking);color:var(--color-text-softer);font-variant-numeric:var(--text-numeric)}
 .ifs-pager__actions{display:flex;align-items:center;gap:var(--space-stack)}
 .ifs-pager__steps{display:inline-flex;align-items:center;gap:var(--space-50);height:var(--control-h-s);border-radius:var(--radius-radius-100);
-  background:var(--element-button-tertiary-fill-default);box-shadow:inset 0 0 0 1px var(--element-button-tertiary-border-default);
+  background:var(--color-background-neutral-soft-inverse);box-shadow:inset 0 0 0 1px var(--color-border);
   backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium))}
-.ifs-pager__divider{width:1px;height:var(--size-14);background:var(--border-medium);flex:none}
+.ifs-pager__divider{width:1px;height:var(--size-14);background:var(--color-border);flex:none}
 
 /* ---------- CanvasHeader: canvas-header + canvas-container-atom ---------- */
 .ifs-canvas-header{display:flex;flex-direction:column;width:100%}
 .ifs-canvas-header__columns{box-sizing:border-box;display:flex;align-items:center;height:1.875rem;padding:var(--space-50) 0;
-  background:var(--background-elevation-1-primary-base);backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
+  background:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
 [dir="rtl"] .ifs-canvas-header__columns{direction:ltr} /* ltr: the columns line up with the canvas, which keeps LTR coordinates */
 .ifs-canvas-column{box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:var(--space-200);flex:1 1 0;min-width:0;
-  height:var(--size-26);padding:0 var(--space-500) /* raw in Figma */;box-shadow:inset -1px 0 0 var(--border-base)} /* ltr: column edge inside the LTR canvas header */
+  height:var(--size-26);padding:0 var(--space-500) /* raw in Figma */;box-shadow:inset -1px 0 0 var(--color-border-soft)} /* ltr: column edge inside the LTR canvas header */
 .ifs-canvas-column:last-child{box-shadow:none}
 .ifs-canvas-column__inner{display:flex;align-items:center;gap:var(--space-150) /* raw in Figma */;padding:var(--space-100);min-width:0}
-.ifs-canvas-column__label{color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
+.ifs-canvas-column__label{color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* zoom ruler: 1px top border + an 8px tick vector (raw vector in Figma; ticks approximated) */
-.ifs-canvas-header__ruler{box-sizing:border-box;height:0.5625rem;box-shadow:inset 0 1px 0 var(--border-base);
-  background:repeating-linear-gradient(90deg,var(--border-base) 0 1px,transparent 1px 4px) 0 1px/100% 8px no-repeat}
+.ifs-canvas-header__ruler{box-sizing:border-box;height:0.5625rem;box-shadow:inset 0 1px 0 var(--color-border-soft);
+  background:repeating-linear-gradient(90deg,var(--color-border-soft) 0 1px,transparent 1px 4px) 0 1px/100% 8px no-repeat}
 
 /* ---------- NavBar: global-header + nav-bar-page-atom ---------- */
 .ifs-navbar{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-500) /* raw in Figma */;
   width:100%;height:var(--size-48);padding:var(--space-200) var(--space-300);
-  background:var(--surface-primary-alpha);box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--border-base);
+  background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--color-border-soft);
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
 .ifs-navbar__left{display:flex;align-items:center;gap:var(--space-600) /* raw in Figma */;min-width:0}
-.ifs-navbar__logo{display:flex;align-items:center;flex:none;height:1.875rem;color:var(--text-primary)}
+.ifs-navbar__logo{display:flex;align-items:center;flex:none;height:1.875rem;color:var(--color-text)}
 .ifs-navbar__logo-fallback{display:inline-flex;align-items:center;width:9.75rem;height:1.875rem;font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking);white-space:nowrap} /* Heading/H3: wordmark fallback */
 .ifs-navbar__list{display:flex;align-items:center;gap:var(--space-200);margin:0;padding:0;list-style:none}
 .ifs-navbar__item{box-sizing:border-box;display:inline-flex;align-items:center;gap:var(--space-100);height:var(--control-h-m);
   padding:var(--space-150) var(--space-250) /* raw in Figma */;margin:0;border:0;border-radius:var(--radius-radius-100);cursor:pointer;white-space:nowrap;
-  background:var(--element-header-item-fill-default);color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
+  background:var(--color-background-transparent);color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
   transition:background-color .12s}
-.ifs-navbar__item:hover,.ifs-navbar__item[data-state=hover]{background:var(--element-header-item-fill-hover)}
-.ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--element-header-item-fill-pressed);color:var(--text-secondary)}
-.ifs-navbar__item[aria-current=page]{background:var(--element-header-item-fill-active)}
-.ifs-navbar__item:disabled,.ifs-navbar__item[aria-disabled=true]{background:var(--element-header-item-fill-disabled);color:var(--text-disabled);cursor:not-allowed}
+.ifs-navbar__item:hover,.ifs-navbar__item[data-state=hover]{background:var(--color-background-neutral)}
+.ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--color-background-neutral);color:var(--color-text-soft)}
+.ifs-navbar__item[aria-current=page]{background:var(--color-background-neutral-soft)}
+.ifs-navbar__item:disabled,.ifs-navbar__item[aria-disabled=true]{background:var(--color-background-transparent);color:var(--color-text-disabled);cursor:not-allowed}
 .ifs-navbar__actions{display:flex;align-items:center;gap:var(--space-200);flex:none}
 .ifs-navbar__buttons{display:flex;align-items:center;gap:var(--space-100)}
 /* icon-button-notification: status-indicator-atom State=Error, Stroke=True */
 /* avatar-organism Size=M (32) fallback when the avatar family isn't loaded */
 .ifs-navbar__avatar{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;width:var(--size-32);height:var(--control-h-m);flex:none;
-  border-radius:var(--radius-radius-full);background:var(--background-solid-black);box-shadow:inset 0 0 0 1px var(--border-medium);
-  color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/medium, capitals for initials */
+  border-radius:var(--radius-radius-full);background:var(--color-background-accent-black-strong);box-shadow:inset 0 0 0 1px var(--color-border);
+  color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/medium, capitals for initials */
 
 /* ---------- PageHeader: page-header ---------- */
 .ifs-page-header{position:relative;z-index:0;box-sizing:border-box;display:flex;flex-direction:column;gap:var(--space-100);
@@ -189,7 +189,7 @@
 /* Fill, divider and blur/light live on a pseudo layer: backdrop-filter on the header itself would make it the containing
    block of position:fixed descendants (popovers, modals opened from its actions) and clip them. */
 .ifs-page-header::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:var(--surface-primary-alpha);box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--border-base);
+  background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--color-border-soft);
   backdrop-filter:blur(var(--blur-light));-webkit-backdrop-filter:blur(var(--blur-light))}
 /* center slot: left and right containers share the remaining width equally so the centre is truly centred */
 .ifs-page-header__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);min-width:0}
@@ -201,7 +201,7 @@
 .ifs-page-header__bar--center .ifs-page-header__right{justify-content:flex-end;min-width:0}
 .ifs-page-header__left{display:flex;align-items:center;gap:var(--space-300);min-width:0}
 .ifs-page-header__text{display:flex;align-items:center;gap:var(--space-200);min-width:0}
-.ifs-page-header__title{margin:0;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
+.ifs-page-header__title{margin:0;color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* The title never disappears and truncates (Nov 19). It is only as wide as its text, so the ID always sits the same 8 after it (Nov 20);
    PageHeader sets its floor to 160 or its own width, whichever is smaller, and moves to two rows when even that doesn't fit. Only the title shrinks. */
@@ -213,8 +213,8 @@
 /* Below 1100: the stepper opens from the status */
 .ifs-page-header__status{display:inline-flex;flex:none}
 .ifs-page-header__status-btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target-min) /* rule 3.9 */;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:var(--radius-radius-100)}
-.ifs-page-header__status-btn:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
-.ifs-page-header__progress{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-page-header__status-btn:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-page-header__progress{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--color-text-soft);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-page-header__steps{display:flex;justify-content:center;padding:var(--space-100) 0}
 .ifs-page-header__steps > .ifs-stepper{width:100%}
 .ifs-page-header__steps > .ifs-stepper > li{flex:1 1 0}
@@ -228,8 +228,8 @@
 .ifs-page-header__row--meta{justify-content:flex-start;flex-wrap:wrap}
 .ifs-page-header__row--meta .ifs-page-header__right{margin-inline-start:auto;gap:var(--space-200)}
 .ifs-page-header__row--meta .ifs-page-header__right--wrapped{margin-inline-start:0} /* on its own line: left-aligned under the title */
-.ifs-page-header__id{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
-.ifs-page-header__divider{width:var(--border-widths-border-100);height:var(--size-20);margin:0 var(--space-50);background:var(--border-medium);flex:none}
+.ifs-page-header__id{color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap}
+.ifs-page-header__divider{width:var(--border-widths-border-100);height:var(--size-20);margin:0 var(--space-50);background:var(--color-border);flex:none}
 .ifs-page-header__right{display:flex;align-items:center;gap:var(--space-200);flex:none} /* buttons 8 apart, like every button group (Nov 19; was 16) */
 /* Title menu ▾: a standard ghost IconButton S (Nov 19); the caret sits close to the title, the box overlaps the gap */
 .ifs-page-header__menu{margin-inline-start:calc((var(--size-16) - var(--control-h-s)) / 2)} /* the caret sits as close to the title as before; the 24 box overlaps the gap */
@@ -239,11 +239,11 @@
 .ifs-page-top__title{display:flex;align-items:flex-end;gap:var(--space-200);min-width:0}
 .ifs-page-top--single .ifs-page-top__title{align-items:center;min-height:var(--size-32)}
 .ifs-page-top__text{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-200)}
-.ifs-page-top__eyebrow{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--text-tertiary);
+.ifs-page-top__eyebrow{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--color-text-softer);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-page-top__eyebrow .ifs-icon{flex:none}
-.ifs-page-top__heading{margin:0;color:var(--text-primary);font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)}
-.ifs-page-top__description{margin:0;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)}
+.ifs-page-top__heading{margin:0;color:var(--color-text);font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)}
+.ifs-page-top__description{margin:0;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)}
 .ifs-page-top__actions{display:flex;align-items:center;gap:var(--space-200);flex:none}
 .ifs-page-top__tabs{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-stack);min-height:var(--size-40);min-width:0}
 .ifs-page-top__tabs > .ifs-tabs{flex:0 1 auto;min-width:0}
@@ -257,7 +257,7 @@
 
 /* ---------- AppShell (layout only — not a Figma component) ---------- */
 .ifs-app-shell{display:grid;grid-template-columns:auto minmax(0,1fr) /* minmax: the content reflows instead of growing to its widest child */;grid-template-rows:var(--size-48) 1fr;width:100%;height:100vh;overflow:hidden;
-  background:var(--background-page);color:var(--text-primary)}
+  background:var(--color-surface-page);color:var(--color-text)}
 .ifs-app-shell__bar{grid-column:1 / -1;position:relative;z-index:3}
 .ifs-app-shell__side{grid-row:2;min-height:0;position:relative;z-index:2}
 .ifs-app-shell__main{grid-row:2;grid-column:2;display:flex;flex-direction:column;min-width:0;min-height:0;container-type:inline-size;container-name:content} /* the page grid is measured in the content area (beside the side nav), not the window */
@@ -269,8 +269,8 @@
 .ifs-app-shell--nav-overlay{grid-template-columns:var(--region-rail) minmax(0,1fr)}
 .ifs-app-shell--nav-overlay .ifs-app-shell__side{width:var(--region-rail);z-index:4}
 .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){position:absolute;inset-block:0;inset-inline-start:0;
-  box-shadow:inset -1px 0 0 var(--border-base),var(--elevation-elevation-3-primary)}
-:where([dir="rtl"]) .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){box-shadow:inset 1px 0 0 var(--border-base),var(--elevation-elevation-3-primary)} /* rtl: one-side border mirrors */
+  box-shadow:inset -1px 0 0 var(--color-border-soft),var(--elevation-elevation-3-primary)}
+:where([dir="rtl"]) .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){box-shadow:inset 1px 0 0 var(--color-border-soft),var(--elevation-elevation-3-primary)} /* rtl: one-side border mirrors */
 /* Push panel with no room (below md): a rail; it expands over the content, which keeps a rail's width free */
 .ifs-app-shell--panel-rail .ifs-app-shell__content{margin-inline-end:var(--region-rail)}
 .ifs-app-shell--panel-rail .ifs-app-shell__panel{position:absolute;inset-block:0;inset-inline-end:0;z-index:2;box-shadow:var(--elevation-elevation-3-primary)}
@@ -279,5 +279,5 @@
 .ifs-app-shell__bottom{flex:none}
 
 /* Stepper icons: Figma overrides the success icon's green to icon/primary (check reads as a cut-out) */
-.ifs-step--completed .ifs-step__text .ifs-icon path:first-child{fill:var(--icon-primary)}
-.ifs-step--completed .ifs-step__text .ifs-icon path:nth-child(2){fill:var(--surface-primary)}
+.ifs-step--completed .ifs-step__text .ifs-icon path:first-child{fill:var(--color-icon)}
+.ifs-step--completed .ifs-step__text .ifs-icon path:nth-child(2){fill:var(--color-surface-primary)}

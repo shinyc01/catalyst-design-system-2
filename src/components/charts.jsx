@@ -11,13 +11,13 @@ import { IFS } from './registry.js';
 const DV_GROUPS = ['muted-purple', 'teal', 'rose', 'steel-blue', 'deep-green', 'violet', 'cyan', 'alert'];
 const DV_STEP = 3;       // Figma core charts draw every series with data-3
 const DV_HOVER_STEP = 2; // and the hovered mark with data-2 (lighter step, same group)
-const WHITE = 'var(--data-viz-reference)'; // peer-median / reference marks
+const WHITE = 'var(--color-data-viz-reference)'; // peer-median / reference marks
 
-const dvVar = (group, step = DV_STEP) => `var(--data-viz-${group}-data-${step})`;
-// Charts use data-viz colours only (2.0.3). color = a group name ('teal', with step), a data-viz token ('var(--data-viz-teal-data-5)'),
+const dvVar = (group, step = DV_STEP) => `var(--color-data-viz-${group}-data-${step})`;
+// Charts use data-viz colours only (2.0.3). color = a group name ('teal', with step), a data-viz token ('var(--color-data-viz-teal-data-5)'),
 // 'neutral' | 'reference' | 'target' | 'band', or undefined (= palette slot i). Anything else is ignored (console warning) and the
 // palette slot is used, so a chart never draws a colour outside the data-viz palette.
-const DV_SPECIAL = { neutral: 'var(--data-viz-neutral)', reference: 'var(--data-viz-reference)', target: 'var(--data-viz-target)', band: 'var(--data-viz-band)' };
+const DV_SPECIAL = { neutral: 'var(--color-data-viz-neutral)', reference: 'var(--color-data-viz-reference)', target: 'var(--color-data-viz-target)', band: 'var(--color-data-viz-band)' };
 const dvWarned = new Set();
 function dvColor(color, i = 0, step = DV_STEP) {
   if (color && DV_SPECIAL[color]) return DV_SPECIAL[color];
@@ -158,7 +158,7 @@ function ValueLabel({ state = 'primary', children, className, ...rest }) {
 const legendColor = (color, step) => (typeof color === 'string' && /^var\(--[a-z0-9-]+\)$/.test(color.trim()) ? color.trim() : dvColor(color, 0, step));
 // Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
 // Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
-// value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--data-viz-teal-data-5)'),
+// value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--color-data-viz-teal-data-5)'),
 // or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); for non-chart legends any colour token; label; value (optional on every entry,
 // tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
 // Hover only: legend entries are not clickable (Figma).
@@ -842,13 +842,13 @@ function GaugeChart(props) {
   return (
     <ChartShell {...shellProps(props)} skeleton="ring" legend={legend} table={table}>
       <Plot p={p} label={props.title} tip={tip}>
-        <path d={arc(min, max)} fill="none" stroke="var(--border-base)" strokeWidth={22} strokeLinecap="round" />
+        <path d={arc(min, max)} fill="none" stroke="var(--color-border-soft)" strokeWidth={22} strokeLinecap="round" />
         <g tabIndex={0} role="img" aria-label={`${valueLabel}: ${format(value)}${target != null ? `, ${targetLabel} ${format(target)}` : ''}`} className="ifs-chart__hit"
           onMouseEnter={() => setOn(true)} onMouseLeave={() => setOn(false)} onFocus={() => setOn(true)} onBlur={() => setOn(false)}>
           {value > min && <path d={arc(min, value)} fill="none" stroke={on ? dvHover(color) : dvColor(color)} strokeWidth={22} strokeLinecap="round" />}
         </g>
         {reference != null && <line {...tick(reference, R - 13.5, R + 13.5)} stroke={WHITE} strokeWidth={3} strokeDasharray="4 3" />}
-        {target != null && <line {...tick(target, R - 11, R + 24)} stroke="var(--border-white)" strokeWidth={2} strokeLinecap="round" opacity={0.9} />}
+        {target != null && <line {...tick(target, R - 11, R + 24)} stroke="var(--color-border-on-solid)" strokeWidth={2} strokeLinecap="round" opacity={0.9} />}
         <text x={cx} y={cy - 40} textAnchor="middle" className="ifs-chart__gauge-value">{format(value)}</text>
         {label && <text x={cx} y={cy - 12} textAnchor="middle" className="ifs-chart__axis">{label}</text>}
         <text x={cx - R} y={cy + 30} textAnchor="middle" className="ifs-chart__axis">{format(min)}</text>
@@ -941,7 +941,7 @@ function FunnelChart(props) {
           return (
             <Hit key={i} i={i} setActive={p.setActive} label={`${d.label}: ${format(d.value)}${dp != null ? `, ${dp}% vs previous stage` : ''}`}>
               <path d={`M${cx - wt / 2},${y(i)}H${cx + wt / 2}L${cx + wb / 2},${y(i) + h}H${cx - wb / 2}Z`} fill={dvColor(isLast ? outcomeColor : color)}
-                fillOpacity={on ? Math.min(1, op + 0.15) : op} stroke={on ? 'var(--border-medium)' : 'none'} />
+                fillOpacity={on ? Math.min(1, op + 0.15) : op} stroke={on ? 'var(--color-border)' : 'none'} />
               <text x={cx} y={y(i) + h / 2} dy="0.35em" textAnchor="middle" className="ifs-chart__value">{d.label}{' '}{format(d.value)}</text>
               {d.reference != null && [-1, 1].map(s => <rect key={s} x={cx + s * wOf(d.reference) / 2 - 1} y={y(i) + h / 2 - 11} width={2} height={22} fill={WHITE} />)}
               {dp != null && <text x={cx + Math.max(wt, d.reference != null ? wOf(d.reference) : 0) / 2 + 20} y={y(i) + h / 2} dy="0.35em" className="ifs-chart__axis">{dp > 0 ? '+' : '−'}{Math.abs(dp)}%</text>}

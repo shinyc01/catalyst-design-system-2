@@ -3,33 +3,33 @@
 /* ---- Shared loading skeletons ----
    Container skeleton: background/elevation-1/secondary → surface/secondary-alpha → back (badge, avatar, card, risk).
    Bar skeleton: raw white 10% → 4% → 10% (indicator, stat-card, table-cell text bars). */
-.ifs-skeleton{background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary))}
+.ifs-skeleton{background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft))}
 .ifs-skeleton-bar{display:block;flex:none;
   background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.04),rgba(255,255,255,.1)) /* raw in Figma */}
 
 /* ---- counter-atom (88:24147) — used inside group rows and grouped notifications ---- */
 .ifs-data-counter{display:inline-flex;align-items:center;justify-content:center;flex:none;height:var(--size-18);padding:var(--space-50) var(--space-200);
-  border-radius:10px /* raw in Figma */;background:var(--surface-tertiary-alpha);color:var(--text-secondary);
+  border-radius:10px /* raw in Figma */;background:var(--color-surface-tertiary);color:var(--color-text-soft);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 
 /* ================= Badge — badge-atom (83:52162) ================= */
 .ifs-badge{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-100);flex:none;box-sizing:border-box;
-  border-radius:var(--radius-radius-full);white-space:nowrap;color:var(--text-primary);
+  border-radius:var(--radius-radius-full);white-space:nowrap;color:var(--color-text);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-badge--l{height:var(--badge-h-l);padding:var(--space-200) var(--space-250)}
 .ifs-badge--m{height:var(--badge-h-m);padding:var(--space-100) var(--space-200)}
 .ifs-badge--s{height:var(--badge-h-s);padding:0 var(--space-150)}
-.ifs-badge--white{background:var(--element-button-secondary-fill-default)}
-.ifs-badge--black{background:var(--background-color-alpha-black-strong);box-shadow:inset 0 0 0 1px var(--border-medium)}
-.ifs-badge--red{background:var(--background-color-alpha-red-base);color:var(--text-danger)}
-.ifs-badge--green{background:var(--background-color-alpha-green-base);color:var(--text-success)}
+.ifs-badge--white{background:var(--color-background-neutral-soft)}
+.ifs-badge--black{background:var(--color-background-accent-black);box-shadow:inset 0 0 0 1px var(--color-border)}
+.ifs-badge--red{background:var(--color-background-danger-soft);color:var(--color-text-danger)}
+.ifs-badge--green{background:var(--color-background-success-soft);color:var(--color-text-success)}
 .ifs-badge--borderless{box-shadow:none}
 /* info: Color=Black with label + icon recoloured to text/info + icon/info and no border (Patterns source-card 31:76682) */
-.ifs-badge--info{background:var(--background-color-alpha-black-strong);color:var(--text-info)}
-.ifs-badge--info .ifs-icon{color:var(--icon-info)}
-.ifs-badge--orange{background:var(--element-map-pin-overlay-warning);color:var(--text-warning)}
+.ifs-badge--info{background:var(--color-background-accent-black);color:var(--color-text-info)}
+.ifs-badge--info .ifs-icon{color:var(--color-icon-info)}
+.ifs-badge--orange{background:var(--color-background-warning-soft);color:var(--color-text-warning)}
 /* Color=False: no fill, caption in text/secondary, 12px icons */
-.ifs-badge--false{height:var(--size-20);padding:var(--space-100) var(--space-150);color:var(--text-secondary);
+.ifs-badge--false{height:var(--size-20);padding:var(--space-100) var(--space-150);color:var(--color-text-soft);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-badge--loading{padding:0}
 .ifs-badge--loading.ifs-badge--l{width:var(--size-36);height:var(--size-28)}
@@ -39,13 +39,13 @@
 
 /* ================= StatusIndicator — status-indicator-atom (789:39211) ================= */
 .ifs-status-indicator{display:inline-block;flex:none;width:var(--size-8);height:var(--size-8);border-radius:var(--radius-radius-full);background:var(--dot)}
-.ifs-status-indicator--default{--dot:var(--icon-disabled)}
-.ifs-status-indicator--error{--dot:var(--background-system-danger)}
-.ifs-status-indicator--success{--dot:var(--background-system-success)}
-.ifs-status-indicator--warning{--dot:var(--icon-warning)}
-.ifs-status-indicator--cooper{--dot:var(--icon-accent-cooper)}
-.ifs-status-indicator--blue{--dot:var(--icon-info)}
-.ifs-status-indicator--stroke{box-shadow:0 0 0 1.5px var(--surface-primary)}
+.ifs-status-indicator--default{--dot:var(--color-icon-disabled)}
+.ifs-status-indicator--error{--dot:var(--color-background-danger-strong)}
+.ifs-status-indicator--success{--dot:var(--color-background-success-strong)}
+.ifs-status-indicator--warning{--dot:var(--color-icon-warning)}
+.ifs-status-indicator--cooper{--dot:var(--color-cooper-icon)}
+.ifs-status-indicator--blue{--dot:var(--color-icon-info)}
+.ifs-status-indicator--stroke{box-shadow:0 0 0 1.5px var(--color-surface-primary)}
 
 /* ================= Avatar — avatar-atom (260:17144) + avatar-organism (260:19923) ================= */
 .ifs-avatar{position:relative;display:inline-flex;flex:none;width:var(--av);height:var(--av);vertical-align:middle}
@@ -57,7 +57,7 @@
 .ifs-avatar--xl{--av:var(--size-56);--av-status:var(--size-16)}
 .ifs-avatar__base{--ring:0 0 0 0 transparent;--edge:0 0 0 0 transparent;position:relative;display:flex;align-items:center;justify-content:center;
   width:100%;height:100%;box-sizing:border-box;margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);overflow:hidden;
-  background:var(--av-fill,var(--collaboration-user-16));color:var(--av-text,var(--text-on-solid));box-shadow:var(--edge),var(--ring);
+  background:var(--av-fill,var(--color-collaboration-user-16));color:var(--av-text,var(--color-text-on-solid));box-shadow:var(--edge),var(--ring);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */} /* Label/M/medium, capitals for initials (M avatar, 32) */
 button.ifs-avatar__base{cursor:pointer}
 /* initials type per organism size (Figma overrides the atom text per size) */
@@ -77,62 +77,62 @@ button.ifs-avatar__base{cursor:pointer}
 /* hover / pressed overlay ("hoverLight") */
 .ifs-avatar__overlay{position:absolute;inset:0;border-radius:inherit;z-index:1;background:transparent;pointer-events:none}
 
-.ifs-avatar--black{--av-fill:var(--collaboration-user-16)}
-.ifs-avatar--red{--av-fill:var(--collaboration-user-12)}
-.ifs-avatar--dark-orange{--av-fill:var(--collaboration-user-1)}
-.ifs-avatar--orange{--av-fill:var(--collaboration-user-7);--av-text:var(--text-on-solid-dark)}
-.ifs-avatar--yellow{--av-fill:var(--collaboration-user-13);--av-text:var(--text-on-solid-dark)}
-.ifs-avatar--brown{--av-fill:var(--collaboration-user-9)}
-.ifs-avatar--dark-blue{--av-fill:var(--collaboration-user-2)}
-.ifs-avatar--blue{--av-fill:var(--collaboration-user-10)}
-.ifs-avatar--light-blue{--av-fill:var(--collaboration-user-4);--av-text:var(--text-on-solid-dark)}
-.ifs-avatar--green{--av-fill:var(--collaboration-user-3)}
-.ifs-avatar--lime{--av-fill:var(--collaboration-user-6);--av-text:var(--text-on-solid-dark)}
-.ifs-avatar--dark-purple{--av-fill:var(--collaboration-user-8)}
-.ifs-avatar--purple{--av-fill:var(--collaboration-user-14)}
-.ifs-avatar--light-purple{--av-fill:var(--collaboration-user-11);--av-text:var(--text-on-solid-dark)}
-.ifs-avatar--dark-pink{--av-fill:var(--collaboration-user-5)}
-.ifs-avatar--light-pink{--av-fill:var(--collaboration-user-15);--av-text:var(--text-on-solid-dark)}
-.ifs-avatar--image .ifs-avatar__base,.ifs-avatar--cooper .ifs-avatar__base{--edge:0 0 0 1px var(--border-medium)}
+.ifs-avatar--black{--av-fill:var(--color-collaboration-user-16)}
+.ifs-avatar--red{--av-fill:var(--color-collaboration-user-12)}
+.ifs-avatar--dark-orange{--av-fill:var(--color-collaboration-user-1)}
+.ifs-avatar--orange{--av-fill:var(--color-collaboration-user-7);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--yellow{--av-fill:var(--color-collaboration-user-13);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--brown{--av-fill:var(--color-collaboration-user-9)}
+.ifs-avatar--dark-blue{--av-fill:var(--color-collaboration-user-2)}
+.ifs-avatar--blue{--av-fill:var(--color-collaboration-user-10)}
+.ifs-avatar--light-blue{--av-fill:var(--color-collaboration-user-4);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--green{--av-fill:var(--color-collaboration-user-3)}
+.ifs-avatar--lime{--av-fill:var(--color-collaboration-user-6);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--dark-purple{--av-fill:var(--color-collaboration-user-8)}
+.ifs-avatar--purple{--av-fill:var(--color-collaboration-user-14)}
+.ifs-avatar--light-purple{--av-fill:var(--color-collaboration-user-11);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--dark-pink{--av-fill:var(--color-collaboration-user-5)}
+.ifs-avatar--light-pink{--av-fill:var(--color-collaboration-user-15);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--image .ifs-avatar__base,.ifs-avatar--cooper .ifs-avatar__base{--edge:0 0 0 1px var(--color-border)}
 .ifs-avatar--image .ifs-avatar__base::after{display:none}
 /* Cooper avatar: Figma draws a multi-gradient sphere image; approximated */
 .ifs-avatar--cooper{--av-fill:radial-gradient(circle at 35% 30%,#fff 0,#fbc4e6 22%,#cd9579 55%,#5a12bf 120%) /* raw in Figma */}
 .ifs-avatar--cooper .ifs-avatar__base{background:var(--av-fill)}
-.ifs-avatar--awaiting .ifs-avatar__base{background:transparent;color:var(--text-primary);border:1.5px dashed var(--border-strong)}
+.ifs-avatar--awaiting .ifs-avatar__base{background:transparent;color:var(--color-text);border:1.5px dashed var(--color-border-strong)}
 .ifs-avatar--awaiting .ifs-avatar__base::after,.ifs-avatar--inactive .ifs-avatar__base::after,.ifs-avatar--loading .ifs-avatar__base::after{display:none}
-.ifs-avatar--inactive .ifs-avatar__base{--av-fill:var(--collaboration-user-16);--av-text:var(--text-tertiary);--edge:0 0 0 1px var(--border-medium)}
-.ifs-avatar--loading .ifs-avatar__base{background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary));
-  box-shadow:inset 0 0 0 .5px var(--border-base),0 0 0 .5px var(--border-base)}
+.ifs-avatar--inactive .ifs-avatar__base{--av-fill:var(--color-collaboration-user-16);--av-text:var(--color-text-softer);--edge:0 0 0 1px var(--color-border)}
+.ifs-avatar--loading .ifs-avatar__base{background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft));
+  box-shadow:inset 0 0 0 .5px var(--color-border-soft),0 0 0 .5px var(--color-border-soft)}
 /* states */
-button.ifs-avatar__base:hover,.ifs-avatar__base[data-state=hover]{--edge:0 0 0 1px var(--border-medium)}
-button.ifs-avatar__base:hover .ifs-avatar__overlay,.ifs-avatar__base[data-state=hover] .ifs-avatar__overlay{background:var(--overlay-element-light)}
-button.ifs-avatar__base:active,.ifs-avatar__base[data-state=pressed]{--edge:0 0 0 1px var(--border-medium);color:var(--text-secondary)}
-button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state=pressed] .ifs-avatar__overlay{background:var(--overlay-screen-medium)}
-.ifs-avatar__base:focus-visible,.ifs-avatar__base[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+button.ifs-avatar__base:hover,.ifs-avatar__base[data-state=hover]{--edge:0 0 0 1px var(--color-border)}
+button.ifs-avatar__base:hover .ifs-avatar__overlay,.ifs-avatar__base[data-state=hover] .ifs-avatar__overlay{background:var(--color-overlay-element)}
+button.ifs-avatar__base:active,.ifs-avatar__base[data-state=pressed]{--edge:0 0 0 1px var(--color-border);color:var(--color-text-soft)}
+button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state=pressed] .ifs-avatar__overlay{background:var(--color-overlay-screen)}
+.ifs-avatar__base:focus-visible,.ifs-avatar__base[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 .ifs-avatar__status{position:absolute;inset-inline-end:0;bottom:0;z-index:4;width:var(--av-status);height:var(--av-status)}
 .ifs-avatar__status .ifs-risk-atom{width:100%;height:100%}
 
 /* ---- status-risk-atom (260:18430): 16 box; circle 8 (online/offline) or 14 filled disc ---- */
-.ifs-risk-atom{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-16);height:var(--size-16);color:var(--icon-primary)}
+.ifs-risk-atom{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-16);height:var(--size-16);color:var(--color-icon)}
 .ifs-risk-atom .ifs-icon{width:87.5%;height:87.5%}
-.ifs-risk-atom--online::before,.ifs-risk-atom--offline::before{content:"";width:50%;height:50%;border-radius:var(--radius-radius-full);box-shadow:0 0 0 1px var(--icon-primary)}
-.ifs-risk-atom--online::before{background:var(--background-system-success)}
-.ifs-risk-atom--offline::before{background:var(--icon-tertiary)}
-.ifs-risk-atom--check{--disc:var(--background-system-success)}
-.ifs-risk-atom--warning{--disc:var(--background-system-warning)}
-.ifs-risk-atom--error{--disc:var(--background-system-danger)}
+.ifs-risk-atom--online::before,.ifs-risk-atom--offline::before{content:"";width:50%;height:50%;border-radius:var(--radius-radius-full);box-shadow:0 0 0 1px var(--color-icon)}
+.ifs-risk-atom--online::before{background:var(--color-background-success-strong)}
+.ifs-risk-atom--offline::before{background:var(--color-icon-softer)}
+.ifs-risk-atom--check{--disc:var(--color-background-success-strong)}
+.ifs-risk-atom--warning{--disc:var(--color-background-warning-strong)}
+.ifs-risk-atom--error{--disc:var(--color-background-danger-strong)}
 
 /* ================= RiskStatus — status-risk-molecule (69:1729) ================= */
 .ifs-risk{--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;
   height:var(--size-24);margin:0;border:0;padding-block:var(--space-100);padding-inline:var(--space-100) var(--space-200);
-  border-radius:100px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-primary);white-space:nowrap;
+  border-radius:100px /* raw in Figma */;background:var(--color-surface-secondary);color:var(--color-text);white-space:nowrap;
   backdrop-filter:blur(var(--blur-soft));-webkit-backdrop-filter:blur(var(--blur-soft)) /* Figma background blur 20 */;
   box-shadow:var(--stroke),var(--ring),0 4px 24px rgba(0,0,0,.04) /* raw in Figma */;
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium: statuses are sentence case */
 button.ifs-risk{cursor:pointer}
-button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-tertiary-alpha);--stroke:0 0 0 1px var(--border-base)}
-.ifs-risk:disabled,.ifs-risk[aria-disabled=true]{cursor:not-allowed;color:var(--text-disabled);background:var(--surface-secondary-alpha);--stroke:0 0 0 1px var(--border-base)}
-.ifs-risk:focus-visible,.ifs-risk[data-state=focus]{outline:none;border-radius:var(--radius-radius-full);--ring:0 0 0 1px var(--focus-focus-inner),0 0 0 2px var(--focus-focus-outer)}
+button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface-tertiary);--stroke:0 0 0 1px var(--color-border-soft)}
+.ifs-risk:disabled,.ifs-risk[aria-disabled=true]{cursor:not-allowed;color:var(--color-text-disabled);background:var(--color-surface-secondary);--stroke:0 0 0 1px var(--color-border-soft)}
+.ifs-risk:focus-visible,.ifs-risk[data-state=focus]{outline:none;border-radius:var(--radius-radius-full);--ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-focus-outer)}
 .ifs-risk--loading{width:8.625rem}
 
 /* ================= ReadinessStatus — status-readiness-molecule (1440:5273) ================= */
@@ -142,31 +142,31 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-readiness__left{flex:1 1 auto}
 .ifs-readiness__right{flex:0 1 auto;justify-content:flex-end}
 .ifs-readiness__right--text{justify-content:flex-end}
-.ifs-readiness__icon{position:relative;display:flex;align-items:center;justify-content:center;flex:none;width:var(--size-16);height:var(--size-16);color:var(--icon-primary)}
-.ifs-readiness__label{flex:1;min-width:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;color:var(--text-primary)}
-.ifs-readiness__text{flex:1;min-width:0;text-align:end;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;color:var(--text-secondary)}
-.ifs-readiness--in-progress .ifs-readiness__label,.ifs-readiness--active .ifs-readiness__label{color:var(--text-secondary)}
+.ifs-readiness__icon{position:relative;display:flex;align-items:center;justify-content:center;flex:none;width:var(--size-16);height:var(--size-16);color:var(--color-icon)}
+.ifs-readiness__label{flex:1;min-width:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;color:var(--color-text)}
+.ifs-readiness__text{flex:1;min-width:0;text-align:end;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;color:var(--color-text-soft)}
+.ifs-readiness--in-progress .ifs-readiness__label,.ifs-readiness--active .ifs-readiness__label{color:var(--color-text-soft)}
 /* In progress / Loading: dashed ring (vector in Figma) */
-.ifs-readiness--in-progress .ifs-readiness__icon::before,.ifs-readiness--loading .ifs-readiness__icon::before{content:"";width:0.84375rem;height:0.84375rem;box-sizing:border-box;border-radius:50%;border:1.25px dashed var(--icon-tertiary)}
+.ifs-readiness--in-progress .ifs-readiness__icon::before,.ifs-readiness--loading .ifs-readiness__icon::before{content:"";width:0.84375rem;height:0.84375rem;box-sizing:border-box;border-radius:50%;border:1.25px dashed var(--color-icon-softer)}
 /* Active: 12px ring 1.5 stroke + 6px dot */
-.ifs-readiness--active .ifs-readiness__icon::before{content:"";position:absolute;width:var(--size-12);height:var(--size-12);box-sizing:border-box;border-radius:50%;border:1.5px dotted var(--icon-primary)}
-.ifs-readiness--active .ifs-readiness__icon::after{content:"";width:var(--size-6);height:var(--size-6);border-radius:50%;background:var(--icon-primary)}
+.ifs-readiness--active .ifs-readiness__icon::before{content:"";position:absolute;width:var(--size-12);height:var(--size-12);box-sizing:border-box;border-radius:50%;border:1.5px dotted var(--color-icon)}
+.ifs-readiness--active .ifs-readiness__icon::after{content:"";width:var(--size-6);height:var(--size-6);border-radius:50%;background:var(--color-icon)}
 .ifs-readiness--loading .ifs-readiness__label{flex:1;height:var(--size-16)}
 
 /* ================= Indicator — indicator-molecule (1074:180251) ================= */
-.ifs-indicator{display:inline-flex;align-items:center;flex:none;border-radius:100px /* raw in Figma */;color:var(--text-primary);white-space:nowrap}
+.ifs-indicator{display:inline-flex;align-items:center;flex:none;border-radius:100px /* raw in Figma */;color:var(--color-text);white-space:nowrap}
 .ifs-indicator--s{gap:var(--space-150);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium: statuses are sentence case (2.0.1 review) */
 .ifs-indicator--xs{gap:var(--space-100);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium, sentence case; XS and S differ only in dot size and gap */
 .ifs-indicator--xs .ifs-status-indicator{width:var(--size-6);height:var(--size-6)}
-.ifs-indicator--orange,.ifs-indicator--warning{--dot:var(--icon-warning)}
-.ifs-indicator--green,.ifs-indicator--success{--dot:var(--icon-success)}
-.ifs-indicator--red,.ifs-indicator--error{--dot:var(--icon-danger)}
-.ifs-indicator--blue,.ifs-indicator--info{--dot:var(--icon-info)}
-.ifs-indicator--purple,.ifs-indicator--accent{--dot:var(--background-solid-accent-purple)}
-.ifs-indicator--gray,.ifs-indicator--neutral{--dot:var(--icon-tertiary)}
-.ifs-indicator--cooper{--dot:var(--icon-accent-cooper)}
-.ifs-indicator--archive,.ifs-indicator--disabled,.ifs-indicator--loading{--dot:var(--icon-disabled)}
-.ifs-indicator--archive,.ifs-indicator--disabled{color:var(--text-disabled)}
+.ifs-indicator--orange,.ifs-indicator--warning{--dot:var(--color-icon-warning)}
+.ifs-indicator--green,.ifs-indicator--success{--dot:var(--color-icon-success)}
+.ifs-indicator--red,.ifs-indicator--error{--dot:var(--color-icon-danger)}
+.ifs-indicator--blue,.ifs-indicator--info{--dot:var(--color-icon-info)}
+.ifs-indicator--purple,.ifs-indicator--accent{--dot:var(--color-background-accent-purple-strong)}
+.ifs-indicator--gray,.ifs-indicator--neutral{--dot:var(--color-icon-softer)}
+.ifs-indicator--cooper{--dot:var(--color-cooper-icon)}
+.ifs-indicator--archive,.ifs-indicator--disabled,.ifs-indicator--loading{--dot:var(--color-icon-disabled)}
+.ifs-indicator--archive,.ifs-indicator--disabled{color:var(--color-text-disabled)}
 .ifs-indicator .ifs-status-indicator{background:var(--dot)}
 .ifs-indicator--s .ifs-skeleton-bar{width:2.0625rem;height:var(--size-16)}
 .ifs-indicator--xs .ifs-skeleton-bar{width:var(--size-22);height:var(--size-14)}
@@ -174,68 +174,68 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 
 /* ================= StatCard — stat-card-organism (3643:35055) ================= */
 .ifs-stat-card{display:flex;flex-direction:column;box-sizing:border-box;border-radius:var(--radius-radius-100);
-  background:var(--element-card-state-fill-default);box-shadow:0 0 0 1px var(--element-card-state-border-default)}
+  background:var(--color-surface-raised);box-shadow:0 0 0 1px var(--color-border-soft)}
 .ifs-stat-card--m{gap:var(--space-100) /* the value's line height adds ~8px of its own, so 4 reads as about the padding */;padding:var(--space-inset)}
 .ifs-stat-card--s{gap:var(--space-100);padding:var(--space-inset)}
 .ifs-stat-card__top{display:flex;align-items:center;gap:var(--space-100);min-height:var(--size-20)}
-.ifs-stat-card__title{flex:1;min-width:0;color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-stat-card__trend{display:inline-flex;align-items:center;gap:var(--space-50);flex:none;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-stat-card__trend .ifs-icon{color:var(--icon-tertiary)}
+.ifs-stat-card__title{flex:1;min-width:0;color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-stat-card__trend{display:inline-flex;align-items:center;gap:var(--space-50);flex:none;color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-stat-card__trend .ifs-icon{color:var(--color-icon-softer)}
 .ifs-stat-card__trend--down .ifs-icon{transform:rotate(180deg)}
 .ifs-stat-card__value-row{display:flex;align-items:baseline;gap:var(--space-100)}
-.ifs-stat-card__value{flex:none;color:var(--text-primary);font-variant-numeric:var(--text-numeric)}
+.ifs-stat-card__value{flex:none;color:var(--color-text);font-variant-numeric:var(--text-numeric)}
 .ifs-stat-card--m .ifs-stat-card__value{font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking)} /* Heading/H2 (review, Nov 18: H1 felt too big) */
 .ifs-stat-card--s .ifs-stat-card__value{font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking)} /* Heading/H3 */
-.ifs-stat-card__desc{flex:1;min-width:0;color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-stat-card__desc{flex:1;min-width:0;color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 /* Figma pattern use (Widget Builder 331:493002): value over a sentence-case description in Label/M/medium (Figma: Caption/regular-UPPER), gap 8 */
 .ifs-stat-card__stack{display:flex;flex-direction:column;gap:var(--space-200);min-width:0}
-.ifs-stat-card__desc--below{flex:none;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+.ifs-stat-card__desc--below{flex:none;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
 .ifs-stat-card__extra{display:flex;align-items:baseline;gap:var(--space-150)}
 .ifs-stat-card--loading .ifs-stat-card__value-row{align-items:center}
 /* compare: from → to (replaces QuickStatCard's compare variant and CompareStatValue) */
 .ifs-stat-card__compare{display:flex;flex-wrap:wrap;align-items:flex-end;gap:var(--space-100) var(--space-150);min-width:0} /* wraps "to" under "from" in a narrow card */
 .ifs-stat-card__col{display:flex;flex-direction:column;gap:var(--space-50);min-width:0}
-.ifs-stat-card__col--from .ifs-stat-card__value{color:var(--text-tertiary)}
-.ifs-stat-card__cap{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-stat-card__arrow{display:flex;align-items:center;flex:none;color:var(--icon-tertiary)}
+.ifs-stat-card__col--from .ifs-stat-card__value{color:var(--color-text-softer)}
+.ifs-stat-card__cap{color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-stat-card__arrow{display:flex;align-items:center;flex:none;color:var(--color-icon-softer)}
 /* the arrow box takes the number's font so 1lh = the number's line: centred on the number, not the caption */
 .ifs-stat-card--m .ifs-stat-card__arrow{font:var(--text-heading-h2-medium);height:1lh}
 .ifs-stat-card--s .ifs-stat-card__arrow{font:var(--text-heading-h3-medium);height:1lh}
 
 /* ================= ContentCard — content-card-organism (3643:32067) ================= */
-.ifs-content-card{--fill:var(--element-card-state-fill-default);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
+.ifs-content-card{--fill:var(--color-surface-raised);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
   position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;padding:var(--space-inset);
-  border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--text-primary);text-align:start;
+  border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--color-text);text-align:start;
   transition:background-color .12s,box-shadow .12s}
 .ifs-content-card[role=button]{cursor:pointer}
-.ifs-content-card[role=button]:hover,.ifs-content-card[data-state=hover]{--fill:var(--element-card-state-fill-hover)}
-.ifs-content-card[role=button]:active,.ifs-content-card[data-state=pressed]{--fill:var(--element-card-state-fill-pressed);--stroke:inset 0 0 0 1px var(--element-card-state-border-pressed)}
-.ifs-content-card--selected,.ifs-content-card[data-state=selected]{--fill:var(--element-card-state-fill-selected);--stroke:inset 0 0 0 1px var(--element-card-state-border-selected)}
-.ifs-content-card[data-state=drag]{--fill:var(--element-card-state-fill-drag);--stroke:inset 0 0 0 1px var(--element-card-state-border-drag)}
-.ifs-content-card:focus-visible,.ifs-content-card[data-state=focus]{outline:none;--fill:var(--surface-secondary-alpha);
-  --ring:0 0 0 2px var(--focus-focus-inner),0 0 0 4px var(--focus-focus-outer)}
+.ifs-content-card[role=button]:hover,.ifs-content-card[data-state=hover]{--fill:var(--color-surface-raised-hover)}
+.ifs-content-card[role=button]:active,.ifs-content-card[data-state=pressed]{--fill:var(--color-surface-raised-pressed);--stroke:inset 0 0 0 1px var(--color-border)}
+.ifs-content-card--selected,.ifs-content-card[data-state=selected]{--fill:var(--color-surface-raised);--stroke:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-content-card[data-state=drag]{--fill:var(--color-surface-raised-hover);--stroke:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-content-card:focus-visible,.ifs-content-card[data-state=focus]{outline:none;--fill:var(--color-surface-secondary);
+  --ring:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
 /* Cooper (content-card-organism State=Cooper, 12:6669 / 12:6715): a 4px OUTSIDE gradient stroke with a 2px OUTSIDE
    focus-inner stroke drawn over its inner half, so it reads as a 2px black gap, then a 2px gradient ring.
    Gradient brand/cooper/500-base → core/1000-base, orange at bottom-right to white at the left (Figma transform ≈ 282deg).
    text/accent-cooper and text/primary hold the same values as those primitives. */
-.ifs-content-card--cooper,.ifs-content-card[data-state=cooper]{--fill:var(--surface-secondary-alpha);--ring:0 0 0 2px var(--focus-focus-inner)}
+.ifs-content-card--cooper,.ifs-content-card[data-state=cooper]{--fill:var(--color-surface-secondary);--ring:0 0 0 2px var(--color-focus-inner)}
 .ifs-content-card--cooper::before,.ifs-content-card[data-state=cooper]::before{content:"";position:absolute;inset:-4px;padding:var(--space-50);border-radius:calc(var(--radius-radius-100) + 4px);pointer-events:none;
-  background:linear-gradient(282deg,var(--text-accent-cooper),var(--text-primary));
+  background:linear-gradient(282deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.ifs-content-card--loading{background:linear-gradient(90deg,var(--background-elevation-1-secondary),var(--surface-secondary-alpha),var(--background-elevation-1-secondary))}
+.ifs-content-card--loading{background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft))}
 .ifs-content-card__main{display:flex;gap:var(--space-200);min-width:0}
 .ifs-content-card--m{gap:var(--space-inset)}
 .ifs-content-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-content-card__head{display:flex;align-items:center;gap:var(--space-150);min-height:var(--size-20)}
-.ifs-content-card__title{flex:1;min-width:0;color:var(--text-primary)}
+.ifs-content-card__title{flex:1;min-width:0;color:var(--color-text)}
 /* meta: short info at the end of the title row (Nov 20, rule 7.21); the title keeps priority, the meta truncates first */
-.ifs-content-card__meta{flex:0 1 auto;min-width:0;max-width:50%;color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ifs-content-card__meta{flex:0 1 auto;min-width:0;max-width:50%;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-content-card--m .ifs-content-card__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* H4: every card title (Nov 19, 2.0.3; was Label/M/medium) */
 .ifs-content-card--s .ifs-content-card__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* H4: every card title (Nov 19, 2.0.3; was Label/M/medium) */
-.ifs-content-card__head > .ifs-icon{color:var(--icon-primary)}
+.ifs-content-card__head > .ifs-icon{color:var(--color-icon)}
 .ifs-content-card__lead{display:flex;align-items:center;gap:var(--space-100);flex:1;min-width:0}
-.ifs-content-card__lead > .ifs-icon{flex:none;color:var(--icon-primary)}
-.ifs-content-card__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-content-card__lead > .ifs-icon{flex:none;color:var(--color-icon)}
+.ifs-content-card__desc{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-content-card__slot{display:flex;gap:var(--space-150)}
 .ifs-content-card__buttons{display:flex;gap:var(--space-200)}
 .ifs-content-card__buttons > .ifs-button{flex:1 1 0;min-width:0}
@@ -243,8 +243,8 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 /* ================= Table — table-card-organism (4835:4031) and its parts ================= */
 /* Table card: ONE card for every table (IFS.Table with title/tabs/search, and IFS.DataTable). Figma table-card-organism.
    Padding inset, gap stack; the same in both, so a change reaches every table. */
-.ifs-table-card{position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;min-width:0;padding:var(--space-table-x);border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha)}
-.ifs-table-card__name{color:var(--text-primary);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
+.ifs-table-card{position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;min-width:0;padding:var(--space-table-x);border-radius:var(--radius-radius-200);background:var(--color-surface-secondary)}
+.ifs-table-card__name{color:var(--color-text);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
 .ifs-table-card__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-stack);min-height:var(--size-40)}
 .ifs-table-card__bar > :last-child:not(:first-child){width:22.5rem;flex:none}
 .ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0;
@@ -253,38 +253,38 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 /* content-row-molecule (4835:3501) */
 .ifs-table__row{display:grid;grid-template-columns:var(--cols);align-items:center;border-radius:var(--radius-radius-100);min-width:min-content} /* rows widen to the column minimums, so fills and hover cover the whole row */
 .ifs-table__row--header{min-height:var(--table-header-h)}
-.ifs-table__row--content{min-height:var(--ifs-table-row-h,var(--table-row-h)) /* rowHeight prop; Figma content-row 60 */;background:var(--surface-secondary-alpha);transition:background-color .12s,box-shadow .12s}
+.ifs-table__row--content{min-height:var(--ifs-table-row-h,var(--table-row-h)) /* rowHeight prop; Figma content-row 60 */;background:var(--color-surface-secondary);transition:background-color .12s,box-shadow .12s}
 /* Row hover / selected: not drawn in Figma — card state tokens */
 .ifs-table__row--clickable{cursor:pointer}
-.ifs-table__row--clickable:hover,.ifs-table__row--content[data-state=hover]{background:var(--element-card-state-fill-hover)}
-.ifs-table__row--selected{box-shadow:inset 0 0 0 1px var(--element-card-state-border-selected)}
-.ifs-table__row--clickable:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+.ifs-table__row--clickable:hover,.ifs-table__row--content[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-table__row--selected{box-shadow:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-table__row--clickable:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 /* table-header-molecule (1440:5904) */
 .ifs-table__th{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;height:var(--table-header-h);padding:var(--table-header-pad-top) var(--space-table-x) var(--table-header-pad-bottom); /* header text centred in the fixed header height (Flexy, accepted Nov 19) */
-  color:var(--text-tertiary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium: column headers in sentence case, body size (2.0.1 review) */
-.ifs-table__th:hover,.ifs-table__th[data-state=hover]{color:var(--text-secondary)}
+  color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium: column headers in sentence case, body size (2.0.1 review) */
+.ifs-table__th:hover,.ifs-table__th[data-state=hover]{color:var(--color-text-soft)}
 .ifs-table__th--right{justify-content:flex-end}
 .ifs-table__th--center{justify-content:center}
 .ifs-table__th-btn{all:unset;position:relative;display:inline-flex;min-height:var(--target-min);align-items:center;gap:var(--space-200);min-width:0;cursor:pointer;border-radius:var(--radius-radius-100)}
 /* Header text: one line; truncates with … when the column is narrower than the text (full text in the tooltip) */
 .ifs-table__th-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ifs-table__th-btn:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+.ifs-table__th-btn:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 /* table-sort-atom (1440:5921) */
-.ifs-table-sort{position:relative;display:inline-flex;flex:none;width:var(--size-16);height:var(--size-16);color:var(--icon-tertiary)}
-.ifs-table__th:hover .ifs-table-sort,.ifs-table-sort[data-state=hover]{color:var(--icon-secondary)}
+.ifs-table-sort{position:relative;display:inline-flex;flex:none;width:var(--size-16);height:var(--size-16);color:var(--color-icon-softer)}
+.ifs-table__th:hover .ifs-table-sort,.ifs-table-sort[data-state=hover]{color:var(--color-icon-soft)}
 .ifs-table-sort--asc,.ifs-table-sort--desc{color:transparent}
 .ifs-table-sort--asc::before,.ifs-table-sort--asc::after,.ifs-table-sort--desc::before,.ifs-table-sort--desc::after{
-  content:"";position:absolute;left:0.30312rem;width:0.39375rem;height:0.23125rem;background:var(--icon-disabled)} /* ltr: icon art offset */
+  content:"";position:absolute;left:0.30312rem;width:0.39375rem;height:0.23125rem;background:var(--color-icon-disabled)} /* ltr: icon art offset */
 .ifs-table-sort--asc::before,.ifs-table-sort--desc::before{top:0.20625rem;clip-path:polygon(50% 0,100% 100%,0 100%)}
 .ifs-table-sort--asc::after,.ifs-table-sort--desc::after{bottom:0.20625rem;clip-path:polygon(0 0,100% 0,50% 100%)}
-.ifs-table-sort--asc::before,.ifs-table-sort--desc::after{background:var(--icon-primary)}
+.ifs-table-sort--asc::before,.ifs-table-sort--desc::after{background:var(--color-icon)}
 /* table-filter-atom (1440:5932) */
 .ifs-table-filter{position:relative;flex:none} /* a standard ghost IconButton S (Nov 19); the applied dot sits on it */
-.ifs-table-filter--applied{color:var(--icon-primary)}
-.ifs-table-filter--applied::after{content:"";position:absolute;right:1.5px;top:1.5px;width:3px;height:3px;border-radius:50%;background:var(--background-solid-accent-purple);box-shadow:0 0 0 1px var(--surface-primary)} /* ltr: badge offset on icon art */
+.ifs-table-filter--applied{color:var(--color-icon)}
+.ifs-table-filter--applied::after{content:"";position:absolute;right:1.5px;top:1.5px;width:3px;height:3px;border-radius:50%;background:var(--color-background-accent-purple-strong);box-shadow:0 0 0 1px var(--color-surface-primary)} /* ltr: badge offset on icon art */
 /* table-cell-atom (1440:5941) */
 .ifs-table__td{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;padding:0 var(--space-table-x); /* no top/bottom padding: the row height sets it (Flexy, accepted Nov 19) */
-  color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);font-variant-numeric:var(--text-numeric)} /* Body/M/regular */
+  color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);font-variant-numeric:var(--text-numeric)} /* Body/M/regular */
 /* Align=Right (Text, Text + description, Counter, Text + counter, Number): content and text end-aligned */
 .ifs-table__td--primary{font-weight:var(--text-label-m-medium-weight)} /* name / primary column keeps Label/M/medium; other cells are Body/M/regular */
 .ifs-table__td--right{justify-content:flex-end;text-align:end}
@@ -295,50 +295,50 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--surface-terti
 .ifs-table__td--status > *{flex:none}
 .ifs-table__stack{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
 .ifs-table__stack--user{gap:var(--space-50)}
-.ifs-table__desc{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-table__username{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-table__status-desc{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-table__trend{display:inline-flex;align-items:center;gap:var(--space-50);color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-table__trend .ifs-icon{color:var(--icon-tertiary)}
+.ifs-table__desc{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-table__username{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-table__status-desc{color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-table__trend{display:inline-flex;align-items:center;gap:var(--space-50);color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-table__trend .ifs-icon{color:var(--color-icon-softer)}
 .ifs-table__trend--down .ifs-icon{transform:rotate(180deg)}
 .ifs-table__ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 /* group-row-molecule (4833:19072) */
 .ifs-table__group{all:unset;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--table-header-h);padding:var(--space-300);cursor:pointer;
-  border-radius:var(--radius-radius-100);background:var(--surface-tertiary-alpha);color:var(--text-tertiary);
+  border-radius:var(--radius-radius-100);background:var(--color-surface-tertiary);color:var(--color-text-softer);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-table__group .ifs-icon{color:var(--icon-tertiary)}
+.ifs-table__group .ifs-icon{color:var(--color-icon-softer)}
 .ifs-table__group .ifs-table__group-caret{transform:rotate(180deg) /* Figma rotates the caret 180° */}
 .ifs-table__group-title{flex:1;min-width:0}
 /* Locked group (Nov 20): can't open; the note says when it opens */
 .ifs-table__group--locked{cursor:default}
-.ifs-table__group-note{margin-inline-start:var(--space-200);color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
-.ifs-table__group:focus-visible{box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+.ifs-table__group-note{margin-inline-start:var(--space-200);color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+.ifs-table__group:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 
 /* ================= NotificationCard — notification-card (9943:5373) ================= */
-.ifs-notification{--fill:var(--element-card-state-fill-default);position:relative;display:flex;align-items:flex-start;gap:var(--space-stack);box-sizing:border-box;
+.ifs-notification{--fill:var(--color-surface-raised);position:relative;display:flex;align-items:flex-start;gap:var(--space-stack);box-sizing:border-box;
   padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--fill);text-align:start;transition:background-color .12s}
 .ifs-notification[role=button]{cursor:pointer}
-.ifs-notification[role=button]:hover,.ifs-notification[data-state=hover]{--fill:var(--element-card-state-fill-hover)}
-.ifs-notification[role=button]:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+.ifs-notification[role=button]:hover,.ifs-notification[data-state=hover]{--fill:var(--color-surface-raised-hover)}
+.ifs-notification[role=button]:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 .ifs-notification__lead{position:relative;flex:none;width:var(--size-32);height:var(--size-32)}
-.ifs-notification__critical{position:absolute;left:1.4375rem;top:-0.1875rem;display:inline-flex;color:var(--icon-danger)} /* ltr: badge offset on icon art */
+.ifs-notification__critical{position:absolute;left:1.4375rem;top:-0.1875rem;display:inline-flex;color:var(--color-icon-danger)} /* ltr: badge offset on icon art */
 .ifs-notification__count{position:absolute;left:var(--size-16);top:-0.5625rem;backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))} /* ltr: badge offset on icon art */
 .ifs-notification__content{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-notification__title-row{display:flex;align-items:flex-start;gap:var(--space-200)}
 .ifs-notification--has-tag .ifs-notification__title-row{min-height:var(--size-20)}
-.ifs-notification__title{flex:1;min-width:0;color:var(--text-primary);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* Label/L/medium */
-.ifs-notification__details{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-notification__title{flex:1;min-width:0;color:var(--color-text);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)} /* Label/L/medium */
+.ifs-notification__details{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-notification__meta-row{display:flex;align-items:center;gap:var(--space-150);padding-top:var(--space-50);
-  color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+  color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-notification__meta{flex:1;min-width:0}
 .ifs-notification__time{flex:none}
 .ifs-notification__actions{display:flex;gap:var(--space-200);padding-top:var(--space-200)}
 .ifs-notification__unread{display:flex;align-items:center;flex:none;width:var(--size-8);height:var(--size-20)}
 
 /* ================= ProgressBar — progress-bar-molecule (1674:1902) ================= */
-.ifs-progress{display:block;width:100%;height:var(--size-4);border-radius:var(--radius-radius-100);background:var(--surface-tertiary-alpha);overflow:hidden}
-.ifs-progress__bar{display:block;height:100%;border-radius:var(--radius-radius-100);background:var(--icon-primary);transition:width .2s}
+.ifs-progress{display:block;width:100%;height:var(--size-4);border-radius:var(--radius-radius-100);background:var(--color-surface-tertiary);overflow:hidden}
+.ifs-progress__bar{display:block;height:100%;border-radius:var(--radius-radius-100);background:var(--color-icon);transition:width .2s}
 /* showValue (progress-bar-loading 5530:11867) */
 .ifs-progress-loading{display:inline-flex;align-items:center;gap:var(--space-200);width:18.0625rem;max-width:100%}
 .ifs-progress-loading .ifs-progress{flex:1 1 auto;width:auto}
-.ifs-progress-loading__value{flex:none;min-width:1.875rem;color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
+.ifs-progress-loading__value{flex:none;min-width:1.875rem;color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}

@@ -7,7 +7,7 @@ export default IFS_GALLERY;
 {
   const { MapPinDot, MapPinDefect, MapPinFlow, MapPinPole, BarChartItem, VerticalBarChartItem, DocumentRow, DocumentsPopover } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const mapBg = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)' };
+  const mapBg = { padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
 
   /* ---------------- components ---------------- */
   IFS_GALLERY.push({ name: 'MapPinDot', figma: 'map-pin-dot (d2686af3) [patterns] (12:107153)', render: () => <IFS.Stack gap="100" style={mapBg}>
@@ -56,7 +56,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
     <Row label="number=false"><BarChartItem color={4} number={false} style={{ width: 238 }} /></Row>
-    <Row label="fill override"><BarChartItem fill="var(--data-viz-muted-purple-data-4)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
+    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-muted-purple-data-4)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
   </> });
 
   IFS_GALLERY.push({ name: 'VerticalBarChartItem', figma: 'vertical-bar-chart-item (c06b1d19) [patterns] (12:107877)', render: () => {
@@ -66,7 +66,7 @@ export default IFS_GALLERY;
       <VerticalBarChartItem segments={[{ value: 20, color: 8 }, { value: 117, color: 8 }, { value: 28, color: 7 }, { value: 25, color: 8 }]} />
       <VerticalBarChartItem state="active" segments={[{ value: 32, color: 3 }, { value: 21, color: 2 }, { value: 20, color: 5 }, { value: 117, color: 4 }]} />
       <VerticalBarChartItem active={act} onActiveChange={setAct} label="FY27" value={1.6} max={2.5}
-        segments={[{ value: 1, fill: 'var(--data-viz-muted-purple-data-4)' }]} />
+        segments={[{ value: 1, fill: 'var(--color-data-viz-muted-purple-data-4)' }]} />
     </Row>;
   } });
 
@@ -112,7 +112,7 @@ export default IFS_GALLERY;
 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px auto 1fr 40px', overflow: 'hidden',
-    background: 'var(--background-canvas-primary)', border: '1px solid var(--border-base)', boxSizing: 'content-box' };
+    background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' };
   const evidenceBtn = <IFS.EvidenceButton label="Evidence" />;
 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
@@ -121,11 +121,11 @@ export default IFS_GALLERY;
     const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
-      <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 4, background: 'var(--surface-secondary-alpha)' }}>
+      <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 4, background: 'var(--color-surface-secondary)' }}>
         <svg width="646" height="236" style={{ position: 'absolute', inset: 0 }} aria-hidden="true">
-          <path d="M20 -16 L84 78 L87 145" fill="none" stroke="var(--border-strong)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
-          <polyline points={route} fill="none" stroke="var(--element-map-pin-fill-error)" strokeOpacity=".35" strokeWidth="3.7" />
-          <polyline points={route} fill="none" stroke="var(--element-map-pin-fill-error)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
+          <path d="M20 -16 L84 78 L87 145" fill="none" stroke="var(--color-border-strong)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
+          <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="3.7" />
+          <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
         </svg>
         {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" />, `o${i}`))}
         {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" />, `d${i}`))}
@@ -147,14 +147,14 @@ export default IFS_GALLERY;
     const [sel, setSel] = React.useState(null);
     return (
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '48px 1fr', gridTemplateRows: '200px 20px', gap: '4px 0', padding: '8px 10px 0' }}>
-        <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
+        <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>
           {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           {data.map(([l, v], i) => <VerticalBarChartItem key={l} label={`${l}: $${v}M`} value={v} max={2.5} width={113} height={200}
-            active={sel === i} onActiveChange={a => setSel(a ? i : null)} segments={[{ value: 1, fill: 'var(--data-viz-muted-purple-data-4)' }]} />)}
+            active={sel === i} onActiveChange={a => setSel(a ? i : null)} segments={[{ value: 1, fill: 'var(--color-data-viz-muted-purple-data-4)' }]} />)}
         </div>
         <span />
-        <div className="t-body-m-regular" style={{ display: 'flex', justifyContent: 'space-around', color: 'var(--text-secondary)' }}>{data.map(([l]) => <span key={l}>{l}</span>)}</div>
+        <div className="t-body-m-regular" style={{ display: 'flex', justifyContent: 'space-around', color: 'var(--color-text-soft)' }}>{data.map(([l]) => <span key={l}>{l}</span>)}</div>
       </div>
     );
   }
@@ -163,9 +163,9 @@ export default IFS_GALLERY;
     return (
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '180px 1fr', rowGap: 10, padding: '16px 10px 8px', alignItems: 'center' }}>
         {rows.map(([l, v], i) => <React.Fragment key={l}>
-          <span className="t-body-m-regular" style={{ color: i === rows.length - 1 ? 'var(--text-primary)' : 'var(--text-secondary)' }}>{l}</span>
-          <div style={{ position: 'relative', height: 16, borderLeft: '1px solid var(--border-base)', borderRight: '1px solid var(--border-base)' }}>
-            <span style={{ position: 'absolute', left: '50%', top: -6, bottom: -6, borderLeft: '1px dashed var(--text-primary)' }} />
+          <span className="t-body-m-regular" style={{ color: i === rows.length - 1 ? 'var(--color-text)' : 'var(--color-text-soft)' }}>{l}</span>
+          <div style={{ position: 'relative', height: 16, borderLeft: '1px solid var(--color-border-soft)', borderRight: '1px solid var(--color-border-soft)' }}>
+            <span style={{ position: 'absolute', left: '50%', top: -6, bottom: -6, borderLeft: '1px dashed var(--color-text)' }} />
             <BarChartItem color={v < 0 ? 1 : 3} number={false} style={{ position: 'absolute', height: 16, top: 0, width: `${Math.abs(v) * 100}%`, left: v < 0 ? `${50 + v * 100}%` : '50%' }} />
           </div>
         </React.Fragment>)}
@@ -176,9 +176,9 @@ export default IFS_GALLERY;
     const kv = [['Name', 'Southern Feeder Replacement — Circuit 14B'], ['Code', 'INV-2026-0418'], ['Type', 'Capital Replacement'], ['Planning portfolio', 'FY26–27 Distribution Capital · Northern Region']];
     return (
       <div className="t-body-l-regular" style={{ width: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', padding: '0 10px 10px' }}>
-        {kv.map(([k, v]) => <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}><span style={{ color: 'var(--text-secondary)' }}>{k}</span><span>{v}</span></div>)}
-        <div style={{ borderTop: '1px solid var(--border-base)', marginTop: 6, paddingTop: 12 }}>
-          <div style={{ color: 'var(--text-secondary)' }}>Problem statement</div>
+        {kv.map(([k, v]) => <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}><span style={{ color: 'var(--color-text-soft)' }}>{k}</span><span>{v}</span></div>)}
+        <div style={{ borderTop: '1px solid var(--color-border-soft)', marginTop: 6, paddingTop: 12 }}>
+          <div style={{ color: 'var(--color-text-soft)' }}>Problem statement</div>
           <div style={{ marginTop: 6 }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
         </div>
       </div>
@@ -192,7 +192,7 @@ export default IFS_GALLERY;
       <IFS.Stack gap="300" style={{ padding: '12px 12px 24px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div><div className="t-heading-h1-medium">Investment overview</div>
-            <div className="t-body-l-regular" style={{ color: 'var(--text-secondary)', marginTop: 8 }}>High-level investment summary, key metrics, and current progress</div></div>
+            <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 8 }}>High-level investment summary, key metrics, and current progress</div></div>
           <IFS.Button type="secondary" iconLeft="chart">Widgets</IFS.Button>
         </div>
         {(() => {
@@ -221,14 +221,14 @@ export default IFS_GALLERY;
   function DemoBar({ c, extra }) {
     const chip = (f) => (
       <span key={f.name} {...c.dragSource(f)} title="Drag onto the screen" className="t-body-m-regular"
-        style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-secondary)' }}>{f.name}</span>
+        style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-soft)' }}>{f.name}</span>
     );
     return (
       <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
-        <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo — drag a file onto the screen:</span>
+        <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo — drag a file onto the screen:</span>
         {FAKE.slice(0, 2).map(chip)}
-        <span {...c.dragSource(FAKE.slice(1, 6))} className="t-body-m-regular" style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-secondary)' }}>5 files</span>
-        <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)', marginLeft: 8 }}>or add:</span>
+        <span {...c.dragSource(FAKE.slice(1, 6))} className="t-body-m-regular" style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-soft)' }}>5 files</span>
+        <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)', marginLeft: 8 }}>or add:</span>
         <IFS.Button size="s" type="tertiary" onClick={() => c.addFiles([FAKE[0]])}>Valid file</IFS.Button>
         <IFS.Button size="s" type="tertiary" onClick={() => c.addFiles([FAKE[6]])}>Unsupported (.zip)</IFS.Button>
         <IFS.Button size="s" type="tertiary" onClick={() => c.addFiles([FAKE[7]])}>Too large</IFS.Button>
@@ -280,7 +280,7 @@ export default IFS_GALLERY;
       <div style={{ ...shell, gridTemplateRows: '48px 1fr' }} aria-label={label}>
         <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />
         <div style={{ display: 'grid', gridTemplateColumns: draft ? '48px 1fr' : '240px 1fr', minHeight: 0 }}>
-          {draft ? <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--border-base)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          {draft ? <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
             : <IFS.SideNav title="Value" items={nav} defaultValue="active" />}
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
@@ -314,7 +314,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Documents on an active framework (read-only)', figma: 'Map - Overview - Documents search focused [patterns] (168:426467)', render: () => {
     const [n, setN] = React.useState(10);
     return <>
-      <IFS.Inline gap="200" align="center" style={{ marginBottom: 12 }}><span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo — number of documents:</span>
+      <IFS.Inline gap="200" align="center" style={{ marginBottom: 12 }}><span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo — number of documents:</span>
         <IFS.SegmentedControl size="s" value={String(n)} onChange={v => setN(+v)} options={['1', '7', '8', '10', '16'].map(v => ({ value: v, label: v }))} /></IFS.Inline>
       <FrameworkScreen key={n} label="Active framework, read-only documents" initial={withDates(SAMPLE.slice(0, n))} />
     </>;

@@ -69,10 +69,10 @@ function useMeasure(list, prop = 'width') {
 
 // ---------- shared bits ----------
 const Page = ({ title, intro, children }) => (
-  <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 'var(--space-section)', color: 'var(--text-primary)', maxWidth: 'var(--layout-max-content-width)' }}>
+  <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 'var(--space-section)', color: 'var(--color-text)', maxWidth: 'var(--layout-max-content-width)' }}>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-200)' }}>
       <h2 className="t-heading-h2-medium" style={{ margin: 0 }}>{title}</h2>
-      <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--text-secondary)', maxWidth: '80ch' }}>{intro} Read live from the kit's CSS. When to use each token: <code className="t-code-m-regular">guide/rules.md</code>.</p>
+      <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--color-text-soft)', maxWidth: '80ch' }}>{intro} Read live from the kit's CSS. When to use each token: <code className="t-code-m-regular">guide/rules.md</code>.</p>
     </div>
     {children}
   </div>
@@ -80,15 +80,15 @@ const Page = ({ title, intro, children }) => (
 const Group = ({ title, note, children, open = true }) => (
   <details open={open} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-stack)' }}>
     <summary className="t-heading-h3-medium" style={{ cursor: 'pointer', marginBottom: 'var(--space-stack)' }}>{title}</summary>
-    {note && <p className="t-body-m-regular" style={{ margin: '0 0 var(--space-stack)', color: 'var(--text-secondary)' }}>{note}</p>}
+    {note && <p className="t-body-m-regular" style={{ margin: '0 0 var(--space-stack)', color: 'var(--color-text-soft)' }}>{note}</p>}
     {children}
   </details>
 );
-const cell = { padding: 'var(--space-200) var(--space-300)', borderBottom: 'var(--border-widths-border-100) solid var(--border-base)', textAlign: 'start', verticalAlign: 'middle' };
+const cell = { padding: 'var(--space-200) var(--space-300)', borderBottom: 'var(--border-widths-border-100) solid var(--color-border-soft)', textAlign: 'start', verticalAlign: 'middle' };
 const Table = ({ head, rows }) => (
   <div style={{ overflowX: 'auto' }}>
     <table style={{ borderCollapse: 'collapse', width: '100%', tableLayout: 'fixed' }}>
-      <thead><tr>{head.map((h, i) => <th key={i} className="t-label-m-medium" style={{ ...cell, color: 'var(--text-secondary)' }}>{h}</th>)}</tr></thead>
+      <thead><tr>{head.map((h, i) => <th key={i} className="t-label-m-medium" style={{ ...cell, color: 'var(--color-text-soft)' }}>{h}</th>)}</tr></thead>
       <tbody>{rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j} className={j === 0 ? 't-code-m-regular' : 't-body-m-regular'} style={cell}>{c}</td>)}</tr>)}</tbody>
     </table>
   </div>
@@ -96,7 +96,7 @@ const Table = ({ head, rows }) => (
 const px = v => (v == null ? '—' : `${v}`);
 const Bar = ({ n, d }) => (
   <div data-density={d} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-200)' }}>
-    <span style={{ display: 'block', inlineSize: `var(${n})`, blockSize: 'var(--size-8)', background: 'var(--text-secondary)', borderRadius: 'var(--radius-radius-100)', flex: 'none' }} />
+    <span style={{ display: 'block', inlineSize: `var(${n})`, blockSize: 'var(--size-8)', background: 'var(--color-text-soft)', borderRadius: 'var(--radius-radius-100)', flex: 'none' }} />
   </div>
 );
 
@@ -121,10 +121,10 @@ function ColourPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(15rem, 1fr))', gap: 'var(--space-stack)' }}>
             {groups[g].map(n => (
               <div key={n} style={{ display: 'flex', gap: 'var(--space-300)', alignItems: 'center', minWidth: 0 }}>
-                <span style={{ flex: 'none', inlineSize: 'var(--size-40)', blockSize: 'var(--size-40)', borderRadius: 'var(--radius-radius-100)', background: `var(${n})`, boxShadow: 'inset 0 0 0 var(--border-widths-border-100) var(--border-base)' }} />
+                <span style={{ flex: 'none', inlineSize: 'var(--size-40)', blockSize: 'var(--size-40)', borderRadius: 'var(--radius-radius-100)', background: `var(${n})`, boxShadow: 'inset 0 0 0 var(--border-widths-border-100) var(--color-border-soft)' }} />
                 <span style={{ minWidth: 0 }}>
                   <span className="t-code-s-regular" style={{ display: 'block', overflowWrap: 'anywhere' }}>{n}</span>
-                  <span className="t-body-s-regular" style={{ color: 'var(--text-tertiary)' }}>{(c[n] || {}).raw}</span>
+                  <span className="t-body-s-regular" style={{ color: 'var(--color-text-softer)' }}>{(c[n] || {}).raw}</span>
                 </span>
               </div>
             ))}
@@ -157,11 +157,11 @@ function TypePage() {
   return (
     <Page title="Typography" intro="Every text style class (.t-*) in each density: size / line height · weight. Weights and letter-spacing are the same in every density; sizes step with density.">
       <Table head={['Style', ...DENSITIES.map(d => d[1])]} rows={list.map(s => [
-        <span>.{s}{retired(s) && <span className="t-body-s-regular" style={{ color: 'var(--text-tertiary)' }}> · retired, don't use (no uppercase text)</span>}</span>,
+        <span>.{s}{retired(s) && <span className="t-body-s-regular" style={{ color: 'var(--color-text-softer)' }}> · retired, don't use (no uppercase text)</span>}</span>,
         ...DENSITIES.map(([d]) => (
           <div data-density={d} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-100)' }}>
             <span ref={el => { refs.current[`${s}|${d}`] = el; }} className={s}>Whistler Group</span>
-            <span className="t-body-s-regular" style={{ color: 'var(--text-tertiary)' }}>{m[`${s}|${d}`] || ''}</span>
+            <span className="t-body-s-regular" style={{ color: 'var(--color-text-softer)' }}>{m[`${s}|${d}`] || ''}</span>
           </div>
         )),
       ])} />
@@ -263,8 +263,8 @@ function ShapePage() {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-500)' }}>
           {radius.map(n => (
             <div key={n} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-200)', alignItems: 'flex-start' }}>
-              <span style={{ inlineSize: 'var(--size-64)', blockSize: 'var(--size-64)', borderRadius: `var(${n})`, background: 'var(--surface-tertiary-alpha)', boxShadow: 'inset 0 0 0 var(--border-widths-border-100) var(--border-base)' }} />
-              <span className="t-code-s-regular">{n}</span><span className="t-body-s-regular" style={{ color: 'var(--text-tertiary)' }}>{px(v(n))}</span>
+              <span style={{ inlineSize: 'var(--size-64)', blockSize: 'var(--size-64)', borderRadius: `var(${n})`, background: 'var(--color-surface-tertiary)', boxShadow: 'inset 0 0 0 var(--border-widths-border-100) var(--color-border-soft)' }} />
+              <span className="t-code-s-regular">{n}</span><span className="t-body-s-regular" style={{ color: 'var(--color-text-softer)' }}>{px(v(n))}</span>
             </div>
           ))}
         </div>
@@ -274,8 +274,8 @@ function ShapePage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(16rem, 1fr))', gap: 'var(--space-500)' }}>
           {shadows.map(n => (
             <div key={n} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-200)' }}>
-              <span style={{ blockSize: 'var(--size-64)', borderRadius: 'var(--radius-radius-200)', background: 'var(--surface-secondary-alpha)', boxShadow: `var(${n})` }} />
-              <span className="t-code-s-regular">{n}</span><span className="t-body-s-regular" style={{ color: 'var(--text-tertiary)', overflowWrap: 'anywhere' }}>{raw(n)}</span>
+              <span style={{ blockSize: 'var(--size-64)', borderRadius: 'var(--radius-radius-200)', background: 'var(--color-surface-secondary)', boxShadow: `var(${n})` }} />
+              <span className="t-code-s-regular">{n}</span><span className="t-body-s-regular" style={{ color: 'var(--color-text-softer)', overflowWrap: 'anywhere' }}>{raw(n)}</span>
             </div>
           ))}
         </div>

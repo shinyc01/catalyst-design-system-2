@@ -8,7 +8,7 @@ export default IFS_GALLERY;
   const { Tooltip, Alert, Snackbar, Modal, Drawer, Panel, Popover, FloatingBar, Overlay, Button, IconButton } = IFS;
   const Row = ({ label, children, top }) => <div className="g-row" style={top ? { alignItems: 'flex-start' } : undefined}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Live = ({ children }) => <Row label="live">{children}</Row>;
-  const Filler = ({ h = 120, children }) => <div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', minHeight: h }}>{children}</div>;
+  const Filler = ({ h = 120, children }) => <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', minHeight: h }}>{children}</div>;
   const Black = ({ children }) => <IFS.Inline gap="600" align="center" style={{ background: '#000', padding: 16 }}>{children}</IFS.Inline>;
 
   IFS_GALLERY.push({ name: 'Tooltip', figma: 'tooltip-organism (67:6151)', render: () => <>
@@ -69,8 +69,8 @@ export default IFS_GALLERY;
     </>;
   }
 
-  const Seg = () => <div className="t-body-m-regular" style={{ height: 28, borderRadius: 6, background: 'var(--surface-secondary-alpha)', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', padding: '0 8px' }}>segmented-control slot</div>;
-  const Tabs = () => <div className="t-body-m-regular" style={{ height: 40, color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', boxShadow: 'inset 0 -1px 0 var(--border-base)' }}>tab-organism slot</div>;
+  const Seg = () => <div className="t-body-m-regular" style={{ height: 28, borderRadius: 6, background: 'var(--color-surface-secondary)', color: 'var(--color-text-softer)', display: 'flex', alignItems: 'center', padding: '0 8px' }}>segmented-control slot</div>;
+  const Tabs = () => <div className="t-body-m-regular" style={{ height: 40, color: 'var(--color-text-softer)', display: 'flex', alignItems: 'center', boxShadow: 'inset 0 -1px 0 var(--color-border-soft)' }}>tab-organism slot</div>;
 
   IFS_GALLERY.push({ name: 'Drawer', figma: 'drawer-organism (4394:21241)', render: () => <SurfDemoDrawer /> });
   function SurfDemoDrawer() {
@@ -101,7 +101,7 @@ export default IFS_GALLERY;
         <Panel title="Details" showEvidence={false} onClose={() => {}} actions={<Button type="tertiary" size="s" iconLeft="system-plus">Add</Button>} />
       </IFS.Inline>
     </Row>
-    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>The panels above collapse with |→ and expand from the 48px rail's ←|.</span></Row>
+    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>The panels above collapse with |→ and expand from the 48px rail's ←|.</span></Row>
   </> });
 
   function SurfPopoverSearch() {
@@ -124,7 +124,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'FloatingBar', figma: 'floating-bar-organism (7405:22521)', render: () => <SurfDemoFloatingBar /> });
   function SurfDemoFloatingBar() {
     const [open, setOpen] = React.useState(false);
-    const badge = <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 16, padding: '0 6px', borderRadius: 100, background: 'var(--background-color-alpha-red-base)', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-danger)' }}>● 3</span>;
+    const badge = <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 16, padding: '0 6px', borderRadius: 100, background: 'var(--color-background-danger-soft)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-danger)' }}>● 3</span>;
     return <>
       <Row label="default"><FloatingBar inline category="Folder" item="Item" badge={badge} secondaryAction={{ label: 'View details' }} primaryAction={{ label: 'Study area' }} onClose={() => {}} /></Row>
       <Live>

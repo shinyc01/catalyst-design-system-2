@@ -82,7 +82,7 @@ export default IFS_GALLERY;
       <DataVizGroupedBar type="vertical" showValues values={[42, 28, 18, 12]} style={{ height: 40 }} />
       <div style={{ height: 120 }} />
     </DataVizCard>
-    <div style={{ width: 558, padding: 6, borderRadius: 4, background: 'var(--surface-secondary-alpha)' }}>
+    <div style={{ width: 558, padding: 6, borderRadius: 4, background: 'var(--color-surface-secondary)' }}>
       <ColumnChart bare title="Bare chart" data={spend} valueLabel="Actual spend" format={usdAxis} height={160} />
     </div>
   </Grid> });

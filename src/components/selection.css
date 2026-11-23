@@ -5,8 +5,8 @@
 .ifs-select{position:relative;display:inline-flex;flex-direction:column;min-width:0;vertical-align:middle}
 .ifs-select--m,.ifs-select--l,.ifs-select--xl{width:100%}
 .ifs-select__trigger{
-  --f:var(--element-input-fill-default);--b:var(--element-input-border-default);--ring:0 0 0 0 transparent;
-  --tx:var(--text-tertiary);--ic:var(--icon-secondary);
+  --f:var(--color-background-input);--b:var(--color-border-input);--ring:0 0 0 0 transparent;
+  --tx:var(--color-text-softer);--ic:var(--color-icon-soft);
   display:flex;align-items:center;min-width:0;outline:none;cursor:pointer;user-select:none;
 }
 .ifs-select__field{
@@ -16,8 +16,8 @@
   transition:background-color .12s,box-shadow .12s;
 }
 .ifs-select__value{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.ifs-select__input{flex:1 1 auto;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;color:var(--text-primary);font:inherit;letter-spacing:inherit}
-.ifs-select__input::placeholder{color:var(--text-tertiary)}
+.ifs-select__input{flex:1 1 auto;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;color:var(--color-text);font:inherit;letter-spacing:inherit}
+.ifs-select__input::placeholder{color:var(--color-text-softer)}
 .ifs-select__clear{flex:none} /* a standard ghost IconButton S (Nov 19) */
 .ifs-select__caret,.ifs-select__loader,.ifs-select__icon{color:var(--ic)}
 .ifs-select__loader{animation:ifs-select-spin 1s linear infinite}
@@ -28,15 +28,15 @@
 .ifs-select--l .ifs-select__field{height:var(--control-h-l);padding-block:0;padding-inline:var(--space-300) var(--space-200);border-radius:var(--radius-radius-200)}
 .ifs-select--xl .ifs-select__trigger{
   height:var(--size-44);gap:var(--space-200);padding-block:var(--space-100);padding-inline:var(--space-200) var(--space-100);
-  border-radius:var(--radius-radius-200);background:var(--element-input-fill-default);
+  border-radius:var(--radius-radius-200);background:var(--color-background-input);
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.1) /* raw in Figma */;
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));
 }
-.ifs-select--xl .ifs-select__field{height:var(--size-36);padding:0 var(--space-250);border-radius:var(--radius-radius-150);background:var(--surface-primary)}
-.ifs-select__label{flex:none;color:var(--text-secondary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-select--xl .ifs-select__field{height:var(--size-36);padding:0 var(--space-250);border-radius:var(--radius-radius-150);background:var(--color-surface-primary)}
+.ifs-select__label{flex:none;color:var(--color-text-soft);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 /* S (32): text trigger, no box */
 .ifs-select--s .ifs-select__field{
-  --tx:var(--text-secondary);height:var(--control-h-m);padding:var(--space-200) var(--space-150);border-radius:var(--radius-radius-100);
+  --tx:var(--color-text-soft);height:var(--control-h-m);padding:var(--space-200) var(--space-150);border-radius:var(--radius-radius-100);
   background:none;box-shadow:var(--ring);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
 }
@@ -44,19 +44,19 @@
 .ifs-select--s .ifs-select__value.is-count{text-transform:none;font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 
 /* States */
-.ifs-select__value:not(.is-placeholder){color:var(--text-primary)}
+.ifs-select__value:not(.is-placeholder){color:var(--color-text)}
 .ifs-select__trigger:hover,.ifs-select__trigger[data-state=hover]{
-  --f:var(--element-input-fill-hover);--b:var(--element-input-border-hover);--tx:var(--text-primary);--ic:var(--icon-primary)}
-.ifs-select__trigger.is-filled{--ic:var(--icon-primary)}
+  --f:var(--color-background-input);--b:var(--color-border-input-hover);--tx:var(--color-text);--ic:var(--color-icon)}
+.ifs-select__trigger.is-filled{--ic:var(--color-icon)}
 .ifs-select__trigger.is-open,.ifs-select__trigger.is-loading,.ifs-select__trigger[data-state=open]{
-  --f:var(--element-input-fill-typing);--b:var(--element-input-border-typing);--tx:var(--text-primary);--ic:var(--icon-primary)}
-.ifs-select__trigger.is-error{--b:var(--element-input-border-danger)}
-.ifs-select--s .ifs-select__trigger.is-error .ifs-select__field{background:var(--element-input-fill-danger);box-shadow:inset 0 0 0 1px var(--element-input-border-danger),var(--ring)}
-.ifs-select__trigger:focus-visible,.ifs-select__trigger[data-state=focus],.ifs-combobox .ifs-select__trigger:focus-within{--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+  --f:var(--color-background-input);--b:var(--color-border-input-focus);--tx:var(--color-text);--ic:var(--color-icon)}
+.ifs-select__trigger.is-error{--b:var(--color-border-danger)}
+.ifs-select--s .ifs-select__trigger.is-error .ifs-select__field{background:var(--color-background-input);box-shadow:inset 0 0 0 1px var(--color-border-danger),var(--ring)}
+.ifs-select__trigger:focus-visible,.ifs-select__trigger[data-state=focus],.ifs-combobox .ifs-select__trigger:focus-within{--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 .ifs-select__trigger.is-disabled{cursor:not-allowed;
-  --f:var(--element-input-fill-disabled);--b:var(--element-input-border-disabled);--tx:var(--text-disabled);--ic:var(--icon-disabled)}
-.ifs-select__trigger.is-disabled .ifs-select__value,.ifs-select__trigger.is-disabled .ifs-select__label{color:var(--text-disabled)}
-.ifs-select__trigger.is-disabled .ifs-select__tag{color:var(--text-disabled)}
+  --f:var(--color-background-neutral-softer);--b:var(--color-border-input-disabled);--tx:var(--color-text-disabled);--ic:var(--color-icon-disabled)}
+.ifs-select__trigger.is-disabled .ifs-select__value,.ifs-select__trigger.is-disabled .ifs-select__label{color:var(--color-text-disabled)}
+.ifs-select__trigger.is-disabled .ifs-select__tag{color:var(--color-text-disabled)}
 
 /* Combobox: M is radius 8 in Figma (Select M is 4) */
 .ifs-combobox.ifs-select--m .ifs-select__field{border-radius:var(--radius-radius-200)}
@@ -65,7 +65,7 @@
 /* Tags inside multiple-select (badge-atom Color=White, Size=M (24)) */
 .ifs-select__tags{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:var(--space-100);overflow:hidden}
 .ifs-select__tag{flex:none;display:inline-flex;align-items:center;height:var(--control-h-s);padding:var(--space-100) var(--space-200);
-  border-radius:var(--radius-radius-full);background:var(--element-button-secondary-fill-default);color:var(--text-primary);
+  border-radius:var(--radius-radius-full);background:var(--color-background-neutral-soft);color:var(--color-text);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);text-transform:none;white-space:nowrap} /* Label/M/medium */
 
 /* ---------- Dropdown list (single-select-list-molecule 153:62054 / multiple-select-list-molecule 3273:33695) ---------- */
@@ -73,23 +73,23 @@
   position:absolute;inset-inline-start:0;inset-inline-end:0;min-width:12.5rem;z-index:var(--z-index-z-popover);
   display:flex;flex-direction:column;box-sizing:border-box;max-height:12.25rem;overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-radius-100);
-  background:var(--background-elevation-2-primary-base);box-shadow:inset 0 0 0 1px var(--border-base);
+  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 1px var(--color-border-soft);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect blur/strong */
-  scrollbar-width:thin;scrollbar-color:var(--background-elevation-1-tertiary) transparent;
+  scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;
 }
 .ifs-select__list--down{top:calc(100% + var(--space-100))}
 .ifs-select__list--up{bottom:calc(100% + var(--space-100))}
 .ifs-select__list::-webkit-scrollbar{width:8px}
-.ifs-select__list::-webkit-scrollbar-thumb{background:var(--background-elevation-1-tertiary);border:2px solid transparent;background-clip:content-box;border-radius:var(--radius-radius-200)}
+.ifs-select__list::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border:2px solid transparent;background-clip:content-box;border-radius:var(--radius-radius-200)}
 .ifs-select__list::-webkit-scrollbar-track{background:transparent}
-.ifs-select__list-title{flex:none;display:flex;align-items:center;height:calc(var(--control-h-s) + var(--space-100));padding:var(--space-100) var(--space-200);color:var(--text-secondary);
+.ifs-select__list-title{flex:none;display:flex;align-items:center;height:calc(var(--control-h-s) + var(--space-100));padding:var(--space-100) var(--space-200);color:var(--color-text-soft);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 /* combobox panels: Loading ("Searching...") and No results (empty-state-organism) */
-.ifs-select__searching{padding:var(--space-inset) 0;text-align:center;color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-select__searching{padding:var(--space-inset) 0;text-align:center;color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-select__empty-state{display:flex;flex-direction:column;align-items:center;gap:var(--space-stack);padding:var(--space-inset) 0;text-align:center}
-.ifs-select__empty-title{color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-select__empty-title{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-select__empty-body{display:flex;flex-direction:column;align-items:center;gap:var(--space-200)}
-.ifs-select__empty-text{color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)} /* Body/M/regular */
+.ifs-select__empty-text{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)} /* Body/M/regular */
 .ifs-select__empty-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-100)}
 .ifs-select__tags{position:relative}
 .ifs-select__tags-measure{position:absolute;inset-inline-start:0;top:0;display:flex;gap:var(--space-100);visibility:hidden;pointer-events:none}
@@ -98,88 +98,88 @@
 .ifs-select__option{
   flex:none;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;
   height:var(--control-h-m) /* follows density 36 / 32 / 28 */;padding:var(--space-100) var(--space-200);border-radius:var(--radius-radius-100);
-  color:var(--text-secondary);cursor:pointer;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
+  color:var(--color-text-soft);cursor:pointer;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
 }
 .ifs-select__option:has(.ifs-select__check){gap:var(--space-150)} /* multiple-select-list-atom S: gap 6 */
 .ifs-select__list--l .ifs-select__option{height:var(--control-h-l);padding:var(--space-200);font:var(--text-body-l-regular);letter-spacing:var(--text-body-l-regular-tracking)} /* Body/L/regular */
 .ifs-select__option-label{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.ifs-select__option-check{color:var(--icon-primary)}
-.ifs-select__option:hover,.ifs-select__option[data-state=hover]{background:var(--element-button-secondary-fill-hover);color:var(--text-primary)}
-.ifs-select__option.is-active{background:var(--background-elevation-1-secondary)}
-.ifs-select__option.is-selected{color:var(--text-primary)}
-.ifs-select__option.is-disabled{color:var(--text-disabled);cursor:not-allowed;background:none}
+.ifs-select__option-check{color:var(--color-icon)}
+.ifs-select__option:hover,.ifs-select__option[data-state=hover]{background:var(--color-background-neutral);color:var(--color-text)}
+.ifs-select__option.is-active{background:var(--color-background-neutral-soft)}
+.ifs-select__option.is-selected{color:var(--color-text)}
+.ifs-select__option.is-disabled{color:var(--color-text-disabled);cursor:not-allowed;background:none}
 /* checkbox drawn locally (checkbox-atom inside multiple-select-list-atom): 14×14, radius 4 */
 .ifs-select__check{flex:none;display:inline-flex;align-items:center;justify-content:center;width:var(--size-14);height:var(--size-14);border-radius:var(--radius-radius-100);
-  box-shadow:inset 0 0 0 1px var(--element-checkbox-off-border-default);color:var(--icon-primary-inverse)}
-.ifs-select__option:hover .ifs-select__check{box-shadow:inset 0 0 0 1px var(--element-checkbox-off-border-hover)}
-.ifs-select__option.is-selected .ifs-select__check{background:var(--element-checkbox-on-fill-default);box-shadow:none}
-.ifs-select__option.is-selected:hover .ifs-select__check{background:var(--element-checkbox-on-fill-hover)}
-.ifs-select__option.is-disabled .ifs-select__check{box-shadow:inset 0 0 0 1px var(--element-checkbox-off-border-disabled)}
-.ifs-select__option.is-disabled.is-selected .ifs-select__check{background:var(--element-checkbox-on-fill-disabled);box-shadow:none}
+  box-shadow:inset 0 0 0 1px var(--color-border-control);color:var(--color-icon-inverse)}
+.ifs-select__option:hover .ifs-select__check{box-shadow:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-select__option.is-selected .ifs-select__check{background:var(--color-background-neutral-stronger);box-shadow:none}
+.ifs-select__option.is-selected:hover .ifs-select__check{background:var(--color-background-neutral-stronger-hover)}
+.ifs-select__option.is-disabled .ifs-select__check{box-shadow:inset 0 0 0 1px var(--color-border-soft)}
+.ifs-select__option.is-disabled.is-selected .ifs-select__check{background:var(--color-background-neutral-soft);box-shadow:none}
 
 /* ---------- Segmented control (segmented-control-organism 1387:244501, atom 1387:244511) ---------- */
 .ifs-segmented{display:inline-flex;align-items:center;gap:var(--space-50);padding:var(--space-50);
-  border-radius:var(--radius-radius-150);background:var(--element-segmented-control-container-fill)}
+  border-radius:var(--radius-radius-150);background:var(--color-background-track)}
 .ifs-segmented__item{
-  --fill:var(--element-segmented-control-off-fill-default);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
+  --fill:var(--color-background-transparent);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
   display:inline-flex;align-items:center;justify-content:center;gap:var(--space-100);flex:none;margin:0;border:0;cursor:pointer;white-space:nowrap;
   border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);
-  color:var(--text-primary);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
+  color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
   transition:background-color .12s,box-shadow .12s;
 }
-.ifs-segmented__item .ifs-icon{color:var(--icon-primary)}
+.ifs-segmented__item .ifs-icon{color:var(--color-icon)}
 .ifs-segmented--m .ifs-segmented__item{height:var(--control-h-m);padding:var(--space-150) var(--space-250)}
 .ifs-segmented--s .ifs-segmented__item{position:relative;height:calc(var(--control-h-s) - 2 * var(--space-50));padding:0 var(--space-200)} /* S = control height outside (rule 3.5): items sit inside the 2 frame (Nov 20) */
 .ifs-segmented--s .ifs-segmented__item::after{content:'';position:absolute;inset-block:calc(-1 * var(--space-50));inset-inline:0} /* invisible hit layer: each option stays a full control height to click (rule 3.9 hit layers) */
-.ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--element-segmented-control-off-fill-hover);--stroke:inset 0 0 0 1px rgba(255,255,255,.08) /* raw in Figma */}
-.ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--element-segmented-control-off-fill-pressed);--stroke:0 0 0 0 transparent;color:var(--text-tertiary)}
-.ifs-segmented__item.is-selected{--fill:var(--element-segmented-control-on-fill-default);--stroke:inset 0 0 0 1px var(--element-segmented-control-on-border-default)}
-.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--element-segmented-control-on-fill-hover);--stroke:inset 0 0 0 1px var(--element-segmented-control-on-border-hover)}
-.ifs-segmented__item.is-selected:active,.ifs-segmented__item.is-selected[data-state=pressed]{--fill:var(--element-segmented-control-on-fill-pressed);--stroke:inset 0 0 0 1px var(--element-segmented-control-on-border-pressed)}
-.ifs-segmented__item:disabled{cursor:not-allowed;color:var(--text-disabled);--fill:var(--element-segmented-control-off-fill-disabled);--stroke:0 0 0 0 transparent}
-.ifs-segmented__item.is-selected:disabled{--fill:var(--element-segmented-control-on-fill-disabled);--stroke:inset 0 0 0 1px var(--element-segmented-control-on-border-disabled)}
-.ifs-segmented__item:disabled .ifs-icon{color:var(--icon-disabled)}
-.ifs-segmented__item:focus-visible,.ifs-segmented__item[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
+.ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 1px rgba(255,255,255,.08) /* raw in Figma */}
+.ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--color-background-neutral-softer);--stroke:0 0 0 0 transparent;color:var(--color-text-softer)}
+.ifs-segmented__item.is-selected{--fill:var(--color-background-neutral);--stroke:inset 0 0 0 1px var(--color-border-soft)}
+.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 1px var(--color-border)}
+.ifs-segmented__item.is-selected:active,.ifs-segmented__item.is-selected[data-state=pressed]{--fill:var(--color-background-neutral-softer);--stroke:inset 0 0 0 1px var(--color-border-softer)}
+.ifs-segmented__item:disabled{cursor:not-allowed;color:var(--color-text-disabled);--fill:var(--color-background-transparent);--stroke:0 0 0 0 transparent}
+.ifs-segmented__item.is-selected:disabled{--fill:var(--color-background-transparent);--stroke:inset 0 0 0 1px var(--color-border-soft)}
+.ifs-segmented__item:disabled .ifs-icon{color:var(--color-icon-disabled)}
+.ifs-segmented__item:focus-visible,.ifs-segmented__item[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 /* counter-atom Size=S (18) */
 .ifs-selection-counter{display:inline-flex;align-items:center;flex:none;height:var(--size-18);box-sizing:border-box;padding:var(--space-50) var(--space-200);
-  border-radius:10px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-secondary);
+  border-radius:10px /* raw in Figma */;background:var(--color-surface-secondary);color:var(--color-text-soft);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
 
 /* ---------- Chip (chips 832:235895) ---------- */
 .ifs-chip{
-  --fill:transparent;--stroke:inset 0 0 0 1px var(--element-chips-off-border-default);--ring:0 0 0 0 transparent;--ic:var(--icon-primary);
+  --fill:transparent;--stroke:inset 0 0 0 1px var(--color-border-soft);--ring:0 0 0 0 transparent;--ic:var(--color-icon);
   display:inline-flex;align-items:center;gap:var(--space-100);flex:none;box-sizing:border-box;height:var(--control-h-s) /* 28 / 24 / 24 */;margin:0;border:0;
   padding:var(--space-100) var(--space-150);border-radius:var(--radius-radius-full);cursor:pointer;white-space:nowrap;
-  background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--text-primary);
+  background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--color-text);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
   transition:background-color .12s,box-shadow .12s;
 }
 .ifs-chip .ifs-icon{color:var(--ic)}
-.ifs-chip:hover,.ifs-chip[data-state=hover]{--stroke:inset 0 0 0 1px var(--element-chips-off-border-hover)}
-.ifs-chip:active,.ifs-chip[data-state=pressed]{--stroke:inset 0 0 0 1px var(--element-chips-off-border-pressed);color:var(--text-secondary);--ic:var(--icon-secondary)}
-.ifs-chip:disabled{cursor:not-allowed;--stroke:inset 0 0 0 1px var(--element-chips-off-border-disabled);color:var(--text-disabled);--ic:var(--icon-disabled)}
-.ifs-chip.is-selected{--fill:var(--element-chips-on-fill-default);--stroke:0 0 0 0 transparent;color:var(--text-primary-inverse);--ic:var(--icon-primary-inverse)}
-.ifs-chip.is-selected:hover,.ifs-chip.is-selected[data-state=hover]{--fill:var(--element-chips-on-fill-hover)}
-.ifs-chip.is-selected:active,.ifs-chip.is-selected[data-state=pressed]{--fill:var(--element-chips-on-fill-pressed);color:var(--text-primary-inverse);--ic:var(--icon-primary-inverse)}
-.ifs-chip.is-selected:disabled{--fill:var(--element-chips-on-fill-disabled);color:var(--text-disabled);--ic:var(--icon-disabled)}
-.ifs-chip:focus-visible,.ifs-chip[data-state=focus]{outline:none;padding:var(--space-50) var(--space-150);--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
-.ifs-chip__indicator{flex:none;width:var(--size-6);height:var(--size-6);border-radius:50%;background:var(--icon-warning)} /* status-indicator-atom 6×6 */
-.ifs-chip__indicator--danger{background:var(--icon-danger)}
-.ifs-chip__indicator--success{background:var(--icon-success)}
-.ifs-chip__indicator--info{background:var(--icon-info)}
+.ifs-chip:hover,.ifs-chip[data-state=hover]{--stroke:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-chip:active,.ifs-chip[data-state=pressed]{--stroke:inset 0 0 0 1px var(--color-border-soft);color:var(--color-text-soft);--ic:var(--color-icon-soft)}
+.ifs-chip:disabled{cursor:not-allowed;--stroke:inset 0 0 0 1px var(--color-border-softer);color:var(--color-text-disabled);--ic:var(--color-icon-disabled)}
+.ifs-chip.is-selected{--fill:var(--color-background-neutral-stronger);--stroke:0 0 0 0 transparent;color:var(--color-text-inverse);--ic:var(--color-icon-inverse)}
+.ifs-chip.is-selected:hover,.ifs-chip.is-selected[data-state=hover]{--fill:var(--color-background-neutral-stronger-hover)}
+.ifs-chip.is-selected:active,.ifs-chip.is-selected[data-state=pressed]{--fill:var(--color-background-neutral-stronger-pressed);color:var(--color-text-inverse);--ic:var(--color-icon-inverse)}
+.ifs-chip.is-selected:disabled{--fill:var(--color-background-neutral-soft);color:var(--color-text-disabled);--ic:var(--color-icon-disabled)}
+.ifs-chip:focus-visible,.ifs-chip[data-state=focus]{outline:none;padding:var(--space-50) var(--space-150);--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-chip__indicator{flex:none;width:var(--size-6);height:var(--size-6);border-radius:50%;background:var(--color-icon-warning)} /* status-indicator-atom 6×6 */
+.ifs-chip__indicator--danger{background:var(--color-icon-danger)}
+.ifs-chip__indicator--success{background:var(--color-icon-success)}
+.ifs-chip__indicator--info{background:var(--color-icon-info)}
 .ifs-chip__remove{display:inline-flex;border-radius:var(--radius-radius-full);cursor:pointer}
 .ifs-chip__remove:hover{opacity:.7}
 
 /* ---------- Calendar (date-picker-molecule 3406:9510, date-atom 1440:5201) ---------- */
 .ifs-calendar{
   display:inline-flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:17.75rem;padding:var(--space-inset);
-  border-radius:var(--radius-radius-100);background:var(--background-elevation-2-primary-base);box-shadow:0 0 0 1px var(--border-base);
+  border-radius:var(--radius-radius-100);background:var(--color-surface-elevation-2);box-shadow:0 0 0 1px var(--color-border-soft);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));
 }
 .ifs-calendar__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:calc(var(--control-h-s) + var(--space-100))}
-.ifs-calendar__title{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--text-primary);
+.ifs-calendar__title{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--color-text);
   font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking)} /* Heading/H3: month and year one level down (Nov 19, was H2) */
-.ifs-calendar__title .ifs-icon{color:var(--icon-primary)}
+.ifs-calendar__title .ifs-icon{color:var(--color-icon)}
 .ifs-calendar__nav{display:flex;gap:var(--space-100)}
 .ifs-calendar__body{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-calendar__row{display:flex;gap:var(--space-150)}
@@ -188,26 +188,26 @@
   --fill:transparent;--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-32);height:var(--size-32);margin:0;padding:0;border:0;
   border-radius:var(--radius-radius-100);background:var(--fill);box-shadow:var(--stroke),var(--ring);cursor:pointer;
-  color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
+  color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
 }
-.ifs-calendar__date.is-last{color:var(--text-tertiary)}
-.ifs-calendar__date.is-next{color:var(--text-secondary)}
-.ifs-calendar__date.is-today{color:var(--text-info)}
-.ifs-calendar__date:hover,.ifs-calendar__date[data-state=hover]{--stroke:inset 0 0 0 1px var(--element-button-secondary-border-hover)}
-.ifs-calendar__date.is-selected{--fill:var(--background-elevation-2-secondary)}
-.ifs-calendar__date.is-endpoint{--fill:var(--surface-primary-inverse-alpha);color:var(--text-primary-inverse)}
+.ifs-calendar__date.is-last{color:var(--color-text-softer)}
+.ifs-calendar__date.is-next{color:var(--color-text-soft)}
+.ifs-calendar__date.is-today{color:var(--color-text-info)}
+.ifs-calendar__date:hover,.ifs-calendar__date[data-state=hover]{--stroke:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-calendar__date.is-selected{--fill:var(--color-background-neutral-soft)}
+.ifs-calendar__date.is-endpoint{--fill:var(--color-surface-overlay-inverse);color:var(--color-text-inverse)}
 .ifs-calendar__date:focus-visible,.ifs-calendar__date[data-state=focus]{outline:none;
-  --stroke:inset 0 0 0 1px var(--element-chips-off-border-default);--ring:0 0 0 1.5px var(--focus-focus-inner),0 0 0 3px var(--focus-focus-outer)}
-.ifs-calendar__date:disabled{cursor:not-allowed;color:var(--text-disabled);--stroke:0 0 0 0 transparent}
+  --stroke:inset 0 0 0 1px var(--color-border-soft);--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-calendar__date:disabled{cursor:not-allowed;color:var(--color-text-disabled);--stroke:0 0 0 0 transparent}
 .ifs-calendar__date.is-empty{visibility:hidden}
 /* fill: the calendar takes its container's width (e.g. a card); the 7 days share the row and each date cell stretches (Nov 19) */
 .ifs-calendar--fill{display:flex;width:100%}
 .ifs-calendar--fill .ifs-calendar__row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
 .ifs-calendar--fill .ifs-calendar__date,.ifs-calendar--fill .ifs-weekday{justify-self:center} /* dates keep their size, spread across the row */
 .ifs-calendar__events{position:absolute;inset-inline-start:6px;inset-inline-end:6px;bottom:0;height:var(--size-10);box-sizing:border-box;padding-top:var(--space-50);display:flex;flex-direction:column;gap:var(--size-1)}
-.ifs-calendar__events i{display:block;height:2px;border-radius:var(--radius-radius-100);background:var(--icon-focus)}
-.ifs-calendar__events i.is-danger{background:var(--icon-danger)}
-.ifs-calendar__events i.is-warning{background:var(--icon-warning)}
+.ifs-calendar__events i{display:block;height:2px;border-radius:var(--radius-radius-100);background:var(--color-icon-focus)}
+.ifs-calendar__events i.is-danger{background:var(--color-icon-danger)}
+.ifs-calendar__events i.is-warning{background:var(--color-icon-warning)}
 .ifs-datepicker__popover{position:absolute;inset-inline-start:0;z-index:var(--z-index-z-popover)}
 .ifs-datepicker__popover--down{top:calc(100% + var(--space-100))}
 .ifs-datepicker__popover--up{bottom:calc(100% + var(--space-100))}
@@ -216,7 +216,7 @@
 
 /* DatePicker showApply (date-picker-molecule show-apply-button): the popover becomes the surface; Apply = Secondary M, full width */
 .ifs-datepicker__popover--apply{display:flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:17.75rem;padding:var(--space-inset);
-  border-radius:var(--radius-radius-100);background:var(--background-elevation-2-primary-base);box-shadow:0 0 0 1px var(--border-base);
+  border-radius:var(--radius-radius-100);background:var(--color-surface-elevation-2);box-shadow:0 0 0 1px var(--color-border-soft);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 .ifs-datepicker__popover--apply .ifs-calendar{width:auto;padding:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .ifs-datepicker__apply{width:100%}
@@ -226,9 +226,9 @@
 .ifs-segmented--full .ifs-segmented__item{flex:1 1 0;min-width:0;justify-content:center}
 
 /* Select divider + action rows ("Remove" etc.) */
-.ifs-select__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--border-base)}
-.ifs-select__option.is-danger,.ifs-select__option.is-danger .ifs-icon{color:var(--text-danger)}
-.ifs-select__option.is-danger:hover{color:var(--text-danger)}
+.ifs-select__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--color-border-soft)}
+.ifs-select__option.is-danger,.ifs-select__option.is-danger .ifs-icon{color:var(--color-text-danger)}
+.ifs-select__option.is-danger:hover{color:var(--color-text-danger)}
 
 /* ---------- Menu (single-select-list-molecule 153:62054 + single-select-list-atom 153:61939, Size S) ---------- */
 .ifs-menu{position:relative;display:inline-flex}
@@ -237,30 +237,30 @@
 .ifs-menu__list{
   display:flex;flex-direction:column;box-sizing:border-box;min-width:7.5rem;max-height:min(25rem, calc(100vh - var(--size-16)));overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-radius-100);
-  background:var(--background-elevation-2-primary-base);box-shadow:inset 0 0 0 1px var(--border-base);
+  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 1px var(--color-border-soft);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect blur/strong */
-  scrollbar-width:thin;scrollbar-color:var(--background-elevation-1-tertiary) transparent;
+  scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;
 }
 .ifs-menu__list--s{width:var(--menu-width-s)}
 .ifs-menu__list--l{width:var(--menu-width-l)}
-.ifs-menu__title{flex:none;display:flex;align-items:center;height:calc(var(--control-h-s) + var(--space-100));padding:var(--space-100) var(--space-200);color:var(--text-secondary);
+.ifs-menu__title{flex:none;display:flex;align-items:center;height:calc(var(--control-h-s) + var(--space-100));padding:var(--space-100) var(--space-200);color:var(--color-text-soft);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-menu__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--border-base)}
+.ifs-menu__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--color-border-soft)}
 .ifs-menu__wrap{display:flex;flex-direction:column}
 .ifs-menu__item{
   all:unset;flex:none;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;min-height:var(--control-h-m) /* follows density 36 / 32 / 28 */;
   padding:var(--space-100) var(--space-200);border-radius:var(--radius-radius-100);cursor:pointer;
-  color:var(--text-secondary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
+  color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
 }
-.ifs-menu__icon{flex:none;color:var(--icon-secondary)}
+.ifs-menu__icon{flex:none;color:var(--color-icon-soft)}
 .ifs-menu__text{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-menu__label{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.ifs-menu__description{color:var(--text-tertiary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:normal} /* Body/M/regular */
+.ifs-menu__description{color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:normal} /* Body/M/regular */
 .ifs-menu__shortcut{flex:none;color:var(--white-alpha-50);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-menu__caret,.ifs-menu__check{flex:none;color:var(--icon-primary)}
-.ifs-menu__item:hover,.ifs-menu__item.is-open,.ifs-menu__item[data-state=hover]{background:var(--element-button-secondary-fill-hover);color:var(--text-primary)}
-.ifs-menu__item:focus-visible{background:var(--element-button-secondary-fill-hover);color:var(--text-primary);outline:none}
-.ifs-menu__item.is-selected{color:var(--text-primary)}
-.ifs-menu__item.is-danger,.ifs-menu__item.is-danger .ifs-menu__icon{color:var(--text-danger)}
-.ifs-menu__item:disabled{color:var(--text-disabled);cursor:not-allowed;background:none}
-.ifs-menu__item:disabled .ifs-menu__icon{color:var(--icon-disabled)}
+.ifs-menu__caret,.ifs-menu__check{flex:none;color:var(--color-icon)}
+.ifs-menu__item:hover,.ifs-menu__item.is-open,.ifs-menu__item[data-state=hover]{background:var(--color-background-neutral);color:var(--color-text)}
+.ifs-menu__item:focus-visible{background:var(--color-background-neutral);color:var(--color-text);outline:none}
+.ifs-menu__item.is-selected{color:var(--color-text)}
+.ifs-menu__item.is-danger,.ifs-menu__item.is-danger .ifs-menu__icon{color:var(--color-text-danger)}
+.ifs-menu__item:disabled{color:var(--color-text-disabled);cursor:not-allowed;background:none}
+.ifs-menu__item:disabled .ifs-menu__icon{color:var(--color-icon-disabled)}

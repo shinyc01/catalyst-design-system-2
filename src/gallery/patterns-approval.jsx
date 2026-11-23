@@ -134,7 +134,7 @@ export default IFS_GALLERY;
     draft: ['gray', 'Draft'], shaping: ['gray', 'Shaping'], pending: ['orange', 'Pending approval'], revisions: ['red', 'Revisions required'],
     ready: ['blue', 'Ready to publish'], active: ['green', 'Active'],
   };
-  const Screen = ({ children }) => <div style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--border-base)' }}>{children}</div>;
+  const Screen = ({ children }) => <div style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--color-border-soft)' }}>{children}</div>;
   const Demo = ({ children }) => <div className="g-row" style={{ gap: 8, flexWrap: 'wrap' }}><span className="g-label t-body-m-regular">demo</span>{children}</div>;
 
   function Header({ status, step, actions }) {
@@ -157,9 +157,9 @@ export default IFS_GALLERY;
     return (
       <div style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 12, display: 'grid', gap: 20, alignContent: 'start' }} className="ifs-scroll">
         <IFS.Stack gap="200">
-          <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--text-primary)' }}>Executive summary</h2>
-          <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--text-tertiary)' }}>
-            Applying this change <span style={{ color: 'var(--text-primary)' }}>increases Reliability influence by 18%, decreases Safety influence by 7%</span>, and changes the value of <span style={{ color: 'var(--text-primary)' }}>876 investments</span>.<br />
+          <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--color-text)' }}>Executive summary</h2>
+          <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--color-text-softer)' }}>
+            Applying this change <span style={{ color: 'var(--color-text)' }}>increases Reliability influence by 18%, decreases Safety influence by 7%</span>, and changes the value of <span style={{ color: 'var(--color-text)' }}>876 investments</span>.<br />
             3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p>
         </IFS.Stack>
         <StatCardsRow cards={STATS} />

@@ -22,8 +22,8 @@ export default IFS_GALLERY;
   ];
   // Small stand-ins for other families' pieces used inside the page header
   const Status = ({ children = 'Active' }) => (
-    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--text-primary)' }}>
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--icon-success)' }} />{children}
+    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--color-text)' }}>
+      <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-icon-success)' }} />{children}
     </span>
   );
 
@@ -56,7 +56,7 @@ export default IFS_GALLERY;
         { id: 'f', label: 'Value', cooper: true },
       ]} /></div>
       <div style={{ height: 420 }}><SideNav title="Value" items={valueNav} defaultCollapsed /></div>
-      <div style={{ height: 420 }}><SideNav title="Plan"><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>children = Content slot (e.g. a tree)</span></SideNav></div>
+      <div style={{ height: 420 }}><SideNav title="Plan"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>children = Content slot (e.g. a tree)</span></SideNav></div>
       <span className="g-label t-body-m-regular">selected: {sel}</span>
     </div>;
   } });
@@ -139,7 +139,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'PageHeader', figma: 'page-header (1588:1971)', render: () => <>
     <div style={{ width: 1200 }}>
       <PageHeader title="Q1 2026 Strategy Framework" onTitleMenu={() => {}} status={<Status />}
-        views={<span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>[views slot]</span>}
+        views={<span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>[views slot]</span>}
         actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 12 }}>
@@ -157,7 +157,7 @@ export default IFS_GALLERY;
     { value: 'archived', label: 'Archived', count: 3 }, { value: 'draft', label: 'Draft', count: 3 }];
   const NewBtn = () => <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>;
   const SEARCH = { placeholder: 'Ask anything about strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?'] };
-  const Frame = ({ label, children }) => <div style={{ width: 1176, marginBottom: 32 }}><div className="t-label-m-medium" style={{ color: 'var(--text-tertiary)', marginBottom: 12 }}>{label}</div>{children}</div>;
+  const Frame = ({ label, children }) => <div style={{ width: 1176, marginBottom: 32 }}><div className="t-label-m-medium" style={{ color: 'var(--color-text-softer)', marginBottom: 12 }}>{label}</div>{children}</div>;
   IFS_GALLERY.push({ name: 'PageHeader: narrow widths', figma: 'Nov 19 rule: the stepper opens from the status once it no longer fits; below 720 two rows: title + id, then status, views, other actions, primary last', render: () => {
     const steps = <IFS.Stepper current={3} active={3} steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} />;
     const acts = <><IFS.CommentButton size="s" /><IFS.Button type="secondary" size="s">Approval chain</IFS.Button></>;
@@ -198,7 +198,7 @@ export default IFS_GALLERY;
     const [stage, setStage] = React.useState('value');
     const [sel, setSel] = React.useState('active');
     return (
-      <div style={{ width: 1440, maxWidth: '100%', border: '1px solid var(--border-base)' }}>
+      <div style={{ width: 1440, maxWidth: '100%', border: '1px solid var(--color-border-soft)' }}>
         <AppShell height={810}
           navBar={<NavBar value={stage} onChange={setStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
           sideNav={<SideNav title="Value" items={valueNav} value={sel} onSelect={setSel} />}
@@ -207,7 +207,7 @@ export default IFS_GALLERY;
               actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
             <CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />
           </>}>
-          <div style={{ height: 1600, padding: 24, background: 'var(--background-canvas-primary)' }} className="t-body-m-regular">
+          <div style={{ height: 1600, padding: 24, background: 'var(--color-surface-canvas)' }} className="t-body-m-regular">
             Content scrolls here — stage: {stage}, section: {sel}
           </div>
         </AppShell>
@@ -221,7 +221,7 @@ export default IFS_GALLERY;
     return (
       <IFS.Stack gap="300">
         <IFS.Inline gap="200">{[1440, 1100, 900, 700].map(v => <IFS.Button key={v} type={w === v ? 'primary' : 'secondary'} size="s" onClick={() => setW(v)}>{v}px</IFS.Button>)}</IFS.Inline>
-        <div style={{ width: w, border: '1px solid var(--border-base)' }}>
+        <div style={{ width: w, border: '1px solid var(--color-border-soft)' }}>
           <AppShell height={520}
             navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
             sideNav={<SideNav title="Value" items={valueNav} defaultValue="active" />}
@@ -230,7 +230,7 @@ export default IFS_GALLERY;
             <div style={{ padding: "var(--page-margin)" }}><div className="ifs-grid">{[1, 2, 3, 4].map(i => <IFS.StatCard key={i} className="ifs-span-3" title={`Metric ${i}`} value="1,621" />)}</div></div>
           </AppShell>
         </div>
-        <div style={{ width: w, border: '1px solid var(--border-base)' }}>
+        <div style={{ width: w, border: '1px solid var(--color-border-soft)' }}>
           <AppShell height={420} onPanelClose={() => setRow(null)}
             navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
             header={<PageHeader title="Ideas (row preview: over)" />}

@@ -121,7 +121,7 @@ export default IFS_GALLERY;
     <Row label="icon left / slots only" style={{ alignItems: 'flex-start' }}>
       <ContentCard style={{ width: 332 }} iconLeft="arrow-caret-right-filled" title="{card-title}" description="{description}" />
       <ContentCard style={{ width: 332 }} size="s" iconLeft="arrow-caret-right-filled" title="{card-title}" description="{description}" />
-      <ContentCard style={{ width: 332 }} top={<span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>Top slot only</span>}
+      <ContentCard style={{ width: 332 }} top={<span className="t-body-m-regular" style={{ color: 'var(--color-text-soft)' }}>Top slot only</span>}
         bottom={<IFS.ProgressBar value={60} label="Progress" />} />
     </Row>
     <CardDemo />

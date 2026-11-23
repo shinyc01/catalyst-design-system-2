@@ -416,11 +416,11 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const jump = e => { const r = e.currentTarget.getBoundingClientRect(); onJump((e.clientX - r.left) / scale, (e.clientY - r.top) / scale); };
     return (
       <div onPointerDown={jump} title="Mini-map (not a Figma component)" style={{ position: 'relative', width: mw, height: mh, overflow: 'hidden', cursor: 'pointer',
-        borderRadius: 'var(--radius-radius-200)', background: 'var(--element-button-tertiary-fill-default)', boxShadow: 'inset 0 0 0 1px var(--border-base), var(--elevation-elevation-1-primary)',
+        borderRadius: 'var(--radius-radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-elevation-1-primary)',
         backdropFilter: 'blur(var(--blur-strong))' }}>
         {NODES.map(n => <span key={n.id} style={{ position: 'absolute', left: n.x * scale, top: n.y * scale, width: W * scale, height: H * scale, borderRadius: 1,
-          background: 'var(--border-strong)' }} />)}
-        <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--border-selected)', borderRadius: 2 }} />
+          background: 'var(--color-border-strong)' }} />)}
+        <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--color-border-selected)', borderRadius: 2 }} />
       </div>
     );
   }
@@ -437,7 +437,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const hidden = id => collapsed && ['vm1', 'vm2', 'vm3', 'ms'].includes(id);
     const pos = Object.fromEntries(NODES.map(n => [n.id, n]));
     return (
-      <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--border-base)' }}>
+      <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)' }}>
         <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Value framework canvas"
           overlay={<>
             <div style={{ position: 'absolute', left: 16, bottom: 16 }}>
@@ -530,11 +530,11 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const jump = e => { const r = e.currentTarget.getBoundingClientRect(); onJump((e.clientX - r.left) / scale, (e.clientY - r.top) / scale); };
     return (
       <div onPointerDown={jump} title="Mini-map (not a Figma component)" style={{ position: 'relative', width: mw, height: mh, overflow: 'hidden', cursor: 'pointer',
-        borderRadius: 'var(--radius-radius-200)', background: 'var(--element-button-tertiary-fill-default)', boxShadow: 'inset 0 0 0 1px var(--border-base), var(--elevation-elevation-1-primary)',
+        borderRadius: 'var(--radius-radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-elevation-1-primary)',
         backdropFilter: 'blur(var(--blur-strong))' }}>
         {NODES.map(n => <span key={n.id} style={{ position: 'absolute', left: n.x * scale, top: n.y * scale, width: W * scale, height: H * scale, borderRadius: 1,
-          background: 'var(--border-strong)' }} />)}
-        <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--border-selected)', borderRadius: 2 }} />
+          background: 'var(--color-border-strong)' }} />)}
+        <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--color-border-selected)', borderRadius: 2 }} />
       </div>
     );
   }
@@ -551,7 +551,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const hidden = id => collapsed && ['vm1', 'vm2', 'vm3', 'ms'].includes(id);
     const pos = Object.fromEntries(NODES.map(n => [n.id, n]));
     return (
-      <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--border-base)' }}>
+      <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)' }}>
         <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Value framework canvas"
           overlay={<>
             <div style={{ position: 'absolute', left: 16, bottom: 16 }}>
@@ -923,7 +923,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Row label="icon left / slots only" style={{ alignItems: 'flex-start' }}>
       <ContentCard style={{ width: 332 }} iconLeft="arrow-caret-right-filled" title="{card-title}" description="{description}" />
       <ContentCard style={{ width: 332 }} size="s" iconLeft="arrow-caret-right-filled" title="{card-title}" description="{description}" />
-      <ContentCard style={{ width: 332 }} top={<span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>Top slot only</span>}
+      <ContentCard style={{ width: 332 }} top={<span className="t-body-m-regular" style={{ color: 'var(--color-text-soft)' }}>Top slot only</span>}
         bottom={<IFS.ProgressBar value={60} label="Progress" />} />
     </Row>
     <CardDemo />
@@ -1371,7 +1371,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         { id: 'f', label: 'Value', cooper: true },
       ]} /></div>
       <div style={{ height: 420 }}><SideNav title="Value" items={valueNav} defaultCollapsed /></div>
-      <div style={{ height: 420 }}><SideNav title="Plan"><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>children = Content slot (e.g. a tree)</span></SideNav></div>
+      <div style={{ height: 420 }}><SideNav title="Plan"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>children = Content slot (e.g. a tree)</span></SideNav></div>
       <span className="g-label t-body-m-regular">selected: {sel}</span>
     </div>;
   } });
@@ -1561,7 +1561,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'PageHeader', figma: 'page-header (1588:1971)', render: () => <>
     <div style={{ width: 1200 }}>
       <PageHeader title="Q1 2026 Strategy Framework" onTitleMenu={() => {}} status={<Status />}
-        views={<span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>[views slot]</span>}
+        views={<span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>[views slot]</span>}
         actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 12 }}>
@@ -1606,7 +1606,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const [stage, setStage] = React.useState('value');
     const [sel, setSel] = React.useState('active');
     return (
-      <div style={{ width: 1440, maxWidth: '100%', border: '1px solid var(--border-base)' }}>
+      <div style={{ width: 1440, maxWidth: '100%', border: '1px solid var(--color-border-soft)' }}>
         <AppShell height={810}
           navBar={<NavBar value={stage} onChange={setStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
           sideNav={<SideNav title="Value" items={valueNav} value={sel} onSelect={setSel} />}
@@ -1615,7 +1615,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
               actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
             <CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />
           </>}>
-          <div style={{ height: 1600, padding: 24, background: 'var(--background-canvas-primary)' }} className="t-body-m-regular">
+          <div style={{ height: 1600, padding: 24, background: 'var(--color-surface-canvas)' }} className="t-body-m-regular">
             Content scrolls here — stage: {stage}, section: {sel}
           </div>
         </AppShell>
@@ -1646,7 +1646,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         <Cell title="disabled (inferred)" w={320}><CompareDropdown groups={COMPARE_GROUPS} defaultValue="v3" disabled /></Cell>
       </div>
       <Row label="live (click, ↑ ↓ Enter, ✕ clears)"><div style={{ height: 420, alignSelf: 'flex-start' }}><CompareDropdown groups={COMPARE_GROUPS} value={v} onChange={setV} /></div>
-        <span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>value: {String(v)}</span></Row>
+        <span className="t-body-m-regular" style={{ color: 'var(--color-text-soft)' }}>value: {String(v)}</span></Row>
     </>;
   } });
 ```
@@ -1807,7 +1807,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### CollaboratorRow
 ```jsx
   IFS_GALLERY.push({ name: 'CollaboratorRow', figma: 'content-card-organism top slot [patterns] (12:8519)', render: () =>
-    <IFS.Stack gap="200" style={{ width: 352, padding: 4, background: 'var(--background-elevation-1-primary-base)', borderRadius: 8 }}>
+    <IFS.Stack gap="200" style={{ width: 352, padding: 4, background: 'var(--color-surface-elevation-1)', borderRadius: 8 }}>
       <IFS.CollaboratorRow person={{ ...ME, you: true }} />
       <IFS.CollaboratorRow person={joined(MARIA, true)} onOpen={() => {}} onRemove={() => {}} />
       <IFS.CollaboratorRow person={joined(LARA, false)} onOpen={() => {}} onRemove={() => {}} />
@@ -1856,7 +1856,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
-    background: 'var(--background-canvas-primary)', border: '1px solid var(--border-base)', boxSizing: 'content-box' };
+    background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' };
   const NODES = [['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5], ['value-model', 'Value Models', 7], ['measure', 'Measures', 29]];
   const COLS = ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
 
@@ -1866,7 +1866,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <div style={shell} aria-label="Draft framework with collaborators">
         <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--border-base)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative', zIndex: 20 }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
@@ -1875,7 +1875,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
                 actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />
-                  <span style={{ width: 1, height: 24, margin: '0 8px', background: 'var(--border-base)' }} aria-hidden="true" />
+                  <span style={{ width: 1, height: 24, margin: '0 8px', background: 'var(--color-border-soft)' }} aria-hidden="true" />
                   <IFS.Button type="primary" size="s">Review</IFS.Button>
                 </IFS.Inline>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
@@ -1918,10 +1918,10 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### CommentDrawerCard
 ```jsx
   IFS_GALLERY.push({ name: 'CommentDrawerCard', figma: 'comment-drawer-card (1231:170874)', render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 380px)', gap: 16, background: 'var(--background-canvas-primary)', padding: 16, borderRadius: 8 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 380px)', gap: 16, background: 'var(--color-surface-canvas)', padding: 16, borderRadius: 8 }}>
       {['default', 'hover', 'selected', 'focus'].map(s => ['read', 'new', 'cooper', 'resolved'].map(t => (
         <div key={`${s}${t}`}>
-          <div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', marginBottom: 4 }}>Type={t}, State={s}</div>
+          <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', marginBottom: 4 }}>Type={t}, State={s}</div>
           <CommentDrawerCard type={t} state={s === 'default' ? undefined : s} number="{number}" place="{screen}" name="{Name}" time="{time ago}"
             avatar={{ initials: 'UN', type: 'yellow' }} avatars={t === 'cooper' ? [{ type: 'cooper' }] : []} actionRequired={t !== 'resolved'}
             onResolve={() => {}} menu={[...(t === 'resolved' ? [{ label: 'Unresolve', icon: 'arrow-back-up' }] : []), { copy: true }]}>
@@ -2291,7 +2291,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
     <Row label="number=false"><BarChartItem color={4} number={false} style={{ width: 238 }} /></Row>
-    <Row label="fill override"><BarChartItem fill="var(--data-viz-muted-purple-data-4)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
+    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-muted-purple-data-4)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
   </> });
 ```
 
@@ -2304,7 +2304,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <VerticalBarChartItem segments={[{ value: 20, color: 8 }, { value: 117, color: 8 }, { value: 28, color: 7 }, { value: 25, color: 8 }]} />
       <VerticalBarChartItem state="active" segments={[{ value: 32, color: 3 }, { value: 21, color: 2 }, { value: 20, color: 5 }, { value: 117, color: 4 }]} />
       <VerticalBarChartItem active={act} onActiveChange={setAct} label="FY27" value={1.6} max={2.5}
-        segments={[{ value: 1, fill: 'var(--data-viz-muted-purple-data-4)' }]} />
+        segments={[{ value: 1, fill: 'var(--color-data-viz-muted-purple-data-4)' }]} />
     </Row>;
   } });
 ```
@@ -2339,7 +2339,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px auto 1fr 40px', overflow: 'hidden',
-    background: 'var(--background-canvas-primary)', border: '1px solid var(--border-base)', boxSizing: 'content-box' };
+    background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' };
   const evidenceBtn = <IFS.EvidenceButton label="Evidence" />;
 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
@@ -2348,11 +2348,11 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
-      <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 4, background: 'var(--surface-secondary-alpha)' }}>
+      <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 4, background: 'var(--color-surface-secondary)' }}>
         <svg width="646" height="236" style={{ position: 'absolute', inset: 0 }} aria-hidden="true">
-          <path d="M20 -16 L84 78 L87 145" fill="none" stroke="var(--border-strong)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
-          <polyline points={route} fill="none" stroke="var(--element-map-pin-fill-error)" strokeOpacity=".35" strokeWidth="3.7" />
-          <polyline points={route} fill="none" stroke="var(--element-map-pin-fill-error)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
+          <path d="M20 -16 L84 78 L87 145" fill="none" stroke="var(--color-border-strong)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
+          <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="3.7" />
+          <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
         </svg>
         {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" />, `o${i}`))}
         {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" />, `d${i}`))}
@@ -2374,7 +2374,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const [sel, setSel] = React.useState(null);
     return (
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '48px 1fr', gridTemplateRows: '200px 20px', gap: '4px 0', padding: '8px 10px 0' }}>
-        <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--text-secondary)' }}>
+        <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>
           {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           {data.map(([l, v], i) => <VerticalBarChartItem key={l} label={`${l}: $${v}M`} value={v} max={2.5} width={113} height={200}
@@ -2434,7 +2434,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   ) });
 
   const MiniMap = () => (
-    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 60% 40%, var(--background-elevation-1-tertiary), var(--surface-secondary-alpha) 70%)' }}>
+    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 60% 40%, var(--color-background-neutral), var(--color-surface-secondary) 70%)' }}>
       <div style={{ position: 'absolute', left: '30%', top: 30 }}><IFS.MapPinPole symbol="pin" number="Recloser R-1" pinIcon="asset type-substation" /></div>
       <div style={{ position: 'absolute', left: '66%', top: 18 }}><IFS.MapPinPole symbol="pin" number="Demeter SS" /></div>
       <div style={{ position: 'absolute', left: '62%', top: 84 }}><IFS.MapPinDot size="s" status="error" type="text" counter="88%" /></div>
@@ -2494,7 +2494,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <IFS.Inline gap="600" align="start" wrap style={grid}>
         {['text', 'voice'].map(t => (
           <IFS.Stack gap="400" key={t}>
-            <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Type={t}</span>
+            <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Type={t}</span>
             <SmartSearch type={t} placeholder={ph} />
             <SmartSearch type={t} placeholder={ph} state="hover" />
             <SmartSearch type={t} placeholder={ph} state="pressed" listening={t === 'voice'} />
@@ -2579,7 +2579,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'TruncatedText', figma: 'Name display [patterns] (190:230621)', render: () => {
     const n = 'Northgate Substation Transformer Replacement and Feeder 5 Backup Tie — Phase 2';
     return <IFS.Stack gap="300">
-      {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-regular" style={{ width: 260, color: 'var(--text-primary)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
+      {['end', 'middle', 'start', 'wrap', 'segment'].map(m => <Row key={m} label={`mode=${m}`}><div className="t-body-m-regular" style={{ width: 260, color: 'var(--color-text)' }}><TruncatedText mode={m}>{n}</TruncatedText></div></Row>)}
     </IFS.Stack>;
   } });
 ```
@@ -2587,7 +2587,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### TableToolbar
 ```jsx
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
-    <div style={{ width: 1000, padding: 16, borderRadius: 8, background: 'var(--surface-secondary-alpha)' }}>
+    <div style={{ width: 1000, padding: 16, borderRadius: 8, background: 'var(--color-surface-secondary)' }}>
       <TableToolbar filter={<IFS.SegmentedControl size="s" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
         search={<SmartSearch placeholder="Ask anything about idea pad" />} onConfigure={() => {}} />
     </div>
@@ -2609,9 +2609,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'RecordPreview', figma: 'panel-organism preview [patterns] (95:128070)', render: () => (
     <div style={{ height: 320, display: 'flex' }}>
       <RecordPreview id="INV-2026-0912" onDetails={() => {}} onClose={() => {}}>
-        <h3 className="t-heading-h2-medium" style={{ margin: '0 0 6px', color: 'var(--text-primary)' }}>Southern Feeder Replacement — Circuit 17C</h3>
+        <h3 className="t-heading-h2-medium" style={{ margin: '0 0 6px', color: 'var(--color-text)' }}>Southern Feeder Replacement — Circuit 17C</h3>
         <IFS.Indicator type="purple">Shaping</IFS.Indicator>
-        <p className="t-body-l-regular" style={{ color: 'var(--text-secondary)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising.</p>
+        <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising.</p>
       </RecordPreview>
     </div>
   ) });
@@ -2732,7 +2732,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'ResizeHandle', figma: 'resize-handle [patterns] (413:44028)', render: () => <>
     <Row label="arrows">
-      {['both', 'right', 'left'].map(a => <IFS.Stack gap="200" align="center" key={a}><ResizeHandle arrows={a} /><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{a}</span></IFS.Stack>)}
+      {['both', 'right', 'left'].map(a => <IFS.Stack gap="200" align="center" key={a}><ResizeHandle arrows={a} /><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>{a}</span></IFS.Stack>)}
     </Row>
   </> });
 ```
@@ -2942,7 +2942,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it's empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
-      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--background-elevation-1-secondary, #111)', borderRadius: 8 }}>
+      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 8 }}>
         <EmptyState size="full" cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} />
       </div>
     </Row>
@@ -3128,8 +3128,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </>;
   }
 
-  const Seg = () => <div className="t-body-m-regular" style={{ height: 28, borderRadius: 6, background: 'var(--surface-secondary-alpha)', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', padding: '0 8px' }}>segmented-control slot</div>;
-  const Tabs = () => <div className="t-body-m-regular" style={{ height: 40, color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', boxShadow: 'inset 0 -1px 0 var(--border-base)' }}>tab-organism slot</div>;
+  const Seg = () => <div className="t-body-m-regular" style={{ height: 28, borderRadius: 6, background: 'var(--color-surface-secondary)', color: 'var(--color-text-softer)', display: 'flex', alignItems: 'center', padding: '0 8px' }}>segmented-control slot</div>;
+  const Tabs = () => <div className="t-body-m-regular" style={{ height: 40, color: 'var(--color-text-softer)', display: 'flex', alignItems: 'center', boxShadow: 'inset 0 -1px 0 var(--color-border-soft)' }}>tab-organism slot</div>;
 ```
 
 ### Modal
@@ -3155,8 +3155,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </>;
   }
 
-  const Seg = () => <div className="t-body-m-regular" style={{ height: 28, borderRadius: 6, background: 'var(--surface-secondary-alpha)', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', padding: '0 8px' }}>segmented-control slot</div>;
-  const Tabs = () => <div className="t-body-m-regular" style={{ height: 40, color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', boxShadow: 'inset 0 -1px 0 var(--border-base)' }}>tab-organism slot</div>;
+  const Seg = () => <div className="t-body-m-regular" style={{ height: 28, borderRadius: 6, background: 'var(--color-surface-secondary)', color: 'var(--color-text-softer)', display: 'flex', alignItems: 'center', padding: '0 8px' }}>segmented-control slot</div>;
+  const Tabs = () => <div className="t-body-m-regular" style={{ height: 40, color: 'var(--color-text-softer)', display: 'flex', alignItems: 'center', boxShadow: 'inset 0 -1px 0 var(--color-border-soft)' }}>tab-organism slot</div>;
 ```
 
 ### Drawer
@@ -3193,7 +3193,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         <Panel title="Details" showEvidence={false} onClose={() => {}} actions={<Button type="tertiary" size="s" iconLeft="system-plus">Add</Button>} />
       </IFS.Inline>
     </Row>
-    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>The panels above collapse with |→ and expand from the 48px rail's ←|.</span></Row>
+    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>The panels above collapse with |→ and expand from the 48px rail's ←|.</span></Row>
   </> });
 ```
 
@@ -3215,7 +3215,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'FloatingBar', figma: 'floating-bar-organism (7405:22521)', render: () => <SurfDemoFloatingBar /> });
   function SurfDemoFloatingBar() {
     const [open, setOpen] = React.useState(false);
-    const badge = <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 16, padding: '0 6px', borderRadius: 100, background: 'var(--background-color-alpha-red-base)', boxShadow: 'inset 0 0 0 1px var(--border-base)', color: 'var(--text-danger)' }}>● 3</span>;
+    const badge = <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, height: 16, padding: '0 6px', borderRadius: 100, background: 'var(--color-background-danger-soft)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-danger)' }}>● 3</span>;
     return <>
       <Row label="default"><FloatingBar inline category="Folder" item="Item" badge={badge} secondaryAction={{ label: 'View details' }} primaryAction={{ label: 'Study area' }} onClose={() => {}} /></Row>
       <Live>

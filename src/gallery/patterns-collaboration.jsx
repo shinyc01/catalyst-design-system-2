@@ -6,7 +6,7 @@ export default IFS_GALLERY;
 
 {
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const canvasBg = { position: 'relative', padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)' };
+  const canvasBg = { position: 'relative', padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
   const HOUR = 3600 * 1000;
 
   /* ---------------- data (Figma names) ---------------- */
@@ -62,7 +62,7 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'CollaboratorRow', figma: 'content-card-organism top slot [patterns] (12:8519)', render: () =>
-    <IFS.Stack gap="200" style={{ width: 352, padding: 4, background: 'var(--background-elevation-1-primary-base)', borderRadius: 8 }}>
+    <IFS.Stack gap="200" style={{ width: 352, padding: 4, background: 'var(--color-surface-elevation-1)', borderRadius: 8 }}>
       <IFS.CollaboratorRow person={{ ...ME, you: true }} />
       <IFS.CollaboratorRow person={joined(MARIA, true)} onOpen={() => {}} onRemove={() => {}} />
       <IFS.CollaboratorRow person={joined(LARA, false)} onOpen={() => {}} onRemove={() => {}} />
@@ -99,7 +99,7 @@ export default IFS_GALLERY;
 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
-    background: 'var(--background-canvas-primary)', border: '1px solid var(--border-base)', boxSizing: 'content-box' };
+    background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' };
   const NODES = [['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5], ['value-model', 'Value Models', 7], ['measure', 'Measures', 29]];
   const COLS = ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
 
@@ -109,7 +109,7 @@ export default IFS_GALLERY;
       <div style={shell} aria-label="Draft framework with collaborators">
         <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--border-base)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative', zIndex: 20 }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
@@ -118,7 +118,7 @@ export default IFS_GALLERY;
                 actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />
-                  <span style={{ width: 1, height: 24, margin: '0 8px', background: 'var(--border-base)' }} aria-hidden="true" />
+                  <span style={{ width: 1, height: 24, margin: '0 8px', background: 'var(--color-border-soft)' }} aria-hidden="true" />
                   <IFS.Button type="primary" size="s">Review</IFS.Button>
                 </IFS.Inline>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
@@ -153,7 +153,7 @@ export default IFS_GALLERY;
     const next = c.awaiting[0];
     return <>
       <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
-        <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>Demo — state:</span>
+        <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo — state:</span>
         <IFS.SegmentedControl size="s" value={preset} onChange={setPreset} options={Object.entries(PRESETS).map(([value, p]) => ({ value, label: p.label }))} />
         <IFS.Button size="s" type="tertiary" disabled={!next} onClick={() => next && c.accept(next.id, true)}>{next ? `Simulate: ${next.name} accepts` : 'Everyone accepted'}</IFS.Button>
         <IFS.Button size="s" type="tertiary" onClick={() => setCursors(!cursors)}>{cursors ? 'Hide live cursors' : 'Show live cursors'}</IFS.Button>
@@ -168,7 +168,7 @@ export default IFS_GALLERY;
     </div> });
   function HeaderOnly({ preset }) {
     const c = useCollab(preset);
-    return <div style={{ width: 700, border: '1px solid var(--border-base)' }}>
+    return <div style={{ width: 700, border: '1px solid var(--color-border-soft)' }}>
       <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
         actions={<IFS.Inline as="span" gap="100"><IFS.CollaboratorsMenu controller={c} /><IFS.CommentButton /></IFS.Inline>} />
     </div>;

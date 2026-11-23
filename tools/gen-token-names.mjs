@@ -28,9 +28,13 @@ const walk = p => statSync(p).isDirectory() ? readdirSync(p).flatMap(f => walk(j
 const args = process.argv.slice(2);
 const main = import.meta.url === pathToFileURL(process.argv[1] || '').href;
 if (!main) { /* imported as a module */ } else if (args[0] === '--codemod') {
+  // --only <prefix>: rename only the names whose new name starts with --<prefix> (e.g. --only color)
+  const oi = args.indexOf('--only'), only = oi > 0 ? '--' + args.splice(oi, 2)[1] : '';
+  const sub = new Map([...MAP].filter(([, n]) => n.startsWith(only)));
+  const re2 = new RegExp(`(${[...sub.keys()].sort((a, b) => b.length - a.length).map(s => s.replace(/[-]/g, '\\-')).join('|')})(?![\\w-])`, 'g');
   let n = 0;
   for (const f of args.slice(1).flatMap(walk).filter(f => /\.(css|jsx?|mjs|html|md|mdx)$/.test(f))) {
-    const a = readFileSync(f, 'utf8'), b = rename(a);
+    const a = readFileSync(f, 'utf8'), b = a.replace(re2, m => sub.get(m));
     if (a !== b) { writeFileSync(f, b); n++; }
   }
   console.log(`codemod: ${n} files changed`);

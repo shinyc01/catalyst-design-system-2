@@ -72,7 +72,7 @@ function MapovTree() {
     o.children.forEach((t, i) => {
       const isErr = t === o.error;
       node('c' + oi + i, MAPOV_CHILD_X, ys[i], { type: 'subnode', title: t, outOfFocus: !isErr, 'aria-label': isErr ? t + ' (error)' : undefined }, CH_H);
-      if (isErr) out.push(<div key={'err' + oi} style={{ position: 'absolute', left: w(MAPOV_CHILD_X) + NODE_W - 24, top: w(ys[i]) + (CH_H - 16) / 2, display: 'flex', color: 'var(--icon-danger)', zIndex: 3 }}>
+      if (isErr) out.push(<div key={'err' + oi} style={{ position: 'absolute', left: w(MAPOV_CHILD_X) + NODE_W - 24, top: w(ys[i]) + (CH_H - 16) / 2, display: 'flex', color: 'var(--color-icon-danger)', zIndex: 3 }}>
         <Icon name="status-error-filled" size={16} title="Error" /></div>);
       lines.push(<CanvasConnector key={'e' + oi + i} from={{ x: w(686), y: w(o.y) + TOP_H }} to={{ x: w(MAPOV_CHILD_X), y: w(ys[i]) + CH_H / 2 }} highlighted={isErr} />);
     });

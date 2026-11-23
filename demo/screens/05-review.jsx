@@ -26,12 +26,12 @@ const reviewBinsPx = [
 ];
 const reviewBins = reviewBinsPx.map(([label, px, tone, step, n]) => ({
   label, value: (px * 250) / 192, tone, step: step || undefined, n,
-  color: tone === 'unchanged' ? 'var(--data-viz-neutral)' : undefined,
+  color: tone === 'unchanged' ? 'var(--color-data-viz-neutral)' : undefined,
 }));
 const reviewLegend = [
-  { label: 'Loss', color: 'var(--data-viz-alert-data-4)' },
-  { label: 'No change', color: 'var(--data-viz-neutral)' },
-  { label: 'Gain', color: 'var(--data-viz-deep-green-data-4)' },
+  { label: 'Loss', color: 'var(--color-data-viz-alert-data-4)' },
+  { label: 'No change', color: 'var(--color-data-viz-neutral)' },
+  { label: 'Gain', color: 'var(--color-data-viz-deep-green-data-4)' },
 ];
 
 const reviewUnchangedTypes = ['Reliability', 'Safety', 'Cost', 'Asset Replacement'];
@@ -60,7 +60,7 @@ const reviewSections = [
   { id: 'risks', title: 'Flagged risks', badge: { label: '1 resolved', tone: 'success' },
     content: <IFS.ReadinessFacts rows={[['Executing investment affected', 'Resolved', 'success']]} /> },
   { id: 'notes', title: 'Reviewer notes', count: 2,
-    content: <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--text-secondary)' }}>2 notes in the approval chain.</p> },
+    content: <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--color-text-soft)' }}>2 notes in the approval chain.</p> },
 ];
 
 function ScreenReview({ bp, height }) {
@@ -104,8 +104,8 @@ function ScreenReview({ bp, height }) {
           <div className="ifs-scroll" style={{ flex: '1 1 0', minWidth: 0, overflow: 'auto' }}>
             <IFS.Stack gap="page-gap" style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto', padding: 'var(--pg-gap) var(--pg-margin)' }}>
               <IFS.Stack gap="200">
-                <span className="t-heading-h2-medium" style={{ color: 'var(--text-primary)' }}>Executive summary</span>
-                <span className="t-label-m-medium" style={{ color: 'var(--text-secondary)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments.</span>
+                <span className="t-heading-h2-medium" style={{ color: 'var(--color-text)' }}>Executive summary</span>
+                <span className="t-label-m-medium" style={{ color: 'var(--color-text-soft)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments.</span>
               </IFS.Stack>
               <StatCardsRow cards={reviewStats} style={{ gap: 'var(--pg-gap)' }} />
               <Tabs aria-label="Review views" value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'alignment', label: 'Strategic Alignment' }]} />

@@ -28,11 +28,11 @@ export default IFS_GALLERY;
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {rows.map(([k, v]) => (
         <IFS.Inline gap="400" justify="between" key={k} className="t-body-l-regular" style={{ padding: '6px 0' }}>
-          <span style={{ color: 'var(--text-secondary)' }}>{k}</span><span style={{ textAlign: 'right' }}>{v}</span>
+          <span style={{ color: 'var(--color-text-soft)' }}>{k}</span><span style={{ textAlign: 'right' }}>{v}</span>
         </IFS.Inline>
       ))}
-      {note && <div style={{ borderTop: '1px solid var(--border-base)', marginTop: 6, paddingTop: 10 }}>
-        <div className="t-body-l-regular" style={{ color: 'var(--text-secondary)' }}>{note[0]}</div>
+      {note && <div style={{ borderTop: '1px solid var(--color-border-soft)', marginTop: 6, paddingTop: 10 }}>
+        <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>{note[0]}</div>
         <div className="t-body-l-regular">{note[1]}</div>
       </div>}
     </div>
@@ -75,7 +75,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'ResizeHandle', figma: 'resize-handle [patterns] (413:44028)', render: () => <>
     <Row label="arrows">
-      {['both', 'right', 'left'].map(a => <IFS.Stack gap="200" align="center" key={a}><ResizeHandle arrows={a} /><span className="t-body-m-regular" style={{ color: 'var(--text-tertiary)' }}>{a}</span></IFS.Stack>)}
+      {['both', 'right', 'left'].map(a => <IFS.Stack gap="200" align="center" key={a}><ResizeHandle arrows={a} /><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>{a}</span></IFS.Stack>)}
     </Row>
   </> });
 
@@ -147,7 +147,7 @@ export default IFS_GALLERY;
   /* ---------------- pattern screens ---------------- */
   const STAGES = [{ value: 'command', label: 'Command' }, { value: 'value', label: 'Value' }, { value: 'explore', label: 'Explore' },
     { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' }];
-  const Screen = ({ children }) => <div style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--border-base)' }}>{children}</div>;
+  const Screen = ({ children }) => <div style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--color-border-soft)' }}>{children}</div>;
   const ConfidencePanel = () => (
     <IFS.Panel title="System confidence" defaultExpanded>
       <IFS.Stack gap="300">
@@ -236,8 +236,8 @@ export default IFS_GALLERY;
             <IFS.Stack gap="300" style={{ flex: 1, minWidth: 0, padding: 12 }}>
               <IFS.Inline gap="400" align="start" justify="between">
                 <div>
-                  <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--text-primary)' }}>Investment overview</h2>
-                  <div className="t-body-m-regular" style={{ color: 'var(--text-secondary)', marginTop: 4 }}>High-level investment summary, key metrics, and current progress</div>
+                  <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--color-text)' }}>Investment overview</h2>
+                  <div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', marginTop: 4 }}>High-level investment summary, key metrics, and current progress</div>
                 </div>
                 <IFS.Button type="secondary" size="m" iconLeft="chart" onClick={() => setDrawer(true)}>Widgets</IFS.Button>
               </IFS.Inline>

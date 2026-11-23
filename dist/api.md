@@ -514,7 +514,7 @@ Props: state primary|secondary|tertiary|empty|loading, children = the value text
 **In handovers:** placed 12× (Plan) · usual: State=Default (100%)
 Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
 Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
-value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--data-viz-teal-data-5)'),
+value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--color-data-viz-teal-data-5)'),
 or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); for non-chart legends any colour token; label; value (optional on every entry,
 tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
 Hover only: legend entries are not clickable (Figma).
@@ -975,7 +975,7 @@ A row of seven weekday-atoms as placed in date-picker-molecule. Names and first 
 ### Logo
 **Tier:** Component
 Props: height (default 30; width keeps the 156:30 ratio), label (accessible name, default "IFS Copperleaf"),
-color (CSS colour; default var(--icon-primary)).
+color (CSS colour; default var(--color-icon)).
 `function Logo({ height = 30, label = 'IFS Copperleaf', color, className, style, ...rest })`
 
 ## forms

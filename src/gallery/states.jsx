@@ -10,7 +10,7 @@ export default IFS_GALLERY;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cell = ({ title, children, h }) => (
     <IFS.Stack gap="200" style={{ width: 376 }}>
-      <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>{title}</span>
+      <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>{title}</span>
       <div style={{ minHeight: h, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{children}</div>
     </IFS.Stack>
   );
@@ -28,7 +28,7 @@ export default IFS_GALLERY;
       <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it's empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
-      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--background-elevation-1-secondary, #111)', borderRadius: 8 }}>
+      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 8 }}>
         <EmptyState size="full" cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} />
       </div>
     </Row>

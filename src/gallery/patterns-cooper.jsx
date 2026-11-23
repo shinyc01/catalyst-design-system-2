@@ -10,9 +10,9 @@ export default IFS_GALLERY;
     HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, AgentWindow, RecommendationGroup, RecommendationItem, RecommendationDetail,
     CooperChat, CooperHistory, CooperRecommendations } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={{ alignItems: 'flex-start', ...style }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const Cap = ({ title, children, w }) => <IFS.Stack gap="200" style={{ width: w }}><span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>{title}</span>{children}</IFS.Stack>;
+  const Cap = ({ title, children, w }) => <IFS.Stack gap="200" style={{ width: w }}><span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>{title}</span>{children}</IFS.Stack>;
   // Cooper surfaces are glass: show them on the dark canvas they sit on in the product.
-  const stage = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)' };
+  const stage = { padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
 
   // ---------- sample content (from the Figma frames) ----------
   const Q = 'Can you give me a quick overview of our current Strategy Framework? How healthy is it overall?';
@@ -67,7 +67,7 @@ export default IFS_GALLERY;
     { id: 'human', label: 'Human Performance' },
   ];
   const Status = () => (
-    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--text-primary)' }}>
+    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--color-text)' }}>
       <IFS.StatusIndicator state="success" />Active
     </span>
   );
@@ -76,7 +76,7 @@ export default IFS_GALLERY;
   function MapScreen({ children, sheet, recCount = 4, onRecs, recSelected, sideCollapsed = true }) {
     const [view, setView] = React.useState({ x: 30, y: 0, zoom: 0.72 });
     return (
-      <div style={{ width: 1440, height: 900, maxWidth: '100%', border: '1px solid var(--border-base)', overflow: 'hidden' }}>
+      <div style={{ width: 1440, height: 900, maxWidth: '100%', border: '1px solid var(--color-border-soft)', overflow: 'hidden' }}>
         <IFS.AppShell height={900}
           navBar={<IFS.NavBar stages={stages} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
           sideNav={<IFS.SideNav title="Value" items={valueNav} defaultValue="active" defaultCollapsed={sideCollapsed} />}
@@ -263,7 +263,7 @@ export default IFS_GALLERY;
     const open = size !== 'closed';
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
           Click the Cooper avatar (or press /) → collapsed bar (voice by default; keyboard icon switches to text) → send → floating window with Analysing, streaming and Stop →
           window icon docks it as the side panel; − collapses back to the avatar. Prompt chips send straight away.</p>
         <MapScreen sheet={<IFS.BottomSheet {...sheetProps} prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} showPrompts={!open} showCooper={!open}
@@ -279,9 +279,9 @@ export default IFS_GALLERY;
     const [key, setKey] = React.useState(0);
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
           Docked full panel with an answered message. Click a follow-up or type a question: a user bubble appears, then Cooper runs Step 1/2…, streams, and answers; press Stop to interrupt (Try again / Regenerate).
-          Hover your message to copy or edit it. Drag a file onto the panel to attach it. <button type="button" className="t-body-m-regular" style={{ color: 'var(--text-secondary)', background: 'none', border: 0, textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setKey(key + 1)}>Reset</button></p>
+          Hover your message to copy or edit it. Drag a file onto the panel to attach it. <button type="button" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', background: 'none', border: 0, textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setKey(key + 1)}>Reset</button></p>
         <MapScreen key={key} sheet={<IFS.BottomSheet {...sheetProps} showPrompts={false} showCooper={false} />}>
           <CooperChat defaultSize="full" defaultMode="text" defaultMessages={seeded} defaultTitle="Current strategy overview" />
         </MapScreen>
@@ -301,7 +301,7 @@ export default IFS_GALLERY;
     const open = id => { setActive(id); setMsgs(convo(id)); setTitle(id ? (list.find(c => c.id === id) || {}).title : 'New chat'); };
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
           History docks left of the side panel (history icon in the chat header). Hover a chat for ⋯ (Pin, Rename, Move to folder, Select, Delete → Trash).
           Folders ⋯ creates folders with an icon; smart folders (Reminders, Recommendations, Trash) open in a second column; Search opens the search overlay.</p>
         <MapScreen sheet={<IFS.BottomSheet {...sheetProps} showPrompts={false} showCooper={false} />}>
@@ -321,7 +321,7 @@ export default IFS_GALLERY;
     const [chat, setChat] = React.useState('closed');
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
           The “N Recommendations” chip opens Cooper’s window. Expand an item, Explore or Shape to walk through them, Decline / Do it; the count updates and the chip disappears at 0.
           Ask opens the Cooper chat (the two are never open together).</p>
         <MapScreen recCount={list.length} recSelected={open} onRecs={() => { setChat('closed'); setOpen(!open); }}

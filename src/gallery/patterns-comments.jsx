@@ -7,7 +7,7 @@ export default IFS_GALLERY;
 {
   const { CommentPin, CommentDrawerCard, CommentMentionMenu, CommentCallout, CommentsPanel } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const canvasBg = { padding: 24, borderRadius: 8, background: 'var(--background-canvas-primary)' };
+  const canvasBg = { padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
   const LONG = 'There are people within organizations that have a say in the results of scenarios but are not Copperleaf users. The report from the previous quarter shows it.';
 
   /* ---------------- data ---------------- */
@@ -53,10 +53,10 @@ export default IFS_GALLERY;
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'CommentDrawerCard', figma: 'comment-drawer-card (1231:170874)', render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 380px)', gap: 16, background: 'var(--background-canvas-primary)', padding: 16, borderRadius: 8 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 380px)', gap: 16, background: 'var(--color-surface-canvas)', padding: 16, borderRadius: 8 }}>
       {['default', 'hover', 'selected', 'focus'].map(s => ['read', 'new', 'cooper', 'resolved'].map(t => (
         <div key={`${s}${t}`}>
-          <div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', marginBottom: 4 }}>Type={t}, State={s}</div>
+          <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', marginBottom: 4 }}>Type={t}, State={s}</div>
           <CommentDrawerCard type={t} state={s === 'default' ? undefined : s} number="{number}" place="{screen}" name="{Name}" time="{time ago}"
             avatar={{ initials: 'UN', type: 'yellow' }} avatars={t === 'cooper' ? [{ type: 'cooper' }] : []} actionRequired={t !== 'resolved'}
             onResolve={() => {}} menu={[...(t === 'resolved' ? [{ label: 'Unresolve', icon: 'arrow-back-up' }] : []), { copy: true }]}>
@@ -187,10 +187,10 @@ export default IFS_GALLERY;
 
     return (
       <div aria-label={label} style={{ position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
-        background: 'var(--background-canvas-primary)', border: '1px solid var(--border-base)', boxSizing: 'content-box' }}>
+        background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' }}>
         <IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--border-base)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
@@ -279,10 +279,10 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Comments panel — search and empty states', figma: 'Map - Overview - Comment search result / no results [patterns] (12:34132, 12:34205)', render: () => {
     const [ts, setTs] = React.useState(THREADS);
     const [sel, setSel] = React.useState(null);
-    return <IFS.Inline gap="600" align="stretch" style={{ height: 720, background: 'var(--background-canvas-primary)', padding: 12, borderRadius: 8 }}>
+    return <IFS.Inline gap="600" align="stretch" style={{ height: 720, background: 'var(--color-surface-canvas)', padding: 12, borderRadius: 8 }}>
       <CommentsPanel threads={ts} selectedId={sel} currentUser={ME} onOpen={t => { setSel(t.id); setTs(ts.map(x => x.id === t.id ? { ...x, unread: false } : x)); }}
         onResolve={t => setTs(ts.map(x => x.id === t.id ? { ...x, resolved: true, unread: false } : x))} onUnresolve={t => setTs(ts.map(x => x.id === t.id ? { ...x, resolved: false } : x))} />
-      <div className="t-body-m-regular" style={{ color: 'var(--text-tertiary)', maxWidth: 280 }}>
+      <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', maxWidth: 280 }}>
         Try “Find comments about WDRM v4”, “Show me everything about WDRM v65” (no result → suggestion chip), “action required”, or “Lara”.
         Resolve every row to reach the all-resolved state.</div>
       <CommentsPanel threads={[]} currentUser={ME} />

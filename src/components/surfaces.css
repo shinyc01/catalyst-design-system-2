@@ -4,20 +4,20 @@
 
 /* Shared text styles copied from tokens.css .t-* */
 .ifs-surface__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking); /* Heading/H4 */
-  color:var(--text-primary);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0}
+  color:var(--color-text);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0}
 .ifs-surface__actions{display:flex;align-items:center;gap:var(--space-100);flex:none}
 
 /* ---------- Tooltip ---------- */
 .ifs-tooltip-anchor{position:relative;display:inline-flex}
-.ifs-tooltip{--tt-fill:var(--surface-primary);
+.ifs-tooltip{--tt-fill:var(--color-surface-primary);
   display:inline-flex;flex-direction:column;align-items:center;flex:none;width:max-content;max-width:20rem;
   filter:drop-shadow(0 4px 8px rgba(0,0,0,0.25)) /* drop-shadow/floating (--drop-shadow-floating) as filter so the arrow casts it too */;
   pointer-events:none;z-index:var(--z-index-z-max) /* above popovers, drawers and modals */}
-.ifs-tooltip--grey{--tt-fill:var(--background-elevation-2-primary-base)}
+.ifs-tooltip--grey{--tt-fill:var(--color-surface-elevation-2)}
 .ifs-tooltip__body{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-50) var(--space-200);
   border-radius:2px /* raw in Figma */;background:var(--tt-fill);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));
-  color:var(--text-primary);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */ white-space:nowrap}
-.ifs-tooltip__hotkey{color:var(--text-disabled)} /* hotkey-atom */
+  color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */ white-space:nowrap}
+.ifs-tooltip__hotkey{color:var(--color-text-disabled)} /* hotkey-atom */
 .ifs-tooltip__arrow{flex:none;width:8.6px;height:5px;background:var(--tt-fill);clip-path:polygon(0 0,100% 0,50% 100%);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 /* Figma Type = side the arrow is on. Arrow = where along that side (8px inset). */
@@ -46,28 +46,28 @@
 /* ---------- Alert ---------- */
 .ifs-alert{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-stack);
   width:18.9375rem;max-width:100%;padding:var(--space-inset);padding-inline-end:var(--space-700) /* Figma Error variant leaves 32px for the close button */;
-  border-radius:var(--radius-radius-200);background:var(--surface-primary);color:var(--text-primary)}
+  border-radius:var(--radius-radius-200);background:var(--color-surface-primary);color:var(--color-text)}
 /* Effect styles inner-shadow/map-highlight/* — not in tokens.css yet */
 .ifs-alert--error{box-shadow:var(--inner-shadow-map-highlight-critical)}
 .ifs-alert--warning{box-shadow:var(--inner-shadow-map-highlight-moderate)}
 .ifs-alert--success{box-shadow:var(--inner-shadow-map-highlight-resolved)}
 .ifs-alert__text{display:flex;flex-direction:column;gap:var(--space-100);align-self:stretch;min-width:0}
 .ifs-alert__header{display:flex;align-items:center;gap:var(--space-100)}
-.ifs-alert__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-primary)} /* Label/M/medium */
-.ifs-alert__body{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-tertiary)} /* Body/M/regular */
+.ifs-alert__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--color-text)} /* Label/M/medium */
+.ifs-alert__body{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-softer)} /* Body/M/regular */
 .ifs-alert__close{position:absolute;top:var(--space-100);inset-inline-end:var(--space-100)}
-.ifs-alert--error .ifs-alert__icon{color:var(--icon-danger)}
-.ifs-alert--warning .ifs-alert__icon{color:var(--icon-warning)}
-.ifs-alert--success .ifs-alert__icon{color:var(--icon-success)}
+.ifs-alert--error .ifs-alert__icon{color:var(--color-icon-danger)}
+.ifs-alert--warning .ifs-alert__icon{color:var(--color-icon-warning)}
+.ifs-alert--success .ifs-alert__icon{color:var(--color-icon-success)}
 
 /* ---------- Snackbar ---------- */
 .ifs-snackbar{display:flex;align-items:center;gap:var(--space-stack);width:25rem;max-width:100%;padding:var(--space-inset);
-  border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha);color:var(--text-primary);
-  box-shadow:0 0 0 1px var(--border-base),var(--elevation-elevation-1-primary);
+  border-radius:var(--radius-radius-200);background:var(--color-surface-secondary);color:var(--color-text);
+  box-shadow:0 0 0 1px var(--color-border-soft),var(--elevation-elevation-1-primary);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 .ifs-snackbar__text{display:flex;flex-direction:column;gap:var(--space-100);flex:none;max-width:60%}
-.ifs-snackbar__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--text-primary)} /* Label/M/medium */
-.ifs-snackbar__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--text-secondary)} /* Body/M/regular */
+.ifs-snackbar__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--color-text)} /* Label/M/medium */
+.ifs-snackbar__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
 .ifs-snackbar__actions{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-200);flex:1 1 auto;min-width:0}
 .ifs-snackbar-stack{position:fixed;top:16px;inset-inline-end:16px;z-index:var(--z-index-z-toast);display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-snackbar-stack > *{animation:ifs-toast-in .2s ease-out}
@@ -75,7 +75,7 @@
 @media (prefers-reduced-motion:reduce){.ifs-snackbar-stack > *,.ifs-drawer,.ifs-floating-bar{animation:none!important}}
 
 /* ---------- Overlay (overlay-background) ---------- */
-.ifs-overlay{position:fixed;inset:0;z-index:var(--z-index-z-modal-overlay);background:var(--overlay-screen-strong)}
+.ifs-overlay{position:fixed;inset:0;z-index:var(--z-index-z-modal-overlay);background:var(--color-overlay-screen-strong)}
 .ifs-overlay--strong{backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium))}
 .ifs-overlay--inline{position:absolute}
 .ifs-overlay.ifs-activity-panel__overlay{background:transparent} /* `over` panel: catches the outside click, no dimming (Nov 19) */
@@ -83,70 +83,70 @@
 /* ---------- Modal ---------- */
 .ifs-modal-layer{position:fixed;inset:0;z-index:var(--z-index-z-modal);display:flex;align-items:center;justify-content:center;padding:var(--space-600) /* scrim gutter */}
 .ifs-modal{display:flex;flex-direction:column;width:var(--overlay-width-m);min-width:min(var(--overlay-width-s),100%);max-width:min(var(--overlay-width-l),100%);max-height:85vh;
-  border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha);color:var(--text-primary);
-  box-shadow:0 0 0 1px var(--border-base);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
-.ifs-modal__header{display:flex;align-items:center;gap:var(--space-stack);flex:none;padding:var(--space-inset-l) /* inset-l on all four sides, every part (Nov 19) */;box-shadow:inset 0 -1px 0 var(--border-base)}
-.ifs-modal__header .ifs-surface__title{flex:1 1 auto;color:var(--text-primary)}
+  border-radius:var(--radius-radius-200);background:var(--color-surface-secondary);color:var(--color-text);
+  box-shadow:0 0 0 1px var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
+.ifs-modal__header{display:flex;align-items:center;gap:var(--space-stack);flex:none;padding:var(--space-inset-l) /* inset-l on all four sides, every part (Nov 19) */;box-shadow:inset 0 -1px 0 var(--color-border-soft)}
+.ifs-modal__header .ifs-surface__title{flex:1 1 auto;color:var(--color-text)}
 .ifs-modal__body{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;padding:var(--space-inset-l)}
 .ifs-modal__footer{display:flex;align-items:center;gap:var(--space-stack);flex:none;padding:var(--space-inset-l)}
 .ifs-modal__footer > .ifs-button{flex:1 1 0}
 
 /* ---------- Drawer ---------- */
 .ifs-drawer{display:flex;flex-direction:column;width:var(--region-panel);min-width:min(var(--region-panel-min),100%);max-width:min(var(--region-panel-max),100%);overflow:hidden;
-  border-radius:var(--radius-radius-200);background:var(--surface-secondary-alpha);color:var(--text-primary);
-  box-shadow:inset 0 0 0 1px var(--border-base);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
+  border-radius:var(--radius-radius-200);background:var(--color-surface-secondary);color:var(--color-text);
+  box-shadow:inset 0 0 0 1px var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
 .ifs-drawer--floating{position:fixed;top:var(--space-400);bottom:var(--space-400);z-index:var(--z-index-z-floating);animation:ifs-drawer-in .2s ease-out}
 .ifs-drawer--floating.ifs-drawer--right{inset-inline-end:var(--space-400)}
 .ifs-drawer--floating.ifs-drawer--left{inset-inline-start:var(--space-400)}
 .ifs-drawer--floating.ifs-drawer--collapsed{bottom:auto}
 @keyframes ifs-drawer-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 .ifs-drawer__header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-50);flex:none;padding:var(--space-inset) /* height comes from the inset (was a fixed 56) */}
-.ifs-drawer__tabs{flex:none;padding:var(--space-250) var(--space-inset) 0 /* a tab row: the tabs sit on the divider below */;box-shadow:inset 0 1px 0 var(--border-base)}
-.ifs-drawer__sub{display:flex;flex-direction:column;gap:var(--space-stack);flex:none;padding:var(--space-inset);box-shadow:inset 0 1px 0 var(--border-base)}
-.ifs-drawer__subtitle{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);color:var(--text-primary);margin:0} /* Heading/H4 */
-.ifs-drawer__content{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;padding:var(--space-inset) /* inset on all sides, like every container */;box-shadow:inset 0 1px 0 var(--border-base)}
+.ifs-drawer__tabs{flex:none;padding:var(--space-250) var(--space-inset) 0 /* a tab row: the tabs sit on the divider below */;box-shadow:inset 0 1px 0 var(--color-border-soft)}
+.ifs-drawer__sub{display:flex;flex-direction:column;gap:var(--space-stack);flex:none;padding:var(--space-inset);box-shadow:inset 0 1px 0 var(--color-border-soft)}
+.ifs-drawer__subtitle{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);color:var(--color-text);margin:0} /* Heading/H4 */
+.ifs-drawer__content{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;padding:var(--space-inset) /* inset on all sides, like every container */;box-shadow:inset 0 1px 0 var(--color-border-soft)}
 .ifs-drawer--collapsed .ifs-drawer__tabs,.ifs-drawer--collapsed .ifs-drawer__sub,.ifs-drawer--collapsed .ifs-drawer__content{display:none}
 .ifs-drawer--collapsed{height:auto!important}
 
 /* scroll-bar-atom: 8px track, 4px bar, background/elevation-1/tertiary */
-.ifs-scroll{scrollbar-width:thin;scrollbar-color:var(--background-elevation-1-tertiary) transparent}
+.ifs-scroll{scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent}
 .ifs-scroll::-webkit-scrollbar{width:8px}
 .ifs-scroll::-webkit-scrollbar-track{background:transparent}
-.ifs-scroll::-webkit-scrollbar-thumb{background:var(--background-elevation-1-tertiary);border-radius:var(--radius-radius-200);border:2px solid transparent;background-clip:padding-box}
+.ifs-scroll::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border-radius:var(--radius-radius-200);border:2px solid transparent;background-clip:padding-box}
 
 /* ---------- Panel ---------- */
 .ifs-panel{display:flex;flex-direction:column;flex:none;width:var(--region-panel);height:100%;
-  background:var(--surface-primary);color:var(--text-primary);box-shadow:inset 1px 0 0 var(--border-base)}
-:where([dir="rtl"]) .ifs-panel{box-shadow:inset -1px 0 0 var(--border-base)} /* rtl: one-side border mirrors */
+  background:var(--color-surface-primary);color:var(--color-text);box-shadow:inset 1px 0 0 var(--color-border-soft)}
+:where([dir="rtl"]) .ifs-panel{box-shadow:inset -1px 0 0 var(--color-border-soft)} /* rtl: one-side border mirrors */
 .ifs-panel--full{width:100%}
 .ifs-panel__header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-50);flex:none;padding-block:var(--space-inset);padding-inline:calc(var(--space-inset) + var(--size-1)) var(--space-inset) /* +1: the panel's left edge line */}
 .ifs-panel__buttons{display:flex;align-items:center;gap:var(--space-300);flex:none}
 .ifs-panel__content{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;
-  padding:var(--space-inset);margin-inline-start:var(--size-1);box-shadow:inset 0 1px 0 var(--border-base)}
+  padding:var(--space-inset);margin-inline-start:var(--size-1);box-shadow:inset 0 1px 0 var(--color-border-soft)}
 /* Collapsed rail (sidebar-organism View=Collapsed): 48px, padding 12 (+4 top from its title row), one ghost S ←| button */
 .ifs-panel--collapsed{box-sizing:border-box;width:var(--region-rail);align-items:center;padding:calc(var(--space-300) + var(--space-100)) var(--space-300) var(--space-300)}
 
 /* ---------- Popover ---------- */
 .ifs-popover-anchor{position:relative /* the collapsed rail: chrome, like the side nav */;display:inline-flex}
 .ifs-popover{display:flex;flex-direction:column;width:var(--overlay-width-s);min-width:10rem /* narrowest a popover gets */;max-width:var(--overlay-width-l);max-height:37.5rem;overflow:hidden;
-  border-radius:var(--radius-radius-200);background:var(--background-elevation-1-primary-base);color:var(--text-primary);
-  box-shadow:inset 0 0 0 1px var(--border-base),var(--elevation-elevation-3-primary);
+  border-radius:var(--radius-radius-200);background:var(--color-surface-elevation-1);color:var(--color-text);
+  box-shadow:inset 0 0 0 1px var(--color-border-soft),var(--elevation-elevation-3-primary);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
 .ifs-popover-anchor > .ifs-popover{position:absolute;top:calc(100% + 4px);inset-inline-start:0;z-index:var(--z-index-z-popover)}
 .ifs-popover-anchor > .ifs-popover--end{inset-inline-start:auto;inset-inline-end:0}
-.ifs-popover__header{display:flex;align-items:center;gap:var(--space-200);flex:none;padding:var(--space-inset);box-shadow:inset 0 -1px 0 var(--border-base)}
+.ifs-popover__header{display:flex;align-items:center;gap:var(--space-200);flex:none;padding:var(--space-inset);box-shadow:inset 0 -1px 0 var(--color-border-soft)}
 .ifs-popover__title{display:flex;align-items:center;gap:var(--space-200);flex:1 1 auto;min-width:0}
 .ifs-popover__counter{display:inline-flex;align-items:center;justify-content:center;height:var(--size-18);padding:var(--space-50) var(--space-200);
-  border-radius:10px /* raw in Figma */;background:var(--surface-secondary-alpha);color:var(--text-secondary);
+  border-radius:10px /* raw in Figma */;background:var(--color-surface-secondary);color:var(--color-text-soft);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* counter-atom S (18), Label/S/medium */
 .ifs-popover__tools{display:flex;align-items:center;gap:var(--space-150);flex:none;padding:var(--space-inset) var(--space-inset)}
 .ifs-popover__search{display:flex;align-items:center;gap:var(--space-100);flex:1 1 auto;min-width:0;height:var(--control-h-m);padding:var(--space-200);
-  border-radius:var(--radius-radius-100);box-shadow:inset 0 0 0 1px var(--element-search-border-default);color:var(--icon-secondary)}
-.ifs-popover__search:hover{box-shadow:inset 0 0 0 1px var(--element-search-border-hover)}
-.ifs-popover__search:focus-within{box-shadow:inset 0 0 0 1px var(--element-search-border-typing)}
-.ifs-popover__search input{flex:1 1 auto;min-width:0;border:0;padding:0;margin:0;background:none;outline:none;color:var(--text-primary);
+  border-radius:var(--radius-radius-100);box-shadow:inset 0 0 0 1px var(--color-border-input);color:var(--color-icon-soft)}
+.ifs-popover__search:hover{box-shadow:inset 0 0 0 1px var(--color-border-input-hover)}
+.ifs-popover__search:focus-within{box-shadow:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-popover__search input{flex:1 1 auto;min-width:0;border:0;padding:0;margin:0;background:none;outline:none;color:var(--color-text);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-popover__search input::placeholder{color:var(--text-tertiary)}
+.ifs-popover__search input::placeholder{color:var(--color-text-softer)}
 .ifs-popover__search input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
 /* Content slot: 0,16,12,16 (branch); 12 top after the title (0 after the search row) as the pattern instances set it */
 .ifs-popover__content{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;
@@ -156,16 +156,16 @@
 
 /* ---------- Floating bar ---------- */
 .ifs-floating-bar{display:inline-flex;align-items:center;gap:var(--space-200);padding:var(--space-200);
-  border-radius:var(--radius-radius-150);background:var(--element-button-tertiary-fill-default);color:var(--text-primary);
-  box-shadow:inset 0 0 0 1px var(--border-base);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
+  border-radius:var(--radius-radius-150);background:var(--color-background-neutral-soft-inverse);color:var(--color-text);
+  box-shadow:inset 0 0 0 1px var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 .ifs-floating-bar--floating{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:var(--z-index-z-floating);animation:ifs-bar-in .18s ease-out} /* ltr: centred with translateX */
 @keyframes ifs-bar-in{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translateX(-50%)}}
 .ifs-floating-bar__context{display:flex;flex-direction:column;gap:var(--space-50);min-width:0;max-width:20rem}
-.ifs-floating-bar__category{display:flex;align-items:center;gap:var(--space-100);color:var(--text-tertiary);
+.ifs-floating-bar__category{display:flex;align-items:center;gap:var(--space-100);color:var(--color-text-softer);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;min-width:0} /* Label/M/medium, one line */
-.ifs-floating-bar__item{display:flex;align-items:center;gap:var(--space-200);color:var(--text-primary);
+.ifs-floating-bar__item{display:flex;align-items:center;gap:var(--space-200);color:var(--color-text);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium */
 .ifs-floating-bar__divider{flex:none;align-self:stretch;width:var(--size-16);display:flex;align-items:center;justify-content:center} /* 16px frame, 8px side padding, 1px line */
-.ifs-floating-bar__divider::before{content:"";flex:none;width:1px;height:var(--size-32);background:var(--border-base)}
+.ifs-floating-bar__divider::before{content:"";flex:none;width:1px;height:var(--size-32);background:var(--color-border-soft)}
 .ifs-floating-bar__buttons{display:flex;align-items:center;gap:var(--space-200)}
 .ifs-floating-bar__close{display:flex;align-items:center}

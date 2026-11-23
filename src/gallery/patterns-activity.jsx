@@ -9,13 +9,13 @@ export default IFS_GALLERY;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cell = ({ title, children, w = 380, h }) => (
     <IFS.Stack gap="200" style={{ width: w }}>
-      <span className="t-label-m-medium" style={{ color: 'var(--text-tertiary)' }}>{title}</span>
+      <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>{title}</span>
       <div style={{ height: h, display: 'flex', alignItems: 'flex-start', minHeight: 0 }}>{children}</div>
     </IFS.Stack>
   );
   const grid = { display: 'flex', flexWrap: 'wrap', gap: 24, marginBottom: 24, alignItems: 'flex-start' };
   const STAGES = [['command', 'Command'], ['value', 'Value'], ['explore', 'Explore'], ['build', 'Build'], ['plan', 'Plan'], ['results', 'Results']].map(([value, label]) => ({ value, label }));
-  const Screen = ({ children, h = 900 }) => <div style={{ position: 'relative', width: 1440, height: h, overflow: 'hidden', background: 'var(--surface-primary)', transform: 'translateZ(0)' }}>{children}</div>;
+  const Screen = ({ children, h = 900 }) => <div style={{ position: 'relative', width: 1440, height: h, overflow: 'hidden', background: 'var(--color-surface-primary)', transform: 'translateZ(0)' }}>{children}</div>;
 
   // ───────────────────────── data ─────────────────────────
   const P = {
@@ -145,7 +145,7 @@ export default IFS_GALLERY;
         <Cell title="disabled (inferred)" w={320}><CompareDropdown groups={COMPARE_GROUPS} defaultValue="v3" disabled /></Cell>
       </div>
       <Row label="live (click, ↑ ↓ Enter, ✕ clears)"><div style={{ height: 420, alignSelf: 'flex-start' }}><CompareDropdown groups={COMPARE_GROUPS} value={v} onChange={setV} /></div>
-        <span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>value: {String(v)}</span></Row>
+        <span className="t-body-m-regular" style={{ color: 'var(--color-text-soft)' }}>value: {String(v)}</span></Row>
     </>;
   } });
 

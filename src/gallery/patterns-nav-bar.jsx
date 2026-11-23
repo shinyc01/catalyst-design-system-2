@@ -34,7 +34,7 @@ export default IFS_GALLERY;
   ) });
 
   const MiniMap = () => (
-    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 60% 40%, var(--background-elevation-1-tertiary), var(--surface-secondary-alpha) 70%)' }}>
+    <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 60% 40%, var(--color-background-neutral), var(--color-surface-secondary) 70%)' }}>
       <div style={{ position: 'absolute', left: '30%', top: 30 }}><IFS.MapPinPole symbol="pin" number="Recloser R-1" pinIcon="asset type-substation" /></div>
       <div style={{ position: 'absolute', left: '66%', top: 18 }}><IFS.MapPinPole symbol="pin" number="Demeter SS" /></div>
       <div style={{ position: 'absolute', left: '62%', top: 84 }}><IFS.MapPinDot size="s" status="error" type="text" counter="88%" /></div>
