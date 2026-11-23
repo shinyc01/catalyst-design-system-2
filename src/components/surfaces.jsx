@@ -121,7 +121,12 @@ function Snackbar({ title, children, secondaryAction, primaryAction, onClose, sh
 // Toast stack: newest on top, auto-dismiss after `duration` ms (default 4000, 0 = sticky), paused on hover/focus.
 const surfToasts = { list: [], subs: new Set(), seq: 0 };
 const surfToastEmit = () => surfToasts.subs.forEach(f => f(surfToasts.list));
-function surfDismissToast(id) { surfToasts.list = surfToasts.list.filter(t => t.id !== id); surfToastEmit(); }
+// M3: a dismissed snackbar fades and slides 16 out to the end side in 50 (.is-leaving), then leaves the stack.
+function surfDismissToast(id) {
+  if (!surfToasts.list.some(t => t.id === id && !t.leaving)) return;
+  surfToasts.list = surfToasts.list.map(t => (t.id === id ? { ...t, leaving: true } : t)); surfToastEmit();
+  setTimeout(() => { surfToasts.list = surfToasts.list.filter(t => t.id !== id); surfToastEmit(); }, 50);
+}
 function SurfToastItem({ t }) {
   const [paused, setPaused] = React.useState(false);
   React.useEffect(() => {
@@ -130,9 +135,9 @@ function SurfToastItem({ t }) {
     return () => clearTimeout(h);
   }, [paused]);
   const wrap = a => a && { ...a, onClick: e => { a.onClick && a.onClick(e); surfDismissToast(t.id); } };
-  const { id, duration, description, ...props } = t;
+  const { id, duration, description, leaving, ...props } = t;
   return (
-    <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
+    <div className={leaving ? 'is-leaving' : undefined} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
       <Snackbar {...props} primaryAction={wrap(t.primaryAction)} secondaryAction={wrap(t.secondaryAction)} onClose={() => surfDismissToast(id)}>{description}</Snackbar>
     </div>
   );
@@ -147,17 +152,31 @@ function floatTop() {
   return Math.round(b);
 }
 IFS.floatTop = floatTop;
+// C3: ONE stack element for every message (toasts, Documents feedback, live notifications), so two can never overlap.
+// IFS.snackbarHost() returns it; patterns render into it with a portal. Its top is measured each time a message arrives.
+function snackbarHost() {
+  if (typeof document === 'undefined') return null;
+  if (!surfToasts.host || !surfToasts.host.isConnected) {
+    surfToasts.host = document.createElement('div');
+    surfToasts.host.className = 'ifs-snackbar-stack';
+    document.body.appendChild(surfToasts.host);
+  }
+  return surfToasts.host;
+}
+snackbarHost.place = (top = floatTop()) => { const h = snackbarHost(); if (h) h.style.setProperty('--float-top', `${top}px`); };
+IFS.snackbarHost = snackbarHost;
 function SurfToastStack() {
   const [list, setList] = React.useState(surfToasts.list);
-  const [top, setTop] = React.useState(0);
   React.useEffect(() => { surfToasts.subs.add(setList); return () => surfToasts.subs.delete(setList); }, []);
-  React.useLayoutEffect(() => { if (list.length) setTop(floatTop()); }, [list.length]);
-  return <div className="ifs-snackbar-stack" style={{ '--float-top': `${top}px` }}>{list.map(t => <SurfToastItem key={t.id} t={t} />)}</div>;
+  React.useLayoutEffect(() => { if (list.length) snackbarHost.place(); }, [list.length]);
+  const h = snackbarHost();
+  return h ? ReactDOM.createPortal(<>{list.map(t => <SurfToastItem key={t.id} t={t} />)}</>, h) : null;
 }
 // toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id).
 function surfToast(opts) {
   if (!surfToasts.root) {
     const host = document.createElement('div');
+    host.style.display = 'contents'; // the toasts render straight into the one stack (snackbarHost) through a portal
     document.body.appendChild(host);
     surfToasts.root = ReactDOM.createRoot(host);
     surfToasts.root.render(<SurfToastStack />);
@@ -188,10 +207,11 @@ function Modal({ open, defaultOpen, onOpenChange, title, children, secondaryActi
   const titleId = useSurfaceId('ifs-modal-title');
   const close = () => dismissible && setOpen(false);
   useSurfaceFocus(ref, !inline && isOpen, { onEscape: close, trap: true });
-  if (!inline && !isOpen) return null;
+  const ex = IFS.useExit(isOpen, 100); // M3: the modal closes in 100
+  if (!inline && !ex.mounted) return null;
   const card = (
     <div ref={ref} role="dialog" aria-modal={inline ? undefined : 'true'} aria-labelledby={titleId} tabIndex={-1}
-      className={IFS.cx('ifs-modal', className)} style={{ width: IFS.remOf(width), ...style }}>
+      className={IFS.cx('ifs-modal', !inline && ex.leaving && 'is-leaving', className)} style={{ width: IFS.remOf(width), ...style }}>
       <div className="ifs-modal__header">
         <h2 id={titleId} className="ifs-surface__title">{title}</h2>
         {dismissible && <IFS.IconButton icon="system-close" label="Close" type="ghost" size="s" onClick={close} />}
@@ -207,7 +227,7 @@ function Modal({ open, defaultOpen, onOpenChange, title, children, secondaryActi
   );
   if (inline) return card;
   return <>
-    {overlay !== 'none' && <Overlay type={overlay} onClick={close} />}
+    {overlay !== 'none' && <Overlay type={overlay} onClick={close} className={ex.leaving ? 'is-leaving' : undefined} />}
     <div className="ifs-modal-layer" onMouseDown={e => { if (e.target === e.currentTarget) close(); }}>{card}</div>
   </>;
 }
@@ -225,10 +245,11 @@ function Drawer({ open, defaultOpen, onOpenChange, title, expanded, defaultExpan
   const ref = React.useRef();
   const titleId = useSurfaceId('ifs-drawer-title');
   useSurfaceFocus(ref, !inline && isOpen, { onEscape: () => setOpen(false), trap: overlay !== 'none' });
-  if (!inline && !isOpen) return null;
+  const ex = IFS.useExit(isOpen, 100); // M3: drawers slide out in 100
+  if (!inline && !ex.mounted) return null;
   const panel = (
     <aside ref={ref} role="dialog" aria-modal={!inline && overlay !== 'none' ? 'true' : undefined} aria-labelledby={titleId} tabIndex={-1}
-      className={IFS.cx('ifs-drawer', `ifs-drawer--${side}`, !inline && 'ifs-drawer--floating', !isExp && 'ifs-drawer--collapsed', className)}
+      className={IFS.cx('ifs-drawer', `ifs-drawer--${side}`, !inline && 'ifs-drawer--floating', !inline && ex.leaving && 'is-leaving', !isExp && 'ifs-drawer--collapsed', className)}
       style={{ height, ...style }}>
       <div className="ifs-drawer__header">
         <h2 id={titleId} className="ifs-surface__title">{title}</h2>
@@ -307,9 +328,10 @@ function Popover({ trigger, open, defaultOpen, onOpenChange, align = 'start', ti
     document.addEventListener('mousedown', onDown);
     return () => document.removeEventListener('mousedown', onDown);
   }, [isOpen, inline]);
-  const card = (inline || isOpen) && (
+  const ex = IFS.useExit(isOpen, 50); // M3: small surfaces close in 50, fade only
+  const card = (inline || ex.mounted) && (
     <div ref={ref} id={id} role="dialog" aria-label={typeof title === 'string' ? title : undefined} tabIndex={-1}
-      className={IFS.cx('ifs-popover', align === 'end' && 'ifs-popover--end', className)} style={{ width: IFS.remOf(width), ...style }}>
+      className={IFS.cx('ifs-popover', align === 'end' && 'ifs-popover--end', !inline && ex.leaving && 'is-leaving', className)} style={{ width: IFS.remOf(width), ...style }}>
       {(title != null || showClose) && <div className="ifs-popover__header">
         <div className="ifs-popover__title">
           {title != null && <span className="ifs-surface__title">{title}</span>}

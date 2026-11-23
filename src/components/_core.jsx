@@ -37,5 +37,19 @@ function Icon({ name, size = 16, variant, className, style, title }) {
 // A size prop given as a number is px at the default 16px text size; it comes out in rem so it follows the user's text size.
 const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);
 
-Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS });
-export { Icon, cx, remOf };
+// M3 exits (Nov 23): keeps a closing surface mounted for its exit time, with `leaving` true so it can take the
+// .is-leaving class (foundations/motion.css), then unmounts. ms: 50 small surfaces (menu, popover, snackbar), 100 large ones
+// (modal, drawer). Reduced motion keeps the time, and motion.css makes the exit a fade.
+function useExit(open, ms) {
+  const [state, setState] = React.useState(open ? 'open' : 'closed');
+  React.useEffect(() => {
+    if (open) { setState('open'); return undefined; }
+    if (state === 'closed') return undefined;
+    setState('leaving');
+    const t = setTimeout(() => setState('closed'), ms);
+    return () => clearTimeout(t);
+  }, [open]);
+  return { mounted: !!open || state !== 'closed', leaving: !open && state !== 'closed' };
+}
+Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS, useExit });
+export { Icon, cx, remOf, useExit };

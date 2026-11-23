@@ -17,7 +17,7 @@ function useControlled(prop, def, onChange) {
 // Open lists and the date popover render at the end of <body>, fixed to their field, so a scrolling parent
 // (a modal body, a drawer, a table card) can't clip them. `floatRef` must be passed to useOutside with the root.
 // z-index: the toast layer, because a list opened inside a modal (z-modal 600) must sit above it.
-function Floating({ anchorRef, floatRef, position = 'down', matchWidth = true, align = 'start', flip = false, children }) {
+function Floating({ anchorRef, floatRef, position = 'down', matchWidth = true, align = 'start', flip = false, leaving, children }) {
   const [pos, setPos] = useState(null);
   useLayoutEffect(() => {
     const calc = () => {
@@ -35,7 +35,7 @@ function Floating({ anchorRef, floatRef, position = 'down', matchWidth = true, a
     return () => { window.removeEventListener('scroll', calc, true); window.removeEventListener('resize', calc); };
   }, [position, matchWidth, align, flip]);
   return createPortal(
-    <div ref={floatRef} className="ifs-floating" style={{ position: 'fixed', zIndex: 'var(--z-index-popover)' /* C2: select lists sit with popovers */, ...(pos || { visibility: 'hidden' }) }}>
+    <div ref={floatRef} className={IFS.cx('ifs-floating', leaving && 'is-leaving')} style={{ position: 'fixed', zIndex: 'var(--z-index-popover)' /* C2: select lists sit with popovers */, ...(pos || { visibility: 'hidden' }) }}>
       {children}
     </div>, document.body);
 }
@@ -563,6 +563,7 @@ function Menu({ items = [], trigger, more, anchor, inline = false, open, default
     return typeof anchor.getBoundingClientRect === 'function' ? anchor : { getBoundingClientRect: () => anchor };
   } }), [anchor]);
   const setOpen = v => { if (v !== isOpen) setOpenRaw(v); if (!v) setSub(null); };
+  const ex = IFS.useExit(isOpen, 50); // M3: menus close in 50, fade only
   const focusTrigger = () => { const t = rootRef.current && rootRef.current.querySelector('button,[tabindex]'); t && t.focus(); };
   useOutside(isOpen, [rootRef, floatRef], () => setOpen(false));
   useEffect(() => {
@@ -588,8 +589,8 @@ function Menu({ items = [], trigger, more, anchor, inline = false, open, default
     </div>
   );
   if (inline) return body;
-  const panel = isOpen && (
-    <Floating anchorRef={anchorRef} floatRef={floatRef} position={position} matchWidth={false} align={align} flip>
+  const panel = ex.mounted && (
+    <Floating anchorRef={anchorRef} floatRef={floatRef} position={position} matchWidth={false} align={align} flip leaving={ex.leaving}>
       {body}
     </Floating>
   );

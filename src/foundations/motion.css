@@ -37,12 +37,35 @@
 .ifs-overlay{animation:ifs-fade var(--motion-duration-200) var(--motion-ease-enter)}
 .ifs-drawer--floating.ifs-drawer--left{animation-name:ifs-slide-in-start}
 
+/* Closing (M3): one step faster than opening. The kit keeps a closing surface mounted with .is-leaving (IFS.useExit).
+   Small surfaces fade only in 50 (menus, select lists, popovers); snackbars fade and slide 16 back to the end side in 50;
+   the modal and its scrim fade in 100; drawers and over panels slide back to their edge in 100. The tooltip closes at once. */
+@keyframes ifs-fade-out{to{opacity:0}}
+@keyframes ifs-leave-end{to{opacity:0;transform:translateX(calc(var(--motion-distance-16) * var(--motion-end)))}}
+@keyframes ifs-slide-out-end{to{transform:translateX(calc((100% + var(--float-inset)) * var(--motion-end)))}}
+@keyframes ifs-slide-out-start{to{transform:translateX(calc((100% + var(--float-inset)) * -1 * var(--motion-end)))}}
+.ifs-floating.is-leaving,.ifs-popover.is-leaving{animation:ifs-fade-out var(--motion-duration-50) var(--motion-ease-exit) forwards}
+.ifs-snackbar-stack > .is-leaving{animation:ifs-leave-end var(--motion-duration-50) var(--motion-ease-exit) forwards}
+.ifs-modal.is-leaving,.ifs-overlay.is-leaving{animation:ifs-fade-out var(--motion-duration-100) var(--motion-ease-exit) forwards}
+.ifs-drawer--floating.is-leaving{animation:ifs-slide-out-end var(--motion-duration-100) var(--motion-ease-exit) forwards}
+.ifs-drawer--floating.ifs-drawer--left.is-leaving{animation-name:ifs-slide-out-start}
+/* Over panels slide in from the end edge (200) and back (100); push panels animate their width (200 both ways) and the
+   page reflows smoothly; the map and canvas redraw once at the end (AppShell fires a resize). */
+@keyframes ifs-push-in{from{max-width:0}to{max-width:var(--layout-modal-width-l)}}
+@keyframes ifs-push-out{from{max-width:var(--layout-modal-width-l)}to{max-width:0}}
+.ifs-app-shell__panel--push{overflow:hidden;animation:ifs-push-in var(--motion-duration-200) var(--motion-ease-standard)}
+.ifs-app-shell__panel--push.is-leaving{animation:ifs-push-out var(--motion-duration-200) var(--motion-ease-standard) forwards}
+.ifs-app-shell--panel-over .ifs-app-shell__panel{animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)}
+.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation:ifs-slide-out-end var(--motion-duration-100) var(--motion-ease-exit) forwards}
+
 /* Reduced motion (M4): one rule for the whole system. Movement snaps or fades (the 2 and 16 distances go to 0, drawers and the Cooper
    chat fade instead of sliding or growing, the knob, slider, chevron, progress and widths change at once); colour and opacity
    fades stay; loops stop except the spinner, which slows to 3 x spin. Components need no rule of their own. */
 @media (prefers-reduced-motion:reduce){
   :root{--motion-distance-2:0px;--motion-distance-16:0px}
-  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-floating-bar--floating{animation-name:ifs-fade!important}
+  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-floating-bar--floating,.ifs-app-shell--panel-over .ifs-app-shell__panel{animation-name:ifs-fade!important}
+  .ifs-drawer--floating.is-leaving,.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation-name:ifs-fade-out!important}
+  .ifs-app-shell__panel--push,.ifs-app-shell__panel--push.is-leaving{animation:none!important}
   .ifs-floating-bar--floating{animation:none!important}
   .ifs-sk,.ifs-skeleton,[class*="--loading"],.ifs-cooper-msg__cursor,.ifs-trc-solution--loading{animation:none!important}
   .ifs-spin,[class*="spinner"]{animation-duration:calc(3 * var(--motion-loop-spin))!important}

@@ -300,6 +300,18 @@ function renderCell(col, row) {
 function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collapsed: collapsedProp, onCollapsedChange, groupOrder, groupInfo, headerPerGroup,
   sort, defaultSort = null, onSortChange,
   selectedId, onRowClick, rowKey = 'id', rowHeight, rowProps, title, tabs, search, className, ...rest }) {
+  // M3 (Nov 23): when the rows change (a tab change, a filter), the new rows show at once and only the table height glides
+  // (200, standard), so nothing below jumps. Reduced motion snaps.
+  const glideRef = React.useRef(null), lastH = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const el = glideRef.current; if (!el) return undefined;
+    const to = el.offsetHeight, from = lastH.current; lastH.current = to;
+    if (from == null || from === to || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)) return undefined;
+    el.style.overflow = 'hidden'; el.style.height = `${from}px`; void el.offsetHeight;
+    el.style.transition = 'height var(--motion-duration-200) var(--motion-ease-standard)'; el.style.height = `${to}px`;
+    const t = setTimeout(() => { el.style.height = ''; el.style.transition = ''; el.style.overflow = ''; }, 200);
+    return () => clearTimeout(t);
+  }, [rows]);
   const [inner, setInner] = React.useState(defaultSort);
   const cur = sort !== undefined ? sort : inner;
   const [collapsedInner, setCollapsedInner] = React.useState(() => new Set(defaultCollapsed));
@@ -364,7 +376,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collap
       </div>
   );
   const table = (
-    <div role="table" className={IFS.cx('ifs-table', !(title || tabs || search) && className)} style={{ '--cols': cols, ...(rowHeight != null && { '--ifs-table-row-h': `${rowHeight / 16}rem` }) }} {...(title || tabs || search ? {} : rest)}>
+    <div ref={glideRef} role="table" className={IFS.cx('ifs-table', !(title || tabs || search) && className)} style={{ '--cols': cols, ...(rowHeight != null && { '--ifs-table-row-h': `${rowHeight / 16}rem` }) }} {...(title || tabs || search ? {} : rest)}>
       {!(groupOf && headerPerGroup) && headerRow}
       {groupOf ? groups.map(([g, rs]) => {
         const info = (groupInfo && groupInfo(g, rs)) || {};
