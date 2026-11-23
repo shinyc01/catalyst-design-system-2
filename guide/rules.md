@@ -148,7 +148,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 | s | 28 | 24 | 24 | control S (incl. the small icon button square), chips, `CooperChip`, `RoleSelect`, badge M, the Explore map-bar search |
 | m | 36 | 32 | 28 | control M, badge L, prompts M, search, Smart Search, popover search, phone picker, checkbox and radio rows, nav tree rows, the search card, menu and list items |
 | l | 44 | 40 | 32 | control L, prompts L, `Pager`, large list items |
-| xl | 52 | 48 | 40 | `Select` XL trigger (its field is m), Cooper history search |
+| xl | 52 | 48 | 40 | `Select` XL trigger (its inner field stays 36 until decided), Cooper history search |
 
 Rows keep their own tokens: tabs `--size-tab-m` 40 / 36 / 32 and `--size-tab-l` 48 / 40 / 36; nav rows `--size-nav-row` 44 / 40 / 36; table rows and header (rule 3.7).
 3.6 **Fixed sizes (not on the ladder, the same in every density):** app chrome (nav bar 48, side nav, rail, Cooper button), avatars and media, chart and map geometry, calendar dates. Everything else with a height is on the ladder (rule 3.5) or a row token.

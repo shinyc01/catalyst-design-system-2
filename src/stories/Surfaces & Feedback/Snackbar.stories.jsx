@@ -9,7 +9,7 @@ export default {
   component: IFS["Snackbar"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** snackbar-organism (3795:29459)\n\n\nUse: Rule 7.12; show one with `IFS.toast`." } },
+    docs: { description: { component: "**Figma:** snackbar-organism (3795:29459)\n\n\nUse: Rule 7.12; show one with `IFS.toast`. Placement: the one top-end stack, rule 4.8 (one page margin in, below the header, 8 apart, newest on top).\n\nMotion: slides in 16 from the end side over 100; stays 4000, paused on hover and focus (rule 1.8). Closing isn't animated yet (rule 1.8)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3795-29459"},
   },
 };

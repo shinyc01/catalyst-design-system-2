@@ -9,7 +9,7 @@ export default {
   component: IFS["Popover"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** popover-organism (4394:56471)\n\n\nUse: Rule 7.14 (width rule 4.5). Examples: detail preview, small picker, quick action list, view switcher, display settings, searchable list behind a count (\"16 Documents\")." } },
+    docs: { description: { component: "**Figma:** popover-organism (4394:56471)\n\n\nUse: Rule 7.14 (width rule 4.5). Examples: detail preview, small picker, quick action list, view switcher, display settings, searchable list behind a count (\"16 Documents\").\n\nMotion: drops 2 over 100, 4 from its trigger (rules 1.8, 3.8). Closing isn't animated yet (rule 1.8)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4394-56471"},
   },
 };

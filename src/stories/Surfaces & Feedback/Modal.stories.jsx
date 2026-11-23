@@ -9,7 +9,7 @@ export default {
   component: IFS["Modal"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** modal-organism (4169:208596) + overlay-background (338:21403)\n\n\nUse: Rule 7.13. Examples: confirm a collaborator and role, a critical decision, a short Save/Cancel form.\n\n\nUse: The dimming scrim behind a blocking modal." } },
+    docs: { description: { component: "**Figma:** modal-organism (4169:208596) + overlay-background (338:21403)\n\n\nUse: Rule 7.13. Examples: confirm a collaborator and role, a critical decision, a short Save/Cancel form.\n\nMotion: rises 2 over 200 and the scrim fades in over 200 (rule 1.8). Closing isn't animated yet (rule 1.8).\n\n\nUse: The dimming scrim behind a blocking modal." } },
     design: [{"name":"modal-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4169-208596"},{"name":"overlay-background","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=338-21403"}],
   },
 };

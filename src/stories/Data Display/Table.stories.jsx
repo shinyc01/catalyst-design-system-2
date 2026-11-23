@@ -9,7 +9,7 @@ export default {
   component: IFS["Table"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** table-card-organism (4835:4031), table-header (1440:5904), table-cell (1440:5941), group-row (4833:19072), content-row (4835:3501)\n\n\nUse: Every data table (`Table`; `DataTable` adds the Table pattern's behaviour). Rules 3.7, 4.11, 7.6–7.7." } },
+    docs: { description: { component: "**Figma:** table-card-organism (4835:4031), table-header (1440:5904), table-cell (1440:5941), group-row (4833:19072), content-row (4835:3501)\n\n\nUse: Every data table (`Table`; `DataTable` adds the Table pattern's behaviour). Rules 3.7, 4.11, 7.6–7.7. Selected rows: a 2 outline (rule 7.16)." } },
     design: [{"name":"table-card-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4835-4031"},{"name":"table-header","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5904"},{"name":"table-cell","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5941"},{"name":"group-row","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4833-19072"},{"name":"content-row","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4835-3501"}],
   },
 };
