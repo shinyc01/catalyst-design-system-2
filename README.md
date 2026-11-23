@@ -1,6 +1,6 @@
 # Catalyst Design System 2.0
 
-A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7ar`), with user-selectable density and a type and spacing scale set against best-in-class design systems. Current version: **2.0.4**.
+A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7ar`), with user-selectable density and a type and spacing scale set against best-in-class design systems. Current version: **2.0.5**.
 
 ## Use it
 
@@ -26,7 +26,19 @@ Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IF
 <script type="text/babel" data-presets="react">/* your screen: IFS.Button, IFS.DataTable … */</script>
 ```
 
-**Density.** Three levels, as a user setting: Spacious, Comfortable (default), Compact (rule 3.13 in `guide/rules.md`).
+**Density.** Three levels, as a user setting: Spacious, Comfortable (default), Compact (rule 3.13 in `guide/rules.md`). Density changes type, component heights, the room inside containers and fixed table column widths; never the page frame, icons, radius, borders, elevation, colour or motion.
+
+| | Spacious | Comfortable | Compact |
+|---|---|---|---|
+| Body text (`--font-size-m`) | 16/24 | 14/20 | 12/16 |
+| Heights `--size-control-xs` · `s` · `m` · `l` · `xl` | 24 · 28 · 36 · 44 · 52 | 20 · 24 · 32 · 40 · 48 | 20 · 24 · 28 · 32 · 40 |
+| Container padding (`--space-inset`) | 20 | 16 | 12 |
+| Table row (`--size-table-row`) | 64 | 52 | 40 |
+| Fixed table columns (`--density-scale`) | 1.2 | 1.05 | 0.95 |
+
+Icons are drawn at 12 / 16 / 24 in every density (rule 3.11).
+
+**Token names.** Every token starts with its type word and matches its Figma path (`color/text/soft` → `--color-text-soft`; rule 1.7). The old names (`--text-primary`, `--control-h-m` …) still work as aliases until 3.0; `dist/tokens.txt` lists the new names, then the deprecated ones; `dist/tokens.json` is DTCG 2025.10 with `$deprecated`; the full old → new list is `tools/figma/rename-map.tsv`.
 
 ## Files
 
@@ -37,8 +49,8 @@ Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IF
 | `guide/figma.json` | Figma keys, node ids and variant axes per component; pattern sources; Figma review items (Storybook warnings) |
 | `guide/tiers.json`, `guide/usage.json` | Data for the generators (component tiers; handover usage counts) |
 | `dist/api.md` | Every component's props (generated) |
-| `dist/icons.txt`, `dist/tokens.txt` | Icon names; every token with its value (generated) |
-| `src/tokens.css`, `src/foundations/*.css` | Tokens: colour, type, spacing, layout; `tokens.css` also holds the `.t-*` text-style and `.fx-*` effect classes |
+| `dist/icons.txt`, `dist/tokens.txt`, `dist/tokens.json` | Icon names; every token with its value, new names then deprecated aliases; the same as DTCG JSON (generated) |
+| `src/tokens.css`, `src/foundations/*.css` | Tokens: colour roles, type, spacing, layout, motion; primitives in `palette.css`, old names in `deprecated.css`; `tokens.css` also holds the `.t-*` text-style and `.fx-*` effect classes |
 | `src/icons.js` | `window.IFS_ICONS`: SVG markup per icon and size, exported from Figma |
 | `src/components/<family>.css + .jsx` | Components, one pair per Figma family; `index.js` is the entry, `registry.js` the shared `IFS` object |
 | `src/gallery/<family>.jsx` | Every variant and state; the source of the Storybook stories |

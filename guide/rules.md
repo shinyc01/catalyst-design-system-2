@@ -1,4 +1,4 @@
-# Catalyst Design System 2.0.4 — rules
+# Catalyst Design System 2.0.5 — rules
 
 The one rulebook. Each rule is stated once; other files point here by number (e.g. "rule 3.9").
 Values are Spacious / Comfortable / Compact unless a rule says otherwise. Comfortable is the default.
@@ -10,7 +10,7 @@ When Figma frames and Figma notes disagree, the notes win. When a guide and the 
 ## 1. Tokens and code
 
 1.1 **Raw values only in the foundations.** Colour, spacing, radius, type and shadow values live in `src/tokens.css` and `src/foundations/*.css`. Everything else uses `var(--…)`. A raw value is allowed only where Figma itself has no variable; mark it `/* raw in Figma */`.
-1.2 **Semantic tokens, not numbers.** Spacing uses the `--space-*` roles and steps (rule 3.1–3.2); type uses `font:var(--text-<style>);letter-spacing:var(--text-<style>-tracking)` (rule 2.1). A style's token is its name in lowercase with `/` → `-`: Heading/H4/semibold → `--text-heading-h4-semibold` + `--text-heading-h4-semibold-tracking`, class `.t-heading-h4-semibold`. Never write a size, weight, letter-spacing, padding, gap or margin as a number. Old names are aliases only; don't use them in new code: `--spacing-modal` / `--spacing-form` → `inset-l`, table cell sides → `table-x`, cell y → 0, card-compact → `stack` (the other `--spacing-*`, `--gaps-*`, `--paddings-*` likewise); `--type-caption` = `--type-s`.
+1.2 **Semantic tokens, not numbers.** Spacing uses the `--space-*` roles and steps (rule 3.1–3.2); type uses `font:var(--font-<style>);letter-spacing:var(--font-<style>-tracking)` (rule 2.1). A style's token is its name in lowercase with `/` → `-`: Heading/H4/semibold → `--font-heading-h4-semibold` + `--font-heading-h4-semibold-tracking`, class `.t-heading-h4-semibold`. Never write a size, weight, letter-spacing, padding, gap or margin as a number. Old names are aliases only (rule 1.7); don't use them in new code: `--spacing-modal` / `--spacing-form` → `inset-l`, table cell sides → `table-x`, cell y → 0, card-compact → `stack` (the other `--spacing-*`, `--gaps-*`, `--paddings-*` likewise); `--font-size-caption` = `--font-size-s`.
 1.3 **px in Figma, rem in code.** Figma stays in px. Code ships every size that holds text or icons in rem at a 16px base (16px = `1rem`): type, the spacing scale, `--size-*` from 4 up, control, tab, nav and table sizes, icons and layout widths. Still px: 1–3px lines (borders, dividers, focus rings, `--size-0` … `--size-3`), radius, letter-spacing, `@media` breakpoints, and chart, map-pin and canvas geometry. Guides give numbers in px.
 1.4 **Start and end, never left and right.** All new and changed code uses logical properties (`margin-inline-start`, `padding-inline-*`, `inset-inline-*`, `border-inline-*`, `text-align:start|end`; in JSX `marginInlineStart` …). Geometry that must not mirror (chart time axes, canvas coordinates) keeps physical values with a `/* ltr: reason */` comment. In RTL the side nav moves to the right and directional icons (arrows, chevrons, back) flip; numbers, media controls, chart time axes, check marks, clocks, trends and logos never mirror. Progress: `node tools/check-direction.mjs`.
 1.5 **Layout spacing in screens uses `IFS.Stack` (top to bottom) and `IFS.Inline` (side by side, in reading order),** never a hand-written `display:flex; gap`. Props on both:
@@ -20,32 +20,54 @@ When Figma frames and Figma notes disagree, the notes win. When a guide and the 
 
 Cards on the page grid use `.ifs-grid` (rule 4.2). Components keep their own CSS.
 1.6 **Building kit components** (`src/components/<family>.css + .jsx`, one pair per Figma family):
-- Match the Figma component exactly; never invent one Figma doesn't have. Get exact specs with `tools/extract-spec.js` via `use_figma` and see the target with `get_screenshot`; never use `get_design_context` code as the implementation. Figma variable `a/b/c` is `var(--a-b-c)` (lowercase; spaces, `/` and `,` become `-`; parentheses dropped). A Figma fill with no variable keeps its hex (rule 1.1).
+- Match the Figma component exactly; never invent one Figma doesn't have. Get exact specs with `tools/extract-spec.js` via `use_figma` and see the target with `get_screenshot`; never use `get_design_context` code as the implementation. Figma variable `a/b/c` is `var(--a-b-c)` (lowercase; spaces, `/` and `,` become `-`; parentheses dropped; no prefix): `color/text/soft` → `--color-text-soft`, `radius/card` → `--radius-card`, `blur/40` → `--blur-40` (rule 1.7). A Figma fill with no variable keeps its hex (rule 1.1).
 - Class names: `.ifs-<component>` block, `--<modifier>` per Figma variant value.
-- Strokes keep the Figma box: INSIDE → `box-shadow: inset 0 0 0 Wpx`, OUTSIDE → `box-shadow: 0 0 0 Wpx`, CENTER → `outline` with a −W/2 offset. Use `border` only when the stroke changes layout.
+- Strokes keep the Figma box: INSIDE → `box-shadow: inset 0 0 0 W`, OUTSIDE → `box-shadow: 0 0 0 W`, CENTER → `outline` with a −W/2 offset, W always a `--border-width-*` role (rule 3.14). Use `border` only when the stroke changes layout.
 - States: Hover / Pressed / Disabled / Focus → `:hover`, `:active`, `:disabled` / `[aria-disabled=true]`, `:focus-visible`, plus `[data-state=hover|pressed|focus]` for the gallery.
-- Focus ring: `box-shadow: 0 0 0 1.5px var(--focus-focus-inner), 0 0 0 3px var(--focus-focus-outer)`. Effect `blur/medium` → `backdrop-filter: blur(var(--blur-medium))`.
+- Focus ring: `box-shadow: 0 0 0 1.5px var(--color-focus-inner), 0 0 0 3px var(--color-focus-outer)` (unchanged until the Focus round). Effect `blur/40` → `backdrop-filter: blur(var(--blur-40))`; blur steps are named by value: `--blur-4|10|20|40|80|100`.
 - JSX: React 18 function components; each file imports `IFS` from `./registry.js`, uses other components as `IFS.Button` (no cross-family imports) and ends with `Object.assign(IFS, { … }); export { … };`.
 - Props mirror Figma properties in camelCase with lowercase values (`Type=Primary` → `type="primary"`, `Size=M (32)` → `size="m"`, `show-icon-left` + `Icon left` → `iconLeft="system-heart"`; no icon prop = hidden); text properties → `children` or a named prop. Interactive components work for real and also take controlled props (`value`/`onChange`, `open`/`onOpenChange`).
 - Icons: always `<IFS.Icon name="…" size={16} />` with a Figma icon name; never inline SVG or an icon font.
 - The header comment names the Figma source: `// Figma: button (65:3211)`. Add every variant and state to `src/gallery/<family>.jsx` and compare the story with Figma before calling it done.
 
+1.7 **Token names (frozen Nov 23, 2026).** Every token starts with its type word; the CSS name is the Figma path with `/` → `-`, no prefix.
+- Colour: `--color-<what>-<role>-<strength>-<state>` (`--color-text-soft`, `--color-border-strong`, `--color-background-danger-strong-hover`, `--color-focus-inner`, `--color-cooper-*`). One strength scale: softest · softer · soft · (base) · strong · stronger · strongest. States: hover · pressed · focus · selected · disabled · drag (never typing, active or on: typing → focus, active → selected or open, on → selected).
+- Type `--font-<style>` (+ `-tracking`, `-weight`), `--font-size-<step>`, `--font-weight-<w>`, `--font-tracking-*`, `--font-numeric`, `--font-measure`.
+- Measures: `--space-*`, `--size-*` (`--size-control-xs…xl`, `--size-tab-m|l`, `--size-nav-row`, `--size-table-row`, `--size-table-header`, `--size-badge-s|m|l`, `--size-target-min`), `--radius-*`, `--border-width-*`, `--elevation-*`, `--blur-*`, `--z-index-*`, `--motion-*`.
+- Roles only: components use colour roles (`--color-*`), never primitives (`--palette-*`, `src/foundations/palette.css`), `--element-*` or a component-only colour; `node tools/color-lint.mjs` checks it. Eight colours are held unchanged, with their old names, until decided: `--border-blue`, the checkbox and radio off pressed borders, the circular button fill (default, hover, pressed), `--white-500`, `--white-alpha-50`.
+- Old names (`--text-primary`, `--border-base`, `--control-h-m`, `--blur-medium` …) still work as aliases (`src/foundations/deprecated.css`) until 3.0; don't use them in new code. The full old → new list: `tools/figma/rename-map.tsv`. `dist/tokens.txt` lists the new names, then the deprecated ones; `dist/tokens.json` is DTCG 2025.10 with `$deprecated`.
+
+1.8 **Motion** (`src/foundations/motion.css`). Durations `--motion-duration-0|50|100|200|300`; curves `--motion-ease-standard` (on-screen changes), `-enter` (opening), `-exit` (closing), `-linear` (loops); distances `--motion-distance-2|16`; loops `--motion-loop-spin` 1000, `--motion-loop-pulse` 1600 (not in step).
+
+| Duration | Use |
+|---|---|
+| 0 | press, focus ring, tooltip closing |
+| 50 | every colour change; closing small surfaces |
+| 100 | small movement (switch knob, tick, chevron); opening small surfaces (tooltip, menu, popover, snackbar); closing large ones |
+| 200 | opening large surfaces (modal, drawer, over panel, Cooper chat); size and layout changes (table height, push panels, progress, a deleted row, widget re-flow) |
+| 300 | the tooltip's pointer wait (keyboard focus shows it at once) |
+
+- Closing is one step faster than opening. Opening surfaces move 2; snackbars and notifications slide 16 from the end side; drawers slide from their edge. Tab changes: rows swap at once, the table height glides; push panels animate their width. Cooper's grow-from-the-orb (90%) is a Cooper pattern exception. Snackbar dwell 4000, paused on hover and focus (rule 7.12).
+- Never animates: the focus ring, numbers (they never count up) and chart data, page changes.
+- Reduced motion: rule 9.11.
+- Still to build: exit animations (the kit unmounts closed surfaces), the tab-change table-height glide and the push-panel width animation. Enter animations are built.
+
 ---
 
 ## 2. Type
 
-2.1 **Two token layers, like Figma.** Primitives (families, weights 400 / 500 / 600, letter-spacing steps, size/line-height pairs `--type-s|m|l|h3|h2|h1|display-*` per density) and one semantic set per style: `--text-<style>`, `-tracking`, `-weight` (`src/foundations/typography.css`; naming: rule 1.2). The semantic set is declared on `:root` and every `[data-density]` container, so text follows the nearest density. Components and prototypes use only the semantic set; `.t-<style>` classes exist for prototypes. Every text in the kit uses a style, including chart SVG text.
+2.1 **Two token layers, like Figma.** Primitives (families, weights 400 / 500 / 600, letter-spacing steps, size/line-height pairs `--font-size-s|m|l|h3|h2|h1|display-*` per density) and one semantic set per style: `--font-<style>`, `-tracking`, `-weight` (`src/foundations/typography.css`; naming: rule 1.2). The semantic set is declared on `:root` and every `[data-density]` container, so text follows the nearest density. Components and prototypes use only the semantic set; `.t-<style>` classes exist for prototypes. Every text in the kit uses a style, including chart SVG text.
 2.2 **Levels** (size/line height):
 
 | Level | Token | Spacious | Comfortable | Compact |
 |---|---|---|---|---|
-| Small | `--type-s` | 14/20 | 12/16 | 11/14 |
-| Body | `--type-m` | 16/24 | 14/20 | 12/16 |
-| Large | `--type-l` | 18/26 | 16/24 | 14/20 |
-| H3 | `--type-h3` | 22/28 | 20/28 | 16/24 |
-| H2 | `--type-h2` | 26/32 | 24/32 | 20/28 |
-| H1 | `--type-h1` | 32/40 | 28/36 | 24/32 |
-| Display S / M / L | `--type-display-s/m/l` | 36/44 · 40/48 · 48/56 | 32/40 · 36/44 · 44/52 | 28/36 · 32/40 · 40/48 |
+| Small | `--font-size-s` | 14/20 | 12/16 | 11/14 |
+| Body | `--font-size-m` | 16/24 | 14/20 | 12/16 |
+| Large | `--font-size-l` | 18/26 | 16/24 | 14/20 |
+| H3 | `--font-size-h3` | 22/28 | 20/28 | 16/24 |
+| H2 | `--font-size-h2` | 26/32 | 24/32 | 20/28 |
+| H1 | `--font-size-h1` | 32/40 | 28/36 | 24/32 |
+| Display S / M / L | `--font-size-display-s/m/l` | 36/44 · 40/48 · 48/56 | 32/40 · 36/44 · 44/52 | 28/36 · 32/40 · 40/48 |
 
 2.3 **16 styles** (tracking in px):
 
@@ -68,14 +90,14 @@ Retired classes still work and render as: Code regular / medium → Code/M; Labe
 | Title in the thin `PageHeader` and `ExploreHeader` | Label/M/medium |
 | Page section on the page background (not in a container) | H3 |
 | Title of a card, panel, modal, drawer, table card, side nav, empty state; every `ContentCard` title (S and M), readiness cards, Cooper fix cards, widget cards | H4 |
-| Chart card (`DataVizCard` header) and stat card titles | Label/M/medium, text tertiary |
+| Chart card (`DataVizCard` header) and stat card titles | Label/M/medium, text tertiary (`--color-text-softer`, #999999 in Dark) |
 | Command list card title (`HomeRowCard`), notification titles | Label/L/medium |
 | Sub-section inside a titled container | Label/M/medium, primary colour |
 | Content, typed text, menu items, options, cells | Body/M/regular |
 | Name, primary column, item title, key value | Label/M/medium |
 | Control text (button, tab, chip, segmented, badge, nav item) | Label/M/medium; L controls Label/L/medium |
 | Status, tag, badge, table header, nav group header, eyebrow | Label/M/medium |
-| Meta: time, author, ID, file size, helper text, captions | Body/M/regular, secondary or tertiary colour |
+| Meta: time, author, ID, file size, helper text, captions | Body/M/regular, secondary (`--color-text-soft`) or tertiary (`--color-text-softer`) colour |
 | Long reading, L-field input | Body/L/regular |
 | Code, formulas, JSON | Code/M (Code/S only inside Small text) |
 | Disclaimer, footnote | Body/S/regular |
@@ -89,12 +111,12 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 - Label/M/medium: numbers inside content (table cells, lists, sentences). A number in a table never uses a heading style.
 - Never H1 for a number. Revisit if prototypes keep overriding this.
 2.7 **Small is rare.** Only disclaimers and footnotes, and text inside a fixed small shape: avatar initials at 24 and below, map pin counts, live-cursor name tags, chart axis ticks, labels inside Sankey bars. Never labels, statuses, headers, meta or anything the user acts on. Avatar initials: XL (56) H4; L (40) and M (32) Label/M/medium; S (24) and below Body/S (XS 20 and XXS 16 one initial). M and L map pins widen into a pill when the count needs it; a live-cursor tag grows with its text. In-plot chart values Label/M/medium. Widget thumbnails: title Label/M/medium, tiny text drawn as skeleton bars. Navbar wordmark fallback H3.
-2.8 **Weights mean something:** 400 content, 500 every label, name and control, 600 H4 only. A row with no name or key value is all regular. In tables the name column (`primary: true`, else the first text column; `.ifs-table__td--primary`) is medium; every other cell is regular. Bold words inside text use `--text-label-m-medium-weight`.
+2.8 **Weights mean something:** 400 content, 500 every label, name and control, 600 H4 only. A row with no name or key value is all regular. In tables the name column (`primary: true`, else the first text column; `.ifs-table__td--primary`) is medium; every other cell is regular. Bold words inside text use `--font-label-m-medium-weight`.
 2.9 **Case.** Title Case: page, section, card, chart, panel and modal titles, headings and navigation. Sentence case: buttons, dropdown triggers, statuses, column headers, menu items, options, field labels, Cooper prompts and answers, all content. Tags, badges and chips keep the case their text is written in (normal case, never forced). No uppercase text: only avatar initials and abbreviations are capitals. Case is a string change, not CSS.
 2.10 **Status vs tag.** A status shows the object's changing state: coloured dot + 1–3 words ("Draft", "Under review"). A tag or badge shows a category, stage, count or attribute: pill, no dot ("Shape", "0/4"). One status per object; a second state is a tag or an icon. Never make a tag look like a status.
-2.11 **Tabular figures** (`font-variant-numeric:var(--text-numeric)`, `.t-numeric`) for numbers people compare or watch change: table and list cells, big numbers, chart text, counters, progress and pager values. Numbers inside sentences keep normal figures.
+2.11 **Tabular figures** (`font-variant-numeric:var(--font-numeric)`, `.t-numeric`) for numbers people compare or watch change: table and list cells, big numbers, chart text, counters, progress and pager values. Numbers inside sentences keep normal figures.
 2.12 **Line length and truncation:**
-- Reading text (descriptions, Cooper answers, help, empty-state text) wraps at about 75 characters (`max-width:var(--text-measure)`, `.t-measure`).
+- Reading text (descriptions, Cooper answers, help, empty-state text) wraps at about 75 characters (`max-width:var(--font-measure)`, `.t-measure`).
 - Titles, names, labels, buttons, tabs, statuses, table headers: one line, "…", full text in a tooltip (`.t-truncate`).
 - Table and list cells: one line with "…" and a tooltip; a column may opt into wrapping to 2 lines.
 - IDs and file names truncate in the middle (`TruncatedText mode="middle"`).
@@ -118,18 +140,50 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 
 3.3 **Containers.** Every part of a container (header, tabs, body, footer) has the same inset on all four sides. A container's height comes from its padding, never a fixed height. Chat, history and agent headers: vertical padding = inset − 4 (`--space-100`), i.e. 16 / 12 / 8; the height = tallest item + that padding (chat and history headers 60 / 48 / 40; the agent window header 68 / 56 / 44, because it holds an M button).
 3.4 **Fixed steps only where a part scales by its own height:** inside controls (buttons, fields, selects, tabs, chips, prompts, chat input), the nav bar and side nav, chart geometry, table-like rows and cells, and gaps of 8 or less (icon to label, label to field). These stay the same in every density; each is commented in the CSS. The allowed kinds: list and note rows (fixed vertical step, inset sides); a tab row sits on its divider (no bottom padding); full-bleed lists leave side padding to their items; the collapsed panel rail; header bars (`PageHeader`, `ExploreHeader`): tallest part + 4 top and bottom, page margin at the sides; never a fixed height. So the thin header is 50 / 46 / 42 with a stepper (the stepper is 42 / 38 / 34) and 36 / 32 / 32 without one (S buttons and icon buttons), and the ExploreHeader 36 / 32 / 32 (Spacious / Comfortable / Compact).
-3.5 **Control heights** (`--control-h-s|m|l`): S 28 / 24 / 24, M 36 / 32 / 28, L 44 / 40 / 32. Every control uses them, including small segmented controls, icon buttons, nav items and breadcrumbs. Tabs `--tab-h-m` 40 / 36 / 32 and `--tab-h-l` 48 / 40 / 36; nav rows `--nav-row-h` 44 / 40 / 36.
-3.6 **Fixed component sizes:** chips 28 / 24 / 24; search, Smart Search, popover search, phone picker, checkbox and radio rows 36 / 32 / 28 (the Explore map-bar search uses the small control height); badges S 24 / 20 / 20, M 28 / 24 / 24, L 36 / 32 / 28; small icon button square 28 / 24 / 24.
-3.7 **Tables:** rows `--table-row-h` 64 / 52 / 40, content centred; header `--table-header-h` 40 / 32 / 24, text centred, no vertical padding; cells have no top/bottom padding; hairline row separators at most. One density per table. Every table, including ranked and approval-chain tables, sits in the one table card (`.ifs-table-card`, radius 8, `surface/secondary-alpha` fill).
-3.8 **Menus, dropdowns and popovers:** 4px from the trigger and 4px inside the list, every density. Item height = control height 36 / 32 / 28 (large lists 44 / 40 / 32). `Menu` width s 200 (actions) or l 320 (items with descriptions).
-3.9 **Target size: nothing clickable is smaller than 24 × 24** (`--target-min`, WCAG 2.5.8):
+3.5 **One height ladder** (`--size-control-xs|s|m|l|xl`). Every component height uses a step; every control's S / M / L is s / m / l, including small segmented controls, icon buttons, nav items and breadcrumbs:
+
+| Step | Spacious | Comfortable | Compact | Used by |
+|---|---|---|---|---|
+| xs | 24 | 20 | 20 | badge S |
+| s | 28 | 24 | 24 | control S (incl. the small icon button square), chips, `CooperChip`, `RoleSelect`, badge M, the Explore map-bar search |
+| m | 36 | 32 | 28 | control M, badge L, prompts M, search, Smart Search, popover search, phone picker, checkbox and radio rows, nav tree rows, the search card, menu and list items |
+| l | 44 | 40 | 32 | control L, prompts L, `Pager`, large list items |
+| xl | 52 | 48 | 40 | `Select` XL trigger (its field is m), Cooper history search |
+
+Rows keep their own tokens: tabs `--size-tab-m` 40 / 36 / 32 and `--size-tab-l` 48 / 40 / 36; nav rows `--size-nav-row` 44 / 40 / 36; table rows and header (rule 3.7).
+3.6 **Fixed sizes (not on the ladder, the same in every density):** app chrome (nav bar 48, side nav, rail, Cooper button), avatars and media, chart and map geometry, calendar dates. Everything else with a height is on the ladder (rule 3.5) or a row token.
+3.7 **Tables:** rows `--size-table-row` 64 / 52 / 40, content centred; header `--size-table-header` 40 / 32 / 24, text centred, no vertical padding; cells have no top/bottom padding; hairline row separators at most. One density per table. Every table, including ranked and approval-chain tables, sits in the one table card (`.ifs-table-card`, `--radius-card` 4, `--color-surface-secondary` fill).
+3.8 **Menus, dropdowns and popovers:** 4 (`--space-100`) from the trigger and 4 inside the list, every density; tooltips also sit 4 from their trigger. Item height = ladder m (large lists l, rule 3.5). `Menu` width s 200 (actions) or l 320 (items with descriptions).
+3.9 **Target size: nothing clickable is smaller than 24 × 24** (`--size-target-min`, WCAG 2.5.8):
 - The clickable component's own box is at least 24 (table filter and sort, version toggle, title menu ▾, select clear, drag handles, node-card buttons, readiness indicators, timeline and Cooper toggles). Icons keep their size; hover and focus fill the box. The Figma component gets a 24 frame.
 - An invisible 24 hit layer only where the control must look smaller: bare checkbox, small switch, slider thumb, the options of a small segmented control (24 outside, 20 options inside the 2 frame; each option's area reaches the full 24), and the range-field stepper (it keeps its look; each 16 × 8 half gets an invisible area 24 wide and 12 tall, growing outward so the halves never overlap).
 - Map pins and chart points: to be decided in the map and data-viz rounds. Touch targets (44–48): with the tablet and mobile work.
 3.10 **Icon-only controls are always `IconButton`** (ghost S by default): select clear ×, table filter, node-card Open / Delete / Save / Cancel, compare clear, answer-field cancel / save, popover search clear, the timeline phase toggle (caret `IconButton` S; the phase name is plain text). Drag grips are 16 in a 24 box and use the ghost-button hover fill. The focus ring applies where the handle is keyboard-focusable (table row and column-settings handles); the node-card grip is pointer-only (the card itself takes keyboard focus).
-3.11 **Icons** follow body text: `--icon-scale` 1.143 / 1 / 0.857 (16 → 18 / 16 / 14). Figma sizes 24 / 16 / 12: `Button` L and M 16, `Button` S 12; `IconButton` 16 at every size; 16 in dense rows; 12 in badges and chips; 24 only for standalone icons. Every expand/collapse and dropdown caret is 16; trend arrows next to numbers stay small.
+3.11 **Icons** are drawn at 12, 16 or 24 in every density (no scaling); the size follows the component's size: `Button` S 12, M and L 16; `IconButton` 16 at every size; 16 in dense rows; 12 in badges and chips; 24 only for standalone icons. Every expand/collapse and dropdown caret is 16; trend arrows next to numbers stay small.
 3.12 **Small fixed gaps:** stat card title to number 4; empty state: icon, heading and text one inset apart (20 / 16 / 12), buttons one `section` below the text; Cooper's empty chat text sits two `section` above the bottom (80 / 64 / 48).
-3.13 **Density.** Users pick Spacious, Comfortable or Compact (`data-density="spacious|comfortable|compact"` on `<html>` or any container; `IFS.setDensity('compact')` sets and remembers it, `IFS.getDensity()` reads it). Type, roles, control and table sizes follow the nearest density; `--density-scale` 1.2 / 1.05 / 0.95 multiplies fixed table column widths; the page grid follows screen width, never density (rule 4.1). Figma builds Comfortable and Compact; the code also has Spacious.
+3.13 **Density.** Users pick Spacious, Comfortable or Compact (`data-density="spacious|comfortable|compact"` on `<html>` or any container; `IFS.setDensity('compact')` sets and remembers it, `IFS.getDensity()` reads it). Figma builds Comfortable and Compact; the code also has Spacious.
+- Density changes only: type, component heights (rule 3.5 and the row tokens), the room inside containers (`--space-inset`, `-inset-l`, `-table-x`, `-stack`, `-section`) and fixed table column widths (`--density-scale` 1.2 / 1.05 / 0.95).
+- Density never changes: the page frame (grid, margins, gaps: rule 4.1), panel and overlay widths, app chrome, icons, avatars, radius, borders, the focus ring, elevation, blur, z-index, colour, motion, the 24 minimum target.
+
+3.14 **Shape.** Radius and border width by role, the same in every density:
+
+| Radius role | Value | Use |
+|---|---|---|
+| `--radius-mark` | 2 | small marks |
+| `--radius-control` | 4 | every control at every size, segmented controls, menu items, tooltip |
+| `--radius-card` | 4 | every card, the table card |
+| `--radius-floating` | 8 | popover, menu list, select list, snackbar, alert, modal, drawer, floating bar, form card |
+| `--radius-floating-l` | 12 | Cooper chat and the agent window |
+| `--radius-pill` | full | chips, badges, avatars, switch, counters |
+
+| Border-width role | Value | Use |
+|---|---|---|
+| `--border-width-default` | 1 | every stroke, divider and outline |
+| `--border-width-selected` | 2 | selected cards and table rows (rule 7.16), pins, slider drag |
+| `--border-width-emphasis` | 4 | the drag outline |
+
+- Nested shape: an inner radius = outer radius − padding, never below `--radius-control`.
+- Odd widths in Figma snap to 1. The focus ring stays 1.5 + 3 (rule 1.6) until the Focus round.
 
 ---
 
@@ -156,20 +210,47 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 | Side panel, drawer, widgets drawer | 380 (min 320, max 50%) | `--region-panel` |
 | Cooper full chat | 380 by default; resizable by drag from 380 to 720 | `--region-panel` … `--layout-chat-width-max` |
 | Large panel (Study) | 600 | `--region-panel-l` |
-| Popover (default; never under 160; wider only at `--overlay-width-m` 440 or `-l` 600), collaborators panel, Layers popover | 320 | `--overlay-width-s` |
-| Modal (default / wide) | 440 / 600 | `--overlay-width-m` / `-l` |
-| Approval chain popover | 440 | `--overlay-width-m` |
+| Popover (default; never under 160; wider only at `--layout-modal-width-m` 440 or `-l` 600), collaborators panel, Layers popover | 320 | `--layout-popover-width` |
+| Modal (default / wide) | 440 / 600 | `--layout-modal-width-m` / `-l` |
+| Approval chain popover | 440 | `--layout-modal-width-m` |
 | Cooper history column | 240 | side-nav width |
 | Form card | 464–680, content slot min 400 | — |
 
 Docked panels sit flush against the content-area edge; the page beside them keeps its margin.
 4.6 **Panel mode by job** (`Component.panelMode`; a screen overrides it only with `AppShell panelMode`; no third mode):
 - `push`: the user works with the panel and the page together; the content shrinks and reflows. Panel, readiness evaluation, CommentsPanel, WidgetsDrawer, TraceReport, ApprovalChainPanel as a sidebar (it also opens as a 440 popover, the reviewer's form, or full screen).
-- `over`: the panel is the focus and the page is context. No scrim; the page stays usable; outside click or Esc (rule 9.6) closes it (`onPanelClose`); clicking another row swaps it. RecordPreview, EvidenceChainDrawer, ActivityPanel, Cooper full chat (floats one page margin in; the Cooper button in the bottom sheet hides while it's open).
+- `over`: the panel is the focus and the page is context. No scrim; the page stays usable; outside click or Esc (rule 9.6) closes it (`onPanelClose`); clicking another row swaps it. RecordPreview, EvidenceChainDrawer, ActivityPanel, Cooper full chat (the Cooper button in the bottom sheet hides while it's open). Floating surfaces sit one `--float-inset` (= `--page-margin`) in: the floating drawer, the Evidence drawer, over panels, the Cooper full chat, map slots (rule 6.3) and the snackbar stack, measured below the page or Explore header, above the bottom sheet and from the window edge.
 - **Open or folded at the start, by job:** a pushed panel that is part of the user's workflow (a checkpoint they go through before they submit) starts open (`Panel` default): System confidence on the work steps inside an entity (Build › Shape and Refine, Plan › Setup and Compare, a framework's Review step). It folds to its 48 rail only when the user folds it or by rule 4.7. A panel with extra information outside the workflow starts folded to its rail (`defaultExpanded={false}`). Every panel can fold; `Panel collapsible={false}` only when a screen is specifically asked to stay open (none today, Nov 20).
 4.7 **Side nav folds to its rail** below md (1024) and whenever a pushed panel would leave the page area under 800 (`--layout-content-min`); with a 380 panel that is below 1440. The rail expands over the content; outside click or Esc (rule 9.6) folds it back. Below md a `push` panel also becomes a rail that expands over the content.
-4.8 **Overlay layers,** lowest to highest: panel → popover (anchored to its trigger) → modal (centred, scrim, blocking). Toasts (alerts, snackbars) float top-end over everything. Hierarchy comes from elevation (blur, shadow, opacity).
-4.9 **App shell:** nav bar (48, sticky, full width) on top; side nav (240) below it on the start side; page header at the top of the content area; content on the grid or a canvas; bottom sheet (40) at the bottom of the content area; Cooper button at the end-bottom corner. Bars, side nav, header and panels stay put; only content scrolls. The log-in screen has no product chrome.
+4.8 **Elevation and layers.** Four elevation levels:
+
+| Level | Token | Use |
+|---|---|---|
+| 0 page | — | the page |
+| 1 raised | `--elevation-raised` (none) | cards, docked panels |
+| 2 floating | `--elevation-floating` | popover, menu, select list, date picker, tooltip, snackbar, floating bar and floating drawer, form card, map panels, Cooper chat and button |
+| 3 modal | `--elevation-modal` | modal (over the scrim), dragged items |
+
+`--elevation-1|2|3` are the shadow primitives behind them. Z-index bands (`--z-index-*`), lowest to highest:
+
+| Band | Value | Holds |
+|---|---|---|
+| `base` | 0 | the page |
+| `sticky` | 50 | sticky headers and bars |
+| `panels` | 100 | panels |
+| `floating` | 200 | Cooper chat and button, the floating drawer, over panels, the floating bar, other people's cursors |
+| `popover` | 300 | popovers, menus, select lists, date pickers, the notification tray |
+| `selection-overlay` | 400 | selection overlays |
+| `modal-overlay` | 500 | the scrim |
+| `modal` | 600 | modals, Cooper search |
+| `toast` | 700 | snackbars, Documents feedback |
+| `tooltip` | 800 | tooltips |
+| `max` | 999 | Cooper's cursor, the drag ghost, global loading |
+
+- A host with layers of its own (map slots, canvas) is a stacking context (`isolation:isolate`) with local steps 1–9; no raw z-index above 9.
+- Snackbars (one stack, Documents feedback included): top-end, below the header, one page margin (`--float-inset`) from the window edge, 8 apart, newest on top. Never over the nav bar or the header; they may cover docked and map panels; on the map too (rule 6.5).
+- Anchored surfaces (popover, menu, select list, tooltip) sit 4 from their trigger (rule 3.8).
+4.9 **App shell:** nav bar (48, sticky, full width) on top; side nav (240) below it on the start side; page header at the top of the content area; content on the grid or a canvas; bottom sheet (40) at the bottom of the content area; Cooper button at the end-bottom corner. The compact Cooper chat opens from the orb's spot, above the bottom sheet: the orb turns into the chat, and the orb and prompt chips hide (`display:none`) while it's open. Bars, side nav, header and panels stay put; only content scrolls. The log-in screen has no product chrome.
 4.10 **Map and canvas views** fill the space between the header and the bottom sheet with a pannable, zoomable `CanvasBackground`; floating panels go in map slots (section 6).
 4.11 **Tables keep their columns:** flexible columns (no `width`, or an `fr` width) never go below 120 (`--table-col-short-min`), 160 when the user's text size is larger than the default (`--table-col-flex-min`). Fixed-width columns keep their width (a number is px × `--density-scale`; the `--table-col-*` tokens give widths per column type: primary, short, user, number, date, check, action). When the columns don't fit, the table scrolls sideways inside its card.
 4.12 **Reflow (400% zoom / 320 wide, WCAG 1.4.10) is in scope.** The page frame reflows; tables, maps and canvases may scroll sideways. Fold points follow the user's text size (they are read in 16px-equivalent widths). Below 720 the bottom sheet hides its prompts; the Cooper button stays.
@@ -207,14 +288,14 @@ Docked panels sit flush against the content-area edge; the page beside them keep
 | `.ifs-slot-right` (end) | Asset / group details · Trace report · Evidence chain · Cooper window, with Back (details → evidence → back to details) | `--region-panel` 380 |
 | `.ifs-slot-top` | Selected bar, or the draw bar while drawing | content, at most `--region-map-bar` 746 |
 | `.ifs-slot-bottom` | Horizon bar (`.ifs-slot-fill`), only when a study is open or a time layer is on | `--region-map-bar` 746, never wider than the gap |
-| `.ifs-slot-popover` | Layers / map display, beside the tool bar | `--overlay-width-s` 320 |
+| `.ifs-slot-popover` | Layers / map display, beside the tool bar | `--layout-popover-width` 320 |
 | `.ifs-slot-fab` | Cooper button, end-bottom corner (the same place on every screen) | `--size-48` |
 | `.ifs-slot-exit` | "Exit map preview", top start, when arriving from Build (`.has-exit` moves every slot down one control row) | — |
 
-6.2 **Sizes come from foundation tokens**; add one if missing, never hard-code. State classes on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. The map rail and tool bar go in `.ifs-slot-tools` (top start) and `.ifs-slot-tools-bottom` (bottom start); the start slot already leaves room for them.
-6.3 **Edges:** every slot sits one `--slot-inset` (= page margin, 16 / 24 / 32 by width) from the map edges; tops, bottoms and the end edge line up; neighbours sit a page gap apart. Map tools in the corners use the same edges.
+6.2 **Sizes come from foundation tokens**; add one if missing, never hard-code. State classes on `.ifs-slots`: `.has-left` (+ `.has-left-l`), `.has-right`, `.has-exit`. The map rail and tool bar go in `.ifs-slot-tools` (top start) and `.ifs-slot-tools-bottom` (bottom start); the start slot already leaves room for them. `.ifs-slots` is a stacking context (`isolation:isolate`, rule 4.8) with local layers: 1 top and bottom bars, tools, Cooper button, legend · 2 start and end panels · 3 the Layers popover (and the end panel over a narrow map) · 4 exit.
+6.3 **Edges:** every slot sits one `--slot-inset` (= `--float-inset` = page margin, 16 / 24 / 32 by width) from the map edges; tops, bottoms and the end edge line up; neighbours sit a page gap apart. Map tools in the corners use the same edges.
 6.4 **Top bar:** centred on the whole map. An open panel only nudges it aside, keeping a page gap; it is never re-centred in the space that's left. When it can't fit between the panels, it lines up with the start panel's edge and sits above it, and the start panel moves down. CSS alone centres the bar in the gap, so the kit measures it for you (`placeMapSlots`, run automatically for every `.ifs-slots`, before paint; nothing to call) and sets, on `.ifs-slots`: `.has-top-x` + `--slot-top-x` (the bar's start position), or `.has-top-start` + `--slot-top-h` (the bar's height, to push the start panel down). It clears the end panel even when that panel overlays the map. It slides in vertically only.
-6.5 **Bottom bar (horizon):** the same rule as the top bar; it also clears the Cooper button, and shrinks to the space between panels when wider. The kit sets `.has-bottom-x` + `--slot-bottom-x` and `--slot-bottom-w` the same way. Snackbars stack above it, never on it.
+6.5 **Bottom bar (horizon):** the same rule as the top bar; it also clears the Cooper button, and shrinks to the space between panels when wider. The kit sets `.has-bottom-x` + `--slot-bottom-x` and `--slot-bottom-w` the same way. Snackbars on the map stay in the one top-end stack (rule 4.8), not above the horizon bar.
 6.6 **No map minimum:** panels never fold because the map is small.
 6.7 **Study and the right slot:** Study folds to its rail when any right panel opens, including the Cooper chat, and comes back when it closes; clicking Study hides the right panel.
 6.8 **Lists and details stay open together.** Clearing the selection closes the selected bar and the details panel.
@@ -236,14 +317,27 @@ Docked panels sit flush against the content-area edge; the page beside them keep
 7.8 **Don't create new card, timeline or chart components.** Cards from `ContentCard` (M in main areas, S nested) and `StatCard`; timelines from the timeline base; charts from the data-viz base inside `DataVizCard` + `DataVizHeader`. Legacy sets only to match an existing handover screen. `NodeCard` is the one canvas exception.
 7.9 **One of each:** one `Menu` for every ⋯ / overflow / split-button menu (`more` trigger; destructive items last after a divider); one `StatCard` (`compare` for from → to); one `NavBar`; one `EvidenceButton` (Cooper look, 16 icon) for chart headers and evidence; `VersionHistory` is standalone and `ActivityPanel` uses it. Two approval chains for two uses: `ApprovalChainTable` (on `Table`) is the chain people act on (notes, push, filter), on the approval page (with `stages`, Approval chain rule 10) and in the Approval chain panel (compact view); `ApprovalChain` (timeline cards) is the display-only history in `ActivityPanel`.
 7.10 **Stepper is non-interactive:** a button or completion event advances it.
-7.11 **Tooltips** name or clarify; they are non-interactive (anything interactive goes in a popover); ~300–500ms in, instant out, Esc dismisses, never tap-only. Every icon-only control has one (rule 9.2).
-7.12 **Alerts have two intents:** error (stays until resolved; an error with nothing left to fix, such as a rejected upload, closes on the next action or ✕) and warning (stays while the condition holds). No info alert and no success alert. Success is one of two things: the result of the user's own action (approve, save, publish, remove, rename) is a snackbar; news that can happen while the user isn't watching (all reviewers approved, an investment approved at every gate, an optimization finished) is a notification, stored in the notification tray (`NotificationCard`) and, while the user is in the app, also shown live as a snackbar that leads to it (Nov 20). Neutral confirmation of the user's own action is a snackbar via `IFS.toast` (top-end, newest on top, 1–2 actions, 4s; 5s for approve, request more info, rename and comment delete; always pauses on hover and focus; Undo expires with it). Patterns use this timing. Errors are never snackbars; removal confirmations are never alerts.
+7.11 **Tooltips** name or clarify; they are non-interactive (anything interactive goes in a popover); in after a 300 pointer wait, at once on keyboard focus, out instantly (rule 1.8), Esc dismisses, never tap-only. Every icon-only control has one (rule 9.2).
+7.12 **Alerts have two intents:** error (stays until resolved; an error with nothing left to fix, such as a rejected upload, closes on the next action or ✕) and warning (stays while the condition holds). No info alert and no success alert. Success is one of two things: the result of the user's own action (approve, save, publish, remove, rename) is a snackbar; news that can happen while the user isn't watching (all reviewers approved, an investment approved at every gate, an optimization finished) is a notification, stored in the notification tray (`NotificationCard`) and, while the user is in the app, also shown live as a snackbar that leads to it (Nov 20). Neutral confirmation of the user's own action is a snackbar via `IFS.toast` (placement rule 4.8, 1–2 actions, 4s; 5s for approve, request more info, rename and comment delete; always pauses on hover and focus; Undo expires with it). Patterns use this timing. Errors are never snackbars; removal confirmations are never alerts.
 7.13 **Modals:** a focused must-complete-or-cancel task over a scrim. Width rule 4.5; at most 85% of the viewport tall. Title never wraps; ✕ top-end; content scrolls; footer actions at the end; at most two footer actions, only one of them Primary (rule 7.2; more means split the flow). Long non-blocking tasks use a drawer.
 7.14 **Surfaces by job:** panel = always-relevant side context in the layout (no scrim, no focus trap); drawer = an on-demand task or detail from a screen edge (informative: close only; actionable: collapse + close; blocking: neither until resolved); popover = small anchored content (width rule 4.5, max 600 tall, header and search pinned); floating bar = actions on the current map selection.
 7.15 **Loading and empty:** skeletons only inside the component that owns the async data; shell, nav, header and static labels render at once. Unknown shape → spinner; user-triggered action → the button's loading state; measurable work → progress bar. Never loading → empty → content: hold the skeleton until the final state is known. The empty-state variant is chosen by cause (first run, empty container, all done, error, no access, no results), never by surface; Full size for a page region, Section size inside a card or panel.
-7.16 **Status:** meaningful status (risk, health, process) uses icon + colour (`RiskStatus`, `ReadinessStatus`); colour-only dots (`StatusIndicator`) only for categories where a label carries the meaning. Badges are read-only; clickable values are chips.
+7.16 **Status:** five status words, the same in tokens and props (the old hue words stay as prop aliases):
+
+| Meaning | Word | Token (icon / dot; text `--color-text-<word>`) | Icon |
+|---|---|---|---|
+| Information, evaluated | `info` | `--color-icon-info` | `status-evaluated-filled` |
+| Done, passed, approved | `success` | `--color-icon-success` | `status-success-filled` |
+| At risk, needs attention | `warning` | `--color-icon-warning` | `status-warning-filled` |
+| Failed, blocked, rejected | `danger` | `--color-icon-danger` | `status-error-filled` |
+| No state, draft, archived | `neutral` | `--color-icon-softer` (the readable grey, not the disabled grey) | dot |
+
+- Never colour alone (rule 9.3): meaningful status (risk, health, process) uses icon + colour (`RiskStatus`, `ReadinessStatus`); colour-only dots (`StatusIndicator`) only where a label carries the meaning. Archived = the neutral dot + `--color-text-softer`.
+- Blue is info only; links use `--color-text-link`. Accent and Cooper are not statuses (rule 7.17). Chart series never use status colours; status marks in charts use `--color-data-viz-good|warning|bad` (rule 7.18).
+- Selected (cards, table rows): a 2 outline (`--border-width-selected`, rule 3.14) in the selected colour (`--color-border-strong`).
+- Badges are read-only; clickable values are chips.
 7.17 **Cooper orange is attribution only,** never severity.
-7.18 **Charts:** zero-based bars; one series = one colour group (sequential ramps stay within one hue group); exact values always available (tooltip + data-table fallback). Charts and their legends use data-viz colours only; the neutral colour (base, other, no data) is `--icon-tertiary`. Legends are `Legend` / `LegendSwatch` (`layout` inline or row, value optional), hover-only, in series order. People (cursors, avatars) use the collaboration colours, never the data-viz palette.
+7.18 **Charts:** zero-based bars; one series = one colour group (sequential ramps stay within one hue group); exact values always available (tooltip + data-table fallback). Charts and their legends use data-viz colours only; the neutral colour (base, other, no data) is `--color-icon-softer`. Legends are `Legend` / `LegendSwatch` (`layout` inline or row, value optional), hover-only, in series order. People (cursors, avatars) use the collaboration colours, never the data-viz palette.
 7.19 **Product defaults** (Oct 2026 audit of the Build, Explore, Command, Plan and Value handover files, `guide/usage.json`; the rules above win): `IconButton` ghost square S; `SegmentedControl` S everywhere (card, table and chart headers, drawers, panels), usually 2 options with counts; `Tabs` M or L for page views; `Badge` white S; `Counter` S next to labels; `StatusIndicator` dot without stroke inside tabs, segments and badges; `ContentCard selected` for pick-one options; `SideNav` rule 7.23; `Button` mostly Secondary or Tertiary (sizes rule 7.2).
 7.20 **Not in the DS** (say so and offer the closest component): Gantt-style schedule timeline, formula builder rows, calendar day items, map layer list, mini-map navigator, tree component (Plan uses the composed `SideNavTree`).
 7.21 **A card's title row is title · meta · actions.** `meta` (ContentCard `meta`) holds short read-only info about the card at the end of the row: a count, a date, time left, a value ("9d left", "3 of 5", "Updated Nov 12"). Body/M regular, text secondary; the title keeps priority and the meta truncates first. Actions (icon button, small segmented control) come last. Anything longer than a few words goes in the description under the title.
@@ -254,7 +348,7 @@ Docked panels sit flush against the content-area edge; the page beside them keep
 
 ## 8. Content
 
-Format every value with `IFS.format` (`dist/api.md` → format); it follows the user's locale (en-US default; `IFS.format.configure({ locale, currency, fyStartMonth })`). Readers are experts short of time making decisions worth millions: words are exact, short and calm.
+Format every value with `IFS.format` (`dist/api.md` → format); it follows the user's locale (en-US default; `IFS.format.configure({ locale, currency, fyStartMonth, accounting, compactStyle })`). The rules in this section describe English; other languages follow CLDR, except K / M / B (rule 8.26). Readers are experts short of time making decisions worth millions: words are exact, short and calm.
 
 This section is writing guidance for screens, as in other large design systems (Material's writing guidelines, Carbon's and Polaris's content guidelines). Text in components (dialog titles, empty states, alerts, labels) is the screen's content, passed as props; the words in the kit's patterns and examples are samples, not rules (Nov 20).
 
@@ -267,7 +361,7 @@ This section is writing guidance for screens, as in other large design systems (
 8.6 Honest about certainty: Cooper shows sources and confidence and never pretends to be a person. Cooper is always "Cooper", never chatbot, bot or "the AI".
 8.7 Words to avoid: please, sorry, oops (say the fact and the next step; "sorry" once, only when the product truly failed); simply, just, easy, obviously; seamless, powerful, robust, magic, smart, AI-powered; leverage, utilize, facilitate, empower (use, help, let); click here, here, a bare "learn more"; invalid, illegal, failed, fatal, abort, a bare "error"; `!`, emoji, ALL CAPS. A quoted file or system name is the only exception.
 8.8 Write for everyone: gender-neutral words; prefer "select" and "choose" in instructions; no idioms, sports metaphors or culture-specific jokes; one idea per sentence; common contractions (can't, don't, isn't).
-8.9 One term per idea: investment (not project), portfolio, scenario (not what-if), value framework, constraint, approve / approval (not sign off), sign in / sign out, email. US spelling (optimization, prioritize). Write names as their owners do (Cooper, IFS, stage names, records as entered) and acronyms as acronyms (FY27, SAIDI, NPV).
+8.9 One term per idea: investment (not project), portfolio, scenario (not what-if), value framework, constraint, approve / approval (not sign off), sign in / sign out, email, capex and opex ("capex" in running text, "Capex" to start a label; never CAPEX or CapEx, the same for opex). US spelling (optimization, prioritize). Write names as their owners do (Cooper, IFS, stage names, records as entered) and acronyms as acronyms (FY27, SAIDI, NPV).
 
 **Labels**
 8.10 Start with a verb and name the object unless context names it: "Add model", "Send for approval"; "Save" at the foot of an edit form.
@@ -300,13 +394,13 @@ This section is writing guidance for screens, as in other large design systems (
 8.24 Confirmations: ask only when the action can't be undone or affects other people; otherwise act and offer Undo. Title = action + object as a question ("Delete This Comment?"); body = the specific consequence ("… This can't be undone."); primary repeats verb + object ("Delete comment"), destructive style where Figma has it; secondary "Cancel". Never "Are you sure?", never Yes / No / OK.
 
 **Numbers and dates** (helpers in brackets)
-8.25 Money: under $10,000 in full, no cents unless present ($8,450 · $12.50); from $10,000 K / M / B with 3 significant digits ($860K · $19.4M · $3.04B) [`money`]. Zero "$0". Negative: true minus `−` (U+2212) before the symbol, never a hyphen or parentheses (−$1.8M). Changes always signed (+$1.3M) [`change`]. A column, axis or comparison uses one unit and fixed decimals [`money(v, { unit: 'M', decimals: 1 })`]. Exact amounts in forms, exports and audit [`compact: false`]. No value "—".
-8.26 K, M, B: capitals, no space, no full stop; never MM, mn or bn. `$` is US dollars; for another currency, or users across "$" countries, show the code once in the header ("Cost (CAD)"). Negatives never rely on colour alone.
-8.27 Numbers: thousands separators from 1,000; counts not abbreviated unless space forces it [`number(v, { compact: true })`]. Decimals as the decision needs, the same within a column. Ratios as plain numbers ("2.4", no "x"). Numerals for all numbers, including one to nine; words only in idioms. Units: a non-breaking space between number and unit, short units in tables ("5.1 min"), full words in sentences [`number(v, { unit })`]. Ranges: en dash, no spaces, symbol repeated ("28–35%", "$1.2M–$1.8M"); in sentences "from … to …".
+8.25 Money: under $10,000 in full, no cents unless present ($8,450 · $12.50); from $10,000 K / M / B with 3 significant digits ($860K · $19.4M · $3.04B) [`money`]. Zero "$0". Negative: true minus `−` (U+2212) before the symbol, never a hyphen (−$1.8M); a user setting switches finance values to parentheses ($1.8M) [`configure({ accounting: true })`, or `money(v, { accounting: true })` for one value]. Changes always signed (+$1.3M) [`change`]. A column, axis or comparison uses one unit and fixed decimals [`money(v, { unit: 'M', decimals: 1 })`]. Exact amounts in forms, exports and audit [`compact: false`]. A missing value is "—" (em dash), only from `IFS.format` [`empty()`]; `Table` renders missing cells as "—" read "No value". Zero is never a dash.
+8.26 K, M, B in every English locale (en-US, en-GB, en-IN …): capitals, no space, no full stop; never MM, mn or bn. Other languages follow CLDR. An organisation setting overrides it [`configure({ compactStyle: 'auto' | 'kmb' | 'locale' })`; `auto` default, `kmb` K / M / B everywhere, `locale` CLDR everywhere]. `$` is US dollars; for another currency, or users across "$" countries, show the code once in the header ("Cost (CAD)"). Negatives never rely on colour alone.
+8.27 Numbers: thousands separators from 1,000; counts not abbreviated unless space forces it [`number(v, { compact: true })`]. Decimals as the decision needs, the same within a column. Ratios as plain numbers ("2.4", no "x"). Numerals for all numbers, including one to nine; words only in idioms. Units: a non-breaking space between number and unit, short units in tables ("5.1 min"), full words in sentences [`number(v, { unit })`]. Number ranges: en dash, no spaces, symbol repeated ("28–35%", "$1.2M–$1.8M"); in sentences "from … to …". Date ranges come from `dateRange` (rule 8.29).
 8.28 Percentages: no space before `%`; up to 1 decimal, whole numbers without one ("48%") [`percent`]. A change in a percentage is in points ("rose 3 points", "+3 pts").
-8.29 Dates: "Nov 12, 2026" default [`date`]; "November 12, 2026" in sentences and formal text; "Nov 12" when the year is obvious; "Nov 2026" for a month; ranges "Nov 12 – 18, 2026" [`dateRange`]; ISO only in exports. Never all-numeric dates in the UI. Data dates `YYYY-MM-DD` are calendar dates read in local time. Weekdays only when they matter ("Due Fri, Nov 13"). Weekday names and the first day of the week come from the locale (`IFS.format.weekStart()`).
+8.29 Dates: "Nov 12, 2026" default [`date`]; "November 12, 2026" in sentences and formal text; "Nov 12" when the year is obvious; "Nov 2026" for a month; ranges "Nov 12 – 18, 2026" [`dateRange`]; ISO only in exports. Never all-numeric dates in English UI. Data dates `YYYY-MM-DD` are calendar dates read in local time. Weekdays only when they matter ("Due Fri, Nov 13"). Weekday names and the first day of the week come from the locale (`IFS.format.weekStart()`).
 8.30 Times: "3:44 AM" (minutes always; the locale decides 12/24h) [`time`]; "Nov 12, 2026, 3:44 AM" [`dateTime`]; add the time zone when several zones share a deadline ("5:00 PM PT"). Relative time for recent activity ("just now" under 45s, "5 minutes ago", "yesterday", "4 days ago"; from 7 days the date) [`relative`], with the exact time in a tooltip; absolute dates for deadlines and anything legal or financial. Durations "2 hr 15 min" in tables, "2 hours 15 minutes" in sentences, countdowns "3h left".
-8.31 Fiscal years: FY27 [`fy`]; ranges FY27–FY31 [`fyRange`]; quarters Q2 FY27; FY2027 only where two digits are ambiguous. Never "FY 2027", "FY'27", "fy27" or "FY27-31". A fiscal year is named for the calendar year it ends in; the start month is per customer (`fyStartMonth`). Calendar quarters are "Q1 2026".
+8.31 Fiscal years: FY27 [`fy`]; ranges FY27–FY31 [`fyRange`]; quarters Q2 FY27; FY2027 only where two digits are ambiguous. Never "FY 2027", "FY'27", "fy27" or "FY27-31". A fiscal year is named for the calendar year it ends in. Its start month is an admin system setting [`configure({ fyStartMonth })`, default January]. Plan uses fiscal years and quarters; labels stay short ("Cost FY27"); a fiscal-year header's tooltip shows only its dates [`fyDates(fy)` → "Apr 1, 2026 – Mar 31, 2027"]. Calendar quarters are "Q1 2026".
 8.32 Mock data keeps numbers as numbers and formats them at render. Stories and demos use made-up people and organisations.
 
 ---
@@ -323,6 +417,8 @@ This section is writing guidance for screens, as in other large design systems (
 9.8 Breadcrumbs: each crumb is a tab stop; the current crumb is plain text with `aria-current="page"`; separators aren't focusable.
 9.9 `LoadingRegion` announces "Loading <label>" and "Loaded".
 9.10 A disabled action carries a tooltip saying why; an action that never applies is left out, not greyed.
+9.11 Reduced motion (`prefers-reduced-motion`), one rule for the whole system: movement snaps or fades (the 2 and 16 distances go to 0; drawers and the Cooper chat fade instead of sliding or growing; chevron, switch knob, slider, progress and push-panel widths change at once); colour and opacity fades stay; loops stop, except the spinner, which slows to 3 × spin. Components need no rule of their own (`src/foundations/motion.css`).
+9.12 No red (danger) or purple body text on hover fills.
 
 ---
 
@@ -333,23 +429,27 @@ This section is writing guidance for screens, as in other large design systems (
 - Status sizes XS and S share a text style: merge into one size.
 - Truncation: the kit has about 47 hand-written truncation rules; move them onto `.t-truncate` + tooltip and check none truncates a number, status or error.
 - H1 / H2 still used inside panels (Cooper recommendation detail, widget-builder section, form card H1, the Cooper voice transcript H1, some prototype titles): pick per case.
-- Status vocabulary: one set of names (proposal: success, warning, error, info, neutral, accent, cooper, disabled); neutral dot colour (#4d4d4d vs #8c8c8c); dot size 8 / 6 / 4; keep or remove Badge's `indicator` dot.
-- Missing-value mark: em dash `—` (helpers) or en dash `–` (chart tables, Funnel).
-- capex vs CAPEX; whether role names (Portfolio Owner) are written as names.
-- Fiscal-year start month default (January today); fiscal or calendar quarters by default.
-- Parentheses for negatives in finance tables (rule 8.25 says no).
+- Status dots: size 8 / 6 / 4; keep or remove Badge's `indicator` dot. Look-alike status components: review.
+- Whether role names (Portfolio Owner) are written as names.
 - Bring the Catalyst voice-check glossary into this repo.
 - Benefit-cost ratio shows as "2.40x" in widget stories and "2.4" elsewhere.
 - Table Horizon / Modified filters mix instant chips with an Apply period (conflicts with rule 7.5); custom periods: fiscal years (notes) or date picker (frames, built).
 - Data viz round: stacked column (VerticalBarChartItem vs DataVizGroupedBar) and bar colours.
 - Map: details panel in two columns or stacked; Build → map preview entry; the folded Study rail looks poor.
 - ApprovalChain timeline vs ApprovalChainTable: both kept; revisit.
-- Sizes not yet on tokens: table filter popover (240), prompt button and risk pill heights, ApprovalChainPanel collapsed rail (84 vs 48), fixed heights (Cooper compact chat 360, history 400, chart empty state 388).
-- Round 1 sizing, decisions still in progress: density rule, card title row (height), pattern heights, app chrome.
+- Sizes not yet on tokens: table filter popover (240), risk pill heights, ApprovalChainPanel collapsed rail (84 vs 48), fixed heights (Cooper compact chat 360, history 400, chart empty state 388).
+- Round 1 sizing, still in progress: card title row (height), pattern heights; `Counter` height (not on the ladder yet).
 - Wide content: `--layout-max-content-width-wide` (2240) exists for data screens but has no class and nothing uses it; document a class or delete the token.
 - Auto-reminder interval "N days" (Collaboration rule 8, Approval chain rule 8): a Figma placeholder; per tenant, not decided.
 - The grid CSS reads the window width for page margin, gap and `--panel-cols`; check it against rule 4.4.
 - RTL conversion to logical properties is gradual (rule 1.4).
 - RTL first pass (2.0.5, Nov 20): `node tools/check-direction.mjs` is at 0 (was 165); CSS and inline styles use start/end, the rest is marked `ltr:`. Switch with `IFS.setDirection('rtl')`. Left: JS geometry (canvas and map, WidgetBoard drag, sliders and zoom, column resize, popover and tooltip placement) and charts per family.
 - Should live cursors appear on framework canvases at all (`LiveCursors` is invented)?
+- Not decided yet, no rules: states and focus (S1–S3; the focus ring stays as rule 1.6), loading (L1–L4), data viz (D1–D9).
+- Motion still to build (rule 1.8): exit animations, the tab-change table-height glide, push-panel width animation.
+- Light theme: `color-scheme` and `IFS.setTheme` are in; the Light values come right after phase 1. Primary button hover: to decide.
+- `FormCard`: "a form on a page" (components.md) vs a card built like a dialog; settle the wording.
+- Cooper orb gap: 12 or 24.
+- Map data credit.
+- Radius for multi-line inputs, chat bubbles and the comment thread (12 today, `--radius-300`): no role decided.
 - Real names in stories: "DC Water" (nav-bar gallery) and a real person's name (approval gallery); replace unless cleared.

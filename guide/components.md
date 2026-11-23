@@ -1,8 +1,8 @@
-# Catalyst Design System 2.0.4 — components and patterns
+# Catalyst Design System 2.0.5 — components and patterns
 
 The catalogue: which component to use for what, then how the patterns work. Rules live in [rules.md](rules.md) and are referenced by number, not repeated. Full props: [`dist/api.md`](../dist/api.md). Figma keys, node ids, variant axes and review items: [figma.json](figma.json).
 
-How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a building block inside another component, or not built). **Use** / **Don't** / **Notes** follow. Organisms are what screens place; atoms and molecules are their parts, placed directly only when no organism covers the need. Sets with no Figma canvas guidance (their entries are inferred) are listed in [figma.json](figma.json) → `libraryIssues`.
+How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a building block inside another component, or not built). **Use** / **Don't** / **Notes** follow. Organisms are what screens place; atoms and molecules are their parts, placed directly only when no organism covers the need. Sets with no Figma canvas guidance (their entries are inferred) are listed in [figma.json](figma.json) → `libraryIssues`. Sizes are Spacious / Comfortable / Compact; what density changes and never changes: rule 3.13 (heights on the ladder, rule 3.5; shape, rule 3.14; tokens by their new names, rule 1.7).
 
 ## Pick the right component
 
@@ -127,7 +127,7 @@ Notes: Keep it visually distinct from column filters.
 
 ### form-card-organism · `FormCard`
 Use: A surface that wraps a form: header (title, optional description, one optional action) → optional divider → body (fields) → optional footer (actions).
-Notes: Width and padding: rules 4.5, 3.2 (`inset-l`). Height hugs content up to the viewport, then the body scrolls between pinned header and footer. Validation: rule 7.4. Loading = field skeletons; submitting = primary spinner, form locks.
+Notes: Width and padding: rules 4.5, 3.2 (`inset-l`); `--radius-floating`, elevation 2 (rules 3.14, 4.8). The "a form on a page" wording vs a card built like a dialog is still open (rules §10). Height hugs content up to the viewport, then the body scrolls between pinned header and footer. Validation: rule 7.4. Loading = field skeletons; submitting = primary spinner, form locks.
 
 ### checkbox-atom · `Checkbox`
 Use: Bare checkbox inside tables, list rows and cards; supports indeterminate for parent rows.
@@ -169,7 +169,7 @@ Use: One option row in a single-select popup.
 
 ### single-select-list-molecule · `Select`, `Menu`
 Use: The option popup. Group headers only when the list mixes kinds or sources (Recent / Suggested / Results).
-Code: `Select`'s option list, and `Menu`: the same list as a command menu anchored to a trigger (rule 7.9; sizes rule 3.8). Items take an icon, shortcut, description, danger, disabled with a reason, a selected check, dividers, section titles and submenus. Pattern helpers such as SplitButton are built on it.
+Code: `Select`'s option list, and `Menu`: the same list as a command menu anchored to a trigger (rule 7.9; sizes and the 4 offset rule 3.8). Motion: the list opens with a 2 drop in 100 (rule 1.8). Closing isn't animated yet (rule 1.8). Items take an icon, shortcut, description, danger, disabled with a reason, a selected check, dividers, section titles and submenus. Pattern helpers such as SplitButton are built on it.
 
 ### single-select-organism · `Select`
 Use: Choosing one option from a list.
@@ -273,14 +273,16 @@ Use: A record pager for item-by-item content (Trace report). Never for tables (r
 ## Feedback
 
 ### tooltip-organism · `Tooltip`
-Use: A short non-interactive label on hover and focus (text, status, date, avatar, metadata). Rules 7.11, 9.2.
+Use: A short non-interactive label on hover and focus (text, status, date, avatar, metadata), 4 from its trigger, `--z-index-tooltip` above toasts. Rules 7.11, 9.2.
+Motion: fades in over 100 after the 300 pointer wait; at once on keyboard focus; closes at once (rule 1.8).
 Don't: Essential content, headings, links, buttons or forms (→ popover).
 
 ### alert-organism · `Alert`
 Use: Rule 7.12.
 
 ### snackbar-organism · `Snackbar`
-Use: Rule 7.12; show one with `IFS.toast`.
+Use: Rule 7.12; show one with `IFS.toast`. Placement: the one top-end stack, rule 4.8 (one page margin in, below the header, 8 apart, newest on top).
+Motion: slides in 16 from the end side over 100; stays 4000, paused on hover and focus (rule 1.8). Closing isn't animated yet (rule 1.8).
 
 ## Surfaces
 
@@ -288,6 +290,7 @@ Family note: all surfaces are organisms with a free content slot; the slot holds
 
 ### modal-organism · `Modal`
 Use: Rule 7.13. Examples: confirm a collaborator and role, a critical decision, a short Save/Cancel form.
+Motion: rises 2 over 200 and the scrim fades in over 200 (rule 1.8). Closing isn't animated yet (rule 1.8).
 
 ### floating-bar-organism · `FloatingBar`
 Use: Contextual action bar, top-centre, shown while something is selected on the map: what is selected + actions (secondary buttons, then one primary) + ✕ to clear.
@@ -298,9 +301,11 @@ Use: Rule 7.14. Examples: confidence rail, inspector, reading pane. Full height,
 
 ### popover-organism · `Popover`
 Use: Rule 7.14 (width rule 4.5). Examples: detail preview, small picker, quick action list, view switcher, display settings, searchable list behind a count ("16 Documents").
+Motion: drops 2 over 100, 4 from its trigger (rules 1.8, 3.8). Closing isn't animated yet (rule 1.8).
 
 ### drawer-organism · `Drawer`
-Use: Rule 7.14. Example: node details on the map. Can expand to fill the content area.
+Use: Rule 7.14. Example: node details on the map. Can expand to fill the content area. `floating` sits one `--float-inset` in, below the header and above the bottom sheet (rule 4.6).
+Motion: slides in from its edge over 200; reduced motion fades (rules 1.8, 9.11). Closing isn't animated yet (rule 1.8).
 
 ### canvas-background · `CanvasBackground`
 Use: The infinite, pannable, zoomable ground plane for map-first and node-graph views (Value framework, Explore map).
@@ -317,7 +322,7 @@ Use: Dashboard edit mode: widgets become draggable tiles and the background show
 Place `content-card-organism`, `stat-card-organism` and `table-card-organism`. Status, table and activity sets go atom → molecule → organism; place organisms and molecules.
 
 ### badge-atom · `Badge`
-Use: A small read-only marker of status or category attached to another object (Passed / At risk / Failed; Active / Draft / Archived; Critical / Recommended). Rules 2.10, 7.16.
+Use: A small read-only marker of status or category attached to another object (Passed / At risk / Failed; Active / Draft / Archived; Critical / Recommended). Status words and colours: rule 7.16. Heights S / M / L = ladder xs / s / m (rule 3.5). Rules 2.10, 7.16.
 Don't: The primary content (→ text). Don't badge everything.
 
 ### avatar-atom · `Avatar`
@@ -380,7 +385,7 @@ Use: A version-history entry.
 Use: Activity feed entry.
 
 ### status-indicator-atom · `StatusIndicator`
-Use: Colour-only dot for category/identity (legend, series marker, online dot); rule 7.16.
+Use: Colour-only dot for category/identity (legend, series marker, online dot); rule 7.16. `neutral` is the readable grey (`--color-icon-softer`).
 
 ### status-risk-atom · `RiskStatus`
 Use: Icon + colour status for risk, health or process state; the default for meaningful status.
@@ -389,7 +394,7 @@ Use: Icon + colour status for risk, health or process state; the default for mea
 Use: Readiness/completion gates: ready, passed, waiting, not begun (stepper stages, checklists, approval gates).
 
 ### indicator-molecule · `Indicator`
-Use: Dot + text status label (e.g. "● Active" next to a page title).
+Use: Dot + text status label (e.g. "● Active" next to a page title). Types: the status words (rule 7.16; hue words still work); `archive` = neutral dot + `--color-text-softer`.
 
 ### status-readiness-molecule · `ReadinessStatus`
 Use: Labelled readiness row (label + readiness icon/text).
@@ -416,7 +421,7 @@ Use: Per-column funnel filter, composable with tab filters.
 Use: Sticky column header: short, muted labels in sentence case; align to the column's content.
 
 ### table-cell-atom · `Table`
-Use: Every table cell; pick Type by content. Text start-aligned, numbers end-aligned with consistent decimals, dates start-aligned in one format.
+Use: Every table cell; pick Type by content. Text start-aligned, numbers end-aligned with consistent decimals, dates start-aligned in one format. A missing value renders "—", read "No value"; zero is never a dash (rule 8.25).
 
 ### group-row-molecule · `Table`
 Use: Collapsible group row in a grouped table (`groupBy`). Three states: open (caret down, rows shown), collapsed (caret, rows hidden), locked (lock icon, can't open, a short `note` says when it opens). The end of the row shows the row count, or a status (`groupInfo` → `end`). The screen decides each group's state; groups don't have to open one after another. `headerPerGroup` puts the column header under each open group (sectioned table).
@@ -425,7 +430,7 @@ Use: Collapsible group row in a grouped table (`groupBy`). Three states: open (c
 Use: A table row (header or content) holding cells.
 
 ### table-card-organism · `Table`, `DataTable`
-Use: Every data table (`Table`; `DataTable` adds the Table pattern's behaviour). Rules 3.7, 4.11, 7.6–7.7.
+Use: Every data table (`Table`; `DataTable` adds the Table pattern's behaviour). Rules 3.7, 4.11, 7.6–7.7. Selected rows: a 2 outline (rule 7.16).
 
 ### notification-card · `NotificationCard`
 Use: Notification tray card. Type = what happened; Read = unread dot + contrast; show-critical adds the error status.
@@ -743,7 +748,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 4. Switching a stage changes the whole shell below the bar. The active tab gets the header-item active fill.
 5. Sidebar rows: Value picks a section (title and table change). Plan: a row selects that plan and expands its folder; the caret toggles a folder without selecting; the open path is outlined, the current folder filled. `arrow-bar-left` / `-right` collapse and expand the sidebar.
 6. The hamburger list (rule 5.7) opens 4 under the button; picking a stage closes it.
-7. Command list: `HomeRowCard` is the one card on all four tabs (My works / Decisions / Conversations / Following); the tabs change the list. Only the top card is Primary (gradient stroke, media); the rest Secondary. Metrics CPV and V/C; titles and descriptions truncate to one line. States: default, hover (tertiary-alpha fill), focus (focus ring), loading (skeleton bars, no media, arrow disabled). The priority segmented control filters the list; nothing at a priority shows the all-done empty state. Opening a decision goes to the stage on its badge.
+7. Command list: `HomeRowCard` is the one card on all four tabs (My works / Decisions / Conversations / Following); the tabs change the list. Only the top card is Primary (gradient stroke, media); the rest Secondary. Metrics CPV and V/C; titles and descriptions truncate to one line. States: default, hover (`--color-surface-tertiary` fill), focus (focus ring), loading (skeleton bars, no media, arrow disabled). The priority segmented control filters the list; nothing at a priority shows the all-done empty state. Opening a decision goes to the stage on its badge.
 
 ### Pattern: Table
 
@@ -771,11 +776,11 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 ### Pattern: Cooper
 
 **For:** the AI assistant on every stage screen: asking about the current screen, Cooper's proactive recommendations, and past conversations. Always over the content area of an AppShell screen (the full chat floats one page margin in, rule 4.6); never docked, a modal or a full page.
-**Parts:** entry = `BottomSheet` prompts (`PromptButton`) + `FtaButton`, shortcut `/` · three sizes: `ChatCollapsedBar` (320 pill above the bottom sheet), `ChatCompactPanel` (320×360 floating), `ChatFullPanel` (floating a level above the page, rule 4.6); each with `ChatHeader`, `TextMessageInput` or `VoiceMessageInput`, `Attachment` · conversation: `UserMessage`, `CooperMessage` (`CooperProgress`, `ChatCard`, `ChatLink`, `Button`) · history: `HistoryPanel` (240, beside the full panel, inside the same floating panel) with `FolderItem`, `SectionHeader`, `ChatHistoryCard`; `FolderContent`; `HistorySearch` + `SearchChatHistoryCard`; `Modal` + `ConfirmDeleteCard`; create folder `Modal` + `TextField` + `IconPicker` · recommendations: `CooperChip` in `PageHeader` → `AgentWindow` (`SpeakingControl`, `RecommendationGroup`, `RecommendationItem`, `RecommendationDetail`, `RecommendationImpact`) · behaviour: `CooperChat`, `CooperHistory`, `CooperRecommendations`.
+**Parts:** entry = `BottomSheet` prompts (`PromptButton`) + `FtaButton`, shortcut `/` · three sizes: `ChatCollapsedBar` (320 pill above the bottom sheet), `ChatCompactPanel` (320×360 floating; it opens from the orb's spot, above the bottom sheet, rule 4.9), `ChatFullPanel` (floating a level above the page, rule 4.6); each with `ChatHeader`, `TextMessageInput` or `VoiceMessageInput`, `Attachment` · conversation: `UserMessage`, `CooperMessage` (`CooperProgress`, `ChatCard`, `ChatLink`, `Button`) · history: `HistoryPanel` (240, beside the full panel, inside the same floating panel) with `FolderItem`, `SectionHeader`, `ChatHistoryCard`; `FolderContent`; `HistorySearch` + `SearchChatHistoryCard`; `Modal` + `ConfirmDeleteCard`; create folder `Modal` + `TextField` + `IconPicker` · recommendations: `CooperChip` in `PageHeader` → `AgentWindow` (`SpeakingControl`, `RecommendationGroup`, `RecommendationItem`, `RecommendationDetail`, `RecommendationImpact`) · behaviour: `CooperChat`, `CooperHistory`, `CooperRecommendations`.
 **Rules:**
 1. Opens in voice mode ("Say anything, I'm listening") by "Hey Cooper", `/` or the avatar; the keyboard icon switches to text ("Write anything, I'm reading"), the mic back. In voice mode the transcript shows large while the user speaks. A prompt chip sends at once.
 2. "Hey Cooper": the avatar expands into the inline field, a sound plays, the chips hide; Cooper doesn't reply by voice. After ~1.5s of silence the question sends and the floating window opens; after ~6s with nothing said, it collapses back.
-3. Sizes: bar → expand on hover (tooltip "Expand to floating window") → compact; the window icon switches compact ↔ full panel. − or a click outside collapses to the avatar; it never closes completely. While the chat is open the bottom sheet hides its chips and avatar (one entry point at a time).
+3. Sizes: bar → expand on hover (tooltip "Expand to floating window") → compact; the window icon switches compact ↔ full panel. − or a click outside collapses to the avatar; it never closes completely. While the chat is open the bottom sheet hides its chips and avatar (`display:none`; one entry point at a time): the orb turns into the chat.
 4. The full panel resizes from its edge up to a maximum; the bar and floating window can be dragged anywhere. The chat never overlaps a widget it generates (the widget appears on the other side).
 5. Sending from the bar opens the compact panel. An answer goes Analysing ("Cooper is working on it (Step n/total): …") → Streaming → Answered; Send becomes Stop meanwhile. Step total is 2 for a simple question, 3–4 for building a widget or alternative; only the step text changes.
 6. A message has four blocks: "Analyzed your request" (collapsed once complete), content (always), follow-ups, clarifying options. Empty blocks hide with their header; follow-ups hide while options show. Picking one sends it as the user's message; the user can also type their own answer.
@@ -794,7 +799,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 ### Pattern: Documents
 
 **For:** the files attached to a record (investment, value framework) that build Cooper's context. They live in the bottom sheet, never on their own page; not a general file manager.
-**Parts:** `BottomSheet type="documents"` with `DocumentsContext` ("Cooper's Context", optional coverage `ProgressBar`, documents Tertiary M `Button`, Upload Tertiary M `IconButton`) · `DocumentsPopover` (`Popover` "Documents" + `Counter`, search, ✕) of `DocumentRow`s (`FileCard` row: name, upload date; hover ⋯ Download / Remove when editable, Download when read-only; error rows Remove + Retry; uploading rows skeleton) · `DocumentsDropArea` (`DropZone` + `NodeCard type="document"` ghosts while dragging) · `DocumentsFeedback` (`Alert`, `Snackbar`, top-right under the page header) · state `useDocuments({ defaultDocuments, editable, required })`.
+**Parts:** `BottomSheet type="documents"` with `DocumentsContext` ("Cooper's Context", optional coverage `ProgressBar`, documents Tertiary M `Button`, Upload Tertiary M `IconButton`) · `DocumentsPopover` (`Popover` "Documents" + `Counter`, search, ✕) of `DocumentRow`s (`FileCard` row: name, upload date; hover ⋯ Download / Remove when editable, Download when read-only; error rows Remove + Retry; uploading rows skeleton) · `DocumentsDropArea` (`DropZone` + `NodeCard type="document"` ghosts while dragging) · `DocumentsFeedback` (`Alert`, `Snackbar`, in the one top-end snackbar stack below the page header, rule 4.8) · state `useDocuments({ defaultDocuments, editable, required })`.
 **Rules:**
 1. The button reads "1 Document" / "N Documents" and is hidden at 0. The popover opens 4 above the bottom sheet, clear of canvas tools, at most 360 tall: 1–7 documents no scroll, 8–9 scroll, 10+ search appears. Newest upload first. Search filters by name; no match "No results found" with no counter.
 2. A row opens a preview in a separate window; Download downloads; ✕, Esc or outside click closes the popover.
@@ -857,7 +862,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 ### Pattern: Approval chain
 
 **For:** the Approve stage of a framework or investment (Input → Shape → Review → Approve). Reviewers see the impact and a readiness evaluation and approve or request more information; the owner follows each reviewer, nudges late ones, and publishes once all approve or sends back for review.
-**Parts:** `PageHeader` (status `Indicator` xs: Draft / Shaping grey, Pending approval orange, Revisions required red, Ready to publish blue, Active green; `SegmentedControl` S; `Stepper`; actions "3/5", comments, "Approval chain" (reviewer only), `SplitButton`) · main column: `StatCardsRow` (one `compare` card + three), `Tabs`, `InvestmentValueImpact`, `TableReview` · reviewer `Panel` "Readiness Evaluation" (`ReadinessEvaluation`, `ReadinessSection`, `ReadinessFacts`, `ProgressRing`, `ReadinessStatus`) · `ApprovalChainPanel` (forms and panel mode: rule 4.6) around `ApprovalChainTable` (on `Table`: `ApprovalStatus` rail, user cells, notes, filter, push) · `Modal` confirmations · `toast`.
+**Parts:** `PageHeader` (status `Indicator` xs: Draft / Shaping neutral, Pending approval warning, Revisions required danger, Ready to publish info, Active success; `SegmentedControl` S; `Stepper`; actions "3/5", comments, "Approval chain" (reviewer only), `SplitButton`) · main column: `StatCardsRow` (one `compare` card + three), `Tabs`, `InvestmentValueImpact`, `TableReview` · reviewer `Panel` "Readiness Evaluation" (`ReadinessEvaluation`, `ReadinessSection`, `ReadinessFacts`, `ProgressRing`, `ReadinessStatus`) · `ApprovalChainPanel` (forms and panel mode: rule 4.6) around `ApprovalChainTable` (on `Table`: `ApprovalStatus` rail, user cells, notes, filter, push) · `Modal` confirmations · `toast`.
 **Rules:**
 1. The readiness panel lists only the gates, checks and metrics that exist for this case.
 2. Approve and Request more info always go through a confirm modal. Approve: "Approve this framework?" → toast "Framework approved" + Undo, the button becomes **Approved** (disabled), the row turns success; the Approval chain button stays. Request more info (caret menu) takes a note → status Revisions required, toast "Revision requested — sent back to {author}" + Undo, button **Info requested** (disabled) until the author sends it for approval again; the Approval chain button hides; the row turns rejected, the note becomes its comment and the author sees it in the activity log.
@@ -875,7 +880,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 **For:** three right-hand panels with the system's verdict on a framework. **System Confidence**: for the author on the work steps inside an entity (where, and open at the start: rule 4.6): readiness by gate + open questions and warnings. **Trace Report**: a reaction to a user change the system considers incorrect (errors, warnings, notes, one at a time). **Readiness Evaluation**: for a stakeholder reviewing someone else's framework (see Approval chain).
 **Parts:** `useIssueReport({ issues, kinds, gates, onResolvedAll })` with `CONFIDENCE_KINDS` (Open questions, Warnings) or `TRACE_KINDS` (Errors, Warnings, Notes) · `SystemConfidence` = `Panel` + `ContentCard` with `ConfidenceGates` (`ProgressRing`, a `ReadinessStatus` per gate with XS `Indicator`s and tooltips), `IssueKindSwitch` (`SegmentedControl` S with counters), `IssueNavigator` · `TraceReport` `type="drawer"` (floating over the canvas, collapse only) or `type="sidebar"` (`Panel`), footer Undo (Tertiary L) · `IssueNavigator`: `Pager progress="resolved"`, issue title (H3) and description, then solutions (`IssueSolution`), Upload file / My answer (`IssueAnswerField`), a single Okay, or the Applied / Answered card; "All" lists `IssueListItem`s · collapsed rail `Panel expanded={false}` with `dot`.
 **Rules:**
-1. Red = open questions or errors; orange = warnings. The rail dot follows (none when all is OK). The Approval readiness total matches the segmented counters.
+1. Danger (red) = open questions or errors; warning (orange) = warnings. The rail dot follows (none when all is OK). The Approval readiness total matches the segmented counters.
 2. A kind with no items hides from the segmented control; Trace Report hides the control once one kind is left.
 3. ‹ › walk the list (disabled at the ends); All shows the numbered list. "1 / 2" is a position and resets when the list or filter changes; "(n% resolved)" is progress across the list and doesn't.
 4. Resolving: pick a solution ("Applied"), save My answer or upload a file (shimmer row, then "Answered"), or press Okay. Warnings and notes count as "viewed"; questions and errors as "resolved". A resolved item gets a check; its gate turns Passed when all its items are resolved; the readiness % and the "resolved/total" indicators update. Undo on an Applied / Answered card (on hover) reopens it.
@@ -891,7 +896,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 **Parts:** `EvidenceButton` (circle Tertiary S, `cooper-evidence-icon`, 16; in a card header via `DataVizCard header.slot` or `ContentCard iconButton`; on a panel `Panel showEvidence onEvidence`) · `EvidenceChainDrawer` (`over`; title "Evidence chain", ✕ only): `EvidenceStrength` (captions `<70% Reject` · `{value}% Review` · `>90% Approve`), `SegmentedControl` S full width Rationale | Peer benchmark, `EvidenceSection`s of `SourceCard`s, `PeerBenchmark` (description, summary rows, "Typical scope" with `LegendSwatch` + `VerticalBarChartItem`; `EmptyState` when there's too little data) · `SourceCard` (`type="file"` a Tertiary S button with the source name that opens the source, icon optional; `type="user"` avatar + name, for a person's input; `content="quote"` excerpt with a start rule, `content="text"` paragraph; optional info `Badge`) · `evidenceZone(value)`.
 **Rules:**
 1. The trigger shows wherever Cooper-written content exists, at every confidence level (never hidden because confidence is high).
-2. From a card: the drawer floats over the content area top-end, `--space-300` (12) in from the page header, the end edge and the bottom sheet; the screen places it (`Drawer floating` alone sits `--space-400` (16) from the window edges). Another card's button switches the chain; the same button, ✕ or Esc closes it and focus returns. From System confidence: it opens in the panel's place, below the nav bar, over the page header, ending `--space-300` above the bottom sheet. One chain at a time; its trigger shows as expanded.
+2. From a card: the drawer floats over the content area top-end, one `--float-inset` (the page margin, rule 4.6) in from the page header, the end edge and the bottom sheet; the screen places it (`Drawer floating` uses the same inset). Another card's button switches the chain; the same button, ✕ or Esc closes it and focus returns. From System confidence: it opens in the panel's place, below the nav bar, over the page header, ending one `--float-inset` above the bottom sheet. One chain at a time; its trigger shows as expanded.
 3. Confidence zones set what Cooper does: under 70% Reject (Cooper doesn't apply; a reviewer decides), 70–90% Review (Cooper fills in and waits for a person), over 90% Approve (applied automatically; the chain stays available). Exactly 90 is Review; Approve starts above 90 (2.0.4). Every value carries its own confidence.
 4. The drawer layout is the same in every zone: only the marker and the behaviour change.
 5. Rationale is never empty: Why it's flagged → Decisions → Considered but not included; sections 12 apart with a 1px top rule and a Label/M/medium title; cards 8 apart.
