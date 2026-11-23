@@ -71,7 +71,14 @@ Never listed: check marks, media, clocks, trend up/down, logos, up/down carets.
 ### remOf
 **Tier:** Component
 A size prop given as a number is px at the default 16px text size; it comes out in rem so it follows the user's text size.
-`const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);  Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS }); export { Icon, cx, remOf }; `
+`const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);  // M3 exits (Nov 23): keeps a closing surface mounted for its exit time, with `leaving` true so it can take the // .is-leaving class (foundations/motion.css), then unmounts. ms: 50 small surfaces (menu, popover, snackbar), 100 large ones // (modal, drawer). Reduced motion keeps the time, and motion.css makes the exit a fade. function useExit(open, ms)`
+
+### useExit
+**Tier:** Component
+M3 exits (Nov 23): keeps a closing surface mounted for its exit time, with `leaving` true so it can take the
+.is-leaving class (foundations/motion.css), then unmounts. ms: 50 small surfaces (menu, popover, snackbar), 100 large ones
+(modal, drawer). Reduced motion keeps the time, and motion.css makes the exit a fade.
+`function useExit(open, ms)`
 
 ## activity
 

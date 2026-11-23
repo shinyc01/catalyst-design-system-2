@@ -115,8 +115,7 @@ button.ifs-vbar{cursor:pointer}
 
 /* Feedback stack (alerts + snackbars), top-right under the page header. */
 /* C3 + H1: Documents feedback sits where the snackbar stack does (below the header, one page margin in from the window edge) */
-.ifs-docs-feedback{position:fixed;top:calc(var(--docs-feedback-top, var(--float-top, var(--layout-global-header-height))) + var(--float-inset));inset-inline-end:var(--float-inset);z-index:var(--z-index-toast);
-  display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-200);pointer-events:none}
+.ifs-docs-feedback{display:contents} /* its items join the one snackbar stack (.ifs-snackbar-stack), 8 apart */
 .ifs-docs-feedback > *{pointer-events:auto;animation:ifs-arrive var(--motion-duration-100) var(--motion-ease-enter)}
 .ifs-docs-feedback .ifs-alert{width:18.9375rem}
 .ifs-docs-details{display:flex;flex-direction:column;gap:var(--space-200);margin:0;padding:0;list-style:none}

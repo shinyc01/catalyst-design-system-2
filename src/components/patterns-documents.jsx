@@ -429,13 +429,19 @@ function DocumentsFeedback({ controller: c, top }) {
     document.addEventListener('pointerdown', next, true); document.addEventListener('keydown', next, true);
     return () => { clearTimeout(t); document.removeEventListener('pointerdown', next, true); document.removeEventListener('keydown', next, true); };
   }, [alerts.map(a => a.id).join()]);
-  return <>
-    <div ref={ref} className="ifs-docs-feedback" style={{ '--docs-feedback-top': `${top != null ? top : IFS.floatTop ? IFS.floatTop() : 0}px` }} aria-live="polite">
+  // C3: the feedback renders into the one snackbar stack (IFS.snackbarHost), so it never overlaps a toast.
+  const host = IFS.snackbarHost ? IFS.snackbarHost() : null;
+  React.useLayoutEffect(() => { if (host && c.feedback.length) IFS.snackbarHost.place(top != null ? top : undefined); }, [c.feedback.length, top]);
+  const stack = (
+    <div ref={ref} className="ifs-docs-feedback" aria-live="polite">
       {c.feedback.map(f => f.kind === 'alert'
         ? <IFS.Alert key={f.id} type="error" showIcon title={f.title} onClose={() => c.dismiss(f.id)}
             action={f.details ? 'See details' : undefined} onAction={() => { setDetails(f.details); c.dismiss(f.id); }}>{f.body}</IFS.Alert>
         : <DocSnackbar key={f.id} item={f} onDone={() => c.dismiss(f.id)} />)}
     </div>
+  );
+  return <>
+    {host ? createPortal(stack, host) : stack}
     {details && (
       <IFS.Modal open onOpenChange={o => !o && setDetails(null)} title="Skipped files" width={420}
         primaryAction={{ label: 'Close', onClick: () => setDetails(null) }}>

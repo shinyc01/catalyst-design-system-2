@@ -563,7 +563,9 @@
 @keyframes ifs-drop{from{opacity:0
 --motion-distance-2: 0px
 --motion-distance-16: 0px}
-  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-floating-bar--floating{animation-name:ifs-fade!important}
+  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-floating-bar--floating,.ifs-app-shell--panel-over .ifs-app-shell__panel{animation-name:ifs-fade!important}
+  .ifs-drawer--floating.is-leaving,.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation-name:ifs-fade-out!important}
+  .ifs-app-shell__panel--push,.ifs-app-shell__panel--push.is-leaving{animation:none!important}
   .ifs-floating-bar--floating{animation:none!important}
   .ifs-sk,.ifs-skeleton,[class*="--loading"],.ifs-cooper-msg__cursor,.ifs-trc-solution--loading{animation:none!important}
   .ifs-spin,[class*="spinner"]{animation-duration:calc(3 * var(--motion-loop-spin))!important}

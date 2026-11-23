@@ -634,19 +634,47 @@ function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bot
   // Over panel: outside click / Esc → onPanelClose.
   useShellDismiss(panelRef, over && !!onPanelClose, React.useCallback(() => onPanelClose && onPanelClose(), [onPanelClose]));
 
+  // C4 (Nov 23): floating surfaces (floating drawer, over panels, Cooper chat) sit one --float-inset below the page header and
+  // above the bottom sheet. AppShell measures both and sets --float-top / --float-bottom (px from the window edges) on the
+  // shell and on <html>, so surfaces rendered in a portal read them too.
+  const headRef = React.useRef(null), bottomRef = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!el || typeof window === 'undefined') return undefined;
+    const set = () => {
+      const h = headRef.current || el.querySelector('.ifs-app-shell__bar');
+      const top = h ? Math.round(h.getBoundingClientRect().bottom) : 0;
+      const bottomPx = bottomRef.current ? Math.round(window.innerHeight - bottomRef.current.getBoundingClientRect().top) : 0;
+      for (const t of [el, document.documentElement]) { t.style.setProperty('--float-top', `${top}px`); t.style.setProperty('--float-bottom', `${Math.max(0, bottomPx)}px`); }
+    };
+    set();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(set) : null;
+    if (ro) { ro.observe(el); headRef.current && ro.observe(headRef.current); bottomRef.current && ro.observe(bottomRef.current); }
+    window.addEventListener('resize', set);
+    return () => { ro && ro.disconnect(); window.removeEventListener('resize', set);
+      document.documentElement.style.removeProperty('--float-top'); document.documentElement.style.removeProperty('--float-bottom'); };
+  }, [!!header, !!bottom]);
+  // M3: a push panel's width animates (200 open, 200 close); the map and canvas redraw once at the end (a resize event).
+  const lastPanel = React.useRef(null); if (panel) lastPanel.current = side;
+  const pex = IFS.useExit(!!panel, 200);
+  const lastJob = React.useRef(job); if (panel) lastJob.current = job;
+  const pushing = lastJob.current === 'push' && !pushRail;
+  const overShown = over || (pex.leaving && lastJob.current === 'over');
+  const redraw = () => typeof window !== 'undefined' && window.dispatchEvent(new Event('resize'));
+
   return (
     <div ref={ref} data-size={size}
-      className={IFS.cx('ifs-app-shell', navOverlay && 'ifs-app-shell--nav-overlay', pushRail && 'ifs-app-shell--panel-rail', over && 'ifs-app-shell--panel-over', className)}
+      className={IFS.cx('ifs-app-shell', navOverlay && 'ifs-app-shell--nav-overlay', pushRail && 'ifs-app-shell--panel-rail', overShown && 'ifs-app-shell--panel-over', className)}
       style={height ? { height, ...style } : style} {...rest}>
       <div className="ifs-app-shell__bar">{navBar}</div>
       {sideNav && <div ref={sideRef} className="ifs-app-shell__side">{nav}</div>}
       <div className="ifs-app-shell__main" style={sideNav ? undefined : { gridColumn: '1 / -1' }}>
-        {header && <div className="ifs-app-shell__header">{header}</div>}
+        {header && <div ref={headRef} className="ifs-app-shell__header">{header}</div>}
         <div className="ifs-app-shell__body">
           <main className="ifs-app-shell__content">{children}</main>
-          {panel && <div ref={panelRef} className="ifs-app-shell__panel">{side}</div>}
+          {pex.mounted && <div ref={panelRef} className={IFS.cx('ifs-app-shell__panel', pushing && 'ifs-app-shell__panel--push', pex.leaving && 'is-leaving')}
+            onAnimationEnd={e => { if (e.target === e.currentTarget) redraw(); }}>{panel ? side : lastPanel.current}</div>}
         </div>
-        {bottom && <div className="ifs-app-shell__bottom">{bottom}</div>}
+        {bottom && <div ref={bottomRef} className="ifs-app-shell__bottom">{bottom}</div>}
       </div>
     </div>
   );
