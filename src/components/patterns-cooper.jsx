@@ -732,8 +732,15 @@ const genericAnswer = q => ({
 // apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
 function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange,
   answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'],
-  onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className }) {
+  onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--float-inset)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className }) {
   const [sz, setSz] = useCtl(size, defaultSize, onSizeChange);
+  // C4 (Nov 23): the orb turns into the chat. While the chat is open the orb and the prompt chips hide (display, not visibility,
+  // so the orb's blur goes too): html[data-cooper-chat] in patterns-cooper.css.
+  React.useEffect(() => {
+    if (typeof document === 'undefined' || sz === 'closed') return;
+    const h = document.documentElement; h.setAttribute('data-cooper-chat', sz);
+    return () => h.removeAttribute('data-cooper-chat');
+  }, [sz]);
   const [md, setMd] = useCtl(mode, defaultMode, onModeChange);
   const [msgs, setMsgs] = useCtl(messages, defaultMessages, onMessagesChange);
   const [ttl, setTtl] = useCtl(title, defaultTitle, onTitleChange);
@@ -930,7 +937,7 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
               onMore={open === 'trash' ? e => setMenu({ anchor: at(e), items: [{ icon: 'arrow-back-up', label: 'Restore', onClick: () => upd([c.id], { trashed: false }) }] }) : e => chatMenu(c, e)} />)}
       </FolderContent>}
       {menu && <IFS.Menu anchor={menu.anchor} open onOpenChange={o => { if (!o) setMenu(null); }} items={menu.items} align="end" label="Chat actions" />}
-      {search && <div style={{ position: 'fixed', inset: 0, zIndex: 40, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '22vh' }}>
+      {search && <div style={{ position: 'fixed', inset: 0, zIndex: 'var(--z-index-modal)' /* C2: Cooper search */, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: '22vh' }}>
         <IFS.Overlay type="base" onClick={() => setSearch(false)} />
         <HistorySearch chats={live} activeChatId={activeChatId} onClose={() => setSearch(false)} onOpenChat={id => { setSearch(false); onOpenChat && onOpenChat(id); }} style={{ position: 'relative' }} />
       </div>}

@@ -72,7 +72,7 @@
   position:absolute;inset-inline-start:0;inset-inline-end:0;min-width:12.5rem;z-index:var(--z-index-z-popover);
   display:flex;flex-direction:column;box-sizing:border-box;max-height:12.25rem;overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-floating);
-  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
+  background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect blur/strong */
   scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;
 }

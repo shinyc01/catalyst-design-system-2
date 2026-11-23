@@ -456,8 +456,8 @@
 --menu-width-s: 12.5rem
 --menu-width-l: var(--layout-popover-width)
 --layout-chat-width-max: 45rem
---cooper-compact-end: 3.75rem
---cooper-compact-bottom: 8.1875rem
+--cooper-compact-end: var(--float-inset)
+--cooper-compact-bottom: calc(var(--float-bottom, 0px) + var(--float-inset))
 --layout-columns: 8
 --page-margin: var(--space-600)}}
 @media (min-width:1024px){:root{--layout-columns:12}}
@@ -500,7 +500,7 @@
 --region-map-bar: 46.625rem
 --bp-map-overlay: 1100px
 --bp-map-sheet: 720px
---slot-inset: var(--page-margin)
+--slot-inset: var(--float-inset)
 --slot-top: var(--slot-inset)
 --slot-tools: calc(var(--size-control-m) + var(--space-150))
 --slot-fab: var(--size-48)
@@ -522,7 +522,7 @@
 .ifs-slot-legend{position:absolute
 --bp-map-overlay: the end panel sits over the map
 --slot-r: var(--slot-inset)}
-  .ifs-slot-right{z-index:650}
+  .ifs-slot-right{z-index:3}
 }
 @media (max-width:719px){ 
   .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))}

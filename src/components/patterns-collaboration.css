@@ -19,7 +19,8 @@
 .ifs-cursor--u13{--cu:var(--color-collaboration-user-13)} .ifs-cursor--u14{--cu:var(--color-collaboration-user-14)} .ifs-cursor--u15{--cu:var(--color-collaboration-user-15)}
 .ifs-cursor--u16{--cu:var(--color-collaboration-user-16)}
 
-.ifs-live-cursors{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:2}
+.ifs-live-cursors{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:var(--z-index-floating)} /* C2: other people's cursors belong to the page (a modal scrim covers them) */
+.ifs-cursor--cooper{z-index:var(--z-index-max)} /* C2: Cooper acts for the user, so its cursor sits above every layer */
 
 /* ---- panel: popover-organism 360, tools row p12 gap6, content slot p8 4, sections gap12 ---- */
 .ifs-collab-anchor{position:relative;display:inline-flex}

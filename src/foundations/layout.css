@@ -32,7 +32,7 @@
   /* Menus: two widths (2.0.3). S for action menus (Carbon 180–288, Material 112–280); L = the popover width, for items with descriptions */
   --menu-width-s:12.5rem;--menu-width-l:var(--layout-popover-width);
   /* Cooper: the full chat can be dragged from the panel width (--region-panel, 380) up to 720 (rule 4.5); the compact window's default place, 60 from the end and 131 from the bottom */
-  --layout-chat-width-max:45rem;--cooper-compact-end:3.75rem;--cooper-compact-bottom:8.1875rem;
+  --layout-chat-width-max:45rem;--cooper-compact-end:var(--float-inset);--cooper-compact-bottom:calc(var(--float-bottom, 0px) + var(--float-inset)); /* C4: the compact chat opens from the orb's spot (its bottom-end corner where the orb's was), above the bottom sheet */
 }
 @media (min-width:600px){:root{--layout-columns:8;--page-margin:var(--space-600)}}
 @media (min-width:1024px){:root{--layout-columns:12}}
@@ -83,19 +83,21 @@
   --region-map-bar:46.625rem; /* 746px. Centre map bars (selected, draw, horizon) are at most this wide; the horizon fills it (Figma Explore horizon bar 746) */
   --bp-map-overlay:1100px;--bp-map-sheet:720px;
 }
-.ifs-slots{--slot-inset:var(--page-margin) /* every slot sits this far in from the map's edges: tops, bottoms and the end edge line up */;
+/* C2 (Nov 23): the map slots are their own stacking context with local layers 1 tools and bars · 2 panels · 3 popover · 4 exit,
+   so a modal scrim covers map panels. No raw z-index above 9. */
+.ifs-slots{isolation:isolate;--slot-inset:var(--float-inset) /* C4 */ /* every slot sits this far in from the map's edges: tops, bottoms and the end edge line up */;
   --slot-top:var(--slot-inset);--slot-tools:calc(var(--size-control-m) + var(--space-150));--slot-fab:var(--size-48);--slot-left-w:var(--region-panel);
   --slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));--slot-r:var(--slot-inset)}
 .ifs-slots.has-left-l{--slot-left-w:var(--region-panel-l)}
 .ifs-slots.has-exit{--slot-top:calc(var(--slot-inset) + var(--size-control-m) + var(--page-gap))}
 .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap) + var(--slot-left-w) + var(--page-gap))}
 .ifs-slots.has-right{--slot-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
-.ifs-slot-left{position:absolute;z-index:600;display:flex;top:var(--slot-top);bottom:var(--slot-inset);
+.ifs-slot-left{position:absolute;z-index:2;display:flex;top:var(--slot-top);bottom:var(--slot-inset);
   inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap));width:var(--slot-left-w);max-width:calc(100% - 2 * var(--slot-inset))}
-.ifs-slot-right{position:absolute;z-index:600;display:flex;top:var(--slot-top);bottom:var(--slot-inset);inset-inline-end:var(--slot-inset);
+.ifs-slot-right{position:absolute;z-index:2;display:flex;top:var(--slot-top);bottom:var(--slot-inset);inset-inline-end:var(--slot-inset);
   width:var(--region-panel);max-width:calc(100% - 2 * var(--slot-inset))}
 .ifs-slot-left > *,.ifs-slot-right > *{flex:1;min-width:0;max-height:100%}
-.ifs-slot-top,.ifs-slot-bottom{position:absolute;z-index:500;inset-inline-start:var(--slot-l);inset-inline-end:var(--slot-r);display:flex;justify-content:center;pointer-events:none}
+.ifs-slot-top,.ifs-slot-bottom{position:absolute;z-index:1;inset-inline-start:var(--slot-l);inset-inline-end:var(--slot-r);display:flex;justify-content:center;pointer-events:none}
 .ifs-slot-top > *,.ifs-slot-bottom > *{pointer-events:auto;max-width:min(100%, var(--region-map-bar))}
 .ifs-slot-top > .ifs-slot-fill,.ifs-slot-bottom > .ifs-slot-fill{flex:0 1 var(--region-map-bar);min-width:0}
 /* A floating bar in a slot is already centred by the slot: its slide-in only moves it up, so it ends on the shared edge */
@@ -119,21 +121,21 @@
 .ifs-slots.has-bottom-x .ifs-slot-bottom > .ifs-slot-fill{flex:1 1 auto}
 .ifs-slots:not(.has-right) .ifs-slot-bottom{inset-inline-end:calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap))} /* clear the Cooper button */
 /* Map tools in the start corners, on the same edges as the slots */
-.ifs-slot-tools,.ifs-slot-tools-bottom{position:absolute;z-index:500;inset-inline-start:var(--slot-inset)}
+.ifs-slot-tools,.ifs-slot-tools-bottom{position:absolute;z-index:1;inset-inline-start:var(--slot-inset)}
 .ifs-slot-tools{top:var(--slot-top)}
 .ifs-slot-tools-bottom{bottom:var(--slot-inset)}
-.ifs-slot-popover{position:absolute;z-index:650;bottom:var(--slot-inset);inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--space-200));
+.ifs-slot-popover{position:absolute;z-index:3;bottom:var(--slot-inset);inset-inline-start:calc(var(--slot-inset) + var(--slot-tools) + var(--space-200));
   width:var(--layout-popover-width);max-width:calc(100% - 2 * var(--slot-inset));max-height:calc(100% - var(--slot-top) - var(--slot-inset));display:flex}
 .ifs-slot-popover > *{flex:1;min-width:0}
-.ifs-slot-fab{position:absolute;z-index:500;inset-inline-end:var(--slot-inset);bottom:var(--slot-inset)}
-.ifs-slot-exit{position:absolute;z-index:700;inset-inline-start:var(--slot-inset);top:var(--slot-inset)}
+.ifs-slot-fab{position:absolute;z-index:1;inset-inline-end:var(--slot-inset);bottom:var(--slot-inset)}
+.ifs-slot-exit{position:absolute;z-index:4;inset-inline-start:var(--slot-inset);top:var(--slot-inset)}
 /* Map legend corner (kept for other canvases; the Explore map shows no legend: its key lives in the Layers popover, Nov 19) */
 .ifs-slots{--slot-legend-w:210px /* map legend width (layout geometry) */}
-.ifs-slot-legend{position:absolute;z-index:500;inset-inline-end:var(--slot-inset);bottom:var(--slot-inset);width:var(--slot-legend-w);max-width:calc(100% - 2 * var(--slot-inset))}
+.ifs-slot-legend{position:absolute;z-index:1;inset-inline-end:var(--slot-inset);bottom:var(--slot-inset);width:var(--slot-legend-w);max-width:calc(100% - 2 * var(--slot-inset))}
 .ifs-slots.has-legend .ifs-slot-bottom{inset-inline-end:calc(var(--slot-inset) + var(--slot-legend-w) + var(--page-gap))}
 @media (max-width:1099px){ /* = --bp-map-overlay: the end panel sits over the map; centre bars no longer make room for it */
   .ifs-slots.has-right{--slot-r:var(--slot-inset)}
-  .ifs-slot-right{z-index:650}
+  .ifs-slot-right{z-index:3}
 }
 @media (max-width:719px){ /* = --bp-map-sheet: panels become a bottom sheet (half the map) */
   .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))}

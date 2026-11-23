@@ -37,7 +37,7 @@
 /* ================= search-modal (d983e4df…) ================= */
 .ifs-search-modal{
   box-sizing:border-box;border-radius:var(--radius-floating);overflow:hidden;
-  background:var(--color-background-accent-black-soft);box-shadow:var(--elevation-elevation-3-primary),inset 0 0 0 var(--border-width-default) var(--color-border-soft);
+  background:var(--color-background-accent-black-soft);box-shadow:var(--elevation-floating);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect elevation-3 */
 }
 .ifs-search-modal--inline{position:relative;width:28.875rem}

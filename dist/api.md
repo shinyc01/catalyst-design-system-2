@@ -1826,7 +1826,7 @@ messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text
 onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact (default: --cooper-compact-end / --cooper-compact-bottom),
 fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 6.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
-`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--page-margin)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
+`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--float-inset)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
 
 ### 
 **Tier:** Pattern helper
@@ -1950,7 +1950,7 @@ Pattern: DocumentsFeedback — top-right stack under the page header (place it i
 Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
 Removal = snackbar-organism "The document has been removed" + Undo: 4 s, paused on hover/focus, ✕ dismisses.
-Props: controller, top (px; default = the nav bar + 40, --layout-global-header-height + --size-40).
+Props: controller, top (px from the window top; default = the bottom of the page or Explore header, IFS.floatTop()). C3: one place with the snackbar stack.
 `function DocumentsFeedback({ controller: c, top })`
 
 ## patterns-evidence
@@ -2002,7 +2002,7 @@ SegmentedControl S Rationale | Peer benchmark, then the tab:
   Peer benchmark = PeerBenchmark props (`benchmark`; null/{ empty: true} → empty state, tab stays selectable).
 Props: open / defaultOpen / onOpenChange (✕ and Esc close), value (confidence %), thresholds,
 tab / defaultTab ('rationale') / onTabChange, title, floating (slide-in animation), className, style.
-Placement is the screen's job: it floats over the content, top-end, --space-300 in (components.md Evidence rule 2).
+Placement is the screen's job: it floats top-end, one --float-inset in (C4, Nov 23: the page margin, below the header; components.md Evidence rule 2).
 `function EvidenceChainDrawer({ open, defaultOpen = true, onOpenChange, value = 87, thresholds = [70, 90], tab, defaultTab = 'rationale', onTabChange, rationale = [], benchmark, title = 'Evidence chain', floating = true, className, style })`
 
 ### evidenceZone

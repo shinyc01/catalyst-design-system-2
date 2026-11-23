@@ -35,7 +35,7 @@ function Floating({ anchorRef, floatRef, position = 'down', matchWidth = true, a
     return () => { window.removeEventListener('scroll', calc, true); window.removeEventListener('resize', calc); };
   }, [position, matchWidth, align, flip]);
   return createPortal(
-    <div ref={floatRef} className="ifs-floating" style={{ position: 'fixed', zIndex: 'var(--z-index-z-toast)', ...(pos || { visibility: 'hidden' }) }}>
+    <div ref={floatRef} className="ifs-floating" style={{ position: 'fixed', zIndex: 'var(--z-index-popover)' /* C2: select lists sit with popovers */, ...(pos || { visibility: 'hidden' }) }}>
       {children}
     </div>, document.body);
 }

@@ -11,8 +11,8 @@
 .ifs-tooltip-anchor{position:relative;display:inline-flex}
 .ifs-tooltip{--tt-fill:var(--color-surface-primary);
   display:inline-flex;flex-direction:column;align-items:center;flex:none;width:max-content;max-width:20rem;
-  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.25)) /* drop-shadow/floating (--drop-shadow-floating) as filter so the arrow casts it too */;
-  pointer-events:none;z-index:var(--z-index-z-max) /* above popovers, drawers and modals */}
+  filter:var(--elevation-floating-filter) /* C1 level 2 as a filter, so the arrow casts it too */;
+  pointer-events:none;z-index:var(--z-index-tooltip) /* C2: tooltips only, above toasts */}
 .ifs-tooltip--grey{--tt-fill:var(--color-surface-elevation-2)}
 .ifs-tooltip__body{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-50) var(--space-200);
   border-radius:var(--radius-control);background:var(--tt-fill);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));
@@ -63,13 +63,14 @@
 /* ---------- Snackbar ---------- */
 .ifs-snackbar{display:flex;align-items:center;gap:var(--space-stack);width:25rem;max-width:100%;padding:var(--space-inset);
   border-radius:var(--radius-floating);background:var(--color-surface-secondary);color:var(--color-text);
-  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-elevation-1-primary);
+  box-shadow:var(--elevation-floating); /* C1 level 2: floating */
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 .ifs-snackbar__text{display:flex;flex-direction:column;gap:var(--space-100);flex:none;max-width:60%}
 .ifs-snackbar__title{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--color-text)} /* Label/M/medium */
 .ifs-snackbar__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
 .ifs-snackbar__actions{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-200);flex:1 1 auto;min-width:0}
-.ifs-snackbar-stack{position:fixed;top:16px;inset-inline-end:16px;z-index:var(--z-index-z-toast);display:flex;flex-direction:column;gap:var(--space-200)}
+/* C3: top-end, below the page or Explore header (--float-top, measured), one page margin from the window edge; newest on top */
+.ifs-snackbar-stack{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));inset-inline-end:var(--float-inset);z-index:var(--z-index-toast);display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-snackbar-stack > *{animation:ifs-arrive var(--motion-duration-100) var(--motion-ease-enter)} /* M3: arrivals slide 16 from the end side */
 
 /* ---------- Overlay (overlay-background) ---------- */
@@ -82,7 +83,7 @@
 .ifs-modal-layer{position:fixed;inset:0;z-index:var(--z-index-z-modal);display:flex;align-items:center;justify-content:center;padding:var(--space-600) /* scrim gutter */}
 .ifs-modal{display:flex;flex-direction:column;width:var(--overlay-width-m);min-width:min(var(--overlay-width-s),100%);max-width:min(var(--overlay-width-l),100%);max-height:85vh;
   border-radius:var(--radius-floating);background:var(--color-surface-secondary);color:var(--color-text);
-  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
+  box-shadow:var(--elevation-modal) /* C1 level 3 */;backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
 .ifs-modal__header{display:flex;align-items:center;gap:var(--space-stack);flex:none;padding:var(--space-inset-l) /* inset-l on all four sides, every part (Nov 19) */;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-modal__header .ifs-surface__title{flex:1 1 auto;color:var(--color-text)}
 .ifs-modal__body{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;padding:var(--space-inset-l)}
@@ -93,9 +94,10 @@
 .ifs-drawer{display:flex;flex-direction:column;width:var(--region-panel);min-width:min(var(--region-panel-min),100%);max-width:min(var(--region-panel-max),100%);overflow:hidden;
   border-radius:var(--radius-floating);background:var(--color-surface-secondary);color:var(--color-text);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
-.ifs-drawer--floating{position:fixed;top:var(--space-400);bottom:var(--space-400);z-index:var(--z-index-z-floating);animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)}
-.ifs-drawer--floating.ifs-drawer--right{inset-inline-end:var(--space-400)}
-.ifs-drawer--floating.ifs-drawer--left{inset-inline-start:var(--space-400)}
+/* C4: one floating inset (= page margin), below the header, above the bottom sheet, from the window edge. C1 level 2. */
+.ifs-drawer--floating{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));bottom:calc(var(--float-bottom, 0px) + var(--float-inset));z-index:var(--z-index-floating);box-shadow:var(--elevation-floating);animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)}
+.ifs-drawer--floating.ifs-drawer--right{inset-inline-end:var(--float-inset)}
+.ifs-drawer--floating.ifs-drawer--left{inset-inline-start:var(--float-inset)}
 .ifs-drawer--floating.ifs-drawer--collapsed{bottom:auto}
 .ifs-drawer__header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-50);flex:none;padding:var(--space-inset) /* height comes from the inset (was a fixed 56) */}
 .ifs-drawer__tabs{flex:none;padding:var(--space-250) var(--space-inset) 0 /* a tab row: the tabs sit on the divider below */;box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft)}
@@ -127,9 +129,9 @@
 .ifs-popover-anchor{position:relative /* the collapsed rail: chrome, like the side nav */;display:inline-flex}
 .ifs-popover{display:flex;flex-direction:column;width:var(--overlay-width-s);min-width:10rem /* narrowest a popover gets */;max-width:var(--overlay-width-l);max-height:37.5rem;overflow:hidden;
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);color:var(--color-text);
-  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-elevation-3-primary);
+  box-shadow:var(--elevation-floating); /* C1 level 2 (was elevation-3) */
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
-.ifs-popover-anchor > .ifs-popover{position:absolute;top:calc(100% + 4px);inset-inline-start:0;z-index:var(--z-index-z-popover)}
+.ifs-popover-anchor > .ifs-popover{position:absolute;top:calc(100% + var(--space-100)) /* C4: 4 from the trigger */;inset-inline-start:0;z-index:var(--z-index-z-popover)}
 .ifs-popover-anchor > .ifs-popover--end{inset-inline-start:auto;inset-inline-end:0}
 .ifs-popover__header{display:flex;align-items:center;gap:var(--space-200);flex:none;padding:var(--space-inset);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-popover__title{display:flex;align-items:center;gap:var(--space-200);flex:1 1 auto;min-width:0}
@@ -155,7 +157,7 @@
 .ifs-floating-bar{display:inline-flex;align-items:center;gap:var(--space-200);padding:var(--space-200);
   border-radius:var(--radius-floating);background:var(--color-background-neutral-soft-inverse);color:var(--color-text);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
-.ifs-floating-bar--floating{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:var(--z-index-z-floating);animation:ifs-bar-in var(--motion-duration-100) var(--motion-ease-enter)} /* ltr: centred with translateX */
+.ifs-floating-bar--floating{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));left:50%;transform:translateX(-50%);z-index:var(--z-index-floating);box-shadow:var(--elevation-floating);animation:ifs-bar-in var(--motion-duration-100) var(--motion-ease-enter)} /* ltr: centred with translateX */
 @keyframes ifs-bar-in{from{opacity:0;transform:translate(-50%,var(--motion-distance-2))}to{opacity:1;transform:translateX(-50%)}}
 .ifs-floating-bar__context{display:flex;flex-direction:column;gap:var(--space-50);min-width:0;max-width:20rem}
 .ifs-floating-bar__category{display:flex;align-items:center;gap:var(--space-100);color:var(--color-text-softer);

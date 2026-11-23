@@ -413,7 +413,7 @@ function DocumentsDropArea({ controller: c, children, className, style, ...rest 
 // Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 // "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
 // Removal = snackbar-organism "The document has been removed" + Undo: 4 s, paused on hover/focus, ✕ dismisses.
-// Props: controller, top (px; default = the nav bar + 40, --layout-global-header-height + --size-40).
+// Props: controller, top (px from the window top; default = the bottom of the page or Explore header, IFS.floatTop()). C3: one place with the snackbar stack.
 function DocumentsFeedback({ controller: c, top }) {
   const ref = React.useRef(null);
   const [details, setDetails] = React.useState(null);
@@ -430,7 +430,7 @@ function DocumentsFeedback({ controller: c, top }) {
     return () => { clearTimeout(t); document.removeEventListener('pointerdown', next, true); document.removeEventListener('keydown', next, true); };
   }, [alerts.map(a => a.id).join()]);
   return <>
-    <div ref={ref} className="ifs-docs-feedback" style={top != null ? { '--docs-feedback-top': `${top}px` } : undefined} aria-live="polite">
+    <div ref={ref} className="ifs-docs-feedback" style={{ '--docs-feedback-top': `${top != null ? top : IFS.floatTop ? IFS.floatTop() : 0}px` }} aria-live="polite">
       {c.feedback.map(f => f.kind === 'alert'
         ? <IFS.Alert key={f.id} type="error" showIcon title={f.title} onClose={() => c.dismiss(f.id)}
             action={f.details ? 'See details' : undefined} onAction={() => { setDetails(f.details); c.dismiss(f.id); }}>{f.body}</IFS.Alert>

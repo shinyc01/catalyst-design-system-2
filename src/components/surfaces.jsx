@@ -137,10 +137,22 @@ function SurfToastItem({ t }) {
     </div>
   );
 }
+// C3 (Nov 23): snackbars sit top-end, below the page or Explore header (never over the nav bar or the header), one page margin
+// from the window edge (--float-inset in CSS). floatTop() = the bottom of the lowest visible header, in px from the window top.
+const FLOAT_HEADERS = '.ifs-page-header, .ifs-explore-header, .ifs-page-top__heading, .ifs-navbar';
+function floatTop() {
+  if (typeof document === 'undefined') return 0;
+  let b = 0;
+  for (const el of document.querySelectorAll(FLOAT_HEADERS)) { const r = el.getBoundingClientRect(); if (r.height && r.bottom > b && r.top < window.innerHeight / 2) b = r.bottom; }
+  return Math.round(b);
+}
+IFS.floatTop = floatTop;
 function SurfToastStack() {
   const [list, setList] = React.useState(surfToasts.list);
+  const [top, setTop] = React.useState(0);
   React.useEffect(() => { surfToasts.subs.add(setList); return () => surfToasts.subs.delete(setList); }, []);
-  return <div className="ifs-snackbar-stack">{list.map(t => <SurfToastItem key={t.id} t={t} />)}</div>;
+  React.useLayoutEffect(() => { if (list.length) setTop(floatTop()); }, [list.length]);
+  return <div className="ifs-snackbar-stack" style={{ '--float-top': `${top}px` }}>{list.map(t => <SurfToastItem key={t.id} t={t} />)}</div>;
 }
 // toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id).
 function surfToast(opts) {

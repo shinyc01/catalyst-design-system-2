@@ -146,7 +146,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 
 /* ---------- chat-compact-panel-organism / chat-full-panel-organism ---------- */
 .ifs-chat-panel{box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius-floating-l);
-  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft) /* OUTSIDE stroke */}
+  box-shadow:var(--elevation-floating) /* C1 level 2: outside hairline + floating shadow */}
 .ifs-chat-panel--compact{width:20rem;height:22.5rem}
 .ifs-chat-panel--full{width:var(--region-panel);height:45.3125rem}
 .ifs-chat-panel__body{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
@@ -165,7 +165,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 .ifs-chat-panel__resize{position:absolute;left:-3px;top:0;bottom:0;width:6px;cursor:ew-resize} /* ltr: resize handle; JS width from clientX */
 
 /* history + chat joined (Figma: history-panel-molecule / folder content sit to the left of the full panel) */
-.ifs-cooper-dock{display:flex;border-radius:var(--radius-floating-l);overflow:hidden;box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);height:45.3125rem}
+.ifs-cooper-dock{display:flex;border-radius:var(--radius-floating-l);overflow:hidden;box-shadow:var(--elevation-floating);height:45.3125rem}
 .ifs-cooper-dock>.ifs-chat-panel{border-radius:0;box-shadow:none;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;height:100%}
 
 /* ---------- history-panel-molecule / folder content ---------- */
@@ -270,8 +270,11 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 
 /* ---------- pattern screen helpers ---------- */
 .ifs-cooper-stage{position:relative;width:100%;height:100%;overflow:hidden}
-.ifs-cooper-float{position:absolute;z-index:5;inset-inline-end:var(--cooper-compact-end);bottom:var(--cooper-compact-bottom)} /* default place; the position prop and dragging override it */
+.ifs-cooper-float{position:absolute;z-index:var(--z-index-floating) /* C2 */;inset-inline-end:var(--cooper-compact-end);bottom:var(--cooper-compact-bottom)} /* default place; the position prop and dragging override it */
 .ifs-cooper-fade{animation:ifs-cooper-in var(--motion-duration-200) var(--motion-ease-enter)} /* M3 Cooper exception: grows from 90% at the orb */
 @keyframes ifs-cooper-in{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:none}}
 .ifs-cooper-fade{transform-origin:100% 100%}
 :where([dir="rtl"]) .ifs-cooper-fade{transform-origin:0 100%} /* rtl: grows from the orb at the start side */
+
+/* C4: one Cooper entry point at a time. While a Cooper chat is open, the orb and the prompt chips hide (display:none, so the blur goes too). */
+html[data-cooper-chat] .ifs-bottom-sheet__agent > .ifs-fta,html[data-cooper-chat] .ifs-bottom-sheet__prompts,html[data-cooper-chat] .ifs-slot-fab .ifs-fta{display:none}

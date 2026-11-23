@@ -114,7 +114,7 @@
 .ifs-field--m .ifs-phone__body{gap:var(--space-150)}
 /* "IconButton" frame in Figma: 1px border/medium divider, 20px tall, 2px side padding */
 .ifs-phone__divider{flex:none;width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
-.ifs-phone__menu{position:absolute;inset-inline-start:0;top:calc(100% + var(--space-100));z-index:var(--z-index-z-popover,1000);
+.ifs-phone__menu{position:absolute;inset-inline-start:0;top:calc(100% + var(--space-100));z-index:var(--z-index-popover);
   display:flex;flex-direction:column;min-width:13.75rem;max-height:12.25rem;overflow-y:auto;box-sizing:border-box;
   padding:var(--space-100);border-radius:var(--radius-floating);
   background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
@@ -159,7 +159,7 @@
    Branch: padding 20 (spacing/form), field gap 16 (spacing/form-field-gap) — was 32 / 24 from the canvas notes. */
 .ifs-form-card{position:relative;display:flex;flex-direction:column;box-sizing:border-box;width:100%;min-width:29rem;max-width:42.5rem;
   max-height:var(--ifs-form-card-max-h,calc(100vh - var(--layout-global-header-height)));
-  border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);
+  border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);box-shadow:var(--elevation-floating) /* C1 level 2 */;
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
 .ifs-form-card__header{flex:none;display:flex;align-items:flex-start;gap:var(--space-stack);padding:var(--space-inset-l) var(--space-inset-l) 0}
 .ifs-form-card__heading{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-200)}
