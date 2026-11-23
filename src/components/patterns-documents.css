@@ -19,7 +19,7 @@
 .ifs-pin-dot--s .ifs-pin-dot__fill,.ifs-pin-dot--xs .ifs-pin-dot__fill{padding:0}
 .ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin)}
 .ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-default) var(--color-border-selected-soft),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
-.ifs-pin-dot--dimmed{background:var(--color-background-accent-white-soft);backdrop-filter:blur(var(--blur-soft));-webkit-backdrop-filter:blur(var(--blur-soft)) /* code 20; Figma says 40 (= --blur-medium): open question */;
+.ifs-pin-dot--dimmed{background:var(--color-background-accent-white-soft);backdrop-filter:blur(var(--blur-40));-webkit-backdrop-filter:blur(var(--blur-40)) /* H1: Figma 40 */;
   box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 10px 0 rgba(10,14,21,.2) /* raw in Figma */}
 .ifs-pin-dot--dimmed .ifs-pin-dot__fill{opacity:.4}
 /* higlight=yes: a ring twice the pin's size behind it (overlay fill + status hairline, 40 %) with the map-highlight glow. */
@@ -116,11 +116,10 @@ button.ifs-vbar{cursor:pointer}
 /* Feedback stack (alerts + snackbars), top-right under the page header. */
 .ifs-docs-feedback{position:absolute;top:var(--docs-feedback-top,calc(var(--layout-global-header-height) + var(--size-40)));inset-inline-end:var(--space-300);z-index:var(--z-index-z-toast);
   display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-200);pointer-events:none}
-.ifs-docs-feedback > *{pointer-events:auto;animation:ifs-toast-in .2s ease-out}
+.ifs-docs-feedback > *{pointer-events:auto;animation:ifs-arrive var(--motion-duration-100) var(--motion-ease-enter)}
 .ifs-docs-feedback .ifs-alert{width:18.9375rem}
 .ifs-docs-details{display:flex;flex-direction:column;gap:var(--space-200);margin:0;padding:0;list-style:none}
 .ifs-docs-details li{display:flex;flex-direction:column;gap:var(--space-50)}
 .ifs-docs-details__name{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-docs-details__why{color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
-.ifs-docs-context__loading .ifs-icon{animation:ifs-docs-spin 1s linear infinite}
-@keyframes ifs-docs-spin{to{transform:rotate(360deg)}}
+.ifs-docs-context__loading .ifs-icon{animation:ifs-spin var(--motion-loop-spin) var(--motion-ease-linear) infinite}

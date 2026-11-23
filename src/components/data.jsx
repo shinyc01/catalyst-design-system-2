@@ -16,7 +16,9 @@ const DataCounter = ({ children, className }) => <span className={IFS.cx('ifs-da
 
 // Figma: status-indicator-atom (789:39211)
 // Props: state default|error|success|cooper|warning|blue, stroke (Figma Stroke=True: 1.5px surface/primary ring).
+// C1 (Nov 23): the five status words info · success · warning · danger · neutral; the old words stay as aliases.
 function StatusIndicator({ state = 'default', stroke, label, className, ...rest }) {
+  state = { neutral: 'default', danger: 'error' }[state] || state;
   return <span role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : true}
     className={IFS.cx('ifs-status-indicator', `ifs-status-indicator--${state}`, stroke && 'ifs-status-indicator--stroke', className)} {...rest} />;
 }
@@ -27,6 +29,7 @@ function StatusIndicator({ state = 'default', stroke, label, className, ...rest 
 // the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 // indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
 function Badge({ color = 'white', size = 'm', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest }) {
+  color = { danger: 'red', success: 'green', warning: 'orange' }[color] || color; // C1 status words (hue words stay as aliases)
   const sz = color === 'false' ? 's' : size;
   const iconSize = sz === 's' ? 12 : 16;
   if (color === 'loading') return <span aria-hidden="true" className={IFS.cx('ifs-badge', 'ifs-badge--loading', `ifs-badge--${size}`, 'ifs-skeleton', className)} {...rest} />;
@@ -88,6 +91,7 @@ const RISK = {
   error: ['status-error-filled', 'Critical risk'], evaluated: ['status-evaluated-filled', 'Evaluated'],
 };
 function RiskStatus({ type = 'success', state, disabled, loading, onClick, children, className, ...rest }) {
+  type = { danger: 'error', info: 'evaluated' }[type] || type; // C1 status words
   if (loading) return <span aria-hidden="true" className={IFS.cx('ifs-risk', 'ifs-risk--loading', 'ifs-skeleton', className)} {...rest} />;
   const [icon, def] = RISK[type] || RISK.success;
   const Tag = onClick ? 'button' : 'span';
@@ -118,6 +122,7 @@ function Indicator({ type = 'orange', size = 's', children, buttonRight, onButto
 // Props: type done|warning|error|in-progress|active|loading (error = red, e.g. "Exceeded" in the Patterns file), children = label (Figma Label),
 // right = text (Right-section=Text) OR indicators = [{ type, label }] (Right-section=Status, XS indicators).
 function ReadinessStatus({ type = 'done', children, right, indicators, className, ...rest }) {
+  type = { success: 'done', danger: 'error' }[type] || type; // C1 status words
   const t = dataKey(type);
   const icon = t === 'done' ? 'status-success-filled' : t === 'warning' ? 'status-warning-filled' : t === 'error' ? 'status-error-filled' : null;
   const loading = t === 'loading';
@@ -256,9 +261,12 @@ function TableSort({ dir, state }) {
 // Number cells are right-aligned by default (table-cell-atom Type=Number exists only as Align=Right).
 const alignOf = c => c.align || (c.type === 'number' ? 'right' : null);
 
+// F1: a missing value is "—" (IFS.format), read as "No value"; zero is never a dash.
+const NoValue = () => <><span aria-hidden="true">{IFS.format.empty()}</span><span className="ifs-sr-only">No value</span></>;
 function renderCell(col, row) {
   if (col.render) return col.render(row);
   const v = row[col.key];
+  if ((!col.type || col.type === 'text' || col.type === 'number') && (v == null || v === '' || (typeof v === 'number' && Number.isNaN(v)) || v === IFS.format.empty())) return <NoValue />;
   switch (col.type) {
     case 'description': return <div className="ifs-table__stack"><span>{v && v.text}</span><span className="ifs-table__desc">{v && v.description}</span></div>;
     case 'counter': return <><span>{v && v.text}</span>{v && v.value != null && <span className={IFS.cx('ifs-table__trend', v.direction === 'down' && 'ifs-table__trend--down')}><IFS.Icon name="arrow-caret-up-filled" size={12} />{v.value}</span>}</>;

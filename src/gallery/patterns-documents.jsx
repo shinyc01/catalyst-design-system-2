@@ -159,7 +159,7 @@ export default IFS_GALLERY;
     );
   }
   function InvestmentValue() {
-    const rows = [['Electrical Distribution Reliability', -0.36], ['Electrical Delivery Capacity', -0.1], ['Compliance Risk', 0.05], ['Financial Benefits-OPEX', 0.11], ['Project Execution Risk', 0.36], ['Total Investment Cost', 0.21]];
+    const rows = [['Electrical Distribution Reliability', -0.36], ['Electrical Delivery Capacity', -0.1], ['Compliance Risk', 0.05], ['Financial benefits: opex', 0.11], ['Project Execution Risk', 0.36], ['Total Investment Cost', 0.21]];
     return (
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '180px 1fr', rowGap: 10, padding: '16px 10px 8px', alignItems: 'center' }}>
         {rows.map(([l, v], i) => <React.Fragment key={l}>

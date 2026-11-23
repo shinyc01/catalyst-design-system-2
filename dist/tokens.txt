@@ -17,17 +17,18 @@
 --color-surface-row: var(--palette-white-alpha-5)
 --color-text: var(--palette-core-1000)
 --color-text-soft: var(--palette-core-750)
---color-text-softer: var(--palette-core-550)
+--color-text-softer: var(--palette-core-600)
 --color-text-disabled: var(--palette-core-300)
 --color-text-focus: var(--palette-info-300)
---color-text-accent-purple: var(--palette-purple-500)
+--color-text-accent-purple: #9580f8
 --color-text-inverse: var(--palette-core-0)
 --color-text-soft-inverse: var(--palette-core-300)
 --color-text-softer-inverse: var(--palette-core-550)
 --color-text-disabled-inverse: var(--palette-core-750)
 --color-text-info: var(--palette-info-300)
+--color-text-link: var(--color-text-info)
 --color-text-success: var(--palette-success-500)
---color-text-danger: var(--palette-danger-500)
+--color-text-danger: var(--palette-danger-400)
 --color-text-warning: var(--palette-warning-500)
 --color-text-on-solid: var(--palette-core-1000)
 --color-text-on-solid-soft: var(--palette-white-alpha-85)
@@ -123,7 +124,7 @@
 --color-shadow-floating: var(--palette-black-alpha-25)
 --color-shadow-card-rest: var(--palette-black-alpha-25)
 --color-shadow-card-hover: var(--palette-black-alpha-40)
---color-cooper-text: var(--palette-cooper-500)
+--color-cooper-text: #d08a57
 --color-cooper-icon: var(--palette-cooper-500)
 --color-cooper-border: var(--palette-cooper-500)
 --color-cooper-background-strong: var(--palette-cooper-500)
@@ -249,6 +250,9 @@
 --color-data-viz-cyan-data-9: var(--palette-cyan-850)
 --color-data-viz-cyan-data-10: var(--palette-cyan-900)
 --color-data-viz-neutral: var(--color-icon-softer)
+--color-data-viz-good: var(--color-icon-success)
+--color-data-viz-warning: var(--color-icon-warning)
+--color-data-viz-bad: var(--color-icon-danger)
 --color-data-viz-reference: var(--palette-core-1000)
 --color-data-viz-target: rgba(255,255,255,0.9)
 --color-data-viz-band: rgba(255,255,255,0.16)
@@ -549,7 +553,31 @@
 --motion-distance-16: 16px
 --motion-loop-spin: 1000ms
 --motion-loop-pulse: 1600ms
---palette-core-0: #000000
+--motion-end: 1}
+[dir="rtl"]{--motion-end:-1}
+
+
+@keyframes ifs-spin{to{transform:rotate(360deg)}}
+@keyframes ifs-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+@keyframes ifs-fade{from{opacity:0}}
+@keyframes ifs-drop{from{opacity:0
+--motion-distance-2: 0px
+--motion-distance-16: 0px}
+  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-floating-bar--floating{animation-name:ifs-fade!important}
+  .ifs-floating-bar--floating{animation:none!important}
+  .ifs-sk,.ifs-skeleton,[class*="--loading"],.ifs-cooper-msg__cursor,.ifs-trc-solution--loading{animation:none!important}
+  .ifs-spin,[class*="spinner"]{animation-duration:calc(3 * var(--motion-loop-spin))!important}
+  .ifs-cursor--placed,.wb-ghost--back,[class*="switch"],[class*="slider"],[class*="progress"],[class*="chevron"]{transition-property:background-color,color,opacity,border-color!important}
+  *,*::before,*::after{scroll-behavior:auto!important}
+}
+
+/* Colour primitives (N8, Nov 23): Figma "1. Colors primitives", exported 2026-11-17 (tools/figma/colors-primitives.txt).
+   Name = the Figma path without the family folder, "-base" and spaces: system/danger/500-base -> --palette-danger-500.
+   Roles (tokens.css) point at these, so a theme is a remap of roles. Components never use --palette-* (node tools/color-lint.mjs).
+   PLACEHOLDER (not final in Figma, don't use): the expressive families (fuchsia, violet, electric blue, lime, coral orange). */
+:root{
+
+--palette-core-0:#000000
 --palette-core-50: #0d0d0d
 --palette-white-alpha-0: rgba(255,255,255,0)
 --palette-white-alpha-5: rgba(255,255,255,0.05)

@@ -113,7 +113,7 @@
 .wb-indicator{position:absolute;z-index:3}
 .wb-empty-zone{min-height:7.5rem}
 .wb-ghost{position:fixed;z-index:1000;pointer-events:none;overflow:hidden;border-radius:var(--radius-control)}
-.wb-ghost--back{transition:left 200ms ease,top 200ms ease;opacity:0.4}
+.wb-ghost--back{transition:left var(--motion-duration-200) var(--motion-ease-standard),top var(--motion-duration-200) var(--motion-ease-standard);opacity:0.4}
 .wb-ghost__blank{border-radius:var(--radius-control);background:var(--color-background-neutral-soft)}
 .wb-tip{position:absolute;white-space:nowrap;pointer-events:none}
 .wb-tip--cursor{position:fixed;z-index:1001}

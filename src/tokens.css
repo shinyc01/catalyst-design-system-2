@@ -30,17 +30,18 @@
 /* Text (strength: base · soft · softer; states) */
 --color-text:var(--palette-core-1000);
 --color-text-soft:var(--palette-core-750);
---color-text-softer:var(--palette-core-550);
+--color-text-softer:var(--palette-core-600); /* C4: tertiary #999999 (was #8c8c8c): 5.04 on menus, 4.57 on a hovered card in a card. Chart and stat card titles stay here (C2) */
 --color-text-disabled:var(--palette-core-300);
 --color-text-focus:var(--palette-info-300);
---color-text-accent-purple:var(--palette-purple-500);
+--color-text-accent-purple:#9580f8; /* C4: was #8366f7 (3.56:1); no primitive yet (new step for Figma) */
 --color-text-inverse:var(--palette-core-0);
 --color-text-soft-inverse:var(--palette-core-300);
 --color-text-softer-inverse:var(--palette-core-550);
 --color-text-disabled-inverse:var(--palette-core-750);
 --color-text-info:var(--palette-info-300);
+--color-text-link:var(--color-text-info); /* C1 (Nov 23): links have their own role (blue = info only); same value for now */
 --color-text-success:var(--palette-success-500);
---color-text-danger:var(--palette-danger-500);
+--color-text-danger:var(--palette-danger-400); /* C4 (Nov 23): was #ee3c3b, 3.65:1 on menus; now 4.58 */
 --color-text-warning:var(--palette-warning-500);
 --color-text-on-solid:var(--palette-core-1000);
 --color-text-on-solid-soft:var(--palette-white-alpha-85);
@@ -143,7 +144,7 @@
 --color-shadow-card-rest:var(--palette-black-alpha-25);
 --color-shadow-card-hover:var(--palette-black-alpha-40);
 /* Cooper / AI (its own role group, like status) */
---color-cooper-text:var(--palette-cooper-500);
+--color-cooper-text:#d08a57; /* C4: was #c87941 (4.28:1); no primitive yet (new step for Figma) */
 --color-cooper-icon:var(--palette-cooper-500);
 --color-cooper-border:var(--palette-cooper-500);
 --color-cooper-background-strong:var(--palette-cooper-500);
@@ -199,6 +200,8 @@
 --color-data-viz-cyan-data-1:var(--palette-cyan-100);--color-data-viz-cyan-data-2:var(--palette-cyan-200);--color-data-viz-cyan-data-3:var(--palette-cyan-300);--color-data-viz-cyan-data-4:var(--palette-cyan-400);--color-data-viz-cyan-data-5:var(--palette-cyan-500);
 --color-data-viz-cyan-data-6:var(--palette-cyan-600);--color-data-viz-cyan-data-7:var(--palette-cyan-700);--color-data-viz-cyan-data-8:var(--palette-cyan-800);--color-data-viz-cyan-data-9:var(--palette-cyan-850);--color-data-viz-cyan-data-10:var(--palette-cyan-900);
 --color-data-viz-neutral:var(--color-icon-softer); /* #8c8c8c: 5.2–6.3:1 on page, card and chart backgrounds (WCAG 1.4.11 needs 3:1) */
+/* C1: status marks in charts (good, warning, bad) are the status icon colours, so a red mark always means danger. Series never use them. */
+--color-data-viz-good:var(--color-icon-success);--color-data-viz-warning:var(--color-icon-warning);--color-data-viz-bad:var(--color-icon-danger);
 --color-data-viz-reference:var(--palette-core-1000);--color-data-viz-target:rgba(255,255,255,0.9);--color-data-viz-band:rgba(255,255,255,0.16);
 --color-data-viz-baseline:var(--palette-white-alpha-30); /* chart baseline and connector lines (Figma white/alpha-30) */
 --color-data-viz-data-1:var(--palette-danger-600);--color-data-viz-data-2:#a06d1c;--color-data-viz-data-3:#176932;--color-data-viz-data-4:#5238a4;--color-data-viz-data-5:#3556a0;
@@ -333,6 +336,8 @@
 
 /* Base */
 *,*::before,*::after{box-sizing:border-box}
+html{color-scheme:dark} /* C3: native scrollbars and controls follow the theme */
+[data-theme="light"]{color-scheme:light} /* the Light values come right after phase 1 (L01) */
 html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);font-family:var(--font-family-text);-webkit-font-smoothing:antialiased}
 
 /* ==========================================================================

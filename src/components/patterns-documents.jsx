@@ -22,8 +22,9 @@ function useCtl(value, defaultValue, onChange) {
 // type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 // highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
 // dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).
-function MapPinDot({ size = 'm', status = 'error', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false,
+function MapPinDot({ size = 'm', status: st = 'error', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false,
   onSelectedChange, dimmed, label, state, className, onClick, ...rest }) {
+  const status = st === 'danger' ? 'error' : st; // C1 status word
   const [sel, setSel] = useCtl(selected, defaultSelected, onSelectedChange);
   const isSel = state ? state === 'selected' : sel;
   const isDim = dimmed || state === 'out-of-hover';

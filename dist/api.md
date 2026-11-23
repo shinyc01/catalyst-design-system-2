@@ -40,7 +40,16 @@ IFS.format.weekStart()                                                      → 
   (en-US, en-CA, ja-JP…), 1 = Monday (most of Europe, en-GB…), 6 = Saturday; `weekStartsOn` in configure overrides it.
 IFS.format.weekdays({ style = 'short', weekStartsOn })                       → the seven day names in the user's language and order:
   en-US "Sun Mon … Sat", en-GB "Mon Tue … Sun", de-DE "Mo. Di. … So.".
-IFS.format.configure({ locale, currency, fyStartMonth, weekStartsOn, empty }) → set the defaults once per app (the user's settings).
+IFS.format.empty()                                                         → the missing-value mark "—" (F1, Nov 23): a missing value
+  is always "—" from IFS.format, read as "No value" (Table renders null cells that way); zero is never a dash.
+IFS.format.fyDates(fy, { startMonth })                                      → the dates of a fiscal year for a header tooltip:
+  "Apr 1, 2026 – Mar 31, 2027" (F4). fyBounds(fy) → [first day, last day] as Dates.
+IFS.format.configure({ locale, currency, fyStartMonth, weekStartsOn, empty, accounting, compactStyle }) → set the defaults once per app.
+  accounting (F2, a user setting, default false): finance values show negatives in parentheses "($1.8M)" instead of "−$1.8M";
+  money(v, { accounting: true }) does it for one value (exports, statement-style print views).
+  compactStyle (F3, an organisation setting): 'auto' (default) = K / M / B in every English locale (en-GB, en-IN, en-AU …),
+  other languages their own CLDR forms ("4,8 Mrd. $"); 'kmb' = K / M / B in every language; 'locale' = CLDR everywhere.
+  fyStartMonth (F4) is an admin system setting, read once at start.
   fyStartMonth is 1–12 (default 1 = January; 10 = an October–September year). empty is what a missing
   value shows (default "—"). Every function returns `empty` for null, undefined, '' or NaN.
 ```
@@ -376,7 +385,7 @@ Figma: map-pin-teardrop (43:2020), Patterns › Map. Default location marker for
 Props: status neutral|error|warning, icon = asset icon name (Figma Asset icon=Yes; absent = white dot),
 selected / defaultSelected / onSelectedChange (Figma Selected), dimmed (Figma Out of hover), opened (Figma Opened),
 label (accessible name), state selected|opened|out-of-hover (forced, gallery).
-`function MapPin({ status = 'neutral', icon, selected, defaultSelected = false, onSelectedChange, dimmed, opened, label = 'Asset', state, className, ...rest })`
+`function MapPin({ status: st = 'neutral', icon, selected, defaultSelected = false, onSelectedChange, dimmed, opened, label = 'Asset', state, className, ...rest })`
 
 ### CanvasBackground
 **Tier:** Component
@@ -716,6 +725,7 @@ indicator = status-indicator state (show-indicator), avatar = Avatar props (show
 **In handovers:** placed 864× (Plan, Value, Build, Explore) · usual: Stroke false 92%
 Figma: status-indicator-atom (789:39211)
 Props: state default|error|success|cooper|warning|blue, stroke (Figma Stroke=True: 1.5px surface/primary ring).
+C1 (Nov 23): the five status words info · success · warning · danger · neutral; the old words stay as aliases.
 `function StatusIndicator({ state = 'default', stroke, label, className, ...rest })`
 
 ### Avatar
@@ -1841,7 +1851,7 @@ Props: size l (32) | m (24) | s (16) | xs (8), status error|warning|success (Fig
 type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
 dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).
-`function MapPinDot({ size = 'm', status = 'error', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false, onSelectedChange, dimmed, label, state, className, onClick, ...rest })`
+`function MapPinDot({ size = 'm', status: st = 'error', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false, onSelectedChange, dimmed, label, state, className, onClick, ...rest })`
 
 ### MapPinDefect
 **Tier:** Component
@@ -2551,7 +2561,7 @@ Figma: alert-organism (1440:5440)
 Props: type error|warning (success = Figma variant only: screens never use a success Alert, rule 7.12), title, children = Body text, showIcon (Figma show-icon, default off),
 action = button label (Primary S; absent = show-button off), onAction, onClose (shows the close
 icon-button; Figma show-close-icon), closable=false to hide it.
-`function Alert({ type = 'error', title, children, showIcon = false, action, onAction, onClose, closable = true, className, ...rest })`
+`function Alert({ type: t = 'error', title, children, showIcon = false, action, onAction, onClose, closable = true, className, ...rest })`
 
 ### Snackbar
 **Tier:** Component

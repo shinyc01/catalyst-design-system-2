@@ -21,7 +21,7 @@ const DV_SPECIAL = { neutral: 'var(--color-data-viz-neutral)', reference: 'var(-
 const dvWarned = new Set();
 function dvColor(color, i = 0, step = DV_STEP) {
   if (color && DV_SPECIAL[color]) return DV_SPECIAL[color];
-  if (typeof color === 'string' && /^var\(--data-viz-[a-z0-9-]+\)$/.test(color.trim())) return color.trim();
+  if (typeof color === 'string' && /^var\(--(color-)?data-viz-[a-z0-9-]+\)$/.test(color.trim())) return color.trim();
   if (color && !DV_GROUPS.includes(color) && !dvWarned.has(color)) {
     dvWarned.add(color);
     if (typeof console !== 'undefined') console.warn(`IFS charts: "${color}" is not a data-viz colour; using the palette instead.`);
@@ -455,7 +455,7 @@ function ColumnChart(props) {
   const bw = contiguous ? L.band - 2 : Math.min(L.band * 0.55, 64);
   const legend = <ChartLegend items={[{ label: valueLabel, color }, hasRef && { label: referenceLabel, color: WHITE }]} />;
   const table = { columns: [{ key: 'label', title: contiguous ? 'Bin' : 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel }].filter(Boolean),
-    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : '–' })) };
+    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
   const a = p.active != null ? data[p.active] : null;
   const tip = a && { anchor: { x: L.cx(p.active), y: L.y(Math.max(a.value, 0)) },
     content: tipFrom(a, { title: a.label, value: format(a.value), items: a.reference != null ? [{ label: referenceLabel, value: format(a.reference) }] : [] }, tooltip, p.active) };
@@ -510,7 +510,7 @@ function BarChart(props) {
   const cy = i => yT + row * (i + 0.5);
   const legend = <ChartLegend items={[{ label: valueLabel, color }, hasRef && { label: referenceLabel, color: WHITE }]} />;
   const table = { columns: [{ key: 'label', title: 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel }].filter(Boolean),
-    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : '–' })) };
+    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
   const a = p.active != null ? data[p.active] : null;
   const tip = a && { anchor: { x: Math.min(X(a.value), x1 - 40), y: cy(p.active) + 4 },
     content: tipFrom(a, { title: a.label, value: format(a.value), items: a.reference != null ? [{ label: referenceLabel, value: format(a.reference) }] : [] }, tooltip, p.active) };
@@ -926,7 +926,7 @@ function FunnelChart(props) {
   const legend = <ChartLegend items={[{ label: stageLabel, color }, last && { label: outcomeLabel, color: outcomeColor }, hasRef && { label: referenceLabel, color: WHITE }]} />;
   const drop = i => (i && data[i - 1].value ? Math.round(((data[i].value - data[i - 1].value) / data[i - 1].value) * 100) : null);
   const table = { columns: [{ key: 'label', title: 'Stage' }, { key: 'v', title: 'Count' }, { key: 'd', title: 'Change' }, hasRef && { key: 'r', title: referenceLabel }].filter(Boolean),
-    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), d: drop(i) == null ? '–' : `${drop(i) > 0 ? '+' : '−'}${Math.abs(drop(i))}%`, r: d.reference != null ? format(d.reference) : '–' })) };
+    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), d: drop(i) == null ? IFS.format.empty() : `${drop(i) > 0 ? '+' : '−'}${Math.abs(drop(i))}%`, r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
   const a = p.active != null ? data[p.active] : null;
   const y = i => 4 + i * (h + gap);
   const tip = a && { anchor: { x: cx, y: y(p.active) + h - 6 },

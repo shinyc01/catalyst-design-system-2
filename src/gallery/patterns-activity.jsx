@@ -41,7 +41,7 @@ export default IFS_GALLERY;
     { id: 'v3', title: 'Version 3', description: 'Added grid-resilience driver, linked to the 2026 capital plan.', author: P.carter, time: '2:40 PM · May 10',
       activity: [
         act('b1', 'carter', 'action', 'Administrator', 'Added the grid-resilience driver under Reliability.', '2:40 PM · May 10'),
-        act('b2', 'singh', 'comment', 'Investment Owner', 'Linked to the 2026 capital plan — please check the CAPEX split.', '1:05 PM · May 10'),
+        act('b2', 'singh', 'comment', 'Investment Owner', 'Linked to the 2026 capital plan — please check the capex split.', '1:05 PM · May 10'),
         act('b3', 'cooper', 'auto-action', null, 'Re-scored 12 measures after the driver change.', '2:41 PM · May 10'),
       ] },
     { id: 'v2', title: 'Version 2', description: 'Adjusted reliability KPI thresholds.', author: P.singh, time: '11:15 AM · May 6',
@@ -65,7 +65,7 @@ export default IFS_GALLERY;
     { key: 'sc', state: 'success', name: 'Shiny C.', position: 'Planning Engineer', avatar: P.shiny, date: '7:10 PM · May 9' },
   ];
   const PENDING = [...APPROVED, { key: 'mt', state: 'awaiting', name: 'M. Torres', position: 'Asset Planning', avatar: P.torres, date: 'Requested May 10' },
-    { key: 'as', state: 'rejected', name: 'A. Singh', position: 'Investment Owner', avatar: P.singh, date: '4:12 PM · May 11', comment: 'CAPEX split needs the updated 2026 figures.' }];
+    { key: 'as', state: 'rejected', name: 'A. Singh', position: 'Investment Owner', avatar: P.singh, date: '4:12 PM · May 11', comment: 'Capex split needs the updated 2026 figures.' }];
   const d = s => new Date(`${s}T00:00`);
   const fmt = v => IFS.format.date(v);
   const FRAMEWORKS = [
@@ -111,8 +111,8 @@ export default IFS_GALLERY;
     const base = b ? BASELINES[b] : null; const cap = base ? base.cap.toUpperCase() : null;
     const hdr = (abbr, from, to) => (base ? { abbr, fromLabel: cap, toLabel: 'Q1 2026', from, to } : undefined);
     const objs = ['Reliability', 'Finance', 'Environmental', 'Social', 'Governance', 'Safety'];
-    const mods = ['WDRM v4', 'WTRM v1', 'SAIDI / SAIFI v1', 'CapEx v3', 'Carbon footprint v4', 'Community impact v7', 'ESG-Rep v4', 'Public Safety Risk', 'Worker Health and Safety'];
-    const meas = ['SAIDI', 'SAIFI', 'CAIDI', 'Tx Wildfire Risk', 'Total CAPEX', 'Direct CAPEX', 'tCO₂e avoided', 'Customer hardship…', 'SEC disclosure score', 'Wildfire risk $ expo…', 'Regulatory penalty $'];
+    const mods = ['WDRM v4', 'WTRM v1', 'SAIDI / SAIFI v1', 'Capex v3', 'Carbon footprint v4', 'Community impact v7', 'ESG-Rep v4', 'Public Safety Risk', 'Worker Health and Safety'];
+    const meas = ['SAIDI', 'SAIFI', 'CAIDI', 'Tx Wildfire Risk', 'Total capex', 'Direct capex', 'tCO₂e avoided', 'Customer hardship…', 'SEC disclosure score', 'Wildfire risk $ expo…', 'Regulatory penalty $'];
     const nodes = [
       { id: 'g1', column: 'g', type: 'source', color: 'violet', count: 6, label: curName },
       ...(base ? [{ id: 'g2', column: 'g', type: 'source', color: 'green', count: base.goals, label: base.label }] : []),

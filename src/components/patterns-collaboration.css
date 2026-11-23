@@ -11,8 +11,7 @@
 .ifs-cursor--cooper .ifs-cursor__pill{gap:var(--space-100)}
 .ifs-cursor__visual{position:absolute;inset:0;width:100%;height:100%}
 .ifs-cursor__cooper{position:relative;flex:none}
-.ifs-cursor--placed{position:absolute;left:0;top:0;transition:transform 1.4s cubic-bezier(.45,.05,.35,1);will-change:transform} /* ltr: canvas coordinates */
-@media (prefers-reduced-motion:reduce){.ifs-cursor--placed{transition:none}}
+.ifs-cursor--placed{position:absolute;left:0;top:0;transition:transform 1.4s cubic-bezier(.45,.05,.35,1);will-change:transform} /* ltr: canvas coordinates. M3 pattern exception: the collaborator cursor glides 1.4s (named in the pattern); M4 snaps it */
 .ifs-cursor--u1{--cu:var(--color-collaboration-user-1)} .ifs-cursor--u2{--cu:var(--color-collaboration-user-2)} .ifs-cursor--u3{--cu:var(--color-collaboration-user-3)}
 .ifs-cursor--u4{--cu:var(--color-collaboration-user-4)} .ifs-cursor--u5{--cu:var(--color-collaboration-user-5)} .ifs-cursor--u6{--cu:var(--color-collaboration-user-6)}
 .ifs-cursor--u7{--cu:var(--color-collaboration-user-7)} .ifs-cursor--u8{--cu:var(--color-collaboration-user-8)} .ifs-cursor--u9{--cu:var(--color-collaboration-user-9)}
@@ -41,7 +40,7 @@
 
 /* ---- row: content-card-organism M (40), top slot = avatar M + text (gap 8) + control (gap 6) ---- */
 .ifs-collab-row{display:flex;align-items:center;gap:var(--space-150);box-sizing:border-box;min-height:var(--size-40);padding:var(--space-100);
-  border-radius:var(--radius-control);background:transparent;transition:background-color .12s;outline:none}
+  border-radius:var(--radius-control);background:transparent;transition:background-color var(--motion-duration-50) var(--motion-ease-standard);outline:none}
 .ifs-collab-row[role=button]{cursor:pointer}
 .ifs-collab-row[role=button]:hover,.ifs-collab-row[data-state=hover]{background:var(--color-surface-raised-hover)}
 .ifs-collab-row:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
@@ -59,7 +58,7 @@
 .ifs-role-select__trigger{--f:var(--color-background-input);--b:var(--color-border-input);--ring:0 0 0 0 transparent;
   display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-control-s);min-width:4.6875rem;padding:0 var(--space-200);
   border-radius:var(--radius-control);background:var(--f);box-shadow:inset 0 0 0 var(--border-width-default) var(--b),var(--ring);color:var(--color-text);
-  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);cursor:pointer;outline:none;user-select:none;transition:background-color .12s,box-shadow .12s} /* Body/M/regular */
+  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);cursor:pointer;outline:none;user-select:none;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)} /* Body/M/regular */
 .ifs-role-select__value{flex:1 1 auto}
 .ifs-role-select__trigger .ifs-icon{color:var(--color-icon-soft)}
 .ifs-role-select__trigger:hover{--f:var(--color-background-input);--b:var(--color-border-input-hover)}

@@ -265,7 +265,8 @@ function SidebarNodeCard({ title = '{card-title}', description, cooper, dragData
 // Props: status neutral|error|warning, icon = asset icon name (Figma Asset icon=Yes; absent = white dot),
 // selected / defaultSelected / onSelectedChange (Figma Selected), dimmed (Figma Out of hover), opened (Figma Opened),
 // label (accessible name), state selected|opened|out-of-hover (forced, gallery).
-function MapPin({ status = 'neutral', icon, selected, defaultSelected = false, onSelectedChange, dimmed, opened, label = 'Asset', state, className, ...rest }) {
+function MapPin({ status: st = 'neutral', icon, selected, defaultSelected = false, onSelectedChange, dimmed, opened, label = 'Asset', state, className, ...rest }) {
+  const status = st === 'danger' ? 'error' : st; // C1 status word
   const [sel, setSel] = useCanvasValue(selected, defaultSelected, onSelectedChange);
   const isSel = sel || state === 'selected';
   return (

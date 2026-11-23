@@ -360,7 +360,7 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
         if (Math.abs(dx) < 1 && Math.abs(dy) < 1 && Math.abs(sx - 1) < 0.01) return;
         c.style.transition = 'none'; c.style.transformOrigin = '0 0';
         c.style.transform = `translate(${dx}px, ${dy}px) scaleX(${sx})`;
-        requestAnimationFrame(() => { c.style.transition = 'transform 200ms ease'; c.style.transform = ''; });
+        requestAnimationFrame(() => { c.style.transition = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'none' : 'transform var(--motion-duration-200) var(--motion-ease-standard)'; /* M3 widget re-flow; M4 snaps */ c.style.transform = ''; });
       });
       animate.current = false;
     }

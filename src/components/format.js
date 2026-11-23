@@ -30,11 +30,20 @@ import { IFS } from './registry.js';
 //   (en-US, en-CA, ja-JP…), 1 = Monday (most of Europe, en-GB…), 6 = Saturday; `weekStartsOn` in configure overrides it.
 // IFS.format.weekdays({ style = 'short', weekStartsOn })                       → the seven day names in the user's language and order:
 //   en-US "Sun Mon … Sat", en-GB "Mon Tue … Sun", de-DE "Mo. Di. … So.".
-// IFS.format.configure({ locale, currency, fyStartMonth, weekStartsOn, empty }) → set the defaults once per app (the user's settings).
+// IFS.format.empty()                                                         → the missing-value mark "—" (F1, Nov 23): a missing value
+//   is always "—" from IFS.format, read as "No value" (Table renders null cells that way); zero is never a dash.
+// IFS.format.fyDates(fy, { startMonth })                                      → the dates of a fiscal year for a header tooltip:
+//   "Apr 1, 2026 – Mar 31, 2027" (F4). fyBounds(fy) → [first day, last day] as Dates.
+// IFS.format.configure({ locale, currency, fyStartMonth, weekStartsOn, empty, accounting, compactStyle }) → set the defaults once per app.
+//   accounting (F2, a user setting, default false): finance values show negatives in parentheses "($1.8M)" instead of "−$1.8M";
+//   money(v, { accounting: true }) does it for one value (exports, statement-style print views).
+//   compactStyle (F3, an organisation setting): 'auto' (default) = K / M / B in every English locale (en-GB, en-IN, en-AU …),
+//   other languages their own CLDR forms ("4,8 Mrd. $"); 'kmb' = K / M / B in every language; 'locale' = CLDR everywhere.
+//   fyStartMonth (F4) is an admin system setting, read once at start.
 //   fyStartMonth is 1–12 (default 1 = January; 10 = an October–September year). empty is what a missing
 //   value shows (default "—"). Every function returns `empty` for null, undefined, '' or NaN.
 
-const config = { locale: 'en-US', currency: 'USD', fyStartMonth: 1, empty: '—' };
+const config = { locale: 'en-US', currency: 'USD', fyStartMonth: 1, empty: '—', accounting: false, compactStyle: 'auto' };
 const MINUS = '−';
 const NBSP = ' ';
 const SCALE = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
@@ -65,19 +74,28 @@ function scaled(v, { compact, decimals, unit, sign, locale = config.locale, base
     return s.replace(/(\d)(?!.*\d)/, `$1${unit}`); // unit right after the last digit: "$0.6M", "−$1.2M"
   }
   const auto = compact === 'auto' ? Math.abs(n) >= 1e4 : !!compact;
+  // F3: K / M / B in English (and everywhere with compactStyle 'kmb'), with the locale's own digits and symbols.
+  const kmb = config.compactStyle === 'kmb' || (config.compactStyle !== 'locale' && /^en\b/i.test(locale));
+  if (auto && kmb && Math.abs(n) >= 1e3) {
+    let u = Math.abs(n) >= 1e12 ? 'T' : Math.abs(n) >= 1e9 ? 'B' : Math.abs(n) >= 1e6 ? 'M' : 'K';
+    const U = ['K', 'M', 'B', 'T'];
+    if (decimals == null && u !== 'T' && Math.abs(Number((n / SCALE[u]).toPrecision(3))) >= 1000) u = U[U.indexOf(u) + 1]; // 999,950 -> "1M", not "1,000K"
+    const s = parts(nf(locale, { ...base, ...(decimals == null ? { maximumSignificantDigits: 3 } : digits(decimals)), signDisplay: signOpt(sign) }), n / SCALE[u]);
+    return s.replace(/(\d)(?!.*\d)/, `$1${u}`);
+  }
   const o = auto
     ? { ...base, notation: 'compact', compactDisplay: 'short', ...(decimals == null ? { maximumSignificantDigits: 3 } : digits(decimals)) }
     : { ...base, ...(decimals == null ? { maximumFractionDigits: base.style === 'currency' ? 0 : 2 } : digits(decimals)) };
   return parts(nf(locale, { ...o, signDisplay: signOpt(sign) }), n);
 }
 
-function money(v, { compact = 'auto', decimals, unit, sign, currency = config.currency, locale } = {}) {
+function money(v, { compact = 'auto', decimals, unit, sign, currency = config.currency, locale, accounting = config.accounting } = {}) {
   if (missing(v)) return config.empty;
   // Cents only when asked for, or when a small amount isn't whole ("$12.50").
   const n = Number(v);
   const d = decimals ?? (!unit && compact !== true && Math.abs(n) < 1e4 && !Number.isInteger(n) ? 2 : undefined);
   return scaled(n, { compact, decimals: d, unit, sign, locale,
-    base: { style: 'currency', currency, currencyDisplay: 'narrowSymbol' } });
+    base: { style: 'currency', currency, currencyDisplay: 'narrowSymbol', ...(accounting ? { currencySign: 'accounting' } : {}) } });
 }
 
 function number(v, { compact = false, decimals, unit, sign, locale } = {}) {
@@ -175,6 +193,20 @@ function fyRange(a, b, opts = {}) {
   return `${fy(a, opts)}–${fy(b, opts)}`;
 }
 
+// F4: the dates of fiscal year `y` (2027 or 27), for a fiscal year header's tooltip.
+function fyBounds(y, { startMonth = config.fyStartMonth } = {}) {
+  const fyN = fyYear(y, startMonth);
+  const start = startMonth === 1 ? new Date(fyN, 0, 1) : new Date(fyN - 1, startMonth - 1, 1);
+  const end = new Date(start.getFullYear() + 1, start.getMonth(), 0);
+  return [start, end];
+}
+function fyDates(y, opts = {}) {
+  if (missing(y)) return config.empty;
+  const [a, b] = fyBounds(y, opts);
+  return dateRange(a, b, { locale: opts.locale });
+}
+const empty = () => config.empty;
+
 function fileSize(bytes, { locale = config.locale } = {}) {
   if (missing(bytes)) return config.empty;
   const b = Number(bytes);
@@ -216,7 +248,7 @@ function weekdays({ style = 'short', weekStartsOn = weekStart() } = {}) {
   return Array.from({ length: 7 }, (_, i) => f.format(new Date(2023, 0, 1 + ((i + weekStartsOn) % 7)))); // Jan 1 2023 = Sunday
 }
 
-const format = { money, number, percent, change, date, time, dateTime, dateRange, relative, fy, fyRange, fileSize, parse, configure, weekStart, weekdays, toDate,
+const format = { money, number, percent, change, date, time, dateTime, dateRange, relative, fy, fyRange, fyBounds, fyDates, empty, fileSize, parse, configure, weekStart, weekdays, toDate,
   get config() { return { ...config }; } };
 IFS.format = format;
 export { format };

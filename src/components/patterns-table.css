@@ -7,7 +7,7 @@
   display:flex;align-items:center;justify-content:space-between;gap:var(--space-700);box-sizing:border-box;width:100%;height:var(--control-h-m) /* same as Search: 36 / 32 / 28 (Nov 19, was 40) */;
   padding-block:0;padding-inline:var(--space-300) var(--space-100);
   border-radius:var(--radius-pill);box-shadow:var(--ring),inset 0 0 0 var(--border-width-default) var(--border) /* INSIDE stroke */;
-  color:var(--color-icon);cursor:text;transition:box-shadow .12s;
+  color:var(--color-icon);cursor:text;transition:none;
 }
 .ifs-smart-search__lead{display:flex;align-items:center;gap:var(--space-150);flex:1;min-width:0}
 .ifs-smart-search__lead>.ifs-icon{flex:none}
@@ -96,7 +96,7 @@
 
 /* ================= Collaboration badge + read-only tooltip ================= */
 .ifs-collab-badge{all:unset;display:inline-flex;align-items:center;gap:var(--space-100);cursor:pointer;border-radius:var(--radius-pill)}
-.ifs-collab-badge .ifs-badge{cursor:pointer;transition:background-color .12s}
+.ifs-collab-badge .ifs-badge{cursor:pointer;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-collab-badge:hover .ifs-badge{background:var(--color-background-neutral)}
 .ifs-collab-badge:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 .ifs-collab-tip{display:flex;flex-direction:column;gap:var(--space-200);width:15rem;text-align:start;white-space:normal}

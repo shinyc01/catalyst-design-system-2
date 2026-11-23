@@ -59,6 +59,4 @@
 .ifs-evidence-chain .ifs-evidence__title{display:none} /* Figma draws the strength bar without its title in the drawer */
 .ifs-evidence-chain__panel{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto}
 .ifs-evidence-chain__panel[hidden]{display:none}
-.ifs-evidence-chain--floating{animation:ifs-evidence-chain-in .2s ease-out}
-@keyframes ifs-evidence-chain-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.ifs-evidence-chain--floating{animation:none}}
+.ifs-evidence-chain--floating{animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)}

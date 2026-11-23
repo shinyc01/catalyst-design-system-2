@@ -52,7 +52,7 @@
   position:relative;display:flex;flex:none;align-items:flex-start;gap:var(--space-150);width:200px;min-height:5.5rem;box-sizing:border-box; /* px width on purpose: canvas nodes sit at canvas coordinates; the height grows with text */
   padding:var(--space-200);border-radius:var(--radius-card);background:var(--nc-fill);cursor:pointer;user-select:none;
   box-shadow:inset 0 0 0 var(--border-width-default) var(--nc-stroke),var(--nc-ring),var(--nc-shadow);
-  backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));transition:box-shadow .12s,background-color .12s}
+  backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-node-card:focus-visible{outline:none}
 /* Solid types: dark colour fill, border/base stroke, on-solid text, blur/light. */
 .ifs-node-card--solid{--nc-stroke:var(--color-border-soft);--nc-title:var(--color-text-on-solid);--nc-caption:var(--color-text-on-solid-soft);
@@ -91,8 +91,7 @@
 .ifs-node-card--checkbox:not(.ifs-node-card--solid){outline:var(--border-width-default) dashed var(--color-border);outline-offset:-1px}
 .ifs-node-card--edit{cursor:default}
 .ifs-node-card--skeleton{width:280px;height:88px;cursor:default;--nc-stroke:var(--color-border-soft);background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft));
-  background-size:200% 100%;animation:ifs-node-shimmer 1.6s linear infinite;backdrop-filter:blur(var(--blur-light))}
-@keyframes ifs-node-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+  background-size:200% 100%;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite;backdrop-filter:blur(var(--blur-light))}
 
 .ifs-node-card__text{display:flex;flex-direction:column;justify-content:center;gap:var(--space-200);flex:1;min-width:0;align-self:stretch}
 .ifs-node-card__text>.ifs-badge{align-self:flex-start}
@@ -127,7 +126,7 @@
 .ifs-sidebar-node{--sn-ring:0 0 0 0 transparent;--sn-stroke:transparent;--sn-shadow:0 0 0 0 transparent;
   position:relative;display:flex;flex-direction:column;gap:var(--space-150);width:21.5625rem;box-sizing:border-box;padding:var(--space-inset);
   border-radius:var(--radius-control);background:var(--color-surface-secondary);cursor:grab;user-select:none;
-  box-shadow:inset 0 0 0 var(--border-width-default) var(--sn-stroke),var(--sn-ring),var(--sn-shadow);transition:background-color .12s,box-shadow .12s}
+  box-shadow:inset 0 0 0 var(--border-width-default) var(--sn-stroke),var(--sn-ring),var(--sn-shadow);transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--color-surface-tertiary)}
 .ifs-sidebar-node--drag{background:var(--color-surface-tertiary);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-elevation-3-primary);cursor:grabbing}
 .ifs-sidebar-node:focus-visible,.ifs-sidebar-node[data-state=focus]{outline:none;--sn-ring:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
@@ -186,7 +185,7 @@
 .ifs-drop-zone{display:flex;align-items:center;justify-content:center;gap:var(--space-150);box-sizing:border-box;min-height:var(--size-80);
   border-radius:var(--radius-control);background:var(--color-background-accent-purple-soft);
   outline:var(--border-width-default) dashed var(--color-border-accent-purple);outline-offset:-1px;color:var(--color-text-accent-purple);
-  font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking) /* Label/L/medium */;transition:background-color .12s}
+  font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking) /* Label/L/medium */;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-drop-zone[data-over]{background:var(--color-background-accent-purple)}
 
 /* ---------- sankey-atom (1853:12325) / sankey-header (2698:64494) / sankey-organism (4457:53304) ---------- */ /* stubs and source bars stay px (diagram geometry); the parts that hold text scale */
@@ -231,11 +230,11 @@
 .ifs-sankey__column:last-child{box-shadow:none}
 .ifs-sankey__body{position:relative;overflow:hidden}
 .ifs-sankey__bands{position:absolute;left:0;top:0} /* ltr: sankey geometry */
-.ifs-sankey__band{opacity:.25;transition:opacity .15s}
+.ifs-sankey__band{opacity:.25;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-sankey__band--on{opacity:.5}
 .ifs-sankey__band--off{opacity:.08}
 .ifs-sankey__node,.ifs-sankey__summary,.ifs-sankey__source{position:absolute}
-.ifs-sankey__node{transition:opacity .15s}
+.ifs-sankey__node{transition:opacity var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-sankey__node--off{opacity:.4}
 .ifs-sankey__source{display:flex;align-items:center;cursor:default}
 .ifs-sankey__source-bar{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;height:100%;background:var(--sankey-accent);

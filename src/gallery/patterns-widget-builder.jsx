@@ -46,7 +46,7 @@ export default IFS_GALLERY;
   );
   const forecast = [{ label: 'FY25', value: 0.25e6 }, { label: 'FY26', value: 1.65e6 }, { label: 'FY27', value: 1.45e6 }, { label: 'FY28', value: 2.2e6 }, { label: 'FY29', value: 1.5e6 }];
   const invValue = [{ label: 'Electrical Distribution Reliability', value: 3.2e6 }, { label: 'Electrical Delivery Capacity', value: 0.9e6 },
-    { label: 'Compliance Risk', value: 0.4e6 }, { label: 'Financial Benefits-OPEX', value: 0.9e6 }, { label: 'Project Execution Risk', value: 3.1e6 }, { label: 'Total Investment Cost', value: 1.9e6 }];
+    { label: 'Compliance Risk', value: 0.4e6 }, { label: 'Financial benefits: opex', value: 0.9e6 }, { label: 'Project Execution Risk', value: 3.1e6 }, { label: 'Total Investment Cost', value: 1.9e6 }];
 
   /* ---------------- components ---------------- */
   IFS_GALLERY.push({ name: 'StatCardsRow', figma: 'stat-cards-row [patterns] (12:104002)', render: () => <>

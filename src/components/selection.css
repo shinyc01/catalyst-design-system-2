@@ -13,15 +13,14 @@
   flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:var(--space-100);
   background:var(--f);box-shadow:inset 0 0 0 var(--border-width-default) var(--b),var(--ring);color:var(--tx);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
-  transition:background-color .12s,box-shadow .12s;
+  transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
 .ifs-select__value{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-select__input{flex:1 1 auto;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;color:var(--color-text);font:inherit;letter-spacing:inherit}
 .ifs-select__input::placeholder{color:var(--color-text-softer)}
 .ifs-select__clear{flex:none} /* a standard ghost IconButton S (Nov 19) */
 .ifs-select__caret,.ifs-select__loader,.ifs-select__icon{color:var(--ic)}
-.ifs-select__loader{animation:ifs-select-spin 1s linear infinite}
-@keyframes ifs-select-spin{to{transform:rotate(360deg)}}
+.ifs-select__loader{animation:ifs-spin var(--motion-loop-spin) var(--motion-ease-linear) infinite}
 
 /* Sizes */
 .ifs-select--m .ifs-select__field{height:var(--control-h-m);padding:0 var(--space-200);border-radius:var(--radius-control)}
@@ -125,7 +124,7 @@
   display:inline-flex;align-items:center;justify-content:center;gap:var(--space-100);flex:none;margin:0;border:0;cursor:pointer;white-space:nowrap;
   border-radius:var(--radius-control);background:var(--fill);box-shadow:var(--stroke),var(--ring);
   color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
-  transition:background-color .12s,box-shadow .12s;
+  transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
 .ifs-segmented__item .ifs-icon{color:var(--color-icon)}
 .ifs-segmented--m .ifs-segmented__item{height:var(--control-h-m);padding:var(--space-150) var(--space-250)}
@@ -152,7 +151,7 @@
   padding:var(--space-100) var(--space-150);border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap;
   background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--color-text);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking); /* Label/M/medium */
-  transition:background-color .12s,box-shadow .12s;
+  transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
 .ifs-chip .ifs-icon{color:var(--ic)}
 .ifs-chip:hover,.ifs-chip[data-state=hover]{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}

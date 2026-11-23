@@ -89,8 +89,8 @@ export default IFS_GALLERY;
       { id: 'g1', column: 'g', type: 'source', color: 'violet', count: 6, label: 'Q1 2025 Value Framework' },
       { id: 'g2', column: 'g', type: 'source', color: 'green', count: 5, label: 'Q4 2026 Value Framework' },
       ...['Reliability', 'Finance', 'Environmental', 'Social', 'Safety'].map((l, i) => ({ id: 'o' + i, column: 'o', label: l, from: '$1.24B', to: i < 4 ? '$1.27B' : undefined })),
-      ...['WDRM v4', 'WTRM v1', 'CapEx v3', 'Carbon footprint v4', 'Public Safety Risk'].map((l, i) => ({ id: 'm' + i, column: 'm', label: l, from: '$1.24B', to: '$1.27B', change: '4.5%' })),
-      ...['SAIDI', 'SAIFI', 'Tx Wildfire Risk', 'Total CAPEX', 'tCO₂e avoided', 'SEC disclosure score', 'Regulatory penalty $'].map((l, i) => ({ id: 'e' + i, column: 'me', type: 'measure', label: l, from: '$1.24B', to: '$1.27B' })),
+      ...['WDRM v4', 'WTRM v1', 'Capex v3', 'Carbon footprint v4', 'Public Safety Risk'].map((l, i) => ({ id: 'm' + i, column: 'm', label: l, from: '$1.24B', to: '$1.27B', change: '4.5%' })),
+      ...['SAIDI', 'SAIFI', 'Tx Wildfire Risk', 'Total capex', 'tCO₂e avoided', 'SEC disclosure score', 'Regulatory penalty $'].map((l, i) => ({ id: 'e' + i, column: 'me', type: 'measure', label: l, from: '$1.24B', to: '$1.27B' })),
     ],
     links: [
       ['g1', 'o0', 3], ['g1', 'o1', 2], ['g1', 'o2', 2], ['g2', 'o0', 2], ['g2', 'o3', 2], ['g2', 'o4', 2],

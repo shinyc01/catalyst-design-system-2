@@ -80,7 +80,8 @@ const SURF_ALERT_ICON = { error: 'status-error-filled', warning: 'status-warning
 // Props: type error|warning (success = Figma variant only: screens never use a success Alert, rule 7.12), title, children = Body text, showIcon (Figma show-icon, default off),
 // action = button label (Primary S; absent = show-button off), onAction, onClose (shows the close
 // icon-button; Figma show-close-icon), closable=false to hide it.
-function Alert({ type = 'error', title, children, showIcon = false, action, onAction, onClose, closable = true, className, ...rest }) {
+function Alert({ type: t = 'error', title, children, showIcon = false, action, onAction, onClose, closable = true, className, ...rest }) {
+  const type = t === 'danger' ? 'error' : t; // C1 status word
   return (
     <div role={type === 'error' ? 'alert' : 'status'} className={IFS.cx('ifs-alert', `ifs-alert--${type}`, className)} {...rest}>
       <div className="ifs-alert__text">

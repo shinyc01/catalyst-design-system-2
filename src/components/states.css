@@ -28,9 +28,7 @@
 .ifs-empty__actions{display:flex;justify-content:center;gap:var(--space-200);width:100%;box-sizing:border-box;margin-top:calc(var(--space-section) - var(--space-inset)) /* buttons are their own group: section spacing above them (40 / 32 / 24) */}
 
 /* ---------- Loading indicators ---------- */
-@keyframes ifs-states-spin{to{transform:rotate(360deg)}}
-.ifs-spin{animation:ifs-states-spin 1s linear infinite}
-@media (prefers-reduced-motion:reduce){.ifs-spin{animation-duration:3s}}
+.ifs-spin{animation:ifs-spin var(--motion-loop-spin) var(--motion-ease-linear) infinite}
 
 .ifs-spinner{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-stack)}
 .ifs-spinner__text{color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
@@ -42,11 +40,9 @@
    plus the single shared shimmer the Skeleton notes ask for (rule 6), off under reduced motion. */
 .ifs-sk{display:block;flex:none;border-radius:var(--radius-control);
   background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.04),rgba(255,255,255,.1)) /* raw in Figma */;
-  background-size:200% 100%;animation:ifs-states-shimmer 1.6s ease-in-out infinite}
+  background-size:200% 100%;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
 .ifs-sk--circle{border-radius:var(--radius-pill)}
 .ifs-sk--block{border-radius:var(--radius-card)}
-@keyframes ifs-states-shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
-@media (prefers-reduced-motion:reduce){.ifs-sk{animation:none}}
 .ifs-loading-region{position:relative}
 .ifs-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:calc(-1 * var(--size-1));overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
@@ -80,7 +76,7 @@
   display:inline-flex;align-items:center;justify-content:center;flex:none;margin:0;border:0;cursor:pointer;white-space:nowrap;
   border-radius:var(--radius-pill);background:var(--fill);color:var(--color-text);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--edge),var(--elevation-elevation-1-primary),var(--ring);
-  backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));transition:background-color .12s,box-shadow .12s}
+  backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-prompt--l{height:var(--size-control-l);padding:var(--space-200) var(--space-400);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
 .ifs-prompt--m{height:var(--size-control-m);padding:var(--space-150) var(--space-300);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-prompt:hover,.ifs-prompt[data-state=hover]{--fill:var(--color-background-neutral);--edge:var(--color-border-strong);color:var(--color-text-soft)}

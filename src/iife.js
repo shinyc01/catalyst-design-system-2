@@ -5,6 +5,8 @@ import { IFS } from './components/index.js';
 
 IFS.version = '2.0.5';
 IFS.DENSITIES = ['spacious', 'comfortable', 'compact'];
+// Theme (C3, Nov 23): sets data-theme on <html> (or a given element). Only Dark has values today; Light comes right after phase 1.
+IFS.setTheme = (t, el = document.documentElement) => { el.setAttribute('data-theme', t); return t; };
 // Density is a user setting: sets data-density on <html> (or a given element) and remembers it.
 IFS.setDensity = (d, el = document.documentElement) => {
   el.setAttribute('data-density', d);

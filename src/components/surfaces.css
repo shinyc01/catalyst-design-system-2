@@ -70,9 +70,7 @@
 .ifs-snackbar__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
 .ifs-snackbar__actions{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-200);flex:1 1 auto;min-width:0}
 .ifs-snackbar-stack{position:fixed;top:16px;inset-inline-end:16px;z-index:var(--z-index-z-toast);display:flex;flex-direction:column;gap:var(--space-200)}
-.ifs-snackbar-stack > *{animation:ifs-toast-in .2s ease-out}
-@keyframes ifs-toast-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.ifs-snackbar-stack > *,.ifs-drawer,.ifs-floating-bar{animation:none!important}}
+.ifs-snackbar-stack > *{animation:ifs-arrive var(--motion-duration-100) var(--motion-ease-enter)} /* M3: arrivals slide 16 from the end side */
 
 /* ---------- Overlay (overlay-background) ---------- */
 .ifs-overlay{position:fixed;inset:0;z-index:var(--z-index-z-modal-overlay);background:var(--color-overlay-screen-strong)}
@@ -95,11 +93,10 @@
 .ifs-drawer{display:flex;flex-direction:column;width:var(--region-panel);min-width:min(var(--region-panel-min),100%);max-width:min(var(--region-panel-max),100%);overflow:hidden;
   border-radius:var(--radius-floating);background:var(--color-surface-secondary);color:var(--color-text);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));outline:none}
-.ifs-drawer--floating{position:fixed;top:var(--space-400);bottom:var(--space-400);z-index:var(--z-index-z-floating);animation:ifs-drawer-in .2s ease-out}
+.ifs-drawer--floating{position:fixed;top:var(--space-400);bottom:var(--space-400);z-index:var(--z-index-z-floating);animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)}
 .ifs-drawer--floating.ifs-drawer--right{inset-inline-end:var(--space-400)}
 .ifs-drawer--floating.ifs-drawer--left{inset-inline-start:var(--space-400)}
 .ifs-drawer--floating.ifs-drawer--collapsed{bottom:auto}
-@keyframes ifs-drawer-in{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 .ifs-drawer__header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-50);flex:none;padding:var(--space-inset) /* height comes from the inset (was a fixed 56) */}
 .ifs-drawer__tabs{flex:none;padding:var(--space-250) var(--space-inset) 0 /* a tab row: the tabs sit on the divider below */;box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft)}
 .ifs-drawer__sub{display:flex;flex-direction:column;gap:var(--space-stack);flex:none;padding:var(--space-inset);box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft)}
@@ -158,8 +155,8 @@
 .ifs-floating-bar{display:inline-flex;align-items:center;gap:var(--space-200);padding:var(--space-200);
   border-radius:var(--radius-floating);background:var(--color-background-neutral-soft-inverse);color:var(--color-text);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
-.ifs-floating-bar--floating{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:var(--z-index-z-floating);animation:ifs-bar-in .18s ease-out} /* ltr: centred with translateX */
-@keyframes ifs-bar-in{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translateX(-50%)}}
+.ifs-floating-bar--floating{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:var(--z-index-z-floating);animation:ifs-bar-in var(--motion-duration-100) var(--motion-ease-enter)} /* ltr: centred with translateX */
+@keyframes ifs-bar-in{from{opacity:0;transform:translate(-50%,var(--motion-distance-2))}to{opacity:1;transform:translateX(-50%)}}
 .ifs-floating-bar__context{display:flex;flex-direction:column;gap:var(--space-50);min-width:0;max-width:20rem}
 .ifs-floating-bar__category{display:flex;align-items:center;gap:var(--space-100);color:var(--color-text-softer);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;min-width:0} /* Label/M/medium, one line */

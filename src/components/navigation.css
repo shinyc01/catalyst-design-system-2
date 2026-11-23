@@ -35,7 +35,7 @@
 .ifs-nav-item{box-sizing:border-box;display:flex;align-items:center;gap:var(--space-100);width:100%;height:var(--nav-row-h);
   margin:0;padding:0 var(--space-200);border:0;border-radius:var(--radius-control);
   background:transparent;color:var(--color-text-soft);text-align:start;cursor:pointer;text-decoration:none;
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);transition:background-color .12s,color .12s}
+  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);transition:background-color var(--motion-duration-50) var(--motion-ease-standard),color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-nav-item__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-nav-item .ifs-icon{color:var(--color-icon-soft)}
 .ifs-nav-item:hover,.ifs-nav-item[data-state=hover],
@@ -72,7 +72,7 @@
 .ifs-tabs{display:flex;align-items:stretch;box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--color-border-soft);overflow-x:auto;scrollbar-width:none}
 .ifs-tab{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-150) /* raw in Figma */;flex:none;
   margin:0;border:0;background:transparent;cursor:pointer;white-space:nowrap;color:var(--color-text-soft);
-  --line:transparent;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--line);transition:color .12s,box-shadow .12s}
+  --line:transparent;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--line);transition:color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-tab--m{height:var(--tab-h-m);padding:0 var(--space-200);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-tab--l{height:var(--tab-h-l);padding:0 var(--space-300);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
 .ifs-tab:hover,.ifs-tab[data-state=hover]{color:var(--color-text)}
@@ -126,7 +126,7 @@
 .ifs-step__tip{position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%);z-index:5;pointer-events:none; /* ltr: centred with translateX */
   padding:var(--space-150) var(--space-200);border-radius:var(--radius-control);
   background:var(--color-surface-tertiary);backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium));
-  color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;opacity:0;transition:opacity .12s}
+  color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:nowrap;opacity:0;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-step:hover .ifs-step__tip,.ifs-step[data-state=hover] .ifs-step__tip{opacity:1}
 
 /* ---------- Pager: pagination-organism ---------- */
@@ -171,7 +171,7 @@
 .ifs-navbar__item{box-sizing:border-box;display:inline-flex;align-items:center;gap:var(--space-100);height:var(--control-h-m);
   padding:var(--space-150) var(--space-250) /* raw in Figma */;margin:0;border:0;border-radius:var(--radius-control);cursor:pointer;white-space:nowrap;
   background:var(--color-background-transparent);color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);
-  transition:background-color .12s}
+  transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-navbar__item:hover,.ifs-navbar__item[data-state=hover]{background:var(--color-background-neutral)}
 .ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--color-background-neutral);color:var(--color-text-soft)}
 .ifs-navbar__item[aria-current=page]{background:var(--color-background-neutral-soft)}

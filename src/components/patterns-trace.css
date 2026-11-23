@@ -18,16 +18,14 @@
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-trc-solution__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
 /* "The cancel button appears on hover" */
-.ifs-trc-solution--applied .ifs-content-card__head > .ifs-icon-button{opacity:0;transition:opacity .12s}
+.ifs-trc-solution--applied .ifs-content-card__head > .ifs-icon-button{opacity:0;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-trc-solution--applied:hover .ifs-content-card__head > .ifs-icon-button,
 .ifs-trc-solution--applied:focus-within .ifs-content-card__head > .ifs-icon-button,
 .ifs-trc-solution--applied[data-state=hover] .ifs-content-card__head > .ifs-icon-button{opacity:1}
 /* Uploading: indicator-molecule with a gradient fill, 40px (30:77981) */
 .ifs-trc-solution--loading{height:var(--size-40);border-radius:var(--radius-card);
   background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft));
-  background-size:200% 100%;animation:ifs-trc-shimmer 1.4s linear infinite}
-@keyframes ifs-trc-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
-@media (prefers-reduced-motion:reduce){.ifs-trc-solution--loading{animation:none}}
+  background-size:200% 100%;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
 
 /* ---- IssueListItem — content-card-organism row (30:75771): 12 padding, radius 8, border/base, no fill ---- */
 .ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);padding:var(--space-inset);border-radius:var(--radius-card)}

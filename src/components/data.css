@@ -39,9 +39,10 @@
 
 /* ================= StatusIndicator — status-indicator-atom (789:39211) ================= */
 .ifs-status-indicator{display:inline-block;flex:none;width:var(--size-8);height:var(--size-8);border-radius:var(--radius-pill);background:var(--dot)}
-.ifs-status-indicator--default{--dot:var(--color-icon-disabled)}
-.ifs-status-indicator--error{--dot:var(--color-background-danger-strong)}
-.ifs-status-indicator--success{--dot:var(--color-background-success-strong)}
+/* C1 (Nov 23): every status dot is its status icon colour; neutral = the readable grey (not the disabled grey) */
+.ifs-status-indicator--default,.ifs-status-indicator--neutral{--dot:var(--color-icon-softer)}
+.ifs-status-indicator--error,.ifs-status-indicator--danger{--dot:var(--color-icon-danger)}
+.ifs-status-indicator--success{--dot:var(--color-icon-success)}
 .ifs-status-indicator--warning{--dot:var(--color-icon-warning)}
 .ifs-status-indicator--cooper{--dot:var(--color-cooper-icon)}
 .ifs-status-indicator--blue{--dot:var(--color-icon-info)}
@@ -165,8 +166,10 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-indicator--purple,.ifs-indicator--accent{--dot:var(--color-background-accent-purple-strong)}
 .ifs-indicator--gray,.ifs-indicator--neutral{--dot:var(--color-icon-softer)}
 .ifs-indicator--cooper{--dot:var(--color-cooper-icon)}
-.ifs-indicator--archive,.ifs-indicator--disabled,.ifs-indicator--loading{--dot:var(--color-icon-disabled)}
-.ifs-indicator--archive,.ifs-indicator--disabled{color:var(--color-text-disabled)}
+.ifs-indicator--disabled,.ifs-indicator--loading{--dot:var(--color-icon-disabled)}
+.ifs-indicator--disabled{color:var(--color-text-disabled)}
+/* C1: archived is a state, not disabled: the neutral dot and the readable grey text */
+.ifs-indicator--archive{--dot:var(--color-icon-softer);color:var(--color-text-softer)}
 .ifs-indicator .ifs-status-indicator{background:var(--dot)}
 .ifs-indicator--s .ifs-skeleton-bar{width:2.0625rem;height:var(--size-16)}
 .ifs-indicator--xs .ifs-skeleton-bar{width:var(--size-22);height:var(--size-14)}
@@ -206,7 +209,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-content-card{--fill:var(--color-surface-raised);--stroke:0 0 0 0 transparent;--ring:0 0 0 0 transparent;
   position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;padding:var(--space-inset);
   border-radius:var(--radius-card);background:var(--fill);box-shadow:var(--stroke),var(--ring);color:var(--color-text);text-align:start;
-  transition:background-color .12s,box-shadow .12s}
+  transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-content-card[role=button]{cursor:pointer}
 .ifs-content-card[role=button]:hover,.ifs-content-card[data-state=hover]{--fill:var(--color-surface-raised-hover)}
 .ifs-content-card[role=button]:active,.ifs-content-card[data-state=pressed]{--fill:var(--color-surface-raised-pressed);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
@@ -253,7 +256,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 /* content-row-molecule (4835:3501) */
 .ifs-table__row{display:grid;grid-template-columns:var(--cols);align-items:center;border-radius:var(--radius-control);min-width:min-content} /* rows widen to the column minimums, so fills and hover cover the whole row */
 .ifs-table__row--header{min-height:var(--table-header-h)}
-.ifs-table__row--content{min-height:var(--ifs-table-row-h,var(--table-row-h)) /* rowHeight prop; Figma content-row 60 */;background:var(--color-surface-secondary);transition:background-color .12s,box-shadow .12s}
+.ifs-table__row--content{min-height:var(--ifs-table-row-h,var(--table-row-h)) /* rowHeight prop; Figma content-row 60 */;background:var(--color-surface-secondary);transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 /* Row hover / selected: not drawn in Figma — card state tokens */
 .ifs-table__row--clickable{cursor:pointer}
 .ifs-table__row--clickable:hover,.ifs-table__row--content[data-state=hover]{background:var(--color-surface-raised-hover)}
@@ -316,7 +319,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 
 /* ================= NotificationCard — notification-card (9943:5373) ================= */
 .ifs-notification{--fill:var(--color-surface-raised);position:relative;display:flex;align-items:flex-start;gap:var(--space-stack);box-sizing:border-box;
-  padding:var(--space-inset);border-radius:var(--radius-control);background:var(--fill);text-align:start;transition:background-color .12s}
+  padding:var(--space-inset);border-radius:var(--radius-control);background:var(--fill);text-align:start;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-notification[role=button]{cursor:pointer}
 .ifs-notification[role=button]:hover,.ifs-notification[data-state=hover]{--fill:var(--color-surface-raised-hover)}
 .ifs-notification[role=button]:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
@@ -337,7 +340,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 
 /* ================= ProgressBar — progress-bar-molecule (1674:1902) ================= */
 .ifs-progress{display:block;width:100%;height:var(--size-4);border-radius:var(--radius-control);background:var(--color-surface-tertiary);overflow:hidden}
-.ifs-progress__bar{display:block;height:100%;border-radius:var(--radius-control);background:var(--color-icon);transition:width .2s}
+.ifs-progress__bar{display:block;height:100%;border-radius:var(--radius-control);background:var(--color-icon);transition:width var(--motion-duration-200) var(--motion-ease-standard)}
 /* showValue (progress-bar-loading 5530:11867) */
 .ifs-progress-loading{display:inline-flex;align-items:center;gap:var(--space-200);width:18.0625rem;max-width:100%}
 .ifs-progress-loading .ifs-progress{flex:1 1 auto;width:auto}

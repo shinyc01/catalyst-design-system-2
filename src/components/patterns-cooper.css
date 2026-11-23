@@ -24,7 +24,7 @@
 
 /* ---------- user-message-molecule ---------- */
 .ifs-user-msg{display:flex;justify-content:flex-end;align-items:flex-start;gap:var(--space-100);padding-block:0 var(--space-200);padding-inline:var(--space-700) 0}
-.ifs-user-msg__actions{display:flex;gap:var(--space-50);padding:var(--space-100) 0;opacity:0;transition:opacity var(--motion-duration-fast,120ms)}
+.ifs-user-msg__actions{display:flex;gap:var(--space-50);padding:var(--space-100) 0;opacity:0;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-user-msg:hover .ifs-user-msg__actions,.ifs-user-msg:focus-within .ifs-user-msg__actions,.ifs-user-msg[data-state=hover] .ifs-user-msg__actions{opacity:1}
 .ifs-user-msg__bubble{box-sizing:border-box;padding:var(--space-150) var(--space-300);background:var(--color-background-accent-white-soft);
   border-radius:var(--radius-300) /* 12: no B2 role decided for multi-line inputs, bubbles and the comment thread (basic components) */;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text);white-space:pre-wrap;overflow-wrap:anywhere}
@@ -111,14 +111,13 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 .ifs-cooper-msg__buttons{display:flex;gap:var(--space-200)}
 .ifs-cooper-msg__buttons>*{flex:1}
 .ifs-cooper-msg__list{display:flex;flex-direction:column}
-.ifs-cooper-msg__cursor{display:inline-block;width:2px;height:var(--size-16);margin-inline-start:var(--space-50);vertical-align:-3px;background:var(--color-text);animation:ifs-cooper-blink 1s steps(2) infinite}
+.ifs-cooper-msg__cursor{display:inline-block;width:2px;height:var(--size-16);margin-inline-start:var(--space-50);vertical-align:-3px;background:var(--color-text);animation:ifs-cooper-blink var(--motion-loop-spin) steps(2) infinite}
 @keyframes ifs-cooper-blink{50%{opacity:0}}
 .ifs-cooper-progress{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-100) 0;
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-softer);min-width:0}
 .ifs-cooper-progress__text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-cooper-progress--live .ifs-cooper-progress__text{background:linear-gradient(90deg,var(--color-text-softer) 30%,var(--color-text) 50%,var(--color-text-softer) 70%);
-  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ifs-cooper-shimmer 1.8s linear infinite}
-@keyframes ifs-cooper-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+  background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
 .ifs-cooper-status{display:flex;align-items:center;gap:var(--space-100);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-softer)}
 .ifs-cooper-options{display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-cooper-options__head{display:flex;justify-content:space-between;align-items:center;padding:var(--space-200) 0;box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft);
@@ -141,7 +140,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 .ifs-chat-bar--multi .ifs-chat-bar__field,.ifs-chat-bar--multi .ifs-chat-bar__listen{padding:var(--space-300) var(--size-14) 0;width:100%;box-sizing:border-box;white-space:normal}
 .ifs-chat-bar--multi .ifs-chat-bar__row{justify-content:space-between}
 .ifs-chat-bar__end{display:flex;align-items:center;margin-inline-start:auto;flex:none}
-.ifs-chat-bar__expand{opacity:0;transition:opacity var(--motion-duration-fast,120ms)}
+.ifs-chat-bar__expand{opacity:0;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-chat-bar:hover .ifs-chat-bar__expand,.ifs-chat-bar:focus-within .ifs-chat-bar__expand,.ifs-chat-bar[data-state=hover] .ifs-chat-bar__expand{opacity:1}
 .ifs-chat-bar__expand .ifs-icon-button{border-radius:var(--radius-pill)}
 
@@ -161,7 +160,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 .ifs-chat-panel__bottom{position:absolute;inset-inline-start:0;inset-inline-end:0;bottom:0;padding:var(--space-inset);
   background:linear-gradient(180deg,transparent,var(--color-cooper-insight-strong) 16px) /* blur overlay (GRADIENT_LINEAR + blur 80) */;
   backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium))}
-.ifs-chat-panel__drop{position:absolute;inset:var(--size-44) 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-200);
+.ifs-chat-panel__drop{position:absolute;inset:calc(2 * (var(--space-inset) - var(--space-100)) + var(--size-control-s)) 0 0 /* H1: starts right below the chat header (its padding + an S control), follows density */;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-200);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft);pointer-events:none}
 .ifs-chat-panel__resize{position:absolute;left:-3px;top:0;bottom:0;width:6px;cursor:ew-resize} /* ltr: resize handle; JS width from clientX */
 
@@ -272,5 +271,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 /* ---------- pattern screen helpers ---------- */
 .ifs-cooper-stage{position:relative;width:100%;height:100%;overflow:hidden}
 .ifs-cooper-float{position:absolute;z-index:5;inset-inline-end:var(--cooper-compact-end);bottom:var(--cooper-compact-bottom)} /* default place; the position prop and dragging override it */
-.ifs-cooper-fade{animation:ifs-cooper-in var(--motion-duration-medium,200ms) ease-out}
-@keyframes ifs-cooper-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ifs-cooper-fade{animation:ifs-cooper-in var(--motion-duration-200) var(--motion-ease-enter)} /* M3 Cooper exception: grows from 90% at the orb */
+@keyframes ifs-cooper-in{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:none}}
+.ifs-cooper-fade{transform-origin:100% 100%}
+:where([dir="rtl"]) .ifs-cooper-fade{transform-origin:0 100%} /* rtl: grows from the orb at the start side */

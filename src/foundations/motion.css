@@ -13,3 +13,39 @@
   --motion-distance-2:2px;--motion-distance-16:16px;
   --motion-loop-spin:1000ms;--motion-loop-pulse:1600ms;
 }
+/* The end side for arrivals and drawers: +1 in LTR, -1 in RTL */
+:root{--motion-end:1}
+[dir="rtl"]{--motion-end:-1}
+
+/* Shared keyframes (one spinner, one shimmer: the duplicates in components are gone) */
+@keyframes ifs-spin{to{transform:rotate(360deg)}}
+@keyframes ifs-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
+@keyframes ifs-fade{from{opacity:0}}
+@keyframes ifs-drop{from{opacity:0;transform:translateY(calc(-1 * var(--motion-distance-2)))}}   /* menus, select lists, popovers: a 2px drop */
+@keyframes ifs-rise{from{opacity:0;transform:translateY(var(--motion-distance-2))}}               /* modal: a 2px rise */
+@keyframes ifs-arrive{from{opacity:0;transform:translateX(calc(var(--motion-distance-16) * var(--motion-end)))}} /* snackbars, notifications */
+@keyframes ifs-slide-in-end{from{transform:translateX(calc((100% + var(--float-inset)) * var(--motion-end)))}}   /* drawers: fully from their edge */
+@keyframes ifs-slide-in-start{from{transform:translateX(calc((100% + var(--float-inset)) * -1 * var(--motion-end)))}}
+
+/* Opening small surfaces (M3): 100 enter; the tooltip waits 300 on pointer hover and fades only, and shows at once on keyboard focus.
+   Closing is not animated yet: the kit unmounts closed surfaces (an exit helper is still to build). */
+.ifs-popover,.ifs-menu__list,.ifs-select__list,.ifs-datepicker__popover{animation:ifs-drop var(--motion-duration-100) var(--motion-ease-enter)}
+.ifs-tooltip{animation:ifs-fade var(--motion-duration-100) var(--motion-ease-enter) var(--motion-duration-300) backwards}
+.ifs-tooltip-anchor:focus-within > .ifs-tooltip{animation:none}
+/* Opening large surfaces: 200 enter */
+.ifs-modal{animation:ifs-rise var(--motion-duration-200) var(--motion-ease-enter)}
+.ifs-overlay{animation:ifs-fade var(--motion-duration-200) var(--motion-ease-enter)}
+.ifs-drawer--floating.ifs-drawer--left{animation-name:ifs-slide-in-start}
+
+/* Reduced motion (M4): one rule for the whole system. Movement snaps or fades (the 2 and 16 distances go to 0, drawers and the Cooper
+   chat fade instead of sliding or growing, the knob, slider, chevron, progress and widths change at once); colour and opacity
+   fades stay; loops stop except the spinner, which slows to 3 x spin. Components need no rule of their own. */
+@media (prefers-reduced-motion:reduce){
+  :root{--motion-distance-2:0px;--motion-distance-16:0px}
+  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-floating-bar--floating{animation-name:ifs-fade!important}
+  .ifs-floating-bar--floating{animation:none!important}
+  .ifs-sk,.ifs-skeleton,[class*="--loading"],.ifs-cooper-msg__cursor,.ifs-trc-solution--loading{animation:none!important}
+  .ifs-spin,[class*="spinner"]{animation-duration:calc(3 * var(--motion-loop-spin))!important}
+  .ifs-cursor--placed,.wb-ghost--back,[class*="switch"],[class*="slider"],[class*="progress"],[class*="chevron"]{transition-property:background-color,color,opacity,border-color!important}
+  *,*::before,*::after{scroll-behavior:auto!important}
+}
