@@ -131,7 +131,7 @@
 
 /* ---------- Pager: pagination-organism ---------- */
 .ifs-pager{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-100);
-  height:var(--size-44);padding:var(--space-200) 0}
+  height:var(--size-control-l);padding:var(--space-200) 0} /* size ladder l (A1): 44 / 40 / 32 */
 .ifs-pager__status{display:flex;align-items:center;gap:var(--space-100);white-space:nowrap}
 .ifs-pager__status .ifs-icon{color:var(--color-icon-success)}
 .ifs-pager__count{font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking);color:var(--color-text);font-variant-numeric:var(--text-numeric)}
@@ -159,6 +159,7 @@
   background:repeating-linear-gradient(90deg,var(--color-border-soft) 0 1px,transparent 1px 4px) 0 1px/100% 8px no-repeat}
 
 /* ---------- NavBar: global-header + nav-bar-page-atom ---------- */
+/* fixed 48: app chrome (A1 fixed sizes) */
 .ifs-navbar{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-500) /* raw in Figma */;
   width:100%;height:var(--size-48);padding:var(--space-200) var(--space-300);
   background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-widths-border-100)) 0 var(--color-border-soft);

@@ -57,7 +57,7 @@
 /* ---- RoleSelect: single-select-atom M drawn 24 tall (p 10/8 → 4/8), list = single-select-list-molecule ---- */
 .ifs-role-select{position:relative;flex:none}
 .ifs-role-select__trigger{--f:var(--color-background-input);--b:var(--color-border-input);--ring:0 0 0 0 transparent;
-  display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-24);min-width:4.6875rem;padding:0 var(--space-200);
+  display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-control-s);min-width:4.6875rem;padding:0 var(--space-200);
   border-radius:var(--radius-radius-100);background:var(--f);box-shadow:inset 0 0 0 1px var(--b),var(--ring);color:var(--color-text);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);cursor:pointer;outline:none;user-select:none;transition:background-color .12s,box-shadow .12s} /* Body/M/regular */
 .ifs-role-select__value{flex:1 1 auto}

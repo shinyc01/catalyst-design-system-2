@@ -356,12 +356,13 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
    ========================================================================== */
 /* Comfortable (default): 14px body */
 :root,[data-density="comfortable"]{
-  --size-badge-s:var(--size-20);--size-badge-m:var(--size-24);--size-badge-l:var(--size-32); /* badges follow density (round 1, Nov 19) */
+  --size-badge-s:var(--size-control-xs);--size-badge-m:var(--size-control-s);--size-badge-l:var(--size-control-m); /* badges S / M / L = ladder xs / s / m (A1) */
   /* Type ramp: size/line-height (weights and letter-spacing stay per style) */
   --font-size-caption:var(--font-size-s) /* retired: Caption = Small */;--font-size-s:0.75rem/1rem;--font-size-m:0.875rem/1.25rem;--font-size-l:1rem/1.5rem;
   --font-size-h3:1.25rem/1.75rem;--font-size-h2:1.5rem/2rem;--font-size-h1:1.75rem/2.25rem;
   --font-size-display-s:2rem/2.5rem;--font-size-display-m:2.25rem/2.75rem;--font-size-display-l:2.75rem/3.25rem;
-  --size-control-s:1.5rem;--size-control-m:2rem;--size-control-l:2.5rem;--icon-scale:1;
+  /* One height ladder (A1, Nov 23): every component height is a step; rows (tabs, nav rows, table rows and header) keep their own tokens */
+  --size-control-xs:1.25rem;--size-control-s:1.5rem;--size-control-m:2rem;--size-control-l:2.5rem;--size-control-xl:3rem;
   --size-tab-m:2.25rem;--size-tab-l:2.5rem;--size-nav-row:2.5rem;
   --size-table-row:3.25rem;--size-table-header:2rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.05;
@@ -369,11 +370,11 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
 
 /* Spacious = 16px body, one notch up */
 [data-density="spacious"]{
-  --size-badge-s:var(--size-24);--size-badge-m:var(--size-28);--size-badge-l:var(--size-36);
+  --size-badge-s:var(--size-control-xs);--size-badge-m:var(--size-control-s);--size-badge-l:var(--size-control-m);
   --font-size-caption:var(--font-size-s) /* retired: Caption = Small */;--font-size-s:0.875rem/1.25rem;--font-size-m:1rem/1.5rem;--font-size-l:1.125rem/1.625rem;
   --font-size-h3:1.375rem/1.75rem;--font-size-h2:1.625rem/2rem;--font-size-h1:2rem/2.5rem;
   --font-size-display-s:2.25rem/2.75rem;--font-size-display-m:2.5rem/3rem;--font-size-display-l:3rem/3.5rem;
-  --size-control-s:1.75rem;--size-control-m:2.25rem;--size-control-l:2.75rem;--icon-scale:1.143 /* follows body text 16 / 14 */;
+  --size-control-xs:1.5rem;--size-control-s:1.75rem;--size-control-m:2.25rem;--size-control-l:2.75rem;--size-control-xl:3.25rem;
   --size-tab-m:2.5rem;--size-tab-l:3rem;--size-nav-row:2.75rem;
   --size-table-row:4rem;--size-table-header:2.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.2;
@@ -381,11 +382,11 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
 
 /* Compact = 12px body */
 [data-density="compact"]{
-  --size-badge-s:var(--size-20);--size-badge-m:var(--size-24);--size-badge-l:var(--size-28);
+  --size-badge-s:var(--size-control-xs);--size-badge-m:var(--size-control-s);--size-badge-l:var(--size-control-m);
   --font-size-caption:var(--font-size-s) /* retired: Caption = Small */;--font-size-s:0.6875rem/0.875rem /* Small 14 / 12 / 11 (2.0.1 review: 10 was too small to read) */;--font-size-m:0.75rem/1rem;--font-size-l:0.875rem/1.25rem;
   --font-size-h3:1rem/1.5rem;--font-size-h2:1.25rem/1.75rem;--font-size-h1:1.5rem/2rem;
   --font-size-display-s:1.75rem/2.25rem;--font-size-display-m:2rem/2.5rem;--font-size-display-l:2.5rem/3rem;
-  --size-control-s:1.5rem /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */;--size-control-m:1.75rem;--size-control-l:2rem;--icon-scale:0.857 /* follows body text 12 / 14 */;
+  --size-control-xs:1.25rem;--size-control-s:1.5rem /* Nov 19: 24, the WCAG 2.2 minimum target (was 20) */;--size-control-m:1.75rem;--size-control-l:2rem;--size-control-xl:2.5rem;
   --size-tab-m:2rem;--size-tab-l:2.25rem;--size-nav-row:2.25rem;
   --size-table-row:2.5rem;--size-table-header:1.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:0.95;

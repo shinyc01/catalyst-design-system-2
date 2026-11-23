@@ -53,6 +53,7 @@
 /* ---------- FTA button (Cooper FAB) ---------- */
 .ifs-fta{--ring:0 0 0 0 transparent;position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;
   margin:0;padding:0;border:0;cursor:pointer;border-radius:var(--radius-radius-full);background:transparent;box-shadow:var(--ring)}
+/* fixed 48: the Cooper button is app chrome (A1 fixed sizes) */
 .ifs-fta--stroke{--edge:var(--color-border-soft);--blur:var(--blur-light);width:var(--size-48);height:var(--size-48);padding:var(--space-200);
   background:
     radial-gradient(ellipse 90% 140% at 15% 100%,var(--color-cooper-glow-center),var(--color-cooper-glow-edge)) /* geometry from gradientTransform, approx. */,
@@ -80,8 +81,8 @@
   border-radius:var(--radius-radius-full);background:var(--fill);color:var(--color-text);
   box-shadow:inset 0 0 0 1px var(--edge),var(--elevation-elevation-1-primary),var(--ring);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong));transition:background-color .12s,box-shadow .12s}
-.ifs-prompt--l{height:var(--size-40);padding:var(--space-200) var(--space-400);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
-.ifs-prompt--m{height:var(--size-32);padding:var(--space-150) var(--space-300);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-prompt--l{height:var(--size-control-l);padding:var(--space-200) var(--space-400);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
+.ifs-prompt--m{height:var(--size-control-m);padding:var(--space-150) var(--space-300);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-prompt:hover,.ifs-prompt[data-state=hover]{--fill:var(--color-background-neutral);--edge:var(--color-border-strong);color:var(--color-text-soft)}
 .ifs-prompt:active,.ifs-prompt[data-state=pressed]{--fill:var(--color-background-neutral-softer);--edge:var(--color-border-soft);color:var(--color-text-softer)}
 .ifs-prompt:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);--edge:var(--color-border-softer);color:var(--color-text-disabled)}
@@ -89,7 +90,7 @@
 
 /* ---------- cooper-chip-atom ---------- */
 .ifs-cooper-chip{--fill:var(--color-cooper-background-soft);--ring:0 0 0 0 transparent;
-  display:inline-flex;align-items:center;gap:var(--space-100);flex:none;height:var(--size-24);box-sizing:border-box;margin:0;border:0;cursor:pointer;white-space:nowrap;
+  display:inline-flex;align-items:center;gap:var(--space-100);flex:none;height:var(--size-control-s);box-sizing:border-box;margin:0;border:0;cursor:pointer;white-space:nowrap;
   padding:var(--space-50) var(--space-200);border-radius:var(--radius-radius-full);background:var(--fill);box-shadow:var(--ring);
   font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
 .ifs-cooper-chip__label{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* gradient direction approx. */;

@@ -76,6 +76,7 @@
 .ifs-drop-indicator--vertical .ifs-drop-indicator__line{width:1px}
 
 /* ---------- widget-view-change-position (Patterns 331:509936) ---------- */
+/* fixed 48: the widget palette tile, not a control (A1 fixed sizes) */
 .ifs-widget-chip{display:inline-flex;align-items:center;gap:var(--space-100);box-sizing:border-box;width:11.875rem;height:var(--size-48);
   padding:var(--space-300) /* a chip: fixed, like other controls */;border-radius:var(--radius-radius-100);background:var(--color-surface-secondary);
   box-shadow:0 0 0 1px var(--color-border-soft);backdrop-filter:blur(var(--blur-faint));-webkit-backdrop-filter:blur(var(--blur-faint)) /* Figma background blur 4 */}

@@ -219,7 +219,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 /* history search overlay (search-chat-history-card list) */
 .ifs-history-search{width:37.5rem;max-width:100%;height:25rem;display:flex;flex-direction:column;border-radius:var(--radius-radius-200);overflow:hidden;
   box-shadow:0 0 0 1px var(--color-border-soft),var(--elevation-elevation-3-primary)}
-.ifs-history-search__field{display:flex;align-items:center;gap:var(--space-200);height:var(--size-48);flex:none;padding:0 var(--space-300);box-shadow:inset 0 -1px 0 var(--color-border-soft)}
+.ifs-history-search__field{display:flex;align-items:center;gap:var(--space-200);height:var(--size-control-xl);flex:none;padding:0 var(--space-300);box-shadow:inset 0 -1px 0 var(--color-border-soft)}
 .ifs-history-search__field input{all:unset;flex:1;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text)}
 .ifs-history-search__field input::placeholder{color:var(--color-text-softer)}
 .ifs-history-search__list{flex:1;overflow-y:auto;padding:var(--space-inset) var(--space-inset)}

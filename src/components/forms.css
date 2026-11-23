@@ -156,6 +156,7 @@
 .ifs-switch-row--disabled{cursor:not-allowed}
 .ifs-switch-row--disabled .ifs-switch-row__label,.ifs-switch-row--disabled .ifs-switch-row__desc{color:var(--color-text-disabled)}
 
+/* the switch stays a fixed 24 visual (A1 fixed sizes) */
 .ifs-switch{
   --fill:var(--color-background-neutral-soft);--border:var(--color-border-soft);--knob:var(--color-icon);--ring:0 0 0 0 transparent;
   position:relative;flex:none;width:var(--size-44);height:var(--size-24);margin:0;padding:0;border:0;border-radius:var(--radius-radius-full);

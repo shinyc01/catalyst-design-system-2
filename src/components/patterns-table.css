@@ -48,7 +48,7 @@
 
 /* ================= search-card (205664d0…) ================= */
 .ifs-search-card{
-  all:unset;flex:none;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-32); /* 40 in the search-card set, 32 in every screen */
+  all:unset;flex:none;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-control-m); /* size ladder m (A1): 36 / 32 / 28 */
   padding-block:var(--space-100);padding-inline:var(--space-200) var(--space-100);
   border-radius:var(--radius-radius-100);cursor:pointer;color:var(--color-text);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */

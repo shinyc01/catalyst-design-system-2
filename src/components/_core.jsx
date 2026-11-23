@@ -24,9 +24,9 @@ function Icon({ name, size = 16, variant, className, style, title }) {
   const entry = set[key];
   const svg = typeof entry === 'string' ? entry : entry.svg;
   const vb = typeof entry === 'string' ? `0 0 ${key} ${key}` : entry.vb;
-  // Icons follow density: --icon-scale (1.143 / 1 / 0.857, like body text), rounded to even px: 16 -> 18 / 16 / 14.
-  // In rem (size / 16), so icons also grow with the user's default text size, like the text beside them.
-  const dim = `round(calc(${size / 16}rem * var(--icon-scale, 1)), 2px)`;
+  // Icons use their drawn size (12 / 16 / 24) in every density (A3, Nov 23) and follow the component's size, never a multiplier.
+  // In rem (size / 16), so they still follow the user's default text size, like the text beside them.
+  const dim = `${size / 16}rem`;
   return (
     <svg className={cx('ifs-icon', MIRRORED_ICONS.has(name) && 'ifs-icon--mirror', className)} width={size} height={size} viewBox={vb} fill="none"
       aria-hidden={title ? undefined : true} role={title ? 'img' : undefined} style={{ width: dim, height: dim, ...style }}

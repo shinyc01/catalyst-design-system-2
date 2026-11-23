@@ -350,9 +350,9 @@
 --inner-shadow-map-highlight-evaluated: inset 0 0 12px 7px rgba(43,127,255,0.4)
 --inner-shadow-map-highlight-grey: inset 0 0 12px 7px rgba(84,84,84,0.4)
 --drop-shadow-pin: 0 0 10px 0 rgba(10,14,21,0.2)
---size-badge-s: var(--size-20)
---size-badge-m: var(--size-24)
---size-badge-l: var(--size-32)
+--size-badge-s: var(--size-control-xs)
+--size-badge-m: var(--size-control-s)
+--size-badge-l: var(--size-control-m)
 --font-size-caption: var(--font-size-s)
 --font-size-s: 0.75rem/1rem
 --font-size-m: 0.875rem/1.25rem
@@ -363,10 +363,11 @@
 --font-size-display-s: 2rem/2.5rem
 --font-size-display-m: 2.25rem/2.75rem
 --font-size-display-l: 2.75rem/3.25rem
+--size-control-xs: 1.25rem
 --size-control-s: 1.5rem
 --size-control-m: 2rem
 --size-control-l: 2.5rem
---icon-scale: 1
+--size-control-xl: 3rem
 --size-tab-m: 2.25rem
 --size-tab-l: 2.5rem
 --size-nav-row: 2.5rem
@@ -375,9 +376,9 @@
 --table-header-pad-top: var(--space-0)
 --table-header-pad-bottom: var(--space-0)
 --density-scale: 1.05
---size-badge-s: var(--size-24)
---size-badge-m: var(--size-28)
---size-badge-l: var(--size-36)
+--size-badge-s: var(--size-control-xs)
+--size-badge-m: var(--size-control-s)
+--size-badge-l: var(--size-control-m)
 --font-size-caption: var(--font-size-s)
 --font-size-s: 0.875rem/1.25rem
 --font-size-m: 1rem/1.5rem
@@ -388,10 +389,11 @@
 --font-size-display-s: 2.25rem/2.75rem
 --font-size-display-m: 2.5rem/3rem
 --font-size-display-l: 3rem/3.5rem
+--size-control-xs: 1.5rem
 --size-control-s: 1.75rem
 --size-control-m: 2.25rem
 --size-control-l: 2.75rem
---icon-scale: 1.143
+--size-control-xl: 3.25rem
 --size-tab-m: 2.5rem
 --size-tab-l: 3rem
 --size-nav-row: 2.75rem
@@ -400,9 +402,9 @@
 --table-header-pad-top: var(--space-0)
 --table-header-pad-bottom: var(--space-0)
 --density-scale: 1.2
---size-badge-s: var(--size-20)
---size-badge-m: var(--size-24)
---size-badge-l: var(--size-28)
+--size-badge-s: var(--size-control-xs)
+--size-badge-m: var(--size-control-s)
+--size-badge-l: var(--size-control-m)
 --font-size-caption: var(--font-size-s)
 --font-size-s: 0.6875rem/0.875rem
 --font-size-m: 0.75rem/1rem
@@ -413,10 +415,11 @@
 --font-size-display-s: 1.75rem/2.25rem
 --font-size-display-m: 2rem/2.5rem
 --font-size-display-l: 2.5rem/3rem
+--size-control-xs: 1.25rem
 --size-control-s: 1.5rem
 --size-control-m: 1.75rem
 --size-control-l: 2rem
---icon-scale: 0.857
+--size-control-xl: 2.5rem
 --size-tab-m: 2rem
 --size-tab-l: 2.25rem
 --size-nav-row: 2.25rem
