@@ -18,17 +18,17 @@
   border-radius:var(--radius-control);background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-ivi__metrics{display:flex;align-items:center;gap:var(--space-stack)}
 .ifs-ivi__metric{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 0;min-width:0}
-.ifs-ivi__metric-title{color:var(--color-text-soft);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);min-height:var(--size-20);display:flex;align-items:center}
-.ifs-ivi__metric-value{display:flex;align-items:center;gap:var(--space-50);color:var(--color-text);font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking);font-variant-numeric:var(--text-numeric)}
+.ifs-ivi__metric-title{color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);min-height:var(--size-20);display:flex;align-items:center}
+.ifs-ivi__metric-value{display:flex;align-items:center;gap:var(--space-50);color:var(--color-text);font:var(--font-heading-h2-medium);letter-spacing:var(--font-heading-h2-medium-tracking);font-variant-numeric:var(--font-numeric)}
 .ifs-ivi__metric-value--danger{color:var(--color-text-danger)}
 .ifs-ivi__metric-value--danger .ifs-icon{color:var(--color-icon-danger)}
 .ifs-ivi__metric-value--success{color:var(--color-text-success)}
 .ifs-ivi__metric-value--success .ifs-icon{color:var(--color-icon-success)}
 .ifs-ivi__divider{flex:none;width:1px;height:var(--size-52);background:var(--color-border-input)}
-.ifs-ivi__text{margin:0;color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);max-width:var(--text-measure)} /* Body/M/regular */
+.ifs-ivi__text{margin:0;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);max-width:var(--font-measure)} /* Body/M/regular */
 .ifs-ivi__chart{display:flex;gap:var(--space-150);height:234px} /* chart plot geometry stays px (this and the axis/plot/item heights below) */
 .ifs-ivi__axis{display:flex;flex-direction:column;justify-content:space-between;flex:none;width:23px;padding-bottom:var(--space-600) /* raw in Figma */;
-  color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)} /* Label/M/medium */
+  color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);font-variant-numeric:var(--font-numeric)} /* Label/M/medium */
 .ifs-ivi__axis span{margin-top:calc(-1 * var(--space-200));margin-bottom:calc(-1 * var(--space-200))} /* centre each tick label on its grid line */
 .ifs-ivi__plot-col{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-width:0;padding-top:var(--space-150)}
 .ifs-ivi__plot{position:relative;height:200px}
@@ -42,19 +42,19 @@
 .ifs-ivi__item:hover .ifs-ivi__bar,.ifs-ivi__item:focus-visible .ifs-ivi__bar{filter:brightness(1.15)}
 .ifs-ivi__item:focus-visible{outline:none;border-radius:var(--radius-control);box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 .ifs-ivi__labels{display:flex;gap:var(--space-50);padding:0 var(--space-100)}
-.ifs-ivi__labels span{flex:1 1 0;min-width:0;text-align:center;color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ifs-ivi__labels span{flex:1 1 0;min-width:0;text-align:center;color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-ivi__legend{align-items:flex-start}
 
 /* ---------- table-review (12:122378) ---------- */
 .ifs-table-review{width:100%} /* the shared table card (.ifs-table-card, data.css) at full width */
 .ifs-table-review > .ifs-table{flex:1 1 auto;width:calc(100% + 2 * var(--size-3))} /* + the table's focus-ring padding */
-.ifs-table-review__name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-table-review__fromto{display:inline-flex;align-items:center;gap:var(--space-100);white-space:nowrap;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft)}
+.ifs-table-review__name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
+.ifs-table-review__fromto{display:inline-flex;align-items:center;gap:var(--space-100);white-space:nowrap;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)}
 .ifs-table-review__fromto .ifs-icon{color:var(--color-icon-softer)}
 .ifs-table-review__to{color:var(--color-text)}
 .ifs-table-review__to--up{color:var(--color-text-success)}
 .ifs-table-review__to--down{color:var(--color-text-danger)}
-.ifs-table-review__change{display:inline-flex;align-items:center;gap:var(--space-50);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft)}
+.ifs-table-review__change{display:inline-flex;align-items:center;gap:var(--space-50);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)}
 .ifs-table-review__change--up{color:var(--color-text-success)}
 .ifs-table-review__change--up .ifs-icon{color:var(--color-icon-success)}
 .ifs-table-review__change--down{color:var(--color-text-danger)}
@@ -70,11 +70,11 @@
 .ifs-readiness-eval > *{flex:none} /* cards keep their height inside a scrolling panel */
 .ifs-readiness-card{display:flex;flex-direction:column;box-sizing:border-box;padding:var(--space-inset);border-radius:var(--radius-card);background:var(--color-surface-raised)}
 .ifs-readiness-card__summary{display:flex;flex-direction:column;gap:var(--space-200)}
-.ifs-readiness-card__title{color:var(--color-text);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* H4: every card title (Nov 19, 2.0.3) */
-.ifs-readiness-card__text{margin:0;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-readiness-card__title{color:var(--color-text);font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking)} /* H4: every card title (Nov 19, 2.0.3) */
+.ifs-readiness-card__text{margin:0;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-readiness-card__checks{display:flex;flex-direction:column;gap:0;margin-top:var(--space-stack);padding-top:var(--space-stack);box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft)}
 .ifs-readiness-card__checks:first-child{margin-top:0;padding-top:0;box-shadow:none}
-.ifs-readiness-card__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-150);color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
+.ifs-readiness-card__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-150);color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 .ifs-readiness-card__head{margin-bottom:var(--space-100)}
 .ifs-readiness-card__pct{display:inline-flex;align-items:center;gap:var(--space-200)}
 
@@ -83,17 +83,17 @@
 .ifs-readiness-section:not(.is-open):hover{background:var(--color-surface-raised-hover)}
 .ifs-readiness-section__head:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 .ifs-readiness-section__head > .ifs-icon{flex:none;color:var(--color-icon-soft)}
-.ifs-readiness-section__title{flex:1 1 auto;min-width:0;color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ifs-readiness-section__title{flex:1 1 auto;min-width:0;color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-readiness-section__badge{color:var(--color-text-soft)}
 .ifs-readiness-section__badge--danger{color:var(--color-text-danger)}
 .ifs-readiness-section__badge--success{color:var(--color-text-success)}
 .ifs-readiness-section__badge--success .ifs-icon{color:var(--color-icon-success)}
 .ifs-readiness-section__body{display:flex;flex-direction:column;gap:var(--space-150);padding:0 var(--space-inset) var(--space-inset)}
-.ifs-readiness-section__body > p{margin:0;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+.ifs-readiness-section__body > p{margin:0;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
 .ifs-readiness-facts{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-readiness-facts__row{display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr);align-items:center;min-height:var(--size-40);border-radius:var(--radius-control);background:var(--color-surface-secondary)}
-.ifs-readiness-facts__label{white-space:nowrap;padding:var(--space-200) var(--space-300);color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-readiness-facts__value{padding:var(--space-300);text-align:end;color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);font-variant-numeric:var(--text-numeric)}
+.ifs-readiness-facts__label{white-space:nowrap;padding:var(--space-200) var(--space-300);color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-readiness-facts__value{padding:var(--space-300);text-align:end;color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);font-variant-numeric:var(--font-numeric)}
 .ifs-readiness-facts__value--danger{color:var(--color-text-danger)}
 .ifs-readiness-facts__value--success{color:var(--color-text-success)}
 
@@ -102,15 +102,15 @@
 .ifs-apc-panel--sidebar{width:var(--region-panel);height:100%;padding:var(--space-inset);background:var(--color-surface-primary);box-shadow:inset var(--border-width-default) 0 0 var(--color-border-soft)}
 :where([dir="rtl"]) .ifs-apc-panel--sidebar{box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)} /* rtl: one-side border mirrors */
 .ifs-apc-panel--full{flex:1 1 auto;width:100%;height:100%;padding:var(--space-inset);background:var(--color-surface-primary)}
-.ifs-apc-panel--popover{position:absolute;z-index:var(--z-index-z-popover);width:var(--overlay-width-m);max-height:calc(100% - var(--size-16));padding:var(--space-inset);
+.ifs-apc-panel--popover{position:absolute;z-index:var(--z-index-popover);width:var(--layout-modal-width-m);max-height:calc(100% - var(--size-16));padding:var(--space-inset);
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);
-  box-shadow:var(--elevation-floating);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
-.ifs-apc-panel--collapsed{width:var(--layout-side-panel-collapsed-width);height:100%;align-items:center;padding:var(--space-300) /* a rail: fixed, like the side nav */;background:var(--color-surface-primary);box-shadow:inset var(--border-width-default) 0 0 var(--color-border-soft)}
+  box-shadow:var(--elevation-floating);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+.ifs-apc-panel--collapsed{width:var(--layout-panel-width-collapsed);height:100%;align-items:center;padding:var(--space-300) /* a rail: fixed, like the side nav */;background:var(--color-surface-primary);box-shadow:inset var(--border-width-default) 0 0 var(--color-border-soft)}
 :where([dir="rtl"]) .ifs-apc-panel--collapsed{box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)} /* rtl: one-side border mirrors */
 .ifs-apc-panel--collapsed .ifs-apc-panel__toggle .ifs-icon{transform:scaleX(-1)}
 .ifs-apc-panel__header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-50);flex:none;min-height:var(--size-36);padding-bottom:var(--space-inset);margin-bottom:var(--space-200);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-apc-panel--full .ifs-apc-panel__header{margin-bottom:var(--space-200)}
-.ifs-apc-panel__title{margin:0;color:var(--color-text);font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
+.ifs-apc-panel__title{margin:0;color:var(--color-text);font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking)} /* Heading/H4 */
 .ifs-apc-panel__buttons{display:flex;align-items:center;gap:var(--space-200);flex:none}
 .ifs-apc-panel__content{flex:1 1 auto;min-height:0;overflow:auto}
 
@@ -128,7 +128,7 @@
 /* NOTE: the one cell that sets its own height. The cell keeps the Table's no top/bottom padding; the note / editor keeps a
    gap from the row edges, so a long note or the growing editor makes the row taller (row height token = the minimum). */
 .ifs-apc__note{position:relative;flex:1 1 auto;min-width:0;box-sizing:border-box;margin-block:var(--space-100);margin-inline:calc(var(--space-inset) * -1);padding:var(--space-150) var(--space-inset) /* a note row inside the table: like a table cell */;
-  border-radius:var(--radius-card);color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);white-space:pre-wrap;overflow-wrap:anywhere}
+  border-radius:var(--radius-card);color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:pre-wrap;overflow-wrap:anywhere}
 .ifs-apc__note--editable{padding-inline-end:var(--size-36)}
 .ifs-apc__note--editable:hover,.ifs-apc__note--editable:focus-within{background:var(--color-surface-raised-hover);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-apc--compact .ifs-apc__note-text{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden} /* inferred: the full text shows in the full view */
@@ -140,7 +140,7 @@
 .ifs-apc__text{min-width:0;margin-block:var(--space-200);white-space:pre-wrap;overflow-wrap:anywhere} /* COMMENT: wraps; a long one grows the row like a note */
 .ifs-apc__tip{display:inline-flex}
 /* USER filter: opened from the Table's header funnel, placed in the card under it (JS sets inset-inline-start / inset-block-start). */
-.ifs-apc__filter-pop{position:absolute;z-index:var(--z-index-z-popover)}
+.ifs-apc__filter-pop{position:absolute;z-index:var(--z-index-popover)}
 .ifs-apc__filter{display:flex;flex-direction:column;gap:var(--space-stack);text-transform:none;letter-spacing:normal}
 .ifs-apc__filter-clear{position:absolute;inset-block-start:var(--space-inset);inset-inline-end:var(--space-inset)} /* in the popover header (Figma) */
 .ifs-apc__filter .ifs-search{box-sizing:border-box;width:100%;min-width:0}

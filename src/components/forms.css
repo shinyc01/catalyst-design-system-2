@@ -6,30 +6,30 @@
 .ifs-field{display:flex;flex-direction:column;min-width:0;gap:var(--space-200)}
 .ifs-field--m{gap:var(--space-150)}
 .ifs-field__title{display:flex;align-items:flex-start;gap:var(--space-200)}
-.ifs-field__label{flex:1;min-width:0;color:var(--color-text-softer);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking) /* Label/L/medium */}
-.ifs-field--m .ifs-field__label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
+.ifs-field__label{flex:1;min-width:0;color:var(--color-text-softer);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking) /* Label/L/medium */}
+.ifs-field--m .ifs-field__label{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
 .ifs-field__hint{color:var(--color-icon-softer);display:inline-flex;cursor:help}
-.ifs-field__desc{margin:0;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
-.ifs-field--m .ifs-field__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
+.ifs-field__desc{margin:0;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
+.ifs-field--m .ifs-field__desc{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
 
 .ifs-field__control{
   --fill:var(--color-background-input);--border:var(--color-border-input);--ring:0 0 0 0 transparent;
   position:relative;display:flex;align-items:center;box-sizing:border-box;
-  gap:var(--space-200);height:var(--control-h-l);padding:var(--space-200) var(--space-300);border-radius:var(--radius-control);
+  gap:var(--space-200);height:var(--size-control-l);padding:var(--space-200) var(--space-300);border-radius:var(--radius-control);
   background:var(--fill);box-shadow:var(--ring),0 0 0 var(--border-width-default) var(--border) /* OUTSIDE stroke */;
   color:var(--color-icon-soft);cursor:text;transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
-.ifs-field--m .ifs-field__control{gap:var(--space-150);height:var(--control-h-m);padding:var(--space-150) var(--space-200);border-radius:var(--radius-control)}
+.ifs-field--m .ifs-field__control{gap:var(--space-150);height:var(--size-control-m);padding:var(--space-150) var(--space-200);border-radius:var(--radius-control)}
 .ifs-field__input{
   flex:1;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;
   color:var(--color-text);caret-color:var(--color-cooper-text);
-  font:var(--text-body-l-regular);letter-spacing:var(--text-body-l-regular-tracking) /* Body/L/regular */;
+  font:var(--font-body-l-regular);letter-spacing:var(--font-body-l-regular-tracking) /* Body/L/regular */;
   text-overflow:ellipsis;
 }
-.ifs-field--m .ifs-field__input{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
+.ifs-field--m .ifs-field__input{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-field__input::placeholder{color:var(--color-text-softer);opacity:1}
-.ifs-field__suffix{flex:none;color:var(--color-text-on-solid-soft) /* same value; the field suffix probably wants --color-text-soft: colour round */;font:var(--text-body-l-regular);letter-spacing:var(--text-body-l-regular-tracking)}
-.ifs-field--m .ifs-field__suffix{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+.ifs-field__suffix{flex:none;color:var(--color-text-on-solid-soft) /* same value; the field suffix probably wants --color-text-soft: colour round */;font:var(--font-body-l-regular);letter-spacing:var(--font-body-l-regular-tracking)}
+.ifs-field--m .ifs-field__suffix{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
 .ifs-field__loader{flex:none;color:var(--color-icon)}
 
 /* TextArea: fixed-height box, content top-aligned */
@@ -75,12 +75,12 @@
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
 }
 .ifs-field--cooper.ifs-field--m .ifs-field__control{--ring:0 0 0 1.5px var(--color-focus-inner)}
-.ifs-field--cooper.ifs-field--m .ifs-field__control::after{inset:-3px;padding:var(--border-widths-border-150);border-radius:calc(var(--radius-control) + var(--size-3))}
+.ifs-field--cooper.ifs-field--m .ifs-field__control::after{inset:-3px;padding:var(--border-width-150);border-radius:calc(var(--radius-control) + var(--size-3))}
 
 /* ---------- Search ---------- */
 .ifs-search{
   --border:var(--color-border-input);--ring:0 0 0 0 transparent;
-  display:flex;align-items:center;box-sizing:border-box;width:15.5rem;height:var(--control-h-m) /* 36 / 32 / 28 */;
+  display:flex;align-items:center;box-sizing:border-box;width:15.5rem;height:var(--size-control-m) /* 36 / 32 / 28 */;
   gap:var(--space-100);padding:var(--space-200);border-radius:var(--radius-control);
   box-shadow:var(--ring),inset 0 0 0 var(--border-width-default) var(--border) /* INSIDE stroke */;
   color:var(--color-icon-soft);cursor:text;transition:none;
@@ -89,7 +89,7 @@
 .ifs-search__input{
   flex:1;min-width:0;margin:0;padding:0;border:0;outline:none;background:none;
   color:var(--color-text);caret-color:var(--color-cooper-text);text-overflow:ellipsis;
-  font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;
+  font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */;
 }
 .ifs-search__input::placeholder{color:var(--color-text-softer);opacity:1}
 .ifs-search__input::-webkit-search-cancel-button{display:none}
@@ -103,9 +103,9 @@
 /* ---------- Checkbox + Radio (shared molecule row) ---------- */
 .ifs-check{
   --ring:0 0 0 0 transparent;
-  position:relative;display:inline-flex;align-items:center;box-sizing:border-box;min-height:var(--control-h-m) /* checkbox / radio row 36 / 32 / 28 */;
+  position:relative;display:inline-flex;align-items:center;box-sizing:border-box;min-height:var(--size-control-m) /* checkbox / radio row 36 / 32 / 28 */;
   gap:var(--space-200);padding:var(--space-150) var(--space-100);border-radius:var(--radius-control);
-  color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */;
+  color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */;
   box-shadow:var(--ring);cursor:pointer;user-select:none;transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
 .ifs-check--bare{padding:0;min-height:0;gap:0}
@@ -151,8 +151,8 @@
 /* ---------- Switch ---------- */
 .ifs-switch-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-100);border-radius:var(--radius-control);cursor:pointer}
 .ifs-switch-row__text{display:flex;flex-direction:column;gap:var(--space-50);min-width:0}
-.ifs-switch-row__label{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
-.ifs-switch-row__desc{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
+.ifs-switch-row__label{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
+.ifs-switch-row__desc{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-switch-row--disabled{cursor:not-allowed}
 .ifs-switch-row--disabled .ifs-switch-row__label,.ifs-switch-row--disabled .ifs-switch-row__desc{color:var(--color-text-disabled)}
 

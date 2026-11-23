@@ -456,7 +456,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
     ? <span className="ifs-page-header__status" onMouseEnter={() => { hovering.current = true; setTipOpen(true); }} onMouseLeave={() => { hovering.current = false; if (!pinned.current) setTipOpen(false); }}>
         <IFS.Popover open={tipOpen} onOpenChange={v => {
           if (!v && hovering.current && !pinned.current) { pinned.current = true; setTipOpen(true); return; } // click while hovering: pin
-          pinned.current = v; setTipOpen(v); }} showClose={false} width="var(--overlay-width-m)"
+          pinned.current = v; setTipOpen(v); }} showClose={false} width="var(--layout-modal-width-m)"
           trigger={<button type="button" className="ifs-page-header__status-btn" aria-label={`${progressLabel}: show steps`}>
             {status || <span className="ifs-page-header__progress"><IFS.Icon name="arrow-chevron-down" size={16} />{progressLabel}</span>}</button>}>
           <div className="ifs-page-header__steps">{center}</div>

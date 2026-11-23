@@ -9,11 +9,11 @@ export default IFS_GALLERY;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   // Placeholder block so the gaps are visible.
   const Box = ({ children = 'Block', w, h }) => (
-    <div className="t-label-m-medium" style={{ inlineSize: w, blockSize: h, padding: 'var(--space-200) var(--space-300)', borderRadius: 'var(--radius-radius-100)',
+    <div className="t-label-m-medium" style={{ inlineSize: w, blockSize: h, padding: 'var(--space-200) var(--space-300)', borderRadius: 'var(--radius-100)',
       background: 'var(--color-background-neutral-soft)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-soft)' }}>{children}</div>
   );
-  const Frame = ({ children, w = 'var(--overlay-width-s)' }) => (
-    <div style={{ inlineSize: w, padding: 'var(--space-200)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', borderRadius: 'var(--radius-radius-100)' }}>{children}</div>
+  const Frame = ({ children, w = 'var(--layout-popover-width)' }) => (
+    <div style={{ inlineSize: w, padding: 'var(--space-200)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', borderRadius: 'var(--radius-100)' }}>{children}</div>
   );
 
   IFS_GALLERY.push({ name: 'Stack', figma: 'none (code-only layout primitive; Figma uses vertical auto layout)', render: () => <>
@@ -48,7 +48,7 @@ export default IFS_GALLERY;
       <Frame><Inline gap="100" wrap>{['Reliability', 'Financial', 'Environment', 'Social', 'Governance', 'Safety'].map(t => <Chip key={t} selected={false}>{t}</Chip>)}</Inline></Frame>
     </Row>
     <Row label="toolbar">
-      <Frame w="calc(var(--overlay-width-m) + var(--space-1100))">
+      <Frame w="calc(var(--layout-modal-width-m) + var(--space-1100))">
         <Inline gap="200" align="center" justify="between">
           <Inline gap="100" align="center"><span className="t-label-l-medium">Investments</span><Badge>12</Badge></Inline>
           <Inline gap="200"><Button type="secondary" size="s">Export</Button><Button type="primary" size="s">Add investment</Button></Inline>

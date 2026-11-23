@@ -416,8 +416,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const jump = e => { const r = e.currentTarget.getBoundingClientRect(); onJump((e.clientX - r.left) / scale, (e.clientY - r.top) / scale); };
     return (
       <div onPointerDown={jump} title="Mini-map (not a Figma component)" style={{ position: 'relative', width: mw, height: mh, overflow: 'hidden', cursor: 'pointer',
-        borderRadius: 'var(--radius-radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-elevation-1-primary)',
-        backdropFilter: 'blur(var(--blur-strong))' }}>
+        borderRadius: 'var(--radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-1)',
+        backdropFilter: 'blur(var(--blur-80))' }}>
         {NODES.map(n => <span key={n.id} style={{ position: 'absolute', left: n.x * scale, top: n.y * scale, width: W * scale, height: H * scale, borderRadius: 1,
           background: 'var(--color-border-strong)' }} />)}
         <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--color-border-selected)', borderRadius: 2 }} />
@@ -530,8 +530,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const jump = e => { const r = e.currentTarget.getBoundingClientRect(); onJump((e.clientX - r.left) / scale, (e.clientY - r.top) / scale); };
     return (
       <div onPointerDown={jump} title="Mini-map (not a Figma component)" style={{ position: 'relative', width: mw, height: mh, overflow: 'hidden', cursor: 'pointer',
-        borderRadius: 'var(--radius-radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-elevation-1-primary)',
-        backdropFilter: 'blur(var(--blur-strong))' }}>
+        borderRadius: 'var(--radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-1)',
+        backdropFilter: 'blur(var(--blur-80))' }}>
         {NODES.map(n => <span key={n.id} style={{ position: 'absolute', left: n.x * scale, top: n.y * scale, width: W * scale, height: H * scale, borderRadius: 1,
           background: 'var(--color-border-strong)' }} />)}
         <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--color-border-selected)', borderRadius: 2 }} />
@@ -1302,7 +1302,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Frame><Inline gap="100" wrap>{['Reliability', 'Financial', 'Environment', 'Social', 'Governance', 'Safety'].map(t => <Chip key={t} selected={false}>{t}</Chip>)}</Inline></Frame>
     </Row>
     <Row label="toolbar">
-      <Frame w="calc(var(--overlay-width-m) + var(--space-1100))">
+      <Frame w="calc(var(--layout-modal-width-m) + var(--space-1100))">
         <Inline gap="200" align="center" justify="between">
           <Inline gap="100" align="center"><span className="t-label-l-medium">Investments</span><Badge>12</Badge></Inline>
           <Inline gap="200"><Button type="secondary" size="s">Export</Button><Button type="primary" size="s">Add investment</Button></Inline>

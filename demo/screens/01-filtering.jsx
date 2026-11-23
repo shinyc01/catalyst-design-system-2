@@ -128,7 +128,7 @@ function ScreenFiltering({ bp, height }) {
               </div>
             )}
             {openFilter && (
-              <div ref={popRef} style={{ position: 'absolute', zIndex: 'var(--z-index-z-popover)', left: Math.max(0, openFilter.left), top: openFilter.top }}>
+              <div ref={popRef} style={{ position: 'absolute', zIndex: 'var(--z-index-popover)', left: Math.max(0, openFilter.left), top: openFilter.top }}>
                 <ColumnFilter title="Filter" options={filterOptions} value={filters[openKey] || []}
                   onChange={v => setFilters(f => ({ ...f, [openKey]: v }))} onClearAll={() => setFilters(f => ({ ...f, [openKey]: [] }))} />
               </div>

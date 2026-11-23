@@ -84,7 +84,7 @@ function SearchModal({ title = 'Suggested questions', items = [], activeIndex = 
 // Props: type text|voice / defaultType / onTypeChange (Text shows the mic button, Voice shows the keyboard button and listens),
 // placeholder, value / defaultValue / onChange(value), onSubmit(value) on Enter or suggestion pick, onClear,
 // suggestions (strings or {label,type,query}; shown in a search-modal while focused), suggestionsTitle, listening (voice: "…" state),
-// disabled, width (default 360, Figma), size l (default: --control-h-m, 36 / 32 / 28) | s (--control-h-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
+// disabled, width (default 360, Figma), size l (default: --size-control-m, 36 / 32 / 28) | s (--size-control-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
 // state hover|focus|pressed (gallery only), aria-label.
 // The default search (AI search: keywords or natural language). IFS.Search (search-regular-organism) is the simple keyword search, when the use case needs no AI.
 function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear,

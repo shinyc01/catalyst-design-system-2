@@ -5,18 +5,18 @@
   margin:0;border:0;cursor:pointer;white-space:nowrap;text-decoration:none;
   background:var(--fill);color:var(--color-text);
   box-shadow:var(--stroke-shadow),var(--ring);
-  backdrop-filter:blur(var(--blur-medium));-webkit-backdrop-filter:blur(var(--blur-medium));
+  backdrop-filter:blur(var(--blur-40));-webkit-backdrop-filter:blur(var(--blur-40));
   transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
 .ifs-button .ifs-button__label{padding:0 var(--space-100)}
 
 /* Sizes */
-.ifs-button--l{height:var(--control-h-l);padding:var(--space-200) var(--space-300);border-radius:var(--radius-control);font:var(--text-label-l-medium);letter-spacing:var(--text-label-l-medium-tracking)}
-.ifs-button--m{height:var(--control-h-m);padding:var(--space-150) var(--space-250);border-radius:var(--radius-control);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-button--s{height:var(--control-h-s);padding:var(--space-50) var(--space-150);border-radius:var(--radius-control);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-icon-button--l{width:var(--control-h-l);height:var(--control-h-l);padding:var(--space-300);border-radius:var(--radius-control)}
-.ifs-icon-button--m{width:var(--control-h-m);height:var(--control-h-m);padding:var(--space-200);border-radius:var(--radius-control)}
-.ifs-icon-button--s{width:var(--control-h-s);height:var(--control-h-s) /* square at every density (was 24 wide, 28 tall at Spacious) */;padding:var(--space-100);border-radius:var(--radius-control)}
+.ifs-button--l{height:var(--size-control-l);padding:var(--space-200) var(--space-300);border-radius:var(--radius-control);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking)}
+.ifs-button--m{height:var(--size-control-m);padding:var(--space-150) var(--space-250);border-radius:var(--radius-control);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
+.ifs-button--s{height:var(--size-control-s);padding:var(--space-50) var(--space-150);border-radius:var(--radius-control);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
+.ifs-icon-button--l{width:var(--size-control-l);height:var(--size-control-l);padding:var(--space-300);border-radius:var(--radius-control)}
+.ifs-icon-button--m{width:var(--size-control-m);height:var(--size-control-m);padding:var(--space-200);border-radius:var(--radius-control)}
+.ifs-icon-button--s{width:var(--size-control-s);height:var(--size-control-s) /* square at every density (was 24 wide, 28 tall at Spacious) */;padding:var(--space-100);border-radius:var(--radius-control)}
 .ifs-icon-button--circle{border-radius:var(--radius-pill)}
 
 /* Types: fill + stroke per state, straight from element/button/<type>/{fill,border}/<state>.

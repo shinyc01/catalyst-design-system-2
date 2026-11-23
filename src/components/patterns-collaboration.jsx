@@ -362,7 +362,7 @@ function CollaboratorsPanel({ controller: c, open, defaultOpen, onOpenChange, tr
     {c.suggested.length > 0 && <CollaboratorSection cooper title="Suggested people by Cooper">{c.suggested.map(p => row(p))}</CollaboratorSection>}
   </>;
   const card = (
-    <IFS.Popover inline title="Collaborators" showClose={!inline} width="var(--overlay-width-s)" className={ccx('ifs-collab-panel', className)} style={style}>
+    <IFS.Popover inline title="Collaborators" showClose={!inline} width="var(--layout-popover-width)" className={ccx('ifs-collab-panel', className)} style={style}>
       <div className="ifs-collab-panel__tools">
         <IFS.Search placeholder="Invite by name or role..." value={q} onChange={v => setQ(v)} aria-label="Invite by name or role"
           onFocus={() => { clearTimeout(blurT.current); setFocus(true); }} onBlur={() => { blurT.current = setTimeout(() => setFocus(false), 200); }} />

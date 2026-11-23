@@ -13,8 +13,8 @@
 .ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
 .ifs-pin-dot__fill{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:var(--pd-in);height:var(--pd-in);padding:0 var(--space-100);border-radius:var(--radius-pill);
   background:var(--pd-fill);color:var(--color-text);overflow:hidden}
-.ifs-pin-dot__text{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
-.ifs-pin-dot--l .ifs-pin-dot__text{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
+.ifs-pin-dot__text{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
+.ifs-pin-dot--l .ifs-pin-dot__text{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
 .ifs-pin-dot--s .ifs-pin-dot__text,.ifs-pin-dot--xs .ifs-pin-dot__text{display:none}
 .ifs-pin-dot--s .ifs-pin-dot__fill,.ifs-pin-dot--xs .ifs-pin-dot__fill{padding:0}
 .ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin)}
@@ -48,7 +48,7 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-pin-pole{display:inline-flex;flex-direction:column;align-items:center;gap:var(--space-200);width:32px;margin:0;padding:0;border:0;background:none;
   cursor:pointer;border-radius:var(--radius-control)}
 .ifs-pin-pole--dot{gap:var(--space-100);justify-content:center}
-.ifs-pin-pole__label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--color-text);white-space:nowrap;
+.ifs-pin-pole__label{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text);white-space:nowrap;
   -webkit-text-stroke:2px #2d3238 /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px rgba(0,0,0,.7) /* raw in Figma */}
 .ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--color-background-accent-white-strong)}
 /* "Pin" / "Hierarchy Pin": teardrop (circle + tail) in white with a status circle and a white asset icon. */
@@ -72,7 +72,7 @@ button.ifs-pin-defect{cursor:pointer}
 /* ================= bar-chart-item (44fcce06…) / vertical-bar-chart-item (c06b1d19…) ================= */
 .ifs-bar-item{--bar-fill:var(--color-data-viz-data-1);display:flex;align-items:center;justify-content:center;box-sizing:border-box;
   min-width:0;min-height:0;height:var(--size-32) /* holds a label, so it scales */;padding:0 var(--space-200);border-radius:var(--radius-control);background:var(--bar-fill);
-  color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */;
+  color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;
   overflow:hidden;white-space:nowrap}
 /* Figma colour index → data-viz/data-N (the set skips N=8: 9→6, 6→7, 7→9, 8→10). Missing variables: fallbacks are the Figma values. */
 .ifs-bar-item--c1{--bar-fill:var(--color-data-viz-data-1)}
@@ -99,18 +99,18 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-popover{max-height:22.5rem}
 .ifs-docs-popover .ifs-popover__content{gap:0}
 .ifs-docs-popover__empty{display:flex;align-items:center;justify-content:center;min-height:7.5rem;color:var(--color-text);
-  font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */}
+  font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
 
 /* Cooper's context (left side of the value bottom sheet) with the popover anchored above the bar. */
 .ifs-docs-context{position:static;display:flex;align-items:center}
-.ifs-docs-context__pop{position:fixed;z-index:var(--z-index-z-popover)}
+.ifs-docs-context__pop{position:fixed;z-index:var(--z-index-popover)}
 .ifs-docs-context__file{display:none}
 .ifs-docs-context .ifs-coverage{min-width:11.25rem}
 
 /* Drop area: the content region; the purple dashed overlay (move-and-drop-background, change-position-overlay) while files are dragged over it. */
 .ifs-docs-drop{position:relative;min-height:0}
-.ifs-docs-drop__overlay{position:absolute;inset:0;z-index:var(--z-index-z-floating);min-height:0;border-radius:0;pointer-events:none}
-.ifs-docs-drop__ghosts{position:absolute;z-index:var(--z-index-z-floating);display:grid;grid-template-columns:repeat(2,auto);gap:var(--space-200);pointer-events:none}
+.ifs-docs-drop__overlay{position:absolute;inset:0;z-index:var(--z-index-floating);min-height:0;border-radius:0;pointer-events:none}
+.ifs-docs-drop__ghosts{position:absolute;z-index:var(--z-index-floating);display:grid;grid-template-columns:repeat(2,auto);gap:var(--space-200);pointer-events:none}
 .ifs-docs-drop__ghosts .ifs-node-card{width:230px}
 
 /* Feedback stack (alerts + snackbars), top-right under the page header. */
@@ -121,6 +121,6 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-feedback .ifs-alert{width:18.9375rem}
 .ifs-docs-details{display:flex;flex-direction:column;gap:var(--space-200);margin:0;padding:0;list-style:none}
 .ifs-docs-details li{display:flex;flex-direction:column;gap:var(--space-50)}
-.ifs-docs-details__name{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)}
-.ifs-docs-details__why{color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+.ifs-docs-details__name{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
+.ifs-docs-details__why{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
 .ifs-docs-context__loading .ifs-icon{animation:ifs-spin var(--motion-loop-spin) var(--motion-ease-linear) infinite}

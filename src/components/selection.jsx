@@ -22,7 +22,7 @@ function Floating({ anchorRef, floatRef, position = 'down', matchWidth = true, a
   useLayoutEffect(() => {
     const calc = () => {
       const a = anchorRef.current; if (!a) return;
-      const r = a.getBoundingClientRect(), gap = 4; // --gaps-gap-100
+      const r = a.getBoundingClientRect(), gap = 4; // --space-100
       const fh = floatRef && floatRef.current ? floatRef.current.offsetHeight : 0;
       let up = position === 'up';
       if (flip && fh) { if (!up && r.bottom + gap + fh > window.innerHeight && r.top - gap - fh >= 0) up = true; else if (up && r.top - gap - fh < 0) up = false; }

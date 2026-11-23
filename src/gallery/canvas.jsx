@@ -139,8 +139,8 @@ export default IFS_GALLERY;
     const jump = e => { const r = e.currentTarget.getBoundingClientRect(); onJump((e.clientX - r.left) / scale, (e.clientY - r.top) / scale); };
     return (
       <div onPointerDown={jump} title="Mini-map (not a Figma component)" style={{ position: 'relative', width: mw, height: mh, overflow: 'hidden', cursor: 'pointer',
-        borderRadius: 'var(--radius-radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-elevation-1-primary)',
-        backdropFilter: 'blur(var(--blur-strong))' }}>
+        borderRadius: 'var(--radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-1)',
+        backdropFilter: 'blur(var(--blur-80))' }}>
         {NODES.map(n => <span key={n.id} style={{ position: 'absolute', left: n.x * scale, top: n.y * scale, width: W * scale, height: H * scale, borderRadius: 1,
           background: 'var(--color-border-strong)' }} />)}
         <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--color-border-selected)', borderRadius: 2 }} />

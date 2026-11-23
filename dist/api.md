@@ -2020,7 +2020,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 274× (Explore, Command) · usual: Cooper badge no 63%
 Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
-Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --control-h-s, "Search for…") + icon-button-filter (round, same height).
+Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --size-control-s, "Search for…") + icon-button-filter (round, same height).
 Right ("container-left"): collaborators button (Button Tertiary S, users-group, "3/5") + icon-button-comment.
 Props: search = SmartSearch props (placeholder, onSubmit, suggestions…), onFilter, filtersApplied (filter dot),
 collaborators (label, default "3/5"; null hides), onCollaborators, onComments, hasNewComments, children (extra left content),
@@ -2063,7 +2063,7 @@ Figma: smart-search-organism (2145:3758) — the Cooper "Ask anything…" bar (s
 Props: type text|voice / defaultType / onTypeChange (Text shows the mic button, Voice shows the keyboard button and listens),
 placeholder, value / defaultValue / onChange(value), onSubmit(value) on Enter or suggestion pick, onClear,
 suggestions (strings or {label,type,query}; shown in a search-modal while focused), suggestionsTitle, listening (voice: "…" state),
-disabled, width (default 360, Figma), size l (default: --control-h-m, 36 / 32 / 28) | s (--control-h-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
+disabled, width (default 360, Figma), size l (default: --size-control-m, 36 / 32 / 28) | s (--size-control-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
 state hover|focus|pressed (gallery only), aria-label.
 The default search (AI search: keywords or natural language). IFS.Search (search-regular-organism) is the simple keyword search, when the use case needs no AI.
 `function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear, suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, ...rest })`

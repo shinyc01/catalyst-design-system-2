@@ -18,7 +18,7 @@ function useNbValue(value, defaultValue, onChange) {
 
 
 // Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
-// Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --control-h-s, "Search for…") + icon-button-filter (round, same height).
+// Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --size-control-s, "Search for…") + icon-button-filter (round, same height).
 // Right ("container-left"): collaborators button (Button Tertiary S, users-group, "3/5") + icon-button-comment.
 // Props: search = SmartSearch props (placeholder, onSubmit, suggestions…), onFilter, filtersApplied (filter dot),
 // collaborators (label, default "3/5"; null hides), onCollaborators, onComments, hasNewComments, children (extra left content),

@@ -7,7 +7,7 @@
   gap:var(--space-300);padding:var(--space-100);
   border-radius:20px 20px 20px 2px /* raw in Figma: 30/100/100/2, which Figma clamps to half the 40px height */;background:var(--pin-fill);
   box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);cursor:pointer;color:var(--color-text);transition:border-radius var(--motion-duration-50) var(--motion-ease-standard)}
-.ifs-cpin--read{--pin-fill:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong))}
+.ifs-cpin--read{--pin-fill:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
 .ifs-cpin--cooper{--pin-fill:var(--color-cooper-background-strong)}
 .ifs-cpin{pointer-events:auto}
 .ifs-cpin:focus-visible{box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 0 2.5px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
@@ -18,9 +18,9 @@
 .ifs-cpin--open .ifs-cpin__avatars > * + *{margin-inline-start:0}
 .ifs-cpin__body{display:flex;flex-direction:column;gap:var(--space-150) /* raw in Figma */;width:100%;min-width:0}
 .ifs-cpin__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-20)}
-.ifs-cpin__name{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-cpin__time,.ifs-cpin__replies{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-cpin__text{color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
+.ifs-cpin__name{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-cpin__time,.ifs-cpin__replies{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cpin__text{color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
 
@@ -46,12 +46,12 @@
 .ifs-cdcard--selected .ifs-cdcard__meta,.ifs-cdcard--menu .ifs-cdcard__meta{display:none}
 .ifs-cdcard[data-state=focus] .ifs-cdcard__buttons{display:none}
 .ifs-cdcard__comment{display:flex;flex-direction:column;gap:var(--space-150) /* raw in Figma */;min-width:0}
-.ifs-cdcard__where{display:flex;align-items:center;gap:var(--space-150) /* raw in Figma */;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cdcard__where{display:flex;align-items:center;gap:var(--space-150) /* raw in Figma */;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-cdcard__bullet{width:var(--size-4);height:var(--size-4);border-radius:50%;background:var(--color-icon-disabled);flex:none}
 .ifs-cdcard__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-20)}
-.ifs-cdcard__name{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-cdcard__time{color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-cdcard__text{color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);
+.ifs-cdcard__name{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-cdcard__time{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-cdcard__text{color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
 
 /* ---------- CommentCallout (kit CommentThread: resolved look, menus and @ picker are the kit's) ---------- */

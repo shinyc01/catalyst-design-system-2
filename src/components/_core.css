@@ -8,16 +8,16 @@
 /* Figma focus ring: outer 3px focus-outer + inner 1.5px focus-inner, both outside. */
 .ifs-focus-ring{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 
-/* Click area (Nov 19, 2.0.3): every clickable thing is at least --target-min (24 x 24).
+/* Click area (Nov 19, 2.0.3): every clickable thing is at least --size-target-min (24 x 24).
    Rule 1: a clickable component's own box is at least 24 x 24 (icon buttons, toggles, handles, menus: see each component).
    Rule 2: only controls that must look smaller than 24 get an invisible layer that grows the click area to 24, centred:
    the bare checkbox box (16), the small switch (22 x 12) and the slider thumb (12). */
 :where(.ifs-switch--s,.ifs-check){position:relative}
 :where(.ifs-switch--s,.ifs-check,.ifs-slider-thumb)::before{content:"";position:absolute;
-  inset-block:min(0px,calc(50% - var(--target-min) / 2));inset-inline:min(0px,calc(50% - var(--target-min) / 2))}
+  inset-block:min(0px,calc(50% - var(--size-target-min) / 2));inset-inline:min(0px,calc(50% - var(--size-target-min) / 2))}
 /* The range-field stepper keeps its look (two stacked 16 x 8 halves): each half's invisible area grows to 24 wide and 12 tall,
    outward only (up for the top half, down for the bottom half), so the halves never overlap and stay inside the field. */
 :where(.ifs-range-field__stepper button)::before{content:"";position:absolute;
-  inset-inline:min(0px,calc(50% - var(--target-min) / 2));inset-block:0}
-:where(.ifs-range-field__stepper button:first-child)::before{inset-block-start:calc(var(--target-min) / -6)}
-:where(.ifs-range-field__stepper button:nth-child(2))::before{inset-block-end:calc(var(--target-min) / -6)}
+  inset-inline:min(0px,calc(50% - var(--size-target-min) / 2));inset-block:0}
+:where(.ifs-range-field__stepper button:first-child)::before{inset-block-start:calc(var(--size-target-min) / -6)}
+:where(.ifs-range-field__stepper button:nth-child(2))::before{inset-block-end:calc(var(--size-target-min) / -6)}

@@ -12,11 +12,11 @@
 .ifs-trc-solution:not(.ifs-trc-solution--applied) .ifs-trc-solution__body{margin-inline-end:calc(var(--space-600) + var(--space-200))}
 .ifs-trc-solution__cooper{flex:none;margin-top:var(--size-1)}
 .ifs-trc-solution__text{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
-.ifs-trc-solution__title{font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);color:var(--color-text)} /* H4: card title (Nov 19, 2.0.3) */
+.ifs-trc-solution__title{font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking);color:var(--color-text)} /* H4: card title (Nov 19, 2.0.3) */
 /* Fill style cooper/Insight/text: text/accent-cooper → text/primary gradient */
 .ifs-trc-solution__title--cooper{background:linear-gradient(270deg,var(--color-cooper-text) 35%,var(--color-text) 75%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.ifs-trc-solution__desc{font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
+.ifs-trc-solution__desc{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
 /* "The cancel button appears on hover" */
 .ifs-trc-solution--applied .ifs-content-card__head > .ifs-icon-button{opacity:0;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-trc-solution--applied:hover .ifs-content-card__head > .ifs-icon-button,
@@ -31,7 +31,7 @@
 .ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);padding:var(--space-inset);border-radius:var(--radius-card)}
 .ifs-content-card.ifs-trc-item[role=button]:hover,.ifs-content-card.ifs-trc-item[data-state=hover]{--fill:var(--color-surface-raised);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-trc-item__row{display:flex;align-items:center;gap:var(--space-150);min-width:0}
-.ifs-trc-item__title{flex:1;min-width:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft);
+.ifs-trc-item__title{flex:1;min-width:0;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-trc-item__check{flex:none;color:var(--color-icon-success)}
 
@@ -43,10 +43,10 @@
 .ifs-trc-nav{display:flex;flex-direction:column;width:100%;min-width:0}
 .ifs-trc-nav--list{gap:var(--space-200);padding:var(--space-inset) 0 var(--space-200) /* full-bleed list: the items carry their own side padding */}
 .ifs-trc-issue{display:flex;flex-direction:column;gap:var(--space-100);padding:var(--space-200) 0}
-.ifs-trc-issue__title{margin:0;font:var(--text-heading-h3-medium);letter-spacing:var(--text-heading-h3-medium-tracking);color:var(--color-text)} /* Heading/H3: the issue is the main subject of the panel (review, Nov 18) */
-.ifs-trc-issue__desc{margin:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft);max-width:var(--text-measure)} /* Body/M/regular */
+.ifs-trc-issue__title{margin:0;font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking);color:var(--color-text)} /* Heading/H3: the issue is the main subject of the panel (review, Nov 18) */
+.ifs-trc-issue__desc{margin:0;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft);max-width:var(--font-measure)} /* Body/M/regular */
 .ifs-trc-section{display:flex;flex-direction:column;gap:var(--space-stack);padding-top:var(--space-inset)}
-.ifs-trc-caption{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--color-text-soft)} /* Label/M/medium */
+.ifs-trc-caption{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text-soft)} /* Label/M/medium */
 .ifs-trc-solutions{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-trc-actions{display:flex;gap:var(--space-150);padding-top:var(--space-200)}
 .ifs-trc-actions > .ifs-button{flex:1 1 0;min-width:0}
@@ -55,11 +55,11 @@
 /* ---- ConfidenceGates ---- */
 .ifs-trc-gates{display:flex;flex-direction:column;gap:var(--space-stack);width:100%}
 .ifs-trc-gates__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);
-  font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking);color:var(--color-text)} /* H4: readiness card title (Nov 19, 2.0.3) */
+  font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking);color:var(--color-text)} /* H4: readiness card title (Nov 19, 2.0.3) */
 .ifs-trc-gates__pct{display:inline-flex;align-items:center;gap:var(--space-200)}
 .ifs-trc-gates__list{display:flex;flex-direction:column}
 .ifs-trc-gates__inds{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-150);width:100%}
-.ifs-trc-gates__ind{display:inline-flex;align-items:center;min-height:var(--target-min);border-radius:var(--radius-pill)}
+.ifs-trc-gates__ind{display:inline-flex;align-items:center;min-height:var(--size-target-min);border-radius:var(--radius-pill)}
 .ifs-trc-gates__ind:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 
 /* ---- SystemConfidence card (content-card-organism, surface/secondary-alpha, 8 padding, radius 4 = kit ContentCard M) ---- */
