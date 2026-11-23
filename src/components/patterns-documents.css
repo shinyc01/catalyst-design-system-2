@@ -4,28 +4,28 @@
 /* ================= map-pin-dot (d2686af3…) ================= */
 .ifs-pin-dot{--pd-fill:var(--color-icon-danger);--pd-size:24px;--pd-in:22px;
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
-  min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-radius-full);cursor:pointer; /* grows into a pill when the count needs it */
-  background:var(--color-background-accent-white-strong);box-shadow:0 0 0 1px var(--color-border-soft),var(--drop-shadow-pin)}
+  min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-pill);cursor:pointer; /* grows into a pill when the count needs it */
+  background:var(--color-background-accent-white-strong);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
 .ifs-pin-dot--warning{--pd-fill:var(--color-icon-warning)}
 .ifs-pin-dot--success{--pd-fill:var(--color-icon-softer)} /* Figma: status=Success is bound to map-pin/fill/default */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}
 .ifs-pin-dot--s{--pd-size:16px;--pd-in:14px}
-.ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 0.5px var(--color-border-soft),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
-.ifs-pin-dot__fill{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:var(--pd-in);height:var(--pd-in);padding:0 var(--space-100);border-radius:var(--radius-radius-full);
+.ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
+.ifs-pin-dot__fill{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:var(--pd-in);height:var(--pd-in);padding:0 var(--space-100);border-radius:var(--radius-pill);
   background:var(--pd-fill);color:var(--color-text);overflow:hidden}
 .ifs-pin-dot__text{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
 .ifs-pin-dot--l .ifs-pin-dot__text{font:var(--text-body-s-regular);letter-spacing:var(--text-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
 .ifs-pin-dot--s .ifs-pin-dot__text,.ifs-pin-dot--xs .ifs-pin-dot__text{display:none}
 .ifs-pin-dot--s .ifs-pin-dot__fill,.ifs-pin-dot--xs .ifs-pin-dot__fill{padding:0}
-.ifs-pin-dot--selected{box-shadow:0 0 0 2px var(--color-border-selected-soft),var(--drop-shadow-pin)}
-.ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 1px var(--color-border-selected-soft),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
+.ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin)}
+.ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-default) var(--color-border-selected-soft),0 0 5px 0 rgba(10,14,21,.2) /* raw in Figma */}
 .ifs-pin-dot--dimmed{background:var(--color-background-accent-white-soft);backdrop-filter:blur(var(--blur-soft));-webkit-backdrop-filter:blur(var(--blur-soft)) /* code 20; Figma says 40 (= --blur-medium): open question */;
-  box-shadow:0 0 0 1px var(--color-border-soft),0 0 10px 0 rgba(10,14,21,.2) /* raw in Figma */}
+  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 10px 0 rgba(10,14,21,.2) /* raw in Figma */}
 .ifs-pin-dot--dimmed .ifs-pin-dot__fill{opacity:.4}
 /* higlight=yes: a ring twice the pin's size behind it (overlay fill + status hairline, 40 %) with the map-highlight glow. */
 .ifs-pin-dot--highlight::before{content:"";position:absolute;left:50%;top:50%;width:calc(var(--pd-size) * 2);height:calc(var(--pd-size) * 2); /* ltr: centred on the pin */
   transform:translate(-50%,-50%);border-radius:50%;box-sizing:border-box;z-index:-1;opacity:.4;
-  background:var(--color-background-danger-soft);border:1px solid var(--color-icon-danger);box-shadow:var(--inner-shadow-map-highlight-critical)}
+  background:var(--color-background-danger-soft);border:var(--border-width-default) solid var(--color-icon-danger);box-shadow:var(--inner-shadow-map-highlight-critical)}
 .ifs-pin-dot--highlight.ifs-pin-dot--warning::before{background:var(--color-background-warning-soft);border-color:var(--color-icon-warning);
   box-shadow:var(--inner-shadow-map-highlight-moderate)}
 .ifs-pin-dot--highlight{isolation:isolate}
@@ -34,7 +34,7 @@
 /* ================= map-pin-defect (91cf9e42…) ================= */
 .ifs-pin-defect{--pd-fill:var(--color-icon-danger);display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
   width:24px;height:24px;margin:0;padding:0;border:0;border-radius:50%;background:var(--color-background-accent-white-strong);
-  box-shadow:0 0 0 1px var(--color-border-soft),var(--drop-shadow-pin);color:var(--color-icon)}
+  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin);color:var(--color-icon)}
 .ifs-pin-defect--unconfirmed{--pd-fill:var(--color-icon-warning)}
 .ifs-pin-defect--monitoring{--pd-fill:var(--color-icon-success)}
 .ifs-pin-defect__fill{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--pd-fill)}
@@ -46,13 +46,13 @@ button.ifs-pin-defect{cursor:pointer}
 
 /* ================= map-pin-pole "Pole" (b548a660…) ================= */
 .ifs-pin-pole{display:inline-flex;flex-direction:column;align-items:center;gap:var(--space-200);width:32px;margin:0;padding:0;border:0;background:none;
-  cursor:pointer;border-radius:var(--radius-radius-100)}
+  cursor:pointer;border-radius:var(--radius-control)}
 .ifs-pin-pole--dot{gap:var(--space-100);justify-content:center}
 .ifs-pin-pole__label{font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking);color:var(--color-text);white-space:nowrap;
   -webkit-text-stroke:2px #2d3238 /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px rgba(0,0,0,.7) /* raw in Figma */}
 .ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--color-background-accent-white-strong)}
 /* "Pin" / "Hierarchy Pin": teardrop (circle + tail) in white with a status circle and a white asset icon. */
-.ifs-pin-pole__pin{--pp-size:32px;--pp-in:29.5px;--pp-fill:var(--color-icon-softer);--pp-border:var(--color-icon-softer);--pp-bw:1px;
+.ifs-pin-pole__pin{--pp-size:32px;--pp-in:29.5px;--pp-fill:var(--color-icon-softer);--pp-border:var(--color-icon-softer);--pp-bw:var(--border-width-default);
   position:relative;flex:none;width:var(--pp-size);height:calc(var(--pp-size) * 1.22);filter:drop-shadow(var(--drop-shadow-pin))}
 .ifs-pin-pole__pin--hierarchy{--pp-size:26px;--pp-in:24px}
 .ifs-pin-pole__pin--error{--pp-fill:var(--color-icon-danger);--pp-border:var(--color-icon-danger)}
@@ -64,14 +64,14 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-pin-pole__circle{position:absolute;left:calc((var(--pp-size) - var(--pp-in)) / 2);top:calc((var(--pp-size) - var(--pp-in)) / 2); /* ltr: pin art */
   display:flex;align-items:center;justify-content:center;width:var(--pp-in);height:var(--pp-in);border-radius:50%;background:var(--pp-fill);color:var(--color-background-accent-white-strong)}
 .ifs-pin-pole__dot{position:relative;flex:none;width:16px;height:16px;box-sizing:border-box;border-radius:50%;background:var(--color-background-accent-white-strong);
-  box-shadow:0 0 0 1px var(--color-icon-softer),0 0 10px rgba(0,0,0,.15),0 0 4px rgba(0,0,0,.15) /* raw in Figma */}
+  box-shadow:0 0 0 var(--border-width-default) var(--color-icon-softer),0 0 10px rgba(0,0,0,.15),0 0 4px rgba(0,0,0,.15) /* raw in Figma */}
 .ifs-pin-pole__dot::after{content:"";position:absolute;inset:1px;border-radius:50%;background:var(--color-background-info-strong)}
-.ifs-pin-pole--selected .ifs-pin-pole__dot{box-shadow:0 0 0 2px var(--color-border-selected-soft),0 0 10px rgba(0,0,0,.15) /* raw in Figma */}
-.ifs-pin-pole--selected .ifs-pin-defect{box-shadow:0 0 0 2px var(--color-border-selected-soft),var(--drop-shadow-pin)}
+.ifs-pin-pole--selected .ifs-pin-pole__dot{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),0 0 10px rgba(0,0,0,.15) /* raw in Figma */}
+.ifs-pin-pole--selected .ifs-pin-defect{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin)}
 
 /* ================= bar-chart-item (44fcce06…) / vertical-bar-chart-item (c06b1d19…) ================= */
 .ifs-bar-item{--bar-fill:var(--color-data-viz-data-1);display:flex;align-items:center;justify-content:center;box-sizing:border-box;
-  min-width:0;min-height:0;height:var(--size-32) /* holds a label, so it scales */;padding:0 var(--space-200);border-radius:var(--radius-radius-100);background:var(--bar-fill);
+  min-width:0;min-height:0;height:var(--size-32) /* holds a label, so it scales */;padding:0 var(--space-200);border-radius:var(--radius-control);background:var(--bar-fill);
   color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking) /* Label/M/medium */;
   overflow:hidden;white-space:nowrap}
 /* Figma colour index → data-viz/data-N (the set skips N=8: 9→6, 6→7, 7→9, 8→10). Missing variables: fallbacks are the Figma values. */
@@ -85,7 +85,7 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-bar-item--c7{--bar-fill:var(--color-data-viz-data-9)}
 .ifs-bar-item--c8{--bar-fill:var(--color-data-viz-data-10)}
 .ifs-vbar{display:inline-flex;flex-direction:column;justify-content:flex-end;gap:var(--space-50);box-sizing:border-box;width:104px;height:200px;
-  padding:var(--space-50);border-radius:var(--radius-radius-100);margin:0;border:0;background:none;outline:none}
+  padding:var(--space-50);border-radius:var(--radius-control);margin:0;border:0;background:none;outline:none}
 .ifs-vbar > .ifs-bar-item{height:auto;flex:var(--seg) 1 0;min-height:4px}
 button.ifs-vbar{cursor:pointer}
 .ifs-vbar--active,.ifs-vbar[data-state=active]{box-shadow:0 0 0 1.5px var(--color-focus-outer)}

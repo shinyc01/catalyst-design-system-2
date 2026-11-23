@@ -10,11 +10,11 @@
 
 /* ---------- preview-widget-card-organism (key c30262b5…) ---------- */
 .ifs-preview-widget{position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;min-width:0;
-  padding:var(--space-250);border-radius:var(--radius-radius-100);
-  box-shadow:inset 0 0 0 1px var(--color-border-soft);overflow:hidden;pointer-events:none} /* preview-widget skeletons below stay px: a miniature chart illustration */
+  padding:var(--space-250);border-radius:var(--radius-control);
+  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);overflow:hidden;pointer-events:none} /* preview-widget skeletons below stay px: a miniature chart illustration */
 .ifs-preview-widget__title{color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-preview-widget__sk{display:block;height:6px;border-radius:2px;background:var(--color-background-neutral-soft);box-shadow:inset 0 0 0 0.5px var(--color-border-soft)}
-.ifs-preview-widget__sk--outline{background:transparent;box-shadow:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-preview-widget__sk{display:block;height:6px;border-radius:var(--radius-mark);background:var(--color-background-neutral-soft);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
+.ifs-preview-widget__sk--outline{background:transparent;box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 /* strategic objectives: 5 × 4 block grid with y labels */
 .ifs-preview-widget__grid{display:grid;grid-template-columns:auto 1fr;gap:var(--space-100) var(--space-200)}
 .ifs-preview-widget__yaxis{display:flex;flex-direction:column;justify-content:space-between;width:16px} /* y-axis labels drawn as skeleton bars (a thumbnail has no readable text) */
@@ -26,7 +26,7 @@
 /* framework coverage: donut + legend */
 .ifs-preview-widget__donut-row{display:flex;align-items:center;gap:var(--space-800);padding:var(--space-100) var(--space-300)}
 .ifs-preview-widget__donut{flex:none;width:100px;height:100px;border-radius:50%;box-sizing:border-box;
-  border:18px solid var(--color-background-neutral-soft);box-shadow:0 0 0 0.5px var(--color-border-soft),inset 0 0 0 0.5px var(--color-border-soft)}
+  border:18px solid var(--color-background-neutral-soft);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-preview-widget__legend{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-preview-widget__legend > span{display:flex;align-items:center;gap:var(--space-150)}
 .ifs-preview-widget__dot{width:6px}
@@ -39,18 +39,18 @@
 .ifs-preview-widget__diverging{display:grid;grid-template-columns:70px 1fr;gap:var(--space-100)}
 .ifs-preview-widget__dlabels{display:flex;flex-direction:column;gap:var(--space-150);padding-top:var(--space-150)}
 .ifs-preview-widget__dlabels .ifs-preview-widget__sk{max-width:100%}
-.ifs-preview-widget__dplot{position:relative;display:flex;flex-direction:column;gap:var(--space-150);padding:var(--space-150) 0;box-shadow:inset 0 0 0 0.5px var(--color-border-soft)}
-.ifs-preview-widget__dplot::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:0.5px dashed var(--color-border-strong)} /* ltr: centred plot line */
+.ifs-preview-widget__dplot{position:relative;display:flex;flex-direction:column;gap:var(--space-150);padding:var(--space-150) 0;box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
+.ifs-preview-widget__dplot::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:var(--border-width-default) dashed var(--color-border-strong)} /* ltr: centred plot line */
 .ifs-preview-widget__drow{position:relative;height:6px}
 .ifs-preview-widget__drow .ifs-preview-widget__sk{position:absolute;top:0}
 
 /* ---------- widget-card-organism (key 7e67813d…) ---------- */
 .ifs-widget-card{position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;min-width:0;
-  padding:var(--space-inset) var(--space-inset);border-radius:var(--radius-radius-200);background:var(--color-surface-secondary)}
+  padding:var(--space-inset) var(--space-inset);border-radius:var(--radius-card);background:var(--color-surface-secondary)}
 .ifs-widget-card--grabbable{cursor:grab;touch-action:none}
 .ifs-widget-card--drag{background:var(--color-background-neutral);cursor:grabbing;backdrop-filter:blur(var(--blur-light));
   /* Figma: border/black 3px OUTSIDE on the card, a raw #ffffff 4px OUTSIDE ring on the component, drop shadow 0 4 10.3 #000@25% */
-  box-shadow:0 0 0 3px var(--color-border-on-solid-dark),0 0 0 4px #ffffff /* raw in Figma */,0 4px 10.3px rgba(0,0,0,0.25)}
+  box-shadow:0 0 0 3px var(--color-border-on-solid-dark),0 0 0 var(--border-width-emphasis) #ffffff /* raw in Figma */,0 4px 10.3px rgba(0,0,0,0.25)}
 .ifs-widget-card__head{display:flex;align-items:flex-start;gap:var(--space-stack)}
 .ifs-widget-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-widget-card__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-24);color:var(--color-text);
@@ -61,7 +61,7 @@
 
 /* ---------- resize-handle (key 190c6106…) ---------- */
 .ifs-resize-handle{position:relative;display:inline-block;width:var(--size-22);height:var(--size-64);color:var(--white-500)}
-.ifs-resize-handle__bar{position:absolute;left:var(--size-10);top:0;width:3px;height:100%;border-radius:var(--radius-radius-200);background:currentColor} /* ltr: resize handle art */
+.ifs-resize-handle__bar{position:absolute;left:var(--size-10);top:0;width:3px;height:100%;border-radius:var(--radius-pill);background:currentColor} /* ltr: resize handle art */
 .ifs-resize-handle__arrow{position:absolute;top:calc(50% - var(--size-6))}
 .ifs-resize-handle__arrow--left{left:-3px} /* ltr: resize handle art */
 .ifs-resize-handle__arrow--right{right:-3px} /* ltr: resize handle art */
@@ -70,7 +70,7 @@
 .ifs-drop-indicator{display:flex;align-items:center;pointer-events:none}
 .ifs-drop-indicator--horizontal{height:var(--size-4)}
 .ifs-drop-indicator--vertical{flex-direction:column;width:var(--size-4)}
-.ifs-drop-indicator__dot{flex:none;width:var(--size-4);height:var(--size-4);border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 1px var(--color-border-accent-purple)}
+.ifs-drop-indicator__dot{flex:none;width:var(--size-4);height:var(--size-4);border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 var(--border-width-default) var(--color-border-accent-purple)}
 .ifs-drop-indicator__line{flex:1;background:var(--color-border-accent-purple)}
 .ifs-drop-indicator--horizontal .ifs-drop-indicator__line{height:1px}
 .ifs-drop-indicator--vertical .ifs-drop-indicator__line{width:1px}
@@ -78,8 +78,8 @@
 /* ---------- widget-view-change-position (Patterns 331:509936) ---------- */
 /* fixed 48: the widget palette tile, not a control (A1 fixed sizes) */
 .ifs-widget-chip{display:inline-flex;align-items:center;gap:var(--space-100);box-sizing:border-box;width:11.875rem;height:var(--size-48);
-  padding:var(--space-300) /* a chip: fixed, like other controls */;border-radius:var(--radius-radius-100);background:var(--color-surface-secondary);
-  box-shadow:0 0 0 1px var(--color-border-soft);backdrop-filter:blur(var(--blur-faint));-webkit-backdrop-filter:blur(var(--blur-faint)) /* Figma background blur 4 */}
+  padding:var(--space-300) /* a chip: fixed, like other controls */;border-radius:var(--radius-control);background:var(--color-surface-secondary);
+  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-faint));-webkit-backdrop-filter:blur(var(--blur-faint)) /* Figma background blur 4 */}
 .ifs-widget-chip__title{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;color:var(--color-text-softer);
   font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking) /* H4, like every card title (Nov 19, 2.0.3) */}
 
@@ -90,9 +90,9 @@
 .wb-frame__body{flex:1;min-width:0;color:var(--color-text);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking) /* Body/M/regular */}
 .wb-frame--bare .wb-frame__body{padding:0}
 .wb-frame--drag .ifs-dv-header__hover,.wb-frame--drag .ifs-dv-header__drag{opacity:0;pointer-events:none}
-.wb-frame--drag{box-shadow:inset 0 0 0 1px var(--color-border-strong)}
+.wb-frame--drag{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 /* ghost (content-card-organism State=Drag): surface/tertiary-alpha, border/strong 1 inside, blur 80 */
-.wb-frame--ghost{background:var(--color-surface-tertiary);box-shadow:inset 0 0 0 1px var(--color-border-strong),var(--drop-shadow-floating);backdrop-filter:blur(var(--blur-strong))}
+.wb-frame--ghost{background:var(--color-surface-tertiary);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong),var(--drop-shadow-floating);backdrop-filter:blur(var(--blur-strong))}
 .wb-frame--ghost .ifs-dv-header__drag{display:inline-flex}
 .wb-frame--ghost .ifs-dv-header{padding-inline-start:var(--space-100)}
 
@@ -100,7 +100,7 @@
 .wb-board--dragging,.wb-board--dragging *{cursor:grabbing !important;user-select:none}
 .wb-board--resizing,.wb-board--resizing *{cursor:ew-resize !important;user-select:none}
 .wb-section{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
-.wb-section--titled{padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--color-surface-secondary);box-shadow:inset 0 0 0 1px var(--color-border-soft)}
+.wb-section--titled{padding:var(--space-inset);border-radius:var(--radius-card);background:var(--color-surface-secondary);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .wb-section__title{margin:0;color:var(--color-text);font:var(--text-heading-h2-medium);letter-spacing:var(--text-heading-h2-medium-tracking) /* Heading/H2 */}
 .wb-rows{display:flex;flex-direction:column;gap:var(--wb-gap);min-width:0}
 .wb-row{position:relative;display:flex;align-items:stretch;gap:var(--wb-gap);min-width:0}
@@ -112,16 +112,16 @@
 .wb-edge > .ifs-resize-handle{max-height:100%}
 .wb-indicator{position:absolute;z-index:3}
 .wb-empty-zone{min-height:7.5rem}
-.wb-ghost{position:fixed;z-index:1000;pointer-events:none;overflow:hidden;border-radius:var(--radius-radius-100)}
+.wb-ghost{position:fixed;z-index:1000;pointer-events:none;overflow:hidden;border-radius:var(--radius-control)}
 .wb-ghost--back{transition:left 200ms ease,top 200ms ease;opacity:0.4}
-.wb-ghost__blank{border-radius:var(--radius-radius-100);background:var(--color-background-neutral-soft)}
+.wb-ghost__blank{border-radius:var(--radius-control);background:var(--color-background-neutral-soft)}
 .wb-tip{position:absolute;white-space:nowrap;pointer-events:none}
 .wb-tip--cursor{position:fixed;z-index:1001}
 .wb-tip--above{bottom:calc(100% + 4px);left:50%;transform:translateX(-50%)} /* ltr: centred with translateX */
 
 /* ⋮ menu (single-select-list visuals) with the Resize S / M / L submenu */
 .wb-size-option__bars{display:flex;gap:var(--space-50)}
-.wb-size-option__bars i{display:block;width:1.875rem;height:var(--size-14);border-radius:2px;background:var(--color-background-neutral)}
+.wb-size-option__bars i{display:block;width:1.875rem;height:var(--size-14);border-radius:var(--radius-mark);background:var(--color-background-neutral)}
 .wb-size-option__bars i.is-on{background:var(--color-text-softer)}
 .wb-size-option__bars.is-selected i.is-on{background:var(--color-background-accent-blue-strong)}
 

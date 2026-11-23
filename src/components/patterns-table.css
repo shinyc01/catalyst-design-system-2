@@ -6,7 +6,7 @@
   --border:var(--color-border-input);--ring:0 0 0 0 transparent;
   display:flex;align-items:center;justify-content:space-between;gap:var(--space-700);box-sizing:border-box;width:100%;height:var(--control-h-m) /* same as Search: 36 / 32 / 28 (Nov 19, was 40) */;
   padding-block:0;padding-inline:var(--space-300) var(--space-100);
-  border-radius:var(--radius-radius-full);box-shadow:var(--ring),inset 0 0 0 1px var(--border) /* INSIDE stroke */;
+  border-radius:var(--radius-pill);box-shadow:var(--ring),inset 0 0 0 var(--border-width-default) var(--border) /* INSIDE stroke */;
   color:var(--color-icon);cursor:text;transition:box-shadow .12s;
 }
 .ifs-smart-search__lead{display:flex;align-items:center;gap:var(--space-150);flex:1;min-width:0}
@@ -36,8 +36,8 @@
 
 /* ================= search-modal (d983e4df…) ================= */
 .ifs-search-modal{
-  box-sizing:border-box;border-radius:var(--radius-radius-200);overflow:hidden;
-  background:var(--color-background-accent-black-soft);box-shadow:var(--elevation-elevation-3-primary),inset 0 0 0 1px var(--color-border-soft);
+  box-sizing:border-box;border-radius:var(--radius-floating);overflow:hidden;
+  background:var(--color-background-accent-black-soft);box-shadow:var(--elevation-elevation-3-primary),inset 0 0 0 var(--border-width-default) var(--color-border-soft);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect elevation-3 */
 }
 .ifs-search-modal--inline{position:relative;width:28.875rem}
@@ -50,7 +50,7 @@
 .ifs-search-card{
   all:unset;flex:none;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-control-m); /* size ladder m (A1): 36 / 32 / 28 */
   padding-block:var(--space-100);padding-inline:var(--space-200) var(--space-100);
-  border-radius:var(--radius-radius-100);cursor:pointer;color:var(--color-text);
+  border-radius:var(--radius-card);cursor:pointer;color:var(--color-text);
   font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking); /* Body/M/regular */
 }
 .ifs-search-card__text{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
@@ -60,12 +60,12 @@
 
 /* ================= Column filter (single-select-list-molecule + chips) ================= */
 .ifs-column-filter{
-  display:flex;flex-direction:column;box-sizing:border-box;border-radius:var(--radius-radius-100);
-  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 1px var(--color-border-soft);
+  display:flex;flex-direction:column;box-sizing:border-box;border-radius:var(--radius-control);
+  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
   backdrop-filter:blur(var(--blur-strong));-webkit-backdrop-filter:blur(var(--blur-strong)); /* effect blur/strong */
 }
 .ifs-column-filter__header{display:flex;align-items:center;gap:var(--space-100);min-height:2.375rem;box-sizing:border-box;
-  padding:var(--space-inset);box-shadow:inset 0 -1px 0 var(--color-border-soft) /* bottom stroke */}
+  padding:var(--space-inset);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft) /* bottom stroke */}
 .ifs-column-filter__title{color:var(--color-text-softer);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-column-filter__clear{margin-block:calc(-1 * var(--space-200));margin-inline:auto calc(-1 * var(--space-150))}
 .ifs-column-filter__body{display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset)}
@@ -80,8 +80,8 @@
 .ifs-range-field{
   --border:var(--color-border-input);
   position:relative;display:flex;align-items:center;flex:1;min-width:0;box-sizing:border-box;height:var(--size-32);gap:var(--space-150);
-  padding:var(--space-200);border-radius:var(--radius-radius-100);background:var(--color-background-input);
-  box-shadow:0 0 0 1px var(--border) /* OUTSIDE stroke */;color:var(--color-icon-soft);
+  padding:var(--space-200);border-radius:var(--radius-control);background:var(--color-background-input);
+  box-shadow:0 0 0 var(--border-width-default) var(--border) /* OUTSIDE stroke */;color:var(--color-icon-soft);
 }
 .ifs-range-field:hover{--border:var(--color-border-input-hover)}
 .ifs-range-field:focus-within{--border:var(--color-border-input-focus)}
@@ -95,7 +95,7 @@
 .ifs-range-field__stepper:hover{color:var(--color-icon)}
 
 /* ================= Collaboration badge + read-only tooltip ================= */
-.ifs-collab-badge{all:unset;display:inline-flex;align-items:center;gap:var(--space-100);cursor:pointer;border-radius:var(--radius-radius-full)}
+.ifs-collab-badge{all:unset;display:inline-flex;align-items:center;gap:var(--space-100);cursor:pointer;border-radius:var(--radius-pill)}
 .ifs-collab-badge .ifs-badge{cursor:pointer;transition:background-color .12s}
 .ifs-collab-badge:hover .ifs-badge{background:var(--color-background-neutral)}
 .ifs-collab-badge:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
@@ -104,14 +104,14 @@
 .ifs-collab-tip__who{display:flex;flex-direction:column;flex:1;min-width:0}
 .ifs-collab-tip__name{color:var(--color-text);font:var(--text-label-m-medium);letter-spacing:var(--text-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-collab-tip__role,.ifs-collab-tip__time,.ifs-collab-tip__meta{color:var(--color-text-softer);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-collab-tip__quote{padding-inline-start:var(--space-200);box-shadow:inset 1px 0 0 var(--color-border);color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
-:where([dir="rtl"]) .ifs-collab-tip__quote{box-shadow:inset -1px 0 0 var(--color-border)} /* rtl: one-side border mirrors */
+.ifs-collab-tip__quote{padding-inline-start:var(--space-200);box-shadow:inset var(--border-width-default) 0 0 var(--color-border);color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)}
+:where([dir="rtl"]) .ifs-collab-tip__quote{box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border)} /* rtl: one-side border mirrors */
 
 /* ================= Name truncation ================= */
 .ifs-truncate{display:block;min-width:0;max-width:100%;overflow:hidden;white-space:nowrap}
 .ifs-truncate--end{text-overflow:ellipsis}
 .ifs-truncate--wrap{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.ifs-truncate:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer);border-radius:var(--radius-radius-100)}
+.ifs-truncate:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer);border-radius:var(--radius-control)}
 
 /* ================= More-actions menu: IFS.Menu (selection.css) ================= */
 
@@ -137,8 +137,8 @@
 
 /* ================= Record preview (panel-organism look) ================= */
 .ifs-record-preview{display:flex;flex-direction:column;flex:none;box-sizing:border-box;height:100%;min-height:0;
-  background:var(--color-surface-primary);box-shadow:inset 1px 0 0 var(--color-border-soft)}
-:where([dir="rtl"]) .ifs-record-preview{box-shadow:inset -1px 0 0 var(--color-border-soft)} /* rtl: one-side border mirrors */
+  background:var(--color-surface-primary);box-shadow:inset var(--border-width-default) 0 0 var(--color-border-soft)}
+:where([dir="rtl"]) .ifs-record-preview{box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)} /* rtl: one-side border mirrors */
 .ifs-record-preview__header{display:flex;align-items:center;gap:var(--space-200);padding:var(--space-inset)}
 .ifs-record-preview__id{flex:1;min-width:0;color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-record-preview__content{flex:1;min-height:0;overflow:auto;padding:0 var(--space-inset) var(--space-inset)}
@@ -152,7 +152,7 @@
   font:var(--text-heading-h4-semibold);letter-spacing:var(--text-heading-h4-semibold-tracking)} /* Heading/H4 */
 .ifs-data-table__title:disabled{cursor:default}
 .ifs-data-table__title .ifs-icon{color:var(--color-icon-soft)}
-.ifs-data-table__title:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer);border-radius:var(--radius-radius-100)}
+.ifs-data-table__title:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer);border-radius:var(--radius-control)}
 .ifs-data-table__scroll{min-height:0}
 .ifs-data-table--capped{overflow:hidden}
 .ifs-data-table--capped .ifs-data-table__scroll{flex:1;overflow:hidden;
@@ -161,9 +161,9 @@
 /* Ranked (Idea Pad) rows follow the table row height like every table (Nov 19, was 60). The row being dragged dims. */
 .ifs-data-table__row--dragged{opacity:.4}
 .ifs-data-table__table{display:flex;flex-direction:column;gap:var(--space-100)}
-.ifs-data-table__searching{display:flex;align-items:center;box-sizing:border-box;height:var(--table-row-h) /* a table row */;padding:0 var(--space-table-x);border-radius:var(--radius-radius-100);
+.ifs-data-table__searching{display:flex;align-items:center;box-sizing:border-box;height:var(--table-row-h) /* a table row */;padding:0 var(--space-table-x);border-radius:var(--radius-control);
   background:var(--color-surface-secondary);color:var(--color-text-soft);font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-data-table__empty{display:flex;justify-content:center;padding:var(--space-inset);border-radius:var(--radius-radius-100);background:var(--color-surface-secondary)}
+.ifs-data-table__empty{display:flex;justify-content:center;padding:var(--space-inset);border-radius:var(--radius-control);background:var(--color-surface-secondary)}
 .ifs-data-table__filter-pop{position:absolute;z-index:var(--z-index-z-popover)}
 /* Name cell: pin / drag lead, optional icon, name + code */
 .ifs-data-table__name{display:flex;align-items:center;gap:var(--space-100);min-width:0;flex:1}
@@ -186,6 +186,6 @@
 .ifs-tooltip-anchor:has(> .ifs-truncate){display:flex;min-width:0;max-width:100%} /* let a truncated name keep its cell width inside the tooltip anchor */
 
 /* Drag handles look like ghost icon buttons (Nov 19): 24 box, hover fill, focus ring, grab cursor */
-.ifs-data-table__handle,.ifs-column-settings__handle{border-radius:var(--radius-radius-100)}
+.ifs-data-table__handle,.ifs-column-settings__handle{border-radius:var(--radius-control)}
 .ifs-data-table__handle:hover,.ifs-column-settings__handle:hover{background:var(--color-background-neutral);color:var(--color-icon-soft)}
 .ifs-data-table__handle:focus-visible,.ifs-column-settings__handle:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}

@@ -1,11 +1,11 @@
 /* ================= Pattern: System Confidence · Trace Report (Patterns 12:121114) ================= */
 
 /* ---- IssueSolution — content-card-organism as a solution row (30:73123): 12 padding, radius 8, elevation-1/secondary + border/base ---- */
-.ifs-content-card.ifs-trc-solution{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 1px var(--color-border-soft);
-  padding:var(--space-inset);border-radius:var(--radius-radius-200)}
-.ifs-content-card.ifs-trc-solution[role=button]:hover,.ifs-content-card.ifs-trc-solution[data-state=hover]{--fill:var(--color-surface-raised-hover);--stroke:inset 0 0 0 1px var(--color-border)}
+.ifs-content-card.ifs-trc-solution{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
+  padding:var(--space-inset);border-radius:var(--radius-card)}
+.ifs-content-card.ifs-trc-solution[role=button]:hover,.ifs-content-card.ifs-trc-solution[data-state=hover]{--fill:var(--color-surface-raised-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-content-card.ifs-trc-solution--recommended{--fill:var(--color-cooper-background-soft)}
-.ifs-content-card.ifs-trc-solution--recommended[role=button]:hover,.ifs-content-card.ifs-trc-solution--recommended[data-state=hover]{--fill:var(--color-cooper-background-soft);--stroke:inset 0 0 0 1px var(--color-border)}
+.ifs-content-card.ifs-trc-solution--recommended[role=button]:hover,.ifs-content-card.ifs-trc-solution--recommended[data-state=hover]{--fill:var(--color-cooper-background-soft);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-trc-solution .ifs-content-card__head{gap:var(--space-200)}
 .ifs-trc-solution__body{display:flex;align-items:flex-start;gap:var(--space-200);min-width:0}
 /* Figma keeps the 24px icon-button column (+8 gap) on every row, so text wraps at the same width with or without it */
@@ -23,15 +23,15 @@
 .ifs-trc-solution--applied:focus-within .ifs-content-card__head > .ifs-icon-button,
 .ifs-trc-solution--applied[data-state=hover] .ifs-content-card__head > .ifs-icon-button{opacity:1}
 /* Uploading: indicator-molecule with a gradient fill, 40px (30:77981) */
-.ifs-trc-solution--loading{height:var(--size-40);border-radius:var(--radius-radius-200);
+.ifs-trc-solution--loading{height:var(--size-40);border-radius:var(--radius-card);
   background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft));
   background-size:200% 100%;animation:ifs-trc-shimmer 1.4s linear infinite}
 @keyframes ifs-trc-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
 @media (prefers-reduced-motion:reduce){.ifs-trc-solution--loading{animation:none}}
 
 /* ---- IssueListItem — content-card-organism row (30:75771): 12 padding, radius 8, border/base, no fill ---- */
-.ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 1px var(--color-border-soft);padding:var(--space-inset);border-radius:var(--radius-radius-200)}
-.ifs-content-card.ifs-trc-item[role=button]:hover,.ifs-content-card.ifs-trc-item[data-state=hover]{--fill:var(--color-surface-raised);--stroke:inset 0 0 0 1px var(--color-border)}
+.ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);padding:var(--space-inset);border-radius:var(--radius-card)}
+.ifs-content-card.ifs-trc-item[role=button]:hover,.ifs-content-card.ifs-trc-item[data-state=hover]{--fill:var(--color-surface-raised);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-trc-item__row{display:flex;align-items:center;gap:var(--space-150);min-width:0}
 .ifs-trc-item__title{flex:1;min-width:0;font:var(--text-body-m-regular);letter-spacing:var(--text-body-m-regular-tracking);color:var(--color-text-soft);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -61,14 +61,14 @@
 .ifs-trc-gates__pct{display:inline-flex;align-items:center;gap:var(--space-200)}
 .ifs-trc-gates__list{display:flex;flex-direction:column}
 .ifs-trc-gates__inds{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-150);width:100%}
-.ifs-trc-gates__ind{display:inline-flex;align-items:center;min-height:var(--target-min);border-radius:var(--radius-radius-full)}
+.ifs-trc-gates__ind{display:inline-flex;align-items:center;min-height:var(--target-min);border-radius:var(--radius-pill)}
 .ifs-trc-gates__ind:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 
 /* ---- SystemConfidence card (content-card-organism, surface/secondary-alpha, 8 padding, radius 4 = kit ContentCard M) ---- */
 .ifs-trc-card .ifs-content-card__slot{display:block}
-.ifs-trc-card__issues{display:flex;flex-direction:column;box-shadow:inset 0 1px 0 var(--color-border-soft);padding-top:var(--space-100)}
+.ifs-trc-card__issues{display:flex;flex-direction:column;box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft);padding-top:var(--space-100)}
 .ifs-trc-card__issues.has-kinds{padding-top:0}
-.ifs-trc-card__kinds{padding:var(--space-inset) 0;box-shadow:inset 0 -1px 0 var(--color-border-soft)}
+.ifs-trc-card__kinds{padding:var(--space-inset) 0;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-trc-kinds{width:100%}
 
 
@@ -76,8 +76,8 @@
 .ifs-trc-report__body{padding:0 var(--space-inset)}
 .ifs-drawer__content > .ifs-trc-report__body,.ifs-drawer__content .ifs-trc-report__body{padding:0} /* the drawer content already has the inset */
 .ifs-drawer__content > .ifs-trc-report__footer{margin:auto calc(-1 * var(--space-inset)) calc(-1 * var(--space-inset))} /* full-bleed footer: its line spans the drawer, its own inset stays */ /* same inset as the drawer header and tabs */
-.ifs-trc-report__footer{display:flex;flex:none;padding:var(--space-inset);box-shadow:inset 0 1px 0 var(--color-border-soft)}
+.ifs-trc-report__footer{display:flex;flex:none;padding:var(--space-inset);box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft)}
 .ifs-trc-report__footer > .ifs-button{flex:1}
-.ifs-trc-report__kinds{padding-bottom:var(--space-stack);box-shadow:inset 0 -1px 0 var(--color-border-soft)}
+.ifs-trc-report__kinds{padding-bottom:var(--space-stack);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-trc-report--sidebar .ifs-trc-report__footer{padding:var(--space-inset) 0 0}
 
