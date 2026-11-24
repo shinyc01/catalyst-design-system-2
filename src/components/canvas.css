@@ -203,7 +203,8 @@
 .ifs-sankey-node__to{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;font-variant-numeric:var(--font-numeric)}
 .ifs-sankey-node__change{display:none;align-items:center;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */;font-variant-numeric:var(--font-numeric)}
 .ifs-sankey-node:hover,.ifs-sankey-node[data-state=hover],.ifs-sankey-node:focus-visible{--stub:var(--color-border-strong)}
-.ifs-sankey-node:hover .ifs-sankey-node__card,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__card,.ifs-sankey-node:focus-visible .ifs-sankey-node__card{
+/* hover fill only: focus is the ring alone, no fill change (rule 1.6, S1/S2) */
+.ifs-sankey-node:hover .ifs-sankey-node__card,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__card{
   background:linear-gradient(var(--color-background-neutral),var(--color-background-neutral)),var(--color-surface-elevation-1)}
 .ifs-sankey-node:hover .ifs-sankey-node__change,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__change,.ifs-sankey-node:focus-visible .ifs-sankey-node__change{display:inline-flex}
 .ifs-sankey-node:focus-visible .ifs-sankey-node__card{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong),var(--focus-ring)} /* B1: Figma 0.71 snaps to 1 */
