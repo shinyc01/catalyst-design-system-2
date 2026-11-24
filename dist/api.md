@@ -588,7 +588,8 @@ frame that already draws the header (e.g. a dashboard widget); it fills that fra
 Figma: data-viz-modal-organism (4440:32681) and the chart-info-modal tooltip used by every core chart.
 Props: title, subtitle (Category line above the title → organism layout, value right of the title),
 value (chart layout: second line), delta = { text, direction up|down, tone positive|negative }, items = [{ label, value, color, shape }]
-(shape square | line | dashed | dot: the same swatch as the legend, D4; no shape = dot), showValue (Figma show-value),
+(shape square | line | dashed | dot: the same swatch as the legend, D4; no shape = dot; swatches show only when more than one item has a colour,
+so a single-series tooltip has none), showValue (Figma show-value),
 variant chart (content-sized, 12–20rem, D5) | modal (256). children are appended under the items.
 `function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue = true, variant = 'modal', children, className, ...rest })`
 
@@ -604,7 +605,7 @@ Shell props (every chart): see ChartShell.
 ### HistogramChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-histogram (9864:14012) — distribution of one measure across bins (contiguous zero-based columns, 2 px apart).
+Figma: chart-histogram (9864:14012) — distribution of one measure across bins (contiguous zero-based columns, 1 px apart).
 Props: values = raw numbers + bins (count, default 10) or binWidth — or data = pre-binned [{ label, value }];
 binFormat(lo, hi) for bin labels, valueLabel (default 'Count'), + ColumnChart props.
 `function HistogramChart({ values, bins = 10, binWidth, binFormat, data, valueLabel = 'Count', ...props })`
@@ -622,7 +623,7 @@ Props: as ColumnChart + sort (true = biggest first), labelWidth (category column
 Figma: chart-grouped-column (9862:13445) — 2–4 series side by side per category; consistent series order + legend.
 Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }] (capped at 4: a 5th and
 more are left out of the plot, kept in the table view, with a console warning; use a stacked column or small multiples), referenceKey (default 'reference') +
-referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with a 2 px gap (D8).
+referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
 `function GroupedColumnChart(props)`
 
 ### StackedColumnChart
@@ -630,7 +631,7 @@ referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-stacked-column (9863:11139) — composition of a total per category; the one stacked-column component (D8).
 Series stack bottom → top in series order (most important first, on the baseline); up to 8 segments, the rest fold into "Other"
-(fewer read better: 5 or fewer recommended). 2 px card-colour gap between segments; only the outer end of the whole column is rounded.
+(fewer read better: 5 or fewer recommended). 1 px card-colour gap between segments (--border-width-default, WCAG 1.4.11); only the outer end of the whole column is rounded.
 Props: data = [{ label, [series.key]: number, delta?, details? }], series = [{ key, label, color? }], format, tooltip, valueTicks. + shell props.
 `function StackedColumnChart(props)`
 
