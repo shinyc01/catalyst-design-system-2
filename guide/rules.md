@@ -486,7 +486,7 @@ This section is writing guidance for screens, as in other large design systems (
 - RTL conversion to logical properties is gradual (rule 1.4).
 - RTL first pass (2.0.5, Nov 20): `node tools/check-direction.mjs` is at 0 (was 165); CSS and inline styles use start/end, the rest is marked `ltr:`. Switch with `IFS.setDirection('rtl')`. Left: JS geometry (canvas and map, WidgetBoard drag, sliders and zoom, column resize, popover and tooltip placement) and charts per family.
 - Should live cursors appear on framework canvases at all (`LiveCursors` is invented)?
-- Not decided yet, no rules: loading (L1–L4; the one loader ring is decided, rule 7.15), data viz (D1–D9). States and focus are rules 1.6 and 1.9 (S1–S3, Nov 24).
+- Not decided yet, no rules: data viz (D1–D9). States and focus are rules 1.6 and 1.9 (S1–S3, Nov 24); loading, empty and error states are rules 7.15, 8.23 and 6.12 (L1–L4, Nov 24).
 - Motion still to build (rule 1.8): the chevron turn and the side-nav fold width.
 - Light theme: `color-scheme` and `IFS.setTheme` are in; the Light values come right after phase 1.
 - `FormCard`: "a form on a page" (components.md) vs a card built like a dialog; settle the wording.
