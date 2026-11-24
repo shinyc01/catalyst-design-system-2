@@ -28,7 +28,7 @@ function Icon({ name, size = 16, variant, className, style, title }) {
   // In rem (size / 16), so they still follow the user's default text size, like the text beside them.
   const dim = `${size / 16}rem`;
   return (
-    <svg className={cx('ifs-icon', MIRRORED_ICONS.has(name) && 'ifs-icon--mirror', className)} width={size} height={size} viewBox={vb} fill="none"
+    <svg className={cx('ifs-icon', MIRRORED_ICONS.has(name) && 'ifs-icon--mirror', name === 'system-loader' && 'ifs-spin', className)} width={size} height={size} viewBox={vb} fill="none"
       aria-hidden={title ? undefined : true} role={title ? 'img' : undefined} style={{ width: dim, height: dim, ...style }}
       dangerouslySetInnerHTML={{ __html: (title ? `<title>${title}</title>` : '') + svg }} />
   );

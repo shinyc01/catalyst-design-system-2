@@ -56,7 +56,7 @@ How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a
 Family note: `button` and `icon-button` have no atom/molecule split. `circular-button-molecule` is a building block of `circular-button-organism`. Icon-button presets (`-notification`, `-comment`, `-arrow`, `-filter`) are ready-made icon buttons with an indicator dot.
 
 ### button · `Button`
-Use: Every action and every navigation move (rule 7.1). Types and sizes: rule 7.2; icon sizes: rule 3.11.
+Use: Every action and every navigation move (rule 7.1). Types and sizes: rule 7.2; icon sizes: rule 3.11. `loading` while its action runs: the loader ring replaces the left icon, `aria-busy`, not clickable, label stays (rule 1.9).
 Don't: Links inside user-authored content or to external resources — those stay links.
 
 ### icon-button · `IconButton`

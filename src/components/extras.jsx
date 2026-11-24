@@ -505,8 +505,7 @@ function FormCard({ title, description, action, divider, fields = [], children, 
           {footer || <>
             {secondaryAction && <IFS.Button type="tertiary" size="l" disabled={loading} onClick={secondaryAction.onClick}>{secondaryAction.label}</IFS.Button>}
             {primaryAction && <IFS.Button type="primary" size="l" disabled={loading}
-              iconLeft={submitting ? 'system-loader' : undefined} className={submitting ? 'ifs-form-card__submitting' : undefined}
-              aria-disabled={submitting || undefined} onClick={e => { if (!submitting) submit(e); }}>{primaryAction.label}</IFS.Button>}
+              loading={submitting} onClick={submit}>{primaryAction.label}</IFS.Button>}
           </>}
         </div>
       )}

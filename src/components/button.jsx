@@ -4,11 +4,15 @@ import { IFS } from './registry.js';
 // Props: type primary|secondary|tertiary|ghost|cooper (Figma "Accent (Cooper)"), size l|m|s,
 // iconLeft / iconRight = icon names (Figma show-icon-* + Icon swap), children = Button label.
 // Leave out children for Figma show-label=false.
-function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, children, state, className, ...rest }) {
+// loading (S2, Nov 24): the loader ring in the icon slot (in place of iconLeft, same size), aria-busy, not clickable; the label stays.
+function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, ...rest }) {
   const iconSize = size === 's' ? 12 : 16;
+  const lead = loading ? 'system-loader' : iconLeft;
   return (
-    <button type="button" data-state={state} className={IFS.cx('ifs-button', `ifs-button--${type}`, `ifs-button--${size}`, className)} {...rest}>
-      {iconLeft && <IFS.Icon name={iconLeft} size={iconSize} />}
+    <button type="button" data-state={state} aria-busy={loading ? true : undefined}
+      className={IFS.cx('ifs-button', `ifs-button--${type}`, `ifs-button--${size}`, loading && 'ifs-button--loading', className)}
+      onClick={loading ? e => e.preventDefault() : onClick} {...rest}>
+      {lead && <IFS.Icon name={lead} size={iconSize} />}
       {children != null && <span className="ifs-button__label">{children}</span>}
       {iconRight && <IFS.Icon name={iconRight} size={iconSize} />}
     </button>

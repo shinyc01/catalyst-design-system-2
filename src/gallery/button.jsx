@@ -14,9 +14,11 @@ export default IFS_GALLERY;
       <Row key={t} label={t}>
         {states.map(s => <Button key={s || 'default'} type={t} state={s} iconLeft="system-star-favourite" iconRight="system-heart">{s || 'Default'}</Button>)}
         <Button type={t} disabled iconLeft="system-star-favourite">Disabled</Button>
+        <Button type={t} loading iconLeft="system-star-favourite">Loading</Button>
       </Row>
     ))}
     <Row label="sizes l / m / s">{['l', 'm', 's'].map(z => <Button key={z} type="primary" size={z} iconLeft="system-star-favourite" iconRight="system-heart">Label</Button>)}</Row>
+    <Row label="loading l / m / s">{['l', 'm', 's'].map(z => <Button key={z} type="secondary" size={z} loading>Saving</Button>)}</Row>
   </> });
 
   IFS_GALLERY.push({ name: 'IconButton', figma: 'icon-button (71:4250)', render: () => <>

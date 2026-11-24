@@ -20,7 +20,6 @@
 .ifs-select__input::placeholder{color:var(--color-text-softer)}
 .ifs-select__clear{flex:none} /* a standard ghost IconButton S (Nov 19) */
 .ifs-select__caret,.ifs-select__loader,.ifs-select__icon{color:var(--ic)}
-.ifs-select__loader{animation:ifs-spin var(--motion-loop-spin) var(--motion-ease-linear) infinite}
 
 /* Sizes */
 .ifs-select--m .ifs-select__field{height:var(--size-control-m);padding:0 var(--space-200);border-radius:var(--radius-control)}

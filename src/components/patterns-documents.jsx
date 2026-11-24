@@ -354,7 +354,7 @@ function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper's
       </div>
       <div className="ifs-bottom-sheet__buttons">
         {hasRows && (
-          <IFS.Button type="tertiary" iconLeft={c.uploading ? 'system-loader' : 'system-file'} className={c.uploading ? 'ifs-docs-context__loading' : undefined}
+          <IFS.Button type="tertiary" iconLeft={c.uploading ? 'system-loader' : 'system-file'}
             aria-expanded={c.open} aria-haspopup="dialog" onClick={() => c.setOpen(!c.open)}>{docLabel(c.count)}</IFS.Button>
         )}
         {c.editable && <>

@@ -244,7 +244,8 @@ Figma: button (65:3211)
 Props: type primary|secondary|tertiary|ghost|cooper (Figma "Accent (Cooper)"), size l|m|s,
 iconLeft / iconRight = icon names (Figma show-icon-* + Icon swap), children = Button label.
 Leave out children for Figma show-label=false.
-`function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, children, state, className, ...rest })`
+loading (S2, Nov 24): the loader ring in the icon slot (in place of iconLeft, same size), aria-busy, not clickable; the label stays.
+`function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, ...rest })`
 
 ### IconButton
 **Tier:** Component
