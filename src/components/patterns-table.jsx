@@ -396,7 +396,7 @@ function RecordPreview({ id, onDetails, onClose, children, width = 'var(--region
     </aside>
   );
 }
-RecordPreview.panelMode = 'over'; // AppShell panel mode by job (Nov 19): the panel is the focus, the page is context
+RecordPreview.panelMode = 'push'; // AppShell panel mode by job (Nov 24): docked and flush, the table shrinks beside it
 
 // ───────────────────────────── DataTable (pattern) ─────────────────────────────
 const ptText = v => (v == null ? '' : typeof v === 'object' ? (v.text ?? v.label ?? v.name ?? v.children ?? '') : v);

@@ -1238,10 +1238,9 @@ Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the 
 e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
 Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
-        whole page together (readiness evaluation, comments, widgets, approval chain). Default. The full Cooper chat is over (rule 4.6).
+        whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 4.6).
   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
-        is context (row / record preview, evidence chain, activity). Outside click and Esc call onPanelClose
-        (clicking another row closes and reopens, so the preview swaps).
+        is context (evidence chain, activity). Outside click and Esc call onPanelClose.
   panelMode beats the panel component's own default (Component.panelMode); below md (1024) push falls back to over:
   the panel starts collapsed to its rail and expands over the content.
 Side nav below md: starts as a rail and expands over the content; outside click and Esc collapse it again.
