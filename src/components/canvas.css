@@ -4,7 +4,7 @@
 .ifs-map-toolbar{display:inline-flex;flex-direction:column;align-items:flex-end;gap:var(--space-200)}
 .ifs-map-cluster{display:inline-flex;flex-direction:column;align-items:center;gap:var(--space-50);width:2.375rem;box-sizing:border-box;
   padding:var(--space-50);border-radius:var(--radius-floating);background:var(--color-background-neutral-soft-inverse);
-  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-1);
+  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-floating-shadow) /* C1 level 2: map panels */;
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
 .ifs-map-cluster__divider{display:block;width:var(--size-32);height:var(--size-4);padding:var(--space-50) 0;box-sizing:border-box;flex:none}
 .ifs-map-cluster__divider::before{content:"";display:block;height:1px;margin-top:calc(-1 * var(--size-0-5));background:var(--color-border-soft)}
@@ -143,7 +143,7 @@
 /* ---------- map-pin-teardrop (43:2020) ---------- */ /* px on purpose: map pins are map geometry and keep their size at any text size */
 .ifs-map-pin{--pin:var(--color-icon-softer);--pin-border:var(--color-icon-softer);--pin-bw:var(--border-width-default) /* B1: Figma 0.72 snaps to 1 */;
   position:relative;display:inline-block;width:25px;height:31px;margin:0;padding:0;border:0;background:none;cursor:pointer;
-  filter:drop-shadow(0 0 3.6px var(--color-shadow-floating)) /* raw in Figma: DROP_SHADOW 7.2 */}
+  filter:var(--drop-shadow-map-pin-filter)}
 .ifs-map-pin--error{--pin:var(--color-icon-danger);--pin-border:var(--color-icon-danger)}
 .ifs-map-pin--warning{--pin:var(--color-icon-warning);--pin-border:var(--color-icon-warning)}
 .ifs-map-pin--success{--pin:var(--color-icon-success);--pin-border:var(--color-icon-success)} /* C1: the five status words */
@@ -155,10 +155,10 @@
   display:flex;align-items:center;justify-content:center;color:var(--color-icon)}
 .ifs-map-pin__circle--dot::after{content:"";width:15.5px;height:15.5px;border-radius:50%;background:var(--color-surface-overlay-inverse);margin:var(--size-1) 0 0 0;
   box-shadow:0 0 0 var(--border-width-default) var(--pin)}
-.ifs-map-pin--selected{width:27px;height:33px;--pin-bw:var(--border-width-selected);filter:drop-shadow(var(--drop-shadow-pin))}
+.ifs-map-pin--selected{width:27px;height:33px;--pin-bw:var(--border-width-selected);filter:var(--drop-shadow-pin-filter)}
 .ifs-map-pin--selected .ifs-map-pin__shape{left:2px;top:2.5px} /* ltr: map pin art */
 .ifs-map-pin--selected .ifs-map-pin__circle{left:3.5px;top:4px} /* ltr: map pin art */
-.ifs-map-pin--opened{filter:drop-shadow(0 0 5px var(--color-shadow-floating)) /* raw in Figma */}
+.ifs-map-pin--opened{filter:var(--drop-shadow-map-pin-opened-filter)}
 .ifs-map-pin--dimmed{opacity:.5}
 .ifs-map-pin:focus-visible{outline:none}
 .ifs-map-pin:focus-visible .ifs-map-pin__shape{box-shadow:var(--focus-ring)}

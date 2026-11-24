@@ -273,11 +273,11 @@
 .ifs-app-shell--nav-overlay{grid-template-columns:var(--region-rail) minmax(0,1fr)}
 .ifs-app-shell--nav-overlay .ifs-app-shell__side{width:var(--region-rail);z-index:4}
 .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){position:absolute;inset-block:0;inset-inline-start:0;
-  box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft),var(--elevation-3)}
-:where([dir="rtl"]) .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){box-shadow:inset var(--border-width-default) 0 0 var(--color-border-soft),var(--elevation-3)} /* rtl: one-side border mirrors */
+  box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft),var(--elevation-floating-shadow)} /* C1 level 2: over the content, no scrim */
+:where([dir="rtl"]) .ifs-app-shell--nav-overlay .ifs-app-shell__side > :not(.ifs-sidenav--collapsed){box-shadow:inset var(--border-width-default) 0 0 var(--color-border-soft),var(--elevation-floating-shadow)} /* rtl: one-side border mirrors */
 /* Push panel with no room (below md): a rail; it expands over the content, which keeps a rail's width free */
 .ifs-app-shell--panel-rail .ifs-app-shell__content{margin-inline-end:var(--region-rail)}
-.ifs-app-shell--panel-rail .ifs-app-shell__panel{position:absolute;inset-block:0;inset-inline-end:0;z-index:2;box-shadow:var(--elevation-3)}
+.ifs-app-shell--panel-rail .ifs-app-shell__panel{position:absolute;inset-block:0;inset-inline-end:0;z-index:2;box-shadow:var(--elevation-floating-shadow)} /* C1 level 2; the panel draws its own edge */
 /* Over panel (evidence chain, activity, Cooper full chat): over the end of the content, no scrim, the page stays usable */
 /* C4: an over panel floats one --float-inset in from the edges of the content area (so below the header and above the bottom sheet); C1 level 2 */
 .ifs-app-shell--panel-over .ifs-app-shell__panel{position:absolute;inset-block:var(--float-inset);inset-inline-end:var(--float-inset);z-index:var(--z-index-floating);max-width:calc(100% - 2 * var(--float-inset));box-shadow:var(--elevation-floating)}

@@ -5,7 +5,7 @@
 .ifs-cursor__pointer{flex:none;width:var(--size-16);height:var(--size-16);overflow:visible}
 .ifs-cursor__pill{position:relative;display:inline-flex;align-items:center;gap:var(--space-200);margin-left:var(--space-400);min-height:var(--size-18);box-sizing:border-box; /* ltr: pill sits right of the cursor art, which points up-left */
   padding:var(--space-50) var(--space-150);border-radius:var(--radius-pill);background:var(--cu);color:var(--color-text);
-  box-shadow:0 1px 4px var(--color-shadow-cursor) /* raw in Figma (drop shadow 0 1 4 #000 16%) */;overflow:hidden;white-space:nowrap}
+  box-shadow:var(--drop-shadow-cursor);overflow:hidden;white-space:nowrap}
 .ifs-cursor__name{position:relative;padding-bottom:var(--space-50);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* Body/S/regular: ambient name tag */
 .ifs-cursor--dark .ifs-cursor__pill{color:var(--color-text-inverse)}
 .ifs-cursor--cooper .ifs-cursor__pill{gap:var(--space-100)}

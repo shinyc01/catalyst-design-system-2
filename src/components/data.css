@@ -123,7 +123,7 @@ button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state
   height:var(--size-24);margin:0;border:0;padding-block:var(--space-100);padding-inline:var(--space-100) var(--space-200);
   border-radius:var(--radius-pill);background:var(--color-surface-secondary);color:var(--color-text);white-space:nowrap;
   backdrop-filter:blur(var(--blur-20));-webkit-backdrop-filter:blur(var(--blur-20)) /* Figma background blur 20 */;
-  box-shadow:var(--stroke),var(--ring),0 4px 24px var(--color-shadow-softer) /* raw in Figma */;
+  box-shadow:var(--stroke),var(--ring),var(--drop-shadow-risk);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium: statuses are sentence case */
 button.ifs-risk{cursor:pointer}
 button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface-tertiary);--stroke:0 0 0 var(--border-width-default) var(--color-border-soft)}

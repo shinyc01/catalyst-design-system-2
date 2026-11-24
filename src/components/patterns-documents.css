@@ -10,7 +10,7 @@
 .ifs-pin-dot--neutral{--pd-fill:var(--color-icon-softer)} /* Nov 24: error · warning · neutral only (grey = low risk); success and info map here (MapPinDot) */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}
 .ifs-pin-dot--s{--pd-size:16px;--pd-in:14px}
-.ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 5px 0 var(--color-shadow-pin) /* raw in Figma */}
+.ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin-xs)}
 .ifs-pin-dot__fill{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:var(--pd-in);height:var(--pd-in);padding:0 var(--space-100);border-radius:var(--radius-pill);
   background:var(--pd-fill);color:var(--color-text);overflow:hidden}
 .ifs-pin-dot__text{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* Body/S/regular: count inside a 24/32 px map pin */
@@ -18,9 +18,9 @@
 .ifs-pin-dot--s .ifs-pin-dot__text,.ifs-pin-dot--xs .ifs-pin-dot__text{display:none}
 .ifs-pin-dot--s .ifs-pin-dot__fill,.ifs-pin-dot--xs .ifs-pin-dot__fill{padding:0}
 .ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin)}
-.ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-default) var(--color-border-selected-soft),0 0 5px 0 var(--color-shadow-pin) /* raw in Figma */}
+.ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-default) var(--color-border-selected-soft),var(--drop-shadow-pin-xs)}
 .ifs-pin-dot--dimmed{background:var(--color-background-accent-white-soft);backdrop-filter:blur(var(--blur-40));-webkit-backdrop-filter:blur(var(--blur-40)) /* H1: Figma 40 */;
-  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 10px 0 var(--color-shadow-pin) /* raw in Figma */}
+  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
 .ifs-pin-dot--dimmed .ifs-pin-dot__fill{opacity:.4}
 /* higlight=yes: a ring twice the pin's size behind it (overlay fill + status hairline, 40 %) with the map-highlight glow. */
 .ifs-pin-dot--highlight::before{content:"";position:absolute;left:50%;top:50%;width:calc(var(--pd-size) * 2);height:calc(var(--pd-size) * 2); /* ltr: centred on the pin */
@@ -53,20 +53,20 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--color-background-accent-white-strong)}
 /* "Pin" / "Hierarchy Pin": teardrop (circle + tail) in white with a status circle and a white asset icon. */
 .ifs-pin-pole__pin{--pp-size:32px;--pp-in:29.5px;--pp-fill:var(--color-icon-softer);--pp-border:var(--color-icon-softer);--pp-bw:var(--border-width-default);
-  position:relative;flex:none;width:var(--pp-size);height:calc(var(--pp-size) * 1.22);filter:drop-shadow(var(--drop-shadow-pin))}
+  position:relative;flex:none;width:var(--pp-size);height:calc(var(--pp-size) * 1.22);filter:var(--drop-shadow-pin-filter)}
 .ifs-pin-pole__pin--hierarchy{--pp-size:26px;--pp-in:24px}
 .ifs-pin-pole__pin--error{--pp-fill:var(--color-icon-danger);--pp-border:var(--color-icon-danger)}
 .ifs-pin-pole__pin--warning{--pp-fill:var(--color-icon-warning);--pp-border:var(--color-icon-warning)}
 .ifs-pin-pole__pin--evaluated{--pp-fill:var(--color-background-info-strong)}
-.ifs-pin-pole--selected .ifs-pin-pole__pin{--pp-border:var(--color-border-selected-soft);--pp-bw:2px}
+.ifs-pin-pole--selected .ifs-pin-pole__pin{--pp-border:var(--color-border-selected-soft);--pp-bw:var(--border-width-selected)}
 .ifs-pin-pole__shape{position:absolute;left:0;top:0;width:var(--pp-size);height:var(--pp-size);box-sizing:border-box;background:var(--color-background-accent-white-strong); /* ltr: pin art */
   border-radius:50% 50% 0 50%;transform:rotate(45deg);box-shadow:0 0 0 var(--pp-bw) var(--pp-border)}
 .ifs-pin-pole__circle{position:absolute;left:calc((var(--pp-size) - var(--pp-in)) / 2);top:calc((var(--pp-size) - var(--pp-in)) / 2); /* ltr: pin art */
   display:flex;align-items:center;justify-content:center;width:var(--pp-in);height:var(--pp-in);border-radius:50%;background:var(--pp-fill);color:var(--color-background-accent-white-strong)}
 .ifs-pin-pole__dot{position:relative;flex:none;width:16px;height:16px;box-sizing:border-box;border-radius:50%;background:var(--color-background-accent-white-strong);
-  box-shadow:0 0 0 var(--border-width-default) var(--color-icon-softer),0 0 10px var(--color-shadow-soft),0 0 4px var(--color-shadow-soft) /* raw in Figma */}
+  box-shadow:0 0 0 var(--border-width-default) var(--color-icon-softer),var(--drop-shadow-pin-glow)}
 .ifs-pin-pole__dot::after{content:"";position:absolute;inset:1px;border-radius:50%;background:var(--color-background-info-strong)}
-.ifs-pin-pole--selected .ifs-pin-pole__dot{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),0 0 10px var(--color-shadow-soft) /* raw in Figma */}
+.ifs-pin-pole--selected .ifs-pin-pole__dot{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin-glow-selected)}
 .ifs-pin-pole--selected .ifs-pin-defect{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin)}
 
 /* ================= bar-chart-item (44fcce06…) / vertical-bar-chart-item (c06b1d19…) ================= */

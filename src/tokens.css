@@ -33,7 +33,7 @@
 --color-text-softer:var(--palette-core-600); /* C4: tertiary #999999 (was #8c8c8c): 5.04 on menus, 4.57 on a hovered card in a card. Chart and stat card titles stay here (C2) */
 --color-text-disabled:var(--palette-core-300);
 --color-text-focus:var(--palette-info-300);
---color-text-accent-purple:#9580f8; /* C4: was #8366f7 (3.56:1); no primitive yet (new step for Figma) */
+--color-text-accent-purple:var(--palette-purple-450); /* C4: was #8366f7 (3.56:1); purple 450 is a code-only step (new for Figma) */
 --color-text-inverse:var(--palette-core-0);
 --color-text-soft-inverse:var(--palette-core-300);
 --color-text-softer-inverse:var(--palette-core-550);
@@ -152,8 +152,12 @@
 --color-shadow-floating:var(--palette-black-alpha-25);
 --color-shadow-card-rest:var(--palette-black-alpha-25);
 --color-shadow-card-hover:var(--palette-black-alpha-40);
+/* map highlights (inner glow on map areas, at 40 %) */
+--color-shadow-map-highlight-resolved:var(--palette-success-500-alpha-40);--color-shadow-map-highlight-critical:var(--palette-danger-500-alpha-40);
+--color-shadow-map-highlight-moderate:var(--palette-warning-500-alpha-40);--color-shadow-map-highlight-cooper:var(--palette-cooper-500-alpha-40);
+--color-shadow-map-highlight-evaluated:var(--palette-info-500-alpha-40);--color-shadow-map-highlight-grey:var(--palette-core-330-alpha-40);
 /* Cooper / AI (its own role group, like status) */
---color-cooper-text:#d08a57; /* C4: was #c87941 (4.28:1); no primitive yet (new step for Figma) */
+--color-cooper-text:var(--palette-cooper-450); /* C4: was #c87941 (4.28:1); cooper 450 is a code-only step (new for Figma) */
 --color-cooper-icon:var(--palette-cooper-500);
 --color-cooper-border:var(--palette-cooper-500);
 --color-cooper-background-strong:var(--palette-cooper-500);
@@ -165,20 +169,20 @@
 --color-cooper-insight-inverse:var(--palette-white-alpha-5);
 --color-cooper-background-soft:var(--palette-cooper-500-alpha-10);
 --color-cooper-background:var(--palette-cooper-500-alpha-25);
---color-cooper-glow-center:rgba(200,121,65,0.2);
+--color-cooper-glow-center:var(--palette-cooper-500-alpha-20);
 --color-cooper-glow-edge:var(--palette-black-alpha-20);
---color-cooper-speaking-center:rgba(131,102,247,0.48);
---color-cooper-speaking-edge:rgba(0,0,0,0.24);
+--color-cooper-speaking-center:var(--palette-purple-500-alpha-48);
+--color-cooper-speaking-edge:var(--palette-black-alpha-24);
 --color-cooper-button-fill:var(--palette-black-alpha-60);
 --color-cooper-button-fill-pressed:var(--palette-black-alpha-60);
 --color-cooper-button-glow:var(--palette-cooper-500);
 --color-cooper-button-glow-hover:var(--palette-cooper-500);
 --color-cooper-button-glow-pressed:var(--palette-cooper-700);
 --color-cooper-button-glow-edge:var(--palette-black-alpha-0);
---color-cooper-button-rim:rgba(218,209,253,0.25);
+--color-cooper-button-rim:var(--palette-purple-150-alpha-25);
 --color-cooper-button-rim-center:var(--palette-black-alpha-0);
---color-cooper-highlight-purple-strong:rgba(79,61,149,0.24);
---color-cooper-highlight-purple:rgba(79,61,149,0.6);
+--color-cooper-highlight-purple-strong:var(--palette-purple-700-alpha-24);
+--color-cooper-highlight-purple:var(--palette-purple-700-alpha-60);
 --color-cooper-highlight-edge:var(--palette-black-alpha-60);
 --color-cooper-fab-rim:var(--palette-core-1000);
 --color-cooper-fab-shadow:var(--palette-purple-300);
@@ -218,28 +222,29 @@
 /* Purpose roles added Nov 23 night (C3 P1: no raw colours in components). Same Dark values as the raw ones they replace. */
 --color-background-skeleton:var(--color-background-neutral-soft); /* the one skeleton fill (L1, Nov 24): Figma background/elevation-1/secondary */
 --color-background-sheen:var(--palette-white-alpha-40); /* light rim on avatars and media */
---color-background-sheen-from:var(--palette-black-alpha-20);--color-background-sheen-to:rgba(102,102,102,0.2); /* hover / drag sheen on canvas cards */
---color-background-accent-purple-glow:rgba(128,120,255,0.25); /* file preview tile art */
---color-icon-handle:#9e9ea8; /* drag handle on chart cards */
---color-border-chart-gap:#0f0f0f; /* the gap stroke between pie and donut slices */
---color-border-on-overlay:#1f1f1f; /* field edge on an overlay surface (compare dropdown) */
---color-border-soft-hover:rgba(255,255,255,0.08); /* segmented item hover edge */
---color-border-pin-label:#2d3238;--color-shadow-label:rgba(0,0,0,0.7); /* text outline and glow on map pin labels */
---color-text-on-solid-softer:rgba(255,255,255,0.75); /* tertiary text on a solid fill */
---color-shadow-soft:var(--palette-black-alpha-15);--color-shadow-softer:rgba(0,0,0,0.04);--color-shadow-cursor:rgba(0,0,0,0.16);
---color-shadow-pin:rgba(10,14,21,0.2); /* map and document pins */
---color-cooper-button-shade:rgba(0,0,0,0.36);--color-cooper-button-fill-disabled:rgba(0,0,0,0.03);
---color-cooper-art-light:var(--palette-core-1000);--color-cooper-art-pink:#fbc4e6;--color-cooper-art-copper:#cd9579;--color-cooper-art-violet:#5a12bf; /* Cooper avatar artwork */
+--color-background-sheen-from:var(--palette-black-alpha-20);--color-background-sheen-to:var(--palette-core-400-alpha-20); /* hover / drag sheen on canvas cards */
+--color-background-accent-purple-glow:var(--palette-indigo-400-alpha-25); /* file preview tile art */
+--color-icon-handle:var(--palette-lavender-350); /* drag handle on chart cards */
+--color-border-chart-gap:var(--palette-core-60); /* the gap stroke between pie and donut slices */
+--color-border-on-overlay:var(--palette-core-120); /* field edge on an overlay surface (compare dropdown) */
+--color-border-soft-hover:var(--palette-white-alpha-8); /* segmented item hover edge */
+--color-border-pin-label:var(--palette-slate-700);--color-shadow-label:var(--palette-black-alpha-70); /* text outline and glow on map pin labels */
+--color-text-on-solid-softer:var(--palette-white-alpha-75); /* tertiary text on a solid fill */
+--color-shadow-soft:var(--palette-black-alpha-15);--color-shadow-softer:var(--palette-black-alpha-4);--color-shadow-cursor:var(--palette-black-alpha-16);
+--color-shadow-pin:var(--palette-slate-950-alpha-20); /* map and document pins */
+--color-cooper-button-shade:var(--palette-black-alpha-36);--color-cooper-button-fill-disabled:var(--palette-black-alpha-3);
+--color-cooper-art-light:var(--palette-core-1000);--color-cooper-art-pink:var(--palette-cooper-art-pink);--color-cooper-art-copper:var(--palette-cooper-art-copper);--color-cooper-art-violet:var(--palette-cooper-art-violet); /* Cooper avatar artwork */
 
-/* Held (Nov 23): these 8 would change a Dark value if folded onto a role; they keep their names and values until the component review */
---border-blue:#2b7fff;
---element-checkbox-off-border-pressed:rgba(255,255,255,0.15);
---element-radiobutton-off-border-pressed:rgba(255,255,255,0.15);
---element-button-circular-fill-default:rgba(255,255,255,0.2);
---element-button-circular-fill-hover:rgba(255,255,255,0.6);
---element-button-circular-fill-pressed:rgba(255,255,255,0.5);
---white-500:rgba(255,255,255,0.5);
---white-alpha-50:rgba(255,255,255,0.5);
+/* Held (Nov 23): these 8 would change a Dark value if folded onto a role; they keep their names and values until the component review
+   (values read the same primitives, so nothing changes) */
+--border-blue:var(--palette-info-500);
+--element-checkbox-off-border-pressed:var(--palette-white-alpha-15);
+--element-radiobutton-off-border-pressed:var(--palette-white-alpha-15);
+--element-button-circular-fill-default:var(--palette-white-alpha-20);
+--element-button-circular-fill-hover:var(--palette-white-alpha-60);
+--element-button-circular-fill-pressed:var(--palette-white-alpha-50);
+--white-500:var(--palette-white-alpha-50);
+--white-alpha-50:var(--palette-white-alpha-50);
 
 /* 5. Measurements (the spacing scale and the size ruler live in foundations/spacing.css) */
 /* Spacing roles (IFS DS polish, items 1-4): containers get room through these; controls keep their own paddings */
@@ -281,25 +286,39 @@
 
 /* 6. Effects (blur radii; effect styles are the .fx-* classes below) */
 --blur-100:100px;--blur-80:80px;--blur-40:40px;--blur-20:20px;--blur-10:10px;--blur-4:4px;
---drop-shadow-elevation-1:/* deprecated: differs from --elevation-1 (10% vs 25%); unused in the kit */0 4px 8px 0 rgba(0,0,0,0.1);
---drop-shadow-floating:0 4px 8px 0 rgba(0,0,0,0.25);
---elevation-1:0 4px 8px 0 rgba(0,0,0,0.25);
---elevation-2:0 8px 12px -1px rgba(0,0,0,0.25);
---elevation-3:0 12px 16px -2px rgba(0,0,0,0.35);
+--drop-shadow-elevation-1:/* deprecated: differs from --elevation-1 (10% vs 25%); unused in the kit */0 4px 8px 0 var(--palette-black-alpha-10);
+--drop-shadow-floating:0 4px 8px 0 var(--color-shadow-floating);
+--elevation-1:0 4px 8px 0 var(--color-shadow-elevation-1);
+--elevation-2:0 8px 12px -1px var(--color-shadow-elevation-2);
+--elevation-3:0 12px 16px -2px var(--color-shadow-elevation-3); /* the shadow colours are roles (--color-shadow-elevation-*), so Light can retheme them (C3) */
 /* Elevation roles (C1, Nov 23). Dark: height comes from lighter fills; shadows only for things that float.
    0 page · 1 raised (cards, docked panels) · 2 floating (popover, menu, select list, date picker, tooltip, snackbar, floating bar and drawer,
    form card, map panels, Cooper chat and button) · 3 modal (over the scrim; also dragged items). Light sets its own shadow values later. */
 --elevation-raised:none;
---elevation-floating:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-2);
---elevation-modal:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-3);
+--elevation-floating:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-floating-shadow);
+--elevation-modal:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-modal-shadow);
+/* the level's shadow without its hairline, for a surface that draws its own edge (chat bar, prompt button, map cluster, nav overlay, dragged items) */
+--elevation-floating-shadow:var(--elevation-2);--elevation-modal-shadow:var(--elevation-3);
 --elevation-floating-filter:drop-shadow(0 4px 8px var(--color-shadow-floating)); /* level 2 as a filter, for shapes with an arrow (tooltip) */
---inner-shadow-map-highlight-resolved:inset 0 0 12px 7px rgba(46,188,93,0.4);
---inner-shadow-map-highlight-critical:inset 0 0 12px 7px rgba(238,60,59,0.4);
---inner-shadow-map-highlight-moderate:inset 0 0 12px 7px rgba(255,175,46,0.4);
---inner-shadow-map-highlight-cooper:inset 0 0 12px 7px rgba(200,121,65,0.4);
---inner-shadow-map-highlight-evaluated:inset 0 0 12px 7px rgba(43,127,255,0.4);
---inner-shadow-map-highlight-grey:inset 0 0 12px 7px rgba(84,84,84,0.4);
+--inner-shadow-map-highlight-resolved:inset 0 0 12px 7px var(--color-shadow-map-highlight-resolved);
+--inner-shadow-map-highlight-critical:inset 0 0 12px 7px var(--color-shadow-map-highlight-critical);
+--inner-shadow-map-highlight-moderate:inset 0 0 12px 7px var(--color-shadow-map-highlight-moderate);
+--inner-shadow-map-highlight-cooper:inset 0 0 12px 7px var(--color-shadow-map-highlight-cooper);
+--inner-shadow-map-highlight-evaluated:inset 0 0 12px 7px var(--color-shadow-map-highlight-evaluated);
+--inner-shadow-map-highlight-grey:inset 0 0 12px 7px var(--color-shadow-map-highlight-grey);
+/* Pin, cursor and glow shadows: Figma effects with no elevation level (map and document pins, the collaborator cursor, the risk pill,
+   the Cooper button). filter:drop-shadow() takes no spread, so pins that draw their shadow as a filter use the -filter tokens. */
 --drop-shadow-pin:0 0 10px 0 var(--color-shadow-pin);
+--drop-shadow-pin-filter:drop-shadow(0 0 10px var(--color-shadow-pin));
+--drop-shadow-pin-xs:0 0 5px 0 var(--color-shadow-pin); /* the XS dot pin */
+--drop-shadow-pin-glow:0 0 10px var(--color-shadow-soft),0 0 4px var(--color-shadow-soft); /* the pole dot */
+--drop-shadow-pin-glow-selected:0 0 10px var(--color-shadow-soft);
+--drop-shadow-map-pin-filter:drop-shadow(0 0 3.6px var(--color-shadow-floating)); /* Figma DROP_SHADOW 7.2 */
+--drop-shadow-map-pin-opened-filter:drop-shadow(0 0 5px var(--color-shadow-floating));
+--drop-shadow-cursor:0 1px 4px var(--color-shadow-cursor); /* the collaborator cursor label */
+--drop-shadow-risk:0 4px 24px var(--color-shadow-softer); /* the risk pill */
+--drop-shadow-cooper-fab:0 0 3.55px 0 var(--color-cooper-fab-shadow); /* effect style cooper/fab/shadow */
+--drop-shadow-cooper-fab-filter:drop-shadow(0 0 1.8px var(--color-cooper-fab-shadow)); /* the same on the small sphere art */
 }
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
@@ -351,7 +370,7 @@
 .fx-blur-light{backdrop-filter:blur(var(--blur-10))}
 .fx-blur-medium{backdrop-filter:blur(var(--blur-40))}
 .fx-blur-strong{backdrop-filter:blur(var(--blur-80))}
-.fx-cooper-fab-shadow{box-shadow:0 0 3.55px 0 var(--color-cooper-fab-shadow)}
+.fx-cooper-fab-shadow{box-shadow:var(--drop-shadow-cooper-fab)}
 .fx-map-highlight-resolved{box-shadow:var(--inner-shadow-map-highlight-resolved)}
 .fx-map-highlight-critical{box-shadow:var(--inner-shadow-map-highlight-critical)}
 .fx-map-highlight-moderate{box-shadow:var(--inner-shadow-map-highlight-moderate)}
