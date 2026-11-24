@@ -9,7 +9,7 @@ export default {
   component: IFS["EmptyState"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** empty-state-organism (3782:18464)\n\n\nUse: A region with no content: heading (required) + optional icon, body, suggestion chips, one primary + one secondary action. Cause and size: rule 7.15; copy: rule 8.22." } },
+    docs: { description: { component: "**Figma:** empty-state-organism (3782:18464)\n\n\nUse: A region with no content: heading (required) + optional icon, body, suggestion chips, one primary + one secondary action. Cause and size: rule 7.15; copy: rule 8.22. Errors (L3): a load failure shows `cause=\"error\"` (section) in the frame of the region that failed, `size=\"full\"` only when the whole page has nothing; partial data keeps its content with a warning `Alert` above it; load errors keep the warning icon and tone, danger is for destructive actions and field validation. The look is restyled in 2.0.6." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3782-18464"},
   },
 };
