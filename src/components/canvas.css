@@ -54,7 +54,7 @@
   box-shadow:inset 0 0 0 var(--border-width-default) var(--nc-stroke),var(--nc-ring),var(--nc-shadow);
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-node-card:focus-visible{outline:none}
-/* Solid types: dark colour fill, border/base stroke, on-solid text, blur/light. */
+/* Solid types: dark colour fill, --color-border-soft stroke, on-solid text, --blur-10. */
 .ifs-node-card--solid{--nc-stroke:var(--color-border-soft);--nc-title:var(--color-text-on-solid);--nc-caption:var(--color-text-on-solid-soft);
   backdrop-filter:blur(var(--blur-10));-webkit-backdrop-filter:blur(var(--blur-10))}
 .ifs-node-card--strategic-objective{--nc-fill:var(--color-background-accent-dark-blue-strong)}
@@ -80,13 +80,13 @@
   background:linear-gradient(to top left,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .ifs-node-card--ring-select,.ifs-node-card--ring-cooper,.ifs-node-card:focus-visible,.ifs-node-card[data-state=focus]{--nc-title:var(--color-text);--nc-caption:var(--color-text-softer)}
-/* Out of focus: background/elevation-1/primary overlay. Disabled: overlay/screen-strong, no stroke. */
+/* Out of focus: --color-surface-elevation-1 overlay. Disabled: --color-overlay-screen-strong, no stroke. */
 .ifs-node-card--out::before,.ifs-node-card--disabled::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2}
 .ifs-node-card--out::before{background:var(--color-surface-elevation-1)}
 .ifs-node-card--disabled{--nc-stroke:transparent!important;cursor:not-allowed;--nc-title:var(--color-text-on-solid-soft)}
 .ifs-node-card--disabled::before{background:var(--color-overlay-screen-strong)}
 .ifs-node-card--disabled:not(.ifs-node-card--solid){--nc-title:var(--color-text)}
-/* Checkbox state: subnode/user get a dashed border/medium outline. */
+/* Checkbox state: subnode/user get a dashed --color-border outline. */
 .ifs-node-card--checkbox{gap:var(--space-200)}
 .ifs-node-card--checkbox:not(.ifs-node-card--solid){outline:var(--border-width-default) dashed var(--color-border);outline-offset:-1px}
 .ifs-node-card--edit{cursor:default}
@@ -164,7 +164,7 @@
 .ifs-map-pin:focus-visible .ifs-map-pin__shape{box-shadow:var(--focus-ring)}
 
 /* ---------- canvas-background (1395:196712) ---------- */
-/* Figma: surface/primary + background/canvas/primary + a pattern of 4px white-5% dots (scaled 0.7, ≈20px grid). */
+/* Figma: --color-surface-primary + --color-surface-canvas + a pattern of 4px white-5% dots (scaled 0.7, ≈20px grid). */
 .ifs-canvas{position:relative;overflow:hidden;box-sizing:border-box;width:100%;height:100%;min-height:200px;outline:none;cursor:grab;touch-action:none; /* px: canvas area */
   background-color:var(--color-surface-primary);
   background-image:radial-gradient(circle,var(--color-background-neutral-softer) 1.4px,transparent 1.6px) /* raw in Figma: pattern dot */,

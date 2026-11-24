@@ -524,7 +524,7 @@ function MenuList({ items, label, width, size = 's', onRun, listRef, sub, setSub
 }
 
 // Figma: single-select-list-molecule (445715ff…, 153:62054) of single-select-list-atom (1e822b07…, 153:61939), Size S (32):
-// 4px padding, radius 4, elevation-2 fill, border/base, blur/strong; rows Body/M/medium text/secondary, hover = button secondary hover.
+// 4px padding, radius 4, elevation-2 fill, --color-border-soft, --blur-80; rows Body/M/medium --color-text-soft, hover = button secondary hover.
 // A dropdown of commands anchored to a trigger. Rendered at the end of <body> (Floating), so no scrolling or blurred parent clips it.
 // Props: items = [{ label, icon, shortcut (Figma show-shortcut), description (Figma description line), danger, disabled, reason (tooltip on
 // a disabled item), selected (check), prefix (node before the label), items (submenu), keepOpen, onClick(item, event), hidden }

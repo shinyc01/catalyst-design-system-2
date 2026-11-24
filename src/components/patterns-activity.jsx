@@ -67,7 +67,7 @@ function CompareDropdownList({ groups = [], value, activeValue, onSelect, onActi
 
 /* ───────────────────────────── compare-dropdown ───────────────────────────── */
 // Figma: compare-dropdown (59571d4df483e2b416ca034bafc72eabc902f8f3; Patterns copy 52:82756)
-// Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: "Select framework" in text/disabled), Default (open: caret up + list).
+// Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: "Select framework" in --color-text-disabled), Default (open: caret up + list).
 // Props: groups (see CompareDropdownList), value / defaultValue / onChange(value, item) (✕ sets null),
 // open / defaultOpen / onOpenChange, placeholder, clearable (✕ when filled, default true), disabled, width (default 320),
 // state open (gallery), aria-label. Keyboard: Enter / Space / ↓ open; ↑ ↓ move; Enter picks; Esc closes.

@@ -190,7 +190,7 @@
 /* ---------- PageHeader: page-header ---------- */
 .ifs-page-header{position:relative;z-index:0;box-sizing:border-box;display:flex;flex-direction:column;gap:var(--space-100);
   width:100%;padding:var(--space-100) var(--page-margin) /* a bar of controls: its height follows the tallest part + 4 top and bottom (rule 3.4): 50 / 46 / 42 with a stepper, 36 / 32 / 32 without; sides line up with the page content */}
-/* Fill, divider and blur/light live on a pseudo layer: backdrop-filter on the header itself would make it the containing
+/* Fill, divider and --blur-10 live on a pseudo layer: backdrop-filter on the header itself would make it the containing
    block of position:fixed descendants (popovers, modals opened from its actions) and clip them. */
 .ifs-page-header::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-width-100)) 0 var(--color-border-soft);

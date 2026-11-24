@@ -25,7 +25,7 @@ function StatusIndicator({ state = 'default', stroke, label, className, ...rest 
 
 // Figma: badge-atom (83:52162)
 // Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, sentence-case Label/M/medium caption; info = black fill
-// with text/info + icon/info, as the Patterns source-card draws it), borderless (drops the black badge's border/medium edge —
+// with --color-text-info + --color-icon-info, as the Patterns source-card draws it), borderless (drops the black badge's --color-border edge —
 // the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 // indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
 function Badge({ color = 'white', size = 'm', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest }) {
@@ -150,7 +150,7 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
 // Props: size s|m (default s, rule 2.6; pass size="m" only for a key-figure row at the top of the page with no page title above), title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
 // Label/M/medium caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
 // badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
-// compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;
+// compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in --color-text-softer;
 // without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
 function StatCard({ size = 's', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest }) {
   const m = size === 'm';

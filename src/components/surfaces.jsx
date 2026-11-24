@@ -191,7 +191,7 @@ surfToast.dismiss = surfDismissToast;
 function useSnackbar() { return surfToast; }
 
 // Figma: overlay-background (338:21403)
-// Props: type strong (overlay/screen-strong + blur/medium) | base (no blur), onClick, inline (absolute, not fixed).
+// Props: type strong (--color-overlay-screen-strong + --blur-40) | base (no blur), onClick, inline (absolute, not fixed).
 function Overlay({ type = 'strong', inline, className, ...rest }) {
   return <div aria-hidden="true" className={IFS.cx('ifs-overlay', `ifs-overlay--${type}`, inline && 'ifs-overlay--inline', className)} {...rest} />;
 }

@@ -116,7 +116,7 @@ function ResizeHandle({ arrows = 'both', className, style, ...rest }) {
 
 /* ------------------------------------------------------------------------------------------ */
 // Figma: drop-indicator-atom (key f78ffb9697f561fefbb73cd30090fb5e9adc8501; Patterns copy 413:43575)
-// The thin purple line that marks where a dragged widget would land: a 4px ring + 1px line (border/accent-purple).
+// The thin purple line that marks where a dragged widget would land: a 4px ring + 1px line (--color-border-accent-purple).
 // Props: orientation horizontal (between rows → new row; Figma's only variant) | vertical (inside a row → insert; the
 // pattern notes ask for it — drawn as the same atom turned 90°).
 function DropIndicator({ orientation = 'horizontal', className, style, ...rest }) {
@@ -130,7 +130,7 @@ function DropIndicator({ orientation = 'horizontal', className, style, ...rest }
 /* ------------------------------------------------------------------------------------------ */
 // Figma: widget-view-change-position (Patterns local component 331:509936)
 // The compact chip a widget collapses into while its position is being changed (follows the cursor).
-// Props: title (H4, sentence case, text/tertiary). The ghost icon-button carries the drag mark.
+// Props: title (H4, sentence case, --color-text-softer). The ghost icon-button carries the drag mark.
 function WidgetViewChangePosition({ title, className, ...rest }) {
   return (
     <div className={cx('ifs-widget-chip', className)} {...rest}>

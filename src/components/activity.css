@@ -8,7 +8,7 @@
 .ifs-tl-marker--s{width:var(--size-24);height:var(--size-24)}
 .ifs-tl-marker--m{width:var(--size-32);height:var(--size-32)}
 .ifs-tl-marker > .ifs-avatar{margin:calc(-1 * var(--space-50))}
-/* connector-atom (3713:12835): 1px border/base line centred in its column; Dash = 3/3 */
+/* connector-atom (3713:12835): 1px --color-border-soft line centred in its column; Dash = 3/3 */
 .ifs-tl-connector{display:block;flex:1 1 auto;align-self:center;width:1px;min-height:0;background:var(--color-border-soft)}
 .ifs-tl-connector--dash{background:repeating-linear-gradient(to bottom,var(--color-border-soft) 0 3px,transparent 3px 6px)}
 
@@ -92,7 +92,7 @@
 .ifs-comment__time{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-comment__text{color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:pre-wrap;overflow-wrap:anywhere}
 .ifs-comment__text > .ifs-comment__mention{vertical-align:middle;margin:calc(-1 * var(--space-50)) 0 0;white-space:nowrap;
-  background:var(--color-background-accent-white-soft);color:var(--color-text-info)} /* Tagged user (Patterns 12:46575): badge White XS — white-base fill, text/info */
+  background:var(--color-background-accent-white-soft);color:var(--color-text-info)} /* Tagged user (Patterns 12:46575): badge White XS — white-base fill, --color-text-info */
 .ifs-comment__mention .ifs-icon{color:var(--color-icon-info)}
 .ifs-comment__menu{opacity:0;flex:none}
 .ifs-comment:hover .ifs-comment__menu,.ifs-comment:focus-within .ifs-comment__menu,.ifs-comment[data-state=hover] .ifs-comment__menu,.ifs-comment--menu .ifs-comment__menu{opacity:1}
@@ -108,7 +108,7 @@
 .ifs-composer__input::placeholder{color:var(--color-text-softer)}
 .ifs-composer__buttons{display:flex;align-items:center;flex:none}
 .ifs-composer:focus-within{box-shadow:var(--focus-ring)}
-/* Multi line: 12 radius, text padding 14/16, buttons row padding 8 right-aligned */
+/* Multi line: --radius-control (4: a field inside a floating card, Nov 24), text padding 14/16, buttons row padding 8 right-aligned */
 .ifs-composer--multi{border-radius:var(--radius-control)}
 .ifs-composer--multi .ifs-composer__row{padding:var(--size-14) var(--space-400) 0} /* raw in Figma: 14 */
 .ifs-composer--multi .ifs-composer__input{margin:0}
@@ -147,8 +147,8 @@
 .ifs-thread__comments{display:flex;flex-direction:column;gap:var(--space-stack)}
 .ifs-thread__cooper{width:100%}
 /* Type=Edit — input/keyboard state=Edit */
-/* Edit own reply (Patterns 12:47187: comment-input-molecule state=Edit) — avatar + field radius 12, background/color-alpha/white-base,
-   blur/strong; text padding 14/16 Body/L/medium; buttons row padding 0/8/8/8, right group padding 4 gap 4: Cancel Secondary S + Send Primary S */
+/* Edit own reply (Patterns 12:47187: comment-input-molecule state=Edit) — avatar + field --radius-control (4, Nov 24), --color-background-accent-white-soft,
+   --blur-80; text padding 14/16 Body/L/medium; buttons row padding 0/8/8/8, right group padding 4 gap 4: Cancel Secondary S + Send Primary S */
 .ifs-comment-edit{display:flex;flex-direction:column;flex:1;min-width:0;border-radius:var(--radius-control);background:var(--color-background-accent-white-soft);
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
 .ifs-comment-edit__field{padding:var(--size-14) var(--space-400)} /* raw in Figma: 14 */
@@ -190,7 +190,7 @@
 .ifs-collab__position{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-collab__buttons{display:flex;align-items:center;gap:var(--space-150);flex:none}
 .ifs-collab:focus-visible,.ifs-collab[data-state=focus]{box-shadow:var(--focus-ring)}
-/* Recommended hover: inner row gets surface/tertiary-alpha + "+" */
+/* Recommended hover: inner row gets --color-surface-tertiary + "+" */
 .ifs-collab--recommended:hover,.ifs-collab--recommended:focus-within,.ifs-collab--recommended[data-state=hover]{padding:var(--space-50) var(--space-200)}
 .ifs-collab--recommended:hover .ifs-collab__inner,.ifs-collab--recommended:focus-within .ifs-collab__inner,.ifs-collab--recommended[data-state=hover] .ifs-collab__inner{
   padding:var(--space-150) var(--space-200);border-radius:var(--radius-control);background:var(--color-surface-tertiary)}

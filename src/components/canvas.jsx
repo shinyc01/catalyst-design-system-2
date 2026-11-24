@@ -345,8 +345,8 @@ function CanvasBackground({ image, view, defaultView = { x: 0, y: 0, zoom: 1 }, 
 }
 
 // Connector between two canvas nodes (world coordinates). Not a Figma component of its own: the framework
-// screens draw node links as plain hairlines (border/medium) — a horizontal-tangent curve between two points.
-// Props: from {x,y}, to {x,y}, highlighted (border/strong).
+// screens draw node links as plain hairlines (--color-border) — a horizontal-tangent curve between two points.
+// Props: from {x,y}, to {x,y}, highlighted (--color-border-strong).
 function CanvasConnector({ from, to, highlighted }) {
   const minX = Math.min(from.x, to.x), minY = Math.min(from.y, to.y);
   const w = Math.abs(to.x - from.x) || 1, h = Math.abs(to.y - from.y) || 1;

@@ -48,7 +48,7 @@ function ChatHeader({ title = 'New chat', size = 'full', newChat, onNewChat, onH
 
 // Figma: user-message-molecule (24d3417689866a2cd7c3af335c0d617a276587e1) — "user-message-bubble" (12:263541).
 // Props: children = message text, size inline|multi (default: inline for short one-line text — Figma Size=Inline is a pill,
-// >1 line is radius 12), onEdit(text) (shows edit on hover; Figma State=editing has Cancel / Save), onCopy (copy on hover),
+// >1 line is --radius-control 4), onEdit(text) (shows edit on hover; Figma State=editing has Cancel / Save), onCopy (copy on hover),
 // editing / defaultEditing / onEditingChange, state hover (gallery).
 function UserMessage({ children, size, onEdit, onCopy, editing, defaultEditing = false, onEditingChange, state, className, ...rest }) {
   const text = typeof children === 'string' ? children : '';
@@ -97,7 +97,7 @@ function Attachment({ name, meta, icon = 'system-file', onRemove, className, ...
 }
 
 // Figma: text-message-input-molecule (2f407b5b2a20…) — the chat composer in compact/full panels (Patterns 67:120307).
-// States follow the content: Default (placeholder, mic only) → Typing (send arrow appears) → Typing multi-line (radius 12, buttons
+// States follow the content: Default (placeholder, mic only) → Typing (send arrow appears) → Typing multi-line (--radius-control 4, buttons
 // below) → Analyzing (send becomes Stop while Cooper works). Enter sends, Shift+Enter adds a line.
 // Props: value / defaultValue / onChange, onSend(text, attachments), analyzing + onStop, placeholder, onAttach (+), onVoice (mic → voice mode),
 // attachments [{ id, name, meta }] + onRemoveAttachment(id) (a file switches the input to multi-line; max height 400px then scroll),
@@ -291,7 +291,7 @@ function CooperMessage({ status = 'answered', step, reasoning = [], reasoningOpe
 // Props: type voice|text|fab (Figma Type: Voice opens by default; FAB button = Cooper avatar only),
 // value / defaultValue / onChange (text), onSend(text), onTypeChange(type) (mic ↔ keyboard), onAttach, onExpand (hover control:
 // "Expand to floating window"), speech (voice transcript; replaces the placeholder while the user talks), onFab (type=fab),
-// state hover (gallery). Text over one line switches to the multi-line layout (radius 12).
+// state hover (gallery). Text over one line switches to the multi-line layout (--radius-control 4).
 function ChatCollapsedBar({ type = 'voice', value, defaultValue = '', onChange, onSend, onTypeChange, onAttach, onExpand, speech, onFab, state, autoFocus, className, style, ...rest }) {
   const [text, setText] = useCtl(value, defaultValue, onChange);
   if (type === 'fab') return <IFS.FtaButton indicator={false} onClick={onFab} className={className} style={style} />;

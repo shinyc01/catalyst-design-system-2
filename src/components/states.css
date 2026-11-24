@@ -9,7 +9,7 @@
   border-radius:var(--radius-pill);color:var(--color-icon);isolation:isolate;
   outline:var(--border-width-default) solid var(--color-border-soft);outline-offset:calc(-0.5 * var(--border-width-default));
   background:radial-gradient(closest-side,var(--color-background-accent-grey-strong),var(--color-background-transparent))}
-/* Success / warning tone: surface/secondary-alpha + a 30% radial tint from the top-left corner */
+/* Success / warning tone: --color-surface-secondary + a 30% radial tint from the top-left corner */
 .ifs-state-media--success,.ifs-state-media--warning{background:var(--color-surface-secondary)}
 .ifs-state-media--success::before,.ifs-state-media--warning::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:.3;
   background:radial-gradient(circle at 0 0,var(--fade) 0,var(--tint) 160%)}
@@ -36,7 +36,7 @@
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
 .ifs-loading-more .ifs-icon{color:var(--color-icon)}
 
-/* Skeleton (L1, Nov 24): one look for every loading variant. Static shapes on the one skeleton fill (Figma background/elevation-1/secondary)
+/* Skeleton (L1, Nov 24): one look for every loading variant. Static shapes on the one skeleton fill (Figma --color-background-neutral-soft)
    with a slow pulse (opacity 1 → 0.5 → 1, --motion-loop-pulse, linear); no shimmer. Every Loading variant (bars, cards, avatar, badge,
    node card, chart, trace solution …) carries .ifs-sk next to its own size class. The fill wins over the host's own fill and states (!important),
    so a loading card never shows its hover or colour. `fill` covers the SVG chart skeleton. Reduced motion: no pulse, the shapes stay (M4). */

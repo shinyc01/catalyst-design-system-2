@@ -395,7 +395,7 @@ function Hit({ i, label, setActive, children, className }) {
   );
 }
 
-// y-axis grid (dashed border/base), solid baseline (white/alpha-30) and tick labels — the line-atom + value-label grammar.
+// y-axis grid (dashed --color-border-soft), solid baseline (white/alpha-30) and tick labels — the line-atom + value-label grammar.
 function YAxis({ L, ticks, format }) {
   const base = ticks[0] <= 0 && ticks[ticks.length - 1] >= 0 ? 0 : ticks[0];
   return (

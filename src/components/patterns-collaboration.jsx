@@ -22,7 +22,7 @@ const collaborationUser = avatarType => USER_OF_AVATAR[avatarType] || 16;
 // Figma: cursor-atom (55:1645; set key 80c816a4…) — live multiplayer cursor: cursor-pointer + name pill.
 // Props: user 1…16 | "cooper" (Figma User; pill = collaboration/user-N, Cooper = user-9 + Cooper visual), name (Figma "user name"),
 //   x / y (px; when given the cursor is absolutely positioned and glides between positions), label (accessible name).
-// Users 4, 6, 11, 13, 15 use dark text (text/primary-inverse), as in Figma.
+// Users 4, 6, 11, 13, 15 use dark text (--color-text-inverse), as in Figma.
 const DARK_TEXT = [4, 6, 11, 13, 15];
 function CollaboratorCursor({ user = 1, name, x, y, className, style, ...rest }) {
   const cooper = user === 'cooper';
@@ -169,7 +169,7 @@ function CollaboratorRow({ person, control, onOpen, onAdd, onRoleChange, onRemov
   );
 }
 
-// Section of the panel: Label/M/medium heading (sentence case) (text/secondary, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
+// Section of the panel: Label/M/medium heading (sentence case) (--color-text-soft, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
 function CollaboratorSection({ title, cooper, children }) {
   return (
     <section className="ifs-collab-section">

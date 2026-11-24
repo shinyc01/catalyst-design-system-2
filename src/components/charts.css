@@ -81,7 +81,7 @@
   background:var(--color-surface-raised-hover);box-shadow:0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-dv-card--drag{background:var(--color-surface-raised-hover);box-shadow:0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-dv-card__content{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
-/* Cooper, not focus: 4px outside gradient ring + 2px ring-gap, card itself surface/secondary-alpha + border/base */
+/* Cooper, not focus: 4px outside gradient ring + 2px ring-gap, card itself --color-surface-secondary + --color-border-soft */
 .ifs-dv-card--cooper:not(.ifs-dv-card--chart){background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 0 var(--border-width-selected) var(--color-ring-gap)}
 .ifs-dv-card--cooper::before{content:"";position:absolute;inset:calc(-1 * var(--size-6));padding:var(--border-width-400);border-radius:calc(var(--radius-card) + var(--size-6));pointer-events:none;
   background:linear-gradient(225deg,var(--color-cooper-text),var(--color-text));
@@ -160,7 +160,7 @@
 .ifs-progress-ring{display:inline-block;flex:none;vertical-align:middle}
 .ifs-progress-ring__track{stroke:var(--color-surface-elevation-2)}
 .ifs-progress-ring__bar{stroke:var(--color-icon)}
-.ifs-progress-ring--complete .ifs-progress-ring__bar{stroke:var(--color-icon-success)} /* Figma: 100% instances use icon/success */
+.ifs-progress-ring--complete .ifs-progress-ring__bar{stroke:var(--color-icon-success)} /* Figma: 100% instances use --color-icon-success */
 
 /* ================= evidence-strength-bar-molecule (67:6634) ================= */
 .ifs-evidence{display:flex;flex-direction:column;gap:var(--space-150);min-width:0;width:100%}

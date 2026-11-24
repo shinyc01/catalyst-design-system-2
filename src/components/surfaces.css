@@ -106,7 +106,7 @@
 .ifs-drawer--collapsed .ifs-drawer__tabs,.ifs-drawer--collapsed .ifs-drawer__sub,.ifs-drawer--collapsed .ifs-drawer__content{display:none}
 .ifs-drawer--collapsed{height:auto!important}
 
-/* scroll-bar-atom: 8px track, 4px bar, background/elevation-1/tertiary */
+/* scroll-bar-atom: 8px track, 4px bar, --color-background-neutral */
 .ifs-scroll{scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent}
 .ifs-scroll::-webkit-scrollbar{width:8px}
 .ifs-scroll::-webkit-scrollbar-track{background:transparent}

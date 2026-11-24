@@ -1,6 +1,6 @@
 /* ================= Pattern: System Confidence · Trace Report (Patterns 12:121114) ================= */
 
-/* ---- IssueSolution — content-card-organism as a solution row (30:73123): 12 padding, radius 8, elevation-1/secondary + border/base ---- */
+/* ---- IssueSolution — content-card-organism as a solution row (30:73123): 12 padding, radius 8, elevation-1/secondary + --color-border-soft ---- */
 .ifs-content-card.ifs-trc-solution{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
   padding:var(--space-inset);border-radius:var(--radius-card)}
 .ifs-content-card.ifs-trc-solution[role=button]:hover,.ifs-content-card.ifs-trc-solution[data-state=hover]{--fill:var(--color-surface-raised-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
@@ -13,7 +13,7 @@
 .ifs-trc-solution__cooper{flex:none;margin-top:var(--size-1)}
 .ifs-trc-solution__text{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
 .ifs-trc-solution__title{font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking);color:var(--color-text)} /* H4: card title (Nov 19, 2.0.3) */
-/* Fill style cooper/Insight/text: text/accent-cooper → text/primary gradient */
+/* Fill style cooper/Insight/text: --color-cooper-text → --color-text gradient */
 .ifs-trc-solution__title--cooper{background:linear-gradient(270deg,var(--color-cooper-text) 35%,var(--color-text) 75%);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-trc-solution__desc{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
@@ -25,7 +25,7 @@
 /* Uploading: indicator-molecule, 40px (30:77981); the look is the one skeleton, .ifs-sk (L1) */
 .ifs-trc-solution--loading{height:var(--size-40);border-radius:var(--radius-card)}
 
-/* ---- IssueListItem — content-card-organism row (30:75771): 12 padding, radius 8, border/base, no fill ---- */
+/* ---- IssueListItem — content-card-organism row (30:75771): 12 padding, radius 8, --color-border-soft, no fill ---- */
 .ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);padding:var(--space-inset);border-radius:var(--radius-card)}
 .ifs-content-card.ifs-trc-item[role=button]:hover,.ifs-content-card.ifs-trc-item[data-state=hover]{--fill:var(--color-surface-raised);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-trc-item__row{display:flex;align-items:center;gap:var(--space-150);min-width:0}
@@ -60,7 +60,7 @@
 .ifs-trc-gates__ind{display:inline-flex;align-items:center;min-height:var(--size-target-min);border-radius:var(--radius-pill)}
 .ifs-trc-gates__ind:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 
-/* ---- SystemConfidence card (content-card-organism, surface/secondary-alpha, 8 padding, radius 4 = kit ContentCard M) ---- */
+/* ---- SystemConfidence card (content-card-organism, --color-surface-secondary, 8 padding, radius 4 = kit ContentCard M) ---- */
 .ifs-trc-card .ifs-content-card__slot{display:block}
 .ifs-trc-card__issues{display:flex;flex-direction:column;box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft);padding-top:var(--space-100)}
 .ifs-trc-card__issues.has-kinds{padding-top:0}

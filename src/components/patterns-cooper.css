@@ -2,7 +2,7 @@
    Figma: IFS Design System chat-* components, read from the Patterns file page "Cooper" (12:263487). */
 
 /* ---------- shared Cooper glass surface ----------
-   Figma fill: element/cooper/insight/fill-base + radial copper glow (Cooper copper -> black at 20%) + blur/strong. */
+   Figma fill: --color-cooper-insight + radial copper glow (Cooper copper -> black at 20%) + --blur-80. */
 .ifs-cooper-surface{position:relative;box-sizing:border-box;color:var(--color-text);
   background:
     radial-gradient(ellipse 95% 70% at 0% 100%,var(--color-cooper-glow-center),var(--color-cooper-glow-edge) 70%,transparent) /* geometry from gradientTransform, approx. */,

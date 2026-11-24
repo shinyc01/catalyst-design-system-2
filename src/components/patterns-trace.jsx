@@ -90,8 +90,8 @@ function useIssueReport({ issues = [], kinds = CONFIDENCE_KINDS, gates = [], def
 
 /* ------------------------------------------------------------------------------------------ */
 // Pattern helper: solution / applied / answered row — built from ContentCard, Icon, IconButton. Patterns (30:73116 recommended, 30:73123 plain,
-// 30:76630 applied, 30:78117 answered). M card, 12 padding, radius 8, border/base stroke. recommended = Cooper's pick:
-// cooper-system-icon (Insight) + "cooper/Insight/text" gradient title on background/color-alpha/cooper-base.
+// 30:76630 applied, 30:78117 answered). M card, 12 padding, radius 8, --color-border-soft stroke. recommended = Cooper's pick:
+// cooper-system-icon (Insight) + "cooper/Insight/text" gradient title on --color-cooper-background-soft.
 // Props: title, description, recommended, onSelect (click applies it), onUndo (shows the arrow-back-up icon-button;
 // Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading state, 40px; the one skeleton look, L1), state (gallery: hover).
 function IssueSolution({ title, description, recommended, onSelect, onUndo, undoLabel = 'Cancel', loading, state, className, ...rest }) {
@@ -113,7 +113,7 @@ function IssueSolution({ title, description, recommended, onSelect, onUndo, undo
 }
 
 // Pattern helper: "All" list row — built from ContentCard, Counter, Icon. Patterns (30:75771 / 12:177000): counter-atom S with the position,
-// the issue title (Body/M/regular, text/secondary) and a 12px status-success-filled when resolved. Click opens the item.
+// the issue title (Body/M/regular, --color-text-soft) and a 12px status-success-filled when resolved. Click opens the item.
 function IssueListItem({ number, title, resolved, onClick, state, className, ...rest }) {
   return (
     <IFS.ContentCard className={cx('ifs-trc-item', className)} onClick={onClick} state={state}

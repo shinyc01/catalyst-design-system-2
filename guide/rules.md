@@ -195,7 +195,7 @@ Rows keep their own tokens: tabs `--size-tab-m` 40 / 36 / 32 and `--size-tab-l` 
 | Radius role | Value | Use |
 |---|---|---|
 | `--radius-mark` | 2 | small marks |
-| `--radius-control` | 4 | every control at every size, segmented controls, menu items, tooltip; fields inside floating cards (comment composer and edit box, chat bubbles, multi-line chat input and chat bar) |
+| `--radius-control` | 4 | every control at every size, segmented controls, menu items, tooltip; multi-line fields inside floating cards (the comment composer and edit box, chat bubbles, chat input and chat bar once they hold more than one line; on one line they are pills, `--radius-pill`) |
 | `--radius-card` | 4 | every card, the table card |
 | `--radius-floating` | 8 | popover, menu list, select list, snackbar, alert, modal, drawer, floating bar, form card, comment thread |
 | `--radius-floating-l` | 12 | Cooper chat and the agent window |

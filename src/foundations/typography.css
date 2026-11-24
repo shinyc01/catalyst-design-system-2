@@ -6,8 +6,8 @@
       and the size scale --font-size-s|m|l|h3|h2|h1|display-* (size/line-height pairs per density,
       Density block in tokens.css).
    2. Semantic: one set per text style, named like its .t-* class (.t-body-m-regular -> --font-body-m-regular). Components and prototypes use ONLY these:
-        font:var(--text-<style>);letter-spacing:var(--text-<style>-tracking)
-      --text-<style>-weight is there for
+        font:var(--font-<style>);letter-spacing:var(--font-<style>-tracking)
+      --font-<style>-weight is there for
       rules that only change the weight.
 
    Levels: Small (rare: disclaimers, footnotes, text inside a fixed small shape), Body (default; all content and labels),

@@ -3,7 +3,7 @@
    CompareView and ActivityPanel. Timeline / version entries come from activity.css (kit), reused as is. */
 
 /* ================= drop-down list (Patterns 52:82683) ================= */
-/* V gap 8, padding 4, radius 4, surface/secondary-alpha + border/base inside, blur/strong */
+/* V gap 8, padding 4, radius 4, --color-surface-secondary + --color-border-soft inside, --blur-80 */
 .ifs-compare-list{position:absolute;top:calc(100% + var(--space-200));inset-inline-start:0;z-index:var(--z-index-popover);width:100%;box-sizing:border-box;
   display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-100);max-height:22rem;overflow:auto;
   border-radius:var(--radius-card);background:var(--color-surface-secondary);box-shadow:var(--elevation-floating) /* C1 level 2 */;
@@ -24,7 +24,7 @@
 
 /* ================= compare-dropdown (Patterns 52:82756) ================= */
 .ifs-compare-dd{position:relative;display:flex;flex-direction:column;flex:none;max-width:100%;min-width:0}
-/* Background+Border: H space-between, padding 8/10, radius 6, surface/primary-alpha, 1px inside stroke */
+/* Background+Border: H space-between, padding 8/10, radius 6, --color-surface-overlay, 1px inside stroke */
 .ifs-compare-dd__field{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:2.125rem;box-sizing:border-box;
   padding:var(--space-200) var(--space-250);border-radius:var(--radius-control);cursor:pointer;outline:none;
   background:var(--color-surface-overlay);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-on-overlay) /* raw in Figma */}
@@ -36,7 +36,7 @@
 .ifs-compare-dd__right{display:flex;align-items:center;gap:var(--space-200);flex:none;color:var(--color-icon)}
 
 /* ================= compare-header (Patterns 52:82780) ================= */
-/* row: H gap 12, padding 0/12, 42px; box: 440px, H gap 8, padding 4/4/4/8, radius 8, elevation-1/secondary + blur/strong */
+/* row: H gap 12, padding 0/12, 42px; box: 440px, H gap 8, padding 4/4/4/8, radius 8, elevation-1/secondary + --blur-80 */
 .ifs-compare-header{display:flex;align-items:center;gap:var(--space-300);height:2.625rem;padding:0 var(--space-300);box-sizing:border-box;min-width:0}
 .ifs-compare-header__box{display:flex;align-items:center;gap:var(--space-200);width:27.5rem;max-width:100%;height:2.625rem;box-sizing:border-box;flex:none;
   padding-block:var(--space-100);padding-inline:var(--space-200) var(--space-100);border-radius:var(--radius-card);

@@ -19,7 +19,7 @@
 .ifs-icon-button--s{width:var(--size-control-s);height:var(--size-control-s) /* square at every density (was 24 wide, 28 tall at Spacious) */;padding:var(--space-100);border-radius:var(--radius-control)}
 .ifs-icon-button--circle{border-radius:var(--radius-pill)}
 
-/* Types: fill + stroke per state, straight from element/button/<type>/{fill,border}/<state>.
+/* Types: fill + stroke per state, from the Figma element/button/<type>/{fill,border}/<state> variables, now the --color-* roles (S2).
    Primary and Ghost strokes are OUTSIDE in Figma, Secondary and Tertiary INSIDE. */
 .ifs-button--primary,.ifs-icon-button--primary{--t:primary;color:var(--color-text-inverse);
   --fill:var(--color-background-neutral-stronger);--stroke-shadow:0 0 0 var(--border-width-default) var(--color-border-soft)}
@@ -57,7 +57,7 @@
   background:
     radial-gradient(ellipse 86% 98% at 50% 2%,var(--color-cooper-button-rim-center),var(--color-cooper-button-rim)),
     radial-gradient(ellipse var(--glow-size) at 99% 88%,var(--glow),var(--color-cooper-button-glow-edge)),
-    var(--color-cooper-button-shade) /* element/cooper/button/fill at 60% layer opacity */;
+    var(--color-cooper-button-shade) /* --color-cooper-button-fill at 60% layer opacity */;
 }
 /* Figma enlarges the glow ~2x on hover/pressed */
 .ifs-button--cooper:hover,.ifs-button--cooper[data-state=hover]{--glow:var(--color-cooper-button-glow-hover);--glow-size:135% 400%}

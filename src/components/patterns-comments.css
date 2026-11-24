@@ -1,7 +1,7 @@
 /* ================= Comments pattern (Patterns › Comments 12:30065) ================= */
 
 /* ---------- CommentPin — comment-pin-organism (260:47160) ----------
-   Default: hug, padding 4, avatars gap -8, radius 30/100/100/2 (TL/TR/BR/BL), border/base 1px OUTSIDE.
+   Default: hug, padding 4, avatars gap -8, radius 30/100/100/2 (TL/TR/BR/BL), --color-border-soft 1px OUTSIDE.
    Hover: vertical card 347 wide, padding 12, gap 12, radius 20/20/20/2, avatars gap 6. */
 .ifs-cpin{--pin-fill:var(--color-background-comment-pin) /* C4: info 600 (#0f63d9 since the Nov 24 rebalance), white label 5.52:1 */;all:unset;box-sizing:border-box;display:inline-flex;flex-direction:column;align-items:flex-start;
   gap:var(--space-300);padding:var(--space-100);
@@ -25,8 +25,8 @@
 
 
 /* ---------- CommentDrawerCard — comment-drawer-card (1231:170874) ----------
-   380 wide, padding 12/16, gap 8. Hover: background/elevation-1/secondary. Selected: padding 4/8 around an 8px-radius box
-   (background/elevation-1/secondary, border/base inside, padding 8). Focus: focus ring. */
+   380 wide, padding 12/16, gap 8. Hover: --color-background-neutral-soft. Selected: padding 4/8 around an 8px-radius box
+   (--color-background-neutral-soft, --color-border-soft inside, padding 8). Focus: focus ring. */
 .ifs-cdcard{position:relative;box-sizing:border-box;padding:0;cursor:pointer;outline:none;color:var(--color-text)}
 .ifs-cdcard__box{display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-inset) var(--space-inset)}
 .ifs-cdcard:hover,.ifs-cdcard[data-state=hover],.ifs-cdcard--menu{background:var(--color-background-neutral-soft)}
