@@ -151,7 +151,7 @@ function App() {
         Cell('line chart, not zero-based', h(I.LineChart, { title: 'Condition index', data: YEARS.map((l, i) => ({ label: l, s0: 71 + Math.sin(i) * 3 + i })), series: [{ key: 's0', label: 'Condition' }] })))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D4 · D6 · Legends by chart type and series counts'),
-      h('p', null, 'Line: names at the line ends, legend below when they collide. Bars and areas: legend below, start-aligned. Stacks: below, in stack order. Pie and donut: a list beside with values. Heatmap: a scale bar. Bubbles: a size key. One series: no legend. Up to 8 series, 9–12 only with direct labels, then "Other".'),
+      h('p', null, 'Line: names at the line ends, legend below when they collide. Bars and areas: legend below, centred. Stacks: below, in stack order. Pie and donut: a list beside with values. Heatmap: a scale bar. Bubbles: a size key. One series: no legend. Up to 8 series, 9–12 only with direct labels, then "Other".'),
       h('div', { className: 'rv-grid', style: { '--cols': cols } },
         Cell('Line, 6 series: end labels collide → legend below', h(I.LineChart, { title: 'Forecast by program', data: lineData(6), series: ser(6), format: money })),
         Cell('Line, 10 series in a large card: end labels fit (9–12 only with direct labels)', h(I.LineChart, { size: 'large', title: 'Forecast by program', data: multi(YEARS, 10, (i, j) => (100 + j * 100 + i * 6 + (i % 2) * 8) * 1e4), series: ser(10), format: money })),

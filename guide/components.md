@@ -454,7 +454,7 @@ Use: Chart title row with optional view toggle or button. `viewSwitch` sits afte
 
 ### data-viz-modal-organism · `DataVizTooltip`
 Use: Chart tooltip / info pop-up showing exact values on hover.
-Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 11.5). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series. Swatches show only when more than one row has a colour. Compact spacing: `--space-200` top and bottom, `--space-100` title → rows, `--space-50` between rows.
+Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 11.5). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series. Swatches show only when more than one row has a colour. Spacing: `--space-inset` all round, `--space-150` title → rows, `--space-100` between rows.
 
 ### indicator-atom · `DataVizIndicator`
 Use: Target/selection marker on a chart (e.g. bullet-chart target).
@@ -560,7 +560,7 @@ Use: Bridge from a start value to an end value through increments. Totals neutra
 Use: Hierarchical part-to-whole by area.
 
 ### chart-gauge · `GaugeChart`
-Use: One KPI against one reference value; the arc in slot 1, as thick as the donut ring, square ends; the centre metric is the StatCard S value (rule 11.10).
+Use: One KPI against one reference value; the arc in slot 1, as thick as the donut ring, `--radius-mark` ends; the centre metric is the StatCard S value (rule 11.10).
 
 ### chart-funnel · `FunnelChart`
 Use: Drop-off across ordered stages.
