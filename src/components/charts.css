@@ -116,7 +116,7 @@
 .ifs-dv-card--chart .ifs-dv-card__legend{flex:none;display:block}
 .ifs-dv-card--chart .ifs-dv-card__legend--beside{flex:0 0 auto;min-width:0;max-width:50%;overflow:auto;align-self:center;max-height:100%}
 .ifs-chart__legend{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--space-500);min-width:0}
-.ifs-chart__legend > .ifs-dv-legend{padding-block:var(--space-50)}
+.ifs-chart__legend > .ifs-dv-legend{padding-block:var(--space-50);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* legend labels Body/S (rule 11.10) */
 .ifs-chart__legend--beside{flex-direction:column;flex-wrap:nowrap;align-items:stretch}
 .ifs-chart__legend-more{color:var(--color-text-softer)}
 
@@ -124,7 +124,11 @@
 .ifs-dv-tooltip{display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;width:16rem;padding:var(--space-inset);
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-80));
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text);text-align:start}
-.ifs-dv-tooltip--chart{width:max-content;min-width:12rem;max-width:20rem} /* D5: content-sized */
+.ifs-dv-tooltip--chart{width:max-content;min-width:12rem;max-width:20rem; /* D5: content-sized */
+  gap:var(--space-100);padding-block:var(--space-200)} /* compact (review, Nov 25): inset at start / end only; title → rows space-100 */
+.ifs-dv-tooltip--chart .ifs-dv-tooltip__head{gap:var(--space-50)}
+.ifs-dv-tooltip--chart .ifs-dv-tooltip__items{gap:var(--space-50)}
+.ifs-dv-tooltip--chart .ifs-dv-tooltip__item{padding-block:0} /* rows space-50 apart */
 .ifs-dv-tooltip__head{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-dv-tooltip__titlerow{display:flex;align-items:flex-end;gap:var(--space-200)}
 .ifs-dv-tooltip__titles{flex:1;display:flex;flex-direction:column;gap:var(--space-50);min-width:0}
@@ -159,12 +163,13 @@
 .ifs-chart__end-label{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking);fill:var(--color-text-soft)} /* D4: line names at the line ends */
 .ifs-chart__point--on{stroke:var(--color-surface-page);stroke-width:2}
 .ifs-chart__cell--on{stroke:var(--color-data-viz-reference);stroke-width:1.5}
-/* Axis ticks Body/S/regular; in-plot values and slice labels Label/M/medium; donut centre H1; gauge value Display/M (semantic tokens, like all text) */
+/* One chart text scale (rule 11.10): axis, legend and end labels Body/S; in-chart data labels Label/S/medium; tooltip title Label/M/medium, values Label/M;
+   the donut and gauge centre metric = the StatCard S value (H3), its label Body/S */
 .ifs-chart__axis{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking);fill:var(--color-text-softer);font-variant-numeric:var(--font-numeric)}
-.ifs-chart__value{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
-.ifs-chart__slice-label{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);fill:var(--color-text);pointer-events:none;font-variant-numeric:var(--font-numeric)}
-.ifs-chart__center{font:var(--font-heading-h2-medium);letter-spacing:var(--font-heading-h2-medium-tracking); /* H2: no H1 for numbers (Nov 19) */fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
-.ifs-chart__gauge-value{font:var(--font-display-m);letter-spacing:var(--font-display-m-tracking);fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
+.ifs-chart__value{font:var(--font-label-s-medium);letter-spacing:var(--font-label-s-medium-tracking);fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
+.ifs-chart__slice-label{font:var(--font-label-s-medium);letter-spacing:var(--font-label-s-medium-tracking);fill:var(--color-text);pointer-events:none;font-variant-numeric:var(--font-numeric)}
+.ifs-chart__center{font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking); /* the StatCard S value (rule 11.10) */fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
+.ifs-chart__gauge-value{font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking); /* the StatCard S value (rule 11.10) */fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
 .ifs-chart__grid{stroke:var(--color-border);stroke-width:var(--border-width-default)} /* D3: solid 1 px, the default border role; horizontal only */
 .ifs-chart__baseline{stroke:var(--color-border-strong);stroke-width:var(--border-width-default)} /* D3: the zero line, one step stronger */
 .ifs-chart__guide{stroke:var(--color-border);stroke-dasharray:2 4}
@@ -181,10 +186,10 @@
 .ifs-chart__state .ifs-empty__actions{margin-top:0}
 .ifs-chart__table{flex:1 1 auto;min-height:0;overflow:auto}
 /* D4: heatmap scale bar and bubble size key, in the legend row */
-.ifs-chart__scale{display:inline-flex;align-items:center;gap:var(--space-200);padding-block:var(--space-50);color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
+.ifs-chart__scale{display:inline-flex;align-items:center;gap:var(--space-200);padding-block:var(--space-50);color:var(--color-text-soft);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)}
 .ifs-chart__scale-bar{display:inline-flex;gap:var(--space-50)}
 .ifs-chart__scale-bar span{display:block;width:var(--size-24);height:var(--size-12);border-radius:var(--radius-mark)}
-.ifs-chart__size-key{display:inline-flex;align-items:center;gap:var(--space-300);padding-block:var(--space-50);color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
+.ifs-chart__size-key{display:inline-flex;align-items:center;gap:var(--space-300);padding-block:var(--space-50);color:var(--color-text-soft);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)}
 .ifs-chart__size-key-item{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--color-text);font-variant-numeric:var(--font-numeric)}
 .ifs-chart__size-key-circle{fill:none;stroke:var(--color-text-soft);stroke-width:1}
 .ifs-chart__sr{position:absolute;width:1px;height:1px;padding:0;margin:calc(-1 * var(--size-1));overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}

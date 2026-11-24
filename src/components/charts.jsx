@@ -9,7 +9,8 @@ import { IFS } from './registry.js';
 
 // Chart geometry the SVG needs as numbers (rule 1.3: chart geometry stays px).
 const R_MARK = 2;        // = --radius-mark: the end of a bar away from the baseline (D8)
-const GAP_MARK = 2;      // the card-colour gap between stacked segments and grouped bars (D8)
+const GAP_MARK = 1;      // = --border-width-default: the card-colour gap between stacked segments and between grouped bars (D8; 1 px, review Nov 25)
+const GAP_CELL = 2;      // heatmap cells
 const TIP_GAP = 8;       // tooltip beside the mark, the same 8 px on either side (D5)
 const LABEL_MIN = 24;    // value-axis labels closer than this thin out; gridlines stay (D3)
 const HIT_R = 12;        // chart points get at least a 24 px hit area (G8, WCAG 2.5.8)
@@ -326,7 +327,8 @@ function DataVizCard({ variant = 'organism', state, title, header, legend, child
 // Figma: data-viz-modal-organism (4440:32681) and the chart-info-modal tooltip used by every core chart.
 // Props: title, subtitle (Category line above the title → organism layout, value right of the title),
 // value (chart layout: second line), delta = { text, direction up|down, tone positive|negative }, items = [{ label, value, color, shape }]
-// (shape square | line | dashed | dot: the same swatch as the legend, D4; no shape = dot), showValue (Figma show-value),
+// (shape square | line | dashed | dot: the same swatch as the legend, D4; no shape = dot; swatches show only when more than one item has a colour,
+// so a single-series tooltip has none), showValue (Figma show-value),
 // variant chart (content-sized, 12–20rem, D5) | modal (256). children are appended under the items.
 function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue = true, variant = 'modal', children, className, ...rest }) {
   const deltaEl = delta && (
@@ -334,6 +336,7 @@ function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue =
       <IFS.Icon name={delta.direction === 'down' ? 'arrow-caret-down-filled' : 'arrow-caret-up-filled'} size={12} />{delta.text}
     </span>
   );
+  const swatches = items.filter(it => it.color).length > 1;
   return (
     <div role="tooltip" className={IFS.cx('ifs-dv-tooltip', `ifs-dv-tooltip--${variant}`, className)} {...rest}>
       <div className="ifs-dv-tooltip__head">
@@ -352,7 +355,7 @@ function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue =
         <div className="ifs-dv-tooltip__items">
           {items.map((it, i) => (
             <div key={i} className="ifs-dv-tooltip__item">
-              {it.color && <span className={IFS.cx(it.shape ? 'ifs-dv-tooltip__swatch' : 'ifs-dv-tooltip__dot', it.shape && `ifs-dv-tooltip__swatch--${it.shape}`)}
+              {swatches && it.color && <span className={IFS.cx(it.shape ? 'ifs-dv-tooltip__swatch' : 'ifs-dv-tooltip__dot', it.shape && `ifs-dv-tooltip__swatch--${it.shape}`)}
                 style={it.shape ? { '--sw': legendColor(it.color) } : { background: legendColor(it.color) }} />}
               <span className="ifs-dv-tooltip__name">{it.label}</span>
               <span className="ifs-dv-tooltip__val">{it.value}</span>
@@ -703,7 +706,7 @@ function ColumnChart(props) {
   );
 }
 
-// Figma: chart-histogram (9864:14012) — distribution of one measure across bins (contiguous zero-based columns, 2 px apart).
+// Figma: chart-histogram (9864:14012) — distribution of one measure across bins (contiguous zero-based columns, 1 px apart).
 // Props: values = raw numbers + bins (count, default 10) or binWidth — or data = pre-binned [{ label, value }];
 // binFormat(lo, hi) for bin labels, valueLabel (default 'Count'), + ColumnChart props.
 function HistogramChart({ values, bins = 10, binWidth, binFormat, data, valueLabel = 'Count', ...props }) {
@@ -776,7 +779,7 @@ const warnOnce = (k, msg) => { if (!dvWarned.has(k)) { dvWarned.add(k); if (type
 // Figma: chart-grouped-column (9862:13445) — 2–4 series side by side per category; consistent series order + legend.
 // Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }] (capped at 4: a 5th and
 // more are left out of the plot, kept in the table view, with a console warning; use a stacked column or small multiples), referenceKey (default 'reference') +
-// referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with a 2 px gap (D8).
+// referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
 function GroupedColumnChart(props) {
   const { data = [], referenceKey = 'reference', referenceLabel = 'Peer median', format = defaultFormat, tooltip, valueTicks } = props;
   const all = props.series || [];
@@ -823,7 +826,7 @@ function GroupedColumnChart(props) {
 
 // Figma: chart-stacked-column (9863:11139) — composition of a total per category; the one stacked-column component (D8).
 // Series stack bottom → top in series order (most important first, on the baseline); up to 8 segments, the rest fold into "Other"
-// (fewer read better: 5 or fewer recommended). 2 px card-colour gap between segments; only the outer end of the whole column is rounded.
+// (fewer read better: 5 or fewer recommended). 1 px card-colour gap between segments (--border-width-default, WCAG 1.4.11); only the outer end of the whole column is rounded.
 // Props: data = [{ label, [series.key]: number, delta?, details? }], series = [{ key, label, color? }], format, tooltip, valueTicks. + shell props.
 function StackedColumnChart(props) {
   const { data = [], format = defaultFormat, tooltip, valueTicks } = props;
@@ -1013,8 +1016,8 @@ function RoundChart(props) {
           );
         })}
         {donut && centerValue != null && <g aria-hidden="true">
-          <text x={cx} y={cy - (centerLabel ? 6 : 0)} dy="0.35em" textAnchor="middle" className="ifs-chart__center">{centerValue}</text>
-          {centerLabel && <text x={cx} y={cy + 20} dy="0.35em" textAnchor="middle" className="ifs-chart__axis">{centerLabel}</text>}
+          <text x={cx} y={cy - (centerLabel ? p.px * 0.7 : 0)} dy="0.35em" textAnchor="middle" className="ifs-chart__center">{centerValue}</text>
+          {centerLabel && <text x={cx} y={cy + p.px * 1.3} dy="0.35em" textAnchor="middle" className="ifs-chart__axis">{centerLabel}</text>}
         </g>}
       </Plot>
     </ChartShell>
@@ -1111,8 +1114,9 @@ function GaugeChart(props) {
   const { value = 0, min = 0, max = 100, target, reference, format = v => IFS.format.percent(v), label, valueLabel = 'Value', targetLabel = 'Target',
     referenceLabel = 'Peer median', color = 1, tooltip } = props;
   const p = usePlot({ ...props, defaultActive: props.defaultActive ? 0 : null });
-  const sw = Math.max(8, Math.min(22, p.H / 8));
-  const R = Math.max(16, Math.min(150, p.W / 2 - 24, p.H - sw - 32)), cx = p.W / 2, cy = Math.min(p.H - 24, p.H / 2 + R / 2 + 4);
+  // the arc is as thick as the donut ring in the same box (R × 0.34), with square ends (review Nov 25)
+  const donutR = Math.max(8, Math.min(124, p.H / 2 - 4, p.W / 2 - 8)), sw = Math.max(8, donutR * 0.34);
+  const R = Math.max(16, Math.min(150, p.W / 2 - sw / 2 - 8, p.H - sw / 2 - p.px * 1.34 - 12)), cx = p.W / 2, cy = p.H - p.px * 1.34 - 8;
   const ang = v => Math.PI * Math.max(0, Math.min(1, (v - min) / (max - min || 1))); // 0 = left end, π = right end
   const pt = (v, r) => [cx - r * Math.cos(ang(v)), cy - r * Math.sin(ang(v))];
   const arc = (v0, v1) => { const [x0, y0] = pt(v0, R), [x1, y1] = pt(v1, R); return `M${x0},${y0}A${R},${R} 0 0 1 ${x1},${y1}`; };
@@ -1129,14 +1133,14 @@ function GaugeChart(props) {
   return (
     <ChartShell {...shellProps(props)} skeleton="ring" legend={legend} table={table}>
       <Plot p={p} label={props.title} tip={tip} n={1} pick={pick} describe={() => `${valueLabel}: ${format(value)}${target != null ? `, ${targetLabel} ${format(target)}` : ''}`}>
-        <path d={arc(min, max)} fill="none" stroke="var(--color-border-soft)" strokeWidth={sw} strokeLinecap="round" />
-        {value > min && <path d={arc(min, value)} fill="none" stroke={dvColor(color)} strokeWidth={sw} strokeLinecap="round" />}
+        <path d={arc(min, max)} fill="none" stroke="var(--color-border-soft)" strokeWidth={sw} strokeLinecap="butt" />
+        {value > min && <path d={arc(min, value)} fill="none" stroke={dvColor(color)} strokeWidth={sw} strokeLinecap="butt" />}
         {reference != null && <line {...tick(reference, R - sw * 0.6, R + sw * 0.6)} stroke={WHITE} strokeWidth={3} strokeDasharray="4 3" />}
         {target != null && <line {...tick(target, R - sw / 2, R + sw)} stroke="var(--color-border-on-solid)" strokeWidth={2} strokeLinecap="round" opacity={0.9} />}
-        <text x={cx} y={cy - Math.min(40, R * 0.35)} textAnchor="middle" className="ifs-chart__gauge-value">{format(value)}</text>
-        {label && <text x={cx} y={cy - 8} textAnchor="middle" className="ifs-chart__axis">{label}</text>}
-        <text x={cx - R} y={cy + sw / 2 + 16} textAnchor="middle" className="ifs-chart__axis">{format(min)}</text>
-        <text x={cx + R} y={cy + sw / 2 + 16} textAnchor="middle" className="ifs-chart__axis">{format(max)}</text>
+        <text x={cx} y={cy - (label ? p.px * 1.34 + 6 : 4)} textAnchor="middle" className="ifs-chart__gauge-value">{format(value)}</text>
+        {label && <text x={cx} y={cy - 4} textAnchor="middle" className="ifs-chart__axis">{label}</text>}
+        <text x={cx - R} y={cy + p.px * 1.34 + 4} textAnchor="middle" className="ifs-chart__axis">{format(min)}</text>
+        <text x={cx + R} y={cy + p.px * 1.34 + 4} textAnchor="middle" className="ifs-chart__axis">{format(max)}</text>
       </Plot>
     </ChartShell>
   );
@@ -1260,9 +1264,9 @@ function HeatmapChart(props) {
   const rampVar = k => `var(--color-data-viz-sequential-${fam}-${steps[k]})`;
   const op = v => 0.2 + 0.8 * (hi > lo ? (v - lo) / (hi - lo) : 1);
   const labelW = Math.max(24, ...rows.map(r => p.measure(r))) + 8;
-  // cells fill the plot (rectangles), with the 2 px card-colour gap between them
+  // cells fill the plot (rectangles), with a 2 px card-colour gap between them
   const pitch = Math.max(6, (p.W - labelW) / Math.max(1, columns.length)), rowPitch = Math.max(6, (p.H - p.px * 1.34 - 8) / Math.max(1, rows.length));
-  const cell = pitch - GAP_MARK, cellH = rowPitch - GAP_MARK;
+  const cell = pitch - GAP_CELL, cellH = rowPitch - GAP_CELL;
   const every = props.columnLabelEvery;
   const colShown = every ? (j => j % every === 0) : catShown(columns, pitch, p.measure);
   const rowEvery = rowPitch < p.px * 1.3 ? Math.ceil((p.px * 1.3) / rowPitch) : 1;

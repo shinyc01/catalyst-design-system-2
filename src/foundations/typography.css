@@ -63,6 +63,9 @@
   --font-label-l-medium:var(--font-label-l-medium-weight) var(--font-size-l) var(--font-family-text);
   --font-label-m-medium-weight:var(--font-weight-medium);--font-label-m-medium-tracking:var(--font-tracking-0);
   --font-label-m-medium:var(--font-label-m-medium-weight) var(--font-size-m) var(--font-family-text);
+  /* Label/S/medium (2.0.6, rule 11.10): in-chart data labels only (bar-end values, slice shares, waterfall and funnel labels); everywhere else labels are M */
+  --font-label-s-medium-weight:var(--font-weight-medium);--font-label-s-medium-tracking:var(--font-tracking-plus-01);
+  --font-label-s-medium:var(--font-label-s-medium-weight) var(--font-size-s) var(--font-family-text);
 
   /* Code — code, formulas, JSON. Code/M matches Body (default, also inline in Body text); Code/S only inside Small text (regular, like Body/S) */
   --font-code-m-regular-weight:var(--font-weight-regular);--font-code-m-regular-tracking:var(--font-tracking-0);
