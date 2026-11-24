@@ -1,7 +1,9 @@
 /* Colour primitives (N8, Nov 23): Figma "1. Colors primitives", exported 2026-11-17 (tools/figma/colors-primitives.txt).
    Name = the Figma path without the family folder, "-base" and spaces: system/danger/500-base -> --palette-danger-500.
    Roles (tokens.css) point at these, so a theme is a remap of roles. Components never use --palette-* (node tools/color-lint.mjs).
-   PLACEHOLDER (not final in Figma, don't use): the expressive families (fuchsia, violet, electric blue, lime, coral orange). */
+   PLACEHOLDER (not final in Figma, don't use): the expressive families (fuchsia, violet, electric blue, lime, coral orange).
+   Status scales (danger, warning, success, info) rebalanced Nov 24 (2.0.5): rebuilt in OKLCH at the same lightness, the 500's hue and even
+   chroma; the 500s are unchanged. Old and new values: tools/figma/status-rebalance-2.0.5.json. Figma follows. */
 :root{
 /* core */
 --palette-core-0:#000000;
@@ -71,75 +73,75 @@
 --palette-black-alpha-80:rgba(0,0,0,0.8);
 --palette-black-alpha-85:rgba(0,0,0,0.85);
 /* system/success */
---palette-success-50:#eaf8ef;
---palette-success-100:#d5f2df;
---palette-success-150:#c0ebce;
---palette-success-200:#abe4be;
---palette-success-300:#82d79e;
---palette-success-400:#58c97d;
+--palette-success-50:#ecf7ee;
+--palette-success-100:#daf1dd;
+--palette-success-150:#c7e9cc;
+--palette-success-200:#b2e3ba;
+--palette-success-300:#86d796;
+--palette-success-400:#53ca73;
 --palette-success-500:#2ebc5d;
 --palette-success-500-alpha-0:rgba(46,188,93,0);
 --palette-success-500-alpha-10:rgba(46,188,93,0.1);
---palette-success-600:#25964a;
---palette-success-700:#1c7138;
+--palette-success-600:#0c9844;
+--palette-success-700:#077332;
 --palette-success-700-alpha-0:rgba(28,113,56,0);
---palette-success-800:#124b25;
---palette-success-850:#0e381c;
---palette-success-900:#092613;
---palette-success-950:#051309;
+--palette-success-800:#034c1f;
+--palette-success-850:#013a15;
+--palette-success-900:#01280c;
+--palette-success-950:#001504;
 /* system/danger */
---palette-danger-50:#fdebeb;
---palette-danger-100:#fcd8d8;
---palette-danger-150:#fac4c4;
---palette-danger-200:#f8b1b1;
---palette-danger-300:#f58a89;
---palette-danger-400:#f16362;
+--palette-danger-50:#feebe8;
+--palette-danger-100:#fed8d3;
+--palette-danger-150:#fbc4be;
+--palette-danger-200:#fcb0a8;
+--palette-danger-300:#fc867c;
+--palette-danger-400:#fa5a53;
 --palette-danger-500:#ee3c3b;
 --palette-danger-500-alpha-0:rgba(238,60,59,0);
 --palette-danger-500-alpha-10:rgba(238,60,59,0.1);
---palette-danger-600:#bf302f;
---palette-danger-700:#8f2423;
+--palette-danger-600:#c81b23;
+--palette-danger-700:#9a0613;
 --palette-danger-700-alpha-0:rgba(143,36,35,0);
---palette-danger-800:#601818;
---palette-danger-850:#481212;
---palette-danger-900:#300c0c;
---palette-danger-950:#190606;
+--palette-danger-800:#69020a;
+--palette-danger-850:#510105;
+--palette-danger-900:#390003;
+--palette-danger-950:#210001;
 /* system/warning */
---palette-warning-50:#fff7ea;
---palette-warning-100:#ffefd5;
---palette-warning-150:#ffe7c0;
---palette-warning-200:#ffdfab;
---palette-warning-300:#ffcf82;
---palette-warning-400:#ffbf58;
+--palette-warning-50:#fff7ed;
+--palette-warning-100:#ffeeda;
+--palette-warning-150:#ffe6c8;
+--palette-warning-200:#fedeb5;
+--palette-warning-300:#fece90;
+--palette-warning-400:#febf68;
 --palette-warning-500:#ffaf2e;
 --palette-warning-500-alpha-0:rgba(255,175,46,0);
 --palette-warning-500-alpha-10:rgba(255,175,46,0.1);
---palette-warning-600:#cc8c25;
---palette-warning-700:#99691c;
---palette-warning-800:#664612;
+--palette-warning-600:#cf8a0e;
+--palette-warning-700:#9c6708;
+--palette-warning-800:#694403;
 --palette-warning-800-alpha-0:rgba(102,70,18,0);
---palette-warning-850:#4d350e;
---palette-warning-900:#332309;
---palette-warning-950:#1a1205;
+--palette-warning-850:#513302;
+--palette-warning-900:#372101;
+--palette-warning-950:#1e1000;
 /* system/info */
 --palette-info-50:#eaf2ff;
---palette-info-100:#d5e5ff;
---palette-info-150:#bfd9ff;
---palette-info-200:#aaccff;
---palette-info-300:#80b2ff;
---palette-info-400:#5599ff;
+--palette-info-100:#d5e5fe;
+--palette-info-150:#c1d9fe;
+--palette-info-200:#acccfe;
+--palette-info-300:#82b2fe;
+--palette-info-400:#5999fd;
 --palette-info-400-alpha-0:rgba(85,153,255,0);
 --palette-info-400-alpha-10:rgba(85,153,255,0.1);
 --palette-info-500:#2b7fff;
 --palette-info-500-alpha-10:rgba(43,127,255,0.1);
 --palette-info-500-alpha-25:rgba(43,127,255,0.25);
---palette-info-600:#2266cc;
---palette-info-700:#1a4d9a;
---palette-info-800:#113367;
+--palette-info-600:#0f63d9;
+--palette-info-700:#0349a9;
+--palette-info-800:#013074;
 --palette-info-800-alpha-0:rgba(17,51,103,0);
---palette-info-850:#0d274e;
---palette-info-900:#091a35;
---palette-info-950:#040e1b;
+--palette-info-850:#01245b;
+--palette-info-900:#001841;
+--palette-info-950:#000b28;
 /* brand/purple */
 --palette-purple-50:#f3f0fe;
 --palette-purple-100:#e6e0fd;

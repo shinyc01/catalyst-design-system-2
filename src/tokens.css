@@ -41,7 +41,7 @@
 --color-text-info:var(--palette-info-300);
 --color-text-link:var(--color-text-info); /* C1 (Nov 23): links have their own role (blue = info only); same value for now */
 --color-text-success:var(--palette-success-500);
---color-text-danger:var(--palette-danger-400); /* C4 (Nov 23): was #ee3c3b, 3.65:1 on menus; now 4.58 */
+--color-text-danger:var(--palette-danger-400); /* C4 (Nov 23): was #ee3c3b, 3.65:1 on menus; red 400 is #fa5a53 since the Nov 24 rebalance, about 4.55 on menus (6.65 on black) */
 --color-text-warning:var(--palette-warning-500);
 --color-text-on-solid:var(--palette-core-1000);
 --color-text-on-solid-soft:var(--palette-white-alpha-85);
