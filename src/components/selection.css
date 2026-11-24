@@ -129,6 +129,11 @@
 .ifs-segmented--m .ifs-segmented__item{height:var(--size-control-m);padding:var(--space-150) var(--space-250)}
 .ifs-segmented--s .ifs-segmented__item{position:relative;height:calc(var(--size-control-s) - 2 * var(--space-50));padding:0 var(--space-200)} /* S = control height outside (rule 3.5): items sit inside the 2 frame (Nov 20) */
 .ifs-segmented--s .ifs-segmented__item::after{content:'';position:absolute;inset-block:calc(-1 * var(--space-50));inset-inline:0} /* invisible hit layer: each option stays a full control height to click (rule 3.9 hit layers) */
+/* iconOnly (2.0.6, D1): square segments with a centred 16 icon. M: 4 smaller than the control height inside the 2 track (outside = --size-control-m,
+   28 in 32 Comfortable); S: the S segment height. Used by the chart card's Chart / Table switch. */
+.ifs-segmented--icon .ifs-segmented__item{padding:0;gap:0}
+.ifs-segmented--icon.ifs-segmented--m .ifs-segmented__item{width:calc(var(--size-control-m) - 2 * var(--space-50));height:calc(var(--size-control-m) - 2 * var(--space-50))}
+.ifs-segmented--icon.ifs-segmented--s .ifs-segmented__item{width:calc(var(--size-control-s) - 2 * var(--space-50))}
 .ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft-hover) /* raw in Figma */}
 .ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--color-background-neutral-softer);--stroke:0 0 0 0 transparent;color:var(--color-text-softer)}
 .ifs-segmented__item.is-selected{--fill:var(--color-background-neutral);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
