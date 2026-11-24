@@ -1855,7 +1855,8 @@ Examples (read before using any component below — shows the data shapes props 
 ------------------------------------------------------------------------------------------ 
 Figma: map-pin-dot (key d2686af3…; Patterns copy 12:107153, Figma set name "dot-pin").
 A round status marker: counts on clusters (text) or a status glyph (icon) at map points.
-Props: size l (32) | m (24) | s (16) | xs (8), status error|warning|success (Figma Success is drawn grey: map-pin/fill/default),
+Props: size l (32) | m (24) | s (16) | xs (8), status error|warning|neutral (Nov 24: the map only flags risk, red high, yellow
+medium, grey low; deprecated old names: success and info draw neutral),
 type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
 dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).

@@ -7,9 +7,7 @@
   min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-pill);cursor:pointer; /* grows into a pill when the count needs it */
   background:var(--color-background-accent-white-strong);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
 .ifs-pin-dot--warning{--pd-fill:var(--color-icon-warning)}
-.ifs-pin-dot--success{--pd-fill:var(--color-icon-success)} /* C1 (Nov 23): success is green, one colour per meaning (Figma still binds map-pin/fill/default: update it) */
-.ifs-pin-dot--info{--pd-fill:var(--color-background-info-strong)}
-.ifs-pin-dot--neutral{--pd-fill:var(--color-icon-softer)}
+.ifs-pin-dot--neutral{--pd-fill:var(--color-icon-softer)} /* Nov 24: error · warning · neutral only (grey = low risk); success and info map here (MapPinDot) */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}
 .ifs-pin-dot--s{--pd-size:16px;--pd-in:14px}
 .ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 5px 0 var(--color-shadow-pin) /* raw in Figma */}

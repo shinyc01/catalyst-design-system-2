@@ -11,9 +11,9 @@ export default IFS_GALLERY;
 
   /* ---------------- components ---------------- */
   IFS_GALLERY.push({ name: 'MapPinDot', figma: 'map-pin-dot (d2686af3) [patterns] (12:107153)', render: () => <IFS.Stack gap="100" style={mapBg}>
-    {['error', 'warning', 'success'].map(st => <React.Fragment key={st}>
+    {['error', 'warning', 'neutral'].map(st => <React.Fragment key={st}>
       {[['out-of-hover', 'out of hover'], [undefined, 'default'], ['highlight', 'higlight=yes'], ['selected', 'selected']].map(([s, l]) => (
-        (s === 'highlight' && st === 'success') ? null :
+        (s === 'highlight' && st === 'neutral') ? null :
         <Row key={l} label={`${st} · ${l}`} style={{ gap: 28, minHeight: 56 }}>
           {['l', 'm'].map(z => <MapPinDot key={z} size={z} status={st} highlight={s === 'highlight'} state={s === 'highlight' ? undefined : s} />)}
           <MapPinDot size="m" type="icon" status={st} highlight={s === 'highlight'} state={s === 'highlight' ? undefined : s} />

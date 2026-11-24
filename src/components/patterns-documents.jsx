@@ -18,13 +18,14 @@ function useCtl(value, defaultValue, onChange) {
 /* ------------------------------------------------------------------------------------------ */
 // Figma: map-pin-dot (key d2686af3…; Patterns copy 12:107153, Figma set name "dot-pin").
 // A round status marker: counts on clusters (text) or a status glyph (icon) at map points.
-// Props: size l (32) | m (24) | s (16) | xs (8), status error|warning|success (Figma Success is drawn grey: map-pin/fill/default),
+// Props: size l (32) | m (24) | s (16) | xs (8), status error|warning|neutral (Nov 24: the map only flags risk, red high, yellow
+// medium, grey low; deprecated old names: success and info draw neutral),
 // type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 // highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
 // dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).
 function MapPinDot({ size = 'm', status: st = 'error', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false,
   onSelectedChange, dimmed, label, state, className, onClick, ...rest }) {
-  const status = st === 'danger' ? 'error' : st; // C1 status word
+  const status = st === 'danger' ? 'error' : st === 'success' || st === 'info' ? 'neutral' : st; // C1 status word; success / info: deprecated → neutral
   const [sel, setSel] = useCtl(selected, defaultSelected, onSelectedChange);
   const isSel = state ? state === 'selected' : sel;
   const isDim = dimmed || state === 'out-of-hover';
@@ -32,7 +33,7 @@ function MapPinDot({ size = 'm', status: st = 'error', type = 'text', counter = 
     <button type="button" aria-label={label || `${counter} ${status}`} aria-pressed={!!isSel}
       onClick={e => { setSel(!sel, e); onClick && onClick(e); }}
       className={cx('ifs-pin-dot', `ifs-pin-dot--${size}`, `ifs-pin-dot--${status}`, isSel && 'ifs-pin-dot--selected', isDim && 'ifs-pin-dot--dimmed',
-        highlight && status !== 'success' && 'ifs-pin-dot--highlight', className)} {...rest}>
+        highlight && status !== 'neutral' && 'ifs-pin-dot--highlight', className)} {...rest}>
       <span className="ifs-pin-dot__fill">
         {type === 'icon' && (size === 'm' || size === 'l') ? <IFS.Icon name={icon} size={16} /> : <span className="ifs-pin-dot__text">{counter}</span>}
       </span>
