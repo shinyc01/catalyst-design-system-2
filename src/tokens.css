@@ -191,35 +191,38 @@
 --color-collaboration-user-1:var(--palette-coral-orange-500);--color-collaboration-user-2:var(--palette-steel-blue-700);--color-collaboration-user-3:var(--palette-success-600);--color-collaboration-user-4:var(--palette-info-200);--color-collaboration-user-5:var(--palette-fuchsia-500);
 --color-collaboration-user-6:var(--palette-lime-500);--color-collaboration-user-7:var(--palette-coral-orange-300);--color-collaboration-user-8:var(--palette-violet-500);--color-collaboration-user-9:var(--palette-danger-900);--color-collaboration-user-10:var(--palette-electric-blue-500);
 --color-collaboration-user-11:var(--palette-violet-200);--color-collaboration-user-12:var(--palette-danger-500);--color-collaboration-user-13:var(--palette-warning-500);--color-collaboration-user-14:var(--palette-violet-300);--color-collaboration-user-15:var(--palette-fuchsia-200);
---color-collaboration-user-16:var(--palette-core-0); /* data-viz marks that are not a series (2.0.3: charts use data-viz colours only).
-   neutral = no-change / other data (bars and their legend swatch; must pass 3:1 non-text contrast); reference = peer-median and reference marks; target = target marks;
-   band = the confidence band of a line. Values are the ones the charts already drew. */
-/* Data viz (charts use data-viz colours only) */
-/* data-viz marks that are not a series (2.0.3). neutral = no-change / other data (must pass 3:1 non-text contrast); reference = peer-median and
-   reference marks; target = target marks; band = the confidence band of a line; baseline = chart baseline and connector lines. */
---color-data-viz-rose-data-1:var(--palette-rose-100);--color-data-viz-rose-data-2:var(--palette-rose-200);--color-data-viz-rose-data-3:var(--palette-rose-300);--color-data-viz-rose-data-4:var(--palette-rose-400);--color-data-viz-rose-data-5:var(--palette-rose-500);
---color-data-viz-rose-data-6:var(--palette-rose-600);--color-data-viz-rose-data-7:var(--palette-rose-700);--color-data-viz-rose-data-8:var(--palette-rose-800);--color-data-viz-rose-data-9:var(--palette-rose-900);--color-data-viz-rose-data-10:var(--palette-rose-950);
---color-data-viz-muted-purple-data-1:var(--palette-muted-purple-100);--color-data-viz-muted-purple-data-2:var(--palette-muted-purple-200);--color-data-viz-muted-purple-data-3:var(--palette-muted-purple-300);--color-data-viz-muted-purple-data-4:var(--palette-muted-purple-400);--color-data-viz-muted-purple-data-5:var(--palette-muted-purple-500);
---color-data-viz-muted-purple-data-6:var(--palette-muted-purple-600);--color-data-viz-muted-purple-data-7:var(--palette-muted-purple-700);--color-data-viz-muted-purple-data-8:var(--palette-muted-purple-800);--color-data-viz-muted-purple-data-9:var(--palette-muted-purple-900);--color-data-viz-muted-purple-data-10:var(--palette-muted-purple-950);
---color-data-viz-teal-data-1:var(--palette-teal-100);--color-data-viz-teal-data-2:var(--palette-teal-200);--color-data-viz-teal-data-3:var(--palette-teal-300);--color-data-viz-teal-data-4:var(--palette-teal-400);--color-data-viz-teal-data-5:var(--palette-teal-500);
---color-data-viz-teal-data-6:var(--palette-teal-600);--color-data-viz-teal-data-7:var(--palette-teal-700);--color-data-viz-teal-data-8:var(--palette-teal-800);--color-data-viz-teal-data-9:var(--palette-teal-900);--color-data-viz-teal-data-10:var(--palette-teal-950);
---color-data-viz-steel-blue-data-1:var(--palette-steel-blue-100);--color-data-viz-steel-blue-data-2:var(--palette-steel-blue-200);--color-data-viz-steel-blue-data-3:var(--palette-steel-blue-300);--color-data-viz-steel-blue-data-4:var(--palette-steel-blue-400);--color-data-viz-steel-blue-data-5:var(--palette-steel-blue-500);
---color-data-viz-steel-blue-data-6:var(--palette-steel-blue-600);--color-data-viz-steel-blue-data-7:var(--palette-steel-blue-700);--color-data-viz-steel-blue-data-8:var(--palette-steel-blue-800);--color-data-viz-steel-blue-data-9:var(--palette-steel-blue-900);--color-data-viz-steel-blue-data-10:var(--palette-steel-blue-950);
---color-data-viz-deep-green-data-1:var(--palette-deep-green-100);--color-data-viz-deep-green-data-2:var(--palette-deep-green-200);--color-data-viz-deep-green-data-3:var(--palette-deep-green-300);--color-data-viz-deep-green-data-4:var(--palette-deep-green-400);--color-data-viz-deep-green-data-5:var(--palette-deep-green-500);
---color-data-viz-deep-green-data-6:var(--palette-deep-green-600);--color-data-viz-deep-green-data-7:var(--palette-deep-green-700);--color-data-viz-deep-green-data-8:var(--palette-deep-green-800);--color-data-viz-deep-green-data-9:var(--palette-deep-green-900);--color-data-viz-deep-green-data-10:var(--palette-deep-green-950);
---color-data-viz-alert-data-1:var(--palette-danger-100);--color-data-viz-alert-data-2:var(--palette-danger-200);--color-data-viz-alert-data-3:var(--palette-danger-300);--color-data-viz-alert-data-4:var(--palette-danger-400);--color-data-viz-alert-data-5:var(--palette-danger-500);
---color-data-viz-alert-data-6:var(--palette-danger-600);--color-data-viz-alert-data-7:var(--palette-danger-700);--color-data-viz-alert-data-8:var(--palette-danger-800);--color-data-viz-alert-data-9:var(--palette-danger-850);--color-data-viz-alert-data-10:var(--palette-danger-900);
---color-data-viz-violet-data-1:var(--palette-violet-100);--color-data-viz-violet-data-2:var(--palette-violet-200);--color-data-viz-violet-data-3:var(--palette-violet-300);--color-data-viz-violet-data-4:var(--palette-violet-400);--color-data-viz-violet-data-5:var(--palette-violet-500);
---color-data-viz-violet-data-6:var(--palette-violet-600);--color-data-viz-violet-data-7:var(--palette-violet-700);--color-data-viz-violet-data-8:var(--palette-violet-800);--color-data-viz-violet-data-9:var(--palette-violet-850);--color-data-viz-violet-data-10:var(--palette-violet-950);
---color-data-viz-cyan-data-1:var(--palette-cyan-100);--color-data-viz-cyan-data-2:var(--palette-cyan-200);--color-data-viz-cyan-data-3:var(--palette-cyan-300);--color-data-viz-cyan-data-4:var(--palette-cyan-400);--color-data-viz-cyan-data-5:var(--palette-cyan-500);
---color-data-viz-cyan-data-6:var(--palette-cyan-600);--color-data-viz-cyan-data-7:var(--palette-cyan-700);--color-data-viz-cyan-data-8:var(--palette-cyan-800);--color-data-viz-cyan-data-9:var(--palette-cyan-850);--color-data-viz-cyan-data-10:var(--palette-cyan-900);
+--color-collaboration-user-16:var(--palette-core-0);
+/* Data viz (2.0.6: D6 / D7, Nov 24). Charts use data-viz colours only. Values live in palette.css (--palette-data-viz-*), the one place to swap them.
+   Categorical: series take 1, 2, 3 … in order; up to 8 per chart by default, 9–12 only with direct labels; the rest fold into "Other". The same
+   entity keeps its slot on every chart of a screen. Never status colours (no red, green, warning orange) and never Cooper copper. */
+--color-data-viz-categorical-1:var(--palette-data-viz-categorical-1);--color-data-viz-categorical-2:var(--palette-data-viz-categorical-2);--color-data-viz-categorical-3:var(--palette-data-viz-categorical-3);--color-data-viz-categorical-4:var(--palette-data-viz-categorical-4);--color-data-viz-categorical-5:var(--palette-data-viz-categorical-5);--color-data-viz-categorical-6:var(--palette-data-viz-categorical-6);--color-data-viz-categorical-7:var(--palette-data-viz-categorical-7);--color-data-viz-categorical-8:var(--palette-data-viz-categorical-8);--color-data-viz-categorical-9:var(--palette-data-viz-categorical-9);--color-data-viz-categorical-10:var(--palette-data-viz-categorical-10);--color-data-viz-categorical-11:var(--palette-data-viz-categorical-11);--color-data-viz-categorical-12:var(--palette-data-viz-categorical-12);
+--color-data-viz-other:var(--palette-core-400); /* "Other": the series folded in after the 8th (or 12th) */
+/* Sequential: one hue, more = lighter on the dark card (step 1 darkest → 9 lightest). Default ramp = azure; one ramp per hue family.
+   Red and green are the good / bad option only. Charts use 5 classes (steps 1 · 3 · 5 · 7 · 9) unless a heatmap is dense. */
+--color-data-viz-sequential-1:var(--color-data-viz-sequential-azure-1);--color-data-viz-sequential-2:var(--color-data-viz-sequential-azure-2);--color-data-viz-sequential-3:var(--color-data-viz-sequential-azure-3);--color-data-viz-sequential-4:var(--color-data-viz-sequential-azure-4);--color-data-viz-sequential-5:var(--color-data-viz-sequential-azure-5);--color-data-viz-sequential-6:var(--color-data-viz-sequential-azure-6);--color-data-viz-sequential-7:var(--color-data-viz-sequential-azure-7);--color-data-viz-sequential-8:var(--color-data-viz-sequential-azure-8);--color-data-viz-sequential-9:var(--color-data-viz-sequential-azure-9);
+--color-data-viz-sequential-azure-1:var(--palette-data-viz-azure-1);--color-data-viz-sequential-azure-2:var(--palette-data-viz-azure-2);--color-data-viz-sequential-azure-3:var(--palette-data-viz-azure-3);--color-data-viz-sequential-azure-4:var(--palette-data-viz-azure-4);--color-data-viz-sequential-azure-5:var(--palette-data-viz-azure-5);--color-data-viz-sequential-azure-6:var(--palette-data-viz-azure-6);--color-data-viz-sequential-azure-7:var(--palette-data-viz-azure-7);--color-data-viz-sequential-azure-8:var(--palette-data-viz-azure-8);--color-data-viz-sequential-azure-9:var(--palette-data-viz-azure-9);
+--color-data-viz-sequential-teal-1:var(--palette-data-viz-teal-1);--color-data-viz-sequential-teal-2:var(--palette-data-viz-teal-2);--color-data-viz-sequential-teal-3:var(--palette-data-viz-teal-3);--color-data-viz-sequential-teal-4:var(--palette-data-viz-teal-4);--color-data-viz-sequential-teal-5:var(--palette-data-viz-teal-5);--color-data-viz-sequential-teal-6:var(--palette-data-viz-teal-6);--color-data-viz-sequential-teal-7:var(--palette-data-viz-teal-7);--color-data-viz-sequential-teal-8:var(--palette-data-viz-teal-8);--color-data-viz-sequential-teal-9:var(--palette-data-viz-teal-9);
+--color-data-viz-sequential-orchid-1:var(--palette-data-viz-orchid-1);--color-data-viz-sequential-orchid-2:var(--palette-data-viz-orchid-2);--color-data-viz-sequential-orchid-3:var(--palette-data-viz-orchid-3);--color-data-viz-sequential-orchid-4:var(--palette-data-viz-orchid-4);--color-data-viz-sequential-orchid-5:var(--palette-data-viz-orchid-5);--color-data-viz-sequential-orchid-6:var(--palette-data-viz-orchid-6);--color-data-viz-sequential-orchid-7:var(--palette-data-viz-orchid-7);--color-data-viz-sequential-orchid-8:var(--palette-data-viz-orchid-8);--color-data-viz-sequential-orchid-9:var(--palette-data-viz-orchid-9);
+--color-data-viz-sequential-pink-1:var(--palette-data-viz-pink-1);--color-data-viz-sequential-pink-2:var(--palette-data-viz-pink-2);--color-data-viz-sequential-pink-3:var(--palette-data-viz-pink-3);--color-data-viz-sequential-pink-4:var(--palette-data-viz-pink-4);--color-data-viz-sequential-pink-5:var(--palette-data-viz-pink-5);--color-data-viz-sequential-pink-6:var(--palette-data-viz-pink-6);--color-data-viz-sequential-pink-7:var(--palette-data-viz-pink-7);--color-data-viz-sequential-pink-8:var(--palette-data-viz-pink-8);--color-data-viz-sequential-pink-9:var(--palette-data-viz-pink-9);
+--color-data-viz-sequential-yellow-1:var(--palette-data-viz-yellow-1);--color-data-viz-sequential-yellow-2:var(--palette-data-viz-yellow-2);--color-data-viz-sequential-yellow-3:var(--palette-data-viz-yellow-3);--color-data-viz-sequential-yellow-4:var(--palette-data-viz-yellow-4);--color-data-viz-sequential-yellow-5:var(--palette-data-viz-yellow-5);--color-data-viz-sequential-yellow-6:var(--palette-data-viz-yellow-6);--color-data-viz-sequential-yellow-7:var(--palette-data-viz-yellow-7);--color-data-viz-sequential-yellow-8:var(--palette-data-viz-yellow-8);--color-data-viz-sequential-yellow-9:var(--palette-data-viz-yellow-9);
+--color-data-viz-sequential-red-1:var(--palette-data-viz-red-1);--color-data-viz-sequential-red-2:var(--palette-data-viz-red-2);--color-data-viz-sequential-red-3:var(--palette-data-viz-red-3);--color-data-viz-sequential-red-4:var(--palette-data-viz-red-4);--color-data-viz-sequential-red-5:var(--palette-data-viz-red-5);--color-data-viz-sequential-red-6:var(--palette-data-viz-red-6);--color-data-viz-sequential-red-7:var(--palette-data-viz-red-7);--color-data-viz-sequential-red-8:var(--palette-data-viz-red-8);--color-data-viz-sequential-red-9:var(--palette-data-viz-red-9);
+--color-data-viz-sequential-green-1:var(--palette-data-viz-green-1);--color-data-viz-sequential-green-2:var(--palette-data-viz-green-2);--color-data-viz-sequential-green-3:var(--palette-data-viz-green-3);--color-data-viz-sequential-green-4:var(--palette-data-viz-green-4);--color-data-viz-sequential-green-5:var(--palette-data-viz-green-5);--color-data-viz-sequential-green-6:var(--palette-data-viz-green-6);--color-data-viz-sequential-green-7:var(--palette-data-viz-green-7);--color-data-viz-sequential-green-8:var(--palette-data-viz-green-8);--color-data-viz-sequential-green-9:var(--palette-data-viz-green-9);
+/* Diverging (the one default): azure ↔ pink meeting at a light midpoint (core-750), steps 2 · 4 · 6 out from the middle so lightness falls 0.10 a step
+   on both sides. Polarity, not judgement: negative = below the midpoint (azure), positive = above (pink). For good / bad the worse side is pink and the
+   better side azure, always with ▲▼ or +/− and a legend naming both sides. Red ↔ green is an option only (ramps above), never the default. */
+--color-data-viz-diverging-negative-3:var(--palette-data-viz-azure-2);--color-data-viz-diverging-negative-2:var(--palette-data-viz-azure-4);--color-data-viz-diverging-negative-1:var(--palette-data-viz-azure-6);
+--color-data-viz-diverging-midpoint:var(--palette-core-750);
+--color-data-viz-diverging-positive-1:var(--palette-data-viz-pink-6);--color-data-viz-diverging-positive-2:var(--palette-data-viz-pink-4);--color-data-viz-diverging-positive-3:var(--palette-data-viz-pink-2);
+/* Marks that are not a series (2.0.3). neutral = no-change / total marks (must pass 3:1 non-text contrast); reference = peer-median and
+   reference marks; target = target marks; band = the confidence band of a line; baseline = connector lines. Gridlines use --color-border
+   and the zero line --color-border-strong (D3). Older ramps and data-1…10: deprecated aliases (foundations/deprecated.css). */
 --color-data-viz-neutral:var(--color-icon-softer); /* #8c8c8c: 5.2–6.3:1 on page, card and chart backgrounds (WCAG 1.4.11 needs 3:1) */
 /* C1: status marks in charts (good, warning, bad) are the status icon colours, so a red mark always means danger. Series never use them. */
 --color-data-viz-good:var(--color-icon-success);--color-data-viz-warning:var(--color-icon-warning);--color-data-viz-bad:var(--color-icon-danger);
 --color-data-viz-reference:var(--palette-core-1000);--color-data-viz-target:rgba(255,255,255,0.9);--color-data-viz-band:rgba(255,255,255,0.16);
---color-data-viz-baseline:var(--palette-white-alpha-30); /* chart baseline and connector lines (Figma white/alpha-30) */
---color-data-viz-data-1:var(--palette-danger-600);--color-data-viz-data-2:#a06d1c;--color-data-viz-data-3:#176932;--color-data-viz-data-4:#5238a4;--color-data-viz-data-5:#3556a0;
---color-data-viz-data-6:#167bb6;--color-data-viz-data-7:#692917;--color-data-viz-data-8:#6a1766;--color-data-viz-data-9:#1e1e1e;--color-data-viz-data-10:#313131;
+--color-data-viz-baseline:var(--palette-white-alpha-30); /* connector lines (Figma white/alpha-30); the zero line is --color-border-strong (D3) */
+/* D5: on hover the other marks dim, darkened toward the card and never made transparent, so gridlines never show through (Nov 24) */
+--effect-data-viz-dim:brightness(0.45) saturate(0.7);
 /* Purpose roles added Nov 23 night (C3 P1: no raw colours in components). Same Dark values as the raw ones they replace. */
 --color-background-skeleton:var(--color-background-neutral-soft); /* the one skeleton fill (L1, Nov 24): Figma background/elevation-1/secondary */
 --color-background-sheen:var(--palette-white-alpha-40); /* light rim on avatars and media */
@@ -416,6 +419,10 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
   --size-tab-m:2.25rem;--size-tab-l:2.5rem;--size-nav-row:2.5rem;
   --size-table-row:3.25rem;--size-table-header:2rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.05;
+  /* D2 (Nov 24): the chart card has the fixed height, the plot fills what is left. Row unit = one stat card S with its subtext beside the number
+     (5.25rem); a default chart card = 3 rows + 2 gaps of 16 = 284; a large card = 2 default cards + the page gap, so it lines up with the grid. */
+  --size-data-viz-row:5.25rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--space-400));
+  --size-data-viz-card-large:calc(2 * var(--size-data-viz-card) + var(--page-gap));
 }
 
 /* Spacious = 16px body, one notch up */
@@ -428,6 +435,10 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
   --size-tab-m:2.5rem;--size-tab-l:3rem;--size-nav-row:2.75rem;
   --size-table-row:4rem;--size-table-header:2.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.2;
+  /* D2 (Nov 24): the chart card has the fixed height, the plot fills what is left. Row unit = one stat card S with its subtext beside the number
+     (6rem); a default chart card = 3 rows + 2 gaps of 16 = 320; a large card = 2 default cards + the page gap, so it lines up with the grid. */
+  --size-data-viz-row:6rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--space-400));
+  --size-data-viz-card-large:calc(2 * var(--size-data-viz-card) + var(--page-gap));
 }
 
 /* Compact = 12px body */
@@ -440,4 +451,8 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
   --size-tab-m:2rem;--size-tab-l:2.25rem;--size-nav-row:2.25rem;
   --size-table-row:2.5rem;--size-table-header:1.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:0.95;
+  /* D2 (Nov 24): the chart card has the fixed height, the plot fills what is left. Row unit = one stat card S with its subtext beside the number
+     (4.5rem); a default chart card = 3 rows + 2 gaps of 16 = 248; a large card = 2 default cards + the page gap, so it lines up with the grid. */
+  --size-data-viz-row:4.5rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--space-400));
+  --size-data-viz-card-large:calc(2 * var(--size-data-viz-card) + var(--page-gap));
 }

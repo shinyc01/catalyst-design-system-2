@@ -97,8 +97,8 @@ function MapPinPole({ symbol = 'pin', number = '235', showNumber = true, pin = t
 
 /* ------------------------------------------------------------------------------------------ */
 // Figma: bar-chart-item (key 44fcce06…; Patterns copy 12:107849). One filled segment of a bar chart.
-// Props: color 1–9 (Figma colour index → data-viz/data-N), fill (any CSS colour/var — overrides color; the pattern
-// screens bind data-viz/muted purple/data-4), number (Figma bool, show the label, default true), children = label (default "40%").
+// Props: color 1–12 (the categorical slot, 2.0.6 D8: one measure = slot 1; a colour per bar only for meaning or one highlight), fill (a data-viz
+// colour token — overrides color; with fill on a light colour set --bar-ink to --color-text-inverse), number (Figma bool, show the label, default true), children = label (default "40%").
 function BarChartItem({ color = 1, fill, number = true, children = '40%', className, style, ...rest }) {
   return (
     <div className={cx('ifs-bar-item', `ifs-bar-item--c${color}`, className)} style={{ ...(fill ? { '--bar-fill': fill } : null), ...style }} {...rest}>
@@ -112,7 +112,7 @@ function BarChartItem({ color = 1, fill, number = true, children = '40%', classN
 // Props: segments = [{ value, color, fill, label }] top → bottom (heights ∝ value; label shown when given),
 // value = column total as a share of `max` (height of the filled part; default: full), max, height (default 200), width (104),
 // active / defaultActive / onActiveChange (click toggles, renders a button when onActiveChange or onClick is set), state active (forced).
-function VerticalBarChartItem({ segments = [{ value: 1, color: 4 }], value, max, height = 200, width = 104, active, defaultActive = false, onActiveChange,
+function VerticalBarChartItem({ segments = [{ value: 1, color: 1 }], value, max, height = 200, width = 104, active, defaultActive = false, onActiveChange,
   onClick, state, label, className, style, ...rest }) {
   const [act, setAct] = useCtl(active, defaultActive, onActiveChange);
   const interactive = !!(onActiveChange || onClick);
@@ -125,7 +125,7 @@ function VerticalBarChartItem({ segments = [{ value: 1, color: 4 }], value, max,
       className={cx('ifs-vbar', isAct && 'ifs-vbar--active', className)} style={{ width, height, ...style }} {...rest}>
       <span style={{ flex: `${1 - share} 1 0` }} aria-hidden="true" />
       {segments.map((s, i) => (
-        <BarChartItem key={i} color={s.color || 4} fill={s.fill} number={s.label != null} style={{ '--seg': s.value * share }}>{s.label}</BarChartItem>
+        <BarChartItem key={i} color={s.color || 1} fill={s.fill} number={s.label != null} style={{ '--seg': s.value * share }}>{s.label}</BarChartItem>
       ))}
     </Tag>
   );

@@ -70,20 +70,24 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-pin-pole--selected .ifs-pin-defect{box-shadow:0 0 0 var(--border-width-selected) var(--color-border-selected-soft),var(--drop-shadow-pin)}
 
 /* ================= bar-chart-item (44fcce06…) / vertical-bar-chart-item (c06b1d19…) ================= */
-.ifs-bar-item{--bar-fill:var(--color-data-viz-data-1);display:flex;align-items:center;justify-content:center;box-sizing:border-box;
+.ifs-bar-item{--bar-fill:var(--color-data-viz-categorical-1);display:flex;align-items:center;justify-content:center;box-sizing:border-box;
   min-width:0;min-height:0;height:var(--size-32) /* holds a label, so it scales */;padding:0 var(--space-200);border-radius:var(--radius-control);background:var(--bar-fill);
-  color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;
+  color:var(--bar-ink,var(--color-text));font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;
   overflow:hidden;white-space:nowrap}
-/* Figma colour index → data-viz/data-N (the set skips N=8: 9→6, 6→7, 7→9, 8→10). Missing variables: fallbacks are the Figma values. */
-.ifs-bar-item--c1{--bar-fill:var(--color-data-viz-data-1)}
-.ifs-bar-item--c2{--bar-fill:var(--color-data-viz-data-2)}
-.ifs-bar-item--c3{--bar-fill:var(--color-data-viz-data-3)}
-.ifs-bar-item--c4{--bar-fill:var(--color-data-viz-data-4)}
-.ifs-bar-item--c5{--bar-fill:var(--color-data-viz-data-5)}
-.ifs-bar-item--c9{--bar-fill:var(--color-data-viz-data-6)}
-.ifs-bar-item--c6{--bar-fill:var(--color-data-viz-data-7)}
-.ifs-bar-item--c7{--bar-fill:var(--color-data-viz-data-9)}
-.ifs-bar-item--c8{--bar-fill:var(--color-data-viz-data-10)}
+/* 2.0.6 (D8): the colour index is the categorical slot (1–12, rule 7.18); the old dark solid set data-N is deprecated. In-bar labels pass 4.5:1:
+   white on the dark slots (odd, 4.6–5.1:1), black on the light slots (even, 12.8–14.7:1). */
+.ifs-bar-item--c1{--bar-fill:var(--color-data-viz-categorical-1)}
+.ifs-bar-item--c2{--bar-fill:var(--color-data-viz-categorical-2);--bar-ink:var(--color-text-inverse)}
+.ifs-bar-item--c3{--bar-fill:var(--color-data-viz-categorical-3)}
+.ifs-bar-item--c4{--bar-fill:var(--color-data-viz-categorical-4);--bar-ink:var(--color-text-inverse)}
+.ifs-bar-item--c5{--bar-fill:var(--color-data-viz-categorical-5)}
+.ifs-bar-item--c6{--bar-fill:var(--color-data-viz-categorical-6);--bar-ink:var(--color-text-inverse)}
+.ifs-bar-item--c7{--bar-fill:var(--color-data-viz-categorical-7)}
+.ifs-bar-item--c8{--bar-fill:var(--color-data-viz-categorical-8);--bar-ink:var(--color-text-inverse)}
+.ifs-bar-item--c9{--bar-fill:var(--color-data-viz-categorical-9)}
+.ifs-bar-item--c10{--bar-fill:var(--color-data-viz-categorical-10);--bar-ink:var(--color-text-inverse)}
+.ifs-bar-item--c11{--bar-fill:var(--color-data-viz-categorical-11)}
+.ifs-bar-item--c12{--bar-fill:var(--color-data-viz-categorical-12);--bar-ink:var(--color-text-inverse)}
 .ifs-vbar{display:inline-flex;flex-direction:column;justify-content:flex-end;gap:var(--space-50);box-sizing:border-box;width:104px;height:200px;
   padding:var(--space-50);border-radius:var(--radius-control);margin:0;border:0;background:none;outline:none}
 .ifs-vbar > .ifs-bar-item{height:auto;flex:var(--seg) 1 0;min-height:4px}
