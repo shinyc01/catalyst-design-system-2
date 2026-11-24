@@ -503,7 +503,7 @@ const STATE_COPY = {
 // too), size default|large (the card height, D2), height (escape hatch: a fixed plot height in px, the card then hugs it),
 // view / defaultView chart|table / onViewChange, defaultActive (index — or [row, col] for heatmap — whose tooltip starts open), onCooper,
 // onEditWithCooper, actions (a screen's real extra actions, in the hover row), bare (no frame or header: for a chart inside a widget frame),
-// valueTicks (2–8 value-axis intervals, default 4 = 5 labels, D3), emptyTitle / emptyText, noResultsTitle / noResultsText /
+// valueTicks (2–8 value-axis intervals, default 4 = 5 labels, D3), tooltipFormat (the tooltip's full value, rule 11.5), emptyTitle / emptyText, noResultsTitle / noResultsText /
 // onClearFilters, errorTitle / errorText / onRetry, className, style.
 // States (D9): the card keeps its height in every state and the title stays; the switch, Evidence and the legend hide while there is no data.
 // Loading shows the skeleton after 300 ms; empty / no results / error show an EmptyState (section) inside the card.
@@ -661,6 +661,11 @@ const shellProps = ({ title, state, size, view, defaultView, onViewChange, onCoo
   ({ title, state, size, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, bare, height,
     emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry, className, style });
 
+// D5 / rule 11.5: the tooltip shows the full value (the axis may be compact). tooltipFormat sets it; without one, a chart on the default
+// format shows the full number, and a chart with its own format uses that (pass tooltipFormat, e.g. v => IFS.format.money(v, { compact: false }),
+// when the axis format is compact).
+const fullFormat = v => IFS.format.number(v);
+const tipFormat = (props, format) => props.tooltipFormat || (props.format ? format : fullFormat);
 const tipFrom = (d, base, tooltip, i) => (tooltip ? tooltip(d, i) : { ...base, ...(d.delta && { delta: d.delta }), ...(d.details && { items: d.details }) });
 
 /* ------------------------------------------------------------------ column / bar family */
@@ -682,8 +687,9 @@ function ColumnChart(props) {
     rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const a = p.active != null ? data[p.active] : null;
+  const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: L.cx(p.active) - bw / 2, x1: L.cx(p.active) + bw / 2, y: L.y(Math.max(a.value, 0, a.reference ?? 0)) },
-    content: tipFrom(a, { title: a.label, items: [{ label: valueLabel, value: format(a.value), color, shape: 'square' }, ...(a.reference != null ? [{ label: referenceLabel, value: format(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, items: [{ label: valueLabel, value: tf(a.value), color, shape: 'square' }, ...(a.reference != null ? [{ label: referenceLabel, value: tf(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length}>
@@ -740,8 +746,9 @@ function BarChart(props) {
   const table = { columns: [{ key: 'label', title: 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel }].filter(Boolean),
     rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
   const a = p.active != null ? data[p.active] : null;
+  const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0, x1: X(Math.max(a.value, a.reference ?? 0)) + valW - 12, y: cy(p.active) - bh / 2 },
-    content: tipFrom(a, { title: a.label, items: [{ label: valueLabel, value: format(a.value), color, shape: 'square' }, ...(a.reference != null ? [{ label: referenceLabel, value: format(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, items: [{ label: valueLabel, value: tf(a.value), color, shape: 'square' }, ...(a.reference != null ? [{ label: referenceLabel, value: tf(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
   const pick = (x, y) => (!data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((y - yT) / row))));
   const every = row < p.px * 1.3 ? Math.ceil((p.px * 1.3) / Math.max(1, row)) : 1;
   return (
@@ -798,8 +805,9 @@ function GroupedColumnChart(props) {
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const a = p.active != null ? data[p.active] : null;
   const top = a ? Math.max(0, ...finite(series.map(s => valOf(a, s)))) : 0;
+  const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: L.cx(p.active) - gw / 2, x1: L.cx(p.active) + gw / 2, y: L.y(top) },
-    content: tipFrom(a, { title: a.label, items: [...series.map((s, i) => ({ label: s.label, value: format(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })), ...(a[referenceKey] != null ? [{ label: referenceLabel, value: format(a[referenceKey]), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, items: [...series.map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })), ...(a[referenceKey] != null ? [{ label: referenceLabel, value: tf(a[referenceKey]), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length || !series.length}>
@@ -840,8 +848,9 @@ function StackedColumnChart(props) {
   const table = seriesTable(data, all, format, [{ key: 'total', label: 'Total', value: d => format(all.reduce((t, s) => t + (d[s.key] || 0), 0)) }]);
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const a = p.active != null ? data[p.active] : null;
+  const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: L.cx(p.active) - bw / 2, x1: L.cx(p.active) + bw / 2, y: L.y(totals[p.active]) },
-    content: tipFrom(a, { title: a.label, value: `Total ${format(totals[p.active])}`, items: series.map((s, i) => ({ label: s.label, value: format(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })).reverse() }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, value: `Total ${tf(totals[p.active])}`, items: series.map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })).reverse() }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length || !series.length}>
@@ -922,11 +931,12 @@ function LineChart(props) {
   const a = p.active != null ? data[p.active] : null;
   const s0 = series[0];
   const topV = a ? Math.max(...finite(series.map(s => valOf(a, s)))) : 0;
+  const tf = tipFormat(props, format);
   const tip = a && s0 && { anchor: { x0: X(p.active) - 4, x1: X(p.active) + 4, y: L.y(Number.isFinite(topV) ? topV : ticks[0]) },
     content: tipFrom(a, { title: a.label, items: [
-      ...series.map((s, i) => ({ label: s.label, value: format(valOf(a, s)), color: s.color ?? i + 1, shape: area ? 'square' : shape(s) })),
-      ...(band && band.mid && a[band.mid] != null ? [{ label: band.label, value: `${format(a[band.mid])} ± ${format((a[band.high] - a[band.low]) / 2)}`, color: 'band', shape: 'square' }] : []),
-      ...(referenceKey && a[referenceKey] != null ? [{ label: referenceLabel, value: format(a[referenceKey]), color: WHITE, shape: 'dashed' }] : [])] }, tooltip, p.active) };
+      ...series.map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: area ? 'square' : shape(s) })),
+      ...(band && band.mid && a[band.mid] != null ? [{ label: band.label, value: `${tf(a[band.mid])} ± ${tf((a[band.high] - a[band.low]) / 2)}`, color: 'band', shape: 'square' }] : []),
+      ...(referenceKey && a[referenceKey] != null ? [{ label: referenceLabel, value: tf(a[referenceKey]), color: WHITE, shape: 'dashed' }] : [])] }, tooltip, p.active) };
   const pick = x => (!n ? null : Math.max(0, Math.min(n - 1, step ? Math.round((x - L.x0) / step) : 0)));
   const dimS = k => { const s = series.find(x => x.key === k), g = (s && s.group) || k; return p.series != null && p.series !== g ? 'ifs-chart__mark ifs-chart__mark--dim' : 'ifs-chart__mark'; };
   return (
@@ -992,8 +1002,9 @@ function RoundChart(props) {
   const act = p.active != null ? arcs[p.active] : null;
   const mid = act && (act.a0 + act.a1) / 2;
   const ax = act && cx + R * Math.sin(mid), ay = act && cy - R * Math.cos(mid);
+  const tf = tipFormat(props, format);
   const tip = act && { anchor: { x0: Math.min(ax, cx), x1: Math.max(ax, cx + (mid > Math.PI ? 0 : R * 0.2)), y: Math.min(ay, cy) },
-    content: tipFrom(act.d, { title: act.d.label, value: `${format(act.d.value)} of ${format(total)} (${pct(act.d.value)}%)` }, tooltip, p.active) };
+    content: tipFrom(act.d, { title: act.d.label, value: `${tf(act.d.value)} of ${tf(total)} (${pct(act.d.value)}%)` }, tooltip, p.active) };
   const pick = (x, y) => {
     const dx = x - cx, dy = y - cy, rr = Math.hypot(dx, dy);
     if (rr > R + 4 || rr < r0 - 4 || !total) return null;
@@ -1070,8 +1081,9 @@ function ScatterChart(props) {
   const table = { columns: [{ key: 'label', title: 'Item' }, series.length && { key: 's', title: 'Series' }, { key: 'x', title: xLabel }, { key: 'y', title: yLabel }, bubble && { key: 'z', title: sizeLabel }].filter(Boolean),
     rows: data.map((d, i) => ({ id: i, label: d.label, s: series.length ? series[sIdx(d)].label : '', x: xFormat(d.x), y: yFormat(d.y), z: bubble ? format(d.size) : '' })) };
   const a = p.active != null ? data[p.active] : null;
+  const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: X(a.x) - rad(a), x1: X(a.x) + rad(a), y: L.y(a.y) - rad(a) },
-    content: tipFrom(a, { title: a.label, items: [{ label: yLabel, value: yFormat(a.y), color: col(a), shape: 'dot' }, { label: xLabel, value: xFormat(a.x) + (xUnit ? ` ${xUnit}` : '') }, ...(bubble ? [{ label: sizeLabel, value: format(a.size) }] : [])] }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, items: [{ label: yLabel, value: yFormat(a.y), color: col(a), shape: 'dot' }, { label: xLabel, value: xFormat(a.x) + (xUnit ? ` ${xUnit}` : '') }, ...(bubble ? [{ label: sizeLabel, value: tf(a.size) }] : [])] }, tooltip, p.active) };
   const order = data.map((d, i) => i).sort((i, j) => (bubble ? (data[j].size || 0) - (data[i].size || 0) : 0));
   // G8: the nearest point within its radius or 12 px, whichever is larger (a 24 px hit area for small points)
   const pick = (x, y) => {
@@ -1132,9 +1144,10 @@ function GaugeChart(props) {
     rows: [{ id: 0, label: valueLabel, v: format(value) }, target != null && { id: 1, label: targetLabel, v: format(target) }, reference != null && { id: 2, label: referenceLabel, v: format(reference) }].filter(Boolean) };
   const [ex, ey] = pt(value, R);
   const on = p.active != null;
+  const tf = props.tooltipFormat || format; // the gauge's default format is already full (a percent)
   const tip = on && { anchor: { x0: ex - sw / 2, x1: ex + sw / 2, y: ey - sw / 2 },
-    content: tooltip ? tooltip(props) : { title: props.title || valueLabel, value: format(value), delta: props.delta,
-      items: props.details || [target != null && { label: targetLabel, value: format(target) }, target != null && { label: 'Gap', value: format(Math.abs(target - value)) }, reference != null && { label: referenceLabel, value: format(reference) }].filter(Boolean) } };
+    content: tooltip ? tooltip(props) : { title: props.title || valueLabel, value: tf(value), delta: props.delta,
+      items: props.details || [target != null && { label: targetLabel, value: tf(target) }, target != null && { label: 'Gap', value: tf(Math.abs(target - value)) }, reference != null && { label: referenceLabel, value: tf(reference) }].filter(Boolean) } };
   const pick = (x, y) => (Math.hypot(x - cx, y - cy) <= R + sw && y <= cy + sw ? 0 : null);
   return (
     <ChartShell {...shellProps(props)} skeleton="ring" legend={legend} table={table}>
@@ -1179,8 +1192,9 @@ function WaterfallChart(props) {
     rows: bars.map((b, i) => ({ id: i, label: b.d.label, v: b.kind === 'total' ? format(b.shown) : signed(b.shown, format), r: format(b.end) })) };
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const act = p.active != null ? bars[p.active] : null;
+  const tf = tipFormat(props, format);
   const tip = act && { anchor: { x0: L.cx(p.active) - bw / 2, x1: L.cx(p.active) + bw / 2, y: L.y(act.hi) },
-    content: tipFrom(act.d, { title: act.d.label, value: act.kind === 'total' ? format(act.shown) : signed(act.shown, format), items: [{ label: 'Running total', value: format(act.end) }] }, tooltip, p.active) };
+    content: tipFrom(act.d, { title: act.d.label, value: act.kind === 'total' ? tf(act.shown) : signed(act.shown, format), items: [{ label: 'Running total', value: tf(act.end) }] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   const valShown = L.band >= Math.max(0, ...bars.map(b => p.measure(b.kind === 'total' ? format(b.shown) : signed(b.shown, format)))) + 4;
   return (
@@ -1228,8 +1242,9 @@ function FunnelChart(props) {
     rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), d: drop(i) == null ? IFS.format.empty() : `${drop(i) > 0 ? '+' : '−'}${Math.abs(drop(i))}%`, r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
   const a = p.active != null ? data[p.active] : null;
   const y = i => 4 + i * (h + gap);
+  const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: cx - wOf(a.value) / 2, x1: cx + wOf(a.value) / 2, y: y(p.active) },
-    content: tipFrom(a, { title: a.label, value: format(a.value), items: [p.active > 0 && { label: 'Entered stage', value: format(data[p.active - 1].value) }, p.active > 0 && { label: 'Dropped', value: format(data[p.active - 1].value - a.value) }, a.reference != null && { label: referenceLabel, value: format(a.reference) }].filter(Boolean) }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, value: tf(a.value), items: [p.active > 0 && { label: 'Entered stage', value: tf(data[p.active - 1].value) }, p.active > 0 && { label: 'Dropped', value: tf(data[p.active - 1].value - a.value) }, a.reference != null && { label: referenceLabel, value: tf(a.reference) }].filter(Boolean) }, tooltip, p.active) };
   const pick = (x, yy) => (!n ? null : Math.max(0, Math.min(n - 1, Math.floor((yy - 4) / (h + gap)))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!n}>
@@ -1254,10 +1269,10 @@ function FunnelChart(props) {
 
 /* ------------------------------------------------------------------ heatmap */
 
-const RAMPS = ['azure', 'teal', 'orchid', 'pink', 'yellow', 'red', 'green'];
+const RAMPS = ['azure', 'teal', 'cyan', 'orchid', 'pink', 'yellow', 'red', 'green'];
 // Figma: chart-heatmap (9866:14280) — ordered magnitude across a matrix, one sequential ramp (D7): more = lighter, 5 classes
 // (ladder steps 1 · 3 · 5 · 7 · 9) or 9 when the heatmap is dense. The legend is a scale bar below (D4).
-// Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (azure default | teal | orchid | pink | yellow),
+// Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (azure default | teal | cyan | orchid | pink | yellow),
 // classes 5 | 9, color (legacy: one colour with opacity by value, Figma parity), columnLabelEvery (auto),
 // lowLabel / highLabel (scale ends), valueLabel, format, tooltip(cell = { row, column, value, r, c }). + shell props.
 function HeatmapChart(props) {
@@ -1292,8 +1307,9 @@ function HeatmapChart(props) {
     rows: rows.map((r, i) => Object.assign({ id: i, label: r }, ...columns.map((c, j) => ({ [`c${j}`]: format(values[i] && values[i][j]) })))) };
   const [ar, ac] = p.active != null ? p.active : [];
   const cellObj = p.active != null && values[ar] ? { row: rows[ar], column: columns[ac], value: values[ar][ac], r: ar, c: ac } : null;
+  const tf = tipFormat(props, format);
   const tip = cellObj && { anchor: { x0: x(ac), x1: x(ac) + cell, y: y(ar) },
-    content: tooltip ? tooltip(cellObj) : { title: `${cellObj.row} · ${cellObj.column}`, value: `${format(cellObj.value)} ${valueLabel}`.trim() } };
+    content: tooltip ? tooltip(cellObj) : { title: `${cellObj.row} · ${cellObj.column}`, value: `${tf(cellObj.value)} ${valueLabel}`.trim() } };
   const pick = (px, py) => { const c = Math.floor((px - labelW) / pitch), r = Math.floor(py / rowPitch); return c >= 0 && r >= 0 && c < columns.length && r < rows.length ? [r, c] : null; };
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!flat.length}>
