@@ -260,8 +260,8 @@
 --border-width-default:var(--border-width-100);--border-width-selected:var(--border-width-200);--border-width-emphasis:var(--border-width-400);
 --radius-0:0px;--radius-100:4px;--radius-150:6px;--radius-200:8px;--radius-300:12px;--radius-full:1000px;
 --radius-50:2px; /* marks (Figma radius/50) */
-/* Radius roles (B2, Nov 23): mark 2 (chart marks, tiny skeletons) · control 4 (every control at every size, segmented, menu items, tooltip) ·
-   card 4 (every card, table card) · floating 8 (popover, menu, snackbar, alert, modal, drawer, floating bar, form card) ·
+/* Radius roles (B2, Nov 23): mark 2 (chart marks, tiny skeletons) · control 4 (every control at every size, segmented, menu items, tooltip, fields inside floating cards) ·
+   card 4 (every card, table card) · floating 8 (popover, menu, snackbar, alert, modal, drawer, floating bar, form card, comment thread) ·
    floating-l 12 (Cooper chat and agent window) · pill (chips, badges, avatars, switch, counters). Nested: outer radius − padding, never below control. */
 --radius-mark:var(--radius-50);--radius-control:var(--radius-100);--radius-card:var(--radius-100);--radius-floating:var(--radius-200);--radius-floating-l:var(--radius-300);--radius-pill:var(--radius-full);
 --z-index-base:0;--z-index-sticky:50;--z-index-panels:100;--z-index-floating:200;--z-index-popover:300;

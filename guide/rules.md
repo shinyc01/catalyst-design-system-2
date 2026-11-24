@@ -194,9 +194,9 @@ Rows keep their own tokens: tabs `--size-tab-m` 40 / 36 / 32 and `--size-tab-l` 
 | Radius role | Value | Use |
 |---|---|---|
 | `--radius-mark` | 2 | small marks |
-| `--radius-control` | 4 | every control at every size, segmented controls, menu items, tooltip |
+| `--radius-control` | 4 | every control at every size, segmented controls, menu items, tooltip; fields inside floating cards (comment composer and edit box, chat bubbles, multi-line chat input and chat bar) |
 | `--radius-card` | 4 | every card, the table card |
-| `--radius-floating` | 8 | popover, menu list, select list, snackbar, alert, modal, drawer, floating bar, form card |
+| `--radius-floating` | 8 | popover, menu list, select list, snackbar, alert, modal, drawer, floating bar, form card, comment thread |
 | `--radius-floating-l` | 12 | Cooper chat and the agent window |
 | `--radius-pill` | full | chips, badges, avatars, switch, counters |
 
@@ -477,5 +477,4 @@ This section is writing guidance for screens, as in other large design systems (
 - `FormCard`: "a form on a page" (components.md) vs a card built like a dialog; settle the wording.
 - Cooper orb gap: 12 or 24.
 - Map data credit.
-- Radius for multi-line inputs, chat bubbles and the comment thread (12 today, `--radius-300`): no role decided.
 - Real names in stories: "DC Water" (nav-bar gallery) and a real person's name (approval gallery); replace unless cleared.

@@ -109,7 +109,7 @@
 .ifs-composer__buttons{display:flex;align-items:center;flex:none}
 .ifs-composer:focus-within{box-shadow:var(--focus-ring)}
 /* Multi line: 12 radius, text padding 14/16, buttons row padding 8 right-aligned */
-.ifs-composer--multi{border-radius:var(--radius-300) /* 12: no B2 role decided for multi-line inputs, bubbles and the comment thread (basic components) */}
+.ifs-composer--multi{border-radius:var(--radius-control)}
 .ifs-composer--multi .ifs-composer__row{padding:var(--size-14) var(--space-400) 0} /* raw in Figma: 14 */
 .ifs-composer--multi .ifs-composer__input{margin:0}
 .ifs-composer--multi .ifs-composer__inner > .ifs-composer__buttons{justify-content:flex-end;padding:var(--space-200)}
@@ -120,7 +120,7 @@
   background:linear-gradient(225deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
-.ifs-composer--cooper.ifs-composer--multi::after{border-radius:calc(var(--radius-300) + 4.5px)}
+.ifs-composer--cooper.ifs-composer--multi::after{border-radius:calc(var(--radius-control) + 4.5px)}
 .ifs-composer--cooper .ifs-composer__row{gap:var(--space-200)}
 /* .ifs-composer__cooper is IFS.IconButton ghost S (Nov 19) */
 .ifs-composer--disabled{cursor:not-allowed}
@@ -135,7 +135,7 @@
 .ifs-cmention__list{display:flex;flex-direction:column;padding-top:var(--space-100)}
 
 /* ================= CommentThread — comment-popover-organism (260:88500) ================= */
-.ifs-thread{display:flex;flex-direction:column;width:24.5625rem;max-width:100%;max-height:100%;box-sizing:border-box;border-radius:var(--radius-300) /* 12: no B2 role decided for multi-line inputs, bubbles and the comment thread (basic components) */;
+.ifs-thread{display:flex;flex-direction:column;width:24.5625rem;max-width:100%;max-height:100%;box-sizing:border-box;border-radius:var(--radius-floating);
   background:var(--color-surface-elevation-1);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-80));overflow:hidden}
 .ifs-thread__header{display:flex;align-items:center;gap:var(--space-stack);padding:var(--space-inset) var(--space-inset);
   box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft);flex:none}
@@ -149,7 +149,7 @@
 /* Type=Edit — input/keyboard state=Edit */
 /* Edit own reply (Patterns 12:47187: comment-input-molecule state=Edit) — avatar + field radius 12, background/color-alpha/white-base,
    blur/strong; text padding 14/16 Body/L/medium; buttons row padding 0/8/8/8, right group padding 4 gap 4: Cancel Secondary S + Send Primary S */
-.ifs-comment-edit{display:flex;flex-direction:column;flex:1;min-width:0;border-radius:var(--radius-300) /* 12: no B2 role decided for multi-line inputs, bubbles and the comment thread (basic components) */;background:var(--color-background-accent-white-soft);
+.ifs-comment-edit{display:flex;flex-direction:column;flex:1;min-width:0;border-radius:var(--radius-control);background:var(--color-background-accent-white-soft);
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
 .ifs-comment-edit__field{padding:var(--size-14) var(--space-400)} /* raw in Figma: 14 */
 .ifs-comment-edit__input{display:block;box-sizing:border-box;width:100%;min-height:var(--size-20);padding:0;border:0;outline:0;resize:none;overflow:hidden;
