@@ -258,7 +258,7 @@
 .ifs-menu__shortcut{flex:none;color:var(--white-alpha-50);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-menu__caret,.ifs-menu__check{flex:none;color:var(--color-icon)}
 .ifs-menu__item:hover,.ifs-menu__item.is-open,.ifs-menu__item[data-state=hover]{background:var(--color-background-neutral);color:var(--color-text)}
-.ifs-menu__item:focus-visible{background:var(--color-background-neutral);color:var(--color-text);outline:none}
+.ifs-menu__item:focus-visible,.ifs-menu__item[data-state=focus]{color:var(--color-text);outline:none;box-shadow:var(--focus-ring-inset)} /* S1: the ring only, inset inside the clipped list */
 .ifs-menu__item.is-selected{color:var(--color-text)}
 .ifs-menu__item.is-danger,.ifs-menu__item.is-danger .ifs-menu__icon{color:var(--color-text-danger)}
 .ifs-menu__item:disabled{color:var(--color-text-disabled);cursor:not-allowed;background:none}

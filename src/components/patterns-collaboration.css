@@ -76,7 +76,8 @@
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);outline:none} /* Body/M/regular */
 .ifs-role-select__option > span{flex:1 1 auto}
 .ifs-role-select__option .ifs-icon{color:var(--color-icon)}
-.ifs-role-select__option:hover,.ifs-role-select__option.is-active,.ifs-role-filter__option:hover,.ifs-role-filter__option:focus-visible{background:var(--color-background-neutral);color:var(--color-text)}
+.ifs-role-select__option:hover,.ifs-role-select__option.is-active,.ifs-role-filter__option:hover{background:var(--color-background-neutral);color:var(--color-text)}
+.ifs-role-select__option:focus-visible,.ifs-role-filter__option:focus-visible{color:var(--color-text);box-shadow:var(--focus-ring-inset)} /* S1: the ring only, inset inside the clipped list */
 .ifs-role-select__option.is-selected,.ifs-role-filter__option.is-selected{color:var(--color-text)}
 .ifs-role-select__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--color-border-soft)}
 

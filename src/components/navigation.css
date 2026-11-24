@@ -77,8 +77,8 @@
 .ifs-tab--l{height:var(--size-tab-l);padding:0 var(--space-300);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking)}
 .ifs-tab:hover,.ifs-tab[data-state=hover]{color:var(--color-text)}
 .ifs-tab[aria-selected=true]{color:var(--color-text);--line:var(--color-border-selected)}
-/* Figma Focus = 1px focus-outer underline, label primary */
-.ifs-tab:focus-visible,.ifs-tab[data-state=focus]{outline:none;color:var(--color-text);--line:var(--color-focus-outer)}
+/* Focus (S1): the focus ring, inset because the tab row scrolls and clips outside rings; label primary */
+.ifs-tab:focus-visible,.ifs-tab[data-state=focus]{outline:none;color:var(--color-text);box-shadow:var(--focus-ring-inset)}
 .ifs-tab:disabled,.ifs-tab[aria-disabled=true]{color:var(--color-text-disabled);cursor:not-allowed;--line:transparent}
 /* counter-atom Size=S (18) */
 .ifs-tab__counter{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;height:var(--size-18);min-width:var(--size-18);
@@ -94,11 +94,12 @@
 .ifs-breadcrumb__list > li{display:flex;align-items:center;gap:var(--space-100)}
 .ifs-breadcrumb__sep{width:2px;height:2px;border-radius:50%;background:var(--color-icon-softer);flex:none}
 .ifs-crumb{display:inline-flex;align-items:center;gap:var(--space-50);height:calc(var(--size-control-s) - var(--space-100));margin:0;padding:0;border:0;background:none;
-  font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:nowrap;color:var(--color-text-softer);cursor:pointer}
+  font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:nowrap;color:var(--color-text-softer);cursor:pointer;
+  border-radius:var(--radius-control) /* shapes the focus ring */}
 .ifs-crumb .ifs-icon{color:var(--color-icon-softer)}
 .ifs-crumb:hover,.ifs-crumb[data-state=hover]{color:var(--color-text)}
 .ifs-crumb:hover .ifs-icon,.ifs-crumb[data-state=hover] .ifs-icon{color:var(--color-icon)}
-.ifs-crumb:focus-visible,.ifs-crumb[data-state=focus]{outline:none;color:var(--color-text-focus)}
+.ifs-crumb:focus-visible,.ifs-crumb[data-state=focus]{outline:none;color:var(--color-text-focus);box-shadow:var(--focus-ring)} /* S1 */
 .ifs-crumb:focus-visible .ifs-icon,.ifs-crumb[data-state=focus] .ifs-icon{color:var(--color-icon-focus)}
 .ifs-crumb:disabled,.ifs-crumb[aria-disabled=true]{color:var(--color-text-disabled);cursor:not-allowed}
 .ifs-crumb:disabled .ifs-icon,.ifs-crumb[aria-disabled=true] .ifs-icon{color:var(--color-icon-disabled)}
