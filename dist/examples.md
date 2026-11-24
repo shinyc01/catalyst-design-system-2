@@ -374,7 +374,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'MapPin', figma: 'map-pin-teardrop (43:2020)', render: () => <>
     {[undefined, 'out-of-hover', 'selected', 'opened'].map(s => <Row key={s || 'd'} label={s || 'default'}>
-      {['neutral', 'error', 'warning'].map(st => <React.Fragment key={st}><MapPin status={st} state={s} /><MapPin status={st} state={s} icon="asset-structure" /></React.Fragment>)}
+      {['neutral', 'danger', 'warning'].map(st => <React.Fragment key={st}><MapPin status={st} state={s} /><MapPin status={st} state={s} icon="asset-structure" /></React.Fragment>)}
     </Row>)}
   </> });
 ```
@@ -2236,7 +2236,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### MapPinDot
 ```jsx
   IFS_GALLERY.push({ name: 'MapPinDot', figma: 'map-pin-dot (d2686af3) [patterns] (12:107153)', render: () => <IFS.Stack gap="100" style={mapBg}>
-    {['error', 'warning', 'neutral'].map(st => <React.Fragment key={st}>
+    {['danger', 'warning', 'neutral'].map(st => <React.Fragment key={st}>
       {[['out-of-hover', 'out of hover'], [undefined, 'default'], ['highlight', 'higlight=yes'], ['selected', 'selected']].map(([s, l]) => (
         (s === 'highlight' && st === 'neutral') ? null :
         <Row key={l} label={`${st} · ${l}`} style={{ gap: 28, minHeight: 56 }}>
@@ -2439,7 +2439,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 60% 40%, var(--color-background-neutral), var(--color-surface-secondary) 70%)' }}>
       <div style={{ position: 'absolute', left: '30%', top: 30 }}><IFS.MapPinPole symbol="pin" number="Recloser R-1" pinIcon="asset type-substation" /></div>
       <div style={{ position: 'absolute', left: '66%', top: 18 }}><IFS.MapPinPole symbol="pin" number="Demeter SS" /></div>
-      <div style={{ position: 'absolute', left: '62%', top: 84 }}><IFS.MapPinDot size="s" status="error" type="text" counter="88%" /></div>
+      <div style={{ position: 'absolute', left: '62%', top: 84 }}><IFS.MapPinDot size="s" status="danger" type="text" counter="88%" /></div>
     </div>
   );
   const DECISIONS = [

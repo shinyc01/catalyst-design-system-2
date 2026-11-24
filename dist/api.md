@@ -179,7 +179,7 @@ onStop, avatar = Avatar props of the current user (molecule), disabled, autoFocu
 @-mentions: mentionables = [{ name, role, avatar }] turns on the picker — typing "@" + letters lists the matching people
 below the field (↑/↓ move, Enter/Tab pick, Esc drops the "@…"); picking inserts "@Name " and calls onMention(person).
 renderMentionMenu({ people, query, activeIndex, onPick, onActiveChange }) replaces the default list (e.g. IFS.CommentMentionMenu).
-Single line = pill; grows to Multi line (12px radius, buttons below) when the text wraps. It returns to one line only when the
+Single line = pill (--radius-pill); grows to Multi line (--radius-control 4, buttons below) when the text wraps. It returns to one line only when the
 text fits the single-line width with an 8px margin (measured off-layout), so a draft right at the wrap width can't flip-flop.
 `function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defaultValue = '', onChange, onSubmit, placeholder, generating, onStop, avatar, disabled, autoFocus, state, mentionables, onMention, renderMentionMenu, className, style, ...rest })`
 
@@ -397,7 +397,7 @@ onDragStart/onDragEnd, state hover|drag|focus|cooper-hover|cooper-drag (forced, 
 ------------------------------------------------------------------------------------------ 
 Figma: map-pin-teardrop (43:2020), Patterns › Map. Default location marker for one asset on an exact spot.
 (Other pin sets on the page — map-pin-dot/-square/-pole/-defect/-flow — are not built here.)
-Props: status neutral|error|warning, icon = asset icon name (Figma Asset icon=Yes; absent = white dot),
+Props: status neutral|danger|warning|success|info (C1 words; error = old name for danger), icon = asset icon name (Figma Asset icon=Yes; absent = white dot),
 selected / defaultSelected / onSelectedChange (Figma Selected), dimmed (Figma Out of hover), opened (Figma Opened),
 label (accessible name), state selected|opened|out-of-hover (forced, gallery).
 `function MapPin({ status: st = 'neutral', icon, selected, defaultSelected = false, onSelectedChange, dimmed, opened, label = 'Asset', state, className, ...rest })`
@@ -1304,6 +1304,21 @@ Props: groups / value / defaultValue / onChange (the compare-dropdown), stats [{
 
 ### ActivityPanel
 **Tier:** Pattern helper
+The record's Activity panel ("Library - Strategy Framework - Activity panel", Patterns 52:87879): panel-organism (380px, full height)
+as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version History | Approval Chain, only when the record has
+both), the Cooper smart search that filters the current view, then the version-history timeline or the approval chain.
+Version entries are kit VersionEntry (M marker = expand toggle; card = the version card): click the card or name to
+open that version read-only, ⋮ for Compare / Duplicate / Rename / Restore, the caret to expand the version's full activity log.
+Props:
+  versions / defaultVersions / onVersionsChange — [{ id, title, current, description, author: Avatar props + name, time,
+    activity: [{ id, name, avatar (Avatar props), type: 'comment'|'action'|'auto-action', role, text, time }] }] (newest first)
+  approvals — ApprovalChain steps; undefined = record has no approval chain (no segmented control); [] = empty state.
+  view / defaultView ('versions'|'approvals') / onViewChange, query / defaultQuery / onQueryChange (the smart search),
+  open / defaultOpen / onOpenChange (✕, outside click, Esc), layout overlay (fixed, an over panel: no scrim, one --float-inset in,
+  floating level; rule 4.6) | contained (the same, absolute in the nearest positioned ancestor) | static (in flow — gallery, AppShell panel), title ("Activity"), recordLabel ("framework", for copy),
+  onOpenVersion(v), onCompare(v, baseline), onDuplicate(v), onRestore(v) (after the confirm modal), onRename(v, title, previous),
+  defaultExpanded (version ids), defaultRename { id, value, error } (gallery states).
+Motion (M3): overlay and contained slide in from the end edge in 200 and back in 100; reduced motion fades (M4).
 `function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, approvals, view, defaultView = 'versions', onViewChange, query, defaultQuery = '', onQueryChange, open, defaultOpen = true, onOpenChange, layout = 'overlay', title = 'Activity', recordLabel = 'framework', onOpenVersion, onCompare, onDuplicate, onRestore, onRename, defaultExpanded = [], defaultRename, versionSuggestions = PA_VERSION_SUGGESTIONS, approvalSuggestions = PA_APPROVAL_SUGGESTIONS, className, style })`
 
 ### filterVersions
@@ -1861,12 +1876,12 @@ Examples (read before using any component below — shows the data shapes props 
 ------------------------------------------------------------------------------------------ 
 Figma: map-pin-dot (key d2686af3…; Patterns copy 12:107153, Figma set name "dot-pin").
 A round status marker: counts on clusters (text) or a status glyph (icon) at map points.
-Props: size l (32) | m (24) | s (16) | xs (8), status error|warning|neutral (Nov 24: the map only flags risk, red high, yellow
-medium, grey low; deprecated old names: success and info draw neutral),
+Props: size l (32) | m (24) | s (16) | xs (8), status danger|warning|neutral (C1 word; Nov 24: the map only flags risk, red high,
+yellow medium, grey low; old-name aliases: error draws danger, success and info draw neutral),
 type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
 dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).
-`function MapPinDot({ size = 'm', status: st = 'error', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false, onSelectedChange, dimmed, label, state, className, onClick, ...rest })`
+`function MapPinDot({ size = 'm', status: st = 'danger', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false, onSelectedChange, dimmed, label, state, className, onClick, ...rest })`
 
 ### MapPinDefect
 **Tier:** Component
@@ -2571,7 +2586,7 @@ color black|grey ("grey (for black bg)"), type bottom|top|left|right = side the 
 (bottom → bubble sits above the trigger, the default), arrow left|center|right (top/bottom only).
 Wraps one trigger child; shows after the 300ms pointer wait (M3) and at once on keyboard focus, hides instantly, Esc dismisses.
 open/onOpenChange to control. `inline` renders the bubble alone (gallery).
-`function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = 300 /* M3: the pointer wait, the only delay */, open, defaultOpen, onOpenChange, inline, children, className })`
+`function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = IFS.motionMs('--motion-duration-300', 300) /* M3: the pointer wait, the only delay */, open, defaultOpen, onOpenChange, inline, children, className })`
 
 ### Alert
 **Tier:** Component

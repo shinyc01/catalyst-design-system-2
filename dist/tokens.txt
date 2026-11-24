@@ -383,7 +383,7 @@
 --elevation-modal: 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-modal-shadow)
 --elevation-floating-shadow: var(--elevation-2)
 --elevation-modal-shadow: var(--elevation-3)
---elevation-floating-filter: drop-shadow(0 4px 8px var(--color-shadow-floating))
+--elevation-floating-filter: drop-shadow(0 8px 12px var(--color-shadow-elevation-2))
 --inner-shadow-map-highlight-resolved: inset 0 0 12px 7px var(--color-shadow-map-highlight-resolved)
 --inner-shadow-map-highlight-critical: inset 0 0 12px 7px var(--color-shadow-map-highlight-critical)
 --inner-shadow-map-highlight-moderate: inset 0 0 12px 7px var(--color-shadow-map-highlight-moderate)
@@ -676,7 +676,7 @@
 --palette-muted-purple-500-alpha-5: rgba(80,66,125,0.05)
 --palette-muted-purple-500-alpha-10: rgba(80,66,125,0.1)
 --palette-muted-purple-500-alpha-15: rgba(80,66,125,0.15)
---palette-muted-purple-500-alpha-20: rgba(80,66,125,0.22)
+--palette-muted-purple-500-alpha-20: rgba(80,66,125,0.2)
 --palette-muted-purple-500-alpha-40: rgba(80,66,125,0.4)
 --palette-muted-purple-600: #433374
 --palette-muted-purple-700: #32255f
