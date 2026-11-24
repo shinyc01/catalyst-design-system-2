@@ -115,7 +115,9 @@
 .ifs-composer--multi .ifs-composer__inner > .ifs-composer__buttons{justify-content:flex-end;padding:var(--space-200)}
 /* Cooper mode, not focus: white-base fill, 1px ring-gap (B1: Figma 1.5 snaps to 1) + 3px gradient ring (cooper text → white). Attribution only. */
 .ifs-composer--cooper{--cooper-ring-out:calc(var(--border-width-default) + var(--border-width-300));background:var(--color-background-accent-white-soft);box-shadow:0 0 0 var(--border-width-default) var(--color-ring-gap)}
-.ifs-composer--cooper:focus-within{box-shadow:0 0 0 var(--border-width-default) var(--color-ring-gap)}
+/* Cooper mode, focus (S1): the gradient ring stays; the focus ring (--focus-ring widths and colours) is drawn just outside it */
+.ifs-composer--cooper:focus-within{box-shadow:0 0 0 var(--border-width-default) var(--color-ring-gap),
+  0 0 0 calc(var(--cooper-ring-out) + var(--border-width-200)) var(--color-focus-inner),0 0 0 calc(var(--cooper-ring-out) + var(--border-width-400)) var(--color-focus-outer)}
 .ifs-composer--cooper::after{content:"";position:absolute;inset:calc(-1 * var(--cooper-ring-out));padding:var(--border-width-300);border-radius:inherit;pointer-events:none;
   background:linear-gradient(225deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
@@ -151,6 +153,7 @@
    --blur-80; text padding 14/16 Body/L/medium; buttons row padding 0/8/8/8, right group padding 4 gap 4: Cancel Secondary S + Send Primary S */
 .ifs-comment-edit{display:flex;flex-direction:column;flex:1;min-width:0;border-radius:var(--radius-control);background:var(--color-background-accent-white-soft);
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+.ifs-comment-edit:focus-within{box-shadow:var(--focus-ring)} /* S1 */
 .ifs-comment-edit__field{padding:var(--size-14) var(--space-400)} /* raw in Figma: 14 */
 .ifs-comment-edit__input{display:block;box-sizing:border-box;width:100%;min-height:var(--size-20);padding:0;border:0;outline:0;resize:none;overflow:hidden;
   background:transparent;color:var(--color-text);caret-color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */

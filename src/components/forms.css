@@ -50,9 +50,10 @@
 .ifs-field--area[data-state=focus] .ifs-field__control{
   --fill:var(--color-background-input);--border:var(--color-border-input);
   --ring:var(--focus-ring)}
-/* TextArea: Typing = brighter border, no ring (Figma text-area State=Typing) */
+/* TextArea: Typing = brighter border (Figma text-area State=Typing); keyboard/real focus adds the focus ring (S1: every control) */
 .ifs-field--area .ifs-field__control:focus-within,.ifs-field--area[data-state=typing] .ifs-field__control{
   --fill:var(--color-background-input);--border:var(--color-border-input-focus)}
+.ifs-field--area .ifs-field__control:focus-within{--ring:var(--focus-ring)}
 /* Error */
 .ifs-field--error .ifs-field__control,.ifs-field--error .ifs-field__control:hover{--fill:var(--color-background-input);--border:var(--color-border-danger)}
 .ifs-field--error .ifs-field__desc{color:var(--color-text-danger)}

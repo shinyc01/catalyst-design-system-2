@@ -39,6 +39,7 @@
 .ifs-msg-input{box-sizing:border-box;display:flex;flex-direction:column;width:100%;background:var(--color-background-accent-white-soft);
   border-radius:var(--radius-pill);color:var(--color-text)}
 .ifs-msg-input--multi{border-radius:var(--radius-control)}
+.ifs-msg-input:focus-within{box-shadow:var(--focus-ring)} /* S1 */
 .ifs-msg-input__row{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-200);min-height:var(--size-48);box-sizing:border-box}
 .ifs-msg-input__field{all:unset;flex:1;min-width:0;box-sizing:border-box;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text);
   resize:none;white-space:pre-wrap;overflow-wrap:anywhere;max-height:21rem;overflow-y:auto}
@@ -132,6 +133,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
   box-shadow:inset 0 0 0 var(--border-width-default) var(--edge,var(--color-border-soft)),var(--elevation-floating-shadow) /* C1 level 2 (its own edge colour) */}
 .ifs-chat-bar:hover,.ifs-chat-bar[data-state=hover]{--edge:var(--color-border)}
 .ifs-chat-bar--multi{border-radius:var(--radius-control);--edge:var(--color-border)}
+.ifs-chat-bar:focus-within{box-shadow:var(--focus-ring),var(--elevation-floating-shadow) /* S1: focus ring + level 2 */}
 .ifs-chat-bar__row{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-200);min-height:var(--size-48);box-sizing:border-box}
 .ifs-chat-bar__field{all:unset;flex:1;min-width:0;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text);resize:none;white-space:pre-wrap;overflow-wrap:anywhere}
 .ifs-chat-bar__field::placeholder{color:var(--color-text-softer)}
