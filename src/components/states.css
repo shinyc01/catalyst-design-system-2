@@ -95,7 +95,7 @@
 .ifs-cooper-chip__label{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* gradient direction approx. */;
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-cooper-chip:hover,.ifs-cooper-chip[data-state=hover]{--fill:var(--color-cooper-background)}
-.ifs-cooper-chip.is-selected{--ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-cooper-border)} /* not focus: selected ring, borrows the black gap */
+.ifs-cooper-chip.is-selected{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap),0 0 0 var(--border-width-200) var(--color-cooper-border)} /* not focus: selected ring on the ring-gap black */
 .ifs-cooper-chip:focus-visible,.ifs-cooper-chip[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 .ifs-cooper-chip:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);
   box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-10));-webkit-backdrop-filter:blur(var(--blur-10))}

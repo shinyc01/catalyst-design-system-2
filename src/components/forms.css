@@ -61,18 +61,18 @@
 .ifs-field--disabled .ifs-field__control,.ifs-field--disabled .ifs-field__control:hover{--fill:var(--color-background-neutral-softer);--border:var(--color-border-input-disabled);cursor:not-allowed;color:var(--color-icon-disabled)}
 .ifs-field--disabled .ifs-field__input,.ifs-field--disabled .ifs-field__input::placeholder{color:var(--color-text-disabled);cursor:not-allowed}
 
-/* Cooper (AI), not focus: 2px focus-inner gap + 2px gradient ring text/accent-cooper → text/primary.
+/* Cooper (AI), not focus: 2px ring-gap + 2px gradient ring (cooper text → text); M: 1 + 1 (B1: Figma 1.5 snaps to 1).
    Gradient angle converted from Figma's gradientTransform (approximate). */
 .ifs-field--cooper .ifs-field__control,.ifs-field--cooper .ifs-field__control:hover,.ifs-field--cooper .ifs-field__control:focus-within{
-  --fill:var(--color-background-input);--border:var(--color-border-input);--ring:0 0 0 2px var(--color-focus-inner)}
+  --fill:var(--color-background-input);--border:var(--color-border-input);--ring:0 0 0 var(--border-width-200) var(--color-ring-gap)}
 .ifs-field--cooper .ifs-field__control::after{
-  content:"";position:absolute;inset:-4px;padding:var(--space-50);border-radius:calc(var(--radius-control) + var(--size-4));pointer-events:none;
+  content:"";position:absolute;inset:calc(-1 * var(--border-width-400));padding:var(--border-width-200);border-radius:calc(var(--radius-control) + var(--border-width-400));pointer-events:none;
   background:linear-gradient(272deg,var(--color-cooper-text) -8%,var(--color-text) 99%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
 }
-.ifs-field--cooper.ifs-field--m .ifs-field__control{--ring:0 0 0 1.5px var(--color-focus-inner)}
-.ifs-field--cooper.ifs-field--m .ifs-field__control::after{inset:-3px;padding:var(--border-width-150);border-radius:calc(var(--radius-control) + var(--size-3))}
+.ifs-field--cooper.ifs-field--m .ifs-field__control{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap)}
+.ifs-field--cooper.ifs-field--m .ifs-field__control::after{inset:calc(-2 * var(--border-width-default));padding:var(--border-width-default);border-radius:calc(var(--radius-control) + 2 * var(--border-width-default))}
 
 /* ---------- Search ---------- */
 .ifs-search{

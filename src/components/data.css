@@ -212,11 +212,11 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-content-card[data-state=drag]{--fill:var(--color-surface-raised-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-content-card:focus-visible,.ifs-content-card[data-state=focus]{outline:none;--ring:var(--focus-ring)} /* S2: focus is the ring only, no fill */
 /* Cooper (content-card-organism State=Cooper, 12:6669 / 12:6715), not focus: a 4px OUTSIDE gradient stroke with a 2px OUTSIDE
-   focus-inner stroke drawn over its inner half, so it reads as a 2px black gap, then a 2px gradient ring.
+   ring-gap stroke drawn over its inner half, so it reads as a 2px black gap, then a 2px gradient ring.
    Gradient brand/cooper/500-base → core/1000-base, orange at bottom-right to white at the left (Figma transform ≈ 282deg).
    text/accent-cooper and text/primary hold the same values as those primitives. */
-.ifs-content-card--cooper,.ifs-content-card[data-state=cooper]{--fill:var(--color-surface-secondary);--ring:0 0 0 2px var(--color-focus-inner)}
-.ifs-content-card--cooper::before,.ifs-content-card[data-state=cooper]::before{content:"";position:absolute;inset:-4px;padding:var(--space-50);border-radius:calc(var(--radius-card) + var(--size-4));pointer-events:none;
+.ifs-content-card--cooper,.ifs-content-card[data-state=cooper]{--fill:var(--color-surface-secondary);--ring:0 0 0 var(--border-width-200) var(--color-ring-gap)}
+.ifs-content-card--cooper::before,.ifs-content-card[data-state=cooper]::before{content:"";position:absolute;inset:calc(-1 * var(--border-width-400));padding:var(--border-width-200);border-radius:calc(var(--radius-card) + var(--border-width-400));pointer-events:none;
   background:linear-gradient(282deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .ifs-content-card__main{display:flex;gap:var(--space-200);min-width:0}

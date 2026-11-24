@@ -15,7 +15,7 @@ const dataClickable = (onClick, extra = {}) => onClick ? {
 const DataCounter = ({ children, className }) => <span className={IFS.cx('ifs-data-counter', className)}>{children}</span>;
 
 // Figma: status-indicator-atom (789:39211)
-// Props: state default|error|success|cooper|warning|blue, stroke (Figma Stroke=True: 1.5px surface/primary ring).
+// Props: state default|error|success|cooper|warning|blue, stroke (Figma Stroke=True: a 1px --color-surface-primary ring; B1: Figma 1.5 snaps to 1).
 // C1 (Nov 23): the five status words info · success · warning · danger · neutral; the old words stay as aliases.
 function StatusIndicator({ state = 'default', stroke, label, className, ...rest }) {
   state = { neutral: 'default', danger: 'error', info: 'blue' }[state] || state;

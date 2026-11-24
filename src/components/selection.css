@@ -78,7 +78,7 @@
 .ifs-select__list--down{top:calc(100% + var(--space-100))}
 .ifs-select__list--up{bottom:calc(100% + var(--space-100))}
 .ifs-select__list::-webkit-scrollbar{width:8px}
-.ifs-select__list::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border:2px solid transparent;background-clip:content-box;border-radius:var(--radius-pill)}
+.ifs-select__list::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border:var(--border-width-200) solid transparent;background-clip:content-box;border-radius:var(--radius-pill)}
 .ifs-select__list::-webkit-scrollbar-track{background:transparent}
 .ifs-select__list-title{flex:none;display:flex;align-items:center;height:calc(var(--size-control-s) + var(--space-100));padding:var(--space-100) var(--space-200);color:var(--color-text-soft);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */

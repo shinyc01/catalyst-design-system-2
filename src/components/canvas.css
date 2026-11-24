@@ -70,12 +70,12 @@
 .ifs-node-card:not(.ifs-node-card--solid):hover,.ifs-node-card:not(.ifs-node-card--solid)[data-state=hover],.ifs-node-card:not(.ifs-node-card--solid).ifs-node-card--drag{
   --nc-fill:var(--color-background-neutral)}
 .ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-3);cursor:grabbing}
-/* Rings (Figma "Inner Focus Wrapper"): Select = 3px focus-inner + 1px white; Focus = --focus-ring;
-   Cooper = 3px inner + 1px cooper→white gradient. Select and Cooper only borrow the focus-inner black as a gap: they are not focus. Text switches to primary / tertiary inside a ring. */
-.ifs-node-card--ring-select{--nc-ring:0 0 0 3px var(--color-focus-inner),0 0 0 4px var(--color-border-selected)}
+/* Rings (Figma "Inner Focus Wrapper"): Select = 3px ring-gap + 1px white; Focus = --focus-ring;
+   Cooper = 3px ring-gap + 1px cooper→white gradient. Select and Cooper use --color-ring-gap (the same black): they are not focus. Text switches to primary / tertiary inside a ring. */
+.ifs-node-card--ring-select{--nc-ring:0 0 0 var(--border-width-300) var(--color-ring-gap),0 0 0 var(--border-width-400) var(--color-border-selected)}
 .ifs-node-card:focus-visible,.ifs-node-card[data-state=focus]{--nc-ring:var(--focus-ring)}
-.ifs-node-card--ring-cooper{--nc-ring:0 0 0 3px var(--color-focus-inner)}
-/* Cooper: Figma's 4px gradient stroke is covered by the 3px focus-inner, so 1px of gradient shows outside it. */
+.ifs-node-card--ring-cooper{--nc-ring:0 0 0 var(--border-width-300) var(--color-ring-gap)}
+/* Cooper: Figma's 4px gradient stroke is covered by the 3px ring-gap, so 1px of gradient shows outside it. */
 .ifs-node-card--ring-cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;box-sizing:border-box;
   background:linear-gradient(to top left,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
@@ -129,7 +129,7 @@
 .ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--color-surface-tertiary)}
 .ifs-sidebar-node--drag{background:var(--color-surface-tertiary);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-3);cursor:grabbing}
 .ifs-sidebar-node:focus-visible,.ifs-sidebar-node[data-state=focus]{outline:none;--sn-ring:var(--focus-ring)}
-.ifs-sidebar-node--cooper{--sn-ring:0 0 0 3px var(--color-focus-inner)} /* not focus: Cooper ring, borrows the black gap */
+.ifs-sidebar-node--cooper{--sn-ring:0 0 0 var(--border-width-300) var(--color-ring-gap)} /* not focus: Cooper ring on the ring-gap black */
 .ifs-sidebar-node--cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;
   background:linear-gradient(to top left,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
@@ -141,7 +141,7 @@
 .ifs-sidebar-node__desc{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
 
 /* ---------- map-pin-teardrop (43:2020) ---------- */ /* px on purpose: map pins are map geometry and keep their size at any text size */
-.ifs-map-pin{--pin:var(--color-icon-softer);--pin-border:var(--color-icon-softer);--pin-bw:0.72px /* raw in Figma */;
+.ifs-map-pin{--pin:var(--color-icon-softer);--pin-border:var(--color-icon-softer);--pin-bw:var(--border-width-default) /* B1: Figma 0.72 snaps to 1 */;
   position:relative;display:inline-block;width:25px;height:31px;margin:0;padding:0;border:0;background:none;cursor:pointer;
   filter:drop-shadow(0 0 3.6px var(--color-shadow-floating)) /* raw in Figma: DROP_SHADOW 7.2 */}
 .ifs-map-pin--error{--pin:var(--color-icon-danger);--pin-border:var(--color-icon-danger)}
@@ -179,7 +179,7 @@
 .ifs-canvas__overlay{position:absolute;inset:0;pointer-events:none;cursor:default}
 .ifs-canvas__overlay>*{pointer-events:auto}
 .ifs-canvas-connector{position:absolute;overflow:visible;pointer-events:none}
-.ifs-canvas-connector path{fill:none;stroke:var(--color-border);stroke-width:1px;vector-effect:non-scaling-stroke}
+.ifs-canvas-connector path{fill:none;stroke:var(--color-border);stroke-width:var(--border-width-default);vector-effect:non-scaling-stroke}
 .ifs-canvas-connector--on path{stroke:var(--color-border-strong)}
 
 /* ---------- move-and-drop-background (4509:30446) ---------- */
@@ -206,7 +206,7 @@
 .ifs-sankey-node:hover .ifs-sankey-node__card,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__card,.ifs-sankey-node:focus-visible .ifs-sankey-node__card{
   background:linear-gradient(var(--color-background-neutral),var(--color-background-neutral)),var(--color-surface-elevation-1)}
 .ifs-sankey-node:hover .ifs-sankey-node__change,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__change,.ifs-sankey-node:focus-visible .ifs-sankey-node__change{display:inline-flex}
-.ifs-sankey-node:focus-visible .ifs-sankey-node__card{box-shadow:inset 0 0 0 0.71px var(--color-border-strong),var(--focus-ring)}
+.ifs-sankey-node:focus-visible .ifs-sankey-node__card{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong),var(--focus-ring)} /* B1: Figma 0.71 snaps to 1 */
 .ifs-sankey-node--measure{height:16px;border-radius:var(--radius-mark);background:var(--color-surface-elevation-1)}
 .ifs-sankey-node--measure .ifs-sankey-node__stub i{height:6px}
 .ifs-sankey-node--measure .ifs-sankey-node__card{height:16px;padding:0;background:none!important;box-shadow:none!important;backdrop-filter:none}

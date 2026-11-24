@@ -92,6 +92,8 @@
 /* Focus ring */
 --color-focus-inner:var(--palette-core-0);
 --color-focus-outer:var(--palette-info-400);
+/* Non-focus rings (Cooper, selected, active; S1): the black gap between a shape and its ring. Same black as the focus gap, but not focus */
+--color-ring-gap:var(--palette-core-0);
 /* S1 (Nov 24): one focus ring for every control at every size: a 2px black gap + 2px blue (meets WCAG 2.4.13). Inset for items inside
    clipped lists and scroll areas. The ring never transitions; forced colours get an outline (components/_core.css). */
 --focus-ring:0 0 0 var(--border-width-200) var(--color-focus-inner),0 0 0 var(--border-width-400) var(--color-focus-outer);

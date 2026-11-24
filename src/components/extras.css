@@ -191,7 +191,7 @@
 .ifs-icon-picker__item:hover,.ifs-icon-picker__item[data-state=hover]{--stroke:var(--color-border-strong)}
 .ifs-icon-picker__item[aria-checked=true],.ifs-icon-picker__item[data-state=selected]{--stroke:var(--color-border-selected)}
 .ifs-icon-picker__item:focus-visible,.ifs-icon-picker__item[data-state=focus]{outline:none;
-  box-shadow:inset 0 0 0 1px var(--stroke),var(--focus-ring)}
+  box-shadow:inset 0 0 0 var(--border-width-default) var(--stroke),var(--focus-ring)}
 
 /* ================= Weekday — weekday-atom (2704:74414) ================= */
 .ifs-weekday{display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;width:var(--size-32);

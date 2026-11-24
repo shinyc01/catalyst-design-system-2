@@ -110,7 +110,7 @@
 .ifs-scroll{scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent}
 .ifs-scroll::-webkit-scrollbar{width:8px}
 .ifs-scroll::-webkit-scrollbar-track{background:transparent}
-.ifs-scroll::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border-radius:var(--radius-pill);border:2px solid transparent;background-clip:padding-box}
+.ifs-scroll::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border-radius:var(--radius-pill);border:var(--border-width-200) solid transparent;background-clip:padding-box}
 
 /* ---------- Panel ---------- */
 .ifs-panel{display:flex;flex-direction:column;flex:none;width:var(--region-panel);height:100%;

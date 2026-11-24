@@ -81,8 +81,8 @@
   background:var(--color-surface-raised-hover);box-shadow:0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-dv-card--drag{background:var(--color-surface-raised-hover);box-shadow:0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-dv-card__content{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
-/* Cooper, not focus: 4px outside gradient ring + 2px focus-inner gap, card itself surface/secondary-alpha + border/base */
-.ifs-dv-card--cooper:not(.ifs-dv-card--chart){background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 0 var(--border-width-selected) var(--color-focus-inner)}
+/* Cooper, not focus: 4px outside gradient ring + 2px ring-gap, card itself surface/secondary-alpha + border/base */
+.ifs-dv-card--cooper:not(.ifs-dv-card--chart){background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 0 var(--border-width-selected) var(--color-ring-gap)}
 .ifs-dv-card--cooper::before{content:"";position:absolute;inset:-6px;padding:var(--space-100);border-radius:calc(var(--radius-card) + var(--size-6));pointer-events:none;
   background:linear-gradient(225deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}

@@ -113,14 +113,14 @@
 .ifs-composer--multi .ifs-composer__row{padding:var(--size-14) var(--space-400) 0} /* raw in Figma: 14 */
 .ifs-composer--multi .ifs-composer__input{margin:0}
 .ifs-composer--multi .ifs-composer__inner > .ifs-composer__buttons{justify-content:flex-end;padding:var(--space-200)}
-/* Cooper mode, not focus: white-base fill, 1.5px focus-inner gap + 3px gradient ring (#c87941 → white). Attribution only. */
-.ifs-composer--cooper{background:var(--color-background-accent-white-soft);box-shadow:0 0 0 1.5px var(--color-focus-inner)}
-.ifs-composer--cooper:focus-within{box-shadow:0 0 0 1.5px var(--color-focus-inner)}
-.ifs-composer--cooper::after{content:"";position:absolute;inset:-4.5px;padding:var(--size-3);border-radius:inherit;pointer-events:none;
+/* Cooper mode, not focus: white-base fill, 1px ring-gap (B1: Figma 1.5 snaps to 1) + 3px gradient ring (cooper text → white). Attribution only. */
+.ifs-composer--cooper{--cooper-ring-out:calc(var(--border-width-default) + var(--border-width-300));background:var(--color-background-accent-white-soft);box-shadow:0 0 0 var(--border-width-default) var(--color-ring-gap)}
+.ifs-composer--cooper:focus-within{box-shadow:0 0 0 var(--border-width-default) var(--color-ring-gap)}
+.ifs-composer--cooper::after{content:"";position:absolute;inset:calc(-1 * var(--cooper-ring-out));padding:var(--border-width-300);border-radius:inherit;pointer-events:none;
   background:linear-gradient(225deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
-.ifs-composer--cooper.ifs-composer--multi::after{border-radius:calc(var(--radius-control) + 4.5px)}
+.ifs-composer--cooper.ifs-composer--multi::after{border-radius:calc(var(--radius-control) + var(--cooper-ring-out))}
 .ifs-composer--cooper .ifs-composer__row{gap:var(--space-200)}
 /* .ifs-composer__cooper is IFS.IconButton ghost S (Nov 19) */
 .ifs-composer--disabled{cursor:not-allowed}

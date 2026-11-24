@@ -88,7 +88,7 @@ button.ifs-pin-defect{cursor:pointer}
   padding:var(--space-50);border-radius:var(--radius-control);margin:0;border:0;background:none;outline:none}
 .ifs-vbar > .ifs-bar-item{height:auto;flex:var(--seg) 1 0;min-height:4px}
 button.ifs-vbar{cursor:pointer}
-.ifs-vbar--active,.ifs-vbar[data-state=active]{box-shadow:0 0 0 1.5px var(--color-focus-outer)} /* not focus: the active bar borrows the blue */
+.ifs-vbar--active,.ifs-vbar[data-state=active]{box-shadow:0 0 0 var(--border-width-default) var(--color-focus-outer)} /* not focus: the active bar borrows the blue; B1: Figma 1.5 snaps to 1 */
 .ifs-vbar:focus-visible{box-shadow:var(--focus-ring)}
 
 /* ================= Documents pattern ================= */
