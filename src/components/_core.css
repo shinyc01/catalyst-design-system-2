@@ -1,9 +1,9 @@
 /* Shared pieces used by several components. */
 .ifs-icon{display:inline-block;flex:none;vertical-align:middle}
 .ifs-icon--missing{outline:var(--border-width-default) dashed var(--color-border-danger)}
-/* The loader (S2, Nov 24): one ring for the whole kit, a faint full track and one bright arc (currentColor), drawn on the icon grid.
-   Icon gives system-loader the .ifs-spin class (states.css): ifs-spin on --motion-loop-spin, linear; reduced motion slows it (M4). */
-.ifs-loader-track{stroke:var(--color-border-strong)}
+/* The loader (S2, Nov 24): one ring for the whole kit, drawn on the icon grid: a currentColor track at 30% and one full currentColor arc,
+   so it reads on every background. Icon gives system-loader the .ifs-spin class (states.css): ifs-spin on --motion-loop-spin, linear;
+   reduced motion slows it (M4). */
 /* RTL: directional icons flip. The scale property (not transform) so it stacks with carets a component already rotates
    (e.g. .ifs-table__group-caret, the approval panel toggle). */
 [dir="rtl"] .ifs-icon--mirror{scale:-1 1}
