@@ -360,7 +360,7 @@ function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, 
 // @-mentions: mentionables = [{ name, role, avatar }] turns on the picker — typing "@" + letters lists the matching people
 // below the field (↑/↓ move, Enter/Tab pick, Esc drops the "@…"); picking inserts "@Name " and calls onMention(person).
 // renderMentionMenu({ people, query, activeIndex, onPick, onActiveChange }) replaces the default list (e.g. IFS.CommentMentionMenu).
-// Single line = pill; grows to Multi line (12px radius, buttons below) when the text wraps. It returns to one line only when the
+// Single line = pill (--radius-pill); grows to Multi line (--radius-control 4, buttons below) when the text wraps. It returns to one line only when the
 // text fits the single-line width with an 8px margin (measured off-layout), so a draft right at the wrap width can't flip-flop.
 function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defaultValue = '', onChange, onSubmit, placeholder,
   generating, onStop, avatar, disabled, autoFocus, state, mentionables, onMention, renderMentionMenu, className, style, ...rest }) {
