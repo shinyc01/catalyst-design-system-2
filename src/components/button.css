@@ -72,7 +72,7 @@
 .ifs-button--cooper:disabled{background:var(--color-cooper-button-fill-disabled)}
 .ifs-icon-button:disabled{color:var(--color-icon-disabled)}
 
-/* Loading (S2): keeps its size, fill and label; the loader ring sits in the icon slot; not clickable, so no hover or press */
+/* Loading (S2): keeps its size, fill and label; the dotted loader sits in the icon slot; not clickable, so no hover or press */
 .ifs-button--loading{pointer-events:none}
 
 /* Focus */

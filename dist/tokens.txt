@@ -579,7 +579,7 @@
 --motion-ease-linear: linear
 --motion-distance-2: 2px
 --motion-distance-16: 16px
---motion-loop-spin: 1000ms
+--motion-loop-spin: 1400ms
 --motion-loop-pulse: 1600ms
 --motion-end: 1}
 [dir="rtl"]{--motion-end:-1}

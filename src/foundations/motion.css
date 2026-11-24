@@ -11,7 +11,7 @@
   --motion-duration-0:0ms;--motion-duration-50:50ms;--motion-duration-100:100ms;--motion-duration-200:200ms;--motion-duration-300:300ms;
   --motion-ease-standard:cubic-bezier(0.4, 0, 0.2, 1);--motion-ease-enter:cubic-bezier(0, 0, 0.2, 1);--motion-ease-exit:cubic-bezier(0.4, 0, 1, 1);--motion-ease-linear:linear;
   --motion-distance-2:2px;--motion-distance-16:16px;
-  --motion-loop-spin:1000ms;--motion-loop-pulse:1600ms;
+  --motion-loop-spin:1400ms; /* Nov 24: 1.4 s a turn (1 s felt fast) */ --motion-loop-pulse:1600ms;
 }
 /* The end side for arrivals and drawers: +1 in LTR, -1 in RTL */
 :root{--motion-end:1}
