@@ -262,7 +262,7 @@ function SidebarNodeCard({ title = '{card-title}', description, cooper, dragData
 /* ------------------------------------------------------------------------------------------ */
 // Figma: map-pin-teardrop (43:2020), Patterns › Map. Default location marker for one asset on an exact spot.
 // (Other pin sets on the page — map-pin-dot/-square/-pole/-defect/-flow — are not built here.)
-// Props: status neutral|error|warning, icon = asset icon name (Figma Asset icon=Yes; absent = white dot),
+// Props: status neutral|danger|warning|success|info (C1 words; error = old name for danger), icon = asset icon name (Figma Asset icon=Yes; absent = white dot),
 // selected / defaultSelected / onSelectedChange (Figma Selected), dimmed (Figma Out of hover), opened (Figma Opened),
 // label (accessible name), state selected|opened|out-of-hover (forced, gallery).
 function MapPin({ status: st = 'neutral', icon, selected, defaultSelected = false, onSelectedChange, dimmed, opened, label = 'Asset', state, className, ...rest }) {

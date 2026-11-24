@@ -7,7 +7,7 @@
   min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-pill);cursor:pointer; /* grows into a pill when the count needs it */
   background:var(--color-background-accent-white-strong);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
 .ifs-pin-dot--warning{--pd-fill:var(--color-icon-warning)}
-.ifs-pin-dot--neutral{--pd-fill:var(--color-icon-softer)} /* Nov 24: error · warning · neutral only (grey = low risk); success and info map here (MapPinDot) */
+.ifs-pin-dot--neutral{--pd-fill:var(--color-icon-softer)} /* Nov 24: danger · warning · neutral only (grey = low risk); the old names success and info map here (MapPinDot) */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}
 .ifs-pin-dot--s{--pd-size:16px;--pd-in:14px}
 .ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin-xs)}

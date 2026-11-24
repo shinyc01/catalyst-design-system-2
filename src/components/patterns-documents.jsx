@@ -18,14 +18,14 @@ function useCtl(value, defaultValue, onChange) {
 /* ------------------------------------------------------------------------------------------ */
 // Figma: map-pin-dot (key d2686af3…; Patterns copy 12:107153, Figma set name "dot-pin").
 // A round status marker: counts on clusters (text) or a status glyph (icon) at map points.
-// Props: size l (32) | m (24) | s (16) | xs (8), status error|warning|neutral (Nov 24: the map only flags risk, red high, yellow
-// medium, grey low; deprecated old names: success and info draw neutral),
+// Props: size l (32) | m (24) | s (16) | xs (8), status danger|warning|neutral (C1 word; Nov 24: the map only flags risk, red high,
+// yellow medium, grey low; old-name aliases: error draws danger, success and info draw neutral),
 // type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 // highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
 // dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).
-function MapPinDot({ size = 'm', status: st = 'error', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false,
+function MapPinDot({ size = 'm', status: st = 'danger', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false,
   onSelectedChange, dimmed, label, state, className, onClick, ...rest }) {
-  const status = st === 'danger' ? 'error' : st === 'success' || st === 'info' ? 'neutral' : st; // C1 status word; success / info: deprecated → neutral
+  const status = st === 'danger' ? 'error' : st === 'success' || st === 'info' ? 'neutral' : st; // danger = the C1 word (class --error); old names: error = danger, success / info → neutral
   const [sel, setSel] = useCtl(selected, defaultSelected, onSelectedChange);
   const isSel = state ? state === 'selected' : sel;
   const isDim = dimmed || state === 'out-of-hover';

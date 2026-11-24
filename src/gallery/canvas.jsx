@@ -60,7 +60,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'MapPin', figma: 'map-pin-teardrop (43:2020)', render: () => <>
     {[undefined, 'out-of-hover', 'selected', 'opened'].map(s => <Row key={s || 'd'} label={s || 'default'}>
-      {['neutral', 'error', 'warning'].map(st => <React.Fragment key={st}><MapPin status={st} state={s} /><MapPin status={st} state={s} icon="asset-structure" /></React.Fragment>)}
+      {['neutral', 'danger', 'warning'].map(st => <React.Fragment key={st}><MapPin status={st} state={s} /><MapPin status={st} state={s} icon="asset-structure" /></React.Fragment>)}
     </Row>)}
   </> });
 

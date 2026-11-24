@@ -39,7 +39,7 @@ export default IFS_GALLERY;
   );
   const MapView = () => (
     <IFS.CanvasBackground style={{ height: 236, borderRadius: 4 }} defaultView={{ x: 0, y: 0, zoom: 1 }}>
-      {[[90, 120, 'error'], [230, 150, 'neutral'], [330, 70, 'error'], [380, 160, 'warning']].map(([x, y, s], i) => (
+      {[[90, 120, 'danger'], [230, 150, 'neutral'], [330, 70, 'danger'], [380, 160, 'warning']].map(([x, y, s], i) => (
         <div key={i} style={{ position: 'absolute', left: x, top: y }}><IFS.MapPin status={s} label={`Asset ${i + 1}`} /></div>
       ))}
     </IFS.CanvasBackground>

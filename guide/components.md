@@ -683,6 +683,7 @@ Use: Layer category card with active count ("1/5 layers on").
 
 ### map-pin-teardrop · `MapPin`
 Use: Default location marker for one asset on an exact spot. Other pins on the page (`map-pin-dot`, `-square`, `-pole`, `-defect`, `-flow`) cover counts, clusters, readings, defects and direction.
+Status: `MapPin` takes the five C1 words, `neutral` · `danger` · `warning` · `success` · `info` (`error` = old name for danger). The dot pin `MapPinDot` takes `danger` · `warning` · `neutral` (old-name aliases: `error` draws danger, `success` and `info` draw neutral; rule 7.16).
 
 ### map-status-risk
 Use: Planning-risk severity on a map asset (icon + %).
