@@ -9,8 +9,7 @@ import { IFS } from './registry.js';
 
 // Chart geometry the SVG needs as numbers (rule 1.3: chart geometry stays px).
 const R_MARK = 2;        // = --radius-mark: the end of a bar away from the baseline (D8)
-const GAP_MARK = 1;      // = --border-width-default: the card-colour gap between stacked segments and between grouped bars (D8; 1 px, review Nov 25)
-const GAP_CELL = 2;      // heatmap cells
+const GAP_MARK = 1;      // = --border-width-default: the one card-colour gap between the parts of every chart (stack segments, grouped bars, heatmap cells, funnel stages, gauge segments; slices use a 1 px stroke) (D8; 1 px, review Nov 25)
 const TIP_GAP = 8;       // tooltip beside the mark, the same 8 px on either side (D5)
 const LABEL_MIN = 24;    // value-axis labels closer than this thin out; gridlines stay (D3)
 const HIT_R = 12;        // chart points get at least a 24 px hit area (G8, WCAG 2.5.8)
@@ -1120,9 +1119,9 @@ function GaugeChart(props) {
   const ang = v => Math.PI * Math.max(0, Math.min(1, (v - min) / (max - min || 1))); // 0 = left end, π = right end
   const pt = (v, r) => [cx - r * Math.cos(ang(v)), cy - r * Math.sin(ang(v))];
   // the arc as a filled band with --radius-mark corners (2 px, like the bars): inset by the radius, then a 2 × radius round-joined stroke
-  const band = (v0, v1) => {
+  const band = (v0, v1, gapStart = 0) => {
     const ro = R + sw / 2 - R_MARK, ri = R - sw / 2 + R_MARK;
-    const a0 = ang(v0), a1 = ang(v1);
+    const a0 = ang(v0) + gapStart / R, a1 = ang(v1);
     if (a1 - a0 < (2 * R_MARK) / ri) return '';
     const P = (r, a) => `${cx - r * Math.cos(a)},${cy - r * Math.sin(a)}`;
     return `M${P(ro, a0 + R_MARK / ro)}A${ro},${ro} 0 0 1 ${P(ro, a1 - R_MARK / ro)}L${P(ri, a1 - R_MARK / ri)}A${ri},${ri} 0 0 0 ${P(ri, a0 + R_MARK / ri)}Z`;
@@ -1140,7 +1139,7 @@ function GaugeChart(props) {
   return (
     <ChartShell {...shellProps(props)} skeleton="ring" legend={legend} table={table}>
       <Plot p={p} label={props.title} tip={tip} n={1} pick={pick} describe={() => `${valueLabel}: ${format(value)}${target != null ? `, ${targetLabel} ${format(target)}` : ''}`}>
-        <path d={band(min, max)} fill="var(--color-border-soft)" stroke="var(--color-border-soft)" strokeWidth={2 * R_MARK} strokeLinejoin="round" />
+        <path d={value > min ? band(value, max, GAP_MARK) : band(min, max)} fill="var(--color-border-soft)" stroke="var(--color-border-soft)" strokeWidth={2 * R_MARK} strokeLinejoin="round" />
         {value > min && <path d={band(min, value)} fill={dvColor(color)} stroke={dvColor(color)} strokeWidth={2 * R_MARK} strokeLinejoin="round" />}
         {reference != null && <line {...tick(reference, R - sw * 0.6, R + sw * 0.6)} stroke={WHITE} strokeWidth={3} strokeDasharray="4 3" />}
         {target != null && <line {...tick(target, R - sw / 2, R + sw)} stroke="var(--color-border-on-solid)" strokeWidth={2} strokeLinecap="round" opacity={0.9} />}
@@ -1219,7 +1218,7 @@ function FunnelChart(props) {
   const p = usePlot(props);
   const n = data.length, v0 = Math.max(1, ...finite(data.map(d => d.value)));
   const maxW = Math.min(480, p.W - 110), cx = Math.min(p.W / 2, (p.W - 40) / 2 + 10);
-  const gap = GAP_MARK * 2, h = Math.max(8, Math.min(52, (p.H - 8) / Math.max(1, n) - gap));
+  const gap = GAP_MARK, h = Math.max(8, Math.min(52, (p.H - 8) / Math.max(1, n) - gap));
   const wOf = v => maxW * (0.25 + 0.75 * Math.max(0, v) / v0);
   const hasRef = data.some(d => d.reference != null);
   const last = outcomeColor != null && n > 1;
@@ -1272,9 +1271,9 @@ function HeatmapChart(props) {
   const rampVar = k => `var(--color-data-viz-sequential-${fam}-${steps[k]})`;
   const op = v => 0.2 + 0.8 * (hi > lo ? (v - lo) / (hi - lo) : 1);
   const labelW = Math.max(24, ...rows.map(r => p.measure(r))) + 8;
-  // cells fill the plot (rectangles), with a 2 px card-colour gap between them
+  // cells fill the plot (rectangles), with the 1 px card-colour gap between them
   const pitch = Math.max(6, (p.W - labelW) / Math.max(1, columns.length)), rowPitch = Math.max(6, (p.H - p.px * 1.34 - 8) / Math.max(1, rows.length));
-  const cell = pitch - GAP_CELL, cellH = rowPitch - GAP_CELL;
+  const cell = pitch - GAP_MARK, cellH = rowPitch - GAP_MARK;
   const every = props.columnLabelEvery;
   const colShown = every ? (j => j % every === 0) : catShown(columns, pitch, p.measure);
   const rowEvery = rowPitch < p.px * 1.3 ? Math.ceil((p.px * 1.3) / rowPitch) : 1;

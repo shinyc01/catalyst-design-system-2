@@ -125,7 +125,7 @@
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-80));
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text);text-align:start}
 .ifs-dv-tooltip--chart{width:max-content;min-width:12rem;max-width:20rem; /* D5: content-sized */
-  gap:var(--space-150)} /* review round 2 (Nov 25): one inset all round (the base padding), title → rows space-150 */
+  gap:var(--space-150);padding-block:var(--space-300)} /* review round 3 (Nov 25): sides --space-inset, top / bottom space-300, title → rows space-150 */
 .ifs-dv-tooltip--chart .ifs-dv-tooltip__head{gap:var(--space-50)}
 .ifs-dv-tooltip--chart .ifs-dv-tooltip__items{gap:var(--space-100)}
 .ifs-dv-tooltip--chart .ifs-dv-tooltip__item{padding-block:0} /* rows space-100 apart */
@@ -176,7 +176,7 @@
 .ifs-chart__refline{stroke:var(--color-data-viz-reference) /* raw in Figma */;stroke-width:1.5;stroke-dasharray:4 4}
 .ifs-chart__refline--thin{stroke-width:1}
 .ifs-chart__connector{stroke:var(--color-data-viz-baseline);stroke-dasharray:2 3;stroke-linecap:round}
-.ifs-chart__slice{stroke:var(--color-border-chart-gap) /* raw in Figma */;stroke-width:2;stroke-linejoin:round}
+.ifs-chart__slice{stroke:var(--color-border-chart-gap);stroke-width:var(--border-width-default);stroke-linejoin:round} /* the one 1 px card-colour gap between parts (rule 11.8) */
 .ifs-chart__skel-stroke{stroke:var(--color-background-skeleton);fill:none}
 /* D9: every state keeps the card height; no legend while there is no data */
 .ifs-chart__skeleton,.ifs-chart__wait{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
