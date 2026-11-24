@@ -9,7 +9,7 @@ export default {
   component: IFS["ColumnChart"],
   tags: ["autodocs","needs-review"],
   parameters: {
-    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The \"view as table\" toggle reuses the hover ⋮ button; Figma shows no table control.\n\n**Figma:** chart-column (9862:12468)\n\n\nUse: One measure across few or time-ordered categories (\"which is biggest\"); zero-based, one hue." } },
+    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - 2.0.6 (D1): the kit shows an icon-only Chart / Table switch and no ⋮; Figma's core-chart frames don't have it yet (Figma round).\n\n**Figma:** chart-column (9862:12468)\n\n\nUse: One measure across few or time-ordered categories (\"which is biggest\"); zero-based, one colour (slot 1). Legend only with a reference (one series = no legend); the radius sits on the end away from the baseline." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9862-12468"},
   },
 };

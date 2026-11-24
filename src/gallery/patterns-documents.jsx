@@ -54,9 +54,9 @@ export default IFS_GALLERY;
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
-    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
+    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
     <Row label="number=false"><BarChartItem color={4} number={false} style={{ width: 238 }} /></Row>
-    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-muted-purple-data-4)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
+    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-sequential-azure-3)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
   </> });
 
   IFS_GALLERY.push({ name: 'VerticalBarChartItem', figma: 'vertical-bar-chart-item (c06b1d19) [patterns] (12:107877)', render: () => {

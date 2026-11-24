@@ -201,6 +201,7 @@ Use: One segment; building block.
 
 ### segmented-control-organism · `SegmentedControl`
 Use: Picking one of 2–5 always-visible options, usually switching a view mode in a card, drawer or chart header. Size: rule 7.19.
+Notes: `iconOnly` (2.0.6) shows each option's icon only, 16 in a square segment, with `label` as the accessible name and tooltip; M is `--size-control-m` outside. Used for the chart card's Chart / Table switch (rule 11.1).
 Don't: More than 5 options — use `single-select-organism`.
 
 ### chips · `Chip`
@@ -439,18 +440,21 @@ Notes: Sits loose on the page, outside any documented frame.
 
 ## Data Visualisation
 
-Build charts from the base atoms and a core chart type inside `DataVizCard` + `DataVizHeader` (rules 7.8, 7.18).
+Build charts from the base atoms and a core chart type inside `DataVizCard` + `DataVizHeader` (rules 7.8, 7.18; the data viz rules are section 11, decided Nov 24, built in 2.0.6).
 
 Base (building blocks; atoms/molecules) and chart containers:
 
 ### data-viz-card-organism · `DataVizCard`
 Use: The card that holds any chart on a dashboard; Drag for dashboard edit mode.
+Anatomy (`variant="chart"`, drawn by every core chart; rule 11.1): inset on all four sides, stack gap between header · plot · legend. Header: drag (hover) · title · the chart's own control · [hover / focus: Edit with Cooper, `actions`] · Chart / Table switch (icon-only `SegmentedControl` M, when `onViewChange` is set) · Evidence button (always visible). No ⋮ by default.
+Size (rule 11.2): `size` default (`--size-data-viz-card`, 320 / 284 / 248) | large (2 default cards + the page gap); the plot fills what is left. `autoHeight` for the `height` escape hatch; `bare` fills its frame. `legendPlacement` below | beside (pie, donut). `hideControls` hides the switch and Evidence (no data, rule 11.9).
 
 ### data-viz-header-molecule · `DataVizHeader`
-Use: Chart title row with optional view toggle or button.
+Use: Chart title row with optional view toggle or button. `viewSwitch` sits after the hover row and before `slot` (Evidence), so it never moves when the hover row shows.
 
 ### data-viz-modal-organism · `DataVizTooltip`
 Use: Chart tooltip / info pop-up showing exact values on hover.
+Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 11.5). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series.
 
 ### indicator-atom · `DataVizIndicator`
 Use: Target/selection marker on a chart (e.g. bullet-chart target).
@@ -462,13 +466,14 @@ Use: Axis or data value label.
 Use: Gridline / reference line; dashed for planned or median.
 
 ### legend-swatch-atom · `LegendSwatch`
-Use: One legend entry (`LegendSwatch`; `Legend` for a whole legend). Rule 7.18.
+Use: One legend entry (`LegendSwatch`; `Legend` for a whole legend). Rules 7.18, 11.4.
+Notes: `shape` (2.0.6) matches the mark: square (bars, areas, slices, cells, default) · line · dashed (lines) · dot (scatter). `color` = a categorical slot (1–12), `'other'`, `'neutral'` or a data-viz token. Hover only; a hovered entry dims the other series.
 
 ### bar-atom · `DataVizBar`
-Use: One bar; Background = the meter track.
+Use: One bar; Background = the meter track. `color` = a categorical slot (default 1); hover keeps the colour, Out of focus darkens it (never transparent, rule 11.5).
 
 ### grouped-bar-molecule · `DataVizGroupedBar`
-Use: Grouped bars: compare 2–3 series across the same categories; Progress=True = meter bar against a max.
+Use: Grouped bars: compare 2–3 series across the same categories; Progress=True = meter bar against a max. Segments take the categorical slots 1, 2, 3 … in order.
 
 ### donut-chart-atom · `DonutChart`
 Use: Share of a whole; legend right for wide cards, below for narrow; direct labels for 2–3 slices.
@@ -504,43 +509,43 @@ Use: One phase row of the Gantt; building block.
 Use: Gantt: tasks/phases on a time axis (e.g. investment phases across a 5-year plan); shows sequential vs parallel work.
 Notes: A phase row expands and collapses with a caret `IconButton` S; the phase name is plain text, not a button (rule 3.10).
 
-Core chart types. All share the states Default, Hover, Empty, Loading, Cooper. Types with no kit component: box plot, radar, treemap.
+Core chart types. All share the states Default, Hover, Cooper, Loading, Empty (no data), No results and Error, each at the card's height (rule 11.9; `state`, `onRetry`, `onClearFilters`), and the props `title`, `size` (default | large), `valueTicks` (2–8 value-axis intervals, default 4), `view` / `onViewChange`, `onCooper`, `onEditWithCooper`, `actions`, `bare`, `height` (escape hatch). Series take the categorical slots (up to 8, 9–12 with direct labels, then "Other", rule 11.6). Types with no kit component: box plot, radar, treemap.
 
 ### chart-column · `ColumnChart`
-Use: One measure across few or time-ordered categories ("which is biggest"); zero-based, one hue.
+Use: One measure across few or time-ordered categories ("which is biggest"); zero-based, one colour (slot 1). Legend only with a reference (one series = no legend); the radius sits on the end away from the baseline.
 
 ### chart-bar · `BarChart`
-Use: Horizontal bars for many categories, long labels or rankings (sort biggest → smallest).
+Use: Horizontal bars for many categories, long labels or rankings (sort biggest → smallest). Also the answer when column labels would need rotating (rule 11.3).
 
 ### chart-grouped-column · `GroupedColumnChart`
-Use: A few series side by side per category; 2–3 series max, legend, consistent series order.
+Use: A few series side by side per category; at most 4 series (a 5th and more stay in the table view only, with a console warning), legend below, consistent series order; bars at least 4 wide with a 2 gap (rule 11.8).
 
 ### chart-stacked-column · `StackedColumnChart`
-Use: Composition of a total per category.
+Use: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 segments + "Other" (5 or fewer read best), most important on the baseline, a 2 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the segments top to bottom.
 
 ### chart-line · `LineChart`
-Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change.
+Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit the legend sits below (line / dashed swatches). Up to 8 lines (12 with end labels), the rest grey with one "Other" entry.
 
 ### chart-area · `AreaChart`
-Use: Cumulative volume over time.
+Use: Cumulative volume over time; zero-based; legend below (square swatches).
 
 ### chart-histogram · `HistogramChart`
 Use: Distribution of one measure across bins.
 
 ### chart-pie · `PieChart`
-Use: Parts of one whole with few slices. Prefer `chart-donut` (documented).
+Use: Parts of one whole with few slices. Prefer `chart-donut` (documented). Legend: a list beside the chart with values; share labels on the bigger slices; up to 8 slices, then "Other".
 
 ### chart-donut · `DonutChart`
-Use: Share of a whole; slices largest → smallest clockwise from top; one legend (right or bottom).
+Use: Share of a whole; slices largest → smallest clockwise from top; the legend is a list beside the chart with each slice's value (rule 11.4); up to 8 slices, then "Other".
 
 ### chart-scatter · `ScatterChart`
-Use: Relationship between two measures; clusters and outliers.
+Use: Relationship between two measures; clusters and outliers. Legend below (dot swatches); every point has a 24 hit area (rule 3.9).
 
 ### chart-bubble · `BubbleChart`
-Use: Scatter with a third measure as size.
+Use: Scatter with a third measure as size; the legend carries a size key (smallest and largest).
 
 ### chart-heatmap · `HeatmapChart`
-Use: Ordered magnitude across a matrix, using a sequential ramp within one hue group.
+Use: Ordered magnitude across a matrix, using a sequential ramp (`ramp` azure default | teal | orchid | pink | yellow; `classes` 5 or 9; rule 11.7). The legend is a scale bar below. Often the large card.
 
 ### chart-box-plot
 Use: Comparing distributions side by side.
@@ -549,13 +554,13 @@ Use: Comparing distributions side by side.
 Use: Profile of 3–6 options across 5–8 criteria.
 
 ### chart-waterfall · `WaterfallChart`
-Use: Bridge from a start value to an end value through increments.
+Use: Bridge from a start value to an end value through increments. Totals neutral; increases and decreases on the diverging pair (positive pink, negative azure) and always signed + / −.
 
 ### chart-treemap
 Use: Hierarchical part-to-whole by area.
 
 ### chart-gauge · `GaugeChart`
-Use: One KPI against one reference value.
+Use: One KPI against one reference value; the arc in slot 1.
 
 ### chart-funnel · `FunnelChart`
 Use: Drop-off across ordered stages.

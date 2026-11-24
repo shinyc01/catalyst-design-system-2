@@ -9,7 +9,7 @@ export default {
   component: IFS["BarChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-bar (9862:12961)\n\n\nUse: Horizontal bars for many categories, long labels or rankings (sort biggest → smallest)." } },
+    docs: { description: { component: "**Figma:** chart-bar (9862:12961)\n\n\nUse: Horizontal bars for many categories, long labels or rankings (sort biggest → smallest). Also the answer when column labels would need rotating (rule 11.3)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9862-12961"},
   },
 };

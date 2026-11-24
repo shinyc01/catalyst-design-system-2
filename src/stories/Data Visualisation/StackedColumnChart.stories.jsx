@@ -9,7 +9,7 @@ export default {
   component: IFS["StackedColumnChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-stacked-column (9863:11139)\n\n\nUse: Composition of a total per category." } },
+    docs: { description: { component: "**Figma:** chart-stacked-column (9863:11139)\n\n\nUse: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 segments + \"Other\" (5 or fewer read best), most important on the baseline, a 2 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the segments top to bottom." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9863-11139"},
   },
 };

@@ -9,7 +9,7 @@ export default {
   component: IFS["DataVizGroupedBar"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** grouped-bar-molecule (4457:37362)\n\n\nUse: Grouped bars: compare 2–3 series across the same categories; Progress=True = meter bar against a max." } },
+    docs: { description: { component: "**Figma:** grouped-bar-molecule (4457:37362)\n\n\nUse: Grouped bars: compare 2–3 series across the same categories; Progress=True = meter bar against a max. Segments take the categorical slots 1, 2, 3 … in order." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4457-37362"},
   },
 };

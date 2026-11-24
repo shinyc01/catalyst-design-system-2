@@ -402,7 +402,7 @@
    "\"Success\" is drawn grey (fill/default), while the defect pin's \"Monitoring\" is green. Possibly a Figma binding bug."
   ],
   "BarChartItem": [
-   "Bars bind `data-viz/data-N` variables that aren't in the exported tokens; the kit uses the Figma values as fallbacks. The forecast bars use muted-purple."
+   "2.0.6 (D8): the kit's colour index is now the categorical slot (data-viz/categorical/N); Figma's bar-chart-item still binds data-viz/data-N (rebind in the Figma round)."
   ],
   "Pattern: Documents — long names": [
    "The hover frame shows a Download icon; the note says editable rows get ⋮ (Download / Remove). The kit follows the note."
@@ -499,7 +499,7 @@
    "The y-axis starts at 80; Figma's starts at 60."
   ],
   "ColumnChart": [
-   "The \"view as table\" toggle reuses the hover ⋮ button; Figma shows no table control."
+   "2.0.6 (D1): the kit shows an icon-only Chart / Table switch and no ⋮; Figma's core-chart frames don't have it yet (Figma round)."
   ],
   "WidgetFrame": [
    "The frame every dashboard widget sits in (header, hover actions, ⋮ menu). Figma draws it as content-card variations. Candidate for a real `widget-frame` component."

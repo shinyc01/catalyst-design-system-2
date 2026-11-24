@@ -9,7 +9,7 @@ export default {
   component: IFS["AreaChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-area (9863:12167)\n\n\nUse: Cumulative volume over time." } },
+    docs: { description: { component: "**Figma:** chart-area (9863:12167)\n\n\nUse: Cumulative volume over time; zero-based; legend below (square swatches)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9863-12167"},
   },
 };

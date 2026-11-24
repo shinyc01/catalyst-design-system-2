@@ -10,16 +10,17 @@ export default IFS_GALLERY;
     GaugeChart, WaterfallChart, FunnelChart, HeatmapChart, HistogramChart, ProgressRing, EvidenceStrength } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Grid = ({ children, w = 558 }) => <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, ${w}px)`, gap: 24, alignItems: 'start' }}>{children}</div>;
-  const STATES = ['default', 'hover', 'cooper', 'empty', 'loading'];
+  const STATES = ['default', 'hover', 'cooper', 'loading', 'empty', 'no-results', 'error']; // D9 (2.0.6): every state keeps the card height
   const usd = v => IFS.format.money(v); // $860K, $19.4M, −$1.8M
   const usdAxis = v => IFS.format.money(v, { unit: 'M' }); // one unit per axis: $0, $0.5M, $1M, $1.5M
-  // One gallery block per chart: every Figma State (Default / Hover / Cooper / Empty / Loading).
-  const states = (Chart, props, hot = 0) => () => <Grid>{STATES.map(s => <Chart key={s} {...props} state={s === 'default' ? undefined : s} defaultActive={s === 'hover' ? hot : undefined} />)}</Grid>;
+  // One gallery block per chart: every State (Default / Hover / Cooper / Loading / Empty / No results / Error), with the Chart / Table switch.
+  const states = (Chart, props, hot = 0) => () => <Grid>{STATES.map(s => <Chart key={s} {...props} state={s === 'default' ? undefined : s} defaultActive={s === 'hover' ? hot : undefined}
+    onRetry={() => {}} onClearFilters={() => {}} />)}</Grid>;
 
   /* ---------------- atoms ---------------- */
   IFS_GALLERY.push({ name: 'DataVizBar', figma: 'bar-atom (4457:32996)', render: () => <>
     {['default', 'hover', 'out-of-focus', 'background', 'loading'].map(s => <Row key={s} label={s}><DataVizBar state={s} style={{ width: 238 }}>{'{info}'}</DataVizBar></Row>)}
-    <Row label="colours">{['muted-purple', 'teal', 'steel-blue', 'deep-green'].map(c => <DataVizBar key={c} color={c} style={{ width: 120 }}>$4.2M</DataVizBar>)}</Row>
+    <Row label="categorical slots">{[1, 2, 3, 4].map(c => <DataVizBar key={c} color={c} style={{ width: 120 }}>$4.2M</DataVizBar>)}</Row>
   </> });
 
   IFS_GALLERY.push({ name: 'DataVizGroupedBar', figma: 'grouped-bar-molecule (4457:37362)', render: () => <>
@@ -38,7 +39,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'DataVizIndicator', figma: 'indicator-atom (4440:32643)', render: () => <>
     <Row label="types">{['default', 'selected', 'intended-target'].map(t => <DataVizIndicator key={t} type={t} />)}</Row>
-    <Row label="colours">{['muted-purple', 'teal', 'rose', 'steel-blue'].map(c => <DataVizIndicator key={c} color={c} />)}</Row>
+    <Row label="categorical slots">{[1, 2, 3, 4].map(c => <DataVizIndicator key={c} color={c} />)}</Row>
   </> });
 
   IFS_GALLERY.push({ name: 'ValueLabel', figma: 'value-label-atom (4440:32611)', render: () => <>
@@ -46,7 +47,8 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'LegendSwatch', figma: 'legend-swatch-atom (4440:32628) + info-hint-item (12:121968)', render: () => {
-    const items = [{ label: 'Loss', color: 'alert', step: 5, value: '357' }, { label: 'Unchanged', color: 'neutral', value: '745' }, { label: 'Gain', color: 'deep-green', step: 5, value: '519' }];
+    // good / bad on the diverging palette (D7): worse = pink, better = azure, the words name both sides
+    const items = [{ label: 'Loss', color: 'var(--color-data-viz-diverging-positive-2)', value: '357' }, { label: 'Unchanged', color: 'neutral', value: '745' }, { label: 'Gain', color: 'var(--color-data-viz-diverging-negative-2)', value: '519' }];
     return <>
       <Row label="states">{['default', 'hover', 'out-of-hover'].map(s => <LegendSwatch key={s} state={s} label="Title" value="Value" />)}
         <LegendSwatch state="intended-target" label="Intended target" /></Row>
@@ -54,7 +56,8 @@ export default IFS_GALLERY;
       <Row label="inline · no values"><IFS.Legend items={items} showValues={false} /></Row>
       <Row label="row (vertical list)" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={[...items, { label: 'A very long category name that truncates', color: 'teal', value: '12', icon: 'system-info-hint' }]} /></div></Row>
       <Row label="row · no values" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={items} showValues={false} /></div></Row>
-      <Row label="group colours">{['muted-purple', 'teal', 'rose', 'steel-blue'].map(c => <LegendSwatch key={c} color={c} label={c} />)}</Row>
+      <Row label="shape (matches the mark)">{['square', 'line', 'dashed', 'dot'].map((sh, i) => <LegendSwatch key={sh} shape={sh} color={i + 1} label={sh} />)}</Row>
+      <Row label="categorical slots">{Array.from({ length: 12 }, (_, i) => <LegendSwatch key={i} color={i + 1} label={String(i + 1)} />)}<LegendSwatch color="other" label="Other" /></Row>
     </>;
   } });
 
@@ -77,7 +80,7 @@ export default IFS_GALLERY;
   </Grid> });
 
   IFS_GALLERY.push({ name: 'DataVizCard chart: actions / bare', figma: 'data-viz-card-organism (4457:33030)', render: () => <Grid w={558}>
-    <DataVizCard variant="chart" state="hover" title="With header actions" style={{ width: 558 }}
+    <DataVizCard variant="chart" state="hover" title="With header actions" style={{ width: 558 }} view="chart" onViewChange={() => {}}
       actions={<IFS.IconButton type="ghost" size="s" icon="system-dots-horizont" label="Widget actions" />}>
       <DataVizGroupedBar type="vertical" showValues values={[42, 28, 18, 12]} style={{ height: 40 }} />
       <div style={{ height: 120 }} />
@@ -88,7 +91,7 @@ export default IFS_GALLERY;
   </Grid> });
 
   IFS_GALLERY.push({ name: 'DataVizTooltip', figma: 'data-viz-modal-organism (4440:32681)', render: () => <Row label="modal · chart">
-    <DataVizTooltip subtitle="{Category}" title="{Title}" value="$X" items={[{ label: 'Title', value: 'Value', color: 'rose' }, { label: 'Title', value: 'Value', color: 'teal' }]} />
+    <DataVizTooltip subtitle="{Category}" title="{Title}" value="$X" items={[{ label: 'Title', value: 'Value', color: 1 }, { label: 'Title', value: 'Value', color: 2 }]} />
     <DataVizTooltip variant="chart" title="Q4 FY25" value="$14.8M" delta={{ text: '+9% vs plan', direction: 'down' }}
       items={[{ label: 'Plan', value: '$13.6M' }, { label: 'Variance', value: '$1.2M' }, { label: 'Peer median', value: '$13.2M' }]} />
   </Row> });
@@ -127,17 +130,17 @@ export default IFS_GALLERY;
     series: [{ key: 'risk', label: 'Retained risk' }], referenceKey: 'peer' }, 9) });
 
   IFS_GALLERY.push({ name: 'PieChart', figma: 'chart-pie (9866:12309)', render: states(PieChart, { title: 'Spend share by asset type', format: usd, valueLabel: 'Spend',
-    data: [{ label: 'Transformers', value: 48.6e6 }, { label: 'Lines', value: 34.6e6, delta: { text: '+2 pts vs FY25', direction: 'down' } }, { label: 'Substations', value: 26.9e6 }, { label: 'Other', value: 17.9e6, color: 'muted-purple', opacity: 0.5 }] }, 1) });
+    data: [{ label: 'Transformers', value: 48.6e6 }, { label: 'Lines', value: 34.6e6, delta: { text: '+2 pts vs FY25', direction: 'down' } }, { label: 'Substations', value: 26.9e6 }, { label: 'Other', value: 17.9e6, color: 'other' }] }, 1) });
 
   IFS_GALLERY.push({ name: 'DonutChart', figma: 'chart-donut (9866:12774)', render: states(DonutChart, { title: 'Work orders by status', centerValue: '412', centerLabel: 'work orders', valueLabel: 'Work orders',
-    data: [{ label: 'Done', value: 223, color: 'teal' }, { label: 'In progress', value: 103, color: 'muted-purple' }, { label: 'Open', value: 62, color: 'rose' }, { label: 'Cancelled', value: 24, color: 'muted-purple', opacity: 0.5 }] }, 1) });
+    data: [{ label: 'Done', value: 223 }, { label: 'In progress', value: 103 }, { label: 'Open', value: 62 }, { label: 'Cancelled', value: 24, color: 'other' }] }, 1) });
 
   const pts = [[20, 12], [23, 13.5], [26, 12.2], [43, 16], [53, 16.5], [75, 12.3], [75, 15.8], [92, 18.3], [95, 21.2], [120, 23.4], [121, 24.8], [150, 24.4], [160, 25], [190, 29.4]]
     .map(([x, y], i) => ({ label: `Completed project ${i + 1}`, x, y: y * 1e6, series: 'done' }))
     .concat([[57, 25.5], [70, 26.2], [71, 23.3], [78, 22.2], [90, 23.6], [100, 26.7], [102, 32.1], [143, 33], [165, 37], [188, 42.4]]
       .map(([x, y], i) => ({ label: i === 6 ? 'Feeder 14 undergrounding' : `Project ${i + 1}`, x, y: y * 1e6, series: 'wip', size: 4 + (i % 4) * 3 })));
   IFS_GALLERY.push({ name: 'ScatterChart', figma: 'chart-scatter (9866:13245)', render: states(ScatterChart, { title: 'Cost vs duration by project', data: pts, format: usdAxis, xUnit: 'days', xLabel: 'Duration', yLabel: 'Cost',
-    series: [{ key: 'done', label: 'Completed', color: 'teal' }, { key: 'wip', label: 'In progress', color: 'muted-purple' }], xReference: 87, yReference: 21e6 }, 20) });
+    series: [{ key: 'done', label: 'Completed' }, { key: 'wip', label: 'In progress' }], xReference: 87, yReference: 21e6 }, 20) });
 
   IFS_GALLERY.push({ name: 'GaugeChart', figma: 'chart-gauge (9867:618)', render: states(GaugeChart, { title: 'Plan delivery', value: 72, target: 85, reference: 64,
     label: 'of planned work delivered', valueLabel: 'Delivered', delta: { text: '−13 pts vs target', direction: 'down' } }, true) });

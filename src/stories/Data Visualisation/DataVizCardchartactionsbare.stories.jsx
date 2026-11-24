@@ -9,7 +9,7 @@ export default {
   component: IFS["DataVizCard chart: actions / bare"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** data-viz-card-organism (4457:33030)\n\n\nUse: The card that holds any chart on a dashboard; Drag for dashboard edit mode." } },
+    docs: { description: { component: "**Figma:** data-viz-card-organism (4457:33030)\n\n\nUse: The card that holds any chart on a dashboard; Drag for dashboard edit mode.\n\nAnatomy (`variant=\"chart\"`, drawn by every core chart; rule 11.1): inset on all four sides, stack gap between header · plot · legend. Header: drag (hover) · title · the chart's own control · [hover / focus: Edit with Cooper, `actions`] · Chart / Table switch (icon-only `SegmentedControl` M, when `onViewChange` is set) · Evidence button (always visible). No ⋮ by default.\n\nSize (rule 11.2): `size` default (`--size-data-viz-card`, 320 / 284 / 248) | large (2 default cards + the page gap); the plot fills what is left. `autoHeight` for the `height` escape hatch; `bare` fills its frame. `legendPlacement` below | beside (pie, donut). `hideControls` hides the switch and Evidence (no data, rule 11.9)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4457-33030"},
   },
 };

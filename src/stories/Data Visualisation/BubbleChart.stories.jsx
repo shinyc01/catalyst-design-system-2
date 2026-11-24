@@ -9,7 +9,7 @@ export default {
   component: IFS["BubbleChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-bubble (9866:13788)\n\n\nUse: Scatter with a third measure as size." } },
+    docs: { description: { component: "**Figma:** chart-bubble (9866:13788)\n\n\nUse: Scatter with a third measure as size; the legend carries a size key (smallest and largest)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-13788"},
   },
 };

@@ -9,7 +9,7 @@ export default {
   component: IFS["GaugeChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-gauge (9867:618)\n\n\nUse: One KPI against one reference value." } },
+    docs: { description: { component: "**Figma:** chart-gauge (9867:618)\n\n\nUse: One KPI against one reference value; the arc in slot 1." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9867-618"},
   },
 };
