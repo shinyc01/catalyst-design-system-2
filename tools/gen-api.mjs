@@ -4,6 +4,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { tokenTable, customProps } from './css-tokens.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const comp = join(root, 'src/components');
@@ -96,11 +97,13 @@ writeFileSync(join(root, 'dist/icons.txt'), Object.keys(window.IFS_ICONS).sort()
 // (e.g. --space-600 = 24px) instead of guessing from Figma's variable names. tokens.css plus the foundation files;
 // the old names (foundations/deprecated.css) are listed last, each with the name that replaces it (removed in 3.0).
 const fdir = join(root, 'src/foundations');
-const css = [join(root, 'src/tokens.css'), ...readdirSync(fdir).filter(f => f.endsWith('.css') && f !== 'deprecated.css').sort().map(f => join(fdir, f))]
-  .map(f => readFileSync(f, 'utf8')).join('\n');
-const tokens = [...css.matchAll(/(--[a-z0-9-]+):\s*([^;]+);/g)].map(m => `${m[1]}: ${m[2].replace(/\/\*.*?\*\//g, '').trim()}`); // a token listed more than once = its density / breakpoint values
+const cssFiles = [join(root, 'src/tokens.css'), ...readdirSync(fdir).filter(f => f.endsWith('.css') && f !== 'deprecated.css').sort().map(f => join(fdir, f))];
+const table = tokenTable(cssFiles.map(f => readFileSync(f, 'utf8')));
+// one line per token: "--name: value", then its other values (density, breakpoint, RTL, state) after " | "
+const tokens = [...table].map(([n, e]) => `${n}: ${e.value}${Object.entries(e.modes).map(([m, v]) => ` | ${m}: ${v}`).join('')}`);
+const css = cssFiles.map(f => readFileSync(f, 'utf8')).join('\n');
 const classes = [...css.matchAll(/^\.((?:t|fx)-[a-z0-9-]+)\{/gm)].map(m => `.${m[1]}`);
-const deprecated = [...readFileSync(join(fdir, 'deprecated.css'), 'utf8').matchAll(/(--[a-z0-9-]+):var\((--[a-z0-9-]+)\);/g)].map(m => `${m[1]} → ${m[2]}`);
+const deprecated = customProps(readFileSync(join(fdir, 'deprecated.css'), 'utf8')).map(d => [d.name, (d.value.match(/^var\((--[a-z0-9-]+)\)$/) || [])[1]]).filter(d => d[1]).map(([a, b]) => `${a} → ${b}`);
 writeFileSync(join(root, 'dist/tokens.txt'), [
   '# CSS custom properties (Dark mode). Names: every token starts with its type word (--color-*, --space-*, --size-*, --radius-*, --font-*, --motion-*).',
   '# Spacing scale: --space-100 = 4px, 200 = 8px, 400 = 16px, 600 = 24px. Components use colour roles only (--color-*), never --palette-*.',

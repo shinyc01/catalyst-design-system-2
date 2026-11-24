@@ -3,11 +3,12 @@
 //   node tools/gen-tokens-json.mjs   (also run by tools/gen-api.mjs)
 // - Groups follow the Figma path (tools/figma/rename-map.tsv), else the CSS name split at its type word.
 // - $value: a reference "{color.text.soft}" when the CSS is var(--x), else the CSS value (composite values stay CSS strings).
-// - Density (Spacious / Compact) and breakpoint values: $extensions["com.ifs.catalyst"].modes. Dark is the only colour mode today.
+// - Density (Spacious / Compact), breakpoint, RTL and state values: $extensions["com.ifs.catalyst"].modes. Dark is the only colour mode today.
 // - Every old name is a token with $deprecated (removed in 3.0) pointing at its new name.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { tokenTable, customProps } from './css-tokens.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const rd = f => readFileSync(join(root, f), 'utf8');
@@ -25,26 +26,18 @@ const put = (p, tok) => { let o = out; for (const k of p.slice(0, -1)) { if (o[k
   const last = p[p.length - 1]; if (o[last] && o[last].$value === undefined) o[last].$root = tok; else o[last] = tok; };
 const ref = v => v.replace(/var\((--[a-z0-9-]+)\)/g, (_, n) => `{${pathOf(n).filter(s => s !== '$root').join('.')}}`);
 const seen = new Map();
-for (const f of FILES) {
-  const css = rd(f).replace(/\/\*[\s\S]*?\*\//g, '');
-  for (const blk of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
-    const sel = blk[1].trim().replace(/\s+/g, ' ');
-    const mode = /data-density="(\w+)"/.test(sel) && !/comfortable/.test(sel) ? sel.match(/data-density="(\w+)"/)[1] : /min-width/.test(sel) ? sel : null;
-    for (const m of blk[2].matchAll(/(--[a-z0-9-]+)\s*:\s*([^;]+);/g)) {
-      const [, n, raw] = m, v = raw.trim();
-      if (!seen.has(n)) { const t = typeOf(n, v); seen.set(n, { $value: ref(v), ...(t ? { $type: t } : {}) }); }
-      else if (mode) { const e = seen.get(n); e.$extensions = e.$extensions || { 'com.ifs.catalyst': { modes: {} } }; e.$extensions['com.ifs.catalyst'].modes[mode] = ref(v); }
-    }
-  }
+for (const [n, e] of tokenTable(FILES.map(rd))) {
+  const t = typeOf(n, e.value), tok = { $value: ref(e.value), ...(t ? { $type: t } : {}) };
+  const modes = Object.entries(e.modes);
+  if (modes.length) tok.$extensions = { 'com.ifs.catalyst': { modes: Object.fromEntries(modes.map(([m, v]) => [m, ref(v)])) } };
+  seen.set(n, tok);
 }
-// media-query blocks (breakpoints) are nested; pick them up separately
-for (const f of FILES) for (const m of rd(f).matchAll(/@media \(([^)]+)\)\{:root\{([^}]*)\}\}/g)) for (const d of m[2].matchAll(/(--[a-z0-9-]+):([^;]+)/g)) {
-  const e = seen.get(d[1]); if (!e) continue; e.$extensions = e.$extensions || { 'com.ifs.catalyst': { modes: {} } }; e.$extensions['com.ifs.catalyst'].modes[m[1]] = ref(d[2].trim()); }
 for (const [n, t] of seen) put(pathOf(n), t);
 // deprecated aliases
 const dep = rd('src/foundations/deprecated.css');
 let nd = 0;
-for (const m of dep.matchAll(/(--[a-z0-9-]+):var\((--[a-z0-9-]+)\);/g)) {
+for (const d of customProps(dep)) {
+  const m = [, d.name, (d.value.match(/^var\((--[a-z0-9-]+)\)$/) || [])[1]]; if (!m[2]) continue;
   const target = `{${pathOf(m[2]).filter(s => s !== '$root').join('.')}}`;
   put(['deprecated', m[1].slice(2)], { $value: target, $deprecated: `Use ${target} (CSS ${m[2]}). Old name ${m[1]} is removed in 3.0.` }); nd++;
 }

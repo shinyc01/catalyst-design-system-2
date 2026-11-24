@@ -365,7 +365,7 @@
 --blur-20: 20px
 --blur-10: 10px
 --blur-4: 4px
---drop-shadow-elevation-1: /* deprecated: differs from --elevation-1 (10% vs 25%)
+--drop-shadow-elevation-1: 0 4px 8px 0 rgba(0,0,0,0.1)
 --drop-shadow-floating: 0 4px 8px 0 rgba(0,0,0,0.25)
 --elevation-1: 0 4px 8px 0 rgba(0,0,0,0.25)
 --elevation-2: 0 8px 12px -1px rgba(0,0,0,0.25)
@@ -381,91 +381,39 @@
 --inner-shadow-map-highlight-evaluated: inset 0 0 12px 7px rgba(43,127,255,0.4)
 --inner-shadow-map-highlight-grey: inset 0 0 12px 7px rgba(84,84,84,0.4)
 --drop-shadow-pin: 0 0 10px 0 var(--color-shadow-pin)
---size-badge-s: var(--size-control-xs)
---size-badge-m: var(--size-control-s)
---size-badge-l: var(--size-control-m)
---font-size-caption: var(--font-size-s)
---font-size-s: 0.75rem/1rem
---font-size-m: 0.875rem/1.25rem
---font-size-l: 1rem/1.5rem
---font-size-h3: 1.25rem/1.75rem
---font-size-h2: 1.5rem/2rem
---font-size-h1: 1.75rem/2.25rem
---font-size-display-s: 2rem/2.5rem
---font-size-display-m: 2.25rem/2.75rem
---font-size-display-l: 2.75rem/3.25rem
---size-control-xs: 1.25rem
---size-control-s: 1.5rem
---size-control-m: 2rem
---size-control-l: 2.5rem
---size-control-xl: 3rem
---size-tab-m: 2.25rem
---size-tab-l: 2.5rem
---size-nav-row: 2.5rem
---size-table-row: 3.25rem
---size-table-header: 2rem
---table-header-pad-top: var(--space-0)
---table-header-pad-bottom: var(--space-0)
---density-scale: 1.05
---size-badge-s: var(--size-control-xs)
---size-badge-m: var(--size-control-s)
---size-badge-l: var(--size-control-m)
---font-size-caption: var(--font-size-s)
---font-size-s: 0.875rem/1.25rem
---font-size-m: 1rem/1.5rem
---font-size-l: 1.125rem/1.625rem
---font-size-h3: 1.375rem/1.75rem
---font-size-h2: 1.625rem/2rem
---font-size-h1: 2rem/2.5rem
---font-size-display-s: 2.25rem/2.75rem
---font-size-display-m: 2.5rem/3rem
---font-size-display-l: 3rem/3.5rem
---size-control-xs: 1.5rem
---size-control-s: 1.75rem
---size-control-m: 2.25rem
---size-control-l: 2.75rem
---size-control-xl: 3.25rem
---size-tab-m: 2.5rem
---size-tab-l: 3rem
---size-nav-row: 2.75rem
---size-table-row: 4rem
---size-table-header: 2.5rem
---table-header-pad-top: var(--space-0)
---table-header-pad-bottom: var(--space-0)
---density-scale: 1.2
---size-badge-s: var(--size-control-xs)
---size-badge-m: var(--size-control-s)
---size-badge-l: var(--size-control-m)
---font-size-caption: var(--font-size-s)
---font-size-s: 0.6875rem/0.875rem
---font-size-m: 0.75rem/1rem
---font-size-l: 0.875rem/1.25rem
---font-size-h3: 1rem/1.5rem
---font-size-h2: 1.25rem/1.75rem
---font-size-h1: 1.5rem/2rem
---font-size-display-s: 1.75rem/2.25rem
---font-size-display-m: 2rem/2.5rem
---font-size-display-l: 2.5rem/3rem
---size-control-xs: 1.25rem
---size-control-s: 1.5rem
---size-control-m: 1.75rem
---size-control-l: 2rem
---size-control-xl: 2.5rem
---size-tab-m: 2rem
---size-tab-l: 2.25rem
---size-nav-row: 2.25rem
---size-table-row: 2.5rem
---size-table-header: 1.5rem
---table-header-pad-top: var(--space-0)
---table-header-pad-bottom: var(--space-0)
---density-scale: 0.95
+--size-badge-s: var(--size-control-xs) | spacious: var(--size-control-xs) | compact: var(--size-control-xs)
+--size-badge-m: var(--size-control-s) | spacious: var(--size-control-s) | compact: var(--size-control-s)
+--size-badge-l: var(--size-control-m) | spacious: var(--size-control-m) | compact: var(--size-control-m)
+--font-size-caption: var(--font-size-s) | spacious: var(--font-size-s) | compact: var(--font-size-s)
+--font-size-s: 0.75rem/1rem | spacious: 0.875rem/1.25rem | compact: 0.6875rem/0.875rem
+--font-size-m: 0.875rem/1.25rem | spacious: 1rem/1.5rem | compact: 0.75rem/1rem
+--font-size-l: 1rem/1.5rem | spacious: 1.125rem/1.625rem | compact: 0.875rem/1.25rem
+--font-size-h3: 1.25rem/1.75rem | spacious: 1.375rem/1.75rem | compact: 1rem/1.5rem
+--font-size-h2: 1.5rem/2rem | spacious: 1.625rem/2rem | compact: 1.25rem/1.75rem
+--font-size-h1: 1.75rem/2.25rem | spacious: 2rem/2.5rem | compact: 1.5rem/2rem
+--font-size-display-s: 2rem/2.5rem | spacious: 2.25rem/2.75rem | compact: 1.75rem/2.25rem
+--font-size-display-m: 2.25rem/2.75rem | spacious: 2.5rem/3rem | compact: 2rem/2.5rem
+--font-size-display-l: 2.75rem/3.25rem | spacious: 3rem/3.5rem | compact: 2.5rem/3rem
+--size-control-xs: 1.25rem | spacious: 1.5rem | compact: 1.25rem
+--size-control-s: 1.5rem | spacious: 1.75rem | compact: 1.5rem
+--size-control-m: 2rem | spacious: 2.25rem | compact: 1.75rem
+--size-control-l: 2.5rem | spacious: 2.75rem | compact: 2rem
+--size-control-xl: 3rem | spacious: 3.25rem | compact: 2.5rem
+--size-tab-m: 2.25rem | spacious: 2.5rem | compact: 2rem
+--size-tab-l: 2.5rem | spacious: 3rem | compact: 2.25rem
+--size-nav-row: 2.5rem | spacious: 2.75rem | compact: 2.25rem
+--size-table-row: 3.25rem | spacious: 4rem | compact: 2.5rem
+--size-table-header: 2rem | spacious: 2.5rem | compact: 1.5rem
+--table-header-pad-top: var(--space-0) | spacious: var(--space-0) | compact: var(--space-0)
+--table-header-pad-bottom: var(--space-0) | spacious: var(--space-0) | compact: var(--space-0)
+--density-scale: 1.05 | spacious: 1.2 | compact: 0.95
 --bp-sm: 600px
 --bp-md: 1024px
 --bp-lg: 1440px
 --bp-xl: 1920px
---layout-columns: 4
---page-margin: var(--space-400)
---page-gap: var(--space-400)
+--layout-columns: 4 | min-width:600px: 8 | min-width:1024px: 12 | @container content (max-width:63.9375rem) .ifs-grid: 8 | @container content (max-width:37.4375rem) .ifs-grid: 4
+--page-margin: var(--space-400) | min-width:600px: var(--space-600) | min-width:1920px: var(--space-700)
+--page-gap: var(--space-400) | min-width:1440px: var(--space-500) | min-width:1920px: var(--space-700)
 --float-inset: var(--page-margin)
 --layout-max-content-width-wide: 140rem
 --region-panel-min: 20rem
@@ -485,19 +433,10 @@
 --layout-chat-width-max: 45rem
 --cooper-compact-end: var(--float-inset)
 --cooper-compact-bottom: calc(var(--float-bottom, 0px) + var(--float-inset))
---layout-columns: 8
---page-margin: var(--space-600)}}
-@media (min-width:1024px){:root{--layout-columns:12}}
-@media (min-width:1440px){:root{--page-gap:var(--space-500)}}
-@media (min-width:1920px){:root{--page-margin:var(--space-700)
---page-gap: var(--space-700)}}
-
-
-:root{
-  --layout-content:calc(min(100cqw, var(--layout-max-content-width) + 2 * var(--page-margin)) - 2 * var(--page-margin))
+--layout-content: calc(min(100cqw, var(--layout-max-content-width) + 2 * var(--page-margin)) - 2 * var(--page-margin))
 --layout-inset: calc((100cqw - var(--layout-content)) / 2)
 --layout-col: calc((var(--layout-content) - (var(--layout-columns) - 1) * var(--page-gap)) / var(--layout-columns))
---panel-cols: 3
+--panel-cols: 3 | max-width:1439px: 4
 --span-1: calc(1 * var(--layout-col) + 0 * var(--page-gap))
 --span-2: calc(2 * var(--layout-col) + 1 * var(--page-gap))
 --span-3: calc(3 * var(--layout-col) + 2 * var(--page-gap))
@@ -510,63 +449,21 @@
 --span-10: calc(10 * var(--layout-col) + 9 * var(--page-gap))
 --span-11: calc(11 * var(--layout-col) + 10 * var(--page-gap))
 --span-12: calc(12 * var(--layout-col) + 11 * var(--page-gap))
---panel-cols: 4}}
-
-/* ---------- Page container (Nov 19): the page margin on all four sides (16 / 24 / 32 by width), content capped at 1600 and
-   centred, blocks a page gap apart. Wrap each page's content in it, inside AppShell
 --region-panel: var(--layout-panel-width)
---region-panel-l: var(--layout-modal-width-l)}
-
-/* ---------- Map slots (2.0.3, Nov 19): one panel per side, bars between them, nothing overlaps ----------
-   On the map container (.ifs-slots). Agreed rules: one panel per side (opening another replaces it), centre bars between the
-   panels, no legend on the map, Cooper button in the end-bottom corner.
-     .ifs-slot-tools / .ifs-slot-tools-bottom   map rail and tool bar, start corners
-     .ifs-slot-left     start slot, one at a time: Hierarchy, Study library, Search results (--region-panel) or Study (--region-panel-l: add .has-left-l)
-     .ifs-slot-right    end slot, one at a time: details, trace report, evidence chain, Cooper window (--region-panel)
-     .ifs-slot-top      selected bar, or the draw bar while drawing: centred on the whole map
+--region-panel-l: var(--layout-modal-width-l)
 --region-map-bar: 46.625rem
 --bp-map-overlay: 1100px
 --bp-map-sheet: 720px
 --slot-inset: var(--float-inset)
---slot-top: var(--slot-inset)
+--slot-top: var(--slot-inset) | .ifs-slots.has-exit: calc(var(--slot-inset) + var(--size-control-m) + var(--page-gap))
 --slot-tools: calc(var(--size-control-m) + var(--space-150))
 --slot-fab: var(--size-48)
---slot-left-w: var(--region-panel)
---slot-l: calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))
---slot-r: var(--slot-inset)}
-.ifs-slots.has-left-l{--slot-left-w:var(--region-panel-l)}
-.ifs-slots.has-exit{--slot-top:calc(var(--slot-inset) + var(--size-control-m) + var(--page-gap))}
-.ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap) + var(--slot-left-w) + var(--page-gap))}
-.ifs-slots.has-right{--slot-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
-.ifs-slot-left{position:absolute
---slot-top-r: var(--slot-inset)}
-.ifs-slots.has-right{--slot-top-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))} 
-.ifs-slot-top{top:var(--slot-top)
---slot-bottom-r: calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap))}
-.ifs-slots.has-right{--slot-bottom-r:calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))}
-.ifs-slots.has-bottom-x .ifs-slot-bottom{inset-inline-start:var(--slot-bottom-x)
---slot-legend-w: 210px }
-.ifs-slot-legend{position:absolute
---bp-map-overlay: the end panel sits over the map
---slot-r: var(--slot-inset)}
-  .ifs-slot-right{z-index:3}
-}
-@media (max-width:719px){ 
-  .ifs-slots.has-left{--slot-l:calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))}
-  .ifs-slot-left,.ifs-slot-right{inset-inline:var(--slot-inset)
---layout-columns: 8}
-  .ifs-grid > .ifs-span-1,.ifs-grid > .ifs-span-2{grid-column:span 2}
-  .ifs-grid > .ifs-span-3,.ifs-grid > .ifs-span-4{grid-column:span 4}
-  .ifs-grid > [class*="ifs-span-"]:not(.ifs-span-1):not(.ifs-span-2):not(.ifs-span-3):not(.ifs-span-4){grid-column:1 / -1}
-  .ifs-grid > .ifs-span-panel,.ifs-grid > .ifs-span-rest{grid-column:1 / -1}
-}
-@container content (max-width:37.4375rem){
-  .ifs-grid{--layout-columns:4}
-  .ifs-grid > [class*="ifs-span-"]{grid-column:1 / -1}
-}
-
-/* ==========================================================================
-   Motion (Catalyst Design System 2.0.5
+--slot-left-w: var(--region-panel) | .ifs-slots.has-left-l: var(--region-panel-l)
+--slot-l: calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap)) | .ifs-slots.has-left: calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap) + var(--slot-left-w) + var(--page-gap)) | max-width:719px .ifs-slots.has-left: calc(var(--slot-inset) + var(--slot-tools) + var(--page-gap))
+--slot-r: var(--slot-inset) | .ifs-slots.has-right: calc(var(--slot-inset) + var(--region-panel) + var(--page-gap)) | max-width:1099px .ifs-slots.has-right: var(--slot-inset)
+--slot-top-r: var(--slot-inset) | .ifs-slots.has-right: calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))
+--slot-bottom-r: calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap)) | .ifs-slots.has-right: calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))
+--slot-legend-w: 210px
 --motion-duration-0: 0ms
 --motion-duration-50: 50ms
 --motion-duration-100: 100ms
@@ -576,21 +473,11 @@
 --motion-ease-enter: cubic-bezier(0, 0, 0.2, 1)
 --motion-ease-exit: cubic-bezier(0.4, 0, 1, 1)
 --motion-ease-linear: linear
---motion-distance-2: 2px
---motion-distance-16: 16px
+--motion-distance-2: 2px | prefers-reduced-motion:reduce: 0px
+--motion-distance-16: 16px | prefers-reduced-motion:reduce: 0px
 --motion-loop-spin: 1400ms
 --motion-loop-pulse: 1600ms
---motion-end: 1}
-[dir="rtl"]{--motion-end:-1}
-
-/* Shared keyframes: one spinner, one skeleton pulse (L1), the Cooper text shimmer ("Cooper is thinking")
---motion-distance-2: 0px
---motion-distance-16: 0px}
-  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-app-shell--panel-over .ifs-app-shell__panel{animation-name:ifs-fade!important}
-  .ifs-drawer--floating.is-leaving,.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation-name:ifs-fade-out!important}
-  .ifs-app-shell__panel--push,.ifs-app-shell__panel--push.is-leaving{animation:none!important}
-  .ifs-floating-bar--floating{animation-name:ifs-fade!important} 
-  .ifs-sk,[class*="--loading"],.ifs-cooper-msg__cursor{animation:none!important} /* skeletons stop pulsing
+--motion-end: 1 | rtl: -1
 --palette-core-0: #000000
 --palette-core-50: #0d0d0d
 --palette-white-alpha-0: rgba(255,255,255,0)
@@ -953,34 +840,12 @@
 --size-76: 4.75rem
 --size-80: 5rem
 --size-1000: 1000px
---space-inset: var(--space-400)
---space-inset-l: var(--space-500)
---space-table-x: var(--space-400)
---space-stack: var(--space-300)
---space-section: var(--space-700)
---space-inset-nested: var(--space-150)}
-[data-density="spacious"]{--space-inset:var(--space-500)
---space-inset-l: var(--space-600)
---space-table-x: var(--space-500)
---space-stack: var(--space-400)
---space-section: var(--space-800)
---space-inset-nested: var(--space-150)}
-[data-density="compact"]{--space-inset:var(--space-300)
---space-inset-l: var(--space-400)
---space-table-x: var(--space-400)
---space-stack: var(--space-200)
---space-section: var(--space-600)
---space-inset-nested: var(--space-100)}
-
-/* ==========================================================================
-   Typography tokens (Catalyst Design System 2.0) — two layers, like the Figma library
-   (collections "3. Typography primitives" and "4. Typography semantic").
-
-   1. Primitives: font families (tokens.css), weights (tokens.css), letter-spacing steps (below),
-      and the size scale --font-size-s|m|l|h3|h2|h1|display-* (size/line-height pairs per density,
-      Density block in tokens.css).
-   2. Semantic: one set per text style, named like its .t-* class (.t-body-m-regular -> --font-body-m-regular). Components and prototypes use ONLY these:
-        font:var(--text-<style>)
+--space-inset: var(--space-400) | spacious: var(--space-500) | compact: var(--space-300)
+--space-inset-l: var(--space-500) | spacious: var(--space-600) | compact: var(--space-400)
+--space-table-x: var(--space-400) | spacious: var(--space-500) | compact: var(--space-400)
+--space-stack: var(--space-300) | spacious: var(--space-400) | compact: var(--space-200)
+--space-section: var(--space-700) | spacious: var(--space-800) | compact: var(--space-600)
+--space-inset-nested: var(--space-150) | spacious: var(--space-150) | compact: var(--space-100)
 --font-tracking-minus-06: -0.6px
 --font-tracking-minus-05: -0.5px
 --font-tracking-minus-03: -0.3px

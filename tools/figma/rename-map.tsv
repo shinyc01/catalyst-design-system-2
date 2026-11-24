@@ -679,7 +679,7 @@ measure/type	motion/ease/accelerate	(none)	motion/ease/exit	--motion-ease-exit	a
 measure/type	motion/ease/emphasize	(none)	-	-	remove		0	M3: unused
 measure/type	(new, M3)		motion/distance/2	--motion-distance-2	add to code			opening surfaces
 measure/type	(new, M3)		motion/distance/16	--motion-distance-16	add to code			snackbars, notifications (from the end side)
-measure/type	(new, M1)		motion/loop/spin	--motion-loop-spin	add to code			1000ms
+measure/type	(new, M1)		motion/loop/spin	--motion-loop-spin	add to code			1400ms
 measure/type	(new, M1)		motion/loop/pulse	--motion-loop-pulse	add to code			1600ms
 measure/type	show-scroll-bar	(none)	component-toggle/show-scroll-bar	-	rename (Figma only)		0	booleans for Figma component props; never CSS
 measure/type	show-label	(none)	component-toggle/show-label	-	rename (Figma only)		0	booleans for Figma component props; never CSS
