@@ -90,10 +90,11 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 3.11).
   - Small `SegmentedControl` at the control height outside, with full-height hit layers; widgets a page gap apart; the full Cooper chat floats one page margin in (over).
   - `SmartSearch` is the default search; modal footers have one Primary; Evidence 90% is Review; collaboration Save always on; component text is the screen's content.
 
-- **2.0.5** (Nov 23–24, not yet released):
+- **2.0.5** (Nov 24):
   - Foundations (Nov 23): size ladder and nested insets; shape (border-width and radius roles, odd widths snap to 1); four elevation levels (page, raised, floating, modal) with z-index bands; naming (one word per meaning, old names kept as aliases until 3.0, tokens.json in DTCG); the colour fold onto one palette; number, money and date formatting; motion tokens and the open/close map with one reduced-motion rule.
   - States and components (Nov 24): one focus ring on every control; loading (one dotted loader, one pulsing skeleton); rebalanced status scales with five status words; the map pin (`MapPinDot` danger · warning · neutral); the stepper's completed steps; record preview as a push panel.
-  - Data viz moved to 2.0.6.
+  - Foundations restructured into 11 categories (Colour, Typography, Layout and space, Shape and depth, Motion, Iconography and imagery, Interaction and states, Accessibility, Content, Data visualisation, Tokens and system), matched in the Figma file.
+  - Data viz and the widget builder pattern move to 2.0.6.
 
 Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).
 
