@@ -716,7 +716,7 @@ referenceLabel (legend), format (default full number), tooltip. + shell props.
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-heatmap (9866:14280) — ordered magnitude across a matrix, one sequential ramp (D7): more = lighter, 5 classes
 (ladder steps 1 · 3 · 5 · 7 · 9) or 9 when the heatmap is dense. The legend is a scale bar below (D4).
-Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (azure default | teal | orchid | pink | yellow),
+Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (azure default | teal | cyan | orchid | pink | yellow),
 classes 5 | 9, color (legacy: one colour with opacity by value, Figma parity), columnLabelEvery (auto),
 lowLabel / highLabel (scale ends), valueLabel, format, tooltip(cell = { row, column, value, r, c }). + shell props.
 `function HeatmapChart(props)`
