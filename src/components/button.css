@@ -48,7 +48,7 @@
 .ifs-button--ghost,.ifs-icon-button--ghost{backdrop-filter:none;-webkit-backdrop-filter:none;
   --fill:var(--color-background-transparent);--stroke-shadow:0 0 0 var(--border-width-default) var(--color-border-transparent)}
 .ifs-button--ghost:hover,.ifs-button--ghost[data-state=hover],.ifs-icon-button--ghost:hover,.ifs-icon-button--ghost[data-state=hover]{--fill:var(--color-background-neutral)}
-.ifs-button--ghost:active,.ifs-button--ghost[data-state=pressed],.ifs-icon-button--ghost:active,.ifs-icon-button--ghost[data-state=pressed]{--fill:var(--color-background-neutral)}
+.ifs-button--ghost:active,.ifs-button--ghost[data-state=pressed],.ifs-icon-button--ghost:active,.ifs-icon-button--ghost[data-state=pressed]{--fill:var(--color-background-neutral-soft)} /* S2: pressed below hover */
 .ifs-icon-button--ghost{color:var(--color-icon-soft)}
 
 /* Accent (Cooper): 60% of cooper/button/fill + two radial gradients.
@@ -66,8 +66,8 @@
 /* Disabled */
 .ifs-button:disabled,.ifs-button[aria-disabled=true],.ifs-icon-button:disabled,.ifs-icon-button[aria-disabled=true]{cursor:not-allowed;color:var(--color-text-disabled)}
 .ifs-button--primary:disabled,.ifs-icon-button--primary:disabled{--fill:var(--color-background-neutral-soft);--stroke-shadow:0 0 0 var(--border-width-default) var(--color-border-transparent)}
-.ifs-button--secondary:disabled,.ifs-icon-button--secondary:disabled{--fill:var(--color-background-neutral-soft);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
-.ifs-button--tertiary:disabled,.ifs-icon-button--tertiary:disabled{--fill:var(--color-background-neutral-soft-inverse);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border)}
+.ifs-button--secondary:disabled,.ifs-icon-button--secondary:disabled{--fill:var(--color-background-neutral-softer);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
+.ifs-button--tertiary:disabled,.ifs-icon-button--tertiary:disabled{--fill:var(--color-background-neutral-softer-inverse);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-button--ghost:disabled,.ifs-icon-button--ghost:disabled{--fill:var(--color-background-transparent)}
 .ifs-button--cooper:disabled{background:var(--color-cooper-button-fill-disabled)}
 .ifs-icon-button:disabled{color:var(--color-icon-disabled)}

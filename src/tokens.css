@@ -84,7 +84,8 @@
 --color-border-input-focus:var(--palette-white-alpha-55);
 --color-border-input-disabled:var(--palette-white-alpha-5);
 --color-border-control:var(--palette-white-alpha-60);
---color-border-selected-hover:var(--palette-white-alpha-85);
+--color-border-control-hover:var(--palette-white-alpha-85); /* S2 (Nov 24): checkbox and radio off border hover (was border-strong 40, which dimmed it); no white-alpha-80 primitive, so 85 */
+--color-border-selected-hover:var(--palette-white-alpha-75); /* S2 (Nov 24): was 85, moves with neutral-stronger-hover (radio on) */
 --color-border-selected-pressed:var(--palette-white-alpha-60);
 --color-border-selected-soft:var(--palette-white-alpha-50);
 /* Focus ring */
@@ -107,10 +108,11 @@
 --color-background-accent-dark-red-strong:var(--palette-danger-850);
 --color-background-accent-dark-pink-strong:var(--palette-rose-700);
 --color-background-neutral-stronger:var(--palette-core-1000);
---color-background-neutral-stronger-hover:var(--palette-white-alpha-85);
+--color-background-neutral-stronger-hover:var(--palette-white-alpha-75); /* S2 / K9 (Nov 24): was 85, too close to default; every white ladder (primary, checkbox, radio, chip, switch on, select check) is 100 → 75 → 60 */
 --color-background-neutral-stronger-pressed:var(--palette-white-alpha-60);
 --color-background-neutral-softer:var(--palette-white-alpha-5);
 --color-background-neutral-soft-inverse:var(--palette-black-alpha-10);
+--color-background-neutral-softer-inverse:var(--palette-black-alpha-5); /* S2 (Nov 24): tertiary button disabled (its own fill, not the rest fill) */
 --color-background-danger-strong:var(--palette-danger-500);
 --color-background-danger-strong-hover:var(--palette-danger-400);
 --color-background-danger-strong-pressed:var(--palette-danger-600);

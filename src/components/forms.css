@@ -116,7 +116,7 @@
 .ifs-check:hover,.ifs-check[data-state=hover]{background:var(--color-surface-secondary)}
 .ifs-check--bare:hover,.ifs-check--bare[data-state=hover]{background:none}
 /* Checkbox: off = border only, on/indeterminate = solid fill + icon */
-.ifs-checkbox:hover .ifs-check__box,.ifs-checkbox[data-state=hover] .ifs-check__box{--box-border:var(--color-border-strong)}
+.ifs-checkbox:hover .ifs-check__box,.ifs-checkbox[data-state=hover] .ifs-check__box{--box-border:var(--color-border-control-hover)}
 .ifs-checkbox:active .ifs-check__box,.ifs-checkbox[data-state=pressed] .ifs-check__box{--box-border:var(--element-checkbox-off-border-pressed)}
 .ifs-checkbox--on .ifs-check__box{--box-border:transparent!important;--box-fill:var(--color-background-neutral-stronger)}
 .ifs-checkbox--on:hover .ifs-check__box,.ifs-checkbox--on[data-state=hover] .ifs-check__box{--box-fill:var(--color-background-neutral-stronger-hover)}
@@ -125,7 +125,7 @@
 /* Radio */
 .ifs-radio .ifs-check__box{border-radius:var(--radius-pill);--box-border:var(--color-border-control)}
 .ifs-radio .ifs-check__dot{width:var(--size-8);height:var(--size-8);border-radius:50%;background:var(--dot);display:none}
-.ifs-radio:hover .ifs-check__box,.ifs-radio[data-state=hover] .ifs-check__box{--box-border:var(--color-border-strong)}
+.ifs-radio:hover .ifs-check__box,.ifs-radio[data-state=hover] .ifs-check__box{--box-border:var(--color-border-control-hover)}
 .ifs-radio:active .ifs-check__box,.ifs-radio[data-state=pressed] .ifs-check__box{--box-border:var(--element-radiobutton-off-border-pressed)}
 .ifs-radio--on .ifs-check__dot{display:block}
 .ifs-radio--on .ifs-check__box{--box-border:var(--color-border-selected);--dot:var(--color-background-neutral-stronger)}
@@ -140,7 +140,7 @@
 .ifs-check--disabled,.ifs-check--disabled:hover{cursor:not-allowed;background:none;color:var(--color-text-disabled)}
 .ifs-checkbox.ifs-check--disabled .ifs-check__box{--box-border:var(--color-border-soft);color:var(--color-icon-disabled)}
 .ifs-checkbox--on.ifs-check--disabled .ifs-check__box{--box-fill:var(--color-background-neutral-soft)}
-.ifs-radio.ifs-check--disabled .ifs-check__box{--box-border:var(--color-border-softer)}
+.ifs-radio.ifs-check--disabled .ifs-check__box{--box-border:var(--color-border-soft)} /* S2: 10, like the checkbox */
 .ifs-radio--on.ifs-check--disabled .ifs-check__box{--box-border:var(--color-border-soft);--dot:var(--color-background-neutral-soft)}
 .ifs-radio-group{display:flex;flex-direction:column;align-items:flex-start;margin:0;padding:0;border:0}
 .ifs-radio-group--horizontal{flex-direction:row;flex-wrap:wrap}
@@ -171,5 +171,5 @@
 .ifs-switch[aria-checked=true]:active,.ifs-switch[aria-checked=true][data-state=pressed]{--fill:var(--color-background-neutral-stronger-pressed);--border:transparent}
 .ifs-switch:focus-visible,.ifs-switch[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 /* Disabled: Figma uses toggle/off/border/pressed for the off border */
-.ifs-switch:disabled,.ifs-switch-row:hover .ifs-switch:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);--border:var(--color-border-soft);--knob:var(--color-icon-disabled)}
+.ifs-switch:disabled,.ifs-switch-row:hover .ifs-switch:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-softer);--border:var(--color-border-soft);--knob:var(--color-icon-disabled)}
 .ifs-switch[aria-checked=true]:disabled,.ifs-switch-row:hover .ifs-switch[aria-checked=true]:disabled{--fill:var(--color-background-neutral-soft);--border:transparent;--knob:var(--color-icon-disabled-inverse)}

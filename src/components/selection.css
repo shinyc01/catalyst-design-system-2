@@ -133,7 +133,7 @@
 .ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft-hover) /* raw in Figma */}
 .ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--color-background-neutral-softer);--stroke:0 0 0 0 transparent;color:var(--color-text-softer)}
 .ifs-segmented__item.is-selected{--fill:var(--color-background-neutral);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
-.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
+.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--color-background-neutral-strong);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-segmented__item.is-selected:active,.ifs-segmented__item.is-selected[data-state=pressed]{--fill:var(--color-background-neutral-softer);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
 .ifs-segmented__item:disabled{cursor:not-allowed;color:var(--color-text-disabled);--fill:var(--color-background-transparent);--stroke:0 0 0 0 transparent}
 .ifs-segmented__item.is-selected:disabled{--fill:var(--color-background-transparent);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}

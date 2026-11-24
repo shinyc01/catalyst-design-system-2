@@ -87,7 +87,7 @@ colour	element/button/primary/border/disabled	--element-button-primary-border-di
 colour	element/button/secondary/fill/default	--element-button-secondary-fill-default	color/background/neutral/soft	--color-background-neutral-soft	merge	same	4	LIGHT DIFFERS: rgba(80,66,125,0.15) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
 colour	element/button/secondary/fill/hover	--element-button-secondary-fill-hover	color/background/neutral	--color-background-neutral	merge	same	10	LIGHT DIFFERS: rgba(80,66,125,0.22) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
 colour	element/button/secondary/fill/pressed	--element-button-secondary-fill-pressed	color/background/neutral/softer	--color-background-neutral-softer	merge	same	2	LIGHT DIFFERS: rgba(80,66,125,0.1) (group rgba(0,0,0,0.05), role rgba(80,66,125,0.05))
-colour	element/button/secondary/fill/disabled	--element-button-secondary-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	2	
+colour	element/button/secondary/fill/disabled	--element-button-secondary-fill-disabled	color/background/neutral/softer	--color-background-neutral-softer	merge	same	2	S2 Nov 24: role swap
 colour	element/button/secondary/border/default	--element-button-secondary-border-default	color/border/soft	--color-border-soft	merge	same	2	
 colour	element/button/secondary/border/hover	--element-button-secondary-border-hover	color/border/strong	--color-border-strong	merge	same	3	
 colour	element/button/secondary/border/pressed	--element-button-secondary-border-pressed	color/border/soft	--color-border-soft	merge	same	2	
@@ -95,7 +95,7 @@ colour	element/button/secondary/border/disabled	--element-button-secondary-borde
 colour	element/button/tertiary/fill/default	--element-button-tertiary-fill-default	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	5	
 colour	element/button/tertiary/fill/hover	--element-button-tertiary-fill-hover	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	3	
 colour	element/button/tertiary/fill/pressed	--element-button-tertiary-fill-pressed	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	1	
-colour	element/button/tertiary/fill/disabled	--element-button-tertiary-fill-disabled	color/background/neutral/soft-inverse	--color-background-neutral-soft-inverse	merge	same	2	
+colour	element/button/tertiary/fill/disabled	--element-button-tertiary-fill-disabled	color/background/neutral/softer-inverse	--color-background-neutral-softer-inverse	merge	same	2	S2 Nov 24: role swap
 colour	element/button/tertiary/border/default	--element-button-tertiary-border-default	color/border	--color-border	merge	same	4	
 colour	element/button/tertiary/border/hover	--element-button-tertiary-border-hover	color/border/strong	--color-border-strong	merge	same	3	
 colour	element/button/tertiary/border/pressed	--element-button-tertiary-border-pressed	color/border/soft	--color-border-soft	merge	same	1	
@@ -146,7 +146,7 @@ colour	element/cooper/insight/fill-base	--element-cooper-insight-fill-base	color
 colour	element/cooper/insight/fill-inverse	--element-cooper-insight-fill-inverse	color/cooper/insight/inverse	--color-cooper-insight-inverse	rename	same	1	
 colour	element/header-item/fill/default	--element-header-item-fill-default	color/background/transparent	--color-background-transparent	merge	same	1	
 colour	element/header-item/fill/hover	--element-header-item-fill-hover	color/background/neutral	--color-background-neutral	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.05) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
-colour	element/header-item/fill/pressed	--element-header-item-fill-pressed	color/background/neutral	--color-background-neutral	merge	same	1	
+colour	element/header-item/fill/pressed	--element-header-item-fill-pressed	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	S2 Nov 24: role swap
 colour	element/header-item/fill/active	--element-header-item-fill-active	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.1) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
 colour	element/header-item/fill/disabled	--element-header-item-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	1	
 colour	element/breadcrumb/border/default	--element-breadcrumb-border-default	color/border/soft	--color-border-soft	merge	same	0	
@@ -160,9 +160,9 @@ colour	element/dropdown/fill/disabled	--element-dropdown-fill-disabled	color/bac
 colour	element/toggle/off/fill/default	--element-toggle-off-fill-default	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.1) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
 colour	element/toggle/off/fill/hover	--element-toggle-off-fill-hover	color/background/neutral	--color-background-neutral	merge	same	1	
 colour	element/toggle/off/fill/pressed	--element-toggle-off-fill-pressed	color/background/neutral/softer	--color-background-neutral-softer	merge	same	1	LIGHT DIFFERS: rgba(80,66,125,0.22) (group rgba(0,0,0,0.05), role rgba(80,66,125,0.05))
-colour	element/toggle/off/fill/disabled	--element-toggle-off-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(0,0,0,0.05) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
+colour	element/toggle/off/fill/disabled	--element-toggle-off-fill-disabled	color/background/neutral/softer	--color-background-neutral-softer	merge	same	1	LIGHT DIFFERS: rgba(0,0,0,0.05) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1)) S2 Nov 24: role swap
 colour	element/checkbox/off/border/default	--element-checkbox-off-border-default	color/border/control	--color-border-control	merge	same	3	
-colour	element/checkbox/off/border/hover	--element-checkbox-off-border-hover	color/border/strong	--color-border-strong	merge	same	2	
+colour	element/checkbox/off/border/hover	--element-checkbox-off-border-hover	color/border/control-hover	--color-border-control-hover	merge	same	2	S2 Nov 24: role swap
 colour	element/checkbox/off/border/pressed	--element-checkbox-off-border-pressed	element/checkbox/off/border/pressed	--element-checkbox-off-border-pressed	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
 colour	element/checkbox/off/border/disabled	--element-checkbox-off-border-disabled	color/border/soft	--color-border-soft	merge	same	2	
 colour	element/checkbox/on/fill/default	--element-checkbox-on-fill-default	color/background/neutral/stronger	--color-background-neutral-stronger	merge	same	3	
@@ -178,9 +178,9 @@ colour	element/toggle/on/fill/hover	--element-toggle-on-fill-hover	color/backgro
 colour	element/toggle/on/fill/pressed	--element-toggle-on-fill-pressed	color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	merge	same	1	
 colour	element/toggle/on/fill/disabled	--element-toggle-on-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	
 colour	element/radiobutton/off/border/default	--element-radiobutton-off-border-default	color/border/control	--color-border-control	merge	same	1	
-colour	element/radiobutton/off/border/hover	--element-radiobutton-off-border-hover	color/border/strong	--color-border-strong	merge	same	1	
+colour	element/radiobutton/off/border/hover	--element-radiobutton-off-border-hover	color/border/control-hover	--color-border-control-hover	merge	same	1	S2 Nov 24: role swap
 colour	element/radiobutton/off/border/pressed	--element-radiobutton-off-border-pressed	element/radiobutton/off/border/pressed	--element-radiobutton-off-border-pressed	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
-colour	element/radiobutton/off/border/disabled	--element-radiobutton-off-border-disabled	color/border/softer	--color-border-softer	merge	same	1	
+colour	element/radiobutton/off/border/disabled	--element-radiobutton-off-border-disabled	color/border/soft	--color-border-soft	merge	same	1	S2 Nov 24: role swap
 colour	element/radiobutton/on/fill/default	--element-radiobutton-on-fill-default	color/background/neutral/stronger	--color-background-neutral-stronger	merge	same	1	
 colour	element/radiobutton/on/fill/hover	--element-radiobutton-on-fill-hover	color/background/neutral/stronger/hover	--color-background-neutral-stronger-hover	merge	same	1	
 colour	element/radiobutton/on/fill/pressed	--element-radiobutton-on-fill-pressed	color/background/neutral/stronger/pressed	--color-background-neutral-stronger-pressed	merge	same	1	
@@ -211,7 +211,7 @@ colour	overlay/screen-medium	--overlay-screen-medium	color/overlay/screen	--colo
 colour	overlay/screen-strong	--overlay-screen-strong	color/overlay/screen/strong	--color-overlay-screen-strong	rename (type word)	same	2	
 colour	element/button/ghost/fill/default	--element-button-ghost-fill-default	color/background/transparent	--color-background-transparent	merge	same	1	
 colour	element/button/ghost/fill/hover	--element-button-ghost-fill-hover	color/background/neutral	--color-background-neutral	merge	same	4	
-colour	element/button/ghost/fill/pressed	--element-button-ghost-fill-pressed	color/background/neutral	--color-background-neutral	merge	same	3	LIGHT DIFFERS: rgba(80,66,125,0.22) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/button/ghost/fill/pressed	--element-button-ghost-fill-pressed	color/background/neutral/soft	--color-background-neutral-soft	merge	same	3	LIGHT DIFFERS: rgba(80,66,125,0.22) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15)) S2 Nov 24: role swap
 colour	element/button/ghost/fill/disabled	--element-button-ghost-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	1	
 colour	element/button/ghost/border/default	--element-button-ghost-border-default	color/border/transparent	--color-border-transparent	merge	same	1	
 colour	element/button/ghost/border/hover	--element-button-ghost-border-hover	color/border/transparent	--color-border-transparent	merge	same	0	
@@ -251,8 +251,8 @@ colour	element/segmented-control/on/border/hover	--element-segmented-control-on-
 colour	element/segmented-control/on/border/pressed	--element-segmented-control-on-border-pressed	color/border/softer	--color-border-softer	merge	same	1	
 colour	element/segmented-control/on/border/disabled	--element-segmented-control-on-border-disabled	color/border/soft	--color-border-soft	merge	same	1	
 colour	element/button/draw-bar/fill/default	--element-button-draw-bar-fill-default	color/background/transparent	--color-background-transparent	merge	same	0	
-colour	element/button/draw-bar/fill/hover	--element-button-draw-bar-fill-hover	color/background/neutral/softer	--color-background-neutral-softer	merge	same	0	
-colour	element/button/draw-bar/fill/pressed	--element-button-draw-bar-fill-pressed	color/background/neutral	--color-background-neutral	merge	same	0	LIGHT DIFFERS: rgba(0,0,0,0.15) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15))
+colour	element/button/draw-bar/fill/hover	--element-button-draw-bar-fill-hover	color/background/neutral	--color-background-neutral	merge	same	0	S2 Nov 24: role swap
+colour	element/button/draw-bar/fill/pressed	--element-button-draw-bar-fill-pressed	color/background/neutral/soft	--color-background-neutral-soft	merge	same	0	LIGHT DIFFERS: rgba(0,0,0,0.15) (group rgba(80,66,125,0.15), role rgba(80,66,125,0.15)) S2 Nov 24: role swap
 colour	element/button/draw-bar/fill/disabled	--element-button-draw-bar-fill-disabled	color/background/transparent	--color-background-transparent	merge	same	0	
 colour	element/map-pin/fill/default	--element-map-pin-fill-default	color/icon/softer	--color-icon-softer	merge	same	3	LIGHT DIFFERS: #999999 (group #625f78, role #625f78)
 colour	element/map-pin/fill/success	--element-map-pin-fill-success	color/icon/success	--color-icon-success	merge	same	1	

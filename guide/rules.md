@@ -52,6 +52,30 @@ Cards on the page grid use `.ifs-grid` (rule 4.2). Components keep their own CSS
 - Reduced motion: rule 9.11.
 - Built in the kit: enters, exits (`IFS.useExit(open, ms)` keeps a closing surface mounted with `.is-leaving`), the table-height glide when rows change, push-panel width (AppShell fires one resize at the end so maps and canvases redraw once). Not built yet: the chevron turn and the side-nav fold width.
 
+1.9 **State model (S2, Nov 24): one model for every family.** Hover is the most visible step; pressed sits below hover, never equal to it.
+
+| State | Rule |
+|---|---|
+| Default | the family's rest fill |
+| Hover | the most visible step: alpha fills +5 or more; white fills 75% (`--color-background-neutral-stronger-hover`) |
+| Pressed | below hover, never equal to it: between rest and hover, or below rest; white fills 60% |
+| Selected | strongest fill or white + `--color-border-selected` / strong; hovering a selected item brightens it, never dims it |
+| Focus | the ring only (rule 1.6); no fill change |
+| Disabled | its own disabled fill, never the rest fill (5%: `--color-background-neutral-softer`, `-softer-inverse` on tertiary); text and icon `--color-text-disabled` / `--color-icon-disabled`; no hover; a tooltip says why (rule 9.10) |
+| Loading | keeps its size; data shows a skeleton, an action shows the loader ring in place of its icon (`Button loading`); `aria-busy`; not clickable |
+| Error | input families only: `--color-border-danger` + icon + message (never colour alone) |
+
+| Family | Members | Hover | Pressed | Selected | Focus | Disabled | Loading | Error |
+|---|---|---|---|---|---|---|---|---|
+| Actions | Button, IconButton, CircularButton, FTA, Prompt | ✓ | ✓ | — (toggle buttons: aria-pressed = selected) | ✓ | ✓ | ✓ Button | — |
+| Selection controls | Checkbox, Radio, Switch, Chip, SegmentedControl | ✓ | ✓ | ✓ | ✓ | ✓ | — | ✓ group-level |
+| Inputs | TextField, TextArea, Select, Search, SmartSearch, DatePicker | ✓ border | — | — | ✓ (typing = focus) | ✓ | ✓ Select options | ✓ |
+| Nav items | NavItem, Tab, NavBar item, nav-tree row, Breadcrumb crumb, header item | ✓ | ✓ | ✓ current | ✓ | ✓ | — | — |
+| Cards and rows | ContentCard, NodeCard, Table row, HomeRowCard, Notification | ✓ if clickable | ✓ if clickable | ✓ | ✓ | ✓ | ✓ | — |
+| Read-only display | StatCard, Badge, Status, Indicator | — | — | — | — | — | ✓ | — |
+
+- Ladders on roles: ghost button and header item 0 → 15 → 10 (header pressed = the current page's 10); draw bar the same; secondary and switch off 10 → 15 → 5, disabled 5; tertiary disabled black 5; segmented selected 15 → 20 → 5; checkbox and radio off border 60 → 85 (`--color-border-control-hover`) → 15, disabled 10; white ladders (primary, checkbox, radio, chip and switch on, select check) 100 → 75 → 60.
+
 ---
 
 ## 2. Type
@@ -449,7 +473,7 @@ This section is writing guidance for screens, as in other large design systems (
 - Not decided yet, no rules: states and focus (S1–S3; the focus ring stays as rule 1.6), loading (L1–L4), data viz (D1–D9).
 - Motion still to build (rule 1.8): the chevron turn and the side-nav fold width.
 - Select XL inner field: 36 today (2.0.4); on the ladder it would be m (32 in Comfortable). Not decided.
-- Light theme: `color-scheme` and `IFS.setTheme` are in; the Light values come right after phase 1. Primary button hover: to decide.
+- Light theme: `color-scheme` and `IFS.setTheme` are in; the Light values come right after phase 1.
 - `FormCard`: "a form on a page" (components.md) vs a card built like a dialog; settle the wording.
 - Cooper orb gap: 12 or 24.
 - Map data credit.

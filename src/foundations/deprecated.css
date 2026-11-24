@@ -89,7 +89,7 @@
 --element-button-secondary-fill-default:var(--color-background-neutral-soft);
 --element-button-secondary-fill-hover:var(--color-background-neutral);
 --element-button-secondary-fill-pressed:var(--color-background-neutral-softer);
---element-button-secondary-fill-disabled:var(--color-background-neutral-soft);
+--element-button-secondary-fill-disabled:var(--color-background-neutral-softer);
 --element-button-secondary-border-default:var(--color-border-soft);
 --element-button-secondary-border-hover:var(--color-border-strong);
 --element-button-secondary-border-pressed:var(--color-border-soft);
@@ -97,7 +97,7 @@
 --element-button-tertiary-fill-default:var(--color-background-neutral-soft-inverse);
 --element-button-tertiary-fill-hover:var(--color-background-neutral-soft-inverse);
 --element-button-tertiary-fill-pressed:var(--color-background-neutral-soft-inverse);
---element-button-tertiary-fill-disabled:var(--color-background-neutral-soft-inverse);
+--element-button-tertiary-fill-disabled:var(--color-background-neutral-softer-inverse);
 --element-button-tertiary-border-default:var(--color-border);
 --element-button-tertiary-border-hover:var(--color-border-strong);
 --element-button-tertiary-border-pressed:var(--color-border-soft);
@@ -148,7 +148,7 @@
 --element-cooper-insight-fill-inverse:var(--color-cooper-insight-inverse);
 --element-header-item-fill-default:var(--color-background-transparent);
 --element-header-item-fill-hover:var(--color-background-neutral);
---element-header-item-fill-pressed:var(--color-background-neutral);
+--element-header-item-fill-pressed:var(--color-background-neutral-soft);
 --element-header-item-fill-active:var(--color-background-neutral-soft);
 --element-header-item-fill-disabled:var(--color-background-transparent);
 --element-breadcrumb-border-default:var(--color-border-soft);
@@ -162,9 +162,9 @@
 --element-toggle-off-fill-default:var(--color-background-neutral-soft);
 --element-toggle-off-fill-hover:var(--color-background-neutral);
 --element-toggle-off-fill-pressed:var(--color-background-neutral-softer);
---element-toggle-off-fill-disabled:var(--color-background-neutral-soft);
+--element-toggle-off-fill-disabled:var(--color-background-neutral-softer);
 --element-checkbox-off-border-default:var(--color-border-control);
---element-checkbox-off-border-hover:var(--color-border-strong);
+--element-checkbox-off-border-hover:var(--color-border-control-hover);
 --element-checkbox-off-border-disabled:var(--color-border-soft);
 --element-checkbox-on-fill-default:var(--color-background-neutral-stronger);
 --element-checkbox-on-fill-hover:var(--color-background-neutral-stronger-hover);
@@ -179,8 +179,8 @@
 --element-toggle-on-fill-pressed:var(--color-background-neutral-stronger-pressed);
 --element-toggle-on-fill-disabled:var(--color-background-neutral-soft);
 --element-radiobutton-off-border-default:var(--color-border-control);
---element-radiobutton-off-border-hover:var(--color-border-strong);
---element-radiobutton-off-border-disabled:var(--color-border-softer);
+--element-radiobutton-off-border-hover:var(--color-border-control-hover);
+--element-radiobutton-off-border-disabled:var(--color-border-soft);
 --element-radiobutton-on-fill-default:var(--color-background-neutral-stronger);
 --element-radiobutton-on-fill-hover:var(--color-background-neutral-stronger-hover);
 --element-radiobutton-on-fill-pressed:var(--color-background-neutral-stronger-pressed);
@@ -211,7 +211,7 @@
 --overlay-screen-strong:var(--color-overlay-screen-strong);
 --element-button-ghost-fill-default:var(--color-background-transparent);
 --element-button-ghost-fill-hover:var(--color-background-neutral);
---element-button-ghost-fill-pressed:var(--color-background-neutral);
+--element-button-ghost-fill-pressed:var(--color-background-neutral-soft);
 --element-button-ghost-fill-disabled:var(--color-background-transparent);
 --element-button-ghost-border-default:var(--color-border-transparent);
 --element-button-ghost-border-hover:var(--color-border-transparent);
@@ -248,8 +248,8 @@
 --element-segmented-control-on-border-pressed:var(--color-border-softer);
 --element-segmented-control-on-border-disabled:var(--color-border-soft);
 --element-button-draw-bar-fill-default:var(--color-background-transparent);
---element-button-draw-bar-fill-hover:var(--color-background-neutral-softer);
---element-button-draw-bar-fill-pressed:var(--color-background-neutral);
+--element-button-draw-bar-fill-hover:var(--color-background-neutral);
+--element-button-draw-bar-fill-pressed:var(--color-background-neutral-soft);
 --element-button-draw-bar-fill-disabled:var(--color-background-transparent);
 --element-map-pin-fill-default:var(--color-icon-softer);
 --element-map-pin-fill-success:var(--color-icon-success);

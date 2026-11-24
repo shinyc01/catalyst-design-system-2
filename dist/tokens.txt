@@ -69,7 +69,8 @@
 --color-border-input-focus: var(--palette-white-alpha-55)
 --color-border-input-disabled: var(--palette-white-alpha-5)
 --color-border-control: var(--palette-white-alpha-60)
---color-border-selected-hover: var(--palette-white-alpha-85)
+--color-border-control-hover: var(--palette-white-alpha-85)
+--color-border-selected-hover: var(--palette-white-alpha-75)
 --color-border-selected-pressed: var(--palette-white-alpha-60)
 --color-border-selected-soft: var(--palette-white-alpha-50)
 --color-focus-inner: var(--palette-core-0)
@@ -88,10 +89,11 @@
 --color-background-accent-dark-red-strong: var(--palette-danger-850)
 --color-background-accent-dark-pink-strong: var(--palette-rose-700)
 --color-background-neutral-stronger: var(--palette-core-1000)
---color-background-neutral-stronger-hover: var(--palette-white-alpha-85)
+--color-background-neutral-stronger-hover: var(--palette-white-alpha-75)
 --color-background-neutral-stronger-pressed: var(--palette-white-alpha-60)
 --color-background-neutral-softer: var(--palette-white-alpha-5)
 --color-background-neutral-soft-inverse: var(--palette-black-alpha-10)
+--color-background-neutral-softer-inverse: var(--palette-black-alpha-5)
 --color-background-danger-strong: var(--palette-danger-500)
 --color-background-danger-strong-hover: var(--palette-danger-400)
 --color-background-danger-strong-pressed: var(--palette-danger-600)
@@ -1186,7 +1188,7 @@
 --element-button-secondary-fill-default → --color-background-neutral-soft
 --element-button-secondary-fill-hover → --color-background-neutral
 --element-button-secondary-fill-pressed → --color-background-neutral-softer
---element-button-secondary-fill-disabled → --color-background-neutral-soft
+--element-button-secondary-fill-disabled → --color-background-neutral-softer
 --element-button-secondary-border-default → --color-border-soft
 --element-button-secondary-border-hover → --color-border-strong
 --element-button-secondary-border-pressed → --color-border-soft
@@ -1194,7 +1196,7 @@
 --element-button-tertiary-fill-default → --color-background-neutral-soft-inverse
 --element-button-tertiary-fill-hover → --color-background-neutral-soft-inverse
 --element-button-tertiary-fill-pressed → --color-background-neutral-soft-inverse
---element-button-tertiary-fill-disabled → --color-background-neutral-soft-inverse
+--element-button-tertiary-fill-disabled → --color-background-neutral-softer-inverse
 --element-button-tertiary-border-default → --color-border
 --element-button-tertiary-border-hover → --color-border-strong
 --element-button-tertiary-border-pressed → --color-border-soft
@@ -1245,7 +1247,7 @@
 --element-cooper-insight-fill-inverse → --color-cooper-insight-inverse
 --element-header-item-fill-default → --color-background-transparent
 --element-header-item-fill-hover → --color-background-neutral
---element-header-item-fill-pressed → --color-background-neutral
+--element-header-item-fill-pressed → --color-background-neutral-soft
 --element-header-item-fill-active → --color-background-neutral-soft
 --element-header-item-fill-disabled → --color-background-transparent
 --element-breadcrumb-border-default → --color-border-soft
@@ -1259,9 +1261,9 @@
 --element-toggle-off-fill-default → --color-background-neutral-soft
 --element-toggle-off-fill-hover → --color-background-neutral
 --element-toggle-off-fill-pressed → --color-background-neutral-softer
---element-toggle-off-fill-disabled → --color-background-neutral-soft
+--element-toggle-off-fill-disabled → --color-background-neutral-softer
 --element-checkbox-off-border-default → --color-border-control
---element-checkbox-off-border-hover → --color-border-strong
+--element-checkbox-off-border-hover → --color-border-control-hover
 --element-checkbox-off-border-disabled → --color-border-soft
 --element-checkbox-on-fill-default → --color-background-neutral-stronger
 --element-checkbox-on-fill-hover → --color-background-neutral-stronger-hover
@@ -1276,8 +1278,8 @@
 --element-toggle-on-fill-pressed → --color-background-neutral-stronger-pressed
 --element-toggle-on-fill-disabled → --color-background-neutral-soft
 --element-radiobutton-off-border-default → --color-border-control
---element-radiobutton-off-border-hover → --color-border-strong
---element-radiobutton-off-border-disabled → --color-border-softer
+--element-radiobutton-off-border-hover → --color-border-control-hover
+--element-radiobutton-off-border-disabled → --color-border-soft
 --element-radiobutton-on-fill-default → --color-background-neutral-stronger
 --element-radiobutton-on-fill-hover → --color-background-neutral-stronger-hover
 --element-radiobutton-on-fill-pressed → --color-background-neutral-stronger-pressed
@@ -1308,7 +1310,7 @@
 --overlay-screen-strong → --color-overlay-screen-strong
 --element-button-ghost-fill-default → --color-background-transparent
 --element-button-ghost-fill-hover → --color-background-neutral
---element-button-ghost-fill-pressed → --color-background-neutral
+--element-button-ghost-fill-pressed → --color-background-neutral-soft
 --element-button-ghost-fill-disabled → --color-background-transparent
 --element-button-ghost-border-default → --color-border-transparent
 --element-button-ghost-border-hover → --color-border-transparent
@@ -1345,8 +1347,8 @@
 --element-segmented-control-on-border-pressed → --color-border-softer
 --element-segmented-control-on-border-disabled → --color-border-soft
 --element-button-draw-bar-fill-default → --color-background-transparent
---element-button-draw-bar-fill-hover → --color-background-neutral-softer
---element-button-draw-bar-fill-pressed → --color-background-neutral
+--element-button-draw-bar-fill-hover → --color-background-neutral
+--element-button-draw-bar-fill-pressed → --color-background-neutral-soft
 --element-button-draw-bar-fill-disabled → --color-background-transparent
 --element-map-pin-fill-default → --color-icon-softer
 --element-map-pin-fill-success → --color-icon-success

@@ -215,8 +215,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-content-card[role=button]:active,.ifs-content-card[data-state=pressed]{--fill:var(--color-surface-raised-pressed);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-content-card--selected,.ifs-content-card[data-state=selected]{--fill:var(--color-surface-raised);--stroke:inset 0 0 0 var(--border-width-selected) var(--color-border-strong)}
 .ifs-content-card[data-state=drag]{--fill:var(--color-surface-raised-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
-.ifs-content-card:focus-visible,.ifs-content-card[data-state=focus]{outline:none;--fill:var(--color-surface-secondary);
-  --ring:var(--focus-ring)}
+.ifs-content-card:focus-visible,.ifs-content-card[data-state=focus]{outline:none;--ring:var(--focus-ring)} /* S2: focus is the ring only, no fill */
 /* Cooper (content-card-organism State=Cooper, 12:6669 / 12:6715), not focus: a 4px OUTSIDE gradient stroke with a 2px OUTSIDE
    focus-inner stroke drawn over its inner half, so it reads as a 2px black gap, then a 2px gradient ring.
    Gradient brand/cooper/500-base → core/1000-base, orange at bottom-right to white at the left (Figma transform ≈ 282deg).

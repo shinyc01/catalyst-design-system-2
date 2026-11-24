@@ -173,7 +173,7 @@
   background:var(--color-background-transparent);color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);
   transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-navbar__item:hover,.ifs-navbar__item[data-state=hover]{background:var(--color-background-neutral)}
-.ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--color-background-neutral);color:var(--color-text-soft)}
+.ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--color-background-neutral-soft);color:var(--color-text-soft)}
 .ifs-navbar__item[aria-current=page]{background:var(--color-background-neutral-soft)}
 .ifs-navbar__item:disabled,.ifs-navbar__item[aria-disabled=true]{background:var(--color-background-transparent);color:var(--color-text-disabled);cursor:not-allowed}
 .ifs-navbar__actions{display:flex;align-items:center;gap:var(--space-200);flex:none}
