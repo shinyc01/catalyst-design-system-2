@@ -37,7 +37,7 @@ Cards on the page grid use `.ifs-grid` (rule 4.2). Components keep their own CSS
 - Roles only: components use colour roles (`--color-*`), never primitives (`--palette-*`, `src/foundations/palette.css`), `--element-*` or a component-only colour; `node tools/color-lint.mjs` checks it. Eight colours are held unchanged, with their old names, until decided: `--border-blue`, the checkbox and radio off pressed borders, the circular button fill (default, hover, pressed), `--white-500`, `--white-alpha-50`.
 - Old names (`--text-primary`, `--border-base`, `--control-h-m`, `--blur-medium` …) still work as aliases (`src/foundations/deprecated.css`) until 3.0; don't use them in new code. The full old → new list: `tools/figma/rename-map.tsv`. `dist/tokens.txt` lists the new names, then the deprecated ones; `dist/tokens.json` is DTCG 2025.10 with `$deprecated`.
 
-1.8 **Motion** (`src/foundations/motion.css`). Durations `--motion-duration-0|50|100|200|300`; curves `--motion-ease-standard` (on-screen changes), `-enter` (opening), `-exit` (closing), `-linear` (loops); distances `--motion-distance-2|16`; loops `--motion-loop-spin` 1400, `--motion-loop-pulse` 1600 (not in step).
+1.8 **Motion** (`src/foundations/motion.css`). Durations `--motion-duration-0|50|100|200|300`; curves `--motion-ease-standard` (on-screen changes), `-enter` (opening), `-exit` (closing), `-linear` (loops); distances `--motion-distance-2|16`; loops `--motion-loop-spin` 1400, `--motion-loop-pulse` 1600, `--motion-loop-blink` 1000 (the Cooper caret; not in step).
 
 | Duration | Use |
 |---|---|
