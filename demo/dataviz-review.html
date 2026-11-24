@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Viz Review</title>
+<!-- 2.0.6 data viz round (D1–D9, Nov 24): every chart type in every state and density, with the working palette (v2g).
+     Serve the kit folder (node tools/serve.mjs 4747) and open /demo/dataviz-review.html. Uses the local build in ../dist. -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<link rel="stylesheet" href="../dist/ifs-ds.css">
+<script src="../dist/ifs-ds.js"></script>
+<style>
+/* Review page layout only. Tokens only. */
+html,body{margin:0;background:var(--color-surface-page);color:var(--color-text)}
+.rv{box-sizing:border-box;max-width:1440px;margin:0 auto;padding:var(--page-margin);display:flex;flex-direction:column;gap:var(--space-section)}
+.rv-head{display:flex;flex-direction:column;gap:var(--space-200)}
+.rv-head h1{margin:0;font:var(--font-heading-h2-medium);letter-spacing:var(--font-heading-h2-medium-tracking)}
+.rv p{margin:0;max-width:var(--font-measure);color:var(--color-text-soft);font:var(--font-body-m-regular)}
+.rv-bar{position:sticky;top:0;z-index:900;display:flex;flex-wrap:wrap;gap:var(--space-400);align-items:center;padding:var(--space-300) 0;background:var(--color-surface-page);box-shadow:0 1px 0 var(--color-border-soft)}
+.rv-bar label{display:inline-flex;gap:var(--space-200);align-items:center;color:var(--color-text-soft);font:var(--font-label-m-medium)}
+section.rv-sec{display:flex;flex-direction:column;gap:var(--space-stack)}
+section.rv-sec > h2{margin:0;font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking)}
+section.rv-sec > h3{margin:0;font:var(--font-label-l-medium);color:var(--color-text-soft)}
+.rv-grid{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:var(--page-gap);align-items:start}
+.rv-cell{display:flex;flex-direction:column;gap:var(--space-200);min-width:0}
+.rv-cap{color:var(--color-text-softer);font:var(--font-body-s-regular)}
+.rv-sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(7.5rem,1fr));gap:var(--space-300)}
+.rv-sw div{display:flex;flex-direction:column;gap:var(--space-100);font:var(--font-body-s-regular);color:var(--color-text-soft)}
+.rv-sw i{display:block;height:var(--size-40);border-radius:var(--radius-control)}
+.rv-ramp{display:grid;grid-template-columns:6rem repeat(9,1fr);gap:var(--space-50);align-items:center;font:var(--font-body-s-regular);color:var(--color-text-soft)}
+.rv-ramp i{display:block;height:var(--size-24);border-radius:var(--radius-mark)}
+.rv-dash{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--page-gap)}
+.rv-dash > *{min-width:0}
+.s3{grid-column:span 3}.s6{grid-column:span 6}.s4{grid-column:span 4}.s12{grid-column:span 12}
+.rv-stack{display:flex;flex-direction:column;gap:var(--page-gap)}
+.rv-h{font:var(--font-body-s-regular);color:var(--color-text-softer)}
+@media (max-width:900px){.rv-grid{grid-template-columns:minmax(0,1fr)}.s3,.s4,.s6{grid-column:span 12}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const h = React.createElement, I = IFS, F = IFS.format;
+const money = v => F.money(v);
+const pct = v => `${v}%`;
+const Q = ['Q1 FY26', 'Q2 FY26', 'Q3 FY26', 'Q4 FY26', 'Q1 FY27', 'Q2 FY27'];
+const YEARS = ['FY24', 'FY25', 'FY26', 'FY27', 'FY28', 'FY29', 'FY30'];
+const NAMES = ['Substations', 'Transmission', 'Distribution', 'Meters', 'Fleet', 'Facilities', 'IT / OT', 'Hydro', 'Gas mains', 'Water', 'Telecom', 'Vegetation', 'Pipelines', 'Storage'];
+const col = Q.map((l, i) => ({ label: l, value: [8.2, 11.4, 9.7, 14.9, 12.2, 0.3][i] * 1e6 }));
+const colRef = col.map((d, i) => ({ ...d, reference: [9, 10, 10.5, 12, 12.5, 6][i] * 1e6 }));
+const ser = n => Array.from({ length: n }, (_, j) => ({ key: 's' + j, label: NAMES[j] }));
+const multi = (labels, n, f) => labels.map((l, i) => Object.fromEntries([['label', l], ...Array.from({ length: n }, (_, j) => ['s' + j, f(i, j)])]));
+const lineData = n => multi(YEARS, n, (i, j) => Math.round((300 + j * 60 + Math.sin(i * 0.9 + j) * 40 + i * (j - n / 2) * 8) * 1e4));
+const stackData = n => multi(['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6'], n, (i, j) => (1.2 + ((j * 5 + i * 2) % 6) * 0.35) * 1e6);
+const groupData = n => multi(['North', 'East', 'South', 'West', 'Central'], n, (i, j) => (2 + ((j * 7 + i * 3) % 9)) * 1e6);
+const bars = ['Reliability', 'Safety', 'Environment', 'Customer', 'Financial', 'Compliance', 'Workforce', 'Resilience'].map((l, i) => ({ label: l, value: [42, 35, 28, 24, 19, 15, 9, 6][i] }));
+const donut = ['Approved', 'In review', 'Draft', 'Deferred', 'Rejected'].map((l, i) => ({ label: l, value: [212, 38, 57, 21, 9][i] }));
+const donut10 = NAMES.slice(0, 10).map((l, i) => ({ label: l, value: [30, 22, 18, 12, 9, 7, 5, 4, 3, 2][i] }));
+const scatter = Array.from({ length: 24 }, (_, i) => ({ label: `Investment ${i + 1}`, x: 20 + ((i * 37) % 300), y: (1 + ((i * 53) % 90) / 10) * 1e6, size: 1 + ((i * 29) % 40), series: ['a', 'b', 'c'][i % 3] }));
+const scatterSeries = [{ key: 'a', label: 'Sustain' }, { key: 'b', label: 'Growth' }, { key: 'c', label: 'Compliance' }];
+const hmRows = ['Substations', 'Transmission', 'Distribution', 'Meters', 'Fleet', 'Facilities'];
+const hmCols = YEARS;
+const hmVals = hmRows.map((_, r) => hmCols.map((_, c) => Math.round(((Math.sin(r * 1.7 + c * 0.9) + 1) / 2 * 0.6 + c / hmCols.length * 0.4) * 100)));
+const wf = [{ label: 'FY26 plan', value: 48e6, total: true }, { label: 'New work', value: 6.2e6 }, { label: 'Deferred', value: -3.1e6 }, { label: 'Scope', value: 2.4e6 }, { label: 'Savings', value: -1.8e6 }, { label: 'FY27 plan', total: true }];
+const funnel = ['Proposed', 'Screened', 'Scored', 'Approved', 'Delivered'].map((l, i) => ({ label: l, value: [1621, 940, 610, 212, 119][i] }));
+const hist = Array.from({ length: 200 }, (_, i) => Math.round(50 + 30 * Math.sin(i * 1.3) + (i % 17) * 3));
+
+// Every chart type, as the gallery's "one of each"
+const CHARTS = [
+  ['ColumnChart', 'Spend by quarter', p => h(I.ColumnChart, { data: col, valueLabel: 'Spend', format: money, ...p })],
+  ['ColumnChart + reference', 'Spend vs peer median', p => h(I.ColumnChart, { data: colRef, valueLabel: 'Spend', format: money, ...p })],
+  ['HistogramChart', 'Risk score distribution', p => h(I.HistogramChart, { values: hist, bins: 10, ...p })],
+  ['BarChart', 'Value by objective', p => h(I.BarChart, { data: bars, valueLabel: 'Value', format: pct, sort: true, ...p })],
+  ['GroupedColumnChart (3)', 'Spend by region', p => h(I.GroupedColumnChart, { data: groupData(3), series: ser(3), format: money, ...p })],
+  ['StackedColumnChart (5)', 'Spend by asset class', p => h(I.StackedColumnChart, { data: stackData(5), series: ser(5), format: money, ...p })],
+  ['LineChart (3, end labels)', 'Forecast by program', p => h(I.LineChart, { data: lineData(3), series: ser(3), format: money, ...p })],
+  ['LineChart (1)', 'Total forecast', p => h(I.LineChart, { data: lineData(1), series: [{ key: 's0', label: 'Forecast' }], format: money, ...p })],
+  ['AreaChart (2)', 'Cumulative spend', p => h(I.AreaChart, { data: lineData(2), series: ser(2), format: money, endLabels: false, ...p })],
+  ['PieChart', 'Investments by status', p => h(I.PieChart, { data: donut, valueLabel: 'Investments', ...p })],
+  ['DonutChart', 'Investments by status', p => h(I.DonutChart, { data: donut, centerValue: '337', centerLabel: 'investments', valueLabel: 'Investments', ...p })],
+  ['ScatterChart (3)', 'Cost vs risk reduced', p => h(I.ScatterChart, { data: scatter, series: scatterSeries, xLabel: 'Days', yLabel: 'Cost', xUnit: 'days', yFormat: money, ...p })],
+  ['BubbleChart', 'Cost, risk and size', p => h(I.BubbleChart, { data: scatter.map(d => ({ ...d, series: undefined })), xLabel: 'Days', yLabel: 'Cost', sizeLabel: 'Assets', yFormat: money, ...p })],
+  ['GaugeChart', 'Budget used', p => h(I.GaugeChart, { value: 72, target: 85, label: 'of FY27 budget', ...p })],
+  ['WaterfallChart', 'Plan bridge FY26 → FY27', p => h(I.WaterfallChart, { data: wf, format: money, ...p })],
+  ['FunnelChart', 'Investment pipeline', p => h(I.FunnelChart, { data: funnel, ...p })],
+  ['HeatmapChart', 'Risk by asset class and year', p => h(I.HeatmapChart, { rows: hmRows, columns: hmCols, values: hmVals, valueLabel: 'risk score', lowLabel: 'Lower risk', highLabel: 'Higher risk', ...p })],
+];
+const STATES = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'No data'], ['no-results', 'No results'], ['error', 'Error']];
+const DENS = ['spacious', 'comfortable', 'compact'];
+
+function Seg({ value, onChange, options }) { return h(I.SegmentedControl, { size: 's', value, onChange, options: options.map(o => (typeof o === 'string' ? { value: o, label: o[0].toUpperCase() + o.slice(1) } : o)) }); }
+const Cell = (cap, node, key) => h('div', { className: 'rv-cell', key: key || cap }, node, h('span', { className: 'rv-cap' }, cap));
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function Palette() {
+  const names = ['Azure dark', 'Lemon light', 'Teal dark', 'Lilac light', 'Olive dark', 'Teal light', 'Orchid dark', 'Sky light', 'Mulberry dark', 'Cyan light', 'Cyan dark', 'Pink light'];
+  const [, force] = React.useState(0);
+  React.useEffect(() => { force(1); }, []);
+  return h(React.Fragment, null,
+    h('h3', null, 'Categorical v2g (1–8 by default; 9–12 only with direct labels; then Other)'),
+    h('div', { className: 'rv-sw' }, names.map((n, i) => h('div', { key: n }, h('i', { style: { background: `var(--color-data-viz-categorical-${i + 1})` } }), `${i + 1} · ${n}`, h('span', null, cssVar(`--palette-data-viz-categorical-${i + 1}`)))),
+      h('div', { key: 'o' }, h('i', { style: { background: 'var(--color-data-viz-other)' } }), 'Other', h('span', null, cssVar('--palette-core-400')))),
+    h('h3', null, 'Sequential ramps (shared 9-step ladder; azure is the default; red and green are the good / bad option only)'),
+    h('div', { style: { display: 'flex', flexDirection: 'column', gap: 'var(--space-100)' } },
+      ['azure', 'teal', 'orchid', 'pink', 'yellow', 'red', 'green'].map(f => h('div', { key: f, className: 'rv-ramp' }, h('span', null, f), Array.from({ length: 9 }, (_, i) => h('i', { key: i, title: `--color-data-viz-sequential-${f}-${i + 1}`, style: { background: `var(--color-data-viz-sequential-${f}-${i + 1})` } }))))),
+    h('h3', null, 'Diverging: azure ↔ pink, light midpoint core-750 (negative 3 · 2 · 1 · midpoint · positive 1 · 2 · 3)'),
+    h('div', { className: 'rv-ramp', style: { gridTemplateColumns: '6rem repeat(7, 1fr)' } }, h('span', null, 'diverging'),
+      ['negative-3', 'negative-2', 'negative-1', 'midpoint', 'positive-1', 'positive-2', 'positive-3'].map(k => h('i', { key: k, title: `--color-data-viz-diverging-${k}`, style: { background: `var(--color-data-viz-diverging-${k})` } }))));
+}
+
+function App() {
+  const [dens, setDens] = React.useState('comfortable');
+  const [state, setState] = React.useState('default');
+  const [cols, setCols] = React.useState('3');
+  React.useEffect(() => { document.documentElement.setAttribute('data-density', dens); }, [dens]);
+  const st = state === 'default' ? undefined : state;
+  return h('div', { className: 'rv' },
+    h('div', { className: 'rv-head' },
+      h('h1', null, 'Data visualisation review · 2.0.6'),
+      h('p', null, 'Every decision from the Nov 24 data viz round (D1–D9) in the coded kit: the chart card on the container rule with a fixed height, the header order, solid gridlines, legends by chart type, the hover and tooltip, the v2g palette, stacks and corners, and the four states. Hover a chart, or Tab to it and use the arrow keys; Esc closes the tooltip.')),
+    h('div', { className: 'rv-bar' },
+      h('label', null, 'Density', h(Seg, { value: dens, onChange: setDens, options: DENS })),
+      h('label', null, 'State', h(Seg, { value: state, onChange: setState, options: STATES.map(([v, l]) => ({ value: v, label: l })) })),
+      h('label', null, 'Columns', h(Seg, { value: cols, onChange: setCols, options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }] }))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D1 · D2 · Every chart type (state and density from the bar above)'),
+      h('p', null, 'Default card 320 / 284 / 248 (Spacious / Comfortable / Compact); the plot fills what is left after the header and legend. Header: title · [hover: drag, Edit with Cooper] · Chart / Table switch · Evidence. The switch and Evidence hide while there is no data.'),
+      h('div', { className: 'rv-grid', style: { '--cols': cols } }, CHARTS.map(([name, title, f]) => Cell(name, f({ title, state: st, onRetry: () => {}, onClearFilters: () => {} }), name)))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D9 · States keep the card height'),
+      DENS.map(d => h('div', { key: d, 'data-density': d, className: 'rv-stack' }, h('span', { className: 'rv-h' }, d),
+        h('div', { className: 'rv-grid', style: { '--cols': 5 } }, STATES.map(([s, l]) => Cell(l, h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money, state: s === 'default' ? undefined : s, onRetry: () => {}, onClearFilters: () => {} }), s)))))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D2 · Dashboard grid: stat row, default and large cards'),
+      h('p', null, 'Stat cards sit in their own full-width row. A large card is exactly two default cards plus the gap, so it lines up with two stacked default cards.'),
+      h('div', { className: 'rv-dash' },
+        ['Total cost FY27', 'Investments', 'Over budget', 'Risk reduced'].map((t, i) => h(I.StatCard, { key: t, className: 's3', title: t, value: [money(48.2e6), '1,621', '14', money(21.4e6)][i], description: ['12% over budget', 'In 14 portfolios', '3 more than Q1', 'Across all regions'][i], descriptionPosition: 'inline' })),
+        h('div', { className: 's6' }, h(I.HeatmapChart, { size: 'large', title: 'Risk by asset class and year (large)', rows: hmRows, columns: hmCols, values: hmVals, valueLabel: 'risk score', classes: 9 })),
+        h('div', { className: 's6 rv-stack' },
+          h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money }),
+          h(I.LineChart, { title: 'Forecast by program', data: lineData(3), series: ser(3), format: money })))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D3 · Axes and grid'),
+      h('p', null, 'Solid 1 px gridlines (--color-border), zero line --color-border-strong. 5 value labels by default; valueTicks sets 2–8 intervals; labels closer than 24 px thin out, gridlines stay. Category labels thin out (first and last kept), never rotate.'),
+      h('div', { className: 'rv-grid', style: { '--cols': 4 } },
+        [2, 4, 6, 8].map(n => Cell(`valueTicks ${n} (${n + 1} labels)`, h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money, valueTicks: n }), 'vt' + n))),
+      h('div', { className: 'rv-grid', style: { '--cols': 3 } },
+        Cell('12 months in a narrow card: labels thinned', h('div', { style: { maxWidth: '20rem' } }, h(I.ColumnChart, { title: 'Spend by month', data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((l, i) => ({ label: `${l} 2027`, value: (3 + (i * 7) % 9) * 1e5 })), valueLabel: 'Spend', format: money }))),
+        Cell('negative values: rounded end away from the baseline', h(I.ColumnChart, { title: 'Variance vs plan', data: Q.map((l, i) => ({ label: l, value: [1.2, -0.8, 2.1, -1.6, 0.4, -0.05][i] * 1e6 })), valueLabel: 'Variance', format: money })),
+        Cell('line chart, not zero-based', h(I.LineChart, { title: 'Condition index', data: YEARS.map((l, i) => ({ label: l, s0: 71 + Math.sin(i) * 3 + i })), series: [{ key: 's0', label: 'Condition' }] })))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D4 · D6 · Legends by chart type and series counts'),
+      h('p', null, 'Line: names at the line ends, legend below when they collide. Bars and areas: legend below, start-aligned. Stacks: below, in stack order. Pie and donut: a list beside with values. Heatmap: a scale bar. Bubbles: a size key. One series: no legend. Up to 8 series, 9–12 only with direct labels, then "Other".'),
+      h('div', { className: 'rv-grid', style: { '--cols': cols } },
+        Cell('Line, 6 series: end labels collide → legend below', h(I.LineChart, { title: 'Forecast by program', data: lineData(6), series: ser(6), format: money })),
+        Cell('Line, 10 series in a large card: end labels fit (9–12 only with direct labels)', h(I.LineChart, { size: 'large', title: 'Forecast by program', data: multi(YEARS, 10, (i, j) => (100 + j * 100 + i * 6 + (i % 2) * 8) * 1e4), series: ser(10), format: money })),
+        Cell('Line, 12 series: legend below, 7 + Other (grey lines)', h(I.LineChart, { title: 'Forecast by program', data: lineData(12), series: ser(12), format: money })),
+        Cell('Line, dashed plan: legend swatch is a dashed line', h(I.LineChart, { title: 'Actual vs plan', endLabels: false, data: lineData(2), series: [{ key: 's0', label: 'Actual' }, { key: 's1', label: 'Plan', dashed: true }], format: money })),
+        Cell('Stacked, 8 segments', h(I.StackedColumnChart, { title: 'Spend by asset class', data: stackData(8), series: ser(8), format: money })),
+        Cell('Stacked, 11 series → 8 + Other', h(I.StackedColumnChart, { title: 'Spend by asset class', data: stackData(11), series: ser(11), format: money })),
+        Cell('Grouped, 4 series (the cap)', h(I.GroupedColumnChart, { title: 'Spend by region', data: groupData(4), series: ser(4), format: money })),
+        Cell('Grouped, 6 series → first 4 drawn (console warning)', h(I.GroupedColumnChart, { title: 'Spend by region', data: groupData(6), series: ser(6), format: money })),
+        Cell('Donut, 10 slices → 7 + Other', h(I.DonutChart, { title: 'Spend by asset class', data: donut10, centerValue: '112', centerLabel: 'total', format: v => `${v}%` })),
+        Cell('Heatmap, 5 classes on azure', h(I.HeatmapChart, { title: 'Risk by asset class and year', rows: hmRows, columns: hmCols, values: hmVals })),
+        Cell('Heatmap, teal ramp', h(I.HeatmapChart, { title: 'Condition by asset class', ramp: 'teal', rows: hmRows, columns: hmCols, values: hmVals })),
+        Cell('Grouped, narrow card with 4 series (width clamp)', h('div', { style: { maxWidth: '16rem' } }, h(I.GroupedColumnChart, { title: 'Spend by region', data: groupData(4), series: ser(4), format: money }))),
+        Cell('Legend over 2 lines → +N more', h('div', { style: { maxWidth: '22rem' } }, h(I.StackedColumnChart, { title: 'Spend by asset class', data: stackData(8), series: ser(8).map((s, i) => ({ ...s, label: s.label + ' programme ' + (i + 1) })), format: money }))))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D5 · Hover and tooltip (open by default here)'),
+      h('p', null, 'The whole column is the hit area; the hovered mark keeps its colour, the others darken (never transparent). The tooltip sits beside the mark with an 8 px gap, end side first, start side near the edge; it is content-sized and hoverable. Points get a 24 px hit area.'),
+      h('div', { className: 'rv-grid', style: { '--cols': 3 } },
+        Cell('Column, tooltip on the end side', h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money, defaultActive: 1 })),
+        Cell('Column, last bar: start side', h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money, defaultActive: 5 })),
+        Cell('Stacked, rows in stack order', h(I.StackedColumnChart, { title: 'Spend by asset class', data: stackData(5), series: ser(5), format: money, defaultActive: 2 })),
+        Cell('Line, all series at the point', h(I.LineChart, { title: 'Forecast by program', data: lineData(3), series: ser(3), format: money, defaultActive: 3 })),
+        Cell('Scatter point', h(I.ScatterChart, { title: 'Cost vs risk reduced', data: scatter, series: scatterSeries, xLabel: 'Days', yLabel: 'Cost', yFormat: money, defaultActive: 4 })),
+        Cell('Donut slice', h(I.DonutChart, { title: 'Investments by status', data: donut, defaultActive: 1 })))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D6 · D7 · Palette'), h(Palette)),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'D8 · Bars and segments on the palette'),
+      h('p', null, 'BarChartItem colour index = categorical slot; in-bar labels white on the dark slots and black on the light slots (4.5:1 or more).'),
+      h('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 'var(--space-200)' } }, Array.from({ length: 12 }, (_, i) => h(I.BarChartItem, { key: i, color: i + 1 }, `${i + 1}`)))),
+
+    h('section', { className: 'rv-sec' }, h('h2', null, 'Parts'),
+      h('div', { className: 'rv-grid', style: { '--cols': 3 } },
+        Cell('LegendSwatch shapes', h('div', { style: { display: 'flex', gap: 'var(--space-500)', flexWrap: 'wrap' } }, ['square', 'line', 'dashed', 'dot'].map((s, i) => h(I.LegendSwatch, { key: s, shape: s, color: i + 1, label: s })))),
+        Cell('SegmentedControl iconOnly (M and S)', h('div', { style: { display: 'flex', gap: 'var(--space-400)' } },
+          h(I.SegmentedControl, { iconOnly: true, size: 'm', options: [{ value: 'chart', icon: 'chart', label: 'Chart' }, { value: 'table', icon: 'system-table', label: 'Table' }] }),
+          h(I.SegmentedControl, { iconOnly: true, size: 's', options: [{ value: 'chart', icon: 'chart', label: 'Chart' }, { value: 'table', icon: 'system-table', label: 'Table' }] }))),
+        Cell('DataVizTooltip (chart): content-sized', h(I.DataVizTooltip, { variant: 'chart', title: 'Q2 FY26', items: [{ label: 'Actual', value: '$11.4M', color: 1, shape: 'line' }, { label: 'Plan', value: '$10.2M', color: 2, shape: 'dashed' }] })))));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(h(App));
+</script>
+</body>
+</html>
