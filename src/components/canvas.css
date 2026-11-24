@@ -193,7 +193,7 @@
 /* ---------- sankey-atom (1853:12325) / sankey-header (2698:64494) / sankey-organism (4457:53304) ---------- */ /* stubs and source bars stay px (diagram geometry); the parts that hold text scale */
 .ifs-sankey-node{--stub:var(--color-border);display:inline-flex;align-items:center;gap:var(--space-150);cursor:default;outline:none}
 .ifs-sankey-node__stub{position:relative;display:flex;flex-direction:column;flex:none;width:25px}
-.ifs-sankey-node__stub i{display:block;height:16px;background:var(--stub);box-shadow:-2px 0 0 var(--color-border-strong),2px 0 0 var(--color-border-strong)}
+.ifs-sankey-node__stub i{display:block;height:16px;background:var(--stub);box-shadow:calc(-1 * var(--border-width-selected)) 0 0 var(--color-border-strong),var(--border-width-selected) 0 0 var(--color-border-strong)} /* ltr: sankey stub caps, symmetric */
 .ifs-sankey-node__stub::after{content:"";position:absolute;right:-2px;top:0;bottom:0;width:2px;background:var(--sankey-accent,var(--color-border-strong))} /* ltr: sankey geometry */
 .ifs-sankey-node__card{display:inline-flex;align-items:center;gap:var(--space-200);height:var(--size-32);box-sizing:border-box;padding:var(--space-100);white-space:nowrap;
   border-radius:var(--radius-mark);background:var(--color-surface-elevation-1);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong) /* raw stroke weight */;
@@ -251,7 +251,7 @@
 .ifs-timeline-chart{--phase-col:20rem;display:flex;flex-direction:column;border-radius:var(--radius-card);background:var(--color-surface-secondary);overflow:hidden}
 .ifs-timeline-chart__head{display:flex;height:var(--size-64);background:var(--color-surface-overlay)}
 .ifs-timeline-chart__phase-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-200);flex:none;width:var(--phase-col);box-sizing:border-box;
-  padding:calc(var(--space-200) + var(--size-1)) var(--space-300) var(--space-200);box-shadow:inset -1px -1px 0 var(--color-border-soft);
+  padding:calc(var(--space-200) + var(--size-1)) var(--space-300) var(--space-200);box-shadow:inset calc(-1 * var(--border-width-default)) calc(-1 * var(--border-width-default)) 0 var(--color-border-soft);
   color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
 .ifs-timeline-chart__add{visibility:hidden;margin-top:calc(-1 * var(--space-100))}
 .ifs-timeline-chart:hover .ifs-timeline-chart__add,.ifs-timeline-chart[data-state=hover] .ifs-timeline-chart__add,.ifs-timeline-chart__add:focus-visible{visibility:visible}

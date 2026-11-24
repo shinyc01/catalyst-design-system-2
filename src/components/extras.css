@@ -68,7 +68,7 @@
   mask:conic-gradient(from calc(var(--dir) - 45deg),#000 0 90deg,transparent 90deg)}
 .ifs-circular-menu__glow.is-on{opacity:.6}
 .ifs-circular-menu__rim{position:absolute;inset:0;border-radius:50%;opacity:0;transition:opacity var(--motion-duration-50) var(--motion-ease-standard);pointer-events:none;
-  box-shadow:inset 0 0 0 2px var(--color-border-selected);
+  box-shadow:inset 0 0 0 var(--border-width-selected) var(--color-border-selected);
   -webkit-mask:conic-gradient(from calc(var(--dir) - 45deg),transparent 0,#000 30deg,#000 60deg,transparent 90deg);
   mask:conic-gradient(from calc(var(--dir) - 45deg),transparent 0,#000 30deg,#000 60deg,transparent 90deg)}
 .ifs-circular-menu__rim.is-on{opacity:1}
@@ -107,7 +107,7 @@
 .ifs-phone__country:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
 .ifs-phone__country:disabled{cursor:not-allowed}
 .ifs-phone__country .ifs-icon{color:var(--color-icon)}
-.ifs-phone__flag{display:inline-block;flex:none;width:var(--size-20);height:var(--size-14);border-radius:1px /* raw in Figma */;overflow:hidden}
+.ifs-phone__flag{display:inline-block;flex:none;width:var(--size-20);height:var(--size-14);border-radius:var(--size-1) /* flag artwork corner (raw in Figma), not a radius role */;overflow:hidden}
 .ifs-phone__flag svg{display:block;width:100%;height:100%}
 .ifs-phone__flag--none{background:var(--color-surface-tertiary)}
 .ifs-phone__body{display:flex;align-items:center;flex:1;min-width:0;gap:var(--space-200)}

@@ -142,7 +142,7 @@
 .ifs-popover__search{display:flex;align-items:center;gap:var(--space-100);flex:1 1 auto;min-width:0;height:var(--size-control-m);padding:var(--space-200);
   border-radius:var(--radius-control);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-input);color:var(--color-icon-soft)}
 .ifs-popover__search:hover{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-input-hover)}
-.ifs-popover__search:focus-within{box-shadow:inset 0 0 0 1px var(--color-border-strong)}
+.ifs-popover__search:focus-within{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-popover__search input{flex:1 1 auto;min-width:0;border:0;padding:0;margin:0;background:none;outline:none;color:var(--color-text);
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-popover__search input::placeholder{color:var(--color-text-softer)}
