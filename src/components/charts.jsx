@@ -442,7 +442,7 @@ function useDelayed(on, ms = 300) {
   return on && shown;
 }
 
-// Legend row (below the plot, start-aligned, D4): max 2 lines; entries that would start a third line are replaced by "+N more"
+// Legend row (below the plot, centred, D4): max 2 lines; entries that would start a third line are replaced by "+N more"
 // (their names in its tooltip; every value is in the table view).
 function LegendRow({ children, beside }) {
   const ref = React.useRef(null);
@@ -1114,12 +1114,19 @@ function GaugeChart(props) {
   const { value = 0, min = 0, max = 100, target, reference, format = v => IFS.format.percent(v), label, valueLabel = 'Value', targetLabel = 'Target',
     referenceLabel = 'Peer median', color = 1, tooltip } = props;
   const p = usePlot({ ...props, defaultActive: props.defaultActive ? 0 : null });
-  // the arc is as thick as the donut ring in the same box (R × 0.34), with square ends (review Nov 25)
+  // the arc is as thick as the donut ring in the same box (R × 0.34), with --radius-mark ends (review Nov 25)
   const donutR = Math.max(8, Math.min(124, p.H / 2 - 4, p.W / 2 - 8)), sw = Math.max(8, donutR * 0.34);
   const R = Math.max(16, Math.min(150, p.W / 2 - sw / 2 - 8, p.H - sw / 2 - p.px * 1.34 - 12)), cx = p.W / 2, cy = p.H - p.px * 1.34 - 8;
   const ang = v => Math.PI * Math.max(0, Math.min(1, (v - min) / (max - min || 1))); // 0 = left end, π = right end
   const pt = (v, r) => [cx - r * Math.cos(ang(v)), cy - r * Math.sin(ang(v))];
-  const arc = (v0, v1) => { const [x0, y0] = pt(v0, R), [x1, y1] = pt(v1, R); return `M${x0},${y0}A${R},${R} 0 0 1 ${x1},${y1}`; };
+  // the arc as a filled band with --radius-mark corners (2 px, like the bars): inset by the radius, then a 2 × radius round-joined stroke
+  const band = (v0, v1) => {
+    const ro = R + sw / 2 - R_MARK, ri = R - sw / 2 + R_MARK;
+    const a0 = ang(v0), a1 = ang(v1);
+    if (a1 - a0 < (2 * R_MARK) / ri) return '';
+    const P = (r, a) => `${cx - r * Math.cos(a)},${cy - r * Math.sin(a)}`;
+    return `M${P(ro, a0 + R_MARK / ro)}A${ro},${ro} 0 0 1 ${P(ro, a1 - R_MARK / ro)}L${P(ri, a1 - R_MARK / ri)}A${ri},${ri} 0 0 0 ${P(ri, a0 + R_MARK / ri)}Z`;
+  };
   const tick = (v, r0, r1) => { const [x0, y0] = pt(v, r0), [x1, y1] = pt(v, r1); return { x1: x0, y1: y0, x2: x1, y2: y1 }; };
   const legend = { items: [{ label: valueLabel, color }, target != null && { label: targetLabel, target: true }, reference != null && { label: referenceLabel, color: WHITE, shape: 'dashed' }] };
   const table = { columns: [{ key: 'label', title: 'Measure' }, { key: 'v', title: 'Value' }],
@@ -1133,12 +1140,13 @@ function GaugeChart(props) {
   return (
     <ChartShell {...shellProps(props)} skeleton="ring" legend={legend} table={table}>
       <Plot p={p} label={props.title} tip={tip} n={1} pick={pick} describe={() => `${valueLabel}: ${format(value)}${target != null ? `, ${targetLabel} ${format(target)}` : ''}`}>
-        <path d={arc(min, max)} fill="none" stroke="var(--color-border-soft)" strokeWidth={sw} strokeLinecap="butt" />
-        {value > min && <path d={arc(min, value)} fill="none" stroke={dvColor(color)} strokeWidth={sw} strokeLinecap="butt" />}
+        <path d={band(min, max)} fill="var(--color-border-soft)" stroke="var(--color-border-soft)" strokeWidth={2 * R_MARK} strokeLinejoin="round" />
+        {value > min && <path d={band(min, value)} fill={dvColor(color)} stroke={dvColor(color)} strokeWidth={2 * R_MARK} strokeLinejoin="round" />}
         {reference != null && <line {...tick(reference, R - sw * 0.6, R + sw * 0.6)} stroke={WHITE} strokeWidth={3} strokeDasharray="4 3" />}
         {target != null && <line {...tick(target, R - sw / 2, R + sw)} stroke="var(--color-border-on-solid)" strokeWidth={2} strokeLinecap="round" opacity={0.9} />}
-        <text x={cx} y={cy - (label ? p.px * 1.34 + 6 : 4)} textAnchor="middle" className="ifs-chart__gauge-value">{format(value)}</text>
-        {label && <text x={cx} y={cy - 4} textAnchor="middle" className="ifs-chart__axis">{label}</text>}
+        {/* the number at the optical centre of the arc (the centroid of the inner half-disc, 4r / 3π), its label under it */}
+        <text x={cx} y={cy - ((R - sw / 2) * 4) / (3 * Math.PI) - (label ? p.px * 0.8 : 0)} dy="0.35em" textAnchor="middle" className="ifs-chart__gauge-value">{format(value)}</text>
+        {label && <text x={cx} y={cy - ((R - sw / 2) * 4) / (3 * Math.PI) + p.px * 1.2} dy="0.35em" textAnchor="middle" className="ifs-chart__axis">{label}</text>}
         <text x={cx - R} y={cy + p.px * 1.34 + 4} textAnchor="middle" className="ifs-chart__axis">{format(min)}</text>
         <text x={cx + R} y={cy + p.px * 1.34 + 4} textAnchor="middle" className="ifs-chart__axis">{format(max)}</text>
       </Plot>

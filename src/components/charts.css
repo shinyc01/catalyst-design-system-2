@@ -112,12 +112,12 @@
 .ifs-dv-card--chart.ifs-dv-card--bare{height:100%;min-height:calc(2 * var(--size-data-viz-row)) /* fills its frame; a floor when the frame has no height */}
 .ifs-dv-card.ifs-dv-card--bare::before{display:none}
 .ifs-dv-card__legend{display:flex;flex-wrap:wrap;justify-content:center;column-gap:var(--space-500)}
-/* D4: below the plot, start-aligned, never between the title and the chart; max 2 lines (then "+N more") */
+/* D4: below the plot, centred (review Nov 25), never between the title and the chart; max 2 lines (then "+N more") */
 .ifs-dv-card--chart .ifs-dv-card__legend{flex:none;display:block}
 .ifs-dv-card--chart .ifs-dv-card__legend--beside{flex:0 0 auto;min-width:0;max-width:50%;overflow:auto;align-self:center;max-height:100%}
-.ifs-chart__legend{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--space-500);min-width:0}
+.ifs-chart__legend{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;column-gap:var(--space-500);min-width:0}
 .ifs-chart__legend > .ifs-dv-legend{padding-block:var(--space-50);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* legend labels Body/S (rule 11.10) */
-.ifs-chart__legend--beside{flex-direction:column;flex-wrap:nowrap;align-items:stretch}
+.ifs-chart__legend--beside{flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start}
 .ifs-chart__legend-more{color:var(--color-text-softer)}
 
 /* ================= data-viz-modal-organism (4440:32681) / chart-info-modal tooltip ================= */
@@ -125,10 +125,10 @@
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-80));
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text);text-align:start}
 .ifs-dv-tooltip--chart{width:max-content;min-width:12rem;max-width:20rem; /* D5: content-sized */
-  gap:var(--space-100);padding-block:var(--space-200)} /* compact (review, Nov 25): inset at start / end only; title → rows space-100 */
+  gap:var(--space-150)} /* review round 2 (Nov 25): one inset all round (the base padding), title → rows space-150 */
 .ifs-dv-tooltip--chart .ifs-dv-tooltip__head{gap:var(--space-50)}
-.ifs-dv-tooltip--chart .ifs-dv-tooltip__items{gap:var(--space-50)}
-.ifs-dv-tooltip--chart .ifs-dv-tooltip__item{padding-block:0} /* rows space-50 apart */
+.ifs-dv-tooltip--chart .ifs-dv-tooltip__items{gap:var(--space-100)}
+.ifs-dv-tooltip--chart .ifs-dv-tooltip__item{padding-block:0} /* rows space-100 apart */
 .ifs-dv-tooltip__head{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-dv-tooltip__titlerow{display:flex;align-items:flex-end;gap:var(--space-200)}
 .ifs-dv-tooltip__titles{flex:1;display:flex;flex-direction:column;gap:var(--space-50);min-width:0}
