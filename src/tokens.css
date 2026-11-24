@@ -61,6 +61,7 @@
 --color-icon-success:var(--palette-success-500);
 --color-icon-danger:var(--palette-danger-500);
 --color-icon-warning:var(--palette-warning-500);
+--color-icon-completed:var(--palette-white-alpha-75); /* S3 (Nov 24): completed stepper steps, the check and its bar: one step back from the current step */
 /* Borders (softer · soft · base · strong; control, selected, input) */
 --color-border-soft:var(--palette-white-alpha-10);
 --color-border:var(--palette-white-alpha-20);

@@ -116,9 +116,11 @@
 .ifs-step__text .ifs-icon{color:var(--color-icon)}
 .ifs-step__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-step__line{height:var(--size-4);border-radius:var(--radius-pill);overflow:hidden}
-.ifs-step--completed .ifs-step__line{background:var(--color-icon)}
-/* In progress: Figma draws 1px diagonal hairlines in border/selected, 12px tall vectors at -12 gap (approximated) */
-.ifs-step--in-progress .ifs-step__line{background:repeating-linear-gradient(-60deg,var(--color-border-selected) 0 1px,transparent 1px 4px) /* approximates Figma's line vectors */}
+/* S3 (Nov 24, B monochrome): the current step is the one solid white bar with a white icon and a medium label; completed steps step
+   back to white 75% (check and bar) with a regular label, so done-so-far reads as one bar; not started stays faint */
+.ifs-step--in-progress .ifs-step__line{background:var(--color-border-selected)}
+.ifs-step--completed .ifs-step__line{background:var(--color-icon-completed)}
+.ifs-step--completed .ifs-step__text{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Label/M at regular weight = Body/M/regular (same size and tracking) */
 .ifs-step--not-started .ifs-step__text{color:var(--color-text-soft)}
 .ifs-step--not-started .ifs-step__line{background:var(--color-surface-tertiary)}
 .ifs-step--active{background:var(--color-background-neutral-soft)}
@@ -280,6 +282,6 @@
 .ifs-app-shell--panel-over .ifs-app-shell__panel{position:absolute;inset-block:var(--float-inset);inset-inline-end:var(--float-inset);z-index:var(--z-index-floating);max-width:calc(100% - 2 * var(--float-inset));box-shadow:var(--elevation-floating)}
 .ifs-app-shell__bottom{flex:none}
 
-/* Stepper icons: Figma overrides the success icon's green to icon/primary (check reads as a cut-out) */
-.ifs-step--completed .ifs-step__text .ifs-icon path:first-child{fill:var(--color-icon)}
+/* Stepper icons: the success icon's green becomes the completed white 75% (S3); the check reads as a cut-out */
+.ifs-step--completed .ifs-step__text .ifs-icon path:first-child{fill:var(--color-icon-completed)}
 .ifs-step--completed .ifs-step__text .ifs-icon path:nth-child(2){fill:var(--color-surface-primary)}
