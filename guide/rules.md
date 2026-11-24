@@ -416,7 +416,16 @@ This section is writing guidance for screens, as in other large design systems (
 | no-results | No Frameworks Match Your Filters | Try a different term, or clear filters to see all frameworks. | Clear filters |
 | no-results-similar | No Results for "WDRM-2" | You might be looking for + chips | — |
 
-8.23 Loading: prefer a skeleton. Text is "Loading…" or "Loading investments…" with the `…` character; long jobs say what and how far ("Re-scoring 1,621 investments… 40%"). Give `LoadingRegion` a `label` naming the content.
+8.23 Loading: prefer a skeleton. Text is "Loading…" or "Loading investments…" with the `…` character; long jobs say what and how far ("Re-scoring 1,621 investments… 40%"). Give `LoadingRegion` a `label` naming the content. Which indicator, when (L2, Nov 24; [NN/g response time limits](https://www.nngroup.com/articles/response-times-3-important-limits/)):
+
+| Wait | Show | Kit |
+|---|---|---|
+| under 300 ms | nothing (no flash) | `LoadingRegion delay` (300) |
+| 300 ms – 10 s, known layout | a skeleton of that layout, kept at least 300 ms | `LoadingRegion skeleton`, `minDuration` (300) |
+| 300 ms – 10 s, unknown shape or an action | the dotted loader (`system-loader`, rule 7.15); for an action, in its button | `Spinner`; `Button loading` |
+| over 10 s | determinate progress saying what and how far ("Re-scoring 1,621 investments… 40%"), with Cancel where possible; the page stays usable | `ProgressBar showValue` |
+| appending to a list | a loader at the end of the list | `LoadingMore` |
+
 8.24 Confirmations: ask only when the action can't be undone or affects other people; otherwise act and offer Undo. Title = action + object as a question ("Delete This Comment?"); body = the specific consequence ("… This can't be undone."); primary repeats verb + object ("Delete comment"), destructive style where Figma has it; secondary "Cancel". Never "Are you sure?", never Yes / No / OK.
 
 **Numbers and dates** (helpers in brackets)
