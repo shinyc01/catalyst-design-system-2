@@ -117,7 +117,7 @@
 .ifs-phone__menu{position:absolute;inset-inline-start:0;top:calc(100% + var(--space-100));z-index:var(--z-index-popover);
   display:flex;flex-direction:column;min-width:13.75rem;max-height:12.25rem;overflow-y:auto;box-sizing:border-box;
   padding:var(--space-100);border-radius:var(--radius-floating);
-  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
+  background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating) /* C1 level 2 */;
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));
   scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;text-transform:none;letter-spacing:var(--font-body-m-regular-tracking)}
 .ifs-phone__option{flex:none;display:flex;align-items:center;gap:var(--space-200);height:var(--size-control-m) /* list row 36 / 32 / 28 */;box-sizing:border-box;

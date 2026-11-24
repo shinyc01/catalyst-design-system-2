@@ -208,6 +208,7 @@
 .ifs-calendar__events i.is-danger{background:var(--color-icon-danger)}
 .ifs-calendar__events i.is-warning{background:var(--color-icon-warning)}
 .ifs-datepicker__popover{position:absolute;inset-inline-start:0;z-index:var(--z-index-popover)}
+.ifs-datepicker__popover > .ifs-calendar,.ifs-floating > .ifs-calendar{border-radius:var(--radius-floating);box-shadow:var(--elevation-floating)} /* C1 level 2 + B2 floating 8 when the calendar opens as a date picker; inline calendars stay flat */
 .ifs-datepicker__popover--down{top:calc(100% + var(--space-100))}
 .ifs-datepicker__popover--up{bottom:calc(100% + var(--space-100))}
 /* Inside the body-level Floating wrapper the wrapper does the positioning (see Floating in selection.jsx). */
@@ -215,7 +216,7 @@
 
 /* DatePicker showApply (date-picker-molecule show-apply-button): the popover becomes the surface; Apply = Secondary M, full width */
 .ifs-datepicker__popover--apply{display:flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:17.75rem;padding:var(--space-inset);
-  border-radius:var(--radius-floating);background:var(--color-surface-elevation-2);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);
+  border-radius:var(--radius-floating);background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating) /* C1 level 2 */;
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
 .ifs-datepicker__popover--apply .ifs-calendar{width:auto;padding:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .ifs-datepicker__apply{width:100%}
@@ -236,7 +237,7 @@
 .ifs-menu__list{
   display:flex;flex-direction:column;box-sizing:border-box;min-width:7.5rem;max-height:min(25rem, calc(100vh - var(--size-16)));overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-floating);
-  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
+  background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating) /* C1 level 2 */;
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80)); /* effect blur/strong */
   scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;
 }

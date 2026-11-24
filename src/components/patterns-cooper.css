@@ -129,7 +129,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 
 /* ---------- chat-collapsed-bar-organism (inline quick mode) ---------- */
 .ifs-chat-bar{box-sizing:border-box;width:20rem;display:flex;flex-direction:column;border-radius:var(--radius-pill);
-  box-shadow:inset 0 0 0 var(--border-width-default) var(--edge,var(--color-border-soft)),var(--elevation-3)}
+  box-shadow:inset 0 0 0 var(--border-width-default) var(--edge,var(--color-border-soft)),var(--elevation-2) /* C1 level 2 (its own edge colour) */}
 .ifs-chat-bar:hover,.ifs-chat-bar[data-state=hover]{--edge:var(--color-border)}
 .ifs-chat-bar--multi{border-radius:var(--radius-300) /* 12: no B2 role decided for multi-line inputs, bubbles and the comment thread (basic components) */;--edge:var(--color-border)}
 .ifs-chat-bar__row{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-200);min-height:var(--size-48);box-sizing:border-box}
@@ -217,7 +217,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 
 /* history search overlay (search-chat-history-card list) */
 .ifs-history-search{width:37.5rem;max-width:100%;height:25rem;display:flex;flex-direction:column;border-radius:var(--radius-card);overflow:hidden;
-  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-3)}
+  box-shadow:var(--elevation-floating) /* C1 level 2 */}
 .ifs-history-search__field{display:flex;align-items:center;gap:var(--space-200);height:var(--size-control-xl);flex:none;padding:0 var(--space-300);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-history-search__field input{all:unset;flex:1;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text)}
 .ifs-history-search__field input::placeholder{color:var(--color-text-softer)}
@@ -234,7 +234,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--col
 
 /* ---------- agent-window-organism (Cooper recommendations window) ---------- */
 .ifs-agent{box-sizing:border-box;width:var(--region-panel) /* the panel span */;display:flex;flex-direction:column;border-radius:var(--radius-floating-l);
-  box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-3);max-height:100%;overflow:hidden}
+  box-shadow:var(--elevation-floating) /* C1 level 2 */;max-height:100%;overflow:hidden}
 .ifs-agent__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);flex:none;box-sizing:border-box;
   padding-block:calc(var(--space-inset) - var(--space-100)); /* same rule as the chat header: height from padding, inset minus one step (rule 3.3; was a fixed 40) */box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-agent--collapsed .ifs-agent__head{box-shadow:none}

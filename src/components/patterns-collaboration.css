@@ -69,7 +69,7 @@
 .ifs-role-select__trigger.is-disabled{--f:var(--color-background-neutral-softer);--b:var(--color-border-input-disabled);color:var(--color-text-disabled);cursor:not-allowed}
 .ifs-role-select__list,.ifs-role-filter__list{position:absolute;top:calc(100% + var(--space-100));inset-inline-end:0;z-index:var(--z-index-popover);
   display:flex;flex-direction:column;box-sizing:border-box;width:10rem;padding:var(--space-100);border-radius:var(--radius-floating);
-  background:var(--color-surface-elevation-2);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);
+  background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating) /* C1 level 2 */;
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))} /* effect blur/strong */
 .ifs-role-select__option,.ifs-role-filter__option{display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-28);
   padding:var(--space-100) var(--space-200);border-radius:var(--radius-control);color:var(--color-text-soft);cursor:pointer;
