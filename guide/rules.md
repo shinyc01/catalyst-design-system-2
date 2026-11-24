@@ -327,6 +327,12 @@ Docked panels sit flush against the content-area edge; the page beside them keep
 6.9 **No legend on the map:** counts go in the selected bar, the key in the Layers popover (`.ifs-slot-legend` stays for other canvases). Layers closes on outside click or Esc (rule 9.6).
 6.10 **Camera padding:** when a panel opens or the map flies to a target, centre the target in the visible gap.
 6.11 **Narrow:** below 1100 (`--bp-map-overlay`) the end panel sits over the map and closes on outside click or Esc (rule 9.6); below 720 (`--bp-map-sheet`) panels become a bottom sheet.
+6.12 **Map data states (L4, Nov 24): split by what still works.** No full-map skeleton and no scrim or card over a map that still works.
+- Loading: the base map at once, plus a small "Loading assets…" chip at the top centre with the dotted loader (`LoadingMore` "Loading assets…"); pins don't fake-load.
+- The map itself didn't load (no base map, nothing to interact with): the map region is replaced by `EmptyState cause="error"` (warning tone, Try again), with "Last synced …" from `IFS.format.dateTime` ("Last synced Nov 19, 2026, 3:44 PM"). No overlay on a dead map.
+- The base map works but the asset data, or one layer, didn't load: the map stays fully interactive; a warning `Alert` strip at the top of the map names what's missing ("Asset data didn't load." + Try again), and that layer's row in the Layers list shows the warning icon (`status-warning-filled`).
+- Filters or search match nothing: "No results" with Clear filters inside the asset hierarchy or search panel (`EmptyState cause="no-results"`), never in the centre of the map.
+- Panning or zooming to an area with no assets: no message.
 
 ---
 
