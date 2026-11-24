@@ -169,7 +169,7 @@ Use: One option row in a single-select popup.
 
 ### single-select-list-molecule · `Select`, `Menu`
 Use: The option popup. Group headers only when the list mixes kinds or sources (Recent / Suggested / Results).
-Code: `Select`'s option list, and `Menu`: the same list as a command menu anchored to a trigger (rule 7.9; sizes and the 4 offset rule 3.8). Motion: the list opens with a 2 drop in 100 (rule 1.8). Closing isn't animated yet (rule 1.8). Items take an icon, shortcut, description, danger, disabled with a reason, a selected check, dividers, section titles and submenus. Pattern helpers such as SplitButton are built on it.
+Code: `Select`'s option list, and `Menu`: the same list as a command menu anchored to a trigger (rule 7.9; sizes and the 4 offset rule 3.8). Motion: the list opens with a 2 drop in 100 and fades out in 50 (rule 1.8). Items take an icon, shortcut, description, danger, disabled with a reason, a selected check, dividers, section titles and submenus. Pattern helpers such as SplitButton are built on it.
 
 ### single-select-organism · `Select`
 Use: Choosing one option from a list.
@@ -282,7 +282,7 @@ Use: Rule 7.12.
 
 ### snackbar-organism · `Snackbar`
 Use: Rule 7.12; show one with `IFS.toast`. Placement: the one top-end stack, rule 4.8 (one page margin in, below the header, 8 apart, newest on top).
-Motion: slides in 16 from the end side over 100; stays 4000, paused on hover and focus (rule 1.8). Closing isn't animated yet (rule 1.8).
+Motion: slides in 16 from the end side over 100; stays 4000, paused on hover and focus; closes with a fade and 16 back to the end side in 50 (rule 1.8).
 
 ## Surfaces
 
@@ -290,7 +290,7 @@ Family note: all surfaces are organisms with a free content slot; the slot holds
 
 ### modal-organism · `Modal`
 Use: Rule 7.13. Examples: confirm a collaborator and role, a critical decision, a short Save/Cancel form.
-Motion: rises 2 over 200 and the scrim fades in over 200 (rule 1.8). Closing isn't animated yet (rule 1.8).
+Motion: rises 2 over 200 and the scrim fades in over 200; both fade out in 100 (rule 1.8).
 
 ### floating-bar-organism · `FloatingBar`
 Use: Contextual action bar, top-centre, shown while something is selected on the map: what is selected + actions (secondary buttons, then one primary) + ✕ to clear.
@@ -301,11 +301,11 @@ Use: Rule 7.14. Examples: confidence rail, inspector, reading pane. Full height,
 
 ### popover-organism · `Popover`
 Use: Rule 7.14 (width rule 4.5). Examples: detail preview, small picker, quick action list, view switcher, display settings, searchable list behind a count ("16 Documents").
-Motion: drops 2 over 100, 4 from its trigger (rules 1.8, 3.8). Closing isn't animated yet (rule 1.8).
+Motion: drops 2 over 100, 4 from its trigger; fades out in 50 (rules 1.8, 3.8).
 
 ### drawer-organism · `Drawer`
 Use: Rule 7.14. Example: node details on the map. Can expand to fill the content area. `floating` sits one `--float-inset` in, below the header and above the bottom sheet (rule 4.6).
-Motion: slides in from its edge over 200; reduced motion fades (rules 1.8, 9.11). Closing isn't animated yet (rule 1.8).
+Motion: slides in from its edge over 200; slides back out in 100; reduced motion fades (rules 1.8, 9.11).
 
 ### canvas-background · `CanvasBackground`
 Use: The infinite, pannable, zoomable ground plane for map-first and node-graph views (Value framework, Explore map).
@@ -899,7 +899,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 2. From a card: the drawer floats over the content area top-end, one `--float-inset` (the page margin, rule 4.6) in from the page header, the end edge and the bottom sheet; the screen places it (`Drawer floating` uses the same inset). Another card's button switches the chain; the same button, ✕ or Esc closes it and focus returns. From System confidence: it opens in the panel's place, below the nav bar, over the page header, ending one `--float-inset` above the bottom sheet. One chain at a time; its trigger shows as expanded.
 3. Confidence zones set what Cooper does: under 70% Reject (Cooper doesn't apply; a reviewer decides), 70–90% Review (Cooper fills in and waits for a person), over 90% Approve (applied automatically; the chain stays available). Exactly 90 is Review; Approve starts above 90 (2.0.4). Every value carries its own confidence.
 4. The drawer layout is the same in every zone: only the marker and the behaviour change.
-5. Rationale is never empty: Why it's flagged → Decisions → Considered but not included; sections 12 apart with a 1px top rule and a Label/M/medium title; cards 8 apart.
+5. Rationale is never empty: Why it's flagged → Decisions → Considered but not included; sections separated by a 1px top rule, each with `--space-inset` above its content and `--space-stack` between its parts and a Label/M/medium title; cards 8 apart.
 6. Peer benchmark compares records of the same type, age band and duty. It is the only tab that can be empty: "Peer benchmark isn't available", no action; the tab stays rendered and selectable. The tab choice persists while the drawer is open.
 7. Never a modal with a scrim.
 

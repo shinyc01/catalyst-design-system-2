@@ -28,7 +28,7 @@
 @keyframes ifs-slide-in-start{from{transform:translateX(calc((100% + var(--float-inset)) * -1 * var(--motion-end)))}}
 
 /* Opening small surfaces (M3): 100 enter; the tooltip fades only (its 300 pointer wait is the component's delay) and shows at once on keyboard focus.
-   Closing is not animated yet: the kit unmounts closed surfaces (an exit helper is still to build). */
+   Closing: see below (IFS.useExit keeps a closing surface mounted with .is-leaving). */
 .ifs-popover,.ifs-menu__list,.ifs-select__list,.ifs-datepicker__popover{animation:ifs-drop var(--motion-duration-100) var(--motion-ease-enter)}
 .ifs-tooltip{animation:ifs-fade var(--motion-duration-100) var(--motion-ease-enter)} /* the 300 wait is the Tooltip delay prop (JS), so it isn't added twice */
 .ifs-tooltip-anchor:focus-within > .ifs-tooltip{animation:none}
