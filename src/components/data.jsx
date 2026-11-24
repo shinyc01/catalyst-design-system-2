@@ -18,7 +18,7 @@ const DataCounter = ({ children, className }) => <span className={IFS.cx('ifs-da
 // Props: state default|error|success|cooper|warning|blue, stroke (Figma Stroke=True: 1.5px surface/primary ring).
 // C1 (Nov 23): the five status words info · success · warning · danger · neutral; the old words stay as aliases.
 function StatusIndicator({ state = 'default', stroke, label, className, ...rest }) {
-  state = { neutral: 'default', danger: 'error' }[state] || state;
+  state = { neutral: 'default', danger: 'error', info: 'blue' }[state] || state;
   return <span role={label ? 'img' : undefined} aria-label={label} aria-hidden={label ? undefined : true}
     className={IFS.cx('ifs-status-indicator', `ifs-status-indicator--${state}`, stroke && 'ifs-status-indicator--stroke', className)} {...rest} />;
 }
@@ -29,7 +29,7 @@ function StatusIndicator({ state = 'default', stroke, label, className, ...rest 
 // the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 // indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
 function Badge({ color = 'white', size = 'm', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest }) {
-  color = { danger: 'red', success: 'green', warning: 'orange' }[color] || color; // C1 status words (hue words stay as aliases)
+  color = { danger: 'red', success: 'green', warning: 'orange', neutral: 'white' }[color] || color; // C1 status words (hue words stay as aliases)
   const sz = color === 'false' ? 's' : size;
   const iconSize = sz === 's' ? 12 : 16;
   if (color === 'loading') return <span aria-hidden="true" className={IFS.cx('ifs-badge', 'ifs-badge--loading', `ifs-badge--${size}`, 'ifs-skeleton', className)} {...rest} />;
@@ -109,6 +109,7 @@ function RiskStatus({ type = 'success', state, disabled, loading, onClick, child
 // same colours: 2.0.3), size s|xs, children = text,
 // buttonRight = icon name (Figma "button right": tertiary S icon-button), onButtonClick, buttonLabel.
 function Indicator({ type = 'orange', size = 's', children, buttonRight, onButtonClick, buttonLabel, className, ...rest }) {
+  type = { danger: 'error' }[type] || type; // C1 status words (info, success, warning, neutral have their own classes)
   return (
     <span className={IFS.cx('ifs-indicator', `ifs-indicator--${type}`, `ifs-indicator--${size}`, className)} {...rest}>
       <span className="ifs-status-indicator" />

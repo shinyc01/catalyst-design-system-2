@@ -147,6 +147,8 @@
   filter:drop-shadow(0 0 3.6px var(--color-shadow-floating)) /* raw in Figma: DROP_SHADOW 7.2 */}
 .ifs-map-pin--error{--pin:var(--color-icon-danger);--pin-border:var(--color-icon-danger)}
 .ifs-map-pin--warning{--pin:var(--color-icon-warning);--pin-border:var(--color-icon-warning)}
+.ifs-map-pin--success{--pin:var(--color-icon-success);--pin-border:var(--color-icon-success)} /* C1: the five status words */
+.ifs-map-pin--info{--pin:var(--color-background-info-strong);--pin-border:var(--color-background-info-strong)}
 /* Teardrop = 23px circle + tail, white fill, status stroke OUTSIDE. */
 .ifs-map-pin__shape{position:absolute;left:1px;top:1.5px;width:23px;height:23px;box-sizing:border-box;background:var(--color-background-accent-white-strong); /* ltr: map pin art */
   border-radius:50% 50% 0 50%;transform:rotate(45deg);box-shadow:0 0 0 var(--pin-bw) var(--pin-border)}

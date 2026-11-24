@@ -333,6 +333,7 @@ Docked panels sit flush against the content-area edge; the page beside them keep
 | No state, draft, archived | `neutral` | `--color-icon-softer` (the readable grey, not the disabled grey) | dot |
 
 - Never colour alone (rule 9.3): meaningful status (risk, health, process) uses icon + colour (`RiskStatus`, `ReadinessStatus`); colour-only dots (`StatusIndicator`) only where a label carries the meaning. Archived = the neutral dot + `--color-text-softer`.
+- Where each word works: `Indicator`, `StatusIndicator`, `Badge`, `MapPin` and the documents pin take all five. `RiskStatus` takes info, success, warning, danger (no neutral risk in Figma); `ReadinessStatus` takes success, warning, danger (its other types are progress states, not colours). Map and documents pins: info = `--color-background-info-strong`; the documents pin's success is green (was grey).
 - Blue is info only; links use `--color-text-link`. Accent and Cooper are not statuses (rule 7.17). Chart series never use status colours; status marks in charts use `--color-data-viz-good|warning|bad` (rule 7.18).
 - Selected (cards, table rows): a 2 outline (`--border-width-selected`, rule 3.14) in the selected colour (`--color-border-strong`).
 - Badges are read-only; clickable values are chips.
