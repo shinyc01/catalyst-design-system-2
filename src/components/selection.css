@@ -25,12 +25,12 @@
 .ifs-select--m .ifs-select__field{height:var(--size-control-m);padding:0 var(--space-200);border-radius:var(--radius-control)}
 .ifs-select--l .ifs-select__field{height:var(--size-control-l);padding-block:0;padding-inline:var(--space-300) var(--space-200);border-radius:var(--radius-control)}
 .ifs-select--xl .ifs-select__trigger{
-  height:var(--size-control-xl);gap:var(--space-200);padding-block:var(--space-100);padding-inline:var(--space-200) var(--space-100);
+  height:var(--size-control-xl);gap:var(--space-200);padding-block:var(--space-inset-nested);padding-inline:var(--space-200) var(--space-inset-nested);
   border-radius:var(--radius-control);background:var(--color-background-input);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft) /* raw in Figma */;
   backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));
 }
-.ifs-select--xl .ifs-select__field{height:var(--size-36) /* kept at 36 (2.0.4) until the user decides: the m step would make it 32 in Comfortable */;padding:0 var(--space-250);border-radius:var(--radius-control);background:var(--color-surface-primary)}
+.ifs-select--xl .ifs-select__field{height:calc(var(--size-control-xl) - 2 * var(--space-inset-nested)) /* fills the trigger: 40 / 36 / 32 inside 52 / 48 / 40 */;padding:0 var(--space-250);border-radius:var(--radius-control);background:var(--color-surface-primary)}
 .ifs-select__label{flex:none;color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 /* S (32): text trigger, no box */
 .ifs-select--s .ifs-select__field{

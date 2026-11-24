@@ -161,6 +161,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 | `--space-table-x` | 20 / 16 / 16 | Table card padding and table cell sides |
 | `--space-stack` | 16 / 12 / 8 | Gap between blocks inside a container (fields, cards in a panel, toolbar to table) |
 | `--space-section` | 40 / 32 / 24 | Gap between page sections |
+| `--space-inset-nested` | 6 / 6 / 4 | A control nested in a control: the Select XL trigger pads its inner field by it (Nov 24) |
 
 3.3 **Containers.** Every part of a container (header, tabs, body, footer) has the same inset on all four sides. A container's height comes from its padding, never a fixed height. Chat, history and agent headers: vertical padding = inset − 4 (`--space-100`), i.e. 16 / 12 / 8; the height = tallest item + that padding (chat and history headers 60 / 48 / 40; the agent window header 68 / 56 / 44, because it holds an M button).
 3.4 **Fixed steps only where a part scales by its own height:** inside controls (buttons, fields, selects, tabs, chips, prompts, chat input), the nav bar and side nav, chart geometry, table-like rows and cells, and gaps of 8 or less (icon to label, label to field). These stay the same in every density; each is commented in the CSS. The allowed kinds: list and note rows (fixed vertical step, inset sides); a tab row sits on its divider (no bottom padding); full-bleed lists leave side padding to their items; the collapsed panel rail; header bars (`PageHeader`, `ExploreHeader`): tallest part + 4 top and bottom, page margin at the sides; never a fixed height. So the thin header is 50 / 46 / 42 with a stepper (the stepper is 42 / 38 / 34) and 36 / 32 / 32 without one (S buttons and icon buttons), and the ExploreHeader 36 / 32 / 32 (Spacious / Comfortable / Compact).
@@ -172,7 +173,7 @@ Exceptions (H3 inside a container): the Trace report issue title (the issue is t
 | s | 28 | 24 | 24 | control S (incl. the small icon button square), chips, `CooperChip`, `RoleSelect`, badge M, the Explore map-bar search |
 | m | 36 | 32 | 28 | control M, badge L, prompts M, search, Smart Search, popover search, phone picker, checkbox and radio rows, nav tree rows, the search card, menu and list items |
 | l | 44 | 40 | 32 | control L, prompts L, `Pager`, large list items |
-| xl | 52 | 48 | 40 | `Select` XL trigger (its inner field stays 36 until decided), Cooper history search |
+| xl | 52 | 48 | 40 | `Select` XL trigger (its inner field fills it minus `--space-inset-nested`: 40 / 36 / 32), Cooper history search |
 
 Rows keep their own tokens: tabs `--size-tab-m` 40 / 36 / 32 and `--size-tab-l` 48 / 40 / 36; nav rows `--size-nav-row` 44 / 40 / 36; table rows and header (rule 3.7).
 3.6 **Fixed sizes (not on the ladder, the same in every density):** app chrome (nav bar 48, side nav, rail, Cooper button), avatars and media, chart and map geometry, calendar dates. Everything else with a height is on the ladder (rule 3.5) or a row token.
@@ -472,7 +473,6 @@ This section is writing guidance for screens, as in other large design systems (
 - Should live cursors appear on framework canvases at all (`LiveCursors` is invented)?
 - Not decided yet, no rules: states and focus (S1–S3; the focus ring stays as rule 1.6), loading (L1–L4), data viz (D1–D9).
 - Motion still to build (rule 1.8): the chevron turn and the side-nav fold width.
-- Select XL inner field: 36 today (2.0.4); on the ladder it would be m (32 in Comfortable). Not decided.
 - Light theme: `color-scheme` and `IFS.setTheme` are in; the Light values come right after phase 1.
 - `FormCard`: "a form on a page" (components.md) vs a card built like a dialog; settle the wording.
 - Cooper orb gap: 12 or 24.

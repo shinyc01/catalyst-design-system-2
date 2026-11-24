@@ -11,6 +11,7 @@
              --space-table-x  20 / 16 / 16  table card edge and table cell sides (2.0.3)
              --space-stack    16 / 12 /  8  gap between blocks inside a container
              --space-section  40 / 32 / 24  gap between the sections of a page
+             --space-inset-nested 6 / 6 / 4  a control nested in a control: the Select XL trigger around its field (Nov 24)
    3. Page   --page-margin and --page-gap follow SCREEN WIDTH, not density: see foundations/layout.css.
 
    Which to use: a role for containers and the gaps between blocks; a fixed scale step only inside parts
@@ -38,6 +39,6 @@
 }
 
 /* 2. Roles. --space-inset-l (24 / 20 / 16): modals and forms, one step roomier than inset next to their H4 title (Flexy's Audit branch, accepted Nov 19, 2.0.3). --space-table-x (20 / 16 / 16): table card edge and cell side padding; Compact keeps 16 so tables don't feel tight (Nov 19) */
-:root,[data-density="comfortable"]{--space-inset:var(--space-400);--space-inset-l:var(--space-500);--space-table-x:var(--space-400);--space-stack:var(--space-300);--space-section:var(--space-700)}
-[data-density="spacious"]{--space-inset:var(--space-500);--space-inset-l:var(--space-600);--space-table-x:var(--space-500);--space-stack:var(--space-400);--space-section:var(--space-800)}
-[data-density="compact"]{--space-inset:var(--space-300);--space-inset-l:var(--space-400);--space-table-x:var(--space-400);--space-stack:var(--space-200);--space-section:var(--space-600)}
+:root,[data-density="comfortable"]{--space-inset:var(--space-400);--space-inset-l:var(--space-500);--space-table-x:var(--space-400);--space-stack:var(--space-300);--space-section:var(--space-700);--space-inset-nested:var(--space-150)}
+[data-density="spacious"]{--space-inset:var(--space-500);--space-inset-l:var(--space-600);--space-table-x:var(--space-500);--space-stack:var(--space-400);--space-section:var(--space-800);--space-inset-nested:var(--space-150)}
+[data-density="compact"]{--space-inset:var(--space-300);--space-inset-l:var(--space-400);--space-table-x:var(--space-400);--space-stack:var(--space-200);--space-section:var(--space-600);--space-inset-nested:var(--space-100)}
