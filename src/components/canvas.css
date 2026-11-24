@@ -69,7 +69,7 @@
   background:linear-gradient(135deg,var(--color-background-sheen-from),var(--color-background-sheen-to)) /* raw in Figma */,var(--nc-fill);--nc-stroke:var(--color-border-soft)}
 .ifs-node-card:not(.ifs-node-card--solid):hover,.ifs-node-card:not(.ifs-node-card--solid)[data-state=hover],.ifs-node-card:not(.ifs-node-card--solid).ifs-node-card--drag{
   --nc-fill:var(--color-background-neutral)}
-.ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-3);cursor:grabbing}
+.ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
 /* Rings (Figma "Inner Focus Wrapper"): Select = 3px ring-gap + 1px white; Focus = --focus-ring;
    Cooper = 3px ring-gap + 1px cooper→white gradient. Select and Cooper use --color-ring-gap (the same black): they are not focus. Text switches to primary / tertiary inside a ring. */
 .ifs-node-card--ring-select{--nc-ring:0 0 0 var(--border-width-300) var(--color-ring-gap),0 0 0 var(--border-width-400) var(--color-border-selected)}
@@ -127,7 +127,7 @@
   border-radius:var(--radius-control);background:var(--color-surface-secondary);cursor:grab;user-select:none;
   box-shadow:inset 0 0 0 var(--border-width-default) var(--sn-stroke),var(--sn-ring),var(--sn-shadow);transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--color-surface-tertiary)}
-.ifs-sidebar-node--drag{background:var(--color-surface-tertiary);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-3);cursor:grabbing}
+.ifs-sidebar-node--drag{background:var(--color-surface-tertiary);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
 .ifs-sidebar-node:focus-visible,.ifs-sidebar-node[data-state=focus]{outline:none;--sn-ring:var(--focus-ring)}
 .ifs-sidebar-node--cooper{--sn-ring:0 0 0 var(--border-width-300) var(--color-ring-gap)} /* not focus: Cooper ring on the ring-gap black */
 .ifs-sidebar-node--cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;
