@@ -84,7 +84,7 @@
 --palette-success-500-alpha-10:rgba(46,188,93,0.1);
 --palette-success-600:#0c9844;
 --palette-success-700:#077332;
---palette-success-700-alpha-0:rgba(28,113,56,0);
+--palette-success-700-alpha-0:rgba(7,115,50,0);
 --palette-success-800:#034c1f;
 --palette-success-850:#013a15;
 --palette-success-900:#01280c;
@@ -101,7 +101,7 @@
 --palette-danger-500-alpha-10:rgba(238,60,59,0.1);
 --palette-danger-600:#c81b23;
 --palette-danger-700:#9a0613;
---palette-danger-700-alpha-0:rgba(143,36,35,0);
+--palette-danger-700-alpha-0:rgba(154,6,19,0);
 --palette-danger-800:#69020a;
 --palette-danger-850:#510105;
 --palette-danger-900:#390003;
@@ -119,7 +119,7 @@
 --palette-warning-600:#cf8a0e;
 --palette-warning-700:#9c6708;
 --palette-warning-800:#694403;
---palette-warning-800-alpha-0:rgba(102,70,18,0);
+--palette-warning-800-alpha-0:rgba(105,68,3,0);
 --palette-warning-850:#513302;
 --palette-warning-900:#372101;
 --palette-warning-950:#1e1000;
@@ -130,15 +130,15 @@
 --palette-info-200:#acccfe;
 --palette-info-300:#82b2fe;
 --palette-info-400:#5999fd;
---palette-info-400-alpha-0:rgba(85,153,255,0);
---palette-info-400-alpha-10:rgba(85,153,255,0.1);
+--palette-info-400-alpha-0:rgba(89,153,253,0);
+--palette-info-400-alpha-10:rgba(89,153,253,0.1);
 --palette-info-500:#2b7fff;
 --palette-info-500-alpha-10:rgba(43,127,255,0.1);
 --palette-info-500-alpha-25:rgba(43,127,255,0.25);
 --palette-info-600:#0f63d9;
 --palette-info-700:#0349a9;
 --palette-info-800:#013074;
---palette-info-800-alpha-0:rgba(17,51,103,0);
+--palette-info-800-alpha-0:rgba(1,48,116,0);
 --palette-info-850:#01245b;
 --palette-info-900:#001841;
 --palette-info-950:#000b28;
