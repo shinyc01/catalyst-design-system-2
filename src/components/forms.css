@@ -74,6 +74,11 @@
 }
 .ifs-field--cooper.ifs-field--m .ifs-field__control{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap)}
 .ifs-field--cooper.ifs-field--m .ifs-field__control::after{inset:calc(-2 * var(--border-width-default));padding:var(--border-width-default);border-radius:calc(var(--radius-control) + 2 * var(--border-width-default))}
+/* Cooper, focus (S1): the gradient ring stays; the focus ring (--focus-ring widths and colours) is drawn just outside it */
+.ifs-field--cooper .ifs-field__control:focus-within{--ring:0 0 0 var(--border-width-200) var(--color-ring-gap),
+  0 0 0 calc(var(--border-width-400) + var(--border-width-200)) var(--color-focus-inner),0 0 0 calc(var(--border-width-400) + var(--border-width-400)) var(--color-focus-outer)}
+.ifs-field--cooper.ifs-field--m .ifs-field__control:focus-within{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap),
+  0 0 0 calc(2 * var(--border-width-default) + var(--border-width-200)) var(--color-focus-inner),0 0 0 calc(2 * var(--border-width-default) + var(--border-width-400)) var(--color-focus-outer)}
 
 /* ---------- Search ---------- */
 .ifs-search{

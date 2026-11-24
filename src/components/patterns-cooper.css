@@ -32,6 +32,7 @@
 .ifs-user-msg:hover .ifs-user-msg__bubble,.ifs-user-msg[data-state=hover] .ifs-user-msg__bubble{background:var(--color-background-accent-white)}
 .ifs-user-msg__edit{flex:1;display:flex;flex-direction:column;border-radius:var(--radius-control);
   background:var(--color-background-input)}
+.ifs-user-msg__edit:focus-within{box-shadow:var(--focus-ring)} /* S1 */
 .ifs-user-msg__edit textarea{all:unset;box-sizing:border-box;width:100%;min-height:var(--size-44);padding:var(--space-250) var(--space-300) var(--space-150);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text);white-space:pre-wrap}
 .ifs-user-msg__edit-actions{display:flex;justify-content:flex-end;gap:var(--space-100);padding:0 var(--space-200) var(--space-200)}
 
