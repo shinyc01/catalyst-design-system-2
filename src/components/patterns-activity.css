@@ -50,11 +50,13 @@
 .ifs-compare-view{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
 .ifs-compare-view__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-stack)}
 
-/* ================= ActivityPanel (panel-organism over overlay Type=Base) ================= */
+/* ================= ActivityPanel (panel-organism, an over panel: rule 4.6) ================= */
 .ifs-activity-panel{display:flex;height:100%;width:var(--region-panel);flex:none}
-.ifs-activity-panel--overlay,.ifs-activity-panel--contained{top:0;inset-inline-end:0;bottom:0;height:auto;z-index:var(--z-index-modal)}
-.ifs-activity-panel--overlay{position:fixed}
-.ifs-activity-panel--contained{position:absolute}
+/* Over panel (rule 4.6, C1, C2, C4): no scrim, the page stays usable; one --float-inset in, on the floating level, so menus and popovers draw above it */
+.ifs-activity-panel--overlay,.ifs-activity-panel--contained{inset-inline-end:var(--float-inset);height:auto;max-width:calc(100% - 2 * var(--float-inset));
+  z-index:var(--z-index-floating);box-shadow:var(--elevation-floating)}
+.ifs-activity-panel--overlay{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));bottom:calc(var(--float-bottom, 0px) + var(--float-inset))} /* below the header, above the bottom sheet (AppShell sets --float-top / --float-bottom) */
+.ifs-activity-panel--contained{position:absolute;inset-block:var(--float-inset)} /* in from the edges of its positioned content area */
 .ifs-activity-panel--static{position:relative}
 .ifs-activity-panel > .ifs-panel{flex:1 1 auto;height:auto}
 .ifs-activity-panel .ifs-panel__content{padding:var(--space-inset)}

@@ -278,8 +278,8 @@
 /* Push panel with no room (below md): a rail; it expands over the content, which keeps a rail's width free */
 .ifs-app-shell--panel-rail .ifs-app-shell__content{margin-inline-end:var(--region-rail)}
 .ifs-app-shell--panel-rail .ifs-app-shell__panel{position:absolute;inset-block:0;inset-inline-end:0;z-index:2;box-shadow:var(--elevation-3)}
-/* Over panel (row / record preview, evidence, activity): over the right of the content, no scrim, the page stays usable */
-/* C4: an over panel floats one --float-inset in from the content area (below the header, above the bottom sheet, from the window edge); C1 level 2 */
+/* Over panel (evidence chain, activity, Cooper full chat): over the end of the content, no scrim, the page stays usable */
+/* C4: an over panel floats one --float-inset in from the edges of the content area (so below the header and above the bottom sheet); C1 level 2 */
 .ifs-app-shell--panel-over .ifs-app-shell__panel{position:absolute;inset-block:var(--float-inset);inset-inline-end:var(--float-inset);z-index:var(--z-index-floating);max-width:calc(100% - 2 * var(--float-inset));box-shadow:var(--elevation-floating)}
 .ifs-app-shell__bottom{flex:none}
 
