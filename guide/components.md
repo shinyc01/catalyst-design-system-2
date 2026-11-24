@@ -545,7 +545,7 @@ Use: Relationship between two measures; clusters and outliers. Legend below (dot
 Use: Scatter with a third measure as size; the legend carries a size key (smallest and largest).
 
 ### chart-heatmap · `HeatmapChart`
-Use: Ordered magnitude across a matrix, using a sequential ramp (`ramp` azure default | teal | orchid | pink | yellow; `classes` 5 or 9; rule 11.7). The legend is a scale bar below. Often the large card.
+Use: Ordered magnitude across a matrix, using a sequential ramp (`ramp` azure default | teal | cyan | orchid | pink | yellow; `classes` 5 or 9; rule 11.7). The legend is a scale bar below. Often the large card.
 
 ### chart-box-plot
 Use: Comparing distributions side by side.
