@@ -9,7 +9,7 @@ export default {
   component: IFS["GroupedColumnChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-grouped-column (9862:13445)\n\n\nUse: A few series side by side per category; at most 4 series (a 5th and more stay in the table view only, with a console warning), legend below, consistent series order; bars at least 4 wide with a 2 gap (rule 11.8)." } },
+    docs: { description: { component: "**Figma:** chart-grouped-column (9862:13445)\n\n\nUse: A few series side by side per category; at most 4 series (a 5th and more stay in the table view only, with a console warning), legend below, consistent series order; bars at least 4 wide with a 1 gap (rule 11.8)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9862-13445"},
   },
 };

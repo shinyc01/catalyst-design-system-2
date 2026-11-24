@@ -454,7 +454,7 @@ Use: Chart title row with optional view toggle or button. `viewSwitch` sits afte
 
 ### data-viz-modal-organism · `DataVizTooltip`
 Use: Chart tooltip / info pop-up showing exact values on hover.
-Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 11.5). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series.
+Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 11.5). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series. Swatches show only when more than one row has a colour. Compact spacing: `--space-200` top and bottom, `--space-100` title → rows, `--space-50` between rows.
 
 ### indicator-atom · `DataVizIndicator`
 Use: Target/selection marker on a chart (e.g. bullet-chart target).
@@ -518,10 +518,10 @@ Use: One measure across few or time-ordered categories ("which is biggest"); zer
 Use: Horizontal bars for many categories, long labels or rankings (sort biggest → smallest). Also the answer when column labels would need rotating (rule 11.3).
 
 ### chart-grouped-column · `GroupedColumnChart`
-Use: A few series side by side per category; at most 4 series (a 5th and more stay in the table view only, with a console warning), legend below, consistent series order; bars at least 4 wide with a 2 gap (rule 11.8).
+Use: A few series side by side per category; at most 4 series (a 5th and more stay in the table view only, with a console warning), legend below, consistent series order; bars at least 4 wide with a 1 gap (rule 11.8).
 
 ### chart-stacked-column · `StackedColumnChart`
-Use: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 segments + "Other" (5 or fewer read best), most important on the baseline, a 2 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the segments top to bottom.
+Use: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 segments + "Other" (5 or fewer read best), most important on the baseline, a 1 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the segments top to bottom.
 
 ### chart-line · `LineChart`
 Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit the legend sits below (line / dashed swatches). Up to 8 lines (12 with end labels), the rest grey with one "Other" entry.
@@ -560,7 +560,7 @@ Use: Bridge from a start value to an end value through increments. Totals neutra
 Use: Hierarchical part-to-whole by area.
 
 ### chart-gauge · `GaugeChart`
-Use: One KPI against one reference value; the arc in slot 1.
+Use: One KPI against one reference value; the arc in slot 1, as thick as the donut ring, square ends; the centre metric is the StatCard S value (rule 11.10).
 
 ### chart-funnel · `FunnelChart`
 Use: Drop-off across ordered stages.
