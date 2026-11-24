@@ -71,14 +71,21 @@ Never listed: check marks, media, clocks, trend up/down, logos, up/down carets.
 ### remOf
 **Tier:** Component
 A size prop given as a number is px at the default 16px text size; it comes out in rem so it follows the user's text size.
-`const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);  // M3 exits (Nov 23): keeps a closing surface mounted for its exit time, with `leaving` true so it can take the // .is-leaving class (foundations/motion.css), then unmounts. ms: 50 small surfaces (menu, popover, snackbar), 100 large ones // (modal, drawer). Reduced motion keeps the time, and motion.css makes the exit a fade. function useExit(open, ms)`
+`const remOf = v => (typeof v === 'number' ? `${v / 16}rem` : v);  // A motion token in ms, read from the CSS (foundations/motion.css), so JS timers follow the tokens: motionMs('--motion-duration-100'). // `fallback` is used before the stylesheet loads or outside a browser. function motionMs(token, fallback = 0)`
 
 ### useExit
 **Tier:** Component
 M3 exits (Nov 23): keeps a closing surface mounted for its exit time, with `leaving` true so it can take the
 .is-leaving class (foundations/motion.css), then unmounts. ms: 50 small surfaces (menu, popover, snackbar), 100 large ones
 (modal, drawer). Reduced motion keeps the time, and motion.css makes the exit a fade.
+ms: a number, or a motion token name ('--motion-duration-100').
 `function useExit(open, ms)`
+
+### motionMs
+**Tier:** Component
+A motion token in ms, read from the CSS (foundations/motion.css), so JS timers follow the tokens: motionMs('--motion-duration-100').
+`fallback` is used before the stylesheet loads or outside a browser.
+`function motionMs(token, fallback = 0)`
 
 ## activity
 
@@ -409,8 +416,8 @@ in world px), overlay = fixed UI on top (toolbars, mini-map), apiRef receives { 
 ### CanvasConnector
 **Tier:** Component
 Connector between two canvas nodes (world coordinates). Not a Figma component of its own: the framework
-screens draw node links as plain hairlines (border/medium) — a horizontal-tangent curve between two points.
-Props: from {x,y}, to {x,y}, highlighted (border/strong).
+screens draw node links as plain hairlines (--color-border) — a horizontal-tangent curve between two points.
+Props: from {x,y}, to {x,y}, highlighted (--color-border-strong).
 `function CanvasConnector({ from, to, highlighted })`
 
 ### DropZone
@@ -723,7 +730,7 @@ Examples (read before using any component below — shows the data shapes props 
 **In handovers:** placed 363× (Explore, Build, Command, Plan, Value) · usual: Color white 84% · Size s (20) 64%
 Figma: badge-atom (83:52162)
 Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, sentence-case Label/M/medium caption; info = black fill
-with text/info + icon/info, as the Patterns source-card draws it), borderless (drops the black badge's border/medium edge —
+with --color-text-info + --color-icon-info, as the Patterns source-card draws it), borderless (drops the black badge's --color-border edge —
 the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
 `function Badge({ color = 'white', size = 'm', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest })`
@@ -732,7 +739,7 @@ indicator = status-indicator state (show-indicator), avatar = Avatar props (show
 **Tier:** Component
 **In handovers:** placed 864× (Plan, Value, Build, Explore) · usual: Stroke false 92%
 Figma: status-indicator-atom (789:39211)
-Props: state default|error|success|cooper|warning|blue, stroke (Figma Stroke=True: 1.5px surface/primary ring).
+Props: state default|error|success|cooper|warning|blue, stroke (Figma Stroke=True: a 1px --color-surface-primary ring; B1: Figma 1.5 snaps to 1).
 C1 (Nov 23): the five status words info · success · warning · danger · neutral; the old words stay as aliases.
 `function StatusIndicator({ state = 'default', stroke, label, className, ...rest })`
 
@@ -778,7 +785,7 @@ Figma: stat-card-organism (3643:35055)
 Props: size s|m (default s, rule 2.6; pass size="m" only for a key-figure row at the top of the page with no page title above), title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
 Label/M/medium caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
 badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
-compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in text/tertiary;
+compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in --color-text-softer;
 without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
 `function StatCard({ size = 's', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest })`
 
@@ -911,7 +918,7 @@ Figma: icon-button-comment (2563:8153). Tertiary S; hasNew ("Has a new comment?"
 **Tier:** Component
 **In handovers:** only inside other components (274×); don't place on its own
 Figma: icon-button-filter (6955:768). Tertiary S; hasNew = filters applied.
-shape round: 28px circle with the element/search/border/default outside stroke (next to a SmartSearch, explore-header).
+shape round: 28px circle with the --color-border-input outside stroke (next to a SmartSearch, explore-header).
 `function FilterButton({ label = 'Filters', ...p }) { return <ExtrasDotButton kind="filter" icon="system-filter" type="tertiary" label={label} {...p} />; }`
 
 ### ArrowButton
@@ -980,7 +987,7 @@ Keyboard: one tab stop; arrows move, Home/End, Enter/Space select.
 ### Weekday
 **Tier:** Component
 **In handovers:** only inside other components (322×); don't place on its own
-Figma: weekday-atom (2704:74414) — the weekday header cell of the calendar (Label/M/medium in sentence case, text/tertiary, 32×16; Figma: Caption/regular-UPPER).
+Figma: weekday-atom (2704:74414) — the weekday header cell of the calendar (Label/M/medium in sentence case, --color-text-softer, 32×16; Figma: Caption/regular-UPPER).
 Props: children = day text (Figma "day", e.g. "Wed"). Figma's show-badge / timeline props are not wired to any layer.
 `function Weekday({ children, className, ...rest })`
 
@@ -1270,7 +1277,7 @@ id (listbox id), inline (static position — gallery).
 **In handovers:** placed 1× (Plan) · usual: Property 1=Default (100%)
 ───────────────────────────── compare-dropdown ───────────────────────────── 
 Figma: compare-dropdown (59571d4df483e2b416ca034bafc72eabc902f8f3; Patterns copy 52:82756)
-Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: "Select framework" in text/disabled), Default (open: caret up + list).
+Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: "Select framework" in --color-text-disabled), Default (open: caret up + list).
 Props: groups (see CompareDropdownList), value / defaultValue / onChange(value, item) (✕ sets null),
 open / defaultOpen / onOpenChange, placeholder, clearable (✕ when filled, default true), disabled, width (default 320),
 state open (gallery), aria-label. Keyboard: Enter / Space / ↓ open; ↑ ↓ move; Enter picks; Esc closes.
@@ -1415,7 +1422,7 @@ Examples (read before using any component below — shows the data shapes props 
 Figma: cursor-atom (55:1645; set key 80c816a4…) — live multiplayer cursor: cursor-pointer + name pill.
 Props: user 1…16 | "cooper" (Figma User; pill = collaboration/user-N, Cooper = user-9 + Cooper visual), name (Figma "user name"),
   x / y (px; when given the cursor is absolutely positioned and glides between positions), label (accessible name).
-Users 4, 6, 11, 13, 15 use dark text (text/primary-inverse), as in Figma.
+Users 4, 6, 11, 13, 15 use dark text (--color-text-inverse), as in Figma.
 `function CollaboratorCursor({ user = 1, name, x, y, className, style, ...rest })`
 
 ### LiveCursors
@@ -1455,7 +1462,7 @@ Props: person { id, name, initials, title (job role), avatar: Avatar props, acce
 
 ### CollaboratorSection
 **Tier:** Pattern helper
-Section of the panel: Label/M/medium heading (sentence case) (text/secondary, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
+Section of the panel: Label/M/medium heading (sentence case) (--color-text-soft, or the Cooper gradient + cooper dots for Cooper suggestions) + rows.
 `function CollaboratorSection({ title, cooper, children })`
 
 ### RoleFilter
@@ -1507,7 +1514,7 @@ invite to the framework" + Cancel / Remove. Props: open, person, onCancel, onCon
 
 ### collaborationUser
 **Tier:** Pattern helper
-`const collaborationUser = avatarType => USER_OF_AVATAR[avatarType] || 16;  // ───────────────────────────── cursor-atom ───────────────────────────── // Figma: cursor-atom (55:1645; set key 80c816a4…) — live multiplayer cursor: cursor-pointer + name pill. // Props: user 1…16 | "cooper" (Figma User; pill = collaboration/user-N, Cooper = user-9 + Cooper visual), name (Figma "user name"), //   x / y (px; when given the cursor is absolutely positioned and glides between positions), label (accessible name). // Users 4, 6, 11, 13, 15 use dark text (text/primary-inverse), as in Figma. const DARK_TEXT = [4, 6, 11, 13, 15]; function CollaboratorCursor({ user = 1, name, x, y, className, style, ...rest })`
+`const collaborationUser = avatarType => USER_OF_AVATAR[avatarType] || 16;  // ───────────────────────────── cursor-atom ───────────────────────────── // Figma: cursor-atom (55:1645; set key 80c816a4…) — live multiplayer cursor: cursor-pointer + name pill. // Props: user 1…16 | "cooper" (Figma User; pill = collaboration/user-N, Cooper = user-9 + Cooper visual), name (Figma "user name"), //   x / y (px; when given the cursor is absolutely positioned and glides between positions), label (accessible name). // Users 4, 6, 11, 13, 15 use dark text (--color-text-inverse), as in Figma. const DARK_TEXT = [4, 6, 11, 13, 15]; function CollaboratorCursor({ user = 1, name, x, y, className, style, ...rest })`
 
 ## patterns-comments
 
@@ -1619,7 +1626,7 @@ onDragStart (pointerdown on the title area — compact window is draggable).
 **In handovers:** placed 206× (Value, Build) · usual: size >1 93%
 Figma: user-message-molecule (24d3417689866a2cd7c3af335c0d617a276587e1) — "user-message-bubble" (12:263541).
 Props: children = message text, size inline|multi (default: inline for short one-line text — Figma Size=Inline is a pill,
->1 line is radius 12), onEdit(text) (shows edit on hover; Figma State=editing has Cancel / Save), onCopy (copy on hover),
+>1 line is --radius-control 4), onEdit(text) (shows edit on hover; Figma State=editing has Cancel / Save), onCopy (copy on hover),
 editing / defaultEditing / onEditingChange, state hover (gallery).
 `function UserMessage({ children, size, onEdit, onCopy, editing, defaultEditing = false, onEditingChange, state, className, ...rest })`
 
@@ -1634,7 +1641,7 @@ Props: name, meta (e.g. "PDF · 2 MB"), icon (default system-file), onRemove (�
 **Tier:** Component
 **In handovers:** placed 76× (Value, Build, Plan) · usual: Property 1=default (72%)
 Figma: text-message-input-molecule (2f407b5b2a20…) — the chat composer in compact/full panels (Patterns 67:120307).
-States follow the content: Default (placeholder, mic only) → Typing (send arrow appears) → Typing multi-line (radius 12, buttons
+States follow the content: Default (placeholder, mic only) → Typing (send arrow appears) → Typing multi-line (--radius-control 4, buttons
 below) → Analyzing (send becomes Stop while Cooper works). Enter sends, Shift+Enter adds a line.
 Props: value / defaultValue / onChange, onSend(text, attachments), analyzing + onStop, placeholder, onAttach (+), onVoice (mic → voice mode),
 attachments [{ id, name, meta }] + onRemoveAttachment(id) (a file switches the input to multi-line; max height 400px then scroll),
@@ -1698,7 +1705,7 @@ Figma: chat-collapsed-bar-organism (cf1fb8a41862…) — "chat-inline-quick-mode
 Props: type voice|text|fab (Figma Type: Voice opens by default; FAB button = Cooper avatar only),
 value / defaultValue / onChange (text), onSend(text), onTypeChange(type) (mic ↔ keyboard), onAttach, onExpand (hover control:
 "Expand to floating window"), speech (voice transcript; replaces the placeholder while the user talks), onFab (type=fab),
-state hover (gallery). Text over one line switches to the multi-line layout (radius 12).
+state hover (gallery). Text over one line switches to the multi-line layout (--radius-control 4).
 `function ChatCollapsedBar({ type = 'voice', value, defaultValue = '', onChange, onSend, onTypeChange, onAttach, onExpand, speech, onFab, state, autoFocus, className, style, ...rest })`
 
 ### ChatCompactPanel
@@ -2052,8 +2059,8 @@ openLabel (arrow name, default "Open"), loading, state hover|focus (forced, gall
 Pattern: SideNavTree — navigation-panel-organism (sidebar-organism View=Expanded/Collapsed) whose Content slot holds a
 folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H4 in sentence case + collapse).
 Tree row: 32px, padding 8/8/8/4, caret (folders) + chat-folder 16 + Body/M/medium label; children indent 18px with a
-hairline guide. The open path (folders above the current row) gets a border/base outline; the current row also the
-background/elevation-1/secondary fill. Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
+hairline guide. The open path (folders above the current row) gets a --color-border-soft outline; the current row also the
+--color-background-neutral-soft fill. Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
 Props: title, tree [{ id, label, folder (default: has children), children: [...] }], sections [{ label, action, items: [{ id, label }] }],
 value / defaultValue / onSelect(id, item), expanded / defaultExpanded (ids) / onExpandedChange,
 collapsed / defaultCollapsed / onCollapsedChange.
@@ -2195,8 +2202,8 @@ Returns state + actions; pass it as `controller` to the components below.
 **Tier:** Pattern helper
 ------------------------------------------------------------------------------------------ 
 Pattern helper: solution / applied / answered row — built from ContentCard, Icon, IconButton. Patterns (30:73116 recommended, 30:73123 plain,
-30:76630 applied, 30:78117 answered). M card, 12 padding, radius 8, border/base stroke. recommended = Cooper's pick:
-cooper-system-icon (Insight) + "cooper/Insight/text" gradient title on background/color-alpha/cooper-base.
+30:76630 applied, 30:78117 answered). M card, 12 padding, radius 8, --color-border-soft stroke. recommended = Cooper's pick:
+cooper-system-icon (Insight) + "cooper/Insight/text" gradient title on --color-cooper-background-soft.
 Props: title, description, recommended, onSelect (click applies it), onUndo (shows the arrow-back-up icon-button;
 Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading state, 40px; the one skeleton look, L1), state (gallery: hover).
 `function IssueSolution({ title, description, recommended, onSelect, onUndo, undoLabel = 'Cancel', loading, state, className, ...rest })`
@@ -2204,7 +2211,7 @@ Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading
 ### IssueListItem
 **Tier:** Pattern helper
 Pattern helper: "All" list row — built from ContentCard, Counter, Icon. Patterns (30:75771 / 12:177000): counter-atom S with the position,
-the issue title (Body/M/regular, text/secondary) and a 12px status-success-filled when resolved. Click opens the item.
+the issue title (Body/M/regular, --color-text-soft) and a 12px status-success-filled when resolved. Click opens the item.
 `function IssueListItem({ number, title, resolved, onClick, state, className, ...rest })`
 
 ### IssueAnswerField
@@ -2312,7 +2319,7 @@ Props: arrows both | right | left (Figma Both / Right only / Left only), none (n
 **In handovers:** placed 4× (Build) · usual: Property 1=Default (100%)
 ------------------------------------------------------------------------------------------ 
 Figma: drop-indicator-atom (key f78ffb9697f561fefbb73cd30090fb5e9adc8501; Patterns copy 413:43575)
-The thin purple line that marks where a dragged widget would land: a 4px ring + 1px line (border/accent-purple).
+The thin purple line that marks where a dragged widget would land: a 4px ring + 1px line (--color-border-accent-purple).
 Props: orientation horizontal (between rows → new row; Figma's only variant) | vertical (inside a row → insert; the
 pattern notes ask for it — drawn as the same atom turned 90°).
 `function DropIndicator({ orientation = 'horizontal', className, style, ...rest })`
@@ -2323,7 +2330,7 @@ pattern notes ask for it — drawn as the same atom turned 90°).
 ------------------------------------------------------------------------------------------ 
 Figma: widget-view-change-position (Patterns local component 331:509936)
 The compact chip a widget collapses into while its position is being changed (follows the cursor).
-Props: title (H4, sentence case, text/tertiary). The ghost icon-button carries the drag mark.
+Props: title (H4, sentence case, --color-text-softer). The ghost icon-button carries the drag mark.
 `function WidgetViewChangePosition({ title, className, ...rest })`
 
 ### WidgetFrame
@@ -2376,7 +2383,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 82× (Build, Value, Command, Explore, Plan) · usual: State=Default (54%)
 Figma: single-select-list-molecule (445715ff…, 153:62054) of single-select-list-atom (1e822b07…, 153:61939), Size S (32):
-4px padding, radius 4, elevation-2 fill, border/base, blur/strong; rows Body/M/medium text/secondary, hover = button secondary hover.
+4px padding, radius 4, elevation-2 fill, --color-border-soft, --blur-80; rows Body/M/medium --color-text-soft, hover = button secondary hover.
 A dropdown of commands anchored to a trigger. Rendered at the end of <body> (Floating), so no scrolling or blurred parent clips it.
 Props: items = [{ label, icon, shortcut (Figma show-shortcut), description (Figma description line), danger, disabled, reason (tooltip on
 a disabled item), selected (check), prefix (node before the label), items (submenu), keepOpen, onClick(item, event), hidden }
@@ -2598,7 +2605,7 @@ Hook form: const show = useSnackbar(); show({ title: 'Saved' })
 **Tier:** Component
 **In handovers:** placed 197× (Value, Build, Plan, Explore, Command) · usual: Type base 98%
 Figma: overlay-background (338:21403)
-Props: type strong (overlay/screen-strong + blur/medium) | base (no blur), onClick, inline (absolute, not fixed).
+Props: type strong (--color-overlay-screen-strong + --blur-40) | base (no blur), onClick, inline (absolute, not fixed).
 `function Overlay({ type = 'strong', inline, className, ...rest })`
 
 ### Modal

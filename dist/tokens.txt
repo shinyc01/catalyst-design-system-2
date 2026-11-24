@@ -20,7 +20,7 @@
 --color-text-softer: var(--palette-core-600)
 --color-text-disabled: var(--palette-core-300)
 --color-text-focus: var(--palette-info-300)
---color-text-accent-purple: #9580f8
+--color-text-accent-purple: var(--palette-purple-450)
 --color-text-inverse: var(--palette-core-0)
 --color-text-soft-inverse: var(--palette-core-300)
 --color-text-softer-inverse: var(--palette-core-550)
@@ -74,8 +74,10 @@
 --color-border-selected-hover: var(--palette-white-alpha-75)
 --color-border-selected-pressed: var(--palette-white-alpha-60)
 --color-border-selected-soft: var(--palette-white-alpha-50)
+--color-border-completed: var(--palette-white-alpha-75)
 --color-focus-inner: var(--palette-core-0)
 --color-focus-outer: var(--palette-info-400)
+--color-ring-gap: var(--palette-core-0)
 --focus-ring: 0 0 0 var(--border-width-200) var(--color-focus-inner),0 0 0 var(--border-width-400) var(--color-focus-outer)
 --focus-ring-inset: inset 0 0 0 var(--border-width-200) var(--color-focus-outer)
 --color-background-neutral-soft: var(--palette-white-alpha-10)
@@ -129,7 +131,13 @@
 --color-shadow-floating: var(--palette-black-alpha-25)
 --color-shadow-card-rest: var(--palette-black-alpha-25)
 --color-shadow-card-hover: var(--palette-black-alpha-40)
---color-cooper-text: #d08a57
+--color-shadow-map-highlight-resolved: var(--palette-success-500-alpha-40)
+--color-shadow-map-highlight-critical: var(--palette-danger-500-alpha-40)
+--color-shadow-map-highlight-moderate: var(--palette-warning-500-alpha-40)
+--color-shadow-map-highlight-cooper: var(--palette-cooper-500-alpha-40)
+--color-shadow-map-highlight-evaluated: var(--palette-info-500-alpha-40)
+--color-shadow-map-highlight-grey: var(--palette-core-330-alpha-40)
+--color-cooper-text: var(--palette-cooper-450)
 --color-cooper-icon: var(--palette-cooper-500)
 --color-cooper-border: var(--palette-cooper-500)
 --color-cooper-background-strong: var(--palette-cooper-500)
@@ -141,20 +149,20 @@
 --color-cooper-insight-inverse: var(--palette-white-alpha-5)
 --color-cooper-background-soft: var(--palette-cooper-500-alpha-10)
 --color-cooper-background: var(--palette-cooper-500-alpha-25)
---color-cooper-glow-center: rgba(200,121,65,0.2)
+--color-cooper-glow-center: var(--palette-cooper-500-alpha-20)
 --color-cooper-glow-edge: var(--palette-black-alpha-20)
---color-cooper-speaking-center: rgba(131,102,247,0.48)
---color-cooper-speaking-edge: rgba(0,0,0,0.24)
+--color-cooper-speaking-center: var(--palette-purple-500-alpha-48)
+--color-cooper-speaking-edge: var(--palette-black-alpha-24)
 --color-cooper-button-fill: var(--palette-black-alpha-60)
 --color-cooper-button-fill-pressed: var(--palette-black-alpha-60)
 --color-cooper-button-glow: var(--palette-cooper-500)
 --color-cooper-button-glow-hover: var(--palette-cooper-500)
 --color-cooper-button-glow-pressed: var(--palette-cooper-700)
 --color-cooper-button-glow-edge: var(--palette-black-alpha-0)
---color-cooper-button-rim: rgba(218,209,253,0.25)
+--color-cooper-button-rim: var(--palette-purple-150-alpha-25)
 --color-cooper-button-rim-center: var(--palette-black-alpha-0)
---color-cooper-highlight-purple-strong: rgba(79,61,149,0.24)
---color-cooper-highlight-purple: rgba(79,61,149,0.6)
+--color-cooper-highlight-purple-strong: var(--palette-purple-700-alpha-24)
+--color-cooper-highlight-purple: var(--palette-purple-700-alpha-60)
 --color-cooper-highlight-edge: var(--palette-black-alpha-60)
 --color-cooper-fab-rim: var(--palette-core-1000)
 --color-cooper-fab-shadow: var(--palette-purple-300)
@@ -275,33 +283,33 @@
 --color-background-skeleton: var(--color-background-neutral-soft)
 --color-background-sheen: var(--palette-white-alpha-40)
 --color-background-sheen-from: var(--palette-black-alpha-20)
---color-background-sheen-to: rgba(102,102,102,0.2)
---color-background-accent-purple-glow: rgba(128,120,255,0.25)
---color-icon-handle: #9e9ea8
---color-border-chart-gap: #0f0f0f
---color-border-on-overlay: #1f1f1f
---color-border-soft-hover: rgba(255,255,255,0.08)
---color-border-pin-label: #2d3238
---color-shadow-label: rgba(0,0,0,0.7)
---color-text-on-solid-softer: rgba(255,255,255,0.75)
+--color-background-sheen-to: var(--palette-core-400-alpha-20)
+--color-background-accent-purple-glow: var(--palette-indigo-400-alpha-25)
+--color-icon-handle: var(--palette-lavender-350)
+--color-border-chart-gap: var(--palette-core-60)
+--color-border-on-overlay: var(--palette-core-120)
+--color-border-soft-hover: var(--palette-white-alpha-8)
+--color-border-pin-label: var(--palette-slate-700)
+--color-shadow-label: var(--palette-black-alpha-70)
+--color-text-on-solid-softer: var(--palette-white-alpha-75)
 --color-shadow-soft: var(--palette-black-alpha-15)
---color-shadow-softer: rgba(0,0,0,0.04)
---color-shadow-cursor: rgba(0,0,0,0.16)
---color-shadow-pin: rgba(10,14,21,0.2)
---color-cooper-button-shade: rgba(0,0,0,0.36)
---color-cooper-button-fill-disabled: rgba(0,0,0,0.03)
+--color-shadow-softer: var(--palette-black-alpha-4)
+--color-shadow-cursor: var(--palette-black-alpha-16)
+--color-shadow-pin: var(--palette-slate-950-alpha-20)
+--color-cooper-button-shade: var(--palette-black-alpha-36)
+--color-cooper-button-fill-disabled: var(--palette-black-alpha-3)
 --color-cooper-art-light: var(--palette-core-1000)
---color-cooper-art-pink: #fbc4e6
---color-cooper-art-copper: #cd9579
---color-cooper-art-violet: #5a12bf
---border-blue: #2b7fff
---element-checkbox-off-border-pressed: rgba(255,255,255,0.15)
---element-radiobutton-off-border-pressed: rgba(255,255,255,0.15)
---element-button-circular-fill-default: rgba(255,255,255,0.2)
---element-button-circular-fill-hover: rgba(255,255,255,0.6)
---element-button-circular-fill-pressed: rgba(255,255,255,0.5)
---white-500: rgba(255,255,255,0.5)
---white-alpha-50: rgba(255,255,255,0.5)
+--color-cooper-art-pink: var(--palette-cooper-art-pink)
+--color-cooper-art-copper: var(--palette-cooper-art-copper)
+--color-cooper-art-violet: var(--palette-cooper-art-violet)
+--border-blue: var(--palette-info-500)
+--element-checkbox-off-border-pressed: var(--palette-white-alpha-15)
+--element-radiobutton-off-border-pressed: var(--palette-white-alpha-15)
+--element-button-circular-fill-default: var(--palette-white-alpha-20)
+--element-button-circular-fill-hover: var(--palette-white-alpha-60)
+--element-button-circular-fill-pressed: var(--palette-white-alpha-50)
+--white-500: var(--palette-white-alpha-50)
+--white-alpha-50: var(--palette-white-alpha-50)
 --table-col-primary-min: 15rem
 --table-col-primary-max: 30rem
 --table-col-short-min: 7.5rem
@@ -365,22 +373,34 @@
 --blur-20: 20px
 --blur-10: 10px
 --blur-4: 4px
---drop-shadow-elevation-1: 0 4px 8px 0 rgba(0,0,0,0.1)
---drop-shadow-floating: 0 4px 8px 0 rgba(0,0,0,0.25)
---elevation-1: 0 4px 8px 0 rgba(0,0,0,0.25)
---elevation-2: 0 8px 12px -1px rgba(0,0,0,0.25)
---elevation-3: 0 12px 16px -2px rgba(0,0,0,0.35)
+--drop-shadow-elevation-1: 0 4px 8px 0 var(--palette-black-alpha-10)
+--drop-shadow-floating: 0 4px 8px 0 var(--color-shadow-floating)
+--elevation-1: 0 4px 8px 0 var(--color-shadow-elevation-1)
+--elevation-2: 0 8px 12px -1px var(--color-shadow-elevation-2)
+--elevation-3: 0 12px 16px -2px var(--color-shadow-elevation-3)
 --elevation-raised: none
---elevation-floating: 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-2)
---elevation-modal: 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-3)
+--elevation-floating: 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-floating-shadow)
+--elevation-modal: 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-modal-shadow)
+--elevation-floating-shadow: var(--elevation-2)
+--elevation-modal-shadow: var(--elevation-3)
 --elevation-floating-filter: drop-shadow(0 4px 8px var(--color-shadow-floating))
---inner-shadow-map-highlight-resolved: inset 0 0 12px 7px rgba(46,188,93,0.4)
---inner-shadow-map-highlight-critical: inset 0 0 12px 7px rgba(238,60,59,0.4)
---inner-shadow-map-highlight-moderate: inset 0 0 12px 7px rgba(255,175,46,0.4)
---inner-shadow-map-highlight-cooper: inset 0 0 12px 7px rgba(200,121,65,0.4)
---inner-shadow-map-highlight-evaluated: inset 0 0 12px 7px rgba(43,127,255,0.4)
---inner-shadow-map-highlight-grey: inset 0 0 12px 7px rgba(84,84,84,0.4)
+--inner-shadow-map-highlight-resolved: inset 0 0 12px 7px var(--color-shadow-map-highlight-resolved)
+--inner-shadow-map-highlight-critical: inset 0 0 12px 7px var(--color-shadow-map-highlight-critical)
+--inner-shadow-map-highlight-moderate: inset 0 0 12px 7px var(--color-shadow-map-highlight-moderate)
+--inner-shadow-map-highlight-cooper: inset 0 0 12px 7px var(--color-shadow-map-highlight-cooper)
+--inner-shadow-map-highlight-evaluated: inset 0 0 12px 7px var(--color-shadow-map-highlight-evaluated)
+--inner-shadow-map-highlight-grey: inset 0 0 12px 7px var(--color-shadow-map-highlight-grey)
 --drop-shadow-pin: 0 0 10px 0 var(--color-shadow-pin)
+--drop-shadow-pin-filter: drop-shadow(0 0 10px var(--color-shadow-pin))
+--drop-shadow-pin-xs: 0 0 5px 0 var(--color-shadow-pin)
+--drop-shadow-pin-glow: 0 0 10px var(--color-shadow-soft),0 0 4px var(--color-shadow-soft)
+--drop-shadow-pin-glow-selected: 0 0 10px var(--color-shadow-soft)
+--drop-shadow-map-pin-filter: drop-shadow(0 0 3.6px var(--color-shadow-floating))
+--drop-shadow-map-pin-opened-filter: drop-shadow(0 0 5px var(--color-shadow-floating))
+--drop-shadow-cursor: 0 1px 4px var(--color-shadow-cursor)
+--drop-shadow-risk: 0 4px 24px var(--color-shadow-softer)
+--drop-shadow-cooper-fab: 0 0 3.55px 0 var(--color-cooper-fab-shadow)
+--drop-shadow-cooper-fab-filter: drop-shadow(0 0 1.8px var(--color-cooper-fab-shadow))
 --size-badge-s: var(--size-control-xs) | spacious: var(--size-control-xs) | compact: var(--size-control-xs)
 --size-badge-m: var(--size-control-s) | spacious: var(--size-control-s) | compact: var(--size-control-s)
 --size-badge-l: var(--size-control-m) | spacious: var(--size-control-m) | compact: var(--size-control-m)
@@ -477,6 +497,7 @@
 --motion-distance-16: 16px | prefers-reduced-motion:reduce: 0px
 --motion-loop-spin: 1400ms
 --motion-loop-pulse: 1600ms
+--motion-loop-blink: 1000ms
 --motion-end: 1 | rtl: -1
 --palette-core-0: #000000
 --palette-core-50: #0d0d0d
@@ -530,7 +551,7 @@
 --palette-success-500-alpha-10: rgba(46,188,93,0.1)
 --palette-success-600: #0c9844
 --palette-success-700: #077332
---palette-success-700-alpha-0: rgba(28,113,56,0)
+--palette-success-700-alpha-0: rgba(7,115,50,0)
 --palette-success-800: #034c1f
 --palette-success-850: #013a15
 --palette-success-900: #01280c
@@ -546,7 +567,7 @@
 --palette-danger-500-alpha-10: rgba(238,60,59,0.1)
 --palette-danger-600: #c81b23
 --palette-danger-700: #9a0613
---palette-danger-700-alpha-0: rgba(143,36,35,0)
+--palette-danger-700-alpha-0: rgba(154,6,19,0)
 --palette-danger-800: #69020a
 --palette-danger-850: #510105
 --palette-danger-900: #390003
@@ -563,7 +584,7 @@
 --palette-warning-600: #cf8a0e
 --palette-warning-700: #9c6708
 --palette-warning-800: #694403
---palette-warning-800-alpha-0: rgba(102,70,18,0)
+--palette-warning-800-alpha-0: rgba(105,68,3,0)
 --palette-warning-850: #513302
 --palette-warning-900: #372101
 --palette-warning-950: #1e1000
@@ -573,15 +594,15 @@
 --palette-info-200: #acccfe
 --palette-info-300: #82b2fe
 --palette-info-400: #5999fd
---palette-info-400-alpha-0: rgba(85,153,255,0)
---palette-info-400-alpha-10: rgba(85,153,255,0.1)
+--palette-info-400-alpha-0: rgba(89,153,253,0)
+--palette-info-400-alpha-10: rgba(89,153,253,0.1)
 --palette-info-500: #2b7fff
 --palette-info-500-alpha-10: rgba(43,127,255,0.1)
 --palette-info-500-alpha-25: rgba(43,127,255,0.25)
 --palette-info-600: #0f63d9
 --palette-info-700: #0349a9
 --palette-info-800: #013074
---palette-info-800-alpha-0: rgba(17,51,103,0)
+--palette-info-800-alpha-0: rgba(1,48,116,0)
 --palette-info-850: #01245b
 --palette-info-900: #001841
 --palette-info-950: #000b28
@@ -791,6 +812,36 @@
 --palette-lime-500: #a9d10a
 --palette-black-alpha-25: rgba(0,0,0,0.25)
 --palette-black-alpha-35: rgba(0,0,0,0.35)
+--palette-black-alpha-3: rgba(0,0,0,0.03)
+--palette-black-alpha-4: rgba(0,0,0,0.04)
+--palette-black-alpha-16: rgba(0,0,0,0.16)
+--palette-black-alpha-24: rgba(0,0,0,0.24)
+--palette-black-alpha-36: rgba(0,0,0,0.36)
+--palette-black-alpha-70: rgba(0,0,0,0.7)
+--palette-white-alpha-8: rgba(255,255,255,0.08)
+--palette-core-60: #0f0f0f
+--palette-core-120: #1f1f1f
+--palette-core-330-alpha-40: rgba(84,84,84,0.4)
+--palette-core-400-alpha-20: rgba(102,102,102,0.2)
+--palette-lavender-350: #9e9ea8
+--palette-slate-700: #2d3238
+--palette-slate-950-alpha-20: rgba(10,14,21,0.2)
+--palette-purple-150-alpha-25: rgba(218,209,253,0.25)
+--palette-purple-450: #9580f8
+--palette-purple-500-alpha-48: rgba(131,102,247,0.48)
+--palette-purple-700-alpha-24: rgba(79,61,149,0.24)
+--palette-purple-700-alpha-60: rgba(79,61,149,0.6)
+--palette-indigo-400-alpha-25: rgba(128,120,255,0.25)
+--palette-cooper-450: #d08a57
+--palette-cooper-500-alpha-20: rgba(200,121,65,0.2)
+--palette-cooper-500-alpha-40: rgba(200,121,65,0.4)
+--palette-cooper-art-pink: #fbc4e6
+--palette-cooper-art-copper: #cd9579
+--palette-cooper-art-violet: #5a12bf
+--palette-success-500-alpha-40: rgba(46,188,93,0.4)
+--palette-danger-500-alpha-40: rgba(238,60,59,0.4)
+--palette-warning-500-alpha-40: rgba(255,175,46,0.4)
+--palette-info-500-alpha-40: rgba(43,127,255,0.4)
 --space-0: 0rem
 --space-50: 0.125rem
 --space-100: 0.25rem
