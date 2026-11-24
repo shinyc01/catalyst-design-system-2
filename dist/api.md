@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.5, generated 2026-11-23. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.5, generated 2026-11-24. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -2557,9 +2557,9 @@ Figma: tooltip-organism (67:6151)
 Props: content (Figma Label / Content slot), hotkey (hotkey-atom text, e.g. "⌘/"; absent = show-hotkey off),
 color black|grey ("grey (for black bg)"), type bottom|top|left|right = side the ARROW is on
 (bottom → bubble sits above the trigger, the default), arrow left|center|right (top/bottom only).
-Wraps one trigger child; shows on hover (400ms delay) and focus, hides instantly, Esc dismisses.
+Wraps one trigger child; shows after the 300ms pointer wait (M3) and at once on keyboard focus, hides instantly, Esc dismisses.
 open/onOpenChange to control. `inline` renders the bubble alone (gallery).
-`function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = 400, open, defaultOpen, onOpenChange, inline, children, className })`
+`function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = 300 /* M3: the pointer wait, the only delay */, open, defaultOpen, onOpenChange, inline, children, className })`
 
 ### Alert
 **Tier:** Component

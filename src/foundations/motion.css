@@ -27,10 +27,10 @@
 @keyframes ifs-slide-in-end{from{transform:translateX(calc((100% + var(--float-inset)) * var(--motion-end)))}}   /* drawers: fully from their edge */
 @keyframes ifs-slide-in-start{from{transform:translateX(calc((100% + var(--float-inset)) * -1 * var(--motion-end)))}}
 
-/* Opening small surfaces (M3): 100 enter; the tooltip waits 300 on pointer hover and fades only, and shows at once on keyboard focus.
+/* Opening small surfaces (M3): 100 enter; the tooltip fades only (its 300 pointer wait is the component's delay) and shows at once on keyboard focus.
    Closing is not animated yet: the kit unmounts closed surfaces (an exit helper is still to build). */
 .ifs-popover,.ifs-menu__list,.ifs-select__list,.ifs-datepicker__popover{animation:ifs-drop var(--motion-duration-100) var(--motion-ease-enter)}
-.ifs-tooltip{animation:ifs-fade var(--motion-duration-100) var(--motion-ease-enter) var(--motion-duration-300) backwards}
+.ifs-tooltip{animation:ifs-fade var(--motion-duration-100) var(--motion-ease-enter)} /* the 300 wait is the Tooltip delay prop (JS), so it isn't added twice */
 .ifs-tooltip-anchor:focus-within > .ifs-tooltip{animation:none}
 /* Opening large surfaces: 200 enter */
 .ifs-modal{animation:ifs-rise var(--motion-duration-200) var(--motion-ease-enter)}

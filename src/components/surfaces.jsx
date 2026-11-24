@@ -46,9 +46,9 @@ function useSurfaceId(p) { return React.useMemo(() => `${p}-${++surfUid}`, []); 
 // Props: content (Figma Label / Content slot), hotkey (hotkey-atom text, e.g. "⌘/"; absent = show-hotkey off),
 // color black|grey ("grey (for black bg)"), type bottom|top|left|right = side the ARROW is on
 // (bottom → bubble sits above the trigger, the default), arrow left|center|right (top/bottom only).
-// Wraps one trigger child; shows on hover (400ms delay) and focus, hides instantly, Esc dismisses.
+// Wraps one trigger child; shows after the 300ms pointer wait (M3) and at once on keyboard focus, hides instantly, Esc dismisses.
 // open/onOpenChange to control. `inline` renders the bubble alone (gallery).
-function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = 400, open, defaultOpen, onOpenChange, inline, children, className }) {
+function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = 300 /* M3: the pointer wait, the only delay */, open, defaultOpen, onOpenChange, inline, children, className }) {
   const [shown, setShown] = useSurfaceState(open, defaultOpen, onOpenChange);
   const id = useSurfaceId('ifs-tooltip');
   const timer = React.useRef();
