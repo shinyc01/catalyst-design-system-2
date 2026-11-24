@@ -454,7 +454,7 @@ Use: Chart title row with optional view toggle or button. `viewSwitch` sits afte
 
 ### data-viz-modal-organism · `DataVizTooltip`
 Use: Chart tooltip / info pop-up showing exact values on hover.
-Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 11.5). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series. Swatches show only when more than one row has a colour. Spacing: `--space-inset` all round, `--space-150` title → rows, `--space-100` between rows.
+Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 11.5). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series. Swatches show only when more than one row has a colour. Spacing: `--space-inset` start and end, `--space-300` top and bottom, `--space-150` title → rows, `--space-100` between rows.
 
 ### indicator-atom · `DataVizIndicator`
 Use: Target/selection marker on a chart (e.g. bullet-chart target).
