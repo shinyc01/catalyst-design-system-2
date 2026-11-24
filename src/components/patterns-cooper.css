@@ -112,7 +112,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-cooper-msg__buttons{display:flex;gap:var(--space-200)}
 .ifs-cooper-msg__buttons>*{flex:1}
 .ifs-cooper-msg__list{display:flex;flex-direction:column}
-.ifs-cooper-msg__cursor{display:inline-block;width:2px;height:var(--size-16);margin-inline-start:var(--space-50);vertical-align:-3px;background:var(--color-text);animation:ifs-cooper-blink var(--motion-loop-blink) steps(2) infinite}
+.ifs-cooper-msg__cursor{display:inline-block;width:2px;height:var(--size-16);margin-inline-start:var(--space-50);vertical-align:calc(-1 * var(--size-3));background:var(--color-text);animation:ifs-cooper-blink var(--motion-loop-blink) steps(2) infinite}
 @keyframes ifs-cooper-blink{50%{opacity:0}}
 .ifs-cooper-progress{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-100) 0;
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-softer);min-width:0}

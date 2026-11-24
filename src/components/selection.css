@@ -202,7 +202,7 @@
 .ifs-calendar--fill{display:flex;width:100%}
 .ifs-calendar--fill .ifs-calendar__row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
 .ifs-calendar--fill .ifs-calendar__date,.ifs-calendar--fill .ifs-weekday{justify-self:center} /* dates keep their size, spread across the row */
-.ifs-calendar__events{position:absolute;inset-inline-start:6px;inset-inline-end:6px;bottom:0;height:var(--size-10);box-sizing:border-box;padding-top:var(--space-50);display:flex;flex-direction:column;gap:var(--size-1)}
+.ifs-calendar__events{position:absolute;inset-inline:var(--space-150);bottom:0;height:var(--size-10);box-sizing:border-box;padding-top:var(--space-50);display:flex;flex-direction:column;gap:var(--size-1)}
 .ifs-calendar__events i{display:block;height:2px;border-radius:var(--radius-control);background:var(--color-icon-focus)}
 .ifs-calendar__events i.is-danger{background:var(--color-icon-danger)}
 .ifs-calendar__events i.is-warning{background:var(--color-icon-warning)}

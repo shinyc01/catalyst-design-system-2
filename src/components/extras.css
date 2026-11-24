@@ -84,7 +84,7 @@
 .ifs-dot-button__dot{position:absolute;pointer-events:none;border-radius:50%}
 /* notification: status-indicator-atom Error + stroke, 8px at (13,3) */
 .ifs-dot-button--notification .ifs-dot-button__dot{left:0.8125rem;top:0.1875rem} /* ltr: badge offset on icon art */
-/* comment / filter / arrow: 6px --color-background-danger-strong ellipse, 1.5px --color-surface-primary outside stroke */
+/* comment / filter / arrow: 6px --color-background-danger-strong ellipse, 1.5px --color-surface-primary outside stroke (B1: snaps to 1) */
 .ifs-dot-button--comment .ifs-dot-button__dot,.ifs-dot-button--filter .ifs-dot-button__dot,.ifs-dot-button--arrow .ifs-dot-button__dot{
   width:var(--size-6);height:var(--size-6);left:0.9375rem;top:0.1875rem;background:var(--color-background-danger-strong);box-shadow:0 0 0 var(--border-width-default) var(--color-surface-primary)} /* ltr: badge offset on icon art */
 .ifs-dot-button--comment .ifs-dot-button__dot{top:0.3125rem}

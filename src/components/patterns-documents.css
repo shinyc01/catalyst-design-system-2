@@ -49,7 +49,7 @@ button.ifs-pin-defect{cursor:pointer}
   cursor:pointer;border-radius:var(--radius-control)}
 .ifs-pin-pole--dot{gap:var(--space-100);justify-content:center}
 .ifs-pin-pole__label{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text);white-space:nowrap;
-  -webkit-text-stroke:2px var(--color-border-pin-label) /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px var(--color-shadow-label) /* raw in Figma */}
+  -webkit-text-stroke:var(--border-width-200) var(--color-border-pin-label) /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px var(--color-shadow-label) /* raw in Figma */}
 .ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--color-background-accent-white-strong)}
 /* "Pin" / "Hierarchy Pin": teardrop (circle + tail) in white with a status circle and a white asset icon. */
 .ifs-pin-pole__pin{--pp-size:32px;--pp-in:29.5px;--pp-fill:var(--color-icon-softer);--pp-border:var(--color-icon-softer);--pp-bw:var(--border-width-default);

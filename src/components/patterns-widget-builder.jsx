@@ -448,7 +448,7 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
     setDrag(nd);
     if (t) {
       const onLine = t.line.o === 'h' ? Math.abs(y - t.line.y) < 6 : Math.abs(x - t.line.x) < 6;
-      timer.current = setTimeout(() => setDrag(cur => cur && sameTarget(cur.target, t) ? { ...cur, preview: true } : cur), onLine ? 0 : 300);
+      timer.current = setTimeout(() => setDrag(cur => cur && sameTarget(cur.target, t) ? { ...cur, preview: true } : cur), onLine ? 0 : IFS.motionMs('--motion-duration-300', 300));
     }
   }, [layout]); // eslint-disable-line react-hooks/exhaustive-deps
 
