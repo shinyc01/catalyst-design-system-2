@@ -1,6 +1,11 @@
 /* Shared pieces used by several components. */
 .ifs-icon{display:inline-block;flex:none;vertical-align:middle}
 .ifs-icon--missing{outline:var(--border-width-default) dashed var(--color-border-danger)}
+/* Status fills in icon artwork read colour roles (Icon adds the class), so Light can remap them (C3) */
+.ifs-icon__fill--danger{fill:var(--color-icon-danger)}
+.ifs-icon__fill--warning{fill:var(--color-icon-warning)}
+.ifs-icon__fill--success{fill:var(--color-icon-success)}
+.ifs-icon__fill--accent-purple{fill:var(--color-icon-accent-purple)}
 /* The loader (S2, Nov 24): one loader for the whole kit, the dotted system-loader. Icon gives system-loader the .ifs-spin class (states.css):
    ifs-spin on --motion-loop-spin (1.4 s), linear; reduced motion slows it (M4). */
 /* RTL: directional icons flip. The scale property (not transform) so it stacks with carets a component already rotates

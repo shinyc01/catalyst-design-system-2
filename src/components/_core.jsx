@@ -14,6 +14,11 @@ const MIRRORED_ICONS = new Set(['arrow-left', 'arrow-right', 'arrow-chevron-left
   'arrow-caret-left-filled', 'arrow-caret-right-filled', 'arrow-bar-left', 'arrow-bar-right', 'arrow-back-up',
   'corner-down-left-arrow', 'corner-down-right-arrow', 'icon-arrow-down-left', 'exit-arrow-back', 'log out', 'layout-sidebar-right']);
 
+// Status colours drawn into the icon artwork (status-*-filled, cooper-evidence-icon) get a class, so the fill reads a colour role
+// (_core.css) and a theme can remap it (C3); the hex in the artwork stays as the fallback.
+const ICON_FILL_ROLE = { '#EE3C3B': 'danger', '#FFAF2E': 'warning', '#2EBC5D': 'success', '#8366F7': 'accent-purple' };
+const roleFills = svg => svg.replace(/fill="(#[0-9A-Fa-f]{6})"/g, (m, h) => (ICON_FILL_ROLE[h.toUpperCase()] ? `${m} class="ifs-icon__fill--${ICON_FILL_ROLE[h.toUpperCase()]}"` : m));
+
 function Icon({ name, size = 16, variant, className, style, title }) {
   const set = (window.IFS_ICONS || {})[name];
   if (!set) {
@@ -22,7 +27,7 @@ function Icon({ name, size = 16, variant, className, style, title }) {
   }
   const key = variant && set[variant] ? variant : set[size] ? size : [24, 16, 12, 25].find(s => set[s]) || Object.keys(set)[0];
   const entry = set[key];
-  const svg = typeof entry === 'string' ? entry : entry.svg;
+  const svg = roleFills(typeof entry === 'string' ? entry : entry.svg);
   const vb = typeof entry === 'string' ? `0 0 ${key} ${key}` : entry.vb;
   // Icons use their drawn size (12 / 16 / 24) in every density (A3, Nov 23) and follow the component's size, never a multiplier.
   // In rem (size / 16), so they still follow the user's default text size, like the text beside them.
