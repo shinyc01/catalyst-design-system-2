@@ -16,7 +16,7 @@ const MIRRORED_ICONS = new Set(['arrow-left', 'arrow-right', 'arrow-chevron-left
 
 // Status colours drawn into the icon artwork (status-*-filled, cooper-evidence-icon) get a class, so the fill reads a colour role
 // (_core.css) and a theme can remap it (C3); the hex in the artwork stays as the fallback.
-const ICON_FILL_ROLE = { '#EE3C3B': 'danger', '#FFAF2E': 'warning', '#2EBC5D': 'success', '#8366F7': 'accent-purple' };
+const ICON_FILL_ROLE = { '#EE3C3B': 'danger', '#FFAF2E': 'warning', '#2EBC5D': 'success', '#8366F7': 'accent-purple' }; // raw-ok: the artwork's hex, looked up to find its role
 const roleFills = svg => svg.replace(/fill="(#[0-9A-Fa-f]{6})"/g, (m, h) => (ICON_FILL_ROLE[h.toUpperCase()] ? `${m} class="ifs-icon__fill--${ICON_FILL_ROLE[h.toUpperCase()]}"` : m));
 
 function Icon({ name, size = 16, variant, className, style, title }) {
