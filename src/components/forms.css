@@ -45,14 +45,11 @@
 
 /* Hover */
 .ifs-field__control:hover,.ifs-field[data-state=hover] .ifs-field__control{--fill:var(--color-background-input);--border:var(--color-border-input-hover)}
-/* TextField: Typing/Active/Focus = focus ring. L ring 2px + 4px, M 1.5px + 3px (Figma Focus wrapper). */
+/* TextField: Typing/Active/Focus = the focus ring (--focus-ring, every size). */
 .ifs-field--text .ifs-field__control:focus-within,.ifs-field--text[data-state=focus] .ifs-field__control,.ifs-field--text[data-state=typing] .ifs-field__control,
 .ifs-field--area[data-state=focus] .ifs-field__control{
   --fill:var(--color-background-input);--border:var(--color-border-input);
-  --ring:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
-.ifs-field--text.ifs-field--m .ifs-field__control:focus-within,.ifs-field--text.ifs-field--m[data-state=focus] .ifs-field__control,.ifs-field--text.ifs-field--m[data-state=typing] .ifs-field__control,
-.ifs-field--area.ifs-field--m[data-state=focus] .ifs-field__control{
-  --ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+  --ring:var(--focus-ring)}
 /* TextArea: Typing = brighter border, no ring (Figma text-area State=Typing) */
 .ifs-field--area .ifs-field__control:focus-within,.ifs-field--area[data-state=typing] .ifs-field__control{
   --fill:var(--color-background-input);--border:var(--color-border-input-focus)}
@@ -64,7 +61,7 @@
 .ifs-field--disabled .ifs-field__control,.ifs-field--disabled .ifs-field__control:hover{--fill:var(--color-background-neutral-softer);--border:var(--color-border-input-disabled);cursor:not-allowed;color:var(--color-icon-disabled)}
 .ifs-field--disabled .ifs-field__input,.ifs-field--disabled .ifs-field__input::placeholder{color:var(--color-text-disabled);cursor:not-allowed}
 
-/* Cooper (AI): 2px focus-inner + 2px gradient ring text/accent-cooper → text/primary.
+/* Cooper (AI), not focus: 2px focus-inner gap + 2px gradient ring text/accent-cooper → text/primary.
    Gradient angle converted from Figma's gradientTransform (approximate). */
 .ifs-field--cooper .ifs-field__control,.ifs-field--cooper .ifs-field__control:hover,.ifs-field--cooper .ifs-field__control:focus-within{
   --fill:var(--color-background-input);--border:var(--color-border-input);--ring:0 0 0 2px var(--color-focus-inner)}
@@ -96,7 +93,7 @@
 .ifs-search .ifs-search__clear{color:var(--color-icon-softer)}
 .ifs-search:hover,.ifs-search[data-state=hover],.ifs-search--filled{--border:var(--color-border-input-hover)}
 .ifs-search:hover .ifs-search__input::placeholder,.ifs-search[data-state=hover] .ifs-search__input::placeholder{color:var(--color-text-soft)}
-.ifs-search:focus-within,.ifs-search[data-state=focus]{--border:var(--color-border-input);--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-search:focus-within,.ifs-search[data-state=focus]{--border:var(--color-border-input);--ring:var(--focus-ring)}
 .ifs-search--disabled,.ifs-search--disabled:hover{--border:var(--color-border-input-disabled);color:var(--color-icon-disabled);cursor:not-allowed}
 .ifs-search--disabled .ifs-search__input,.ifs-search--disabled .ifs-search__input::placeholder{color:var(--color-text-disabled);cursor:not-allowed}
 
@@ -135,10 +132,10 @@
 .ifs-radio--on:hover .ifs-check__box,.ifs-radio--on[data-state=hover] .ifs-check__box{--box-border:var(--color-border-selected-hover);--dot:var(--color-background-neutral-stronger-hover)}
 .ifs-radio--on:active .ifs-check__box,.ifs-radio--on[data-state=pressed] .ifs-check__box{--box-border:var(--color-border-selected-pressed);--dot:var(--color-background-neutral-stronger-pressed)}
 .ifs-radio--on:hover,.ifs-radio--on[data-state=hover],.ifs-radio--on:active,.ifs-radio--on[data-state=pressed]{color:var(--color-text)}
-/* Focus: molecule ring 1.5px + 3px; bare atom ring 1px + 2px */
-.ifs-check:has(.ifs-check__input:focus-visible),.ifs-check[data-state=focus]{--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+/* Focus: the focus ring, on the molecule or (bare atom) on the box */
+.ifs-check:has(.ifs-check__input:focus-visible),.ifs-check[data-state=focus]{--ring:var(--focus-ring)}
 .ifs-check--bare:has(.ifs-check__input:focus-visible),.ifs-check--bare[data-state=focus]{--ring:none}
-.ifs-check--bare:has(.ifs-check__input:focus-visible) .ifs-check__box,.ifs-check--bare[data-state=focus] .ifs-check__box{--box-ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-focus-outer)}
+.ifs-check--bare:has(.ifs-check__input:focus-visible) .ifs-check__box,.ifs-check--bare[data-state=focus] .ifs-check__box{--box-ring:var(--focus-ring)}
 /* Disabled */
 .ifs-check--disabled,.ifs-check--disabled:hover{cursor:not-allowed;background:none;color:var(--color-text-disabled)}
 .ifs-checkbox.ifs-check--disabled .ifs-check__box{--box-border:var(--color-border-soft);color:var(--color-icon-disabled)}
@@ -172,7 +169,7 @@
 .ifs-switch--s[aria-checked=true] .ifs-switch__knob{inset-inline-start:var(--size-11);width:var(--size-10);height:var(--size-10)}
 .ifs-switch[aria-checked=true]:hover,.ifs-switch[aria-checked=true][data-state=hover],.ifs-switch-row:hover .ifs-switch[aria-checked=true]{--fill:var(--color-background-neutral-stronger-hover);--border:transparent}
 .ifs-switch[aria-checked=true]:active,.ifs-switch[aria-checked=true][data-state=pressed]{--fill:var(--color-background-neutral-stronger-pressed);--border:transparent}
-.ifs-switch:focus-visible,.ifs-switch[data-state=focus]{outline:none;--ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-focus-outer)}
+.ifs-switch:focus-visible,.ifs-switch[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 /* Disabled: Figma uses toggle/off/border/pressed for the off border */
 .ifs-switch:disabled,.ifs-switch-row:hover .ifs-switch:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);--border:var(--color-border-soft);--knob:var(--color-icon-disabled)}
 .ifs-switch[aria-checked=true]:disabled,.ifs-switch-row:hover .ifs-switch[aria-checked=true]:disabled{--fill:var(--color-background-neutral-soft);--border:transparent;--knob:var(--color-icon-disabled-inverse)}

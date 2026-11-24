@@ -24,7 +24,7 @@ Cards on the page grid use `.ifs-grid` (rule 4.2). Components keep their own CSS
 - Class names: `.ifs-<component>` block, `--<modifier>` per Figma variant value.
 - Strokes keep the Figma box: INSIDE → `box-shadow: inset 0 0 0 W`, OUTSIDE → `box-shadow: 0 0 0 W`, CENTER → `outline` with a −W/2 offset, W always a `--border-width-*` role (rule 3.14). Use `border` only when the stroke changes layout.
 - States: Hover / Pressed / Disabled / Focus → `:hover`, `:active`, `:disabled` / `[aria-disabled=true]`, `:focus-visible`, plus `[data-state=hover|pressed|focus]` for the gallery.
-- Focus ring: `box-shadow: 0 0 0 1.5px var(--color-focus-inner), 0 0 0 3px var(--color-focus-outer)` (unchanged until the Focus round). Effect `blur/40` → `backdrop-filter: blur(var(--blur-40))`; blur steps are named by value: `--blur-4|10|20|40|80|100`.
+- Focus ring (S1, Nov 24): one ring for every control at every size, `box-shadow: var(--focus-ring)` (a 2px `--color-focus-inner` gap + 2px `--color-focus-outer`, outside; meets WCAG 2.4.13); `var(--focus-ring-inset)` (2px inset blue) for items inside clipped lists and scroll areas. Never write the ring out, and never transition it. Forced colours drop box-shadow, so `_core.css` gives `:focus-visible` an outline in `Highlight`. Rings that only borrow the focus colours (Cooper ring, selected node, active documents bar) are not focus. Effect `blur/40` → `backdrop-filter: blur(var(--blur-40))`; blur steps are named by value: `--blur-4|10|20|40|80|100`.
 - JSX: React 18 function components; each file imports `IFS` from `./registry.js`, uses other components as `IFS.Button` (no cross-family imports) and ends with `Object.assign(IFS, { … }); export { … };`.
 - Props mirror Figma properties in camelCase with lowercase values (`Type=Primary` → `type="primary"`, `Size=M (32)` → `size="m"`, `show-icon-left` + `Icon left` → `iconLeft="system-heart"`; no icon prop = hidden); text properties → `children` or a named prop. Interactive components work for real and also take controlled props (`value`/`onChange`, `open`/`onOpenChange`).
 - Icons: always `<IFS.Icon name="…" size={16} />` with a Figma icon name; never inline SVG or an icon font.
@@ -183,7 +183,7 @@ Rows keep their own tokens: tabs `--size-tab-m` 40 / 36 / 32 and `--size-tab-l` 
 | `--border-width-emphasis` | 4 | the drag outline |
 
 - Nested shape: an inner radius = outer radius − padding, never below `--radius-control`.
-- Odd widths in Figma snap to 1. The focus ring stays 1.5 + 3 (rule 1.6) until the Focus round.
+- Odd widths in Figma snap to 1. The focus ring is `--focus-ring`, 2 + 2 (rule 1.6).
 
 ---
 

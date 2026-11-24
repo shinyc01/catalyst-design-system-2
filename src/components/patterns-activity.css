@@ -28,7 +28,7 @@
 .ifs-compare-dd__field{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:2.125rem;box-sizing:border-box;
   padding:var(--space-200) var(--space-250);border-radius:var(--radius-control);cursor:pointer;outline:none;
   background:var(--color-surface-overlay);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-on-overlay) /* raw in Figma */}
-.ifs-compare-dd__field:focus-visible{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-on-overlay),0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-compare-dd__field:focus-visible{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-on-overlay),var(--focus-ring)}
 .ifs-compare-dd--disabled .ifs-compare-dd__field{cursor:default;opacity:0.5} /* inferred: Figma has no disabled variant */
 .ifs-compare-dd__value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */

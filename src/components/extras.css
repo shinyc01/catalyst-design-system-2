@@ -19,7 +19,7 @@
 .ifs-scroll-area{position:relative;min-height:0;overflow:hidden}
 .ifs-scroll-area__viewport{height:100%;max-height:inherit;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;outline:none}
 .ifs-scroll-area__viewport::-webkit-scrollbar{display:none}
-.ifs-scroll-area__viewport:focus-visible{box-shadow:inset 0 0 0 1.5px var(--color-focus-outer)}
+.ifs-scroll-area__viewport:focus-visible{box-shadow:var(--focus-ring-inset)}
 /* 8px track, 2px side padding, 4px bar (Figma Bar 4×140, radius 8, blur/strong) */
 .ifs-scroll-area__track{position:absolute;top:0;inset-inline-end:0;bottom:0;width:8px;padding:0 var(--space-50);box-sizing:border-box;opacity:1;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)} /* px: scrollbar geometry */
 .ifs-scroll-area__track[hidden]{display:none}
@@ -47,7 +47,7 @@
 .ifs-circular-button:disabled,.ifs-circular-button[aria-disabled=true]{cursor:not-allowed;
   --fill:var(--color-background-neutral-soft);--stroke:var(--color-border-softer);--fg:var(--color-text-disabled);--ic:var(--color-icon-disabled)}
 .ifs-circular-button:disabled .ifs-hotkey{color:var(--color-text-disabled)}
-.ifs-circular-button:focus-visible,.ifs-circular-button[data-state=focus]{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-circular-button:focus-visible,.ifs-circular-button[data-state=focus]{outline:none;box-shadow:var(--focus-ring)}
 
 /* ================= CircularMenu — circular-button-organism (72:10235) ================= */
 /* Hub: 112px disc (background/elevation-1/secondary, border/medium, blur 20) with a 36px centre (black-strong).
@@ -104,7 +104,7 @@
 .ifs-phone__country{position:relative;display:inline-flex;align-items:center;gap:var(--space-100);flex:none;height:var(--size-control-m);box-sizing:border-box;
   margin:calc(-1 * var(--space-150)) 0;padding:var(--space-200) var(--space-150);border:0;border-radius:var(--radius-control);background:none;cursor:pointer;
   color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
-.ifs-phone__country:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-phone__country:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-phone__country:disabled{cursor:not-allowed}
 .ifs-phone__country .ifs-icon{color:var(--color-icon)}
 .ifs-phone__flag{display:inline-block;flex:none;width:var(--size-20);height:var(--size-14);border-radius:var(--size-1) /* flag artwork corner (raw in Figma), not a radius role */;overflow:hidden}
@@ -151,7 +151,7 @@
   outline:none;cursor:grab;transition:none}
 .ifs-slider-thumb:hover,.ifs-slider-thumb[data-state=hover]{box-shadow:var(--elevation-2)}
 .ifs-slider-thumb.is-dragging,.ifs-slider-thumb[data-state=drag]{cursor:grabbing;box-shadow:0 0 0 var(--border-width-selected) var(--color-border-strong)}
-.ifs-slider-thumb:focus-visible,.ifs-slider-thumb[data-state=focus]{box-shadow:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-focus-outer)}
+.ifs-slider-thumb:focus-visible,.ifs-slider-thumb[data-state=focus]{box-shadow:var(--focus-ring)}
 .ifs-slider-track--disabled .ifs-slider-thumb{background:var(--color-icon-disabled);cursor:not-allowed;box-shadow:none}
 
 /* ================= FormCard — form-card-organism (5826:24755) ================= */
@@ -192,7 +192,7 @@
 .ifs-icon-picker__item:hover,.ifs-icon-picker__item[data-state=hover]{--stroke:var(--color-border-strong)}
 .ifs-icon-picker__item[aria-checked=true],.ifs-icon-picker__item[data-state=selected]{--stroke:var(--color-border-selected)}
 .ifs-icon-picker__item:focus-visible,.ifs-icon-picker__item[data-state=focus]{outline:none;
-  box-shadow:inset 0 0 0 1px var(--stroke),0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+  box-shadow:inset 0 0 0 1px var(--stroke),var(--focus-ring)}
 
 /* ================= Weekday — weekday-atom (2704:74414) ================= */
 .ifs-weekday{display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;width:var(--size-32);

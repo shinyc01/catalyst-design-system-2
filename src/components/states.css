@@ -69,7 +69,7 @@
 .ifs-fta:disabled .ifs-fta__sphere{filter:grayscale(1) /* LUMINOSITY blend in Figma */}
 .ifs-fta__mark{position:absolute;left:var(--size-8);top:var(--size-8)} /* ltr: icon art offset */
 .ifs-fta__dot{position:absolute;left:var(--size-24);top:0} /* ltr: icon art offset */
-.ifs-fta:focus-visible,.ifs-fta[data-state=focus]{outline:none;--ring:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
+.ifs-fta:focus-visible,.ifs-fta[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 
 /* ---------- prompt-button ---------- */
 .ifs-prompt{--fill:var(--color-background-neutral-soft);--edge:var(--color-border-soft);--ring:0 0 0 0 transparent;
@@ -82,7 +82,7 @@
 .ifs-prompt:hover,.ifs-prompt[data-state=hover]{--fill:var(--color-background-neutral);--edge:var(--color-border-strong);color:var(--color-text-soft)}
 .ifs-prompt:active,.ifs-prompt[data-state=pressed]{--fill:var(--color-background-neutral-softer);--edge:var(--color-border-soft);color:var(--color-text-softer)}
 .ifs-prompt:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);--edge:var(--color-border-softer);color:var(--color-text-disabled)}
-.ifs-prompt:focus-visible,.ifs-prompt[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-prompt:focus-visible,.ifs-prompt[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 
 /* ---------- cooper-chip-atom ---------- */
 .ifs-cooper-chip{--fill:var(--color-cooper-background-soft);--ring:0 0 0 0 transparent;
@@ -92,8 +92,8 @@
 .ifs-cooper-chip__label{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* gradient direction approx. */;
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-cooper-chip:hover,.ifs-cooper-chip[data-state=hover]{--fill:var(--color-cooper-background)}
-.ifs-cooper-chip.is-selected{--ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-cooper-border)}
-.ifs-cooper-chip:focus-visible,.ifs-cooper-chip[data-state=focus]{outline:none;--ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-focus-outer)}
+.ifs-cooper-chip.is-selected{--ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-cooper-border)} /* not focus: selected ring, borrows the black gap */
+.ifs-cooper-chip:focus-visible,.ifs-cooper-chip[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 .ifs-cooper-chip:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);
   box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-10));-webkit-backdrop-filter:blur(var(--blur-10))}
 .ifs-cooper-chip:disabled .ifs-cooper-chip__label{background:none;color:var(--color-text-disabled)}
@@ -113,8 +113,8 @@
 .ifs-bottom-sheet__prompts > *{flex:none}
 /* Narrow (Nov 19): the prompts hide; the Cooper button stays */
 @container (max-width:719px){.ifs-bottom-sheet__prompts{display:none}}
-/* Sideways scroll when space runs out (no visible bar); 3px inner padding keeps focus rings unclipped */
-.ifs-bottom-sheet__scroller{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:var(--size-3);margin:calc(-1 * var(--size-3))}
+/* Sideways scroll when space runs out (no visible bar); 4px inner padding keeps focus rings (--focus-ring, 4 out) unclipped */
+.ifs-bottom-sheet__scroller{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:var(--size-4);margin:calc(-1 * var(--size-4))}
 .ifs-bottom-sheet__scroller::-webkit-scrollbar{display:none}
 .ifs-bottom-sheet__left{display:flex;align-items:center;gap:var(--space-300);flex:0 1 auto}
 .ifs-bottom-sheet__left > *{flex:none}
@@ -137,7 +137,7 @@
 
 /* zoom-slider-atom (3275:483): 20 ticks 4px apart, the current one 16px tall with a marker */
 .ifs-zoom{position:relative;display:inline-flex;align-items:center;gap:var(--size-3);width:80px;height:16px;padding:0 var(--space-50);box-sizing:border-box;cursor:pointer} /* px: map zoom scale geometry */
-.ifs-zoom:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer);border-radius:var(--radius-mark)}
+.ifs-zoom:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-mark)}
 .ifs-zoom__tick{width:1px;height:8px;flex:none;background:var(--color-border-selected)}
 .ifs-zoom__tick.is-after{background:var(--color-border)}
 .ifs-zoom__tick.is-current{height:16px}

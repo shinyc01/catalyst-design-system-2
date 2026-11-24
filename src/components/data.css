@@ -109,7 +109,7 @@ button.ifs-avatar__base:hover,.ifs-avatar__base[data-state=hover]{--edge:0 0 0 v
 button.ifs-avatar__base:hover .ifs-avatar__overlay,.ifs-avatar__base[data-state=hover] .ifs-avatar__overlay{background:var(--color-overlay-element)}
 button.ifs-avatar__base:active,.ifs-avatar__base[data-state=pressed]{--edge:0 0 0 var(--border-width-default) var(--color-border);color:var(--color-text-soft)}
 button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state=pressed] .ifs-avatar__overlay{background:var(--color-overlay-screen)}
-.ifs-avatar__base:focus-visible,.ifs-avatar__base[data-state=focus]{outline:none;--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-avatar__base:focus-visible,.ifs-avatar__base[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 .ifs-avatar__status{position:absolute;inset-inline-end:0;bottom:0;z-index:4;width:var(--av-status);height:var(--av-status)}
 .ifs-avatar__status .ifs-risk-atom{width:100%;height:100%}
 
@@ -133,7 +133,7 @@ button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state
 button.ifs-risk{cursor:pointer}
 button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface-tertiary);--stroke:0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-risk:disabled,.ifs-risk[aria-disabled=true]{cursor:not-allowed;color:var(--color-text-disabled);background:var(--color-surface-secondary);--stroke:0 0 0 var(--border-width-default) var(--color-border-soft)}
-.ifs-risk:focus-visible,.ifs-risk[data-state=focus]{outline:none;border-radius:var(--radius-pill);--ring:0 0 0 1px var(--color-focus-inner),0 0 0 2px var(--color-focus-outer)}
+.ifs-risk:focus-visible,.ifs-risk[data-state=focus]{outline:none;border-radius:var(--radius-pill);--ring:var(--focus-ring)}
 .ifs-risk--loading{width:8.625rem}
 
 /* ================= ReadinessStatus — status-readiness-molecule (1440:5273) ================= */
@@ -216,8 +216,8 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-content-card--selected,.ifs-content-card[data-state=selected]{--fill:var(--color-surface-raised);--stroke:inset 0 0 0 var(--border-width-selected) var(--color-border-strong)}
 .ifs-content-card[data-state=drag]{--fill:var(--color-surface-raised-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-content-card:focus-visible,.ifs-content-card[data-state=focus]{outline:none;--fill:var(--color-surface-secondary);
-  --ring:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
-/* Cooper (content-card-organism State=Cooper, 12:6669 / 12:6715): a 4px OUTSIDE gradient stroke with a 2px OUTSIDE
+  --ring:var(--focus-ring)}
+/* Cooper (content-card-organism State=Cooper, 12:6669 / 12:6715), not focus: a 4px OUTSIDE gradient stroke with a 2px OUTSIDE
    focus-inner stroke drawn over its inner half, so it reads as a 2px black gap, then a 2px gradient ring.
    Gradient brand/cooper/500-base → core/1000-base, orange at bottom-right to white at the left (Figma transform ≈ 282deg).
    text/accent-cooper and text/primary hold the same values as those primitives. */
@@ -251,7 +251,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-table-card__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-stack);min-height:var(--size-40)}
 .ifs-table-card__bar > :last-child:not(:first-child){width:22.5rem;flex:none}
 .ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0;
-  overflow-x:auto;padding:var(--size-3);margin:calc(-1 * var(--size-3))} /* scrolls sideways when the columns' minimum widths don't fit; the 3px padding keeps row focus rings visible */
+  overflow-x:auto;padding:var(--size-4);margin:calc(-1 * var(--size-4))} /* scrolls sideways when the columns' minimum widths don't fit; the 4px padding keeps row focus rings (--focus-ring, 4 out) visible */
 .ifs-table > *{min-width:min-content}
 /* content-row-molecule (4835:3501) */
 .ifs-table__row{display:grid;grid-template-columns:var(--cols);align-items:center;border-radius:var(--radius-control);min-width:min-content} /* rows widen to the column minimums, so fills and hover cover the whole row */
@@ -261,7 +261,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-table__row--clickable{cursor:pointer}
 .ifs-table__row--clickable:hover,.ifs-table__row--content[data-state=hover]{background:var(--color-surface-raised-hover)}
 .ifs-table__row--selected{box-shadow:inset 0 0 0 var(--border-width-selected) var(--color-border-strong)}
-.ifs-table__row--clickable:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-table__row--clickable:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 /* table-header-molecule (1440:5904) */
 .ifs-table__th{display:flex;align-items:center;gap:var(--space-200);min-width:0;box-sizing:border-box;height:var(--size-table-header);padding:var(--table-header-pad-top) var(--space-table-x) var(--table-header-pad-bottom); /* header text centred in the fixed header height (Flexy, accepted Nov 19) */
   color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium: column headers in sentence case, body size (2.0.1 review) */
@@ -271,7 +271,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-table__th-btn{all:unset;position:relative;display:inline-flex;min-height:var(--size-target-min);align-items:center;gap:var(--space-200);min-width:0;cursor:pointer;border-radius:var(--radius-control)}
 /* Header text: one line; truncates with … when the column is narrower than the text (full text in the tooltip) */
 .ifs-table__th-label{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ifs-table__th-btn:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-table__th-btn:focus-visible{box-shadow:var(--focus-ring)}
 /* table-sort-atom (1440:5921) */
 .ifs-table-sort{position:relative;display:inline-flex;flex:none;width:var(--size-16);height:var(--size-16);color:var(--color-icon-softer)}
 .ifs-table__th:hover .ifs-table-sort,.ifs-table-sort[data-state=hover]{color:var(--color-icon-soft)}
@@ -315,14 +315,14 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 /* Locked group (Nov 20): can't open; the note says when it opens */
 .ifs-table__group--locked{cursor:default}
 .ifs-table__group-note{margin-inline-start:var(--space-200);color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
-.ifs-table__group:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-table__group:focus-visible{box-shadow:var(--focus-ring)}
 
 /* ================= NotificationCard — notification-card (9943:5373) ================= */
 .ifs-notification{--fill:var(--color-surface-raised);position:relative;display:flex;align-items:flex-start;gap:var(--space-stack);box-sizing:border-box;
   padding:var(--space-inset);border-radius:var(--radius-control);background:var(--fill);text-align:start;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-notification[role=button]{cursor:pointer}
 .ifs-notification[role=button]:hover,.ifs-notification[data-state=hover]{--fill:var(--color-surface-raised-hover)}
-.ifs-notification[role=button]:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-notification[role=button]:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-notification__lead{position:relative;flex:none;width:var(--size-32);height:var(--size-32)}
 .ifs-notification__critical{position:absolute;left:1.4375rem;top:-0.1875rem;display:inline-flex;color:var(--color-icon-danger)} /* ltr: badge offset on icon art */
 .ifs-notification__count{position:absolute;left:var(--size-16);top:-0.5625rem;backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))} /* ltr: badge offset on icon art */

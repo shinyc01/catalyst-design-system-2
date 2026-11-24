@@ -60,7 +60,7 @@
 .ifs-trc-gates__list{display:flex;flex-direction:column}
 .ifs-trc-gates__inds{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-150);width:100%}
 .ifs-trc-gates__ind{display:inline-flex;align-items:center;min-height:var(--size-target-min);border-radius:var(--radius-pill)}
-.ifs-trc-gates__ind:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-trc-gates__ind:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 
 /* ---- SystemConfidence card (content-card-organism, surface/secondary-alpha, 8 padding, radius 4 = kit ContentCard M) ---- */
 .ifs-trc-card .ifs-content-card__slot{display:block}

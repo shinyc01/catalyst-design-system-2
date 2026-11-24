@@ -74,4 +74,4 @@
 
 /* Focus */
 .ifs-button:focus-visible,.ifs-button[data-state=focus],.ifs-icon-button:focus-visible,.ifs-icon-button[data-state=focus]{
-  outline:none;--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+  outline:none;--ring:var(--focus-ring)}

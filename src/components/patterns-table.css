@@ -24,7 +24,7 @@
 .ifs-smart-search--listening .ifs-smart-search__field{--border:var(--color-border-strong)}
 /* Focus (keyboard): default border + focus ring */
 .ifs-smart-search--kbd .ifs-smart-search__field,.ifs-smart-search[data-state=focus] .ifs-smart-search__field{
-  --border:var(--color-border-input);--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+  --border:var(--color-border-input);--ring:var(--focus-ring)}
 .ifs-smart-search--filled:not(:focus-within) .ifs-smart-search__field{--border:var(--color-border-input)}
 .ifs-smart-search--disabled .ifs-smart-search__field{--border:var(--color-border-input-disabled);color:var(--color-icon-disabled);cursor:not-allowed}
 .ifs-smart-search--disabled .ifs-smart-search__input,.ifs-smart-search--disabled .ifs-smart-search__input::placeholder{color:var(--color-text-disabled);cursor:not-allowed}
@@ -56,7 +56,7 @@
 .ifs-search-card__text{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-search-card__suggest{color:var(--color-text-softer)}
 .ifs-search-card:hover,.ifs-search-card[data-state=hover]{background:var(--color-surface-secondary)}
-.ifs-search-card:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-search-card:focus-visible{box-shadow:var(--focus-ring)}
 
 /* ================= Column filter (single-select-list-molecule + chips) ================= */
 .ifs-column-filter{
@@ -98,7 +98,7 @@
 .ifs-collab-badge{all:unset;display:inline-flex;align-items:center;gap:var(--space-100);cursor:pointer;border-radius:var(--radius-pill)}
 .ifs-collab-badge .ifs-badge{cursor:pointer;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-collab-badge:hover .ifs-badge{background:var(--color-background-neutral)}
-.ifs-collab-badge:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-collab-badge:focus-visible{box-shadow:var(--focus-ring)}
 .ifs-collab-tip{display:flex;flex-direction:column;gap:var(--space-200);width:15rem;text-align:start;white-space:normal}
 .ifs-collab-tip__head{display:flex;align-items:flex-start;gap:var(--space-200)}
 .ifs-collab-tip__who{display:flex;flex-direction:column;flex:1;min-width:0}
@@ -111,7 +111,7 @@
 .ifs-truncate{display:block;min-width:0;max-width:100%;overflow:hidden;white-space:nowrap}
 .ifs-truncate--end{text-overflow:ellipsis}
 .ifs-truncate--wrap{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.ifs-truncate:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer);border-radius:var(--radius-control)}
+.ifs-truncate:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-control)}
 
 /* ================= More-actions menu: IFS.Menu (selection.css) ================= */
 
@@ -152,7 +152,7 @@
   font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking)} /* Heading/H4 */
 .ifs-data-table__title:disabled{cursor:default}
 .ifs-data-table__title .ifs-icon{color:var(--color-icon-soft)}
-.ifs-data-table__title:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer);border-radius:var(--radius-control)}
+.ifs-data-table__title:focus-visible{box-shadow:var(--focus-ring);border-radius:var(--radius-control)}
 .ifs-data-table__scroll{min-height:0}
 .ifs-data-table--capped{overflow:hidden}
 .ifs-data-table--capped .ifs-data-table__scroll{flex:1;overflow:hidden;
@@ -188,4 +188,4 @@
 /* Drag handles look like ghost icon buttons (Nov 19): 24 box, hover fill, focus ring, grab cursor */
 .ifs-data-table__handle,.ifs-column-settings__handle{border-radius:var(--radius-control)}
 .ifs-data-table__handle:hover,.ifs-column-settings__handle:hover{background:var(--color-background-neutral);color:var(--color-icon-soft)}
-.ifs-data-table__handle:focus-visible,.ifs-column-settings__handle:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-data-table__handle:focus-visible,.ifs-column-settings__handle:focus-visible{outline:none;box-shadow:var(--focus-ring)}

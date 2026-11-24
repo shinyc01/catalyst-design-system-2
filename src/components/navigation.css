@@ -8,7 +8,7 @@
 /* ---------- Shared: focus ring ---------- */
 .ifs-nav-item:focus-visible,.ifs-nav-item[data-state=focus],
 .ifs-navbar__item:focus-visible,.ifs-navbar__item[data-state=focus]{
-  outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+  outline:none;box-shadow:var(--focus-ring)}
 
 /* ---------- SideNav: navigation-panel-organism ---------- */
 .ifs-sidenav{box-sizing:border-box;display:flex;flex-direction:column;width:var(--region-sidenav);height:100%;
@@ -214,7 +214,7 @@
 /* Below 1100: the stepper opens from the status */
 .ifs-page-header__status{display:inline-flex;flex:none}
 .ifs-page-header__status-btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--size-target-min) /* rule 3.9 */;padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;border-radius:var(--radius-control)}
-.ifs-page-header__status-btn:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-page-header__status-btn:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-page-header__progress{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 .ifs-page-header__steps{display:flex;justify-content:center;padding:var(--space-100) 0}
 .ifs-page-header__steps > .ifs-stepper{width:100%}

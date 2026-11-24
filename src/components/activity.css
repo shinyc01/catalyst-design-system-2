@@ -74,7 +74,7 @@
 .ifs-version__time{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:nowrap} /* Body/M/regular */
 .ifs-version__card--link{cursor:pointer}
 .ifs-version__open{padding:0;border:0;background:none;cursor:pointer;text-align:start;border-radius:var(--radius-control)}
-.ifs-version__open:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-version__open:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 /* top-right slot: default ⋯ or a passed menu (e.g. a Menu with more); shown on hover/focus and while its menu is open */
 .ifs-version__menu{position:absolute;top:var(--space-200);inset-inline-end:var(--space-200);display:flex;opacity:0;z-index:2}
 .ifs-version__card:hover .ifs-version__menu,.ifs-version__card:focus-within .ifs-version__menu,.ifs-version__card[data-state=hover] .ifs-version__menu,
@@ -107,13 +107,13 @@
   color:var(--color-text);caret-color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-composer__input::placeholder{color:var(--color-text-softer)}
 .ifs-composer__buttons{display:flex;align-items:center;flex:none}
-.ifs-composer:focus-within{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-composer:focus-within{box-shadow:var(--focus-ring)}
 /* Multi line: 12 radius, text padding 14/16, buttons row padding 8 right-aligned */
 .ifs-composer--multi{border-radius:var(--radius-300) /* 12: no B2 role decided for multi-line inputs, bubbles and the comment thread (basic components) */}
 .ifs-composer--multi .ifs-composer__row{padding:var(--size-14) var(--space-400) 0} /* raw in Figma: 14 */
 .ifs-composer--multi .ifs-composer__input{margin:0}
 .ifs-composer--multi .ifs-composer__inner > .ifs-composer__buttons{justify-content:flex-end;padding:var(--space-200)}
-/* Cooper mode: white-base fill, 1.5px focus-inner + 3px gradient ring (#c87941 → white). Attribution only. */
+/* Cooper mode, not focus: white-base fill, 1.5px focus-inner gap + 3px gradient ring (#c87941 → white). Attribution only. */
 .ifs-composer--cooper{background:var(--color-background-accent-white-soft);box-shadow:0 0 0 1.5px var(--color-focus-inner)}
 .ifs-composer--cooper:focus-within{box-shadow:0 0 0 1.5px var(--color-focus-inner)}
 .ifs-composer--cooper::after{content:"";position:absolute;inset:-4.5px;padding:var(--size-3);border-radius:inherit;pointer-events:none;
@@ -168,7 +168,7 @@
 .ifs-user-card:hover,.ifs-user-card[data-state=hover]{background:var(--color-background-neutral)}
 .ifs-user-card[data-state=drag]{background:var(--color-background-neutral);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-user-card[data-state=drag] .ifs-user-card__drag{color:var(--color-icon)}
-.ifs-user-card:focus-visible,.ifs-user-card[data-state=focus]{outline:none;box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-user-card:focus-visible,.ifs-user-card[data-state=focus]{outline:none;box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),var(--focus-ring)}
 .ifs-user-card[role=button]{cursor:pointer}
 .ifs-user-card__main{display:flex;align-items:center;gap:var(--space-200);min-width:0}
 .ifs-user-card__drag{color:var(--color-icon-softer);flex:none;cursor:grab}
@@ -189,7 +189,7 @@
 .ifs-collab__name{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-collab__position{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-collab__buttons{display:flex;align-items:center;gap:var(--space-150);flex:none}
-.ifs-collab:focus-visible,.ifs-collab[data-state=focus]{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-collab:focus-visible,.ifs-collab[data-state=focus]{box-shadow:var(--focus-ring)}
 /* Recommended hover: inner row gets surface/tertiary-alpha + "+" */
 .ifs-collab--recommended:hover,.ifs-collab--recommended:focus-within,.ifs-collab--recommended[data-state=hover]{padding:var(--space-50) var(--space-200)}
 .ifs-collab--recommended:hover .ifs-collab__inner,.ifs-collab--recommended:focus-within .ifs-collab__inner,.ifs-collab--recommended[data-state=hover] .ifs-collab__inner{
@@ -202,7 +202,7 @@
 .ifs-file-card[role=button]{cursor:pointer}
 .ifs-file-card:not(.ifs-file-card--error):hover,.ifs-file-card:not(.ifs-file-card--error):focus-within,.ifs-file-card[data-state=hover],.ifs-file-card--active{
   background:var(--color-surface-secondary);padding-inline-end:var(--space-200)}
-.ifs-file-card:focus-visible{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-file-card:focus-visible{box-shadow:var(--focus-ring)}
 .ifs-file-card--loading{height:var(--size-40)}
 .ifs-file-card__main{display:flex;align-items:center;gap:var(--space-200);flex:1;min-width:0}
 .ifs-file-card__tile{display:flex;align-items:center;justify-content:center;flex:none;width:var(--size-32);height:var(--size-32);border-radius:var(--radius-control);

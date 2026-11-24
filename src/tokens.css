@@ -90,6 +90,10 @@
 /* Focus ring */
 --color-focus-inner:var(--palette-core-0);
 --color-focus-outer:var(--palette-info-400);
+/* S1 (Nov 24): one focus ring for every control at every size: a 2px black gap + 2px blue (meets WCAG 2.4.13). Inset for items inside
+   clipped lists and scroll areas. The ring never transitions; forced colours get an outline (components/_core.css). */
+--focus-ring:0 0 0 var(--border-width-200) var(--color-focus-inner),0 0 0 var(--border-width-400) var(--color-focus-outer);
+--focus-ring-inset:inset 0 0 0 var(--border-width-200) var(--color-focus-outer);
 /* Fills: neutral (softer · soft · base · strong · stronger), status and accent (soft · base · strong), purpose roles */
 --color-background-neutral-soft:var(--palette-white-alpha-10);
 --color-background-neutral:var(--palette-white-alpha-15);
@@ -249,7 +253,7 @@
 --layout-panel-width:23.75rem;--layout-rail-width:3rem;--layout-panel-width-collapsed:5.25rem;
 --border-width-0:0px;--border-width-100:1px;--border-width-150:1.5px;--border-width-200:2px;--border-width-300:3px;--border-width-400:4px;
 /* Stroke roles (B1, Nov 23): default for every stroke, divider and edge; selected for selected cards and table rows (and pins,
-   slider drag); emphasis for the drag outline and comment-pin focus. Odd widths snap to 1. 1.5 is the focus ring only, until the Focus round. */
+   slider drag); emphasis for the drag outline and comment-pin focus. Odd widths snap to 1. The focus ring is --focus-ring (200 + 400, S1). */
 --border-width-default:var(--border-width-100);--border-width-selected:var(--border-width-200);--border-width-emphasis:var(--border-width-400);
 --radius-0:0px;--radius-100:4px;--radius-150:6px;--radius-200:8px;--radius-300:12px;--radius-full:1000px;
 --radius-50:2px; /* marks (Figma radius/50) */

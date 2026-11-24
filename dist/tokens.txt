@@ -74,6 +74,8 @@
 --color-border-selected-soft: var(--palette-white-alpha-50)
 --color-focus-inner: var(--palette-core-0)
 --color-focus-outer: var(--palette-info-400)
+--focus-ring: 0 0 0 var(--border-width-200) var(--color-focus-inner),0 0 0 var(--border-width-400) var(--color-focus-outer)
+--focus-ring-inset: inset 0 0 0 var(--border-width-200) var(--color-focus-outer)
 --color-background-neutral-soft: var(--palette-white-alpha-10)
 --color-background-neutral: var(--palette-white-alpha-15)
 --color-background-accent-black-strong: var(--palette-core-0)

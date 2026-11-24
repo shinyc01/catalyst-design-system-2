@@ -12,7 +12,7 @@
 .ifs-map-cluster__fit .ifs-button__label{padding:0 var(--space-100)}
 .ifs-map-cluster__fit--idle{color:var(--color-text-soft)}
 /* Focus ring for the tools (shared ring). */
-.ifs-map-cluster .ifs-icon-button:focus-visible,.ifs-map-cluster .ifs-button:focus-visible{outline:none;--ring:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-map-cluster .ifs-icon-button:focus-visible,.ifs-map-cluster .ifs-button:focus-visible{outline:none;--ring:var(--focus-ring)}
 
 /* ---------- node-button (1851:191153) ---------- */
 .ifs-node-actions{display:inline-flex;flex-direction:column;align-items:stretch;gap:var(--space-150);padding:var(--space-100);
@@ -25,7 +25,7 @@
   box-sizing:border-box;border-radius:var(--radius-control);background:var(--color-background-neutral);color:var(--color-icon-soft)}
 .ifs-node-actions__label{padding:var(--space-50) var(--space-100);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;white-space:nowrap}
 .ifs-node-actions__item:hover .ifs-node-actions__icon{background:var(--color-background-neutral)}
-.ifs-node-actions__item:focus-visible{outline:none;box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-node-actions__item:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-node-actions__line{display:block;height:1px;background:var(--color-border-soft)}
 
 /* ---------- add-node-button (2879:7311) ---------- */
@@ -36,10 +36,10 @@
 .ifs-add-node:hover,.ifs-add-node[data-state=hover]{background:var(--color-background-neutral-soft-inverse);outline-color:var(--color-border-strong);
   backdrop-filter:blur(var(--blur-40))}
 .ifs-add-node:disabled{cursor:not-allowed;color:var(--color-icon-disabled);background:var(--color-background-neutral-soft-inverse);outline-color:var(--color-border)}
-.ifs-add-node:focus-visible{outline-style:solid;outline-color:transparent;box-shadow:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
-/* Typing (Figma Pressed/Typing): solid focus ring, 2px inner + 4px outer, both OUTSIDE. */
+.ifs-add-node:focus-visible{outline-style:solid;outline-color:transparent;box-shadow:var(--focus-ring)}
+/* Typing (Figma Pressed/Typing): the focus ring stays on while typing. */
 .ifs-add-node--typing{cursor:text;justify-content:flex-start;background:var(--color-background-neutral-soft-inverse);outline:0;
-  box-shadow:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer);backdrop-filter:blur(var(--blur-40))}
+  box-shadow:var(--focus-ring);backdrop-filter:blur(var(--blur-40))}
 .ifs-add-node__input{flex:1;min-width:0;margin:0;padding:0;border:0;outline:0;background:none;color:var(--color-text);caret-color:var(--color-cooper-text);
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-add-node__input::placeholder{color:var(--color-text-softer)}
@@ -70,10 +70,10 @@
 .ifs-node-card:not(.ifs-node-card--solid):hover,.ifs-node-card:not(.ifs-node-card--solid)[data-state=hover],.ifs-node-card:not(.ifs-node-card--solid).ifs-node-card--drag{
   --nc-fill:var(--color-background-neutral)}
 .ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-3);cursor:grabbing}
-/* Rings (Figma "Inner Focus Wrapper"): Select = 3px focus-inner + 1px white; Focus = 2px inner + 2px focus-outer;
-   Cooper = 3px inner + 1px cooper→white gradient. Text switches to primary / tertiary inside a ring. */
+/* Rings (Figma "Inner Focus Wrapper"): Select = 3px focus-inner + 1px white; Focus = --focus-ring;
+   Cooper = 3px inner + 1px cooper→white gradient. Select and Cooper only borrow the focus-inner black as a gap: they are not focus. Text switches to primary / tertiary inside a ring. */
 .ifs-node-card--ring-select{--nc-ring:0 0 0 3px var(--color-focus-inner),0 0 0 4px var(--color-border-selected)}
-.ifs-node-card:focus-visible,.ifs-node-card[data-state=focus]{--nc-ring:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
+.ifs-node-card:focus-visible,.ifs-node-card[data-state=focus]{--nc-ring:var(--focus-ring)}
 .ifs-node-card--ring-cooper{--nc-ring:0 0 0 3px var(--color-focus-inner)}
 /* Cooper: Figma's 4px gradient stroke is covered by the 3px focus-inner, so 1px of gradient shows outside it. */
 .ifs-node-card--ring-cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;box-sizing:border-box;
@@ -129,8 +129,8 @@
   box-shadow:inset 0 0 0 var(--border-width-default) var(--sn-stroke),var(--sn-ring),var(--sn-shadow);transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--color-surface-tertiary)}
 .ifs-sidebar-node--drag{background:var(--color-surface-tertiary);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-3);cursor:grabbing}
-.ifs-sidebar-node:focus-visible,.ifs-sidebar-node[data-state=focus]{outline:none;--sn-ring:0 0 0 2px var(--color-focus-inner),0 0 0 4px var(--color-focus-outer)}
-.ifs-sidebar-node--cooper{--sn-ring:0 0 0 3px var(--color-focus-inner)}
+.ifs-sidebar-node:focus-visible,.ifs-sidebar-node[data-state=focus]{outline:none;--sn-ring:var(--focus-ring)}
+.ifs-sidebar-node--cooper{--sn-ring:0 0 0 3px var(--color-focus-inner)} /* not focus: Cooper ring, borrows the black gap */
 .ifs-sidebar-node--cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;
   background:linear-gradient(to top left,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
@@ -162,7 +162,7 @@
 .ifs-map-pin--opened{filter:drop-shadow(0 0 5px var(--color-shadow-floating)) /* raw in Figma */}
 .ifs-map-pin--dimmed{opacity:.5}
 .ifs-map-pin:focus-visible{outline:none}
-.ifs-map-pin:focus-visible .ifs-map-pin__shape{box-shadow:0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-map-pin:focus-visible .ifs-map-pin__shape{box-shadow:var(--focus-ring)}
 
 /* ---------- canvas-background (1395:196712) ---------- */
 /* Figma: surface/primary + background/canvas/primary + a pattern of 4px white-5% dots (scaled 0.7, ≈20px grid). */
@@ -174,7 +174,7 @@
   background-position:var(--dot-x,0) var(--dot-y,0),0 0}
 .ifs-canvas--image{background-color:var(--color-background-accent-black-strong);background-size:cover;background-position:center}
 .ifs-canvas--panning{cursor:grabbing}
-.ifs-canvas:focus-visible{box-shadow:inset 0 0 0 1.5px var(--color-focus-inner),inset 0 0 0 3px var(--color-focus-outer)}
+.ifs-canvas:focus-visible{box-shadow:var(--focus-ring-inset)}
 .ifs-canvas__world{position:absolute;left:0;top:0;width:0;height:0;transform-origin:0 0} /* ltr: canvas coordinates */
 .ifs-canvas__world>*{position:absolute}
 .ifs-canvas__overlay{position:absolute;inset:0;pointer-events:none;cursor:default}
@@ -207,7 +207,7 @@
 .ifs-sankey-node:hover .ifs-sankey-node__card,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__card,.ifs-sankey-node:focus-visible .ifs-sankey-node__card{
   background:linear-gradient(var(--color-background-neutral),var(--color-background-neutral)),var(--color-surface-elevation-1)}
 .ifs-sankey-node:hover .ifs-sankey-node__change,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__change,.ifs-sankey-node:focus-visible .ifs-sankey-node__change{display:inline-flex}
-.ifs-sankey-node:focus-visible .ifs-sankey-node__card{box-shadow:inset 0 0 0 0.71px var(--color-border-strong),0 0 0 1.5px var(--color-focus-inner),0 0 0 3px var(--color-focus-outer)}
+.ifs-sankey-node:focus-visible .ifs-sankey-node__card{box-shadow:inset 0 0 0 0.71px var(--color-border-strong),var(--focus-ring)}
 .ifs-sankey-node--measure{height:16px;border-radius:var(--radius-mark);background:var(--color-surface-elevation-1)}
 .ifs-sankey-node--measure .ifs-sankey-node__stub i{height:6px}
 .ifs-sankey-node--measure .ifs-sankey-node__card{height:16px;padding:0;background:none!important;box-shadow:none!important;backdrop-filter:none}
