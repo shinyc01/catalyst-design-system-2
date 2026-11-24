@@ -563,7 +563,7 @@ function Menu({ items = [], trigger, more, anchor, inline = false, open, default
     return typeof anchor.getBoundingClientRect === 'function' ? anchor : { getBoundingClientRect: () => anchor };
   } }), [anchor]);
   const setOpen = v => { if (v !== isOpen) setOpenRaw(v); if (!v) setSub(null); };
-  const ex = IFS.useExit(isOpen, 50); // M3: menus close in 50, fade only
+  const ex = IFS.useExit(isOpen, '--motion-duration-50'); // M3: menus close in 50, fade only
   const focusTrigger = () => { const t = rootRef.current && rootRef.current.querySelector('button,[tabindex]'); t && t.focus(); };
   useOutside(isOpen, [rootRef, floatRef], () => setOpen(false));
   useEffect(() => {

@@ -260,7 +260,7 @@ Use: One step; building block.
 
 ### stepper-organism · `Stepper`
 Use: Progress through a multi-step flow; any number of steps. Non-interactive (rule 7.10).
-States (S3, Nov 24): in progress = the one solid white bar (`--color-border-selected`), white icon, Label/M/medium; completed = check and bar at white 75% (`--color-icon-completed`), white regular label; not started = faint bar, dotted icon, soft label.
+States (S3, Nov 24): in progress = the one solid white bar (`--color-border-selected`), white icon, Label/M/medium; completed = check and bar at white 75% (`--color-icon-completed`, bar `--color-border-completed`), white regular label; not started = faint bar, dotted icon, soft label.
 
 ### breadcrumb-atom · `Breadcrumb`
 Use: One crumb; building block.

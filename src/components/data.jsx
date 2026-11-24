@@ -310,7 +310,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collap
     if (from == null || from === to || (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches)) return undefined;
     el.style.overflow = 'hidden'; el.style.height = `${from}px`; void el.offsetHeight;
     el.style.transition = 'height var(--motion-duration-200) var(--motion-ease-standard)'; el.style.height = `${to}px`;
-    const t = setTimeout(() => { el.style.height = ''; el.style.transition = ''; el.style.overflow = ''; }, 200);
+    const t = setTimeout(() => { el.style.height = ''; el.style.transition = ''; el.style.overflow = ''; }, IFS.motionMs('--motion-duration-200', 200));
     return () => clearTimeout(t);
   }, [rows]);
   const [inner, setInner] = React.useState(defaultSort);

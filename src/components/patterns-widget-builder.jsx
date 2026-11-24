@@ -465,7 +465,7 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
     } else {
       // Cancel: the ghost flies back (≈200 ms), nothing changes, no toast.
       setDrag(null);
-      if (!d.external) { setFlyBack({ ...d }); setTimeout(() => setFlyBack(null), 220); }
+      if (!d.external) { setFlyBack({ ...d }); setTimeout(() => setFlyBack(null), IFS.motionMs('--motion-duration-200', 200) + 20 /* the glide plus a frame */); }
       if (d.external && onExternalDrop) onExternalDrop(d.id, false);
     }
   }, [layout, widgets]); // eslint-disable-line react-hooks/exhaustive-deps

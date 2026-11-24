@@ -83,7 +83,7 @@
 .ifs-dv-card__content{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
 /* Cooper, not focus: 4px outside gradient ring + 2px ring-gap, card itself surface/secondary-alpha + border/base */
 .ifs-dv-card--cooper:not(.ifs-dv-card--chart){background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),0 0 0 var(--border-width-selected) var(--color-ring-gap)}
-.ifs-dv-card--cooper::before{content:"";position:absolute;inset:-6px;padding:var(--space-100);border-radius:calc(var(--radius-card) + var(--size-6));pointer-events:none;
+.ifs-dv-card--cooper::before{content:"";position:absolute;inset:calc(-1 * var(--size-6));padding:var(--border-width-400);border-radius:calc(var(--radius-card) + var(--size-6));pointer-events:none;
   background:linear-gradient(225deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 
@@ -92,7 +92,7 @@
 .ifs-dv-card--chart:hover,.ifs-dv-card--chart.ifs-dv-card--hover{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-dv-card--chart .ifs-dv-header{min-height:var(--size-control-l) /* 44 / 40 / 32 */;padding:var(--space-200)}
 .ifs-dv-card--chart:hover .ifs-dv-header,.ifs-dv-card--chart[data-state=hover] .ifs-dv-header{padding-inline-start:var(--space-100)}
-.ifs-dv-card--chart.ifs-dv-card--cooper::before{inset:-1px;padding:var(--size-1);border-radius:var(--radius-control)}
+.ifs-dv-card--chart.ifs-dv-card--cooper::before{inset:calc(-1 * var(--border-width-default));padding:var(--border-width-default);border-radius:var(--radius-control)}
 .ifs-dv-card__body{position:relative;min-width:0;padding:var(--space-200)}
 /* bare: the content without the card frame (used inside a frame that already draws the header, e.g. a dashboard widget) */
 .ifs-dv-card.ifs-dv-card--bare{padding:0;background:none;box-shadow:none}

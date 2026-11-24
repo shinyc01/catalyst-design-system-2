@@ -125,7 +125,7 @@ const surfToastEmit = () => surfToasts.subs.forEach(f => f(surfToasts.list));
 function surfDismissToast(id) {
   if (!surfToasts.list.some(t => t.id === id && !t.leaving)) return;
   surfToasts.list = surfToasts.list.map(t => (t.id === id ? { ...t, leaving: true } : t)); surfToastEmit();
-  setTimeout(() => { surfToasts.list = surfToasts.list.filter(t => t.id !== id); surfToastEmit(); }, 50);
+  setTimeout(() => { surfToasts.list = surfToasts.list.filter(t => t.id !== id); surfToastEmit(); }, IFS.motionMs('--motion-duration-50', 50));
 }
 function SurfToastItem({ t }) {
   const [paused, setPaused] = React.useState(false);
@@ -207,7 +207,7 @@ function Modal({ open, defaultOpen, onOpenChange, title, children, secondaryActi
   const titleId = useSurfaceId('ifs-modal-title');
   const close = () => dismissible && setOpen(false);
   useSurfaceFocus(ref, !inline && isOpen, { onEscape: close, trap: true });
-  const ex = IFS.useExit(isOpen, 100); // M3: the modal closes in 100
+  const ex = IFS.useExit(isOpen, '--motion-duration-100'); // M3: the modal closes in 100
   if (!inline && !ex.mounted) return null;
   const card = (
     <div ref={ref} role="dialog" aria-modal={inline ? undefined : 'true'} aria-labelledby={titleId} tabIndex={-1}
@@ -245,7 +245,7 @@ function Drawer({ open, defaultOpen, onOpenChange, title, expanded, defaultExpan
   const ref = React.useRef();
   const titleId = useSurfaceId('ifs-drawer-title');
   useSurfaceFocus(ref, !inline && isOpen, { onEscape: () => setOpen(false), trap: overlay !== 'none' });
-  const ex = IFS.useExit(isOpen, 100); // M3: drawers slide out in 100
+  const ex = IFS.useExit(isOpen, '--motion-duration-100'); // M3: drawers slide out in 100
   if (!inline && !ex.mounted) return null;
   const panel = (
     <aside ref={ref} role="dialog" aria-modal={!inline && overlay !== 'none' ? 'true' : undefined} aria-labelledby={titleId} tabIndex={-1}
@@ -328,7 +328,7 @@ function Popover({ trigger, open, defaultOpen, onOpenChange, align = 'start', ti
     document.addEventListener('mousedown', onDown);
     return () => document.removeEventListener('mousedown', onDown);
   }, [isOpen, inline]);
-  const ex = IFS.useExit(isOpen, 50); // M3: small surfaces close in 50, fade only
+  const ex = IFS.useExit(isOpen, '--motion-duration-50'); // M3: small surfaces close in 50, fade only
   const card = (inline || ex.mounted) && (
     <div ref={ref} id={id} role="dialog" aria-label={typeof title === 'string' ? title : undefined} tabIndex={-1}
       className={IFS.cx('ifs-popover', align === 'end' && 'ifs-popover--end', !inline && ex.leaving && 'is-leaving', className)} style={{ width: IFS.remOf(width), ...style }}>

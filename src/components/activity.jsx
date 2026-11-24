@@ -596,7 +596,7 @@ function UserCard({ type = 'assigned', name, position, avatar, badge = 'Owner', 
         </div>
       </div>
       <div className={actCx('ifs-user-card__side', owner && 'ifs-user-card__side--owner')}>
-        {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-32)', height: 'var(--size-20)', borderRadius: 1000 }} /> : <>
+        {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-32)', height: 'var(--size-20)', borderRadius: 'var(--radius-pill)' }} /> : <>
           {checked && <IFS.Icon name="system-check" size={16} className="ifs-user-card__check" />}
           {badge && <IFS.Badge color="white" size="m">{badge}</IFS.Badge>}
         </>}

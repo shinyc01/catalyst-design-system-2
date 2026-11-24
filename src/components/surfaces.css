@@ -35,13 +35,13 @@
 .ifs-tooltip--left .ifs-tooltip__arrow,.ifs-tooltip--right .ifs-tooltip__arrow{margin:0}
 /* Anchored placement: arrow tip points at the trigger's centre */
 .ifs-tooltip-anchor > .ifs-tooltip{position:absolute}
-.ifs-tooltip-anchor > .ifs-tooltip--bottom{bottom:calc(100% + 4px)}
-.ifs-tooltip-anchor > .ifs-tooltip--top{top:calc(100% + 4px)}
+.ifs-tooltip-anchor > .ifs-tooltip--bottom{bottom:calc(100% + var(--space-100))}
+.ifs-tooltip-anchor > .ifs-tooltip--top{top:calc(100% + var(--space-100))}
 .ifs-tooltip-anchor > .ifs-tooltip--bottom.ifs-tooltip--arrow-center,.ifs-tooltip-anchor > .ifs-tooltip--top.ifs-tooltip--arrow-center{left:50%;transform:translateX(-50%)} /* ltr: tooltip placement; revisit with popover placement */
 .ifs-tooltip-anchor > .ifs-tooltip--arrow-left:is(.ifs-tooltip--top,.ifs-tooltip--bottom){left:calc(50% - 12.3px)} /* ltr: tooltip placement; revisit with popover placement */
 .ifs-tooltip-anchor > .ifs-tooltip--arrow-right:is(.ifs-tooltip--top,.ifs-tooltip--bottom){right:calc(50% - 12.3px)} /* ltr: tooltip placement; revisit with popover placement */
-.ifs-tooltip-anchor > .ifs-tooltip--left{left:calc(100% + 4px);top:50%;transform:translateY(-50%)} /* ltr: tooltip placement; revisit with popover placement */
-.ifs-tooltip-anchor > .ifs-tooltip--right{right:calc(100% + 4px);top:50%;transform:translateY(-50%)} /* ltr: tooltip placement; revisit with popover placement */
+.ifs-tooltip-anchor > .ifs-tooltip--left{left:calc(100% + var(--space-100));top:50%;transform:translateY(-50%)} /* ltr: tooltip placement; revisit with popover placement */
+.ifs-tooltip-anchor > .ifs-tooltip--right{right:calc(100% + var(--space-100));top:50%;transform:translateY(-50%)} /* ltr: tooltip placement; revisit with popover placement */
 
 /* ---------- Alert ---------- */
 .ifs-alert{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-stack);

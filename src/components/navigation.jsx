@@ -654,7 +654,7 @@ function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bot
   }, [!!header, !!bottom]);
   // M3: a push panel's width animates (200 open, 200 close); the map and canvas redraw once at the end (a resize event).
   const lastPanel = React.useRef(null); if (panel) lastPanel.current = side;
-  const pex = IFS.useExit(!!panel, 200);
+  const pex = IFS.useExit(!!panel, '--motion-duration-200');
   const lastJob = React.useRef(job); if (panel) lastJob.current = job;
   const pushing = lastJob.current === 'push' && !pushRail;
   const overShown = over || (pex.leaving && lastJob.current === 'over');

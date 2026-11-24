@@ -117,7 +117,7 @@
 .wb-ghost__blank{border-radius:var(--radius-control);background:var(--color-background-neutral-soft)}
 .wb-tip{position:absolute;white-space:nowrap;pointer-events:none}
 .wb-tip--cursor{position:fixed;z-index:calc(var(--z-index-max) + 1)}
-.wb-tip--above{bottom:calc(100% + 4px);left:50%;transform:translateX(-50%)} /* ltr: centred with translateX */
+.wb-tip--above{bottom:calc(100% + var(--space-100));left:50%;transform:translateX(-50%)} /* ltr: centred with translateX */
 
 /* ⋮ menu (single-select-list visuals) with the Resize S / M / L submenu */
 .wb-size-option__bars{display:flex;gap:var(--space-50)}
