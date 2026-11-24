@@ -182,86 +182,98 @@
 --color-collaboration-user-14: var(--palette-violet-300)
 --color-collaboration-user-15: var(--palette-fuchsia-200)
 --color-collaboration-user-16: var(--palette-core-0)
---color-data-viz-rose-data-1: var(--palette-rose-100)
---color-data-viz-rose-data-2: var(--palette-rose-200)
---color-data-viz-rose-data-3: var(--palette-rose-300)
---color-data-viz-rose-data-4: var(--palette-rose-400)
---color-data-viz-rose-data-5: var(--palette-rose-500)
---color-data-viz-rose-data-6: var(--palette-rose-600)
---color-data-viz-rose-data-7: var(--palette-rose-700)
---color-data-viz-rose-data-8: var(--palette-rose-800)
---color-data-viz-rose-data-9: var(--palette-rose-900)
---color-data-viz-rose-data-10: var(--palette-rose-950)
---color-data-viz-muted-purple-data-1: var(--palette-muted-purple-100)
---color-data-viz-muted-purple-data-2: var(--palette-muted-purple-200)
---color-data-viz-muted-purple-data-3: var(--palette-muted-purple-300)
---color-data-viz-muted-purple-data-4: var(--palette-muted-purple-400)
---color-data-viz-muted-purple-data-5: var(--palette-muted-purple-500)
---color-data-viz-muted-purple-data-6: var(--palette-muted-purple-600)
---color-data-viz-muted-purple-data-7: var(--palette-muted-purple-700)
---color-data-viz-muted-purple-data-8: var(--palette-muted-purple-800)
---color-data-viz-muted-purple-data-9: var(--palette-muted-purple-900)
---color-data-viz-muted-purple-data-10: var(--palette-muted-purple-950)
---color-data-viz-teal-data-1: var(--palette-teal-100)
---color-data-viz-teal-data-2: var(--palette-teal-200)
---color-data-viz-teal-data-3: var(--palette-teal-300)
---color-data-viz-teal-data-4: var(--palette-teal-400)
---color-data-viz-teal-data-5: var(--palette-teal-500)
---color-data-viz-teal-data-6: var(--palette-teal-600)
---color-data-viz-teal-data-7: var(--palette-teal-700)
---color-data-viz-teal-data-8: var(--palette-teal-800)
---color-data-viz-teal-data-9: var(--palette-teal-900)
---color-data-viz-teal-data-10: var(--palette-teal-950)
---color-data-viz-steel-blue-data-1: var(--palette-steel-blue-100)
---color-data-viz-steel-blue-data-2: var(--palette-steel-blue-200)
---color-data-viz-steel-blue-data-3: var(--palette-steel-blue-300)
---color-data-viz-steel-blue-data-4: var(--palette-steel-blue-400)
---color-data-viz-steel-blue-data-5: var(--palette-steel-blue-500)
---color-data-viz-steel-blue-data-6: var(--palette-steel-blue-600)
---color-data-viz-steel-blue-data-7: var(--palette-steel-blue-700)
---color-data-viz-steel-blue-data-8: var(--palette-steel-blue-800)
---color-data-viz-steel-blue-data-9: var(--palette-steel-blue-900)
---color-data-viz-steel-blue-data-10: var(--palette-steel-blue-950)
---color-data-viz-deep-green-data-1: var(--palette-deep-green-100)
---color-data-viz-deep-green-data-2: var(--palette-deep-green-200)
---color-data-viz-deep-green-data-3: var(--palette-deep-green-300)
---color-data-viz-deep-green-data-4: var(--palette-deep-green-400)
---color-data-viz-deep-green-data-5: var(--palette-deep-green-500)
---color-data-viz-deep-green-data-6: var(--palette-deep-green-600)
---color-data-viz-deep-green-data-7: var(--palette-deep-green-700)
---color-data-viz-deep-green-data-8: var(--palette-deep-green-800)
---color-data-viz-deep-green-data-9: var(--palette-deep-green-900)
---color-data-viz-deep-green-data-10: var(--palette-deep-green-950)
---color-data-viz-alert-data-1: var(--palette-danger-100)
---color-data-viz-alert-data-2: var(--palette-danger-200)
---color-data-viz-alert-data-3: var(--palette-danger-300)
---color-data-viz-alert-data-4: var(--palette-danger-400)
---color-data-viz-alert-data-5: var(--palette-danger-500)
---color-data-viz-alert-data-6: var(--palette-danger-600)
---color-data-viz-alert-data-7: var(--palette-danger-700)
---color-data-viz-alert-data-8: var(--palette-danger-800)
---color-data-viz-alert-data-9: var(--palette-danger-850)
---color-data-viz-alert-data-10: var(--palette-danger-900)
---color-data-viz-violet-data-1: var(--palette-violet-100)
---color-data-viz-violet-data-2: var(--palette-violet-200)
---color-data-viz-violet-data-3: var(--palette-violet-300)
---color-data-viz-violet-data-4: var(--palette-violet-400)
---color-data-viz-violet-data-5: var(--palette-violet-500)
---color-data-viz-violet-data-6: var(--palette-violet-600)
---color-data-viz-violet-data-7: var(--palette-violet-700)
---color-data-viz-violet-data-8: var(--palette-violet-800)
---color-data-viz-violet-data-9: var(--palette-violet-850)
---color-data-viz-violet-data-10: var(--palette-violet-950)
---color-data-viz-cyan-data-1: var(--palette-cyan-100)
---color-data-viz-cyan-data-2: var(--palette-cyan-200)
---color-data-viz-cyan-data-3: var(--palette-cyan-300)
---color-data-viz-cyan-data-4: var(--palette-cyan-400)
---color-data-viz-cyan-data-5: var(--palette-cyan-500)
---color-data-viz-cyan-data-6: var(--palette-cyan-600)
---color-data-viz-cyan-data-7: var(--palette-cyan-700)
---color-data-viz-cyan-data-8: var(--palette-cyan-800)
---color-data-viz-cyan-data-9: var(--palette-cyan-850)
---color-data-viz-cyan-data-10: var(--palette-cyan-900)
+--color-data-viz-categorical-1: var(--palette-data-viz-categorical-1)
+--color-data-viz-categorical-2: var(--palette-data-viz-categorical-2)
+--color-data-viz-categorical-3: var(--palette-data-viz-categorical-3)
+--color-data-viz-categorical-4: var(--palette-data-viz-categorical-4)
+--color-data-viz-categorical-5: var(--palette-data-viz-categorical-5)
+--color-data-viz-categorical-6: var(--palette-data-viz-categorical-6)
+--color-data-viz-categorical-7: var(--palette-data-viz-categorical-7)
+--color-data-viz-categorical-8: var(--palette-data-viz-categorical-8)
+--color-data-viz-categorical-9: var(--palette-data-viz-categorical-9)
+--color-data-viz-categorical-10: var(--palette-data-viz-categorical-10)
+--color-data-viz-categorical-11: var(--palette-data-viz-categorical-11)
+--color-data-viz-categorical-12: var(--palette-data-viz-categorical-12)
+--color-data-viz-other: var(--palette-core-400)
+--color-data-viz-sequential-1: var(--color-data-viz-sequential-azure-1)
+--color-data-viz-sequential-2: var(--color-data-viz-sequential-azure-2)
+--color-data-viz-sequential-3: var(--color-data-viz-sequential-azure-3)
+--color-data-viz-sequential-4: var(--color-data-viz-sequential-azure-4)
+--color-data-viz-sequential-5: var(--color-data-viz-sequential-azure-5)
+--color-data-viz-sequential-6: var(--color-data-viz-sequential-azure-6)
+--color-data-viz-sequential-7: var(--color-data-viz-sequential-azure-7)
+--color-data-viz-sequential-8: var(--color-data-viz-sequential-azure-8)
+--color-data-viz-sequential-9: var(--color-data-viz-sequential-azure-9)
+--color-data-viz-sequential-azure-1: var(--palette-data-viz-azure-1)
+--color-data-viz-sequential-azure-2: var(--palette-data-viz-azure-2)
+--color-data-viz-sequential-azure-3: var(--palette-data-viz-azure-3)
+--color-data-viz-sequential-azure-4: var(--palette-data-viz-azure-4)
+--color-data-viz-sequential-azure-5: var(--palette-data-viz-azure-5)
+--color-data-viz-sequential-azure-6: var(--palette-data-viz-azure-6)
+--color-data-viz-sequential-azure-7: var(--palette-data-viz-azure-7)
+--color-data-viz-sequential-azure-8: var(--palette-data-viz-azure-8)
+--color-data-viz-sequential-azure-9: var(--palette-data-viz-azure-9)
+--color-data-viz-sequential-teal-1: var(--palette-data-viz-teal-1)
+--color-data-viz-sequential-teal-2: var(--palette-data-viz-teal-2)
+--color-data-viz-sequential-teal-3: var(--palette-data-viz-teal-3)
+--color-data-viz-sequential-teal-4: var(--palette-data-viz-teal-4)
+--color-data-viz-sequential-teal-5: var(--palette-data-viz-teal-5)
+--color-data-viz-sequential-teal-6: var(--palette-data-viz-teal-6)
+--color-data-viz-sequential-teal-7: var(--palette-data-viz-teal-7)
+--color-data-viz-sequential-teal-8: var(--palette-data-viz-teal-8)
+--color-data-viz-sequential-teal-9: var(--palette-data-viz-teal-9)
+--color-data-viz-sequential-orchid-1: var(--palette-data-viz-orchid-1)
+--color-data-viz-sequential-orchid-2: var(--palette-data-viz-orchid-2)
+--color-data-viz-sequential-orchid-3: var(--palette-data-viz-orchid-3)
+--color-data-viz-sequential-orchid-4: var(--palette-data-viz-orchid-4)
+--color-data-viz-sequential-orchid-5: var(--palette-data-viz-orchid-5)
+--color-data-viz-sequential-orchid-6: var(--palette-data-viz-orchid-6)
+--color-data-viz-sequential-orchid-7: var(--palette-data-viz-orchid-7)
+--color-data-viz-sequential-orchid-8: var(--palette-data-viz-orchid-8)
+--color-data-viz-sequential-orchid-9: var(--palette-data-viz-orchid-9)
+--color-data-viz-sequential-pink-1: var(--palette-data-viz-pink-1)
+--color-data-viz-sequential-pink-2: var(--palette-data-viz-pink-2)
+--color-data-viz-sequential-pink-3: var(--palette-data-viz-pink-3)
+--color-data-viz-sequential-pink-4: var(--palette-data-viz-pink-4)
+--color-data-viz-sequential-pink-5: var(--palette-data-viz-pink-5)
+--color-data-viz-sequential-pink-6: var(--palette-data-viz-pink-6)
+--color-data-viz-sequential-pink-7: var(--palette-data-viz-pink-7)
+--color-data-viz-sequential-pink-8: var(--palette-data-viz-pink-8)
+--color-data-viz-sequential-pink-9: var(--palette-data-viz-pink-9)
+--color-data-viz-sequential-yellow-1: var(--palette-data-viz-yellow-1)
+--color-data-viz-sequential-yellow-2: var(--palette-data-viz-yellow-2)
+--color-data-viz-sequential-yellow-3: var(--palette-data-viz-yellow-3)
+--color-data-viz-sequential-yellow-4: var(--palette-data-viz-yellow-4)
+--color-data-viz-sequential-yellow-5: var(--palette-data-viz-yellow-5)
+--color-data-viz-sequential-yellow-6: var(--palette-data-viz-yellow-6)
+--color-data-viz-sequential-yellow-7: var(--palette-data-viz-yellow-7)
+--color-data-viz-sequential-yellow-8: var(--palette-data-viz-yellow-8)
+--color-data-viz-sequential-yellow-9: var(--palette-data-viz-yellow-9)
+--color-data-viz-sequential-red-1: var(--palette-data-viz-red-1)
+--color-data-viz-sequential-red-2: var(--palette-data-viz-red-2)
+--color-data-viz-sequential-red-3: var(--palette-data-viz-red-3)
+--color-data-viz-sequential-red-4: var(--palette-data-viz-red-4)
+--color-data-viz-sequential-red-5: var(--palette-data-viz-red-5)
+--color-data-viz-sequential-red-6: var(--palette-data-viz-red-6)
+--color-data-viz-sequential-red-7: var(--palette-data-viz-red-7)
+--color-data-viz-sequential-red-8: var(--palette-data-viz-red-8)
+--color-data-viz-sequential-red-9: var(--palette-data-viz-red-9)
+--color-data-viz-sequential-green-1: var(--palette-data-viz-green-1)
+--color-data-viz-sequential-green-2: var(--palette-data-viz-green-2)
+--color-data-viz-sequential-green-3: var(--palette-data-viz-green-3)
+--color-data-viz-sequential-green-4: var(--palette-data-viz-green-4)
+--color-data-viz-sequential-green-5: var(--palette-data-viz-green-5)
+--color-data-viz-sequential-green-6: var(--palette-data-viz-green-6)
+--color-data-viz-sequential-green-7: var(--palette-data-viz-green-7)
+--color-data-viz-sequential-green-8: var(--palette-data-viz-green-8)
+--color-data-viz-sequential-green-9: var(--palette-data-viz-green-9)
+--color-data-viz-diverging-negative-3: var(--palette-data-viz-azure-2)
+--color-data-viz-diverging-negative-2: var(--palette-data-viz-azure-4)
+--color-data-viz-diverging-negative-1: var(--palette-data-viz-azure-6)
+--color-data-viz-diverging-midpoint: var(--palette-core-750)
+--color-data-viz-diverging-positive-1: var(--palette-data-viz-pink-6)
+--color-data-viz-diverging-positive-2: var(--palette-data-viz-pink-4)
+--color-data-viz-diverging-positive-3: var(--palette-data-viz-pink-2)
 --color-data-viz-neutral: var(--color-icon-softer)
 --color-data-viz-good: var(--color-icon-success)
 --color-data-viz-warning: var(--color-icon-warning)
@@ -270,16 +282,7 @@
 --color-data-viz-target: rgba(255,255,255,0.9)
 --color-data-viz-band: rgba(255,255,255,0.16)
 --color-data-viz-baseline: var(--palette-white-alpha-30)
---color-data-viz-data-1: var(--palette-danger-600)
---color-data-viz-data-2: #a06d1c
---color-data-viz-data-3: #176932
---color-data-viz-data-4: #5238a4
---color-data-viz-data-5: #3556a0
---color-data-viz-data-6: #167bb6
---color-data-viz-data-7: #692917
---color-data-viz-data-8: #6a1766
---color-data-viz-data-9: #1e1e1e
---color-data-viz-data-10: #313131
+--effect-data-viz-dim: brightness(0.45) saturate(0.7)
 --color-background-skeleton: var(--color-background-neutral-soft)
 --color-background-sheen: var(--palette-white-alpha-40)
 --color-background-sheen-from: var(--palette-black-alpha-20)
@@ -427,6 +430,9 @@
 --table-header-pad-top: var(--space-0) | spacious: var(--space-0) | compact: var(--space-0)
 --table-header-pad-bottom: var(--space-0) | spacious: var(--space-0) | compact: var(--space-0)
 --density-scale: 1.05 | spacious: 1.2 | compact: 0.95
+--size-data-viz-row: 5.25rem | spacious: 6rem | compact: 4.5rem
+--size-data-viz-card: calc(3 * var(--size-data-viz-row) + 2 * var(--space-400)) | spacious: calc(3 * var(--size-data-viz-row) + 2 * var(--space-400)) | compact: calc(3 * var(--size-data-viz-row) + 2 * var(--space-400))
+--size-data-viz-card-large: calc(2 * var(--size-data-viz-card) + var(--page-gap)) | spacious: calc(2 * var(--size-data-viz-card) + var(--page-gap)) | compact: calc(2 * var(--size-data-viz-card) + var(--page-gap))
 --bp-sm: 600px
 --bp-md: 1024px
 --bp-lg: 1440px
@@ -842,6 +848,81 @@
 --palette-danger-500-alpha-40: rgba(238,60,59,0.4)
 --palette-warning-500-alpha-40: rgba(255,175,46,0.4)
 --palette-info-500-alpha-40: rgba(43,127,255,0.4)
+--palette-data-viz-categorical-1: #277b9e
+--palette-data-viz-categorical-2: #dad98f
+--palette-data-viz-categorical-3: #04837c
+--palette-data-viz-categorical-4: #f1c0fb
+--palette-data-viz-categorical-5: #77752c
+--palette-data-viz-categorical-6: #85e9e0
+--palette-data-viz-categorical-7: #8a5f94
+--palette-data-viz-categorical-8: #88d9ff
+--palette-data-viz-categorical-9: #9b5979
+--palette-data-viz-categorical-10: #84e6f6
+--palette-data-viz-categorical-11: #00808f
+--palette-data-viz-categorical-12: #ffb5d7
+--palette-data-viz-azure-1: #346b84
+--palette-data-viz-azure-2: #277b9e
+--palette-data-viz-azure-3: #398aae
+--palette-data-viz-azure-4: #499abe
+--palette-data-viz-azure-5: #5aa9ce
+--palette-data-viz-azure-6: #6ab9df
+--palette-data-viz-azure-7: #7ac9ef
+--palette-data-viz-azure-8: #8cdaff
+--palette-data-viz-azure-9: #bde5f9
+--palette-data-viz-teal-1: #2a706b
+--palette-data-viz-teal-2: #04837c
+--palette-data-viz-teal-3: #25928b
+--palette-data-viz-teal-4: #39a29a
+--palette-data-viz-teal-5: #4cb1a9
+--palette-data-viz-teal-6: #5dc1b9
+--palette-data-viz-teal-7: #6ed2c9
+--palette-data-viz-teal-8: #7fe2d9
+--palette-data-viz-teal-9: #b9e9e4
+--palette-data-viz-orchid-1: #75567c
+--palette-data-viz-orchid-2: #8a5f94
+--palette-data-viz-orchid-3: #996da4
+--palette-data-viz-orchid-4: #a97cb3
+--palette-data-viz-orchid-5: #b98bc3
+--palette-data-viz-orchid-6: #c99ad4
+--palette-data-viz-orchid-7: #d9aae4
+--palette-data-viz-orchid-8: #eabaf5
+--palette-data-viz-orchid-9: #edd4f3
+--palette-data-viz-pink-1: #825269
+--palette-data-viz-pink-2: #9b5979
+--palette-data-viz-pink-3: #ab6888
+--palette-data-viz-pink-4: #bb7797
+--palette-data-viz-pink-5: #cb86a7
+--palette-data-viz-pink-6: #dc95b6
+--palette-data-viz-pink-7: #eda5c6
+--palette-data-viz-pink-8: #feb4d6
+--palette-data-viz-pink-9: #f9d1e3
+--palette-data-viz-yellow-1: #676635
+--palette-data-viz-yellow-2: #77752c
+--palette-data-viz-yellow-3: #86843c
+--palette-data-viz-yellow-4: #95944b
+--palette-data-viz-yellow-5: #a4a35b
+--palette-data-viz-yellow-6: #b3b36a
+--palette-data-viz-yellow-7: #c3c379
+--palette-data-viz-yellow-8: #d3d389
+--palette-data-viz-yellow-9: #e1e1bb
+--palette-data-viz-red-1: #875353
+--palette-data-viz-red-2: #a25a5a
+--palette-data-viz-red-3: #b26868
+--palette-data-viz-red-4: #c27777
+--palette-data-viz-red-5: #d38686
+--palette-data-viz-red-6: #e49695
+--palette-data-viz-red-7: #f5a5a4
+--palette-data-viz-red-8: #ffb9b8
+--palette-data-viz-red-9: #fed2d0
+--palette-data-viz-green-1: #456f4e
+--palette-data-viz-green-2: #458153
+--palette-data-viz-green-3: #549062
+--palette-data-viz-green-4: #63a070
+--palette-data-viz-green-5: #72af7f
+--palette-data-viz-green-6: #81bf8e
+--palette-data-viz-green-7: #91cf9d
+--palette-data-viz-green-8: #a1e0ad
+--palette-data-viz-green-9: #c8e8cd
 --space-0: 0rem
 --space-50: 0.125rem
 --space-100: 0.25rem
@@ -1627,3 +1708,93 @@
 --spacing-table-cell-x → --space-table-x
 --spacing-table-header-x → --space-table-x
 --spacing-table-cell-y → --space-0
+--color-data-viz-rose-data-1 → --color-data-viz-sequential-orchid-9
+--color-data-viz-rose-data-2 → --color-data-viz-sequential-orchid-8
+--color-data-viz-rose-data-3 → --color-data-viz-sequential-orchid-6
+--color-data-viz-rose-data-4 → --color-data-viz-sequential-orchid-4
+--color-data-viz-rose-data-5 → --color-data-viz-categorical-7
+--color-data-viz-rose-data-6 → --color-data-viz-sequential-orchid-1
+--color-data-viz-rose-data-7 → --color-data-viz-sequential-orchid-1
+--color-data-viz-rose-data-8 → --color-data-viz-sequential-orchid-1
+--color-data-viz-rose-data-9 → --color-data-viz-sequential-orchid-1
+--color-data-viz-rose-data-10 → --color-data-viz-sequential-orchid-1
+--color-data-viz-muted-purple-data-1 → --color-data-viz-sequential-orchid-9
+--color-data-viz-muted-purple-data-2 → --color-data-viz-sequential-orchid-6
+--color-data-viz-muted-purple-data-3 → --color-data-viz-sequential-orchid-4
+--color-data-viz-muted-purple-data-4 → --color-data-viz-categorical-7
+--color-data-viz-muted-purple-data-5 → --color-data-viz-sequential-orchid-1
+--color-data-viz-muted-purple-data-6 → --color-data-viz-sequential-orchid-1
+--color-data-viz-muted-purple-data-7 → --color-data-viz-sequential-orchid-1
+--color-data-viz-muted-purple-data-8 → --color-data-viz-sequential-orchid-1
+--color-data-viz-muted-purple-data-9 → --color-data-viz-sequential-orchid-1
+--color-data-viz-muted-purple-data-10 → --color-data-viz-sequential-orchid-1
+--color-data-viz-teal-data-1 → --color-data-viz-sequential-teal-9
+--color-data-viz-teal-data-2 → --color-data-viz-sequential-teal-7
+--color-data-viz-teal-data-3 → --color-data-viz-sequential-teal-5
+--color-data-viz-teal-data-4 → --color-data-viz-sequential-teal-3
+--color-data-viz-teal-data-5 → --color-data-viz-categorical-3
+--color-data-viz-teal-data-6 → --color-data-viz-sequential-teal-1
+--color-data-viz-teal-data-7 → --color-data-viz-sequential-teal-1
+--color-data-viz-teal-data-8 → --color-data-viz-sequential-teal-1
+--color-data-viz-teal-data-9 → --color-data-viz-sequential-teal-1
+--color-data-viz-teal-data-10 → --color-data-viz-sequential-teal-1
+--color-data-viz-steel-blue-data-1 → --color-data-viz-sequential-azure-9
+--color-data-viz-steel-blue-data-2 → --color-data-viz-sequential-azure-6
+--color-data-viz-steel-blue-data-3 → --color-data-viz-sequential-azure-4
+--color-data-viz-steel-blue-data-4 → --color-data-viz-sequential-azure-1
+--color-data-viz-steel-blue-data-5 → --color-data-viz-sequential-azure-1
+--color-data-viz-steel-blue-data-6 → --color-data-viz-sequential-azure-1
+--color-data-viz-steel-blue-data-7 → --color-data-viz-sequential-azure-1
+--color-data-viz-steel-blue-data-8 → --color-data-viz-sequential-azure-1
+--color-data-viz-steel-blue-data-9 → --color-data-viz-sequential-azure-1
+--color-data-viz-steel-blue-data-10 → --color-data-viz-sequential-orchid-1
+--color-data-viz-deep-green-data-1 → --color-data-viz-sequential-green-9
+--color-data-viz-deep-green-data-2 → --color-data-viz-sequential-green-6
+--color-data-viz-deep-green-data-3 → --color-data-viz-sequential-green-5
+--color-data-viz-deep-green-data-4 → --color-data-viz-sequential-green-3
+--color-data-viz-deep-green-data-5 → --color-data-viz-sequential-green-2
+--color-data-viz-deep-green-data-6 → --color-data-viz-sequential-green-2
+--color-data-viz-deep-green-data-7 → --color-data-viz-sequential-green-1
+--color-data-viz-deep-green-data-8 → --color-data-viz-sequential-green-1
+--color-data-viz-deep-green-data-9 → --color-data-viz-sequential-green-1
+--color-data-viz-deep-green-data-10 → --color-data-viz-sequential-green-1
+--color-data-viz-alert-data-1 → --color-data-viz-sequential-red-9
+--color-data-viz-alert-data-2 → --color-data-viz-sequential-red-8
+--color-data-viz-alert-data-3 → --color-data-viz-sequential-red-6
+--color-data-viz-alert-data-4 → --color-data-viz-sequential-red-5
+--color-data-viz-alert-data-5 → --color-data-viz-sequential-red-4
+--color-data-viz-alert-data-6 → --color-data-viz-sequential-red-2
+--color-data-viz-alert-data-7 → --color-data-viz-sequential-red-1
+--color-data-viz-alert-data-8 → --color-data-viz-sequential-red-1
+--color-data-viz-alert-data-9 → --color-data-viz-sequential-red-1
+--color-data-viz-alert-data-10 → --color-data-viz-sequential-red-1
+--color-data-viz-violet-data-1 → --color-data-viz-categorical-4
+--color-data-viz-violet-data-2 → --color-data-viz-sequential-orchid-6
+--color-data-viz-violet-data-3 → --color-data-viz-sequential-orchid-5
+--color-data-viz-violet-data-4 → --color-data-viz-sequential-orchid-3
+--color-data-viz-violet-data-5 → --color-data-viz-categorical-7
+--color-data-viz-violet-data-6 → --color-data-viz-categorical-7
+--color-data-viz-violet-data-7 → --color-data-viz-sequential-orchid-1
+--color-data-viz-violet-data-8 → --color-data-viz-sequential-orchid-1
+--color-data-viz-violet-data-9 → --color-data-viz-sequential-orchid-1
+--color-data-viz-violet-data-10 → --color-data-viz-sequential-orchid-1
+--color-data-viz-cyan-data-1 → --color-data-viz-sequential-teal-9
+--color-data-viz-cyan-data-2 → --color-data-viz-categorical-10
+--color-data-viz-cyan-data-3 → --color-data-viz-sequential-teal-7
+--color-data-viz-cyan-data-4 → --color-data-viz-sequential-teal-7
+--color-data-viz-cyan-data-5 → --color-data-viz-sequential-azure-5
+--color-data-viz-cyan-data-6 → --color-data-viz-sequential-azure-3
+--color-data-viz-cyan-data-7 → --color-data-viz-sequential-azure-1
+--color-data-viz-cyan-data-8 → --color-data-viz-sequential-teal-1
+--color-data-viz-cyan-data-9 → --color-data-viz-sequential-azure-1
+--color-data-viz-cyan-data-10 → --color-data-viz-sequential-teal-1
+--color-data-viz-data-1 → --color-data-viz-sequential-red-2
+--color-data-viz-data-2 → --color-data-viz-sequential-yellow-3
+--color-data-viz-data-3 → --color-data-viz-sequential-green-1
+--color-data-viz-data-4 → --color-data-viz-sequential-orchid-1
+--color-data-viz-data-5 → --color-data-viz-sequential-azure-1
+--color-data-viz-data-6 → --color-data-viz-categorical-1
+--color-data-viz-data-7 → --color-data-viz-sequential-pink-1
+--color-data-viz-data-8 → --color-data-viz-sequential-orchid-1
+--color-data-viz-data-9 → --color-data-viz-other
+--color-data-viz-data-10 → --color-data-viz-other

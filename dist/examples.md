@@ -570,7 +570,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'DataVizBar', figma: 'bar-atom (4457:32996)', render: () => <>
     {['default', 'hover', 'out-of-focus', 'background', 'loading'].map(s => <Row key={s} label={s}><DataVizBar state={s} style={{ width: 238 }}>{'{info}'}</DataVizBar></Row>)}
-    <Row label="colours">{['muted-purple', 'teal', 'steel-blue', 'deep-green'].map(c => <DataVizBar key={c} color={c} style={{ width: 120 }}>$4.2M</DataVizBar>)}</Row>
+    <Row label="categorical slots">{[1, 2, 3, 4].map(c => <DataVizBar key={c} color={c} style={{ width: 120 }}>$4.2M</DataVizBar>)}</Row>
   </> });
 ```
 
@@ -598,7 +598,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'DataVizIndicator', figma: 'indicator-atom (4440:32643)', render: () => <>
     <Row label="types">{['default', 'selected', 'intended-target'].map(t => <DataVizIndicator key={t} type={t} />)}</Row>
-    <Row label="colours">{['muted-purple', 'teal', 'rose', 'steel-blue'].map(c => <DataVizIndicator key={c} color={c} />)}</Row>
+    <Row label="categorical slots">{[1, 2, 3, 4].map(c => <DataVizIndicator key={c} color={c} />)}</Row>
   </> });
 ```
 
@@ -612,7 +612,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### LegendSwatch
 ```jsx
   IFS_GALLERY.push({ name: 'LegendSwatch', figma: 'legend-swatch-atom (4440:32628) + info-hint-item (12:121968)', render: () => {
-    const items = [{ label: 'Loss', color: 'alert', step: 5, value: '357' }, { label: 'Unchanged', color: 'neutral', value: '745' }, { label: 'Gain', color: 'deep-green', step: 5, value: '519' }];
+    // good / bad on the diverging palette (D7): worse = pink, better = azure, the words name both sides
+    const items = [{ label: 'Loss', color: 'var(--color-data-viz-diverging-positive-2)', value: '357' }, { label: 'Unchanged', color: 'neutral', value: '745' }, { label: 'Gain', color: 'var(--color-data-viz-diverging-negative-2)', value: '519' }];
     return <>
       <Row label="states">{['default', 'hover', 'out-of-hover'].map(s => <LegendSwatch key={s} state={s} label="Title" value="Value" />)}
         <LegendSwatch state="intended-target" label="Intended target" /></Row>
@@ -620,7 +621,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Row label="inline · no values"><IFS.Legend items={items} showValues={false} /></Row>
       <Row label="row (vertical list)" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={[...items, { label: 'A very long category name that truncates', color: 'teal', value: '12', icon: 'system-info-hint' }]} /></div></Row>
       <Row label="row · no values" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={items} showValues={false} /></div></Row>
-      <Row label="group colours">{['muted-purple', 'teal', 'rose', 'steel-blue'].map(c => <LegendSwatch key={c} color={c} label={c} />)}</Row>
+      <Row label="shape (matches the mark)">{['square', 'line', 'dashed', 'dot'].map((sh, i) => <LegendSwatch key={sh} shape={sh} color={i + 1} label={sh} />)}</Row>
+      <Row label="categorical slots">{Array.from({ length: 12 }, (_, i) => <LegendSwatch key={i} color={i + 1} label={String(i + 1)} />)}<LegendSwatch color="other" label="Other" /></Row>
     </>;
   } });
 ```
@@ -652,7 +654,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### DataVizTooltip
 ```jsx
   IFS_GALLERY.push({ name: 'DataVizTooltip', figma: 'data-viz-modal-organism (4440:32681)', render: () => <Row label="modal · chart">
-    <DataVizTooltip subtitle="{Category}" title="{Title}" value="$X" items={[{ label: 'Title', value: 'Value', color: 'rose' }, { label: 'Title', value: 'Value', color: 'teal' }]} />
+    <DataVizTooltip subtitle="{Category}" title="{Title}" value="$X" items={[{ label: 'Title', value: 'Value', color: 1 }, { label: 'Title', value: 'Value', color: 2 }]} />
     <DataVizTooltip variant="chart" title="Q4 FY25" value="$14.8M" delta={{ text: '+9% vs plan', direction: 'down' }}
       items={[{ label: 'Plan', value: '$13.6M' }, { label: 'Variance', value: '$1.2M' }, { label: 'Peer median', value: '$13.2M' }]} />
   </Row> });
@@ -724,13 +726,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### PieChart
 ```jsx
   IFS_GALLERY.push({ name: 'PieChart', figma: 'chart-pie (9866:12309)', render: states(PieChart, { title: 'Spend share by asset type', format: usd, valueLabel: 'Spend',
-    data: [{ label: 'Transformers', value: 48.6e6 }, { label: 'Lines', value: 34.6e6, delta: { text: '+2 pts vs FY25', direction: 'down' } }, { label: 'Substations', value: 26.9e6 }, { label: 'Other', value: 17.9e6, color: 'muted-purple', opacity: 0.5 }] }, 1) });
+    data: [{ label: 'Transformers', value: 48.6e6 }, { label: 'Lines', value: 34.6e6, delta: { text: '+2 pts vs FY25', direction: 'down' } }, { label: 'Substations', value: 26.9e6 }, { label: 'Other', value: 17.9e6, color: 'other' }] }, 1) });
 ```
 
 ### DonutChart
 ```jsx
   IFS_GALLERY.push({ name: 'DonutChart', figma: 'chart-donut (9866:12774)', render: states(DonutChart, { title: 'Work orders by status', centerValue: '412', centerLabel: 'work orders', valueLabel: 'Work orders',
-    data: [{ label: 'Done', value: 223, color: 'teal' }, { label: 'In progress', value: 103, color: 'muted-purple' }, { label: 'Open', value: 62, color: 'rose' }, { label: 'Cancelled', value: 24, color: 'muted-purple', opacity: 0.5 }] }, 1) });
+    data: [{ label: 'Done', value: 223 }, { label: 'In progress', value: 103 }, { label: 'Open', value: 62 }, { label: 'Cancelled', value: 24, color: 'other' }] }, 1) });
 
   const pts = [[20, 12], [23, 13.5], [26, 12.2], [43, 16], [53, 16.5], [75, 12.3], [75, 15.8], [92, 18.3], [95, 21.2], [120, 23.4], [121, 24.8], [150, 24.4], [160, 25], [190, 29.4]]
     .map(([x, y], i) => ({ label: `Completed project ${i + 1}`, x, y: y * 1e6, series: 'done' }))
@@ -741,7 +743,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### ScatterChart
 ```jsx
   IFS_GALLERY.push({ name: 'ScatterChart', figma: 'chart-scatter (9866:13245)', render: states(ScatterChart, { title: 'Cost vs duration by project', data: pts, format: usdAxis, xUnit: 'days', xLabel: 'Duration', yLabel: 'Cost',
-    series: [{ key: 'done', label: 'Completed', color: 'teal' }, { key: 'wip', label: 'In progress', color: 'muted-purple' }], xReference: 87, yReference: 21e6 }, 20) });
+    series: [{ key: 'done', label: 'Completed' }, { key: 'wip', label: 'In progress' }], xReference: 87, yReference: 21e6 }, 20) });
 ```
 
 ### BubbleChart
@@ -2291,9 +2293,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### BarChartItem
 ```jsx
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
-    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
+    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
     <Row label="number=false"><BarChartItem color={4} number={false} style={{ width: 238 }} /></Row>
-    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-muted-purple-data-4)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
+    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-sequential-azure-3)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
   </> });
 ```
 

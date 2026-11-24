@@ -500,17 +500,19 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 4× (Plan) · usual: State=Default (100%)
 Figma: bar-atom (4457:32996)
-Props: state default|hover|out-of-focus|background|loading, color = data-viz group (default rose), step (default 4;
-hover = step-1, out-of-focus = 9), children = the value label (show-value; absent = hidden). Fills its parent.
-`function DataVizBar({ state = 'default', color = 'rose', step = 4, children, className, style, ...rest })`
+Props: state default|hover|out-of-focus|background|loading, color = categorical slot (default 1) or a data-viz token (old group names
+with step still work), children = the value label (show-value; absent = hidden). Fills its parent. Hover keeps the full colour;
+out-of-focus is darkened (never transparent, D5).
+`function DataVizBar({ state = 'default', color = 1, step = 4, children, className, style, ...rest })`
 
 ### DataVizGroupedBar
 **Tier:** Component
 **In handovers:** placed 4× (Plan) · usual: Type vertical 100% · Progress false 100%
 Figma: grouped-bar-molecule (4457:37362)
 Props: type horizontal (segments stacked top→bottom) | vertical (segments side by side), progress (meter: value against max on a
-neutral track), values = numbers (segment sizes; one group, steps 4,5,6,… of `color`), value + max (progress), showValues.
-`function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color = 'rose', showValues, format = defaultFormat, className, style, ...rest })`
+neutral track), values = numbers (segment sizes; categorical slots 1, 2, 3 … in order — or one old group's steps 4, 5, 6 … when color
+is a group name), value + max (progress), showValues.
+`function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color, showValues, format = defaultFormat, className, style, ...rest })`
 
 ### DataVizLine
 **Tier:** Component
@@ -523,8 +525,8 @@ Props: dashed (3/5 dash — planned, median, reference), orientation horizontal|
 **Tier:** Component
 **In handovers:** placed 165× (Plan, Explore) · usual: Type point 99%
 Figma: indicator-atom (4440:32643)
-Props: type default (8px data point) | selected (point + white ring) | intended-target (2×16 target tick), color = data-viz group or CSS colour.
-`function DataVizIndicator({ type = 'default', color = 'rose', className, style, ...rest })`
+Props: type default (8px data point) | selected (point + white ring) | intended-target (2×16 target tick), color = categorical slot (default 1) or data-viz token.
+`function DataVizIndicator({ type = 'default', color = 1, className, style, ...rest })`
 
 ### ValueLabel
 **Tier:** Component
@@ -538,16 +540,17 @@ Props: state primary|secondary|tertiary|empty|loading, children = the value text
 **In handovers:** placed 12× (Plan) · usual: State=Default (100%)
 Figma: legend-swatch-atom (4440:32628) + info-hint-item (12:121968). One legend entry, two layouts (2.0.3: replaces InfoHintItem).
 Props: layout inline (horizontal legends: entries sit side by side) | row (vertical lists: fills its row, name truncates,
-value right-aligned); color = the data's colour: a data-viz group ('teal') with step, a data-viz token ('var(--color-data-viz-teal-data-5)'),
-or 'neutral' (grey swatch for no-change / other data; `neutral` prop does the same); for non-chart legends any colour token; label; value (optional on every entry,
-tabular figures); icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
-Hover only: legend entries are not clickable (Figma).
-`function LegendSwatch({ layout = 'inline', state = 'default', color = 'rose', step = 4, neutral, label, value, icon, swatchOpacity, className, ...rest })`
+value right-aligned); color = the data's colour: a categorical slot (1–12), 'other', a data-viz token, or 'neutral' (grey swatch for
+no-change data; `neutral` prop does the same); for non-chart legends any colour token; shape (2.0.6, D4: the swatch matches the mark)
+square (bars, areas, slices, cells) | line | dashed (lines) | dot (scatter); label; value (optional on every entry, tabular figures);
+icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
+Hover only: legend entries are not clickable (Figma); hovering one dims the other series in the chart.
+`function LegendSwatch({ layout = 'inline', state = 'default', color = 1, step = 4, shape = 'square', neutral, label, value, icon, swatchOpacity, className, ...rest })`
 
 ### Legend
 **Tier:** Component
-A legend: the entries for one chart. Props: items [{ key, label, color, step, neutral, value, icon }] (the same colours the chart
-draws), layout inline (horizontal, centred, wraps) | row (vertical list), showValues (default true: shows each item's value
+A legend: the entries for one chart. Props: items [{ key, label, color, step, shape, neutral, value, icon }] (the same colours the chart
+draws), layout inline (horizontal, wraps) | row (vertical list), showValues (default true: shows each item's value
 when it has one; false hides all values), align center|start (inline only).
 `function Legend({ items = [], layout = 'inline', showValues = true, align = 'center', className, ...rest })`
 
@@ -558,44 +561,50 @@ Figma: data-viz-header-molecule (2154:2068)
 Props: title, state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
 Right element: segments = SegmentedControl options (size S) with segmentValue/defaultSegmentValue/onSegmentChange,
 or button = { label, onClick, iconRight } (Tertiary S). Hover row: drag handle (draggable), and ghost icon-buttons
-for onEdit / onDelete / onMore. hoverActions = custom hover-only node, slot = always-visible right node (Figma "Slot").
-`function DataVizHeader({ title, state, segments, segmentValue, defaultSegmentValue, onSegmentChange, button, onEdit, onDelete, onMore, draggable = true, hoverActions, slot, className, ...rest })`
+for onEdit / onDelete / onMore. hoverActions = custom hover-only node, viewSwitch = the chart card's Chart / Table switch (after the hover row),
+slot = always-visible end node (Figma "Slot"; the chart card's Evidence button).
+`function DataVizHeader({ title, state, segments, segmentValue, defaultSegmentValue, onSegmentChange, button, onEdit, onDelete, onMore, draggable = true, hoverActions, viewSwitch, slot, className, ...rest })`
 
 ### DataVizCard
 **Tier:** Component
 **In handovers:** placed 23× (Plan) · usual: State=Default (100%)
 Figma: data-viz-card-organism (4457:33030)
 Props: state default|hover|drag|cooper, title, header = extra DataVizHeader props, children = Content slot, legend (node, below content).
-variant="chart" is the frame every core chart (chart-column … chart-funnel) is drawn in: 6px padding, header with the Cooper
-button (onCooper) and, on hover, drag handle + "Edit with Cooper" (onEditWithCooper; false hides it) + the view-as-table toggle.
-actions = extra header node (e.g. a ⋮ menu IconButton), shown in the hover row after "Edit with Cooper" (chart) or after the
-header's own hover icons (organism). bare = no frame: no padding, fill, border or header — just the content and legend, for
-a chart placed inside another frame that already draws the header (e.g. a dashboard widget).
-`function DataVizCard({ variant = 'organism', state, title, header, legend, children, onCooper, onEditWithCooper, tableView, onToggleTable, actions, bare, className, ...rest })`
+variant="chart" is the card every core chart (chart-column … chart-funnel) is drawn in (2.0.6, D1 / D2): the container rule (inset on
+all four sides, stack gap between header, plot and legend) and a fixed height, size default (--size-data-viz-card, 320 / 284 / 248) |
+large (2 default cards + the page gap: heatmaps, many bars, long legends); the plot fills what is left. Header, at the end:
+[hover / focus: Edit with Cooper (onEditWithCooper; false hides it) + actions] · Chart / Table switch (icon-only SegmentedControl M, when
+onViewChange is set; `view` = 'chart' | 'table') · Evidence button (onCooper; always visible). A chart's own control (header.segments,
+e.g. Year / Quarter) stays first. No ⋮ by default: `actions` is for a screen's real extra actions (download, full screen …).
+hideControls hides the switch and Evidence (no data to switch or explain: loading, empty, error, no results; D9).
+legendPlacement below (default) | beside (pie and donut: the list sits beside the plot). autoHeight = no fixed height (the `height`
+escape hatch). bare = no frame: no padding, fill, border or header — just the content and legend, for a chart placed inside another
+frame that already draws the header (e.g. a dashboard widget); it fills that frame's height.
+`function DataVizCard({ variant = 'organism', state, title, header, legend, children, onCooper, onEditWithCooper, view, onViewChange, actions, bare, size = 'default', legendPlacement = 'below', hideControls, autoHeight, className, ...rest })`
 
 ### DataVizTooltip
 **Tier:** Component
 **In handovers:** placed 5× (Value, Build) · usual: chart-info-modal (80%)
 Figma: data-viz-modal-organism (4440:32681) and the chart-info-modal tooltip used by every core chart.
 Props: title, subtitle (Category line above the title → organism layout, value right of the title),
-value (chart layout: second line), delta = { text, direction up|down, tone positive|negative }, items = [{ label, value, color }],
-showValue (Figma show-value), variant chart (320 wide) | modal (256). children are appended under the items.
+value (chart layout: second line), delta = { text, direction up|down, tone positive|negative }, items = [{ label, value, color, shape }]
+(shape square | line | dashed | dot: the same swatch as the legend, D4; no shape = dot), showValue (Figma show-value),
+variant chart (content-sized, 12–20rem, D5) | modal (256). children are appended under the items.
 `function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue = true, variant = 'modal', children, className, ...rest })`
 
 ### ColumnChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-column (9862:12468) — one measure across few or time-ordered categories; zero-based, one hue.
+Figma: chart-column (9862:12468) — one measure across few or time-ordered categories; zero-based, one colour (slot 1).
 Props: data = [{ label, value, reference?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
-color (data-viz group, default muted-purple), format(v) for values/axis, tooltip(datum, i) → DataVizTooltip props.
-Shell props (every chart): title, state default|hover|cooper|empty|loading, view chart|table / defaultView / onViewChange,
-onCooper, onEditWithCooper, emptyTitle, emptyText, height (default 328), className, style.
+color (categorical slot or data-viz token; default 1), format(v) for values/axis, tooltip(datum, i) → DataVizTooltip props, valueTicks.
+Shell props (every chart): see ChartShell.
 `function ColumnChart(props)`
 
 ### HistogramChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-histogram (9864:14012) — distribution of one measure across bins (contiguous zero-based columns).
+Figma: chart-histogram (9864:14012) — distribution of one measure across bins (contiguous zero-based columns, 2 px apart).
 Props: values = raw numbers + bins (count, default 10) or binWidth — or data = pre-binned [{ label, value }];
 binFormat(lo, hi) for bin labels, valueLabel (default 'Count'), + ColumnChart props.
 `function HistogramChart({ values, bins = 10, binWidth, binFormat, data, valueLabel = 'Count', ...props })`
@@ -610,16 +619,19 @@ Props: as ColumnChart + sort (true = biggest first), labelWidth (category column
 ### GroupedColumnChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-grouped-column (9862:13445) — 2–3 series side by side per category; consistent series order + legend.
-Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }],
-referenceKey (default 'reference') + referenceLabel, format, tooltip. + shell props.
+Figma: chart-grouped-column (9862:13445) — 2–4 series side by side per category; consistent series order + legend.
+Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }] (capped at 4: a 5th and
+more are left out of the plot, kept in the table view, with a console warning; use a stacked column or small multiples), referenceKey (default 'reference') +
+referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with a 2 px gap (D8).
 `function GroupedColumnChart(props)`
 
 ### StackedColumnChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-stacked-column (9863:11139) — composition of a total per category (series stack bottom → top in series order).
-Props: data = [{ label, [series.key]: number, delta?, details? }], series = [{ key, label, color? }], format, tooltip. + shell props.
+Figma: chart-stacked-column (9863:11139) — composition of a total per category; the one stacked-column component (D8).
+Series stack bottom → top in series order (most important first, on the baseline); up to 8 segments, the rest fold into "Other"
+(fewer read better: 5 or fewer recommended). 2 px card-colour gap between segments; only the outer end of the whole column is rounded.
+Props: data = [{ label, [series.key]: number, delta?, details? }], series = [{ key, label, color? }], format, tooltip, valueTicks. + shell props.
 `function StackedColumnChart(props)`
 
 ### LineChart
@@ -628,7 +640,9 @@ Props: data = [{ label, [series.key]: number, delta?, details? }], series = [{ k
 Figma: chart-line (9863:11650) — change over time; actual solid vs planned dashed; optional peer band + dashed median.
 Props: data = [{ label, [series.key]: number, … }], series = [{ key, label, color?, dashed?, points? }] (first series shows its
 points), band = { low, high, mid?, label } (keys into data; drawn as a white 16% band + dashed mid line), referenceKey/referenceLabel
-(dashed white line), zeroBased (default false — lines need not start at 0), format, tooltip. Hover: point + tooltip at that point.
+(dashed white line), zeroBased (default false — lines need not start at 0), endLabels (default true: each line is named at its end, D4;
+when the names collide or don't fit, the legend sits below instead), format, tooltip, valueTicks. Up to 8 series (12 with end labels);
+the rest draw in the "Other" grey with one legend entry. Hover anywhere picks the nearest point; ← → move it with the keyboard.
 `function LineChart(props)`
 
 ### AreaChart
@@ -641,14 +655,15 @@ Props: as LineChart (zeroBased defaults to true; points hidden unless series.poi
 ### PieChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-pie (9866:12309) — parts of one whole with few slices (prefer DonutChart). Slices largest → smallest clockwise from 12.
+Figma: chart-pie (9866:12309) — parts of one whole with few slices (prefer DonutChart). Slices largest → smallest clockwise from 12;
+up to 8, then "Other". The legend is a list beside the chart with each slice's value (D4); share labels sit on the bigger slices.
 Props: data = [{ label, value, color?, opacity?, delta?, details? }], sort (default true), valueLabel, format, tooltip. + shell props.
 `function PieChart(props) { return <RoundChart {...props} donut={false} />; }`
 
 ### DonutChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-donut (9866:12774) — share of a whole; one legend; the hole carries the total.
+Figma: chart-donut (9866:12774) — share of a whole; one legend beside it; the hole carries the total.
 Props: as PieChart + centerValue (big number) + centerLabel (caption under it).
 `function DonutChart(props) { return <RoundChart {...props} donut />; }`
 
@@ -656,9 +671,10 @@ Props: as PieChart + centerValue (big number) + centerLabel (caption under it).
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-scatter (9866:13245) — relationship between two measures; clusters and outliers.
-Props: data = [{ label, x, y, series?, size?, delta?, details? }], series = [{ key, label, color? }] (absent = one series),
-xFormat, yFormat (default format), xUnit (suffix on the last x tick, e.g. "days"), xLabel/yLabel (table + tooltip names),
-xReference / yReference (dashed white peer-median lines) + referenceLabel, bubble (size → radius), tooltip. + shell props.
+Props: data = [{ label, x, y, series?, size?, delta?, details? }], series = [{ key, label, color? }] (absent = one series; up to 8,
+then "Other"), xFormat, yFormat (default format), xUnit (suffix on the last x tick, e.g. "days"), xLabel/yLabel (table + tooltip names),
+xReference / yReference (dashed white peer-median lines) + referenceLabel, bubble (size → radius, with a size key in the legend),
+sizeLabel, tooltip, valueTicks. + shell props. Every point has at least a 24 px hit area (G8).
 `function ScatterChart(props)`
 
 ### BubbleChart
@@ -672,7 +688,7 @@ Figma: chart-bubble (9866:13788) — scatter with a third measure as bubble area
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-gauge (9867:618) — one KPI against one reference value on a 180° arc.
 Props: value, max (default 100), min (0), target (solid white tick reaching outside the arc), reference (dashed white tick across the arc), format (default v → v%),
-label (caption under the number), valueLabel / targetLabel / referenceLabel (legend), color, delta, details, tooltip. + shell props.
+label (caption under the number), valueLabel / targetLabel / referenceLabel (legend), color (slot, default 1), delta, details, tooltip. + shell props.
 `function GaugeChart(props)`
 
 ### WaterfallChart
@@ -680,25 +696,28 @@ label (caption under the number), valueLabel / targetLabel / referenceLabel (leg
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-waterfall (9866:16075) — bridge from a start value to an end value through increments.
 Props: data = [{ label, value, total? }]: total:true bars stand on 0 (value given = reset the running total; omitted = show it),
-other bars float as +/- steps. colors = { total, increase, decrease } (groups; default muted-purple / rose / teal),
-labels = { total, increase, decrease } (legend), format, tooltip. + shell props.
+other bars float as +/- steps. colors = { total, increase, decrease } (default neutral / diverging positive (pink) / diverging negative
+(azure), D7: polarity, never colour alone — every step is signed + / −), labels = { total, increase, decrease } (legend), format, tooltip,
+valueTicks. + shell props.
 `function WaterfallChart(props)`
 
 ### FunnelChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-funnel (9867:1065) — drop-off across ordered stages.
-Props: data = [{ label, value, reference? (peer value for that stage → white ticks), delta?, details? }], color (stages; default
-muted-purple, fading per stage), outcomeColor (last stage; default teal — set null to keep one colour), stageLabel/outcomeLabel/
+Props: data = [{ label, value, reference? (peer value for that stage → white ticks), delta?, details? }], color (stages; categorical slot,
+default 1, fading per stage), outcomeColor (last stage; default slot 3 — set null to keep one colour), stageLabel/outcomeLabel/
 referenceLabel (legend), format (default full number), tooltip. + shell props.
 `function FunnelChart(props)`
 
 ### HeatmapChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-heatmap (9866:14280) — ordered magnitude across a matrix, one hue group (Figma: teal-3 with opacity by value).
-Props: rows = [labels], columns = [labels], values = [[row][col] numbers], color (default teal), columnLabelEvery (auto),
-lowLabel / highLabel (legend), valueLabel, format, tooltip(cell = { row, column, value, r, c }). + shell props.
+Figma: chart-heatmap (9866:14280) — ordered magnitude across a matrix, one sequential ramp (D7): more = lighter, 5 classes
+(ladder steps 1 · 3 · 5 · 7 · 9) or 9 when the heatmap is dense. The legend is a scale bar below (D4).
+Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (azure default | teal | orchid | pink | yellow),
+classes 5 | 9, color (legacy: one colour with opacity by value, Figma parity), columnLabelEvery (auto),
+lowLabel / highLabel (scale ends), valueLabel, format, tooltip(cell = { row, column, value, r, c }). + shell props.
 `function HeatmapChart(props)`
 
 ### ProgressRing
@@ -718,7 +737,10 @@ labels = [reject, review, approve] captions. Type (Reject|Review|Approve) follow
 
 ### 
 **Tier:** Component
-Series colour groups, in the order charts use them (Figma core charts: muted purple → teal → rose → …).
+Figma: Data Visualisation page (3487:19894) — data-viz Base atoms + the generic "core chart types".
+Rules (2.0.6, data viz round D1–D9, Nov 24; guide/rules.md 7.18): charts are built from the Base atoms; bars are zero-based; one measure
+= one colour (categorical slot 1); series take the categorical slots in order (up to 8, 9–12 only with direct labels, then "Other");
+every chart backs its picture with exact values (hover/focus tooltip + the Chart / Table switch + a screen-reader table).
 `function dvColor(color, i = 0, step = DV_STEP)`
 
 ## data
@@ -1916,8 +1938,8 @@ defect = MapPinDefect props (symbol=defect), state default|selected (forced, gal
 **In handovers:** placed 3,190× (Plan, Build) · usual: color 5 87%
 ------------------------------------------------------------------------------------------ 
 Figma: bar-chart-item (key 44fcce06…; Patterns copy 12:107849). One filled segment of a bar chart.
-Props: color 1–9 (Figma colour index → data-viz/data-N), fill (any CSS colour/var — overrides color; the pattern
-screens bind data-viz/muted purple/data-4), number (Figma bool, show the label, default true), children = label (default "40%").
+Props: color 1–12 (the categorical slot, 2.0.6 D8: one measure = slot 1; a colour per bar only for meaning or one highlight), fill (a data-viz
+colour token — overrides color; with fill on a light colour set --bar-ink to --color-text-inverse), number (Figma bool, show the label, default true), children = label (default "40%").
 `function BarChartItem({ color = 1, fill, number = true, children = '40%', className, style, ...rest })`
 
 ### VerticalBarChartItem
@@ -1928,7 +1950,7 @@ Figma: vertical-bar-chart-item (key c06b1d19…; Patterns copy 12:107877). A sta
 Props: segments = [{ value, color, fill, label }] top → bottom (heights ∝ value; label shown when given),
 value = column total as a share of `max` (height of the filled part; default: full), max, height (default 200), width (104),
 active / defaultActive / onActiveChange (click toggles, renders a button when onActiveChange or onClick is set), state active (forced).
-`function VerticalBarChartItem({ segments = [{ value: 1, color: 4 }], value, max, height = 200, width = 104, active, defaultActive = false, onActiveChange, onClick, state, label, className, style, ...rest })`
+`function VerticalBarChartItem({ segments = [{ value: 1, color: 1 }], value, max, height = 200, width = 104, active, defaultActive = false, onActiveChange, onClick, state, label, className, style, ...rest })`
 
 ### useDocuments
 **Tier:** Pattern helper
@@ -2447,7 +2469,9 @@ filter(option, query), state. While loading and open, the list shows Figma's "Se
 Figma: segmented-control-organism (1387:244501) built from segmented-control-atom (1387:244511)
 Props: options = [{ value, label, iconLeft, iconRight, counter, disabled, state }] (strings allowed), value/defaultValue/onChange,
 size m | s: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 4 smaller inside the 2 track (20 inside 24 in Comfortable), each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
-`function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm', fullWidth = false, className, ...rest })`
+iconOnly (2.0.6, D1): each option shows only its icon (o.icon or o.iconLeft, 16) in a square segment; o.label becomes the accessible name
+and the native tooltip. M size: the segments are squares 4 smaller than the control height inside the 2 track, so the control is --size-control-m outside.
+`function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm', fullWidth = false, iconOnly = false, className, ...rest })`
 
 ### Chip
 **Tier:** Component
