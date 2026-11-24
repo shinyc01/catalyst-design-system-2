@@ -154,20 +154,6 @@ function CompareView({ groups, value, defaultValue = null, onChange, stats = [],
 }
 
 /* ───────────────────────────── ActivityPanel (pattern) ───────────────────────────── */
-// The record's Activity panel ("Library - Strategy Framework - Activity panel", Patterns 52:87879): panel-organism (380px, full height)
-// over an overlay (Type=Base), header ACTIVITY + ✕, a segmented control S (Version History | Approval Chain, only when the record has
-// both), the Cooper smart search that filters the current view, then the version-history timeline or the approval chain.
-// Version entries are kit VersionEntry (M marker = expand toggle; card = the version card): click the card or name to
-// open that version read-only, ⋮ for Compare / Duplicate / Rename / Restore, the caret to expand the version's full activity log.
-// Props:
-//   versions / defaultVersions / onVersionsChange — [{ id, title, current, description, author: Avatar props + name, time,
-//     activity: [{ id, name, avatar (Avatar props), type: 'comment'|'action'|'auto-action', role, text, time }] }] (newest first)
-//   approvals — ApprovalChain steps; undefined = record has no approval chain (no segmented control); [] = empty state.
-//   view / defaultView ('versions'|'approvals') / onViewChange, query / defaultQuery / onQueryChange (the smart search),
-//   open / defaultOpen / onOpenChange (✕, outside click, Esc), layout overlay (fixed, an over panel: no scrim, one --float-inset in,
-//   floating level; rule 4.6) | contained (the same, absolute in the nearest positioned ancestor) | static (in flow — gallery, AppShell panel), title ("Activity"), recordLabel ("framework", for copy),
-//   onOpenVersion(v), onCompare(v, baseline), onDuplicate(v), onRestore(v) (after the confirm modal), onRename(v, title, previous),
-//   defaultExpanded (version ids), defaultRename { id, value, error } (gallery states).
 const PA_TYPE_LABEL = { comment: 'Comment', action: 'Action', 'auto-action': 'Auto-action' };
 const PA_STOP = new Set(('a an and any all are about by did do does done for from has have in is it its me my of on or show the to was were what when where which who with '
   + 'version versions changed change changes made make history activity everything anything list find give tell').split(' '));
@@ -226,6 +212,21 @@ function filterApprovals(steps, q) {
 const PA_VERSION_SUGGESTIONS = ['Show comments only', 'What did Cooper change automatically?', 'What did A. Singh do?', 'Which version is current?'];
 const PA_APPROVAL_SUGGESTIONS = ['Who hasn\'t responded yet?', 'Who requested changes?', 'Who still needs to approve?'];
 
+// The record's Activity panel ("Library - Strategy Framework - Activity panel", Patterns 52:87879): panel-organism (380px, full height)
+// as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version History | Approval Chain, only when the record has
+// both), the Cooper smart search that filters the current view, then the version-history timeline or the approval chain.
+// Version entries are kit VersionEntry (M marker = expand toggle; card = the version card): click the card or name to
+// open that version read-only, ⋮ for Compare / Duplicate / Rename / Restore, the caret to expand the version's full activity log.
+// Props:
+//   versions / defaultVersions / onVersionsChange — [{ id, title, current, description, author: Avatar props + name, time,
+//     activity: [{ id, name, avatar (Avatar props), type: 'comment'|'action'|'auto-action', role, text, time }] }] (newest first)
+//   approvals — ApprovalChain steps; undefined = record has no approval chain (no segmented control); [] = empty state.
+//   view / defaultView ('versions'|'approvals') / onViewChange, query / defaultQuery / onQueryChange (the smart search),
+//   open / defaultOpen / onOpenChange (✕, outside click, Esc), layout overlay (fixed, an over panel: no scrim, one --float-inset in,
+//   floating level; rule 4.6) | contained (the same, absolute in the nearest positioned ancestor) | static (in flow — gallery, AppShell panel), title ("Activity"), recordLabel ("framework", for copy),
+//   onOpenVersion(v), onCompare(v, baseline), onDuplicate(v), onRestore(v) (after the confirm modal), onRename(v, title, previous),
+//   defaultExpanded (version ids), defaultRename { id, value, error } (gallery states).
+// Motion (M3): overlay and contained slide in from the end edge in 200 and back in 100; reduced motion fades (M4).
 function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, approvals, view, defaultView = 'versions', onViewChange,
   query, defaultQuery = '', onQueryChange, open, defaultOpen = true, onOpenChange, layout = 'overlay', title = 'Activity', recordLabel = 'framework',
   onOpenVersion, onCompare, onDuplicate, onRestore, onRename, defaultExpanded = [], defaultRename, versionSuggestions = PA_VERSION_SUGGESTIONS,
@@ -241,6 +242,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
   const [ren, setRen] = React.useState(defaultRename ? { id: defaultRename.id, value: defaultRename.value, error: defaultRename.error } : null);
   const [restoreOf, setRestoreOf] = React.useState(null);
   const ref = React.useRef(null);
+  const ex = IFS.useExit(isOpen && layout !== 'static', '--motion-duration-100'); // M3: over panels slide in 200, back in 100
   React.useEffect(() => {
     if (!isOpen || layout === 'static') return undefined;
     const key = e => { if (e.key === 'Escape' && !e.defaultPrevented && !restoreOf && !(ref.current && ref.current.contains(document.activeElement) && document.activeElement.closest('[role=combobox],[role=menu],input'))) setOpen(false); };
@@ -250,7 +252,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
     return () => { document.removeEventListener('keydown', key); document.removeEventListener('pointerdown', down, true); };
   }, [isOpen, layout, restoreOf]);
   React.useEffect(() => { setApplied(q && q.trim() ? q : ''); }, [tab]);
-  if (!isOpen && layout !== 'static') return null;
+  if (layout !== 'static' && !ex.mounted) return null;
 
   const dupMsg = 'A version with this name already exists';
   const nameTaken = (id, name) => list.some(v => v.id !== id && paNorm(v.title).trim() === paNorm(name).trim());
@@ -315,7 +317,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
   }
 
   const panel = (
-    <div ref={ref} className={paCx('ifs-activity-panel', `ifs-activity-panel--${layout}`, className)} style={style}
+    <div ref={ref} className={paCx('ifs-activity-panel', `ifs-activity-panel--${layout}`, ex.leaving && 'is-leaving', className)} style={style}
       role={layout === 'static' ? undefined : 'dialog'} aria-label={title}>
       <IFS.Panel title={title} showEvidence={false}>
         {hasApprovals && <IFS.SegmentedControl size="s" fullWidth value={tab} onChange={v => setCur(v)}

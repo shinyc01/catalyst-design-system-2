@@ -9,7 +9,7 @@ export default {
   component: IFS["MapPin"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** map-pin-teardrop (43:2020)\n\n\nUse: Default location marker for one asset on an exact spot. Other pins on the page (`map-pin-dot`, `-square`, `-pole`, `-defect`, `-flow`) cover counts, clusters, readings, defects and direction." } },
+    docs: { description: { component: "**Figma:** map-pin-teardrop (43:2020)\n\n\nUse: Default location marker for one asset on an exact spot. Other pins on the page (`map-pin-dot`, `-square`, `-pole`, `-defect`, `-flow`) cover counts, clusters, readings, defects and direction.\n\nStatus: `MapPin` takes the five C1 words, `neutral` · `danger` · `warning` · `success` · `info` (`error` = old name for danger). The dot pin `MapPinDot` takes `danger` · `warning` · `neutral` (old-name aliases: `error` draws danger, `success` and `info` draw neutral; rule 7.16)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=43-2020"},
   },
 };

@@ -59,14 +59,16 @@
 .ifs-app-shell__panel--push.is-leaving{animation:ifs-push-out var(--motion-duration-200) var(--motion-ease-standard) forwards}
 .ifs-app-shell--panel-over .ifs-app-shell__panel{animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)}
 .ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation:ifs-slide-out-end var(--motion-duration-100) var(--motion-ease-exit) forwards}
+.ifs-activity-panel--overlay,.ifs-activity-panel--contained{animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)} /* ActivityPanel on its own: an over panel */
+.ifs-activity-panel--overlay.is-leaving,.ifs-activity-panel--contained.is-leaving{animation:ifs-slide-out-end var(--motion-duration-100) var(--motion-ease-exit) forwards}
 
 /* Reduced motion (M4): one rule for the whole system. Movement snaps or fades (the 2 and 16 distances go to 0, drawers and the Cooper
    chat fade instead of sliding or growing, the knob, slider, chevron, progress and widths change at once); colour and opacity
    fades stay; loops stop except the spinner, which slows to 3 x spin. Components need no rule of their own. */
 @media (prefers-reduced-motion:reduce){
   :root{--motion-distance-2:0px;--motion-distance-16:0px}
-  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-app-shell--panel-over .ifs-app-shell__panel{animation-name:ifs-fade!important}
-  .ifs-drawer--floating.is-leaving,.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation-name:ifs-fade-out!important}
+  .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-app-shell--panel-over .ifs-app-shell__panel,.ifs-activity-panel--overlay,.ifs-activity-panel--contained{animation-name:ifs-fade!important}
+  .ifs-drawer--floating.is-leaving,.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving,.ifs-activity-panel.is-leaving{animation-name:ifs-fade-out!important}
   .ifs-app-shell__panel--push,.ifs-app-shell__panel--push.is-leaving{animation:none!important}
   .ifs-floating-bar--floating{animation-name:ifs-fade!important} /* its keyframes also centre it, so a fade with the transform kept */
   .ifs-sk,[class*="--loading"],.ifs-cooper-msg__cursor,.ifs-cooper-progress__text{animation:none!important} /* skeletons stop pulsing (the shapes stay), the caret stops blinking, the Cooper "thinking" shimmer stops */
