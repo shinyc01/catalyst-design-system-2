@@ -214,7 +214,7 @@
 --color-data-viz-data-1:var(--palette-danger-600);--color-data-viz-data-2:#a06d1c;--color-data-viz-data-3:#176932;--color-data-viz-data-4:#5238a4;--color-data-viz-data-5:#3556a0;
 --color-data-viz-data-6:#167bb6;--color-data-viz-data-7:#692917;--color-data-viz-data-8:#6a1766;--color-data-viz-data-9:#1e1e1e;--color-data-viz-data-10:#313131;
 /* Purpose roles added Nov 23 night (C3 P1: no raw colours in components). Same Dark values as the raw ones they replace. */
---color-background-skeleton:var(--palette-white-alpha-10);--color-background-skeleton-soft:rgba(255,255,255,0.04); /* skeleton shimmer */
+--color-background-skeleton:var(--color-background-neutral-soft); /* the one skeleton fill (L1, Nov 24): Figma background/elevation-1/secondary */
 --color-background-sheen:var(--palette-white-alpha-40); /* light rim on avatars and media */
 --color-background-sheen-from:var(--palette-black-alpha-20);--color-background-sheen-to:rgba(102,102,102,0.2); /* hover / drag sheen on canvas cards */
 --color-background-accent-purple-glow:rgba(128,120,255,0.25); /* file preview tile art */

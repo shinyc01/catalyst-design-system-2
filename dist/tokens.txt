@@ -272,8 +272,7 @@
 --color-data-viz-data-8: #6a1766
 --color-data-viz-data-9: #1e1e1e
 --color-data-viz-data-10: #313131
---color-background-skeleton: var(--palette-white-alpha-10)
---color-background-skeleton-soft: rgba(255,255,255,0.04)
+--color-background-skeleton: var(--color-background-neutral-soft)
 --color-background-sheen: var(--palette-white-alpha-40)
 --color-background-sheen-from: var(--palette-black-alpha-20)
 --color-background-sheen-to: rgba(102,102,102,0.2)
@@ -584,29 +583,14 @@
 --motion-end: 1}
 [dir="rtl"]{--motion-end:-1}
 
-
-@keyframes ifs-spin{to{transform:rotate(360deg)}}
-@keyframes ifs-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
-@keyframes ifs-fade{from{opacity:0}}
-@keyframes ifs-drop{from{opacity:0
+/* Shared keyframes: one spinner, one skeleton pulse (L1), the Cooper text shimmer ("Cooper is thinking")
 --motion-distance-2: 0px
 --motion-distance-16: 0px}
   .ifs-drawer--floating,.ifs-evidence-chain--floating,.ifs-cooper-fade,.ifs-app-shell--panel-over .ifs-app-shell__panel{animation-name:ifs-fade!important}
   .ifs-drawer--floating.is-leaving,.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation-name:ifs-fade-out!important}
   .ifs-app-shell__panel--push,.ifs-app-shell__panel--push.is-leaving{animation:none!important}
   .ifs-floating-bar--floating{animation-name:ifs-fade!important} 
-  .ifs-sk,.ifs-skeleton,[class*="--loading"],.ifs-cooper-msg__cursor,.ifs-trc-solution--loading{animation:none!important}
-  .ifs-spin,[class*="spinner"]{animation-duration:calc(3 * var(--motion-loop-spin))!important}
-  .ifs-cursor--placed,.wb-ghost--back,[class*="switch"],[class*="slider"],[class*="progress"],[class*="chevron"]{transition-property:background-color,color,opacity,border-color!important}
-  *,*::before,*::after{scroll-behavior:auto!important}
-}
-
-/* Colour primitives (N8, Nov 23): Figma "1. Colors primitives", exported 2026-11-17 (tools/figma/colors-primitives.txt).
-   Name = the Figma path without the family folder, "-base" and spaces: system/danger/500-base -> --palette-danger-500.
-   Roles (tokens.css) point at these, so a theme is a remap of roles. Components never use --palette-* (node tools/color-lint.mjs).
-   PLACEHOLDER (not final in Figma, don't use): the expressive families (fuchsia, violet, electric blue, lime, coral orange).
-   Status scales (danger, warning, success, info) rebalanced Nov 24 (2.0.5): rebuilt in OKLCH at the same lightness, the 500's hue and even
-   chroma
+  .ifs-sk,[class*="--loading"],.ifs-cooper-msg__cursor{animation:none!important} /* skeletons stop pulsing
 --palette-core-0: #000000
 --palette-core-50: #0d0d0d
 --palette-white-alpha-0: rgba(255,255,255,0)

@@ -36,11 +36,14 @@
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
 .ifs-loading-more .ifs-icon{color:var(--color-icon)}
 
-/* Skeleton blocks. Same fill as the skeleton bars inside the Figma Loading variants (data.css .ifs-skeleton-bar),
-   plus the single shared shimmer the Skeleton notes ask for (rule 6), off under reduced motion. */
-.ifs-sk{display:block;flex:none;border-radius:var(--radius-control);
-  background:linear-gradient(90deg,var(--color-background-skeleton),var(--color-background-skeleton-soft),var(--color-background-skeleton)) /* raw in Figma */;
-  background-size:200% 100%;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
+/* Skeleton (L1, Nov 24): one look for every loading variant. Static shapes on the one skeleton fill (Figma background/elevation-1/secondary)
+   with a slow pulse (opacity 1 → 0.5 → 1, --motion-loop-pulse, linear); no shimmer. Every Loading variant (bars, cards, avatar, badge,
+   node card, chart, trace solution …) carries .ifs-sk next to its own size class. The fill wins over the host's own fill and states (!important),
+   so a loading card never shows its hover or colour. `fill` covers the SVG chart skeleton. Reduced motion: no pulse, the shapes stay (M4). */
+.ifs-sk{background:var(--color-background-skeleton)!important;fill:var(--color-background-skeleton);animation:ifs-pulse var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
+.ifs-sk .ifs-sk{animation:none} /* bars inside a pulsing card pulse with it, not twice */
+/* Skeleton blocks (the Skeleton component): shape bar | circle | block */
+.ifs-sk--bar,.ifs-sk--circle,.ifs-sk--block{display:block;flex:none;border-radius:var(--radius-control)}
 .ifs-sk--circle{border-radius:var(--radius-pill)}
 .ifs-sk--block{border-radius:var(--radius-card)}
 .ifs-loading-region{position:relative}

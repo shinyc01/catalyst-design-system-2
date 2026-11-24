@@ -84,7 +84,7 @@ function HomeRowCard({ type = 'secondary', rank, title, badge, description, metr
     onClick={e => { e.stopPropagation(); onOpen && onOpen(); }} tabIndex={interactive ? -1 : undefined} />;
 
   return (
-    <div className={cx('ifs-home-row-card', `ifs-home-row-card--${primary ? 'primary' : 'secondary'}`, loading && 'ifs-home-row-card--loading', className)}
+    <div className={cx('ifs-home-row-card', `ifs-home-row-card--${primary ? 'primary' : 'secondary'}`, loading && 'ifs-home-row-card--loading ifs-sk', className)}
       data-state={state} role={interactive ? 'button' : undefined} tabIndex={interactive ? 0 : undefined} aria-busy={loading || undefined}
       aria-label={interactive ? `${rank != null ? `${rank}. ` : ''}${title}` : undefined}
       onClick={interactive ? () => onOpen() : undefined} onKeyDown={onKeyDown} {...rest}>

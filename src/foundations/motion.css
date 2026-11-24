@@ -5,7 +5,7 @@
    changes · 300 the tooltip's pointer wait. Closing is one step faster than opening.
    Curves by purpose: standard (on-screen changes) · enter (opening) · exit (closing) · linear (loops).
    Distances: 2 = the small drop or rise of anything opening · 16 = arrivals (snackbars, notifications, from the end side).
-   Loops: spin 1000 · pulse 1600, not in step. Never animates: the focus ring, numbers and chart data, page changes.
+   Loops: spin 1400 (the dotted loader) · pulse 1600 (skeletons), not in step. Never animates: the focus ring, numbers and chart data, page changes.
    ========================================================================== */
 :root{
   --motion-duration-0:0ms;--motion-duration-50:50ms;--motion-duration-100:100ms;--motion-duration-200:200ms;--motion-duration-300:300ms;
@@ -17,8 +17,9 @@
 :root{--motion-end:1}
 [dir="rtl"]{--motion-end:-1}
 
-/* Shared keyframes (one spinner, one shimmer: the duplicates in components are gone) */
+/* Shared keyframes: one spinner, one skeleton pulse (L1), the Cooper text shimmer ("Cooper is thinking"); no copies in components */
 @keyframes ifs-spin{to{transform:rotate(360deg)}}
+@keyframes ifs-pulse{50%{opacity:0.5}}
 @keyframes ifs-shimmer{from{background-position:100% 0}to{background-position:-100% 0}}
 @keyframes ifs-fade{from{opacity:0}}
 @keyframes ifs-drop{from{opacity:0;transform:translateY(calc(-1 * var(--motion-distance-2)))}}   /* menus, select lists, popovers: a 2px drop */
@@ -67,7 +68,7 @@
   .ifs-drawer--floating.is-leaving,.ifs-app-shell--panel-over .ifs-app-shell__panel.is-leaving{animation-name:ifs-fade-out!important}
   .ifs-app-shell__panel--push,.ifs-app-shell__panel--push.is-leaving{animation:none!important}
   .ifs-floating-bar--floating{animation-name:ifs-fade!important} /* its keyframes also centre it, so a fade with the transform kept */
-  .ifs-sk,.ifs-skeleton,[class*="--loading"],.ifs-cooper-msg__cursor,.ifs-trc-solution--loading{animation:none!important}
+  .ifs-sk,[class*="--loading"],.ifs-cooper-msg__cursor{animation:none!important} /* skeletons stop pulsing; the shapes stay */
   .ifs-spin,[class*="spinner"]{animation-duration:calc(3 * var(--motion-loop-spin))!important}
   .ifs-cursor--placed,.wb-ghost--back,[class*="switch"],[class*="slider"],[class*="progress"],[class*="chevron"]{transition-property:background-color,color,opacity,border-color!important}
   *,*::before,*::after{scroll-behavior:auto!important}

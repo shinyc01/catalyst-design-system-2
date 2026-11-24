@@ -90,8 +90,7 @@
 .ifs-node-card--checkbox{gap:var(--space-200)}
 .ifs-node-card--checkbox:not(.ifs-node-card--solid){outline:var(--border-width-default) dashed var(--color-border);outline-offset:-1px}
 .ifs-node-card--edit{cursor:default}
-.ifs-node-card--skeleton{width:280px;height:88px;cursor:default;--nc-stroke:var(--color-border-soft);background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft));
-  background-size:200% 100%;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite;backdrop-filter:blur(var(--blur-10))}
+.ifs-node-card--skeleton{width:280px;height:88px;cursor:default;--nc-stroke:var(--color-border-soft);backdrop-filter:blur(var(--blur-10))} /* look: .ifs-sk (L1) */
 
 .ifs-node-card__text{display:flex;flex-direction:column;justify-content:center;gap:var(--space-200);flex:1;min-width:0;align-self:stretch}
 .ifs-node-card__text>.ifs-badge{align-self:flex-start}

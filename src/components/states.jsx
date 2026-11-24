@@ -95,15 +95,19 @@ function LoadingMore({ children = 'Loading more…', className, ...rest }) {
 // Skeleton block — not a Figma component. Content States › Skeleton defines skeletons as blank shapes built inside the
 // component that owns the async data (stat card, content card, table cells already have Figma Loading variants: use those).
 // Use this only to compose a skeleton for an owning component that has no Loading variant.
+// One skeleton look (L1, Nov 24): static shapes on the skeleton fill with a slow pulse (.ifs-sk); every Loading variant uses the same.
 // Props: width, height, shape bar|circle|block. Always aria-hidden, never focusable, never contains text.
 function Skeleton({ width = '100%', height = 16, shape = 'bar', className, style }) {
-  return <span aria-hidden="true" className={IFS.cx('ifs-sk', shape !== 'bar' && `ifs-sk--${shape}`, className)} style={{ width, height, ...style }} />;
+  return <span aria-hidden="true" className={IFS.cx('ifs-sk', `ifs-sk--${shape}`, className)} style={{ width, height, ...style }} />;
 }
 
 // Loading wrapper for the component that owns async data (Skeleton notes, rules 7–9).
 // Props: loading, skeleton (node shown while loading — a Loading variant or Skeleton blocks; omit for an unknown shape → Spinner),
 // delay (ms before the skeleton shows; fast loads never flash, default 300), minDuration (ms it stays once shown, default 300),
 // label (announced "Loading <label>" / "Loaded"), children = loaded content (or the empty state — decided by the caller after loading).
+// Which indicator, when (L2, rule 8.23): under 300 ms nothing · 300 ms–10 s with a known layout → skeleton, kept at least 300 ms ·
+// unknown shape → Spinner (an action → Button loading) · over 10 s → determinate progress saying what and how far, Cancel where possible,
+// the page stays usable · appending to a list → LoadingMore.
 function LoadingRegion({ loading, skeleton, delay = 300, minDuration = 300, label = '', children, className, ...rest }) {
   const [visible, setVisible] = useState(false);
   const [announce, setAnnounce] = useState('');

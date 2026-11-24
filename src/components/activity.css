@@ -224,7 +224,6 @@
 .ifs-version-card{display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset);border-radius:var(--radius-card);
   background:var(--color-surface-secondary);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-version-card:hover,.ifs-version-card[data-state=hover]{background:var(--color-surface-tertiary)}
-.ifs-version-card--loading{background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft))}
 .ifs-version-card__body{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-version-card__label{color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-version-card__list{display:flex;flex-direction:column;gap:var(--space-150)}

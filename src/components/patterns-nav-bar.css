@@ -28,7 +28,7 @@
 .ifs-home-row-card--primary::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:var(--size-1);pointer-events:none;
   background:linear-gradient(90deg,var(--color-border-on-solid),var(--color-cooper-border));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.ifs-home-row-card--loading{background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft));cursor:default}
+.ifs-home-row-card--loading{cursor:default}
 .ifs-home-row-card--loading::before{display:none}
 .ifs-home-row-card__rank{flex:none;display:flex;justify-content:center;align-items:flex-start;box-sizing:border-box;width:var(--size-72);
   padding:var(--size-18) var(--space-400) /* raw in Figma: 18 */}

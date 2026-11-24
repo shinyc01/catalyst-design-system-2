@@ -161,7 +161,7 @@ function NodeCard({ type = 'strategic-objective', state, title = '{card-title}',
   const [dragging, setDragging] = React.useState(false);
   const [draft, setDraft] = React.useState(title);
   React.useEffect(() => { setDraft(title); }, [title, editing]);
-  if (type === 'skeleton' || loading || state === 'loading') return <div aria-busy="true" aria-label="Loading node" className={IFS.cx('ifs-node-card', 'ifs-node-card--skeleton', className)} style={style} />;
+  if (type === 'skeleton' || loading || state === 'loading') return <div aria-busy="true" aria-label="Loading node" className={IFS.cx('ifs-node-card', 'ifs-node-card--skeleton', 'ifs-sk', className)} style={style} />;
 
   const st = state;
   const isEdit = editing || st === 'edit';

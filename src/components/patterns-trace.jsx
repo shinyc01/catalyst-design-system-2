@@ -93,9 +93,9 @@ function useIssueReport({ issues = [], kinds = CONFIDENCE_KINDS, gates = [], def
 // 30:76630 applied, 30:78117 answered). M card, 12 padding, radius 8, border/base stroke. recommended = Cooper's pick:
 // cooper-system-icon (Insight) + "cooper/Insight/text" gradient title on background/color-alpha/cooper-base.
 // Props: title, description, recommended, onSelect (click applies it), onUndo (shows the arrow-back-up icon-button;
-// Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading shimmer, 40px), state (gallery: hover).
+// Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading state, 40px; the one skeleton look, L1), state (gallery: hover).
 function IssueSolution({ title, description, recommended, onSelect, onUndo, undoLabel = 'Cancel', loading, state, className, ...rest }) {
-  if (loading) return <div className={cx('ifs-trc-solution--loading', className)} aria-busy="true" aria-label="Uploading" {...rest} />;
+  if (loading) return <div className={cx('ifs-trc-solution--loading', 'ifs-sk', className)} aria-busy="true" aria-label="Uploading" {...rest} />;
   const text = (
     <span className="ifs-trc-solution__body">
       {recommended && <IFS.Icon name="cooper-system-icon" variant="Insight" size={12} className="ifs-trc-solution__cooper" />}

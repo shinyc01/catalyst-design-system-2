@@ -7,7 +7,6 @@
 .ifs-dv-bar--default:hover,.ifs-dv-bar[data-state=hover]{background:var(--dv-c-hover)}
 .ifs-dv-bar--out-of-focus{background:var(--dv-c-muted)}
 .ifs-dv-bar--background{background:var(--color-background-neutral-soft)}
-.ifs-dv-bar--loading{background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft))}
 .ifs-dv-bar--out-of-focus .ifs-dv-value{color:var(--color-text-disabled)}
 
 /* ================= grouped-bar-molecule (4457:37362) ================= */
@@ -38,8 +37,7 @@
 .ifs-dv-value--secondary{color:var(--color-text-soft)}
 .ifs-dv-value--tertiary{color:var(--color-text-softer)}
 .ifs-dv-value--empty{min-width:1.875rem}
-.ifs-dv-value__skeleton{display:block;width:1.875rem;height:var(--size-16);
-  background:linear-gradient(90deg,var(--color-background-skeleton),var(--color-background-skeleton-soft),var(--color-background-skeleton)) /* raw in Figma */}
+.ifs-dv-value__skeleton{display:block;width:1.875rem;height:var(--size-16)}
 
 /* ================= legend-swatch-atom (4440:32628) + info-hint-item (12:121968): one entry, layout inline | row ================= */
 .ifs-dv-legend{display:inline-flex;align-items:center;gap:var(--space-200);min-width:0;padding:var(--space-150) 0;white-space:nowrap;
@@ -146,11 +144,10 @@
 .ifs-chart__hit,.ifs-chart__overlay{outline:none}
 .ifs-chart__hit:focus-visible .ifs-chart__band,.ifs-chart__hit:focus-visible path,.ifs-chart__hit:focus-visible rect:not(.ifs-chart__band){stroke:var(--color-focus-outer);stroke-width:1.5}
 .ifs-chart__overlay:focus-visible{stroke:var(--color-focus-outer);stroke-width:1.5}
-.ifs-chart__skel{fill:var(--color-surface-secondary)}
-.ifs-chart__skel-stroke{stroke:var(--color-surface-secondary);fill:none}
+.ifs-chart__skel-stroke{stroke:var(--color-background-skeleton);fill:none}
 .ifs-chart__skeleton{display:flex;flex-direction:column}
 .ifs-chart__skel-legend{display:flex;justify-content:center;align-items:center;gap:var(--space-200);height:44px}
-.ifs-chart__skel-legend span{display:block;width:12px;height:12px;border-radius:var(--radius-mark);background:var(--color-surface-secondary)}
+.ifs-chart__skel-legend span{display:block;width:12px;height:12px;border-radius:var(--radius-mark)}
 .ifs-chart__skel-legend span + span{width:75px}
 .ifs-chart--empty .ifs-dv-card__body,.ifs-chart--loading .ifs-dv-card__body{padding:0}
 .ifs-chart__empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-200);height:388px;text-align:center} /* px: chart plot geometry */

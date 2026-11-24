@@ -587,21 +587,21 @@ function UserCard({ type = 'assigned', name, position, avatar, badge = 'Owner', 
       aria-busy={loading || undefined} {...actKeyClick(onClick)} {...rest}>
       <div className="ifs-user-card__main">
         {!owner && <IFS.Icon name="system-drag-and-drop" size={16} className="ifs-user-card__drag" />}
-        {loading ? <span className="ifs-user-card__sk-avatar ifs-skeleton" /> : <IFS.Avatar size="m" name={name} {...avatar} />}
+        {loading ? <span className="ifs-user-card__sk-avatar ifs-sk" /> : <IFS.Avatar size="m" name={name} {...avatar} />}
         <div className="ifs-user-card__text">
-          {loading ? <><span className="ifs-skeleton-bar" style={{ width: '8.5625rem', height: 'var(--size-14)' }} /><span className="ifs-skeleton-bar" style={{ width: 'var(--size-80)', height: 'var(--size-14)' }} /></> : <>
+          {loading ? <><span className="ifs-skeleton-bar ifs-sk" style={{ width: '8.5625rem', height: 'var(--size-14)' }} /><span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-80)', height: 'var(--size-14)' }} /></> : <>
             <span className="ifs-user-card__name">{name}</span>
             {position != null && <span className="ifs-user-card__position">{position}</span>}
           </>}
         </div>
       </div>
       <div className={actCx('ifs-user-card__side', owner && 'ifs-user-card__side--owner')}>
-        {loading ? <span className="ifs-skeleton-bar" style={{ width: 'var(--size-32)', height: 'var(--size-20)', borderRadius: 1000 }} /> : <>
+        {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-32)', height: 'var(--size-20)', borderRadius: 1000 }} /> : <>
           {checked && <IFS.Icon name="system-check" size={16} className="ifs-user-card__check" />}
           {badge && <IFS.Badge color="white" size="m">{badge}</IFS.Badge>}
         </>}
         {!owner && <IFS.IconButton type="ghost" size="s" icon="system-edit-rename" label="Edit" onClick={e => { e.stopPropagation(); onEdit && onEdit(e); }} />}
-        {owner && date != null && (loading ? <span className="ifs-skeleton-bar" style={{ width: '8.125rem', height: 'var(--size-14)' }} /> : <span className="ifs-user-card__date">{date}</span>)}
+        {owner && date != null && (loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: '8.125rem', height: 'var(--size-14)' }} /> : <span className="ifs-user-card__date">{date}</span>)}
       </div>
     </div>
   );
@@ -616,9 +616,9 @@ function Collaborator({ type = 'joined', name, position, avatar, role, defaultRo
   return (
     <div className={actCx('ifs-collab', `ifs-collab--${type}`, className)} data-state={state} aria-busy={loading || undefined} tabIndex={0} {...rest}>
       <div className="ifs-collab__inner">
-        {loading ? <span className="ifs-collab__sk-avatar ifs-skeleton" /> : <IFS.Avatar size="m" name={name} type={avType} state={state === 'hover' ? 'hover' : undefined} {...avatar} />}
+        {loading ? <span className="ifs-collab__sk-avatar ifs-sk" /> : <IFS.Avatar size="m" name={name} type={avType} state={state === 'hover' ? 'hover' : undefined} {...avatar} />}
         <div className="ifs-collab__text">
-          {loading ? <><span className="ifs-skeleton-bar" style={{ width: '9.8125rem', height: 'var(--size-14)' }} /><span className="ifs-skeleton-bar" style={{ width: 'var(--size-80)', height: 'var(--size-14)' }} /></> : <>
+          {loading ? <><span className="ifs-skeleton-bar ifs-sk" style={{ width: '9.8125rem', height: 'var(--size-14)' }} /><span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-80)', height: 'var(--size-14)' }} /></> : <>
             <span className="ifs-collab__name">{name}</span>
             {position != null && <span className="ifs-collab__position">{position}</span>}
           </>}
@@ -669,7 +669,7 @@ function FileCardName({ name }) {
 // e.g. a Menu with more or Tooltip-wrapped icon-buttons; shown on hover/focus, always on error), active (keeps the hover look and
 // the actions visible, e.g. while its menu is open), state hover (gallery).
 function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, onClick, actions, active, state, className, ...rest }) {
-  if (loading) return <div className={actCx('ifs-file-card', 'ifs-file-card--loading', 'ifs-skeleton', className)} aria-busy="true" {...rest} />;
+  if (loading) return <div className={actCx('ifs-file-card', 'ifs-file-card--loading', 'ifs-sk', className)} aria-busy="true" {...rest} />;
   let right = null;
   if (actions != null) right = <div className={actCx('ifs-file-card__actions', error && 'ifs-file-card__actions--error')} onClick={e => e.stopPropagation()}>{actions}</div>;
   else if (error) right = (
@@ -704,15 +704,15 @@ function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, o
 function VersionCard({ label = 'Ready to publish', items = [], secondaryAction = { children: 'Schedule' }, primaryAction = { children: 'Publish' },
   loading, state, className, ...rest }) {
   return (
-    <div className={actCx('ifs-version-card', loading && 'ifs-version-card--loading', className)} data-state={state} aria-busy={loading || undefined} {...rest}>
+    <div className={actCx('ifs-version-card', loading && 'ifs-version-card--loading ifs-sk', className)} data-state={state} aria-busy={loading || undefined} {...rest}>
       <div className="ifs-version-card__body">
-        {loading ? <span className="ifs-skeleton-bar" style={{ width: '6rem', height: 'var(--size-12)' }} /> : <span className="ifs-version-card__label">{label}</span>}
+        {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: '6rem', height: 'var(--size-12)' }} /> : <span className="ifs-version-card__label">{label}</span>}
         <div className="ifs-version-card__list">
           {items.map((it, i) => (
             <div key={i} className="ifs-version-card__item">
               {loading ? <>
                 <IFS.Indicator size="xs" type="loading" className="ifs-version-card__ind" />
-                <span className="ifs-skeleton-bar" style={{ width: '8.125rem', height: 'var(--size-14)' }} />
+                <span className="ifs-skeleton-bar ifs-sk" style={{ width: '8.125rem', height: 'var(--size-14)' }} />
               </> : <>
                 <IFS.Indicator size="xs" type={it.type || 'orange'} className="ifs-version-card__ind">{it.name}</IFS.Indicator>
                 {it.meta != null && <span className="ifs-version-card__meta">{it.meta}</span>}

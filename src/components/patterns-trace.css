@@ -22,10 +22,8 @@
 .ifs-trc-solution--applied:hover .ifs-content-card__head > .ifs-icon-button,
 .ifs-trc-solution--applied:focus-within .ifs-content-card__head > .ifs-icon-button,
 .ifs-trc-solution--applied[data-state=hover] .ifs-content-card__head > .ifs-icon-button{opacity:1}
-/* Uploading: indicator-molecule with a gradient fill, 40px (30:77981) */
-.ifs-trc-solution--loading{height:var(--size-40);border-radius:var(--radius-card);
-  background:linear-gradient(90deg,var(--color-background-neutral-soft),var(--color-surface-secondary),var(--color-background-neutral-soft));
-  background-size:200% 100%;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
+/* Uploading: indicator-molecule, 40px (30:77981); the look is the one skeleton, .ifs-sk (L1) */
+.ifs-trc-solution--loading{height:var(--size-40);border-radius:var(--radius-card)}
 
 /* ---- IssueListItem — content-card-organism row (30:75771): 12 padding, radius 8, border/base, no fill ---- */
 .ifs-content-card.ifs-trc-item{--fill:transparent;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);padding:var(--space-inset);border-radius:var(--radius-card)}

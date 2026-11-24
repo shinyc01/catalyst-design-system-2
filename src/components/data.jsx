@@ -32,7 +32,7 @@ function Badge({ color = 'white', size = 'm', borderless, iconLeft, iconRight, i
   color = { danger: 'red', success: 'green', warning: 'orange', neutral: 'white' }[color] || color; // C1 status words (hue words stay as aliases)
   const sz = color === 'false' ? 's' : size;
   const iconSize = sz === 's' ? 12 : 16;
-  if (color === 'loading') return <span aria-hidden="true" className={IFS.cx('ifs-badge', 'ifs-badge--loading', `ifs-badge--${size}`, 'ifs-skeleton', className)} {...rest} />;
+  if (color === 'loading') return <span aria-hidden="true" className={IFS.cx('ifs-badge', 'ifs-badge--loading', `ifs-badge--${size}`, 'ifs-sk', className)} {...rest} />;
   return (
     <span className={IFS.cx('ifs-badge', `ifs-badge--${color}`, `ifs-badge--${sz}`, borderless && 'ifs-badge--borderless', className)} {...rest}>
       {indicator && <StatusIndicator state={indicator} />}
@@ -72,7 +72,7 @@ function Avatar({ initials, name, type = 'black', src, size = 'm', status, state
   const showText = !['image', 'cooper', 'loading'].includes(t);
   return (
     <span className={IFS.cx('ifs-avatar', `ifs-avatar--${size}`, `ifs-avatar--${t}`, className)} {...rest}>
-      <Base className="ifs-avatar__base" data-state={state} onClick={onClick} type={onClick ? 'button' : undefined}
+      <Base className={IFS.cx('ifs-avatar__base', t === 'loading' && 'ifs-sk')} data-state={state} onClick={onClick} type={onClick ? 'button' : undefined}
         role={onClick ? undefined : 'img'} aria-label={label || name || full || undefined} title={onClick ? (label || name) : undefined}>
         {t === 'image' && src && <img className="ifs-avatar__img" src={src} alt="" />}
         <span className="ifs-avatar__overlay" />
@@ -92,7 +92,7 @@ const RISK = {
 };
 function RiskStatus({ type = 'success', state, disabled, loading, onClick, children, className, ...rest }) {
   type = { danger: 'error', info: 'evaluated' }[type] || type; // C1 status words
-  if (loading) return <span aria-hidden="true" className={IFS.cx('ifs-risk', 'ifs-risk--loading', 'ifs-skeleton', className)} {...rest} />;
+  if (loading) return <span aria-hidden="true" className={IFS.cx('ifs-risk', 'ifs-risk--loading', 'ifs-sk', className)} {...rest} />;
   const [icon, def] = RISK[type] || RISK.success;
   const Tag = onClick ? 'button' : 'span';
   return (
@@ -113,7 +113,7 @@ function Indicator({ type = 'orange', size = 's', children, buttonRight, onButto
   return (
     <span className={IFS.cx('ifs-indicator', `ifs-indicator--${type}`, `ifs-indicator--${size}`, className)} {...rest}>
       <span className="ifs-status-indicator" />
-      {type === 'loading' ? <span className="ifs-skeleton-bar" /> : <span>{children}</span>}
+      {type === 'loading' ? <span className="ifs-skeleton-bar ifs-sk" /> : <span>{children}</span>}
       {buttonRight && IFS.IconButton && <IFS.IconButton icon={buttonRight} label={buttonLabel || 'Action'} type="tertiary" size="s" onClick={onButtonClick} />}
     </span>
   );
@@ -131,7 +131,7 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
     <div className={IFS.cx('ifs-readiness', `ifs-readiness--${t}`, className)} {...rest}>
       <div className="ifs-readiness__left">
         <span className="ifs-readiness__icon">{icon && <IFS.Icon name={icon} size={16} />}</span>
-        {loading ? <span className="ifs-readiness__label ifs-skeleton-bar" /> : <span className="ifs-readiness__label">{children}</span>}
+        {loading ? <span className="ifs-readiness__label ifs-skeleton-bar ifs-sk" /> : <span className="ifs-readiness__label">{children}</span>}
       </div>
       {indicators ? (
         <div className="ifs-readiness__right">
@@ -139,7 +139,7 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
         </div>
       ) : right != null && (
         <div className="ifs-readiness__right ifs-readiness__right--text">
-          {loading ? <span className="ifs-skeleton-bar" style={{ width: 'var(--size-24)', height: 'var(--size-16)' }} /> : <span className="ifs-readiness__text">{right}</span>}
+          {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-24)', height: 'var(--size-16)' }} /> : <span className="ifs-readiness__text">{right}</span>}
         </div>
       )}
     </div>
@@ -158,7 +158,7 @@ function StatCard({ size = 's', title, value, description, descriptionPosition =
     <div className={IFS.cx('ifs-stat-card', `ifs-stat-card--${size}`, compare && 'ifs-stat-card--compare', loading && 'ifs-stat-card--loading', className)} aria-busy={loading || undefined} {...rest}>
       {(title != null || trend != null || badge || loading) && (
         <div className="ifs-stat-card__top">
-          {loading ? <span className="ifs-skeleton-bar" style={{ flex: 1, height: 'var(--size-14)' }} /> : <span className="ifs-stat-card__title">{title}</span>}
+          {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ flex: 1, height: 'var(--size-14)' }} /> : <span className="ifs-stat-card__title">{title}</span>}
           {trend != null && (
             <span className={IFS.cx('ifs-stat-card__trend', trendDirection === 'down' && 'ifs-stat-card__trend--down')}>
               <IFS.Icon name="arrow-caret-up-filled" size={12} />{trend}
@@ -169,8 +169,8 @@ function StatCard({ size = 's', title, value, description, descriptionPosition =
       )}
       <div className="ifs-stat-card__value-row">
         {loading ? <>
-          <span className="ifs-skeleton-bar" style={{ width: '3.1875rem', height: m ? 'var(--size-24)' : 'var(--size-20)' }} />
-          <span className="ifs-skeleton-bar" style={{ flex: 1, height: 'var(--size-16)' }} />
+          <span className="ifs-skeleton-bar ifs-sk" style={{ width: '3.1875rem', height: m ? 'var(--size-24)' : 'var(--size-20)' }} />
+          <span className="ifs-skeleton-bar ifs-sk" style={{ flex: 1, height: 'var(--size-16)' }} />
         </> : compare ? <span className="ifs-stat-card__stack">
           <span className="ifs-stat-card__compare">
             {compare.from != null && <>
@@ -218,14 +218,14 @@ function ContentCard({ size = 'm', title, description, meta, avatar, control, ic
   const hasMain = loading || title != null || description != null || avatar || control || iconLeft || iconRight || iconButton;
   return (
     <div {...dataClickable(onClick, { 'aria-pressed': onClick && selected != null ? !!selected : undefined })} data-state={state} aria-busy={loading || undefined}
-      className={IFS.cx('ifs-content-card', `ifs-content-card--${size}`, selected && 'ifs-content-card--selected', cooper && 'ifs-content-card--cooper', loading && 'ifs-content-card--loading', className)} {...rest}>
+      className={IFS.cx('ifs-content-card', `ifs-content-card--${size}`, selected && 'ifs-content-card--selected', cooper && 'ifs-content-card--cooper', loading && 'ifs-content-card--loading ifs-sk', className)} {...rest}>
       {top && <div className="ifs-content-card__slot">{top}</div>}
       {hasMain && <div className="ifs-content-card__main">
         {avatar && !loading && <Avatar size="l" {...avatar} />}
         <div className="ifs-content-card__text">
           {loading ? <>
-            <span className="ifs-skeleton-bar" style={{ height: 'var(--size-20)' }} />
-            <span className="ifs-skeleton-bar" style={{ width: '41%', height: 'var(--size-16)' }} />
+            <span className="ifs-skeleton-bar ifs-sk" style={{ height: 'var(--size-20)' }} />
+            <span className="ifs-skeleton-bar ifs-sk" style={{ width: '41%', height: 'var(--size-16)' }} />
           </> : <>
             <div className="ifs-content-card__head">
               {iconLeft

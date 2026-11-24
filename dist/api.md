@@ -2198,7 +2198,7 @@ Pattern helper: solution / applied / answered row — built from ContentCard, Ic
 30:76630 applied, 30:78117 answered). M card, 12 padding, radius 8, border/base stroke. recommended = Cooper's pick:
 cooper-system-icon (Insight) + "cooper/Insight/text" gradient title on background/color-alpha/cooper-base.
 Props: title, description, recommended, onSelect (click applies it), onUndo (shows the arrow-back-up icon-button;
-Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading shimmer, 40px), state (gallery: hover).
+Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading state, 40px; the one skeleton look, L1), state (gallery: hover).
 `function IssueSolution({ title, description, recommended, onSelect, onUndo, undoLabel = 'Cancel', loading, state, className, ...rest })`
 
 ### IssueListItem
@@ -2490,6 +2490,7 @@ Figma: empty-state-loading-more-molecule (3782:24082) — appending items to a l
 Skeleton block — not a Figma component. Content States › Skeleton defines skeletons as blank shapes built inside the
 component that owns the async data (stat card, content card, table cells already have Figma Loading variants: use those).
 Use this only to compose a skeleton for an owning component that has no Loading variant.
+One skeleton look (L1, Nov 24): static shapes on the skeleton fill with a slow pulse (.ifs-sk); every Loading variant uses the same.
 Props: width, height, shape bar|circle|block. Always aria-hidden, never focusable, never contains text.
 `function Skeleton({ width = '100%', height = 16, shape = 'bar', className, style })`
 
@@ -2499,6 +2500,9 @@ Loading wrapper for the component that owns async data (Skeleton notes, rules 7�
 Props: loading, skeleton (node shown while loading — a Loading variant or Skeleton blocks; omit for an unknown shape → Spinner),
 delay (ms before the skeleton shows; fast loads never flash, default 300), minDuration (ms it stays once shown, default 300),
 label (announced "Loading <label>" / "Loaded"), children = loaded content (or the empty state — decided by the caller after loading).
+Which indicator, when (L2, rule 8.23): under 300 ms nothing · 300 ms–10 s with a known layout → skeleton, kept at least 300 ms ·
+unknown shape → Spinner (an action → Button loading) · over 10 s → determinate progress saying what and how far, Cancel where possible,
+the page stays usable · appending to a list → LoadingMore.
 `function LoadingRegion({ loading, skeleton, delay = 300, minDuration = 300, label = '', children, className, ...rest })`
 
 ### FtaButton

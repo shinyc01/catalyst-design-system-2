@@ -609,6 +609,9 @@ Use: Explore tab only: base + map controls.
 ### empty-state-organism · `EmptyState`
 Use: A region with no content: heading (required) + optional icon, body, suggestion chips, one primary + one secondary action. Cause and size: rule 7.15; copy: rule 8.22.
 
+### Skeleton · `Skeleton`, `LoadingRegion`
+Use: One skeleton look for every loading variant (L1, Nov 24): static shapes on `--color-background-skeleton` (Figma background/elevation-1/secondary) with a slow pulse, opacity 1 → 0.5 → 1 on `--motion-loop-pulse` (1.6 s, linear); no shimmer. The class is `.ifs-sk`; every Loading variant (stat, content, file, user and version cards, avatar, badge, indicator, readiness, chart, home-row card, node card, trace solution, table cells) uses it. Reduced motion: no pulse, the shapes stay. `Skeleton` only for an owning component without a Loading variant; `LoadingRegion` around the component that owns the async data. Which indicator, when: rule 8.23.
+
 ### empty-state-spinner-molecule · `Spinner`
 Use: Indeterminate or shapeless waits where no layout can be previewed.
 
@@ -884,7 +887,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 1. Danger (red) = open questions or errors; warning (orange) = warnings. The rail dot follows (none when all is OK). The Approval readiness total matches the segmented counters.
 2. A kind with no items hides from the segmented control; Trace Report hides the control once one kind is left.
 3. ‹ › walk the list (disabled at the ends); All shows the numbered list. "1 / 2" is a position and resets when the list or filter changes; "(n% resolved)" is progress across the list and doesn't.
-4. Resolving: pick a solution ("Applied"), save My answer or upload a file (shimmer row, then "Answered"), or press Okay. Warnings and notes count as "viewed"; questions and errors as "resolved". A resolved item gets a check; its gate turns Passed when all its items are resolved; the readiness % and the "resolved/total" indicators update. Undo on an Applied / Answered card (on hover) reopens it.
+4. Resolving: pick a solution ("Applied"), save My answer or upload a file (a skeleton row, then "Answered"), or press Okay. Warnings and notes count as "viewed"; questions and errors as "resolved". A resolved item gets a check; its gate turns Passed when all its items are resolved; the readiness % and the "resolved/total" indicators update. Undo on an Applied / Answered card (on hover) reopens it.
 5. The card layout is chosen by the system: solutions with or without a description; Upload, My answer and Okay only when needed (rule 9.10). The recommended solution is Cooper's pick: Cooper insight icon, gradient title, cooper-base fill.
 6. Collapse: System Confidence and the sidebar Trace Report collapse to the rail; the drawer Trace Report to its header only. Trace Report can't be closed or its items dismissed, only collapsed; it closes by itself when everything is resolved; footer Undo reverts the change. Same cards and buttons as System Confidence; sidebar or floating drawer by screen.
 7. At 100% every gate is Passed and Send for approval enables.

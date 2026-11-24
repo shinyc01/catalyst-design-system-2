@@ -105,7 +105,7 @@ function DataVizBar({ state = 'default', color = 'rose', step = 4, children, cla
     ? { '--dv-c': dvVar(color, step), '--dv-c-hover': dvVar(color, Math.max(1, step - 1)), '--dv-c-muted': dvVar(color, 9) }
     : { '--dv-c': color, '--dv-c-hover': color, '--dv-c-muted': color };
   return (
-    <div data-state={state === 'hover' ? 'hover' : undefined} className={IFS.cx('ifs-dv-bar', `ifs-dv-bar--${state}`, className)} style={{ ...vars, ...style }} {...rest}>
+    <div data-state={state === 'hover' ? 'hover' : undefined} className={IFS.cx('ifs-dv-bar', `ifs-dv-bar--${state}`, state === 'loading' && 'ifs-sk', className)} style={{ ...vars, ...style }} {...rest}>
       {children != null && state !== 'background' && state !== 'loading' && <ValueLabel>{children}</ValueLabel>}
     </div>
   );
@@ -148,7 +148,7 @@ function DataVizIndicator({ type = 'default', color = 'rose', className, style, 
 function ValueLabel({ state = 'primary', children, className, ...rest }) {
   return (
     <span className={IFS.cx('ifs-dv-value', `ifs-dv-value--${state}`, className)} {...rest}>
-      {state === 'loading' ? <span className="ifs-dv-value__skeleton" /> : state === 'empty' ? null : children}
+      {state === 'loading' ? <span className="ifs-dv-value__skeleton ifs-sk" /> : state === 'empty' ? null : children}
     </span>
   );
 }
@@ -324,20 +324,20 @@ function ChartSkeleton({ kind = 'bars', height = 328 }) {
       <div ref={ref} className="ifs-chart__plot">
         <svg className="ifs-chart__svg" width={W} height={height} aria-hidden="true">
           {kind === 'ring' ? (
-            <circle cx={W / 2} cy={height / 2} r={100} fill="none" className="ifs-chart__skel-stroke" strokeWidth={40} />
+            <circle cx={W / 2} cy={height / 2} r={100} fill="none" className="ifs-chart__skel-stroke ifs-sk" strokeWidth={40} />
           ) : <>
             {[0, 1, 2, 3, 4].map(i => { const y = yB - (i * (yB - yT)) / 4; return <g key={i}>
-              <line x1={x0} x2={x1} y1={y} y2={y} className={i ? 'ifs-chart__grid' : 'ifs-chart__skel-stroke'} />
-              <rect x={4} y={y - 4} width={[16, 26, 32, 32, 34][i]} height={8} rx={2} className="ifs-chart__skel" />
+              <line x1={x0} x2={x1} y1={y} y2={y} className={i ? 'ifs-chart__grid' : 'ifs-chart__skel-stroke ifs-sk'} />
+              <rect x={4} y={y - 4} width={[16, 26, 32, 32, 34][i]} height={8} rx={2} className="ifs-chart__skel ifs-sk" />
             </g>; })}
             {hs.map((h, i) => <g key={i}>
-              <rect x={x0 + band * i + band * 0.22} y={yB - h * (yB - yT) * 0.84} width={band * 0.56} height={h * (yB - yT) * 0.84} className="ifs-chart__skel" />
-              <rect x={x0 + band * i + band * 0.2} y={yB + 12} width={band * 0.6} height={8} rx={2} className="ifs-chart__skel" />
+              <rect x={x0 + band * i + band * 0.22} y={yB - h * (yB - yT) * 0.84} width={band * 0.56} height={h * (yB - yT) * 0.84} className="ifs-chart__skel ifs-sk" />
+              <rect x={x0 + band * i + band * 0.2} y={yB + 12} width={band * 0.6} height={8} rx={2} className="ifs-chart__skel ifs-sk" />
             </g>)}
           </>}
         </svg>
       </div>
-      <div className="ifs-chart__skel-legend"><span /><span /></div>
+      <div className="ifs-chart__skel-legend"><span className="ifs-sk" /><span className="ifs-sk" /></div>
     </div>
   );
 }
