@@ -503,6 +503,7 @@ function inkOn(fill, el) {
 // their ramp and print each value. useForcedColors() follows the OS setting live.
 const FC_DASH = [undefined, '8 4', '2 3', '10 3 2 3', '4 4', '12 3 2 3 2 3'];
 const FC_SHAPES = ['circle', 'square', 'triangle', 'diamond', 'cross', 'ring'];
+const FC_KEY = 22; // px: the dash-and-shape key before a line's end label in forced colours (chart geometry)
 function useForcedColors() {
   const q = typeof window !== 'undefined' && window.matchMedia ? window.matchMedia('(forced-colors: active)') : null;
   const [on, setOn] = React.useState(!!(q && q.matches));
@@ -1089,7 +1090,7 @@ function LineChart(props) {
   const tryLabels = ser => {
     if (!endLabels || ser.length < 2 || !data.length) return null;
     const ticks = range(ser);
-    const padR = Math.max(...ser.map(s => p.measure(s.label))) + 8;
+    const padR = Math.max(...ser.map(s => p.measure(s.label))) + 8 + (fc ? FC_KEY : 0); // forced colours: room for the dash-and-shape key
     if (padR > p.W * 0.35) return null;
     const L = catLayout(p, 1, ticks, format, padR);
     const last = data.length - 1;
@@ -1156,7 +1157,11 @@ function LineChart(props) {
           </g>
         ))}
         {lab && series.map((s, k) => lab.ys[k] != null && (
-          <text key={s.key} x={L.x1 + 8} y={lab.ys[k]} dy="0.35em" className={IFS.cx('ifs-chart__end-label', dimS(s.key))}>{s.label}</text>
+          <g key={s.key} className={dimS(s.key)}>
+            {fc && <><line x1={L.x1 + 6} x2={L.x1 + FC_KEY} y1={lab.ys[k]} y2={lab.ys[k]} className="ifs-chart__line" strokeWidth={2} strokeDasharray={FC_DASH[k % FC_DASH.length]} />
+              <FcPoint kind={FC_SHAPES[k % FC_SHAPES.length]} x={L.x1 + 6 + (FC_KEY - 6) / 2} y={lab.ys[k]} /></>}
+            <text x={L.x1 + 8 + (fc ? FC_KEY : 0)} y={lab.ys[k]} dy="0.35em" className="ifs-chart__end-label">{s.label}</text>
+          </g>
         ))}
         {a && <g aria-hidden="true">
           <line x1={X(p.active)} x2={X(p.active)} y1={L.yT} y2={L.yB} className="ifs-chart__guide" />

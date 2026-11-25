@@ -84,7 +84,7 @@
   box-shadow:0 0 0 var(--border-width-default) var(--border) /* OUTSIDE stroke */;color:var(--color-icon-soft);
 }
 .ifs-range-field:hover{--border:var(--color-border-input-hover)}
-.ifs-range-field:focus-within{--border:var(--color-border-input-focus);box-shadow:var(--focus-ring),0 0 0 var(--border-width-default) var(--border) /* S1: border change + focus ring */}
+.ifs-range-field:focus-within{--ring:var(--focus-ring)} /* focus = the ring only, like every field (G2 C3, rule 9.14) */
 .ifs-range-field__input{flex:1;min-width:0;width:100%;margin:0;padding:0;border:0;outline:none;background:none;color:var(--color-text);
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-range-field__input::placeholder{color:var(--color-text-softer);opacity:1}

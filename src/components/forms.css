@@ -184,15 +184,15 @@
 /* G2 fields, C3 at white 30 (Nov 25): fields keep their rounded corners and fill; a straight 1 px line runs the full bottom edge as a
    background layer, clipped by the corners (no curl); hover white 40; no outline at rest (focus = the ring); in the error state the line is
    removed and the danger outline alone marks the field. Field, Select (S–XL), Combobox, MultiSelect, DatePicker, Search, RangeField,
-   RoleSelect. The Cooper message input keeps its 40% outline. Check Safari and Firefox before release. */
-:is(.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,.ifs-select--xl .ifs-select__trigger,.ifs-role-select__trigger){
+   RoleSelect, SmartSearch. The Cooper message input keeps its 40% outline. Check Safari and Firefox before release. */
+:is(.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,.ifs-select--xl .ifs-select__trigger,.ifs-role-select__trigger,.ifs-smart-search__field){
   --line:var(--color-border-input-strong);
   box-shadow:var(--ring,0 0 0 0 transparent);background-image:linear-gradient(var(--line),var(--line));background-repeat:no-repeat;
   background-size:100% var(--border-width-default);background-position:center bottom}
-:is(.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,.ifs-select--xl .ifs-select__trigger,.ifs-role-select__trigger):hover,
+:is(.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,.ifs-select--xl .ifs-select__trigger,.ifs-role-select__trigger,.ifs-smart-search__field):hover,
 .ifs-field[data-state=hover] .ifs-field__control,.ifs-select__trigger:hover .ifs-select__field,.ifs-select__trigger[data-state=hover] .ifs-select__field{--line:var(--color-border-input-strong-hover)}
-.ifs-search{background-color:var(--color-background-input)}
+:is(.ifs-search,.ifs-smart-search__field){background-color:var(--color-background-input)} /* a field fill under the line, as Field and Select */
 .ifs-select--xl .ifs-select__trigger .ifs-select__field{background-image:none} /* XL: the line is on the outer trigger */
-:is(.ifs-field--disabled .ifs-field__control,.ifs-select__trigger.is-disabled .ifs-select__field,.ifs-search--disabled){--line:var(--color-border-input-disabled)}
+:is(.ifs-field--disabled .ifs-field__control,.ifs-select__trigger.is-disabled .ifs-select__field,.ifs-search--disabled,.ifs-smart-search--disabled .ifs-smart-search__field){--line:var(--color-border-input-disabled)}
 :is(.ifs-field--error .ifs-field__control,.ifs-select__trigger.is-error .ifs-select__field,.ifs-select--xl .ifs-select__trigger.is-error){
   background-image:none;box-shadow:var(--ring,0 0 0 0 transparent),0 0 0 var(--border-width-default) var(--color-border-danger)}

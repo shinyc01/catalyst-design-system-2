@@ -111,7 +111,7 @@ Family note: organisms are the fields to place. `checkbox`, `radio-button`, `swi
 
 ### text-field-organism · `TextField`
 Use: Single-line input. L full-page forms, M drawers, modals, embedded surfaces (rule 14.3). Cooper / Cooper Generating states show Cooper-filled values.
-Boundary (G2 C3, Nov 25; every field family: Select, Combobox, MultiSelect, DatePicker, Search, RangeField, RoleSelect): rounded fill with a straight 1 px `--color-border-input-strong` (30%) line along the bottom, hover `-strong-hover` (40%); error = the danger outline alone; focus = the ring (rule 9.14).
+Boundary (G2 C3, Nov 25; every field family: Select, Combobox, MultiSelect, DatePicker, Search, SmartSearch, RangeField, RoleSelect): rounded fill with a straight 1 px `--color-border-input-strong` (30%) line along the bottom, hover `-strong-hover` (40%); error = the danger outline alone; focus = the ring (rule 9.14).
 
 ### mobile-number-field-organism · `PhoneField`
 Use: Phone numbers; supports country/region selection and international format. L full page, M compact.

@@ -279,6 +279,15 @@
   .ifs-dv-bar .ifs-dv-value{color:CanvasText}
   .ifs-chart__legend .ifs-dv-legend__swatch{background:Canvas;box-shadow:inset 0 0 0 var(--border-width-selected) CanvasText}
   .ifs-chart__legend :is(.ifs-dv-legend__swatch--line,.ifs-dv-legend__swatch--dashed,[class*="ifs-dv-legend__swatch--fc-"]){box-shadow:none;background:CanvasText}
+  /* the series' point shape at the centre of its legend line (same order as charts.jsx FC_SHAPES) */
+  .ifs-chart__legend [class*="ifs-dv-legend__swatch--fc-"]{position:relative;overflow:visible}
+  .ifs-chart__legend [class*="ifs-dv-legend__swatch--fc-"]::after{content:"";position:absolute;inset:0;margin:auto;width:var(--size-8);height:var(--size-8);
+    background:CanvasText}
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-0::after{border-radius:50%}
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-2::after{clip-path:polygon(50% 0,100% 100%,0 100%)}
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-3::after{clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-4::after{clip-path:polygon(20% 0,50% 30%,80% 0,100% 20%,70% 50%,100% 80%,80% 100%,50% 70%,20% 100%,0 80%,30% 50%,0 20%)}
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-5::after{border-radius:50%;background:Canvas;box-shadow:inset 0 0 0 var(--border-width-selected) CanvasText}
   .ifs-chart__legend .ifs-dv-legend__swatch--fc-1{background:repeating-linear-gradient(90deg,CanvasText 0 8px,transparent 8px 12px)} /* ltr: dash pattern */
   .ifs-chart__legend .ifs-dv-legend__swatch--fc-2{background:repeating-linear-gradient(90deg,CanvasText 0 2px,transparent 2px 5px)} /* ltr: dash pattern */
   .ifs-chart__legend .ifs-dv-legend__swatch--fc-3{background:repeating-linear-gradient(90deg,CanvasText 0 10px,transparent 10px 13px,CanvasText 13px 15px,transparent 15px 18px)} /* ltr: dash pattern */

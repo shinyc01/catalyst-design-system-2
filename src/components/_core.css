@@ -31,8 +31,20 @@
   :is(.ifs-switch__knob,.ifs-check__dot){background-color:CanvasText}
   .ifs-switch[aria-checked="true"] .ifs-switch__knob{background-color:HighlightText}
   :is(:disabled,[aria-disabled="true"]){color:GrayText;outline-color:GrayText}
-  :is(.ifs-snackbar,.ifs-menu__list,.ifs-floating-bar,.ifs-popover,.ifs-modal,.ifs-drawer,.ifs-tooltip,.ifs-map-cluster,.ifs-navbar,.ifs-cpin,
-      .ifs-select--xl .ifs-select__trigger,.ifs-page-header){background-color:Canvas;background-image:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+  /* Every glass surface turns solid: no blur anywhere, and Canvas behind each surface that has a backdrop blur (the list is every selector
+     with backdrop-filter: blur in src/components, Nov 25; add a new glass surface here). Buttons keep the system button colours. */
+  *,*::before,*::after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  :is(.ifs-cpin,.ifs-chat-panel,
+  .ifs-add-node,.ifs-add-node--typing,.ifs-apc-panel--popover,.ifs-bottom-sheet,.ifs-calendar,.ifs-canvas-header__columns,.ifs-chat-panel__bottom,
+    .ifs-circular-button__arrow,.ifs-circular-button__label,.ifs-circular-menu__core,.ifs-circular-menu__hub,.ifs-column-filter,.ifs-comment-edit,
+    .ifs-compare-header__box,.ifs-compare-list,.ifs-composer-molecule .ifs-composer,.ifs-cooper-surface,.ifs-cpin--read,
+    .ifs-datepicker__popover--apply,.ifs-drawer,.ifs-dv-tooltip,.ifs-explore-header,.ifs-file-card__tile,.ifs-floating-bar,.ifs-form-card,
+    .ifs-fta--stroke,.ifs-map-cluster,.ifs-menu__list,.ifs-modal,.ifs-navbar,.ifs-node-actions,.ifs-node-card,.ifs-node-card--skeleton,
+    .ifs-node-card--solid,.ifs-node-card__counter,.ifs-notification__count,.ifs-pager__steps,.ifs-phone__menu,
+    .ifs-pin-dot--dimmed,.ifs-popover,.ifs-prompt,.ifs-risk,.ifs-role-filter__list,.ifs-role-select__list,.ifs-sankey-header,.ifs-sankey-node__card,
+    .ifs-search-modal,.ifs-select--xl .ifs-select__trigger,.ifs-select__list,.ifs-snackbar,.ifs-step__tip,.ifs-thread,.ifs-tooltip__body,
+    .ifs-widget-card--drag,.ifs-widget-chip,.wb-frame--ghost){background-color:Canvas;background-image:none}
+  .ifs-page-header::before{background-color:Canvas;background-image:none}
   :is(.ifs-status-indicator,.ifs-indicator,.ifs-dv-indicator,.ifs-map-pin,.ifs-pin-dot,.ifs-pin-defect,.ifs-dv-legend__swatch,.ifs-avatar__base){forced-color-adjust:none}
   :is(.ifs-status-indicator,.ifs-dv-indicator,.ifs-pin-dot,.ifs-pin-defect){outline:var(--border-width-default) solid CanvasText}
   .ifs-map-pin__shape{box-shadow:0 0 0 var(--border-width-default) CanvasText}
