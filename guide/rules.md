@@ -7,7 +7,7 @@ When Figma frames and Figma notes disagree, the notes win. When a guide and the 
 
 ---
 
-Rules are grouped in the 11 foundation categories (A15, `prototypes/phase1-prep/FOUNDATION-STRUCTURE.md`, decided Nov 24), then the three non-foundation sections (page headers, map slots, component use) and the open list. Content stays section 8 and Accessibility section 9, so their numbers (and the G-gap rules 9.13–9.19) did not move. Rules were renumbered on Nov 25 (2.0.6); the table at the end maps every old number to its new one.
+Rules are grouped in the 11 foundation categories (A15, `prototypes/phase1-prep/FOUNDATION-STRUCTURE.md`, decided Nov 24), then the three non-foundation sections (page headers, map slots, component use) and the open list. Content stays section 8 and Accessibility section 9 (decided Nov 25), so their numbers (and the G-gap rules 9.13–9.19) did not move. Rules were renumbered on Nov 25 (2.0.6); the table at the end maps every old number to its new one.
 
 ---
 

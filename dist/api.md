@@ -4,6 +4,23 @@ Kit version 2.0.6, generated 2026-11-25. Everything is available as `IFS.<Name>`
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
+## settings
+
+Page-level settings and helpers on `IFS` (not Figma components). setDensity, setTheme, setDirection, setGlass and setBaseMap write an attribute on `<html>` (or a given element).
+
+```
+IFS.setDensity('spacious' | 'comfortable' | 'compact', el?)  // data-density; remembered (getDensity) — rule 3.11
+IFS.setTheme('dark' | 'light', el?)                          // data-theme (Light values after phase 1)
+IFS.setDirection('ltr' | 'rtl', el?) · IFS.getDirection()    // dir; follows the product language — rule 11.4
+IFS.setGlass('full' | 'lite', el?) · IFS.getGlass()          // data-glass="lite": glass blur 80 → 10; remembered and re-applied on load — rule 4.2
+IFS.setBaseMap('dark' | 'light' | 'imagery' | null, el?)     // data-base-map on <html>: map glass for the snackbar stack; an undeclared map gets black 85 — rule 4.2
+IFS.setShortcuts('on' | 'off') · IFS.getShortcuts()          // single-key shortcuts; remembered — rule 9.18
+IFS.shortcutAllowed(event) → boolean                         // the check every single-key shortcut makes (not in a text field, setting on)
+IFS.announce(text, { assertive })                            // the two live regions — rule 9.19
+IFS.toast({ title, description, primaryAction, secondaryAction, duration, announce }) → id · toast.dismiss(id) · toast.command()  // rule 14.12
+IFS.useSnackbarTiming({ action, duration, onClose }) → hold handlers  // a pattern's own snackbar, same timing
+```
+
 ## format
 
 `IFS.format` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: https://shinyc01.github.io/catalyst-design-system-2/guide/rules.md (section 8)
@@ -414,8 +431,8 @@ Props: image (url; Figma State=Image — a map), view {x, y, zoom} / defaultView
 ctrl/⌘ + wheel or pinch to zoom, plain wheel pans), minZoom, maxZoom, children = world content (absolute-positioned
 in world px), overlay = fixed UI on top (toolbars, mini-map), apiRef receives { setView, fit(bounds) }.
 baseMap dark|light|imagery (G3, Nov 25): what the map image is, so map glass picks its fill (data-base-map; foundations/layout.css):
-matching the theme → --color-surface-map-glass (black 40), not matching → --color-surface-overlay (black 85). Default: dark with an
-image, none without one (a node canvas is not a map). Put the same attribute on the map container that holds the slots.
+matching the theme → --color-surface-map-glass (black 40), not matching → --color-surface-overlay (black 85). With an image and no
+baseMap the map is "undeclared" and takes the safe black 85 (user decision, Nov 25). Without an image (a node canvas) no attribute. Put the same attribute on the map container that holds the slots.
 `function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zoom: 1 }, onViewChange, minZoom = 0.25, maxZoom = 2, children, overlay, apiRef, className, style, ...rest })`
 
 ### CanvasConnector
@@ -472,10 +489,11 @@ Props:
 ------------------------------------------------------------------------------------------ 
 Figma: timiline-phase-molecule (3967:1765) — one phase row of the Gantt (+ its task list when expanded).
 Props: title (Figma Title), subtitle ("Internal"), badge = red badge text (Figma Badge=True, e.g. "6 weeks behind"),
-color teal|muted-purple|steel-blue|rose|… (data-viz family, data-4), start / end (fractional slot indexes on the axis),
+color = a categorical slot 1–12 (rule 10.7; default 1); the pre-2.0.6 family names (teal, muted-purple, steel-blue, rose …) still work
+and draw the current role their data-4 step became (deprecated, until 3.0), start / end (fractional slot indexes on the axis),
 tasks = [{ title, label ("Q1 2027"), start, end }], expanded / defaultExpanded / onExpandedChange,
 onAdd, onMore (hover actions), slots (number of axis slots, set by the chart), state hover (gallery).
-`function TimelinePhase({ title, subtitle, badge, color = 'teal', start = 0, end = 1, tasks = [], expanded, defaultExpanded = false, onExpandedChange, onAdd, onMore, slots = 20, groups = 5, state, className, ...rest })`
+`function TimelinePhase({ title, subtitle, badge, color = 1, start = 0, end = 1, tasks = [], expanded, defaultExpanded = false, onExpandedChange, onAdd, onMore, slots = 20, groups = 5, state, className, ...rest })`
 
 ### TimelineChart
 **Tier:** Component
@@ -566,7 +584,8 @@ when it has one; false hides all values), align center|start (inline only).
 **Tier:** Component
 **In handovers:** placed 123× (Plan, Value) · usual: Right element false 72%
 Figma: data-viz-header-molecule (2154:2068)
-Props: title, subtitle (chart card only, item 11: one line under the title, Body/M, ellipsis with the full text on hover),
+Props: title (H4, --color-text, on every chart-card header: chart card and organism, Nov 25), subtitle (item 11: one line under the title,
+Body/M, ellipsis with the full text on hover),
 state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
 Right element: segments = SegmentedControl options (size S) with segmentValue/defaultSegmentValue/onSegmentChange,
 or button = { label, onClick, iconRight } (Tertiary S). Hover row: drag handle (draggable), and ghost icon-buttons
@@ -822,14 +841,14 @@ buttonRight = icon name (Figma "button right": tertiary S icon-button), onButton
 **Tier:** Component
 **In handovers:** placed 104× (Plan) · usual: Size m 100% · Loading false 100%
 Figma: stat-card-organism (3643:35055)
-Props: size s|m (default s, rule 2.6; pass size="m" only for a key-figure row at the top of the page with no page title above), title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
+Props: size m|s (default m, rule 2.6, Nov 25: M everywhere and the only size on dashboards and in the widget builder, there with the description inline; s = an option for dense page layouts), title (show-title), value, description, descriptionPosition below|inline (below = value over a sentence-case
 Label/M/medium caption, as the Patterns file draws it; inline = the library's default slot: description beside the value), trend (e.g. "3 %"; show-trend), trendDirection up|down,
 badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
 compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in --color-text-softer;
 without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
 Dashboards (Nov 25): one variant, size="m" descriptionPosition="inline" — its height comes from its content (--space-inset all round,
 title → value --space-inset) and is the dashboard row unit --size-data-viz-row (116 / 100 / 84); never mixed with below-description cards.
-`function StatCard({ size = 's', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest })`
+`function StatCard({ size = 'm', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest })`
 
 ### ContentCard
 **Tier:** Component
@@ -2021,7 +2040,8 @@ Props: controller, children, className, style.
 Pattern: DocumentsFeedback — top-right stack under the page header (place it inside the screen, which must be position:relative).
 Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
-Removal = snackbar-organism "The document has been removed" + Undo: 4 s, paused on hover/focus, ✕ dismisses.
+Removal = snackbar-organism "The document has been removed" + Undo through IFS.toast: the one snackbar timing (rule 14.12: at least
+10 s, then until the next command; hover / focus hold it), announced once, and it replaces any other action snackbar; ✕ dismisses.
 Props: controller, top (px from the window top; default = the bottom of the page or Explore header, IFS.floatTop()). C3: one place with the snackbar stack.
 `function DocumentsFeedback({ controller: c, top })`
 
@@ -2393,8 +2413,8 @@ Props: title (H4, sentence case, --color-text-softer). The ghost icon-button car
 ### WidgetFrame
 **Tier:** Pattern helper
 Pattern: WidgetFrame — the frame every widget on a dashboard / report is drawn in. It is the kit's chart frame
-(DataVizCard variant chart: 6px padding, sentence-case header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
-widget ⋮ menu. Figma draws widgets as content-card-organism (Size M, 6px padding) with this header in its top slot.
+(DataVizCard variant chart: the chart card inset, rule 10.2; its header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
+widget ⋮ menu. Figma draws widgets as content-card-organism (Size M) with this header in its top slot.
 Props: title, children (body), state hover | drag | ghost (forced), menu = [{ label, icon, onClick, disabled, items }],
 onEditWithCooper, onCooper, grabProps (spread on the ⋮⋮ handle), bare (body has no padding — kit charts bring their own; a single
 component child gets `bare` too, so a kit chart drops its own frame and header: DataVizCard bare).
@@ -2577,9 +2597,10 @@ the page stays usable · appending to a list → LoadingMore.
 **In handovers:** placed 239× (Explore, Value, Command) · usual: Stroke true 100% · style no 100%
 Figma: FTA button (67:4758) — the Cooper FAB.
 Props: stroke (Figma Stroke: true = 48px glass ring for non-black surfaces; false = bare 32px sphere for black footers/bottom sheets),
-indicator (Show indicator), label (tooltip + accessible name, Figma tooltip "{label}" with hotkey "/"), hotkey, state hover|pressed|focus (gallery),
+indicator (Show indicator), label (tooltip + accessible name, Figma tooltip "{label}" with a hotkey), hotkey (default IFS.cooperHotkey: Ctrl+. or
+⌘+. by platform, Nov 25; Figma's "/" moved to search, rule 9.18), state hover|pressed|focus (gallery),
 disabled, onClick. The FAB hides while Cooper chat is open (one entry point).
-`function FtaButton({ stroke = true, indicator = true, label = 'Cooper', hotkey = '/', tooltip = true, state, className, ...rest })`
+`function FtaButton({ stroke = true, indicator = true, label = 'Cooper', hotkey = IFS.cooperHotkey, tooltip = true, state, className, ...rest })`
 
 ### PromptButton
 **Tier:** Component
@@ -2654,7 +2675,8 @@ message reaches screen readers through IFS.announce (the always-present live reg
 
 ### toast
 **Tier:** Component
-toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id). toast.command() = a command the page
+toast({ title, description, primaryAction, secondaryAction, duration, announce }) → id. announce = the text read to screen readers
+(default: the title and description's text). toast.dismiss(id). toast.command() = a command the page
 made outside the DOM events the kit listens to (e.g. a client-side route change). The message is announced politely (IFS.announce).
 `function surfToast(opts)`
 

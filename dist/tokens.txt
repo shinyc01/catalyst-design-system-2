@@ -510,7 +510,7 @@
 --slot-top-r: var(--slot-inset) | .ifs-slots.has-right: calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))
 --slot-bottom-r: calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap)) | .ifs-slots.has-right: calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))
 --slot-legend-w: 210px
---map-glass: var(--color-surface-map-glass) | [data-base-map="light"],[data-base-map="imagery"]: var(--color-surface-overlay)
+--map-glass: var(--color-surface-overlay) | [data-base-map="dark"]: var(--color-surface-map-glass) | forced-colors: active [data-base-map]: Canvas
 --motion-duration-0: 0ms
 --motion-duration-50: 50ms
 --motion-duration-100: 100ms
