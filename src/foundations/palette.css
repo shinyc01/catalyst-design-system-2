@@ -406,7 +406,11 @@
 --palette-info-500-alpha-40:rgba(43,127,255,0.4);
 /* data-viz (2.0.6, D6 / D7, Nov 24). THE ONE PLACE TO SWAP THE CHART PALETTE: change the hexes here; roles in tokens.css point at them.
    Categorical v2g (working palette, waiting for the user's confirmation; prototypes/phase1-prep/dataviz/D6-PALETTE-RESEARCH.md §3g):
-   12 colours, fixed order, equal chroma 0.095 (OKLCH), dark L 0.55 / light L 0.85–0.87. The first 8 are pairwise distinct (normal and colour-blind).
+   12 colours, fixed order, dark L 0.55 / light L 0.85–0.87; the first 8 are pairwise distinct (normal and colour-blind).
+   Chroma (Nov 25, review): darks 0.095; lights lowered so they look as calm as lemon light (the reference, 0.095), because colourfulness rises
+   with lightness: lilac 0.072, teal light 0.064, sky 0.068, cyan light 0.072, pink light 0.072 (CAM16 M within 21–26 of lemon's 24). Lightness
+   kept. Checks: first-8 worst pair ΔE00 normal 17.1 → 13.9 (teal light / sky), protan 2.8 → 2.3, deutan 3.8 → 3.3, tritan 3.4 → 3.0; neighbours
+   and greyscale unchanged or better; lowest contrast on the card 3.79:1 (unchanged).
    Slots 10–12 re-checked Nov 25: at this chroma the only hues clear of red, green, warning orange, Cooper copper and ≥ 29° from info blue and accent
    purple are yellow (H 90–114), teal–azure (176–228) and pink–orchid (314–352), all used by 1–9. A search of every allowed hue (dark L 0.55, light
    L 0.85–0.87) found nothing better: the best colour-blind option (orchid / mulberry variants) rises from ΔE00 0.5 to 3.1 but drops normal vision
@@ -414,24 +418,25 @@
 --palette-data-viz-categorical-1:#277b9e; /* azure dark */
 --palette-data-viz-categorical-2:#dad98f; /* lemon light */
 --palette-data-viz-categorical-3:#04837c; /* teal dark */
---palette-data-viz-categorical-4:#f1c0fb; /* lilac light */
+--palette-data-viz-categorical-4:#eac5f2; /* lilac light */
 --palette-data-viz-categorical-5:#77752c; /* olive dark */
---palette-data-viz-categorical-6:#85e9e0; /* teal light */
+--palette-data-viz-categorical-6:#a4e3dc; /* teal light */
 --palette-data-viz-categorical-7:#8a5f94; /* orchid dark */
---palette-data-viz-categorical-8:#88d9ff; /* sky light */
+--palette-data-viz-categorical-8:#9fd6f1; /* sky light */
 --palette-data-viz-categorical-9:#9b5979; /* mulberry dark */
---palette-data-viz-categorical-10:#84e6f6; /* cyan light */
+--palette-data-viz-categorical-10:#9ce2ee; /* cyan light */
 --palette-data-viz-categorical-11:#00808f; /* cyan dark */
---palette-data-viz-categorical-12:#ffb5d7; /* pink light */
+--palette-data-viz-categorical-12:#f4bcd5; /* pink light */
 /* Sequential ramps, one per hue family, on the shared 9-step lightness ladder (OKLCH L 0.50 → 0.90 in 0.05 steps, C 0.095; step 1 C 0.070, step 9 C 0.050).
    Azure is the default sequential ramp. Red and green are the good / bad option only (never series colours). Cyan (H 209, added Nov 25 for the v2g cyan
-   slots 10 / 11; step 2 = slot 11, the gamut limit at L 0.55): monotonic, step 1 3.33:1 on the card, adjacent steps ΔE00 3.9–7.9. */
---palette-data-viz-azure-1:#346b84;--palette-data-viz-azure-2:#277b9e;--palette-data-viz-azure-3:#398aae;--palette-data-viz-azure-4:#499abe;--palette-data-viz-azure-5:#5aa9ce;--palette-data-viz-azure-6:#6ab9df;--palette-data-viz-azure-7:#7ac9ef;--palette-data-viz-azure-8:#8cdaff;--palette-data-viz-azure-9:#bde5f9;
---palette-data-viz-teal-1:#2a706b;--palette-data-viz-teal-2:#04837c;--palette-data-viz-teal-3:#25928b;--palette-data-viz-teal-4:#39a29a;--palette-data-viz-teal-5:#4cb1a9;--palette-data-viz-teal-6:#5dc1b9;--palette-data-viz-teal-7:#6ed2c9;--palette-data-viz-teal-8:#7fe2d9;--palette-data-viz-teal-9:#b9e9e4;
---palette-data-viz-orchid-1:#75567c;--palette-data-viz-orchid-2:#8a5f94;--palette-data-viz-orchid-3:#996da4;--palette-data-viz-orchid-4:#a97cb3;--palette-data-viz-orchid-5:#b98bc3;--palette-data-viz-orchid-6:#c99ad4;--palette-data-viz-orchid-7:#d9aae4;--palette-data-viz-orchid-8:#eabaf5;--palette-data-viz-orchid-9:#edd4f3;
---palette-data-viz-pink-1:#825269;--palette-data-viz-pink-2:#9b5979;--palette-data-viz-pink-3:#ab6888;--palette-data-viz-pink-4:#bb7797;--palette-data-viz-pink-5:#cb86a7;--palette-data-viz-pink-6:#dc95b6;--palette-data-viz-pink-7:#eda5c6;--palette-data-viz-pink-8:#feb4d6;--palette-data-viz-pink-9:#f9d1e3;
+   slots 10 / 11; step 2 = slot 11, the gamut limit at L 0.55): monotonic, step 1 3.33:1 on the card. Steps 6–8 (Nov 25) taper the chroma
+   toward the calmer light slot of each family (azure, teal, orchid, pink, cyan), so step 8 matches the light colour's strength; adjacent steps ΔE00 4.1–7.1. */
+--palette-data-viz-azure-1:#346b84;--palette-data-viz-azure-2:#277b9e;--palette-data-viz-azure-3:#398aae;--palette-data-viz-azure-4:#499abe;--palette-data-viz-azure-5:#5aa9ce;--palette-data-viz-azure-6:#72b8da;--palette-data-viz-azure-7:#89c7e6;--palette-data-viz-azure-8:#a0d7f2;--palette-data-viz-azure-9:#bde5f9;
+--palette-data-viz-teal-1:#2a706b;--palette-data-viz-teal-2:#04837c;--palette-data-viz-teal-3:#25928b;--palette-data-viz-teal-4:#39a29a;--palette-data-viz-teal-5:#4cb1a9;--palette-data-viz-teal-6:#69bfb8;--palette-data-viz-teal-7:#84cec7;--palette-data-viz-teal-8:#9ddcd5;--palette-data-viz-teal-9:#b9e9e4;
+--palette-data-viz-orchid-1:#75567c;--palette-data-viz-orchid-2:#8a5f94;--palette-data-viz-orchid-3:#996da4;--palette-data-viz-orchid-4:#a97cb3;--palette-data-viz-orchid-5:#b98bc3;--palette-data-viz-orchid-6:#c79cd1;--palette-data-viz-orchid-7:#d5adde;--palette-data-viz-orchid-8:#e3bfec;--palette-data-viz-orchid-9:#edd4f3;
+--palette-data-viz-pink-1:#825269;--palette-data-viz-pink-2:#9b5979;--palette-data-viz-pink-3:#ab6888;--palette-data-viz-pink-4:#bb7797;--palette-data-viz-pink-5:#cb86a7;--palette-data-viz-pink-6:#d997b5;--palette-data-viz-pink-7:#e6a9c5;--palette-data-viz-pink-8:#f3bbd4;--palette-data-viz-pink-9:#f9d1e3;
 --palette-data-viz-yellow-1:#676635;--palette-data-viz-yellow-2:#77752c;--palette-data-viz-yellow-3:#86843c;--palette-data-viz-yellow-4:#95944b;--palette-data-viz-yellow-5:#a4a35b;--palette-data-viz-yellow-6:#b3b36a;--palette-data-viz-yellow-7:#c3c379;--palette-data-viz-yellow-8:#d3d389;--palette-data-viz-yellow-9:#e1e1bb;
---palette-data-viz-cyan-1:#296e79;--palette-data-viz-cyan-2:#00808f;--palette-data-viz-cyan-3:#238f9f;--palette-data-viz-cyan-4:#389fae;--palette-data-viz-cyan-5:#4aafbe;--palette-data-viz-cyan-6:#5bbfce;--palette-data-viz-cyan-7:#6ccfdf;--palette-data-viz-cyan-8:#7ddfef;--palette-data-viz-cyan-9:#b8e8f0;
+--palette-data-viz-cyan-1:#296e79;--palette-data-viz-cyan-2:#00808f;--palette-data-viz-cyan-3:#238f9f;--palette-data-viz-cyan-4:#389fae;--palette-data-viz-cyan-5:#4aafbe;--palette-data-viz-cyan-6:#65becb;--palette-data-viz-cyan-7:#7eccda;--palette-data-viz-cyan-8:#95dbe7;--palette-data-viz-cyan-9:#b8e8f0;
 --palette-data-viz-red-1:#875353;--palette-data-viz-red-2:#a25a5a;--palette-data-viz-red-3:#b26868;--palette-data-viz-red-4:#c27777;--palette-data-viz-red-5:#d38686;--palette-data-viz-red-6:#e49695;--palette-data-viz-red-7:#f5a5a4;--palette-data-viz-red-8:#ffb9b8;--palette-data-viz-red-9:#fed2d0;
 --palette-data-viz-green-1:#456f4e;--palette-data-viz-green-2:#458153;--palette-data-viz-green-3:#549062;--palette-data-viz-green-4:#63a070;--palette-data-viz-green-5:#72af7f;--palette-data-viz-green-6:#81bf8e;--palette-data-viz-green-7:#91cf9d;--palette-data-viz-green-8:#a1e0ad;--palette-data-viz-green-9:#c8e8cd;
 }
