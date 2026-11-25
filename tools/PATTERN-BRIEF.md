@@ -5,7 +5,7 @@ You are adding one pattern page from the Figma file **IFS Design System Patterns
 Patterns are full screens and flows assembled from IFS Design System components, plus written rules on the canvas: sticky notes and description text. The kit must end up able to rebuild the pattern exactly, and the guide must teach an AI when and how to use it.
 
 ## Read first
-- `guide/rules.md` (section 1: code rules), and `tools/AGENT-BRIEF.md` for the component method: spec reading, tokens, Icon, gallery and verification. Everything there applies, with the exceptions below.
+- `guide/rules.md` (section 11, Tokens and system: code rules), and `tools/AGENT-BRIEF.md` for the component method: spec reading, tokens, Icon, gallery and verification. Everything there applies, with the exceptions below.
 - `dist/api.md`: every component the kit already has.
 - `guide/components.md`: the component catalogue and the existing patterns. `guide/figma.json` → `components` has each set's `key`.
 
@@ -40,7 +40,7 @@ When frames and notes disagree, the notes win. List each such conflict in your r
 
 ## Step 3 — Build
 Write ONLY these files; `<slug>` is given in your task:
-- `src/components/patterns-<slug>.css` and `src/components/patterns-<slug>.jsx`: the missing IFS DS components you own, following guide/rules.md section 1, with header comments `// Figma: <name> (<node id in IFS DS if known, else key>)`. Then add pattern components where Figma shows a reusable composite (e.g. `CooperChatPanel`): compositions of kit components with real behaviour, and no new visuals beyond what Figma draws.
+- `src/components/patterns-<slug>.css` and `src/components/patterns-<slug>.jsx`: the missing IFS DS components you own, following guide/rules.md section 11 (Tokens and system), with header comments `// Figma: <name> (<node id in IFS DS if known, else key>)`. Then add pattern components where Figma shows a reusable composite (e.g. `CooperChatPanel`): compositions of kit components with real behaviour, and no new visuals beyond what Figma draws.
 - `src/gallery/patterns-<slug>.jsx`:
   - One section per new component, with every variant and state. Its `figma` string is `'<name> (<node id>)'` for IFS DS node ids, or `'<name> [patterns] (<node id>)'` for nodes in the Patterns file.
   - One or more **"Pattern …"** sections (name must start with `Pattern`, e.g. `'Pattern: Cooper chat'`) that rebuild the main Figma frames as working screens. Use AppShell/NavBar/SideNav/PageHeader etc. exactly as the frames do, with realistic data, and every flow the frames show clickable. Their figma string uses `[patterns]` with the frame's node id.

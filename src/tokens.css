@@ -33,7 +33,7 @@
 /* Text (strength: base · soft · softer; states) */
 --color-text:var(--palette-core-1000);
 --color-text-soft:var(--palette-core-750);
---color-text-softer:var(--palette-core-600); /* C4: tertiary #999999 (was #8c8c8c): 5.04 on menus, 4.57 on a hovered card in a card. Chart titles stay here until the H4 header lands (item 11, Nov 25); stat card titles moved to text-soft (Nov 25) */
+--color-text-softer:var(--palette-core-600); /* C4: tertiary #999999 (was #8c8c8c): 5.04 on menus, 4.57 on a hovered card in a card. chart card titles are H4 in --color-text since item 11 (Nov 25); stat card titles moved to text-soft (Nov 25) */
 --color-text-disabled:var(--palette-core-300);
 --color-text-focus:var(--palette-info-300);
 --color-text-accent-purple:var(--palette-purple-450); /* C4: was #8366f7 (3.56:1); purple 450 is a code-only step (new for Figma) */
@@ -341,7 +341,7 @@
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
    16 styles. Pick by role (guide/rules.md §2):
-     PageTop page title H2 · thin PageHeader / ExploreHeader title Label/M/medium · panel/modal/drawer/card title H4 · chart card title Label/M/medium (tertiary) · sub-section Label/M/medium
+     PageTop page title H2 · thin PageHeader / ExploreHeader title Label/M/medium · panel/modal/drawer/card title H4 · chart card title H4 in --color-text with an optional Body/M subtitle in --color-text-soft (item 11) · sub-section Label/M/medium
      content, typed text, menu items, meta Body/M/regular · disclaimers, footnotes, text in a fixed small shape Body/S/regular
      names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2 / H3, never H1 (Display for one hero number)
      No uppercase style (2.0.1): statuses, column headers, eyebrows and captions are sentence case in Label/M/medium. The old .t-*-upper classes now render as Label/M/medium. */
@@ -368,7 +368,7 @@
 .t-code-regular{font:var(--font-code-m-regular);letter-spacing:var(--font-code-m-regular-tracking)} /* -> Code/M/regular */
 .t-code-medium{font:var(--font-code-m-medium);letter-spacing:var(--font-code-m-medium-tracking)} /* -> Code/M/medium */
 .t-label-m-semibold{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* -> Label/M/medium (merged) */
-.t-label-s-medium{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* -> Label/M/medium (labels are not Small) */
+.t-label-s-medium{font:var(--font-label-s-medium);letter-spacing:var(--font-label-s-medium-tracking)} /* Label/S/medium: live again in 2.0.6, in-chart data labels only (rule 10.11) */
 .t-label-s-upper{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* retired: renders as Label/M/medium */
 .t-label-l-semibold{font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking)} /* -> H4 */
 .t-body-l-medium{font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking)} /* -> Label/L/medium */
@@ -407,7 +407,7 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
    Type ramp = average of Fluent 2, Atlassian, Carbon, Material 3, Apple HIG and Notion,
    taken as ratios to body size (S x0.85, H4 x1.11, H3 x1.38, H2 x1.66, H1 x1.97,
    Display x2.54) and applied to each density's body size, rounded to even px.
-   Spacing roles and the page grid live in foundations/spacing.css (rules: guide/rules.md §3–4).
+   Spacing roles and the page grid live in foundations/spacing.css (rules: guide/rules.md §3).
    Tables: fixed rows 64 / 52 / 40 with content centred; fixed header 40 / 32 / 24 with its text
    centred in the header height (no vertical padding; cells have no top/bottom padding either).
    A user setting: put data-density="spacious" | "comfortable" (default) | "compact"

@@ -151,8 +151,8 @@ const wbMenuItems = items => items.map(it => ({ label: it.label, icon: it.icon, 
     prefix: <span className={cx('wb-size-option__bars', sz.selected && 'is-selected')} aria-hidden="true">{[0, 1, 2].map(i => <i key={i} className={cx(i < sz.span && 'is-on')} />)}</span> })) }));
 
 // Pattern: WidgetFrame — the frame every widget on a dashboard / report is drawn in. It is the kit's chart frame
-// (DataVizCard variant chart: 6px padding, sentence-case header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
-// widget ⋮ menu. Figma draws widgets as content-card-organism (Size M, 6px padding) with this header in its top slot.
+// (DataVizCard variant chart: the chart card inset, rule 10.2; its header, Cooper button; on hover ⋮⋮ + "Edit with Cooper") plus the
+// widget ⋮ menu. Figma draws widgets as content-card-organism (Size M) with this header in its top slot.
 // Props: title, children (body), state hover | drag | ghost (forced), menu = [{ label, icon, onClick, disabled, items }],
 // onEditWithCooper, onCooper, grabProps (spread on the ⋮⋮ handle), bare (body has no padding — kit charts bring their own; a single
 // component child gets `bare` too, so a kit chart drops its own frame and header: DataVizCard bare).

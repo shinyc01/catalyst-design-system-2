@@ -9,7 +9,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dir = join(root, 'src/components');
-const re = /(margin|padding|border)-(left|right)\b|(^|[;{\s])(left|right)\s*:|text-align\s*:\s*(left|right)|float\s*:\s*(left|right)/;
+const re = /(margin|padding|border)-(left|right)\b|(^|[;{\s])(left|right)\s*:|text-align\s*:\s*(left|right)|float\s*:\s*(left|right)|transition(-property)?\s*:[^;]*\b(left|right)\b/;
 const jsxRe = /\b(marginLeft|marginRight|paddingLeft|paddingRight|borderLeft|borderRight)\b|[{,]\s*(left|right)\s*:/;
 const list = process.argv.includes('--list');
 let total = 0; const rows = [];

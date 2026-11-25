@@ -5,7 +5,7 @@
    "Inter Fallback" = Arial / Helvetica with size-adjust and ascent / descent overrides, then the system sans-serif;
    "JetBrains Mono Fallback" = Courier New, then monospace. Overrides measured from the shipped files in headless Chrome (macOS, Nov 25):
    Inter advance width / Arial 1.0632; Inter ascent 0.96875, descent 0.2412 (of the em); JetBrains Mono / Courier New 0.9998, ascent 1.02,
-   descent 0.30. ascent-override = ascent / size-adjust (the capsize formula). Google Fonts stays only in prototypes (template.html). */
+   descent 0.30. ascent-override = ascent / size-adjust (the capsize formula). The kit never loads Google Fonts; a prototype may load them itself. */
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("../../fonts/inter-latin-ext.woff2") format("woff2");
   unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:"Inter";font-style:normal;font-weight:400 600;font-display:swap;src:url("../../fonts/inter-latin.woff2") format("woff2");

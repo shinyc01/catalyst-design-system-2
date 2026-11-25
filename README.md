@@ -118,6 +118,14 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Fields (C3): a 30% bottom line instead of the outline (hover 40); error = danger outline only. Switch off 40% edge (hover 60); slider track 40% when its value is hidden; segmented selected item and date-range days get a 40% outline.
     - `--color-text-danger` → red 350; live text that used the disabled colour → text-softer; overlay placeholders, menu descriptions on hover and attachment meta → text-soft; light data-viz bars take black labels; collaboration colours (direction 5 at 5%, user 13 olive) with white initials on every user; map pins option B; comment pins white meta, Cooper pin cooper 600; NodeCard counter = the tag chip; solid NodeCard caption stays white 85 when selected.
     - Every glass blur 80 reads `--blur-glass`.
+    - `StatCard` default size is M (was S since 2.0.4); S is an option for dense page layouts (rule 2.6).
+    - Every chart-card header title is H4 in `--color-text`, the older organism `DataVizCard` (and so `WidgetFrame`) too; stat card titles stay Label/M/medium in text-soft.
+    - Keyboard: "/" focuses the global search (the convention); Cooper opens with Ctrl+. / ⌘+. (`IFS.cooperHotkey` in its tooltip); single-key shortcuts are switchable (rule 9.18).
+    - Map glass on a map that doesn't declare its base map is the safe black 85; only a declared matching map gets black 40 (rule 4.2).
+    - Investment value impact: loss / gain on the diverging pair (loss pink, gain azure; was red / green); `TimelinePhase color` takes a categorical slot (family names still work).
+    - `guide/rules.md` regrouped into the 11 foundation categories (A15), then page headers, map slots, component use and open; the old → new number table is at the end of the file.
+  - **Deprecated** (until 3.0)
+    - The pre-2.0.6 data-viz colour group roles `--color-data-viz-<group>-data-N` (and the older `--data-viz-<group>-data-N`), `data-1…10`, and group-name `color` values on charts → categorical slots and the sequential / diverging ramps (aliases in `src/foundations/deprecated.css`).
   - **Removed**
     - The Google Fonts `@import` from the kit (prototypes may still load Google Fonts themselves).
   - **Fixed**

@@ -81,7 +81,7 @@ function entries(file) {
     + `IFS.setTheme('dark' | 'light', el?)                          // data-theme (Light values after phase 1)\n`
     + `IFS.setDirection('ltr' | 'rtl', el?) · IFS.getDirection()    // dir; follows the product language — rule 11.4\n`
     + `IFS.setGlass('full' | 'lite', el?) · IFS.getGlass()          // data-glass="lite": glass blur 80 → 10; remembered and re-applied on load — rule 4.2\n`
-    + `IFS.setBaseMap('dark' | 'light' | 'imagery' | null, el?)     // data-base-map on <html>: map glass for the snackbar stack — rule 4.2\n`
+    + `IFS.setBaseMap('dark' | 'light' | 'imagery' | null, el?)     // data-base-map on <html>: map glass for the snackbar stack; an undeclared map gets black 85 — rule 4.2\n`
     + `IFS.setShortcuts('on' | 'off') · IFS.getShortcuts()          // single-key shortcuts; remembered — rule 9.18\n`
     + `IFS.shortcutAllowed(event) → boolean                         // the check every single-key shortcut makes (not in a text field, setting on)\n`
     + `IFS.announce(text, { assertive })                            // the two live regions — rule 9.19\n`

@@ -111,7 +111,7 @@ Family note: organisms are the fields to place. `checkbox`, `radio-button`, `swi
 
 ### text-field-organism · `TextField`
 Use: Single-line input. L full-page forms, M drawers, modals, embedded surfaces (rule 14.3). Cooper / Cooper Generating states show Cooper-filled values.
-Boundary (G2 C3, Nov 25; every field family: Select, Combobox, MultiSelect, DatePicker, Search, SmartSearch, RangeField, RoleSelect): rounded fill with a straight 1 px `--color-border-input-strong` (30%) line along the bottom, hover `-strong-hover` (40%); error = the danger outline alone; focus = the ring (rule 9.14).
+Boundary (G2 C3, Nov 25; every field family: Select, Combobox, MultiSelect, DatePicker, Search, SmartSearch, RangeField, RoleSelect): rounded fill with a straight 1 px `--color-border-input-strong` (30%) line along the bottom, hover `-strong-hover` (40%); error = the danger outline alone; focus = the ring; disabled keeps the line at 5% (`--color-border-input-disabled`) (rule 9.14).
 
 ### mobile-number-field-organism · `PhoneField`
 Use: Phone numbers; supports country/region selection and international format. L full page, M compact.
@@ -314,7 +314,7 @@ Motion: slides in from its edge over 200; slides back out in 100; reduced motion
 
 ### canvas-background · `CanvasBackground`
 Use: The infinite, pannable, zoomable ground plane for map-first and node-graph views (Value framework, Explore map).
-`baseMap` dark | light | imagery (G3): what the map image is, so map glass picks black 40 (matches the theme) or black 85 (doesn't); default dark with an `image` (rule 4.2).
+`baseMap` dark | light | imagery (G3): what the map image is, so map glass picks black 40 (matches the theme) or black 85 (doesn't); an `image` with no `baseMap` is undeclared and takes the safe black 85 (rule 4.2).
 Don't: Document-flow pages — those use the 12-column grid.
 
 ### overlay-background · `Overlay`
@@ -344,7 +344,7 @@ Use: Live multiplayer cursor with name label; one stable colour per user (rule 1
 Use: Every content card (content, selectable, settings, link, media; rule 14.8); vary it with props. M in primary areas, dashboards and full-width lists; S nested in drawers, side panels, popovers and dense lists. Short info beside the title ("9d left", a count, a date) goes in `meta`, not the description (rule 14.17).
 
 ### stat-card-organism · `StatCard`
-Use: One key metric: title + value + optional trend or badge; `compare` for from → to. Size S by default; `size="m"` only by rule 2.6. Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6.
+Use: One key metric: title + value + optional trend or badge; `compare` for from → to. Size M by default (Nov 25) and the only size on dashboards and in the widget builder, there with the description inline; `size="s"` for dense page layouts (rule 2.6). Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6.
 Dashboards and the widget builder (Nov 25): one variant only, `size="m" descriptionPosition="inline"` (never mixed with below-description cards or with S). Its height comes from its content (`--space-inset` all round, title → value `--space-inset`) and is the dashboard row unit `--size-data-viz-row` (116 / 100 / 84). The description (inline or below) is `--color-text-soft`; keep inline descriptions short (they never wrap or truncate).
 
 ### marker-atom · `TimelineMarker`
@@ -792,9 +792,9 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 ### Pattern: Cooper
 
 **For:** the AI assistant on every stage screen: asking about the current screen, Cooper's proactive recommendations, and past conversations. Always over the content area of an AppShell screen (the full chat floats one page margin in, rule 3.18); never docked, a modal or a full page.
-**Parts:** entry = `BottomSheet` prompts (`PromptButton`) + `FtaButton`, shortcut `/` · three sizes: `ChatCollapsedBar` (320 pill above the bottom sheet), `ChatCompactPanel` (320×360 floating; it opens from the orb's spot, above the bottom sheet, rule 3.20), `ChatFullPanel` (floating a level above the page, rule 3.18); each with `ChatHeader`, `TextMessageInput` or `VoiceMessageInput`, `Attachment` · conversation: `UserMessage`, `CooperMessage` (`CooperProgress`, `ChatCard`, `ChatLink`, `Button`) · history: `HistoryPanel` (240, beside the full panel, inside the same floating panel) with `FolderItem`, `SectionHeader`, `ChatHistoryCard`; `FolderContent`; `HistorySearch` + `SearchChatHistoryCard`; `Modal` + `ConfirmDeleteCard`; create folder `Modal` + `TextField` + `IconPicker` · recommendations: `CooperChip` in `PageHeader` → `AgentWindow` (`SpeakingControl`, `RecommendationGroup`, `RecommendationItem`, `RecommendationDetail`, `RecommendationImpact`) · behaviour: `CooperChat`, `CooperHistory`, `CooperRecommendations`.
+**Parts:** entry = `BottomSheet` prompts (`PromptButton`) + `FtaButton`, shortcut Ctrl+. / ⌘+. (by platform, `IFS.cooperHotkey`; "/" is search, rule 9.18) · three sizes: `ChatCollapsedBar` (320 pill above the bottom sheet), `ChatCompactPanel` (320×360 floating; it opens from the orb's spot, above the bottom sheet, rule 3.20), `ChatFullPanel` (floating a level above the page, rule 3.18); each with `ChatHeader`, `TextMessageInput` or `VoiceMessageInput`, `Attachment` · conversation: `UserMessage`, `CooperMessage` (`CooperProgress`, `ChatCard`, `ChatLink`, `Button`) · history: `HistoryPanel` (240, beside the full panel, inside the same floating panel) with `FolderItem`, `SectionHeader`, `ChatHistoryCard`; `FolderContent`; `HistorySearch` + `SearchChatHistoryCard`; `Modal` + `ConfirmDeleteCard`; create folder `Modal` + `TextField` + `IconPicker` · recommendations: `CooperChip` in `PageHeader` → `AgentWindow` (`SpeakingControl`, `RecommendationGroup`, `RecommendationItem`, `RecommendationDetail`, `RecommendationImpact`) · behaviour: `CooperChat`, `CooperHistory`, `CooperRecommendations`.
 **Rules:**
-1. Opens in voice mode ("Say anything, I'm listening") by "Hey Cooper", `/` or the avatar; the keyboard icon switches to text ("Write anything, I'm reading"), the mic back. In voice mode the transcript shows large while the user speaks. A prompt chip sends at once.
+1. Opens in voice mode ("Say anything, I'm listening") by "Hey Cooper", Ctrl+. / ⌘+. or the avatar; the keyboard icon switches to text ("Write anything, I'm reading"), the mic back. In voice mode the transcript shows large while the user speaks. A prompt chip sends at once.
 2. "Hey Cooper": the avatar expands into the inline field, a sound plays, the chips hide; Cooper doesn't reply by voice. After ~1.5s of silence the question sends and the floating window opens; after ~6s with nothing said, it collapses back.
 3. Sizes: bar → expand on hover (tooltip "Expand to floating window") → compact; the window icon switches compact ↔ full panel. − or a click outside collapses to the avatar; it never closes completely. While the chat is open the bottom sheet hides its chips and avatar (`display:none`; one entry point at a time): the orb turns into the chat.
 4. The full panel resizes from its edge up to a maximum; the bar and floating window can be dragged anywhere. The chat never overlaps a widget it generates (the widget appears on the other side).

@@ -40,7 +40,7 @@
   --font-display-s:var(--font-display-s-weight) var(--font-size-display-s) var(--font-family-display);
 
   /* Headings — H2 PageTop page title and big numbers (stat card M; H3 stat card S; never H1 for numbers), H3 large sections,
-     H4 panel/modal/drawer/card titles (chart card titles are Label/M/medium, tertiary) */
+     H4 panel/modal/drawer/card titles (chart card titles too: H4 in --color-text, item 11, Nov 25) */
   --font-heading-h1-medium-weight:var(--font-weight-medium);--font-heading-h1-medium-tracking:var(--font-tracking-minus-03);
   --font-heading-h1-medium:var(--font-heading-h1-medium-weight) var(--font-size-h1) var(--font-family-text);
   --font-heading-h2-medium-weight:var(--font-weight-medium);--font-heading-h2-medium-tracking:var(--font-tracking-minus-02);

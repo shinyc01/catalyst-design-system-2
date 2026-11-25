@@ -3,7 +3,7 @@
 You are adding components to a React code kit that must match the Figma **IFS Design System** EXACTLY (file key `atgUmwcA1AE5sjFoWBT7ar`). Kit folder: `/Users/schu/Documents/CLAUDE_NEW/CODE/ifs-ds-kit`.
 
 ## Read first
-- `guide/rules.md`: the rules (section 1 is the code rules).
+- `guide/rules.md`: the rules (section 11, Tokens and system, is the code rules).
 - `src/components/button.css` + `button.jsx` + `src/gallery/button.jsx`: the reference implementation.
 - `src/tokens.css`: all tokens.
 - `tools/extract-spec.js`: the spec reader.
