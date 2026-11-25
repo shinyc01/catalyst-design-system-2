@@ -11,17 +11,18 @@ export default IFS_GALLERY;
 
   /* ---------------- shared data ---------------- */
   const usdAxis = v => IFS.format.money(v, { unit: 'M' }); // one unit per axis: $0, $0.5M, $1M
+  // Dashboards and the widget builder use the M stat card with the description inline (rule 2.6, Nov 25).
   const STATS = [
-    { title: 'Benefit-cost ratio', value: '2.40x', description: 'Benefit returned per $1 spent' },
-    { title: 'Estimated cost', value: '$4.2M', description: 'Expected delivery cost' },
-    { title: 'Investment value', value: '$10.1M', description: 'Total expected value' },
-    { title: 'Baseline risk', value: '$12.6M', description: 'Risk before intervention' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Benefit-cost ratio', value: '2.40x', description: 'Benefit returned per $1 spent' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Estimated cost', value: '$4.2M', description: 'Expected delivery cost' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Investment value', value: '$10.1M', description: 'Total expected value' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Baseline risk', value: '$12.6M', description: 'Risk before intervention' },
   ];
   const STATS_ROW = [
-    { title: 'Portfolio value', trend: '4.8%', value: '$2.24B', description: 'Proposed' },
-    { title: 'Investments re-scored', value: '1,621', description: '357 gained • 519 lost • 745 unchanged' },
-    { title: 'Finding tier changes', value: '876', description: '52 gained • 31 lost • 12 major shift' },
-    { title: 'Governance flags', value: '1', description: 'Executing investment affected' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Portfolio value', trend: '4.8%', value: '$2.24B', description: 'Proposed' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Investments re-scored', value: '1,621', description: '357 gained • 519 lost • 745 unchanged' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Finding tier changes', value: '876', description: '52 gained • 31 lost • 12 major shift' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Governance flags', value: '1', description: 'Executing investment affected' },
   ];
   const Text = ({ children }) => <p className="t-body-l-regular" style={{ margin: 0, padding: '2px 2px 4px' }}>{children}</p>;
   const KeyValues = ({ rows, note }) => (

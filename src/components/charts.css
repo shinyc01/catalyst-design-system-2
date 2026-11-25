@@ -66,11 +66,13 @@
 /* ================= data-viz-header-molecule (2154:2068) ================= */
 .ifs-dv-header{display:flex;align-items:center;gap:var(--space-200);min-height:calc(var(--size-control-s) + var(--space-100)) /* 32 / 28 / 24 */;min-width:0;box-sizing:border-box}
 .ifs-dv-header__left{flex:1;display:flex;align-items:center;gap:var(--space-100);min-width:0}
-.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-softer);
-  font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* the Figma molecule (organism card); the chart card's title is H4 (item 11, below) */
+.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text);
+  font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking)} /* H4 in --color-text on every chart-card header, the organism card too (user decision Nov 25), so card titles beside charts match */
 .ifs-dv-header__subtitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-soft);
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* item 11: one line, Body/M/regular, ellipsis + full text on hover (title attribute) */
 .ifs-dv-header__controls{display:contents} /* the organism keeps its one-row layout; the chart card makes this the title row */
+.ifs-dv-header__left{flex-wrap:wrap}
+.ifs-dv-header__left > .ifs-dv-header__subtitle{flex-basis:100%} /* organism: the subtitle on its own line under the title */
 .ifs-dv-header__drag{display:none;color:var(--color-icon-handle) /* raw in Figma */;cursor:grab}
 .ifs-dv-header__hover{display:flex;align-items:center;gap:var(--space-200);opacity:0;pointer-events:none}
 .ifs-dv-header__divider{width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
@@ -106,8 +108,8 @@
    first line is the control height, so titles share one line in every card with or without a subtitle and the controls stay on the title
    row; a card without a subtitle gives that line to the plot. */
 .ifs-dv-card--chart .ifs-dv-header__left{flex-direction:column;align-items:stretch;gap:var(--space-0)}
-.ifs-dv-card--chart .ifs-dv-header__title{color:var(--color-text);font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking);
-  line-height:var(--size-control-m)}
+.ifs-dv-card--chart .ifs-dv-header__left{flex-wrap:nowrap}
+.ifs-dv-card--chart .ifs-dv-header__title{line-height:var(--size-control-m)} /* H4 (above) on the control-height title row */
 .ifs-dv-card--chart .ifs-dv-header__controls{display:flex;align-items:center;gap:var(--space-200);flex:none;min-height:var(--size-control-m)}
 /* Item 9 (Nov 25): the 6-dot handle sits in the card's start inset, centred on the title line, on hover / keyboard focus; the title never
    moves. The handle is a cue only (24 hit area): the whole header drags (grab cursor, title not selectable, buttons keep their cursor).

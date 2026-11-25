@@ -258,7 +258,8 @@ function Legend({ items = [], layout = 'inline', showValues = true, align = 'cen
 }
 
 // Figma: data-viz-header-molecule (2154:2068)
-// Props: title, subtitle (chart card only, item 11: one line under the title, Body/M, ellipsis with the full text on hover),
+// Props: title (H4, --color-text, on every chart-card header: chart card and organism, Nov 25), subtitle (item 11: one line under the title,
+// Body/M, ellipsis with the full text on hover),
 // state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
 // Right element: segments = SegmentedControl options (size S) with segmentValue/defaultSegmentValue/onSegmentChange,
 // or button = { label, onClick, iconRight } (Tertiary S). Hover row: drag handle (draggable), and ghost icon-buttons
@@ -635,7 +636,7 @@ function ChartLegend({ items, active, onActive, layout = 'inline', beside, extra
   return (
     <LegendRow beside={beside}>
       {list.length > 1 && list.map((it, i) => (
-        <LegendSwatch key={it.key ?? i} layout={layout} label={it.label} color={it.color} shape={it.shape} swatchOpacity={it.opacity} value={it.value} neutral={it.neutral}
+        <LegendSwatch key={it.key ?? i} layout={layout} label={it.label} color={it.color} shape={it.shape} fc={it.fc} swatchOpacity={it.opacity} value={it.value} neutral={it.neutral}
           state={it.target ? 'intended-target' : active == null ? 'default' : active === (it.key ?? i) ? 'hover' : 'out-of-hover'}
           onMouseEnter={onActive && it.key != null ? () => onActive(it.key) : undefined} onMouseLeave={onActive ? () => onActive(null) : undefined} />
       ))}
@@ -1085,7 +1086,7 @@ function LineChart(props) {
     const lo = Math.min(...vals), hi = Math.max(...vals);
     return vals.length ? scaleTicks(zeroBased || area ? Math.min(0, lo) : lo - (hi - lo) * 0.1, hi, valueTicks) : [0, 1];
   };
-  // Try direct labels with up to 12 series; fall back to a legend (and 8 series) when the end labels collide or take too much room.
+  // Try direct labels with up to 12 series; fall back to the end-side legend (still up to 12 colours) when the end labels collide or take too much room.
   const lineH = p.px * 1.34;
   const tryLabels = ser => {
     if (!endLabels || ser.length < 2 || !data.length) return null;
@@ -1116,7 +1117,7 @@ function LineChart(props) {
   const shape = s => (s.dashed ? 'dashed' : 'line');
   // names at the line ends when they fit; when they collide, a vertical legend on the end side of the plot (like the pie / donut list)
   const legend = lab ? null : { beside: true, layout: 'row', active: p.series, onActive: p.setSeries, items: [
-    ...legendSeries.map(s => ({ key: s.key, label: s.label, color: s._c, shape: area ? 'square' : shape(s), fc: area ? undefined : series.indexOf(s) })),
+    ...legendSeries.map(s => ({ key: s.key, label: s.label, color: s._c, shape: area ? 'square' : shape(s), fc: area || s.key === '__other' ? undefined : series.findIndex(x => x.key === s.key) })),
     band && { label: band.label, color: 'band' },
     referenceKey && { label: referenceLabel, color: WHITE, shape: 'dashed' }] };
   const extra = [band && band.mid && { key: band.mid, label: band.label }, referenceKey && { key: referenceKey, label: referenceLabel }].filter(Boolean);
