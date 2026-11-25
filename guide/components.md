@@ -524,7 +524,7 @@ Use: A few series side by side per category; every series and group is drawn (4 
 Use: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 named segments + one grey "Other" (5 or fewer read best), most important on the baseline, a 1 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the named segments top to bottom, then "Other" with its total and each folded series under it.
 
 ### chart-line · `LineChart`
-Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit, a vertical legend sits on the end side of the plot (line / dashed swatches). Every line up to 12 has its own colour (keep it to 8: guidance); the 13th and later grey with one "Other" entry.
+Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit, a vertical legend sits on the end side of the plot (line / dashed swatches), in the order the lines end (top line first); the tooltip lists the series by value at the hovered point, highest first. Every line up to 12 has its own colour (keep it to 8: guidance); the 13th and later grey with one "Other" entry.
 
 ### chart-area · `AreaChart`
 Use: Cumulative volume over time; zero-based; names at the line ends, or a vertical legend on the end side when they collide (square swatches).

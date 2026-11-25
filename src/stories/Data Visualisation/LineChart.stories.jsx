@@ -9,7 +9,7 @@ export default {
   component: IFS["LineChart"],
   tags: ["autodocs","needs-review"],
   parameters: {
-    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The y-axis starts at 80; Figma's starts at 60.\n\n**Figma:** chart-line (9863:11650)\n\n\nUse: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit, a vertical legend sits on the end side of the plot (line / dashed swatches). Every line up to 12 has its own colour (keep it to 8: guidance); the 13th and later grey with one \"Other\" entry." } },
+    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The y-axis starts at 80; Figma's starts at 60.\n\n**Figma:** chart-line (9863:11650)\n\n\nUse: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit, a vertical legend sits on the end side of the plot (line / dashed swatches), in the order the lines end (top line first); the tooltip lists the series by value at the hovered point, highest first. Every line up to 12 has its own colour (keep it to 8: guidance); the 13th and later grey with one \"Other\" entry." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9863-11650"},
   },
 };

@@ -968,7 +968,12 @@ function LineChart(props) {
   // every series up to 12 gets its own colour (keeping it to 8 is guidance, rule 11.6); the 13th and later draw grey as "Other"
   const series = greyLines(all, SERIES_MAX_LABELLED);
   const lab = tryLabels(series);
-  const legendSeries = series.filter(s => !s.group).concat(series.some(s => s.group) ? [{ key: '__other', label: 'Other', color: 'other' }] : []);
+  // the legend lists the lines in the order they END, top to bottom (highest last value first, like the end labels); colours stay with the series
+  const lastV = s => { for (let i = data.length - 1; i >= 0; i--) { const v = valOf(data[i], s); if (v != null) return v; } return -Infinity; };
+  const legendSeries = series.map((s, i) => ({ ...s, _c: s.color ?? i + 1 })).filter(s => !s.group).sort((x, y) => lastV(y) - lastV(x))
+    .concat(series.some(s => s.group) ? [{ key: '__other', label: 'Other', _c: 'other' }] : []);
+  // the tooltip and screen-reader text list the series by value at that x, highest first, so the rows sit in the order of the points
+  const byValueAt = d => series.map((s, i) => ({ s, i, v: valOf(d, s) })).sort((x, y) => (y.v ?? -Infinity) - (x.v ?? -Infinity));
   const ticks = lab ? lab.ticks : range(series);
   const L = catLayout(p, 1, ticks, format, lab ? lab.padR : 0);
   const n = data.length, step = n > 1 ? (L.x1 - L.x0) / (n - 1) : 0;
@@ -977,7 +982,7 @@ function LineChart(props) {
   const shape = s => (s.dashed ? 'dashed' : 'line');
   // names at the line ends when they fit; when they collide, a vertical legend on the end side of the plot (like the pie / donut list)
   const legend = lab ? null : { beside: true, layout: 'row', active: p.series, onActive: p.setSeries, items: [
-    ...legendSeries.map((s, i) => ({ key: s.key, label: s.label, color: s.color ?? i + 1, shape: area ? 'square' : shape(s) })),
+    ...legendSeries.map(s => ({ key: s.key, label: s.label, color: s._c, shape: area ? 'square' : shape(s) })),
     band && { label: band.label, color: 'band' },
     referenceKey && { label: referenceLabel, color: WHITE, shape: 'dashed' }] };
   const extra = [band && band.mid && { key: band.mid, label: band.label }, referenceKey && { key: referenceKey, label: referenceLabel }].filter(Boolean);
@@ -989,7 +994,7 @@ function LineChart(props) {
   const tf = tipFormat(props, format);
   const tip = a && s0 && { anchor: { x0: X(p.active) - 4, x1: X(p.active) + 4, y: L.y(Number.isFinite(topV) ? topV : ticks[0]) },
     content: tipFrom(a, { title: a.label, items: [
-      ...series.map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: area ? 'square' : shape(s) })),
+      ...byValueAt(a).map(({ s, i, v }) => ({ label: s.label, value: tf(v), color: s.color ?? i + 1, shape: area ? 'square' : shape(s) })),
       ...(band && band.mid && a[band.mid] != null ? [{ label: band.label, value: `${tf(a[band.mid])} ± ${tf((a[band.high] - a[band.low]) / 2)}`, color: 'band', shape: 'square' }] : []),
       ...(referenceKey && a[referenceKey] != null ? [{ label: referenceLabel, value: tf(a[referenceKey]), color: WHITE, shape: 'dashed' }] : [])] }, tooltip, p.active) };
   const pick = x => (!n ? null : Math.max(0, Math.min(n - 1, step ? Math.round((x - L.x0) / step) : 0)));
@@ -997,7 +1002,7 @@ function LineChart(props) {
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length || !series.length}>
       <Plot p={p} label={props.title} tip={tip} n={n} pick={pick}
-        describe={i => `${data[i].label}: ${series.map(s => `${s.label} ${format(valOf(data[i], s))}`).join(', ')}`}>
+        describe={i => `${data[i].label}: ${byValueAt(data[i]).map(({ s, v }) => `${s.label} ${tf(v)}`).join(', ')}`}>
         <YAxis L={L} ticks={ticks} format={format} />
         {data.map((d, i) => (shown(i) ? <text key={i} x={X(i)} y={L.labelY} textAnchor="middle" className="ifs-chart__axis">{d.label}</text> : null))}
         {band && (() => { const up = pts(band.high), dn = pts(band.low).reverse(); return up.length ? <path d={`${linePath(up)}L${dn.map(q => q.join(',')).join('L')}Z`} fill={DV_SPECIAL.band} /> : null; })()}
