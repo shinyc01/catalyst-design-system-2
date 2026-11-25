@@ -14,7 +14,7 @@ IFS.setDensity = (d, el = document.documentElement) => {
 };
 IFS.getDensity = () => { try { return localStorage.getItem('catalyst-density') || 'comfortable'; } catch (e) { return 'comfortable'; } };
 // Direction follows the product language (Arabic = 'rtl'): sets dir on <html> (or a given element). Not remembered:
-// the page's language decides it. Layout mirrors through start/end CSS (rule 1.4); directional icons flip.
+// the page's language decides it. Layout mirrors through start/end CSS (rule 11.4); directional icons flip.
 IFS.DIRECTIONS = ['ltr', 'rtl'];
 IFS.setDirection = (d, el = document.documentElement) => { el.setAttribute('dir', d === 'rtl' ? 'rtl' : 'ltr'); };
 IFS.getDirection = (el = document.documentElement) => (el.getAttribute('dir') === 'rtl' ? 'rtl' : 'ltr');
@@ -29,5 +29,7 @@ IFS.getGlass = () => { try { return localStorage.getItem('catalyst-glass') === '
 // Base map (G3): which kind of map the screen shows, for map glass on surfaces outside the map container (snackbars over a map).
 // 'dark' | 'light' | 'imagery' sets data-base-map on <html>; null removes it when the map screen closes.
 IFS.setBaseMap = (kind, el = document.documentElement) => { if (kind) el.setAttribute('data-base-map', kind); else el.removeAttribute('data-base-map'); };
+// The stored glass choice is applied when the kit loads (rule 4.2: lite glass is remembered).
+if (typeof document !== 'undefined' && IFS.getGlass() === 'lite' && !document.documentElement.hasAttribute('data-glass')) IFS.setGlass('lite');
 window.IFS = IFS;
 window.Catalyst = IFS;

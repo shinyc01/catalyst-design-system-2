@@ -75,6 +75,18 @@ function entries(file) {
   const src = readFileSync(join(comp, 'format.js'), 'utf8').split('\n');
   const head = [];
   for (const l of src.slice(1)) { if (!/^\s*\/\//.test(l)) break; head.push(l.replace(/^\s*\/\/ ?/, '')); }
+  // Settings and page-level helpers (src/iife.js, _core.jsx): the hooks the product's settings screen calls (USER-SETTINGS.md).
+  out += `## settings\n\nPage-level settings and helpers on \`IFS\` (not Figma components). setDensity, setTheme, setDirection, setGlass and setBaseMap write an attribute on \`<html>\` (or a given element).\n\n\`\`\`\n`
+    + `IFS.setDensity('spacious' | 'comfortable' | 'compact', el?)  // data-density; remembered (getDensity) — rule 3.11\n`
+    + `IFS.setTheme('dark' | 'light', el?)                          // data-theme (Light values after phase 1)\n`
+    + `IFS.setDirection('ltr' | 'rtl', el?) · IFS.getDirection()    // dir; follows the product language — rule 11.4\n`
+    + `IFS.setGlass('full' | 'lite', el?) · IFS.getGlass()          // data-glass="lite": glass blur 80 → 10; remembered and re-applied on load — rule 4.2\n`
+    + `IFS.setBaseMap('dark' | 'light' | 'imagery' | null, el?)     // data-base-map on <html>: map glass for the snackbar stack — rule 4.2\n`
+    + `IFS.setShortcuts('on' | 'off') · IFS.getShortcuts()          // single-key shortcuts; remembered — rule 9.18\n`
+    + `IFS.shortcutAllowed(event) → boolean                         // the check every single-key shortcut makes (not in a text field, setting on)\n`
+    + `IFS.announce(text, { assertive })                            // the two live regions — rule 9.19\n`
+    + `IFS.toast({ title, description, primaryAction, secondaryAction, duration, announce }) → id · toast.dismiss(id) · toast.command()  // rule 14.12\n`
+    + `IFS.useSnackbarTiming({ action, duration, onClose }) → hold handlers  // a pattern's own snackbar, same timing\n\`\`\`\n\n`;
   out += `## format\n\n\`IFS.format\` — formatting helpers (not a Figma component). Use them for every number, amount, percentage, date, time and fiscal year a screen shows, so values look the same everywhere. Rules: ${PAGES}/guide/rules.md (section 8)\n\n\`\`\`\n${head.join('\n').trim()}\n\`\`\`\n\n`;
 }
 

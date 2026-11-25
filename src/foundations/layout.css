@@ -180,14 +180,17 @@
   .ifs-grid > [class*="ifs-span-"]{grid-column:1 / -1}
 }
 
-/* Materials (G3, Nov 25; rule 4.2). Map glass: a map container declares its base map (data-base-map="dark|light|imagery"; CanvasBackground
-   baseMap, IFS.setBaseMap for surfaces outside it such as snackbars). The UI follows the light / dark setting, never the base map: on a map
+/* Materials (G3, Nov 25; rule 4.2). Map glass: a map container declares its base map (data-base-map="dark|light|imagery" on the element that holds the
+   map and its slots; CanvasBackground baseMap sets it on the canvas itself; IFS.setBaseMap on <html> for the snackbar stack only). The UI follows the light / dark setting, never the base map: on a map
    that matches the theme, map glass is --color-surface-map-glass (black 40); on one that doesn't (light street map or imagery in Dark), it is
    --color-surface-overlay (black 85). Light-theme counterparts come with L01. Map glass = floating bar, map tools, the Cooper panel, map
    popovers and the snackbar over a map. */
 [data-base-map]{--map-glass:var(--color-surface-map-glass)}
 [data-base-map="light"],[data-base-map="imagery"]{--map-glass:var(--color-surface-overlay)}
-[data-base-map] :is(.ifs-floating-bar,.ifs-map-cluster,.ifs-chat-panel:not(.ifs-cooper-dock > .ifs-chat-panel),.ifs-popover,.ifs-snackbar){background-color:var(--map-glass)}
+:not(html)[data-base-map] :is(.ifs-floating-bar,.ifs-map-cluster,.ifs-chat-panel:not(.ifs-cooper-dock > .ifs-chat-panel),.ifs-popover,.ifs-snackbar){background-color:var(--map-glass)}
+/* On <html> (IFS.setBaseMap) it reaches only the snackbar stack, which lives outside the map container; other popovers and menus on the
+   page keep their own glass. */
+html[data-base-map] .ifs-snackbar-stack .ifs-snackbar{background-color:var(--map-glass)}
 /* Without backdrop-filter support nothing changes: every glass fill already passes without its blur (G2). */
 @media (prefers-reduced-transparency: reduce){
   *,*::before,*::after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}

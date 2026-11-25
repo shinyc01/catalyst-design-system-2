@@ -204,7 +204,7 @@ function SurfToastItem({ t }) {
   const close = () => surfDismissToast(t.id);
   const hold = useSnackbarTiming({ action: hasAction(t), duration: t.duration, onClose: close });
   const wrap = a => a && { ...a, onClick: e => { a.onClick && a.onClick(e); close(); } };
-  const { id, duration, description, leaving, ...props } = t;
+  const { id, duration, description, leaving, announce, ...props } = t;
   return (
     <div className={leaving ? 'is-leaving' : undefined} {...hold}>
       <Snackbar {...props} primaryAction={wrap(t.primaryAction)} secondaryAction={wrap(t.secondaryAction)} onClose={close}>{description}</Snackbar>
@@ -241,7 +241,16 @@ function SurfToastStack() {
   const h = snackbarHost();
   return h ? ReactDOM.createPortal(<>{list.map(t => <SurfToastItem key={t.id} t={t} />)}</>, h) : null;
 }
-// toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id). toast.command() = a command the page
+// The readable text of a node (string, number, array or React element), for announcements: <br /> becomes a space.
+function textOf(n) {
+  if (n == null || typeof n === 'boolean') return '';
+  if (typeof n === 'string' || typeof n === 'number') return String(n);
+  if (Array.isArray(n)) return n.map(textOf).join('').replace(/\s+/g, ' ').trim();
+  if (React.isValidElement(n)) return n.type === 'br' ? ' ' : textOf(n.props.children);
+  return '';
+}
+// toast({ title, description, primaryAction, secondaryAction, duration, announce }) → id. announce = the text read to screen readers
+// (default: the title and description's text). toast.dismiss(id). toast.command() = a command the page
 // made outside the DOM events the kit listens to (e.g. a client-side route change). The message is announced politely (IFS.announce).
 function surfToast(opts) {
   listenForCommands();
@@ -258,8 +267,10 @@ function surfToast(opts) {
   if (action) surfToasts.list.filter(t => hasAction(t) && !t.leaving).forEach(t => surfDismissToast(t.id)); // one action snackbar at a time
   surfToasts.list = [{ ...opts, duration, id }, ...surfToasts.list];
   surfToastEmit();
-  const desc = typeof opts.description === 'string' ? opts.description : '';
-  if (IFS.announce && typeof opts.title === 'string') IFS.announce(desc ? `${opts.title}. ${desc}` : opts.title);
+  // Announce the text of the title and description, whatever they are (a string or JSX); `announce` overrides it (rule 9.19).
+  const title = textOf(opts.title), desc = textOf(opts.description);
+  const said = opts.announce != null ? opts.announce : desc ? `${title}. ${desc}` : title;
+  if (IFS.announce && said) IFS.announce(said);
   return id;
 }
 surfToast.dismiss = surfDismissToast;

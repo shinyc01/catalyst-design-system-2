@@ -174,7 +174,7 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
   const uploading = docs.some(d => d.status === 'uploading');
   const cov = coverage != null ? coverage : Math.min(100, count * 25);
 
-  const push = item => setFeedback(f => [...f, { id: newId(), ...item }]);
+  const push = item => setFeedback(f => [{ id: newId(), ...item }, ...f]); // newest on top (rule 4.2)
   const dismiss = id => setFeedback(f => f.filter(x => x.id !== id));
 
   const send = (ids, fail) => {
@@ -219,7 +219,9 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
     if (idx < 0) return;
     setDocs(ds => ds.filter(d => d.id !== doc.id));
     onRemove && onRemove(doc);
-    push({ kind: 'snackbar', title: 'The document has been removed', undo: () => setDocs(ds => { const n = [...ds]; n.splice(Math.min(idx, n.length), 0, doc); return n; }) });
+    // The one snackbar (rule 14.12): IFS.toast times it, announces it once and replaces any other action snackbar (newest wins).
+    IFS.toast({ title: 'The document has been removed', secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up',
+      onClick: () => setDocs(ds => { const n = [...ds]; n.splice(Math.min(idx, n.length), 0, doc); return n; }) } });
   }, [onRemove]);
 
   const retry = React.useCallback(doc => {
@@ -413,7 +415,8 @@ function DocumentsDropArea({ controller: c, children, className, style, ...rest 
 // Pattern: DocumentsFeedback — top-right stack under the page header (place it inside the screen, which must be position:relative).
 // Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 // "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
-// Removal = snackbar-organism "The document has been removed" + Undo: 4 s, paused on hover/focus, ✕ dismisses.
+// Removal = snackbar-organism "The document has been removed" + Undo through IFS.toast: the one snackbar timing (rule 14.12: at least
+// 10 s, then until the next command; hover / focus hold it), announced once, and it replaces any other action snackbar; ✕ dismisses.
 // Props: controller, top (px from the window top; default = the bottom of the page or Explore header, IFS.floatTop()). C3: one place with the snackbar stack.
 function DocumentsFeedback({ controller: c, top }) {
   const ref = React.useRef(null);
@@ -434,11 +437,11 @@ function DocumentsFeedback({ controller: c, top }) {
   const host = IFS.snackbarHost ? IFS.snackbarHost() : null;
   React.useLayoutEffect(() => { if (host && c.feedback.length) IFS.snackbarHost.place(top != null ? top : undefined); }, [c.feedback.length, top]);
   const stack = (
-    <div ref={ref} className="ifs-docs-feedback" aria-live="polite">
+    <div ref={ref} className="ifs-docs-feedback">{/* no live role: errors are role=alert themselves (rule 9.19, nothing read twice) */}
       {c.feedback.map(f => f.kind === 'alert'
         ? <IFS.Alert key={f.id} type="error" showIcon title={f.title} onClose={() => c.dismiss(f.id)}
             action={f.details ? 'See details' : undefined} onAction={() => { setDetails(f.details); c.dismiss(f.id); }}>{f.body}</IFS.Alert>
-        : <DocSnackbar key={f.id} item={f} onDone={() => c.dismiss(f.id)} />)}
+        : null)}
     </div>
   );
   return <>
@@ -451,18 +454,6 @@ function DocumentsFeedback({ controller: c, top }) {
     )}
   </>;
 }
-// Timing and announcement as every snackbar (rules 14.12, 9.19): with Undo at least 10 s, then until the next command; without 6 s.
-function DocSnackbar({ item, onDone, duration }) {
-  const hold = IFS.useSnackbarTiming({ action: !!item.undo, duration, onClose: onDone });
-  React.useEffect(() => { if (typeof item.title === 'string') IFS.announce(item.title); }, []);
-  return (
-    <div {...hold}>
-      <IFS.Snackbar title={item.title} onClose={onDone}
-        secondaryAction={item.undo ? { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { item.undo(); onDone(); } } : undefined} />
-    </div>
-  );
-}
-
 Object.assign(IFS, { MapPinDot, MapPinDefect, MapPinFlow, MapPinPole, BarChartItem, VerticalBarChartItem,
   useDocuments, DocumentRow, DocumentsPopover, DocumentsContext, DocumentsDropArea, DocumentsFeedback });
 export { MapPinDot, MapPinDefect, MapPinFlow, MapPinPole, BarChartItem, VerticalBarChartItem,
