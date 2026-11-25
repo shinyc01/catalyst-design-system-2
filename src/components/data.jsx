@@ -209,7 +209,7 @@ function StatCard({ size = 's', title, value, description, descriptionPosition =
 // Props: size m|s, title, description (show-description), avatar = Avatar props (show-avatar, L 40),
 // control = node (show-checkbox / show-radio-button / show-switch → pass IFS.Checkbox etc.), iconRight = icon name (Figma arrow-right),
 // iconLeft = icon name before the title (show-icon-left; Figma default arrow-caret-right-filled),
-// meta = short read-only info at the end of the title row (a count, a date, time left, a value; Body/M secondary, truncates first; rule 7.21),
+// meta = short read-only info at the end of the title row (a count, a date, time left, a value; Body/M secondary, truncates first; rule 14.17),
 // iconButton = { icon, label, onClick } (show-icon-button), top / bottom = slot nodes (with no title/description/avatar/control/icons
 // the title block is skipped, so a slots-only card holds just its slots),
 // tertiaryAction / primaryAction = Button props incl. children (show-buttons, show-tertiary-button, show-primary-button),

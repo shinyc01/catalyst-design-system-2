@@ -9,7 +9,7 @@ export default {
   component: IFS["ApprovalChain"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** approval-chain-timeline (1440:6174) (legacy) — built on activity-organism\n\n\nUse: One step in the display-only approval history in `ActivityPanel` (rule 7.9)." } },
+    docs: { description: { component: "**Figma:** approval-chain-timeline (1440:6174) (legacy) — built on activity-organism\n\n\nUse: One step in the display-only approval history in `ActivityPanel` (rule 14.9)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-6174"},
   },
 };

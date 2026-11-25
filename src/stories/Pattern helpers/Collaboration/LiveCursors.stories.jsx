@@ -9,7 +9,7 @@ export default {
   component: IFS["LiveCursors"],
   tags: ["autodocs","needs-review"],
   parameters: {
-    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - **Invented.** The Collaboration section has no live cursors or presence lists, only a green online dot on avatars. The cursor art is the real cursor-atom (55:1645). Should live cursors appear on framework canvases at all?\n\n**Figma:** cursor-atom (55:1645) over canvas-background [patterns] (12:9653)\n\n\nUse: Live multiplayer cursor with name label; one stable colour per user (rule 7.18)." } },
+    docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - **Invented.** The Collaboration section has no live cursors or presence lists, only a green online dot on avatars. The cursor art is the real cursor-atom (55:1645). Should live cursors appear on framework canvases at all?\n\n**Figma:** cursor-atom (55:1645) over canvas-background [patterns] (12:9653)\n\n\nUse: Live multiplayer cursor with name label; one stable colour per user (rule 10.1)." } },
     design: [{"name":"cursor-atom","type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=55-1645"},{"name":"12-9653","type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=12-9653"}],
   },
 };

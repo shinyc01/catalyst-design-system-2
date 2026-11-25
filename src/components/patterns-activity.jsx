@@ -223,7 +223,7 @@ const PA_APPROVAL_SUGGESTIONS = ['Who hasn\'t responded yet?', 'Who requested ch
 //   approvals — ApprovalChain steps; undefined = record has no approval chain (no segmented control); [] = empty state.
 //   view / defaultView ('versions'|'approvals') / onViewChange, query / defaultQuery / onQueryChange (the smart search),
 //   open / defaultOpen / onOpenChange (✕, outside click, Esc), layout overlay (fixed, an over panel: no scrim, one --float-inset in,
-//   floating level; rule 4.6) | contained (the same, absolute in the nearest positioned ancestor) | static (in flow — gallery, AppShell panel), title ("Activity"), recordLabel ("framework", for copy),
+//   floating level; rule 3.18) | contained (the same, absolute in the nearest positioned ancestor) | static (in flow — gallery, AppShell panel), title ("Activity"), recordLabel ("framework", for copy),
 //   onOpenVersion(v), onCompare(v, baseline), onDuplicate(v), onRestore(v) (after the confirm modal), onRename(v, title, previous),
 //   defaultExpanded (version ids), defaultRename { id, value, error } (gallery states).
 // Motion (M3): overlay and contained slide in from the end edge in 200 and back in 100; reduced motion fades (M4).
@@ -246,7 +246,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
   React.useEffect(() => {
     if (!isOpen || layout === 'static') return undefined;
     const key = e => { if (e.key === 'Escape' && !e.defaultPrevented && !restoreOf && !(ref.current && ref.current.contains(document.activeElement) && document.activeElement.closest('[role=combobox],[role=menu],input'))) setOpen(false); };
-    // over panel (rule 4.6): no scrim, so a click outside closes it; menus, modals and toasts it opened don't count as outside
+    // over panel (rule 3.18): no scrim, so a click outside closes it; menus, modals and toasts it opened don't count as outside
     const down = e => { if (!restoreOf && ref.current && !ref.current.contains(e.target) && !(e.target.closest && e.target.closest('.ifs-floating,.ifs-modal,.ifs-overlay,.ifs-snackbar-stack,[role="dialog"],[role="menu"],[role="listbox"]'))) setOpen(false); };
     document.addEventListener('keydown', key); document.addEventListener('pointerdown', down, true);
     return () => { document.removeEventListener('keydown', key); document.removeEventListener('pointerdown', down, true); };
@@ -339,7 +339,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
       </IFS.Modal>
     </div>
   );
-  return panel; // over panel: no scrim in any layout (rule 4.6)
+  return panel; // over panel: no scrim in any layout (rule 3.18)
 }
 ActivityPanel.panelMode = 'over'; // AppShell panel mode by job (Nov 19): the panel is the focus, the page is context
 

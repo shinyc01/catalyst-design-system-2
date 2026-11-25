@@ -10,8 +10,8 @@
      lg     1440–1919     12          24            20   (review: 24 felt too big)
      xl     1920+         12          32            32
 
-   Content is capped at --layout-max-content-width (1600) and centred (rule 4.3). The wide token (2240) is unused
-   and undecided (guide/rules.md §10 Open). CSS can't read custom properties in @media, so the
+   Content is capped at --layout-max-content-width (1600) and centred (rule 3.15). The wide token (2240) is unused
+   and undecided (guide/rules.md §15 Open). CSS can't read custom properties in @media, so the
    --bp-* tokens are for JS and docs and the media queries repeat the numbers.
    ========================================================================== */
 :root{
@@ -22,16 +22,16 @@
   /* Regions: min / default / max. Push the content at md and up; overlay below md. */
   --region-panel-min:20rem;--region-panel-max:50vw;
   --region-sidenav:var(--layout-sidebar-width);--region-rail:var(--layout-rail-width);
-  --bp-header-steps:68.75rem; /* thin PageHeader below 1100 of its own width: the stepper leaves the bar for a popover (rule 5.3); rem, so it follows the user's text size */
-  --bp-header-rows:45rem; /* below 720: two rows (rule 5.3) */
+  --bp-header-steps:68.75rem; /* thin PageHeader below 1100 of its own width: the stepper leaves the bar for a popover (rule 12.3); rem, so it follows the user's text size */
+  --bp-header-rows:45rem; /* below 720: two rows (rule 12.3) */
   --layout-header-title-mid:15rem; /* between the two: the title counts up to 240 when checking if one row still fits */
-  --layout-header-title-min:10rem; /* thin PageHeader title: never narrower than this (or its own text) before the header moves to two rows (rule 5.3; Nov 20, was a raw 10rem) */
+  --layout-header-title-min:10rem; /* thin PageHeader title: never narrower than this (or its own text) before the header moves to two rows (rule 12.3; Nov 20, was a raw 10rem) */
   --layout-content-min:50rem; /* narrowest page area beside a pushed panel before the side nav folds to its rail (Nov 19: 800px = 50rem, so 1440 with a 380 panel keeps the nav open) */
   /* Overlay widths */
   --layout-popover-width:20rem;--layout-modal-width-m:27.5rem;--layout-modal-width-l:37.5rem;
   /* Menus: two widths (2.0.3). S for action menus (Carbon 180–288, Material 112–280); L = the popover width, for items with descriptions */
   --menu-width-s:12.5rem;--menu-width-l:var(--layout-popover-width);
-  /* Cooper: the full chat can be dragged from the panel width (--region-panel, 380) up to 720 (rule 4.5); the compact window opens from the orb's spot: --float-inset from the end, above the bottom sheet (C4) */
+  /* Cooper: the full chat can be dragged from the panel width (--region-panel, 380) up to 720 (rule 3.17); the compact window opens from the orb's spot: --float-inset from the end, above the bottom sheet (C4) */
   --layout-chat-width-max:45rem;--cooper-compact-end:var(--float-inset);--cooper-compact-bottom:calc(var(--float-bottom, 0px) + var(--float-inset)); /* C4: the compact chat opens from the orb's spot (its bottom-end corner where the orb's was), above the bottom sheet */
 }
 @media (min-width:600px){:root{--layout-columns:8;--page-margin:var(--space-600)}}
@@ -180,7 +180,7 @@
   .ifs-grid > [class*="ifs-span-"]{grid-column:1 / -1}
 }
 
-/* Materials (G3, Nov 25; rule 4.8). Map glass: a map container declares its base map (data-base-map="dark|light|imagery"; CanvasBackground
+/* Materials (G3, Nov 25; rule 4.2). Map glass: a map container declares its base map (data-base-map="dark|light|imagery"; CanvasBackground
    baseMap, IFS.setBaseMap for surfaces outside it such as snackbars). The UI follows the light / dark setting, never the base map: on a map
    that matches the theme, map glass is --color-surface-map-glass (black 40); on one that doesn't (light street map or imagery in Dark), it is
    --color-surface-overlay (black 85). Light-theme counterparts come with L01. Map glass = floating bar, map tools, the Cooper panel, map

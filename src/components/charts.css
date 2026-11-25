@@ -142,7 +142,7 @@
 .ifs-dv-card--chart .ifs-dv-card__legend{flex:none;display:block}
 .ifs-dv-card--chart .ifs-dv-card__legend--beside{flex:0 0 auto;min-width:0;max-width:50%;overflow:auto;align-self:center;max-height:100%}
 .ifs-chart__legend{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;column-gap:var(--space-500);min-width:0}
-.ifs-chart__legend > .ifs-dv-legend{padding-block:var(--space-50);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* legend labels Body/S (rule 11.10) */
+.ifs-chart__legend > .ifs-dv-legend{padding-block:var(--space-50);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)} /* legend labels Body/S (rule 10.11) */
 .ifs-chart__legend--beside{flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start}
 .ifs-chart__legend-more{color:var(--color-text-softer)}
 
@@ -197,20 +197,20 @@
 .ifs-chart__end-label{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking);fill:var(--color-text-soft)} /* D4: line names at the line ends */
 .ifs-chart__point--on{stroke:var(--color-surface-page);stroke-width:2}
 .ifs-chart__cell--on{stroke:var(--color-data-viz-reference);stroke-width:1.5}
-/* One chart text scale (rule 11.10): axis, legend and end labels Body/S; in-chart data labels Label/S/medium; tooltip title Label/M/medium, values Label/M;
+/* One chart text scale (rule 10.11): axis, legend and end labels Body/S; in-chart data labels Label/S/medium; tooltip title Label/M/medium, values Label/M;
    the donut and gauge centre metric = the StatCard S value (H3), its label Body/S */
 .ifs-chart__axis{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking);fill:var(--color-text-softer);font-variant-numeric:var(--font-numeric)}
 .ifs-chart__value{font:var(--font-label-s-medium);letter-spacing:var(--font-label-s-medium-tracking);fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
 .ifs-chart__slice-label{font:var(--font-label-s-medium);letter-spacing:var(--font-label-s-medium-tracking);fill:var(--color-text);pointer-events:none;font-variant-numeric:var(--font-numeric)}
-.ifs-chart__center{font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking); /* the StatCard S value (rule 11.10) */fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
-.ifs-chart__gauge-value{font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking); /* the StatCard S value (rule 11.10) */fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
+.ifs-chart__center{font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking); /* the StatCard S value (rule 10.11) */fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
+.ifs-chart__gauge-value{font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking); /* the StatCard S value (rule 10.11) */fill:var(--color-text);font-variant-numeric:var(--font-numeric)}
 .ifs-chart__grid{stroke:var(--color-border);stroke-width:var(--border-width-default)} /* D3: solid 1 px, the default border role; horizontal only */
 .ifs-chart__baseline{stroke:var(--color-border-strong);stroke-width:var(--border-width-default)} /* D3: the zero line, one step stronger */
 .ifs-chart__guide{stroke:var(--color-border);stroke-dasharray:2 4}
 .ifs-chart__refline{stroke:var(--color-data-viz-reference) /* raw in Figma */;stroke-width:1.5;stroke-dasharray:4 4}
 .ifs-chart__refline--thin{stroke-width:1}
 .ifs-chart__connector{stroke:var(--color-data-viz-baseline);stroke-dasharray:2 3;stroke-linecap:round}
-.ifs-chart__slice{stroke:var(--color-border-chart-gap);stroke-width:var(--border-width-default);stroke-linejoin:round} /* the one 1 px card-colour gap between parts (rule 11.8) */
+.ifs-chart__slice{stroke:var(--color-border-chart-gap);stroke-width:var(--border-width-default);stroke-linejoin:round} /* the one 1 px card-colour gap between parts (rule 10.9) */
 .ifs-chart__skel-stroke{stroke:var(--color-background-skeleton);fill:none}
 /* D9: every state keeps the card height; no legend while there is no data */
 .ifs-chart__skeleton,.ifs-chart__wait{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}

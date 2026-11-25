@@ -104,7 +104,7 @@ function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'c
 const SURF_ALERT_ICON = { error: 'status-error-filled', warning: 'status-warning-filled', success: 'status-success-filled' };
 
 // Figma: alert-organism (1440:5440)
-// Props: type error|warning (success = Figma variant only: screens never use a success Alert, rule 7.12), title, children = Body text, showIcon (Figma show-icon, default off),
+// Props: type error|warning (success = Figma variant only: screens never use a success Alert, rule 14.12), title, children = Body text, showIcon (Figma show-icon, default off),
 // action = button label (Primary S; absent = show-button off), onAction, onClose (shows the close
 // icon-button; Figma show-close-icon), closable=false to hide it.
 function Alert({ type: t = 'error', title, children, showIcon = false, action, onAction, onClose, closable = true, className, ...rest }) {
@@ -127,7 +127,7 @@ function Alert({ type: t = 'error', title, children, showIcon = false, action, o
 // Figma: snackbar-organism (3795:29459)
 // Props: title, children = description (Content slot), secondaryAction / primaryAction = { label, onClick }
 // (Secondary S + Primary S; add iconLeft, e.g. Undo → 'arrow-back-up'), onClose (close icon-button; showClose=false hides it).
-// Use IFS.toast({...same props, duration}) to show one top-end (timing: rule 7.12). The Snackbar has no live role of its own (G5): the
+// Use IFS.toast({...same props, duration}) to show one top-end (timing: rule 14.12). The Snackbar has no live role of its own (G5): the
 // message reaches screen readers through IFS.announce (the always-present live regions, rule 9.19), so it is never read twice or missed.
 function Snackbar({ title, children, secondaryAction, primaryAction, onClose, showClose = true, className, ...rest }) {
   const hasActions = secondaryAction || primaryAction || showClose;
@@ -146,7 +146,7 @@ function Snackbar({ title, children, secondaryAction, primaryAction, onClose, sh
   );
 }
 
-// Toast stack: newest on top. Timing (G5, Nov 25; rule 7.12):
+// Toast stack: newest on top. Timing (G5, Nov 25; rule 14.12):
 // - with an action (Undo …): shown at least 10 s (TOAST_ACTION_MIN, or `duration` when longer); after that it never closes on time alone: it
 //   closes on the user's next command elsewhere (a click on a control, an edit, a navigation; IFS.toast.command() for app-level ones). While
 //   the user does nothing it stays. Moving focus, Tab, F6, scrolling and clicks on empty space are not commands.
@@ -179,7 +179,7 @@ function listenForCommands() {
   window.addEventListener('popstate', surfToastCommand);
   window.addEventListener('hashchange', surfToastCommand);
 }
-// The one snackbar timing (rule 7.12), for IFS.toast and any pattern that shows its own Snackbar (Documents feedback):
+// The one snackbar timing (rule 14.12), for IFS.toast and any pattern that shows its own Snackbar (Documents feedback):
 // useSnackbarTiming({ action, duration, onClose }) → handlers to spread on the snackbar's wrapper (hover / focus hold it).
 function useSnackbarTiming({ action, duration, onClose }) {
   const ms = duration === 0 ? 0 : action ? Math.max(TOAST_ACTION_MIN, duration || 0) : (duration || TOAST_INFO);
@@ -353,7 +353,7 @@ function Drawer({ open, defaultOpen, onOpenChange, title, expanded, defaultExpan
 // (Figma Expanded: 380px ↔ 48px rail holding only the ←| expand button), dot error|warning (status dot on the rail's button:
 // red = errors / open questions, orange = warnings only), showEvidence (show-evidence-chain, circle Tertiary S icon-button),
 // onEvidence, onClose (shows ✕ instead of the collapse toggle; the panel then never collapses), collapsible (default true: every panel can fold;
-// false only when a screen is specifically asked to stay open: no toggle, always open; rule 4.6, Nov 20), full (fills the content area),
+// false only when a screen is specifically asked to stay open: no toggle, always open; rule 3.18, Nov 20), full (fills the content area),
 // children (Content slot). Lives in the page layout: no scrim, no focus trap.
 function Panel({ title, actions, expanded, defaultExpanded = true, onExpandedChange, dot, showEvidence = true, onEvidence, onClose, collapsible = true, full, children, className, style }) {
   const [isExp, setExp] = useSurfaceState(expanded, expanded === undefined ? defaultExpanded : undefined, onExpandedChange);

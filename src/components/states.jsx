@@ -203,7 +203,7 @@ const DEFAULT_MAP_TOOLS = [
 
 // Figma: base-bottom-sheet-organism (4406:25590), value-bottom-sheet-organism (789:37502), explore-bottom-sheet (72:4676)
 // The Cooper entry point at the bottom of the content area, 40px tall, full width. Place it in AppShell's `bottom` slot.
-// Props (all types): type base|documents|explore (base = broad pages; documents = every page inside one entity, rule 7.22;
+// Props (all types): type base|documents|explore (base = broad pages; documents = every page inside one entity, rule 14.18;
 // 'value' is the old name for documents and still works; explore = Explore tab),
 // prompts (labels → PromptButton M; Figma shows two), onPrompt(label), showPrompts (default true), showCooper (show-cooper, default true),
 // onCooper (FAB click), cooperIndicator (FAB Show indicator; Figma sheets turn it off).

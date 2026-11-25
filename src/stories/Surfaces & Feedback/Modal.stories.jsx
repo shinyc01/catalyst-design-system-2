@@ -9,7 +9,7 @@ export default {
   component: IFS["Modal"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** modal-organism (4169:208596) + overlay-background (338:21403)\n\n\nUse: Rule 7.13. Examples: confirm a collaborator and role, a critical decision, a short Save/Cancel form.\n\nFocus (rules 9.17–9.18): opens on its first field, else its title (never ✕); traps Tab and makes the page behind `inert`; returns focus to the trigger (or its nearest container) on close. A drawer with a scrim does the same.\n\nMotion: rises 2 over 200 and the scrim fades in over 200; both fade out in 100 (rule 1.8).\n\n\nUse: The dimming scrim behind a blocking modal." } },
+    docs: { description: { component: "**Figma:** modal-organism (4169:208596) + overlay-background (338:21403)\n\n\nUse: Rule 14.13. Examples: confirm a collaborator and role, a critical decision, a short Save/Cancel form.\n\nFocus (rules 9.17–9.18): opens on its first field, else its title (never ✕); traps Tab and makes the page behind `inert`; returns focus to the trigger (or its nearest container) on close. A drawer with a scrim does the same.\n\nMotion: rises 2 over 200 and the scrim fades in over 200; both fade out in 100 (rule 5.1).\n\n\nUse: The dimming scrim behind a blocking modal." } },
     design: [{"name":"modal-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4169-208596"},{"name":"overlay-background","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=338-21403"}],
   },
 };

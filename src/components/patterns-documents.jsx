@@ -451,7 +451,7 @@ function DocumentsFeedback({ controller: c, top }) {
     )}
   </>;
 }
-// Timing and announcement as every snackbar (rules 7.12, 9.19): with Undo at least 10 s, then until the next command; without 6 s.
+// Timing and announcement as every snackbar (rules 14.12, 9.19): with Undo at least 10 s, then until the next command; without 6 s.
 function DocSnackbar({ item, onDone, duration }) {
   const hold = IFS.useSnackbarTiming({ action: !!item.undo, duration, onClose: onDone });
   React.useEffect(() => { if (typeof item.title === 'string') IFS.announce(item.title); }, []);

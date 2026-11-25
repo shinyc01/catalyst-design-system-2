@@ -43,7 +43,7 @@ section.rv-sec > h3{margin:0;font:var(--font-label-l-medium);color:var(--color-t
 <script>
 const h = React.createElement, I = IFS, F = IFS.format;
 const money = v => F.money(v);
-const moneyFull = v => F.money(v, { compact: false }); // tooltips show full values (rule 11.5)
+const moneyFull = v => F.money(v, { compact: false }); // tooltips show full values (rule 10.6)
 const pct = v => `${v}%`;
 const Q = ['Q1 FY26', 'Q2 FY26', 'Q3 FY26', 'Q4 FY26', 'Q1 FY27', 'Q2 FY27'];
 const YEARS = ['FY24', 'FY25', 'FY26', 'FY27', 'FY28', 'FY29', 'FY30'];

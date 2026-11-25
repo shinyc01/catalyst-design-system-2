@@ -9,7 +9,7 @@ export default {
   component: IFS["CanvasHeader"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** canvas-header (1440:5321), canvas-container-atom (1440:5305)\n\n\nUse: Column header strip across a framework canvas (Enterprise goals · Value framework · …), placed under the page header on map views.\n\n\nUse: One column label (240×26, e.g. \"Enterprise Goals\") inside `canvas-header`. Not the mini-map (not in the DS, rule 7.20)." } },
+    docs: { description: { component: "**Figma:** canvas-header (1440:5321), canvas-container-atom (1440:5305)\n\n\nUse: Column header strip across a framework canvas (Enterprise goals · Value framework · …), placed under the page header on map views.\n\n\nUse: One column label (240×26, e.g. \"Enterprise Goals\") inside `canvas-header`. Not the mini-map (not in the DS, rule 14.16)." } },
     design: [{"name":"canvas-header","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5321"},{"name":"canvas-container-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5305"}],
   },
 };

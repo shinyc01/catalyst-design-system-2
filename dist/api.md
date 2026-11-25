@@ -136,7 +136,7 @@ Props: items = TimelineItem props[] (each may carry `key`), or children = <Timel
 **In handovers:** placed 77× (Value) · usual: state=Success (81%)
 Figma: approval-chain-timeline (1440:6174) — legacy; rebuilt as a configuration of the timeline base (activity-organism 3713:13396).
 Props: steps = [{ key, state, name, position, avatar, date, comment, actions, role, roles, brief }], defaultSteps,
-onChange(steps) — demo only: in product screens the timeline is display-only history (rule 7.9); the chain people act on is ApprovalChainTable.
+onChange(steps) — demo only: in product screens the timeline is display-only history (rule 14.9); the chain people act on is ApprovalChainTable.
 onApprove(step, index) / onReject(step, index) also fire.
 `function ApprovalChain({ steps, defaultSteps = [], onChange, onApprove, onReject, className, ...rest })`
 
@@ -509,7 +509,7 @@ Props: state default|hover|out-of-focus|background|loading, color = categorical 
 with step still work), children = the value label (show-value; absent = hidden). Fills its parent. Hover keeps the full colour;
 out-of-focus is darkened (never transparent, D5).
 The value inside the bar takes --color-text or --color-text-inverse, whichever contrasts more with the bar's colour (G2 #18, Nov 25; as
-the slice labels, rule 11.10): white on the dark slots, black on the light ones.
+the slice labels, rule 10.11): white on the dark slots, black on the light ones.
 `function DataVizBar({ state = 'default', color = 1, step = 4, children, className, style, ...rest })`
 
 ### DataVizGroupedBar
@@ -756,7 +756,7 @@ labels = [reject, review, approve] captions. Type (Reject|Review|Approve) follow
 ### 
 **Tier:** Component
 Figma: Data Visualisation page (3487:19894) — data-viz Base atoms + the generic "core chart types".
-Rules (2.0.6, data viz round D1–D9, Nov 24; guide/rules.md 7.18): charts are built from the Base atoms; bars are zero-based; one measure
+Rules (2.0.6, data viz round D1–D9, Nov 24; guide/rules.md 10.1): charts are built from the Base atoms; bars are zero-based; one measure
 = one colour (categorical slot 1); series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other");
 every chart backs its picture with exact values (hover/focus tooltip + the Chart / Table switch + a screen-reader table).
 `function dvColor(color, i = 0, step = DV_STEP)`
@@ -838,7 +838,7 @@ Figma: content-card-organism (3643:32067)
 Props: size m|s, title, description (show-description), avatar = Avatar props (show-avatar, L 40),
 control = node (show-checkbox / show-radio-button / show-switch → pass IFS.Checkbox etc.), iconRight = icon name (Figma arrow-right),
 iconLeft = icon name before the title (show-icon-left; Figma default arrow-caret-right-filled),
-meta = short read-only info at the end of the title row (a count, a date, time left, a value; Body/M secondary, truncates first; rule 7.21),
+meta = short read-only info at the end of the title row (a count, a date, time left, a value; Body/M secondary, truncates first; rule 14.17),
 iconButton = { icon, label, onClick } (show-icon-button), top / bottom = slot nodes (with no title/description/avatar/control/icons
 the title block is skipped, so a slots-only card holds just its slots),
 tertiaryAction / primaryAction = Button props incl. children (show-buttons, show-tertiary-button, show-primary-button),
@@ -1247,7 +1247,7 @@ user = { initials, name } or avatar (node), actions (node: replaces the default 
 **In handovers:** placed 1,023× (Build, Value, Plan, Command) · usual: status progress bar 67%
 Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, a `SegmentedControl size="s"` of icons; a divider precedes it),
+onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 12.1), status (node, e.g. an indicator), views (node, a `SegmentedControl size="s"` of icons; a divider precedes it),
 center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 Narrow widths (Nov 19, measured on the header itself):
@@ -1285,9 +1285,9 @@ AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map 
 Bar, sidebar, header and panel stay put; only content scrolls.
 Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
 e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4).
-Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
+Panel mode (decided Nov 19, guide/rules.md 3.18): set by the panel's JOB, not the screen.
   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
-        whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 4.6).
+        whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 3.18).
   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
         is context (evidence chain, activity). Outside click and Esc call onPanelClose.
   panelMode beats the panel component's own default (Component.panelMode); below md (1024) push falls back to over:
@@ -1295,8 +1295,8 @@ Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the
 Side nav below md: starts as a rail and expands over the content; outside click and Esc collapse it again.
 The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a
 panel with a controlled `expanded`, is left alone.
-Content (rule 4.3): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
-pages (rule 4.10) fill the content area instead.
+Content (rule 3.15): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
+pages (rule 3.21) fill the content area instead.
 `function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', className, style, ...rest })`
 
 ## patterns-activity
@@ -1357,7 +1357,7 @@ Props:
   approvals — ApprovalChain steps; undefined = record has no approval chain (no segmented control); [] = empty state.
   view / defaultView ('versions'|'approvals') / onViewChange, query / defaultQuery / onQueryChange (the smart search),
   open / defaultOpen / onOpenChange (✕, outside click, Esc), layout overlay (fixed, an over panel: no scrim, one --float-inset in,
-  floating level; rule 4.6) | contained (the same, absolute in the nearest positioned ancestor) | static (in flow — gallery, AppShell panel), title ("Activity"), recordLabel ("framework", for copy),
+  floating level; rule 3.18) | contained (the same, absolute in the nearest positioned ancestor) | static (in flow — gallery, AppShell panel), title ("Activity"), recordLabel ("framework", for copy),
   onOpenVersion(v), onCompare(v, baseline), onDuplicate(v), onRestore(v) (after the confirm modal), onRename(v, title, previous),
   defaultExpanded (version ids), defaultRename { id, value, error } (gallery states).
 Motion (M3): overlay and contained slide in from the end edge in 200 and back in 100; reduced motion fades (M4).
@@ -1554,7 +1554,7 @@ Props: controller, defaultOpen, open / onOpenChange.
 ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
 Pattern component: modal-organism "Add Collaborator": person (content card, avatar L 40) + access select,
 "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
-Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 7.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
+Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
   title (the screen's own text; example default "Add Collaborator" / "Edit Collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 `function InviteCollaboratorModal({ open, person, mode = 'invite', title, defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline })`
 
@@ -1778,7 +1778,7 @@ header: onNewChat/onHistory/onResize (→ full panel)/onMore/onClose, onDragStar
 ### ChatFullPanel
 **Tier:** Component
 **In handovers:** placed 136× (Value, Build, Plan, Explore) · usual: Type text 98% · size default 100% · input type voice 92% · type chat ge 52% / gen 30%
-Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). Full panel: floats a level above the page, one page margin in (rule 4.6).
+Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). Full panel: floats a level above the page, one page margin in (rule 3.18).
 Same props as ChatCompactPanel plus prompts (Figma show-chips: PromptButton L in the empty state) + onPrompt,
 historyOpen, onResizeStart (pointerdown on the left edge: drag to make the panel wider/narrower).
 `function ChatFullPanel(props) { return <ChatPanel size="full" {...props} />; }`
@@ -1895,7 +1895,7 @@ Props: size / defaultSize / onSizeChange ('closed'|'bar'|'compact'|'full'), mode
 messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data
 (default canned answers), prompts (empty-state chips in the full panel), renderPanel (wrap the full panel, e.g. with HistoryPanel),
 onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact (default: --cooper-compact-end / --cooper-compact-bottom),
-fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 6.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
+fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 13.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
 `function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--float-inset)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
 
@@ -2606,7 +2606,7 @@ zoom-slider-atom (3275:483), used in the Explore bottom sheet. value 0–100 (Fi
 **In handovers:** placed 2,128× (Value, Build, Plan, Command, Explore) · usual: In progress true 97%
 Figma: base-bottom-sheet-organism (4406:25590), value-bottom-sheet-organism (789:37502), explore-bottom-sheet (72:4676)
 The Cooper entry point at the bottom of the content area, 40px tall, full width. Place it in AppShell's `bottom` slot.
-Props (all types): type base|documents|explore (base = broad pages; documents = every page inside one entity, rule 7.22;
+Props (all types): type base|documents|explore (base = broad pages; documents = every page inside one entity, rule 14.18;
 'value' is the old name for documents and still works; explore = Explore tab),
 prompts (labels → PromptButton M; Figma shows two), onPrompt(label), showPrompts (default true), showCooper (show-cooper, default true),
 onCooper (FAB click), cooperIndicator (FAB Show indicator; Figma sheets turn it off).
@@ -2637,7 +2637,7 @@ open/onOpenChange to control. `inline` renders the bubble alone (gallery).
 **Tier:** Component
 **In handovers:** placed 6× (Explore, Value) · usual: Type success 83%
 Figma: alert-organism (1440:5440)
-Props: type error|warning (success = Figma variant only: screens never use a success Alert, rule 7.12), title, children = Body text, showIcon (Figma show-icon, default off),
+Props: type error|warning (success = Figma variant only: screens never use a success Alert, rule 14.12), title, children = Body text, showIcon (Figma show-icon, default off),
 action = button label (Primary S; absent = show-button off), onAction, onClose (shows the close
 icon-button; Figma show-close-icon), closable=false to hide it.
 `function Alert({ type: t = 'error', title, children, showIcon = false, action, onAction, onClose, closable = true, className, ...rest })`
@@ -2648,7 +2648,7 @@ icon-button; Figma show-close-icon), closable=false to hide it.
 Figma: snackbar-organism (3795:29459)
 Props: title, children = description (Content slot), secondaryAction / primaryAction = { label, onClick }
 (Secondary S + Primary S; add iconLeft, e.g. Undo → 'arrow-back-up'), onClose (close icon-button; showClose=false hides it).
-Use IFS.toast({...same props, duration}) to show one top-end (timing: rule 7.12). The Snackbar has no live role of its own (G5): the
+Use IFS.toast({...same props, duration}) to show one top-end (timing: rule 14.12). The Snackbar has no live role of its own (G5): the
 message reaches screen readers through IFS.announce (the always-present live regions, rule 9.19), so it is never read twice or missed.
 `function Snackbar({ title, children, secondaryAction, primaryAction, onClose, showClose = true, className, ...rest })`
 
@@ -2665,7 +2665,7 @@ Hook form: const show = useSnackbar(); show({ title: 'Saved' })
 
 ### useSnackbarTiming
 **Tier:** Component
-The one snackbar timing (rule 7.12), for IFS.toast and any pattern that shows its own Snackbar (Documents feedback):
+The one snackbar timing (rule 14.12), for IFS.toast and any pattern that shows its own Snackbar (Documents feedback):
 useSnackbarTiming({ action, duration, onClose }) → handlers to spread on the snackbar's wrapper (hover / focus hold it).
 `function useSnackbarTiming({ action, duration, onClose })`
 
@@ -2705,7 +2705,7 @@ Props: title, actions (node, header right, before the buttons), expanded / defau
 (Figma Expanded: 380px ↔ 48px rail holding only the ←| expand button), dot error|warning (status dot on the rail's button:
 red = errors / open questions, orange = warnings only), showEvidence (show-evidence-chain, circle Tertiary S icon-button),
 onEvidence, onClose (shows ✕ instead of the collapse toggle; the panel then never collapses), collapsible (default true: every panel can fold;
-false only when a screen is specifically asked to stay open: no toggle, always open; rule 4.6, Nov 20), full (fills the content area),
+false only when a screen is specifically asked to stay open: no toggle, always open; rule 3.18, Nov 20), full (fills the content area),
 children (Content slot). Lives in the page layout: no scrim, no focus trap.
 `function Panel({ title, actions, expanded, defaultExpanded = true, onExpandedChange, dot, showEvidence = true, onEvidence, onClose, collapsible = true, full, children, className, style })`
 

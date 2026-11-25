@@ -360,7 +360,7 @@ function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children,
 // header: onNewChat/onHistory/onResize (→ full panel)/onMore/onClose, onDragStart (drag the window by its title).
 function ChatCompactPanel(props) { return <ChatPanel size="compact" {...props} />; }
 
-// Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). Full panel: floats a level above the page, one page margin in (rule 4.6).
+// Figma: chat-full-panel-organism (1b6802cb1c70…) — "right-side-panel-chat" (Patterns 67:119975 / 67:120161). Full panel: floats a level above the page, one page margin in (rule 3.18).
 // Same props as ChatCompactPanel plus prompts (Figma show-chips: PromptButton L in the empty state) + onPrompt,
 // historyOpen, onResizeStart (pointerdown on the left edge: drag to make the panel wider/narrower).
 function ChatFullPanel(props) { return <ChatPanel size="full" {...props} />; }
@@ -728,7 +728,7 @@ const genericAnswer = q => ({
 // messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data
 // (default canned answers), prompts (empty-state chips in the full panel), renderPanel (wrap the full panel, e.g. with HistoryPanel),
 // onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact (default: --cooper-compact-end / --cooper-compact-bottom),
-// fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 6.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
+// fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 13.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 // apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
 function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange,
   answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'],
@@ -821,7 +821,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
   };
   const resizeFull = e => {
     const panel = e.currentTarget.closest('.ifs-chat-panel');
-    const min = cooperPx(panel, '--region-panel'), max = cooperPx(panel, '--layout-chat-width-max'); // 380 and 720 (rule 4.5), rem so they follow the text size
+    const min = cooperPx(panel, '--region-panel'), max = cooperPx(panel, '--layout-chat-width-max'); // 380 and 720 (rule 3.17), rem so they follow the text size
     const start = e.clientX, w0 = width ?? (panel?.getBoundingClientRect().width || min);
     const move = ev => setWidth(Math.min(max, Math.max(min, w0 + (start - ev.clientX))));
     const up = () => { window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };

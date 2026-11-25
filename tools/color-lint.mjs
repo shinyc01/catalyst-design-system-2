@@ -5,7 +5,7 @@
 // Fails (exit 1) on: a primitive (--palette-*), an old element colour (--element-*) or a deprecated alias (foundations/deprecated.css)
 // used in src/components, and a colour role in tokens.css that holds a raw value instead of var() (data viz excepted until D1–D9).
 // Reports (known, C3 blocker P1/P2, not failing yet): raw hex / rgb() / rgba() / hsl() colours in component files (CSS, and colour
-// strings anywhere in JSX), and every use of the 8 held names (rule 1.7: --element-* held, --white-alpha-50, --white-500, --border-blue).
+// strings anywhere in JSX), and every use of the 8 held names (rule 11.6: --element-* held, --white-alpha-50, --white-500, --border-blue).
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -37,5 +37,5 @@ for (const f of readdirSync(dir).filter(f => /\.(css|jsx?)$/.test(f))) {
 }
 const sum = Object.entries(out).map(([k, v]) => `${k} ${v.length}`).join(' · ');
 if (!process.argv.includes('--summary')) for (const [k, v] of Object.entries(out)) if (v.length) console.log(`\n${k}:\n  ` + v.join('\n  '));
-console.log(`\ncolor-lint: ${sum} (primitive, element, deprecated and role must be 0; raw is the known C3 list; held is rule 1.7)`);
+console.log(`\ncolor-lint: ${sum} (primitive, element, deprecated and role must be 0; raw is the known C3 list; held is rule 11.6)`);
 process.exit(out.primitive.length || out.element.length || out.deprecated.length || out.role.length ? 1 : 0);

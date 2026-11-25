@@ -9,7 +9,7 @@ export default {
   component: IFS["Indicator"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** indicator-molecule (1074:180251)\n\n\nUse: Dot + text status label (e.g. \"● Active\" next to a page title). Types: the status words (rule 7.16; hue words still work); `archive` = neutral dot + `--color-text-softer`." } },
+    docs: { description: { component: "**Figma:** indicator-molecule (1074:180251)\n\n\nUse: Dot + text status label (e.g. \"● Active\" next to a page title). Types: the status words (rule 1.1; hue words still work); `archive` = neutral dot + `--color-text-softer`." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1074-180251"},
   },
 };

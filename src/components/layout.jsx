@@ -2,7 +2,7 @@ import React from 'react';
 import { IFS } from './registry.js';
 
 // Layout primitives (Catalyst DS 2.0.3, Nov 19 2026). Not Figma components: Figma draws the same thing with auto layout.
-// Rules: guide/rules.md 1.5. Benchmarks: Atlassian Stack/Inline, Polaris BlockStack/InlineStack, Primer Stack, Carbon Stack.
+// Rules: guide/rules.md 3.12. Benchmarks: Atlassian Stack/Inline, Polaris BlockStack/InlineStack, Primer Stack, Carbon Stack.
 // They take spacing tokens only, so screens never write their own `display:flex; gap` or a raw px gap.
 
 // gap: a role (density-aware) or a step of the --space-* scale. Nothing else.

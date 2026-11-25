@@ -203,7 +203,7 @@
 .ifs-sankey-node__to{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;font-variant-numeric:var(--font-numeric)}
 .ifs-sankey-node__change{display:none;align-items:center;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */;font-variant-numeric:var(--font-numeric)}
 .ifs-sankey-node:hover,.ifs-sankey-node[data-state=hover],.ifs-sankey-node:focus-visible{--stub:var(--color-border-strong)}
-/* hover fill only: focus is the ring alone, no fill change (rule 1.6, S1/S2) */
+/* hover fill only: focus is the ring alone, no fill change (rule 11.5, S1/S2) */
 .ifs-sankey-node:hover .ifs-sankey-node__card,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__card{
   background:linear-gradient(var(--color-background-neutral),var(--color-background-neutral)),var(--color-surface-elevation-1)}
 .ifs-sankey-node:hover .ifs-sankey-node__change,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__change,.ifs-sankey-node:focus-visible .ifs-sankey-node__change{display:inline-flex}

@@ -161,7 +161,7 @@ function ApprovalCard({ state = 'awaiting', name, position, avatar, date, commen
 
 // Figma: approval-chain-timeline (1440:6174) — legacy; rebuilt as a configuration of the timeline base (activity-organism 3713:13396).
 // Props: steps = [{ key, state, name, position, avatar, date, comment, actions, role, roles, brief }], defaultSteps,
-// onChange(steps) — demo only: in product screens the timeline is display-only history (rule 7.9); the chain people act on is ApprovalChainTable.
+// onChange(steps) — demo only: in product screens the timeline is display-only history (rule 14.9); the chain people act on is ApprovalChainTable.
 // onApprove(step, index) / onReject(step, index) also fire.
 function ApprovalChain({ steps, defaultSteps = [], onChange, onApprove, onReject, className, ...rest }) {
   const [list, setList] = useActValue(steps, defaultSteps, onChange);

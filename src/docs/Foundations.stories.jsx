@@ -230,7 +230,7 @@ function LayoutPage() {
   const widths = names(/^--(region-|overlay-width-|layout-max|layout-content-min|layout-side-panel|bp-)/);
   const [w, wProbes] = useMeasure(widths);
   return (
-    <Page title="Layout" intro="Breakpoints and the page grid by screen width (rule 4.1), then the fixed panel and overlay widths.">
+    <Page title="Layout" intro="Breakpoints and the page grid by screen width (rule 3.13), then the fixed panel and overlay widths.">
       {wProbes}
       <Group title="Breakpoints and grid">
         <Table head={['From width', 'Columns', 'Page margin', 'Gutter (page gap)']} rows={steps.map((s, i) => [

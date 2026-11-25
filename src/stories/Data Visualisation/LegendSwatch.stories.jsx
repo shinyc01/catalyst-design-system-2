@@ -9,7 +9,7 @@ export default {
   component: IFS["LegendSwatch"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** legend-swatch-atom (4440:32628) + info-hint-item (12:121968)\n\n\nUse: One legend entry (`LegendSwatch`; `Legend` for a whole legend). Rules 7.18, 11.4.\n\nNotes: `shape` (2.0.6) matches the mark: square (bars, areas, slices, cells, default) · line · dashed (lines) · dot (scatter). `color` = a categorical slot (1–12), `'other'`, `'neutral'` or a data-viz token. Hover only; a hovered entry dims the other series." } },
+    docs: { description: { component: "**Figma:** legend-swatch-atom (4440:32628) + info-hint-item (12:121968)\n\n\nUse: One legend entry (`LegendSwatch`; `Legend` for a whole legend). Rules 10.1, 10.5.\n\nNotes: `shape` (2.0.6) matches the mark: square (bars, areas, slices, cells, default) · line · dashed (lines) · dot (scatter). `color` = a categorical slot (1–12), `'other'`, `'neutral'` or a data-viz token. Hover only; a hovered entry dims the other series." } },
     design: [{"name":"legend-swatch-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4440-32628"},{"name":"info-hint-item","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=12-121968"}],
   },
 };

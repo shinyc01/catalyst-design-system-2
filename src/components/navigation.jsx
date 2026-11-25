@@ -353,7 +353,7 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 
 // Figma: page-header (1588:1971) — Level-3 header at the top of the content area (the instance the Map overview screen uses;
 // page-header-pattern / header-pattern are near-duplicates). Props: title, id (Figma ID), onBack (Figma "Show button back"),
-// onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 5.1), status (node, e.g. an indicator), views (node, a `SegmentedControl size="s"` of icons; a divider precedes it),
+// onTitleMenu (the title menu ▾ after the title and ID: opens the entity's ActivityPanel; required on an entity header, rule 12.1), status (node, e.g. an indicator), views (node, a `SegmentedControl size="s"` of icons; a divider precedes it),
 // center (node, centred between left and right: e.g. the Stepper), actions (node, right side: e.g. Cooper chip, Share, primary button).
 // The blur sits on a ::before layer, so fixed popovers/modals opened from header actions aren't trapped by it.
 // Narrow widths (Nov 19, measured on the header itself):
@@ -475,8 +475,8 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
     const t = ref.current && ref.current.querySelector('.ifs-page-header__title'); if (!t) return;
     t.style.minWidth = ''; t.style.minWidth = Math.min(headerTitleMin(t), t.scrollWidth) + 'px';
   });
-  // Rule 5.1: an entity header (it has an ID) always has the ⌄ that opens its Activity panel
-  React.useEffect(() => { if (id && !onTitleMenu) pageHeaderWarnOnce(String(title), `IFS PageHeader "${title}" has an ID but no title menu (onTitleMenu). An entity header needs the ⌄ that opens its Activity panel (rule 5.1).`); }, [id, !onTitleMenu, title]);
+  // Rule 12.1: an entity header (it has an ID) always has the ⌄ that opens its Activity panel
+  React.useEffect(() => { if (id && !onTitleMenu) pageHeaderWarnOnce(String(title), `IFS PageHeader "${title}" has an ID but no title menu (onTitleMenu). An entity header needs the ⌄ that opens its Activity panel (rule 12.1).`); }, [id, !onTitleMenu, title]);
   // Two rows: the back button keeps its own column, so row 2 starts where the title starts; the ID and the status move together.
   if (narrow) return (
     <div ref={ref} data-size={size} className={IFS.cx('ifs-page-header', 'ifs-page-header--rows', className)} {...rest}>
@@ -557,9 +557,9 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // Bar, sidebar, header and panel stay put; only content scrolls.
 // Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
 // e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4).
-// Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
+// Panel mode (decided Nov 19, guide/rules.md 3.18): set by the panel's JOB, not the screen.
 //   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
-//         whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 4.6).
+//         whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 3.18).
 //   over  the panel sits over the right of the content, no scrim, the page stays usable: the panel is the focus and the page
 //         is context (evidence chain, activity). Outside click and Esc call onPanelClose.
 //   panelMode beats the panel component's own default (Component.panelMode); below md (1024) push falls back to over:
@@ -567,8 +567,8 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // Side nav below md: starts as a rail and expands over the content; outside click and Esc collapse it again.
 // The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav with a controlled `collapsed`, or a
 // panel with a controlled `expanded`, is left alone.
-// Content (rule 4.3): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
-// pages (rule 4.10) fill the content area instead.
+// Content (rule 3.15): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
+// pages (rule 3.21) fill the content area instead.
 const SHELL_SIZES = [[1920, 'xl'], [1440, 'lg'], [1024, 'md'], [600, 'sm'], [0, 'xs']];
 const shellSizeOf = w => SHELL_SIZES.find(([min]) => w >= min * rootPx() / 16)[1];
 // Outside pointer-down or Esc while `active` → onDismiss (ignores clicks inside `ref`).

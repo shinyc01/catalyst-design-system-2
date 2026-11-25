@@ -26,7 +26,7 @@ Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IF
 <script type="text/babel" data-presets="react">/* your screen: IFS.Button, IFS.DataTable … */</script>
 ```
 
-**Density.** Three levels, as a user setting: Spacious, Comfortable (default), Compact (rule 3.13 in `guide/rules.md`). Density changes type, component heights, the room inside containers and fixed table column widths; never the page frame, icons, radius, borders, elevation, colour or motion.
+**Density.** Three levels, as a user setting: Spacious, Comfortable (default), Compact (rule 3.11 in `guide/rules.md`). Density changes type, component heights, the room inside containers and fixed table column widths; never the page frame, icons, radius, borders, elevation, colour or motion.
 
 | | Spacious | Comfortable | Compact |
 |---|---|---|---|
@@ -36,19 +36,19 @@ Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IF
 | Table row (`--size-table-row`) | 64 | 52 | 40 |
 | Fixed table columns (`--density-scale`) | 1.2 | 1.05 | 0.95 |
 
-Icons are drawn at 12 / 16 / 24 in every density (rule 3.11).
+Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
 
 **Fonts.** Inter and JetBrains Mono ship with the kit (`fonts/`, copied to `dist/fonts/`; rule 2.1): no third-party request, so a strict Content Security Policy needs only `font-src 'self'` (plus `data:` for single-file prototypes, which embed them). If they fail to load, a metric-matched Arial / Courier New fallback keeps the layout steady.
 
 **User settings the kit reads** (the product builds the settings screen): density (`IFS.setDensity`), lite glass (`IFS.setGlass('lite')`, blur 10 for remote desktops), single-key shortcuts on / off (`IFS.setShortcuts('off')`), and the formatting options in `IFS.format.configure`. Showing chart descriptions on the card is a decided setting with its placement still open.
 
-**Token names.** Every token starts with its type word and matches its Figma path (`color/text/soft` → `--color-text-soft`; rule 1.7). The old names (`--text-primary`, `--control-h-m` …) still work as aliases until 3.0; `dist/tokens.txt` lists the new names, then the deprecated ones; `dist/tokens.json` is DTCG 2025.10 with `$deprecated`; the full old → new list is `tools/figma/rename-map.tsv`.
+**Token names.** Every token starts with its type word and matches its Figma path (`color/text/soft` → `--color-text-soft`; rule 11.6). The old names (`--text-primary`, `--control-h-m` …) still work as aliases until 3.0; `dist/tokens.txt` lists the new names, then the deprecated ones; `dist/tokens.json` is DTCG 2025.10 with `$deprecated`; the full old → new list is `tools/figma/rename-map.tsv`.
 
 ## Files
 
 | File | What it holds |
 |---|---|
-| `guide/rules.md` | The rulebook: tokens and code, type, spacing, layout, page headers, map slots, component use, content, accessibility, open questions |
+| `guide/rules.md` | The rulebook in the 11 foundation categories (colour, typography, layout and space, shape and depth, motion, iconography, interaction and states, content, accessibility, data visualisation, tokens and system), then page headers, map slots, component use and open questions; an old → new number table at the end (renumbered Nov 25) |
 | `guide/components.md` | The catalogue: which component for what, and the patterns |
 | `guide/release.md` | Releases and versioning: SemVer from 2.1.0, deprecation, changelog headings, upgrades |
 | `guide/figma.json` | Figma keys, node ids and variant axes per component; pattern sources; Figma review items (Storybook warnings) |
@@ -103,18 +103,18 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 3.11).
 
 - **2.0.6** (Nov 25): the remaining foundations. Changelog headings per `guide/release.md` from here on.
   - **Added**
-    - Data viz foundation (rules 7.18 and section 11): the chart card, heights on the dashboard row unit `--size-data-viz-row` (116 / 100 / 84), axes, legends, hover and tooltip, the v2g categorical palette, sequential and diverging ramps, stacks and bars, states, one chart text scale (`--font-label-s-medium`), chart-point targets (G8).
-    - Chart header: H4 title with an optional one-line `subtitle`; `description` for screen readers; the drag handle, drag from the header and keyboard move (Space, arrows, Esc; "Move" in ⋯); Edit with Cooper folds into ⋯ below 416 px. Rule 11.11: the same entity keeps the same colour across a screen's charts.
+    - Data viz foundation (rule 10.1 and section 10): the chart card, heights on the dashboard row unit `--size-data-viz-row` (116 / 100 / 84), axes, legends, hover and tooltip, the v2g categorical palette, sequential and diverging ramps, stacks and bars, states, one chart text scale (`--font-label-s-medium`), chart-point targets (G8).
+    - Chart header: H4 title with an optional one-line `subtitle`; `description` for screen readers; the drag handle, drag from the header and keyboard move (Space, arrows, Esc; "Move" in ⋯); Edit with Cooper folds into ⋯ below 416 px. Rule 10.12: the same entity keeps the same colour across a screen's charts.
     - Forced colours (G1, rule 9.13): strokes become outlines, selection is Highlight, glass turns solid, data colours keep an edge; charts follow Power BI's high-contrast model.
     - Contrast targets (G2, rule 9.14); primitives `--palette-danger-350`, `--palette-danger-550`, `--palette-core-450`, `--palette-core-165`, `--palette-collaboration-user-1…15`; roles `--color-border-input-strong` (+ `-hover`), `--color-icon-map-pin-neutral|danger`, `--color-cooper-background-stronger`.
-    - Glass (G3, rule 4.8 materials table): `--color-surface-map-glass`, `data-base-map` / `CanvasBackground baseMap` / `IFS.setBaseMap`, solid twins for reduced transparency, lite glass (`data-glass="lite"`, `IFS.setGlass`, `--blur-glass`).
+    - Glass (G3, rule 4.2 materials table): `--color-surface-map-glass`, `data-base-map` / `CanvasBackground baseMap` / `IFS.setBaseMap`, solid twins for reduced transparency, lite glass (`data-glass="lite"`, `IFS.setGlass`, `--blur-glass`).
     - Keyboard and focus (G4, rules 9.15–9.18): skip link in `AppShell`, focus on open goes to the first field or the title, return focus to the trigger's nearest container, `inert` behind modals and scrim drawers, switchable single-key shortcuts (`IFS.setShortcuts`, `IFS.shortcutAllowed`).
     - Status messages (G5, rule 9.19): `IFS.announce` with two live regions in the page from load; `IFS.useSnackbarTiming`; `toast.command()`.
     - Self-hosted fonts (G6, rule 2.1) with metric-matched fallbacks. Release policy (G7, `guide/release.md`).
   - **Changed**
     - Chart card title H4 in `--color-text` (was Label/M/medium, text tertiary); default chart card = 3 dashboard rows + 2 page gaps (380 / 332 / 284 at a 16 gap; replaces item 6's S-inline unit).
     - Dashboards use the M stat card with the description inline (rule 2.6); its title → value gap is `--space-inset`; stat card descriptions `--color-text-soft`.
-    - Snackbar timing (rule 7.12): with an action at least 10 s, then until the next command; without one 6 s; one action snackbar at a time. The Snackbar has no live role of its own.
+    - Snackbar timing (rule 14.12): with an action at least 10 s, then until the next command; without one 6 s; one action snackbar at a time. The Snackbar has no live role of its own.
     - Fields (C3): a 30% bottom line instead of the outline (hover 40); error = danger outline only. Switch off 40% edge (hover 60); slider track 40% when its value is hidden; segmented selected item and date-range days get a 40% outline.
     - `--color-text-danger` → red 350; live text that used the disabled colour → text-softer; overlay placeholders, menu descriptions on hover and attachment meta → text-soft; light data-viz bars take black labels; collaboration colours (direction 5 at 5%, user 13 olive) with white initials on every user; map pins option B; comment pins white meta, Cooper pin cooper 600; NodeCard counter = the tag chip; solid NodeCard caption stays white 85 when selected.
     - Every glass blur 80 reads `--blur-glass`.

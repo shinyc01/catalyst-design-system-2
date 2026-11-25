@@ -225,7 +225,7 @@ function useCollaboration({ people: init = [], suggested: sugInit = [], director
 // ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
 // Pattern component: modal-organism "Add Collaborator": person (content card, avatar L 40) + access select,
 // "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
-// Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 7.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
+// Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
 //   title (the screen's own text; example default "Add Collaborator" / "Edit Collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 function InviteCollaboratorModal({ open, person, mode = 'invite', title, defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline }) {
   const [access, setAccess] = React.useState(defaultAccess);

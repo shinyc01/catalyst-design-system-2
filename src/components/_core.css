@@ -12,9 +12,9 @@
    (e.g. .ifs-table__group-caret, the approval panel toggle). */
 [dir="rtl"] .ifs-icon--mirror{scale:-1 1}
 
-/* The focus ring (S1, rule 1.6): --focus-ring (2px focus-inner gap + 2px focus-outer, outside) or --focus-ring-inset. Never transitions. */
+/* The focus ring (S1, rule 11.5): --focus-ring (2px focus-inner gap + 2px focus-outer, outside) or --focus-ring-inset. Never transitions. */
 .ifs-focus-ring{box-shadow:var(--focus-ring)}
-/* Forced colours (G1, Nov 25; rule 9.13). Windows High Contrast drops box-shadow and replaces colours, so: strokes (box-shadow, rule 1.6)
+/* Forced colours (G1, Nov 25; rule 9.13). Windows High Contrast drops box-shadow and replaces colours, so: strokes (box-shadow, rule 11.5)
    become a 1 px CanvasText outline inside the box (no layout change); selection is Highlight / HighlightText (tabs get an underline), never a
    fill change alone; knobs and dots are CanvasText; disabled is GrayText; glass turns solid Canvas with no blur; status dots and map pins
    keep their colour with a CanvasText edge (forced-color-adjust: none); focus stays a Highlight outline and wins over the stroke outline

@@ -9,7 +9,7 @@ export default {
   component: IFS["TextField"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** text-field-organism (210:77559)\n\n\nUse: Single-line input. L full-page forms, M drawers, modals, embedded surfaces (rule 7.3). Cooper / Cooper Generating states show Cooper-filled values.\n\nBoundary (G2 C3, Nov 25; every field family: Select, Combobox, MultiSelect, DatePicker, Search, RangeField, RoleSelect): rounded fill with a straight 1 px `--color-border-input-strong` (30%) line along the bottom, hover `-strong-hover` (40%); error = the danger outline alone; focus = the ring (rule 9.14)." } },
+    docs: { description: { component: "**Figma:** text-field-organism (210:77559)\n\n\nUse: Single-line input. L full-page forms, M drawers, modals, embedded surfaces (rule 14.3). Cooper / Cooper Generating states show Cooper-filled values.\n\nBoundary (G2 C3, Nov 25; every field family: Select, Combobox, MultiSelect, DatePicker, Search, RangeField, RoleSelect): rounded fill with a straight 1 px `--color-border-input-strong` (30%) line along the bottom, hover `-strong-hover` (40%); error = the danger outline alone; focus = the ring (rule 9.14)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=210-77559"},
   },
 };

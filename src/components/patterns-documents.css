@@ -74,7 +74,7 @@ button.ifs-pin-defect{cursor:pointer}
   min-width:0;min-height:0;height:var(--size-32) /* holds a label, so it scales */;padding:0 var(--space-200);border-radius:var(--radius-control);background:var(--bar-fill);
   color:var(--bar-ink,var(--color-text));font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;
   overflow:hidden;white-space:nowrap}
-/* 2.0.6 (D8): the colour index is the categorical slot (1–12, rule 7.18); the old dark solid set data-N is deprecated. In-bar labels pass 4.5:1:
+/* 2.0.6 (D8): the colour index is the categorical slot (1–12, rule 10.1); the old dark solid set data-N is deprecated. In-bar labels pass 4.5:1:
    white on the dark slots (odd, 4.6–5.1:1), black on the light slots (even, 12.8–14.7:1). */
 .ifs-bar-item--c1{--bar-fill:var(--color-data-viz-categorical-1)}
 .ifs-bar-item--c2{--bar-fill:var(--color-data-viz-categorical-2);--bar-ink:var(--color-text-inverse)}

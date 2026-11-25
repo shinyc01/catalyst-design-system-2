@@ -50,9 +50,9 @@
 .ifs-compare-view{display:flex;flex-direction:column;gap:var(--space-stack);min-width:0}
 .ifs-compare-view__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-stack)}
 
-/* ================= ActivityPanel (panel-organism, an over panel: rule 4.6) ================= */
+/* ================= ActivityPanel (panel-organism, an over panel: rule 3.18) ================= */
 .ifs-activity-panel{display:flex;height:100%;width:var(--region-panel);flex:none}
-/* Over panel (rule 4.6, C1, C2, C4): no scrim, the page stays usable; one --float-inset in, on the floating level, so menus and popovers draw above it */
+/* Over panel (rule 3.18, C1, C2, C4): no scrim, the page stays usable; one --float-inset in, on the floating level, so menus and popovers draw above it */
 .ifs-activity-panel--overlay,.ifs-activity-panel--contained{inset-inline-end:var(--float-inset);height:auto;max-width:calc(100% - 2 * var(--float-inset));
   z-index:var(--z-index-floating);box-shadow:var(--elevation-floating)}
 .ifs-activity-panel--overlay{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));bottom:calc(var(--float-bottom, 0px) + var(--float-inset))} /* below the header, above the bottom sheet (AppShell sets --float-top / --float-bottom) */

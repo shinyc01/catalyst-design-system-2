@@ -411,7 +411,7 @@
    "One dev note says errors use a snackbar; the frames and the other notes use alert-organism. The kit uses the alert."
   ],
   "Pattern: Library table (standard)": [
-   "Horizon and Modified filters mix instant chips with a period that applies on Apply. That conflicts with rule 7.5 (instant and deferred never mix).",
+   "Horizon and Modified filters mix instant chips with a period that applies on Apply. That conflicts with rule 14.5 (instant and deferred never mix).",
    "The Horizon notes say custom periods use fiscal years; the frames show a date picker. The kit uses the date picker. **Notes-win says fiscal years: needs a decision.**"
   ],
   "CollaborationBadge": [

@@ -603,7 +603,7 @@ function TimelineChart({ groups = [], phases = [], title = 'Phase', onAddPhase, 
 }
 
 /* ------------------------------------------------------------------------------------------ */
-// Map slots (rules 6.4–6.5): the part of the slot layout CSS can't do. The kit runs it for every `.ifs-slots` on the page
+// Map slots (rules 13.4–13.5): the part of the slot layout CSS can't do. The kit runs it for every `.ifs-slots` on the page
 // (watchMapSlots starts on load), so a screen only adds the slot classes; nothing to call.
 // Top bar: centred on the whole map; an open panel only nudges it aside a page gap; when it can't fit between the panels it
 // lines up with the start panel and the start panel moves down (sets .has-top-x + --slot-top-x, or .has-top-start + --slot-top-h).

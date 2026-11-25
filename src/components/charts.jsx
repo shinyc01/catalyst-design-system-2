@@ -1,13 +1,13 @@
 import React from 'react';
 import { IFS } from './registry.js';
 // Figma: Data Visualisation page (3487:19894) — data-viz Base atoms + the generic "core chart types".
-// Rules (2.0.6, data viz round D1–D9, Nov 24; guide/rules.md 7.18): charts are built from the Base atoms; bars are zero-based; one measure
+// Rules (2.0.6, data viz round D1–D9, Nov 24; guide/rules.md 10.1): charts are built from the Base atoms; bars are zero-based; one measure
 // = one colour (categorical slot 1); series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other");
 // every chart backs its picture with exact values (hover/focus tooltip + the Chart / Table switch + a screen-reader table).
 
 /* ------------------------------------------------------------------ helpers */
 
-// Chart geometry the SVG needs as numbers (rule 1.3: chart geometry stays px).
+// Chart geometry the SVG needs as numbers (rule 11.3: chart geometry stays px).
 const R_MARK = 2;        // = --radius-mark: the end of a bar away from the baseline (D8)
 const GAP_MARK = 1;      // = --border-width-default: the one card-colour gap between the parts of every chart (stack segments, grouped bars, heatmap cells, funnel stages, gauge segments; slices use a 1 px stroke) (D8; 1 px, review Nov 25)
 const TIP_GAP = 8;       // tooltip beside the mark, the same 8 px on either side (D5)
@@ -162,7 +162,7 @@ function arcPath(cx, cy, r0, r1, a0, a1) { // angles in radians, 0 = 12 o'clock,
 // with step still work), children = the value label (show-value; absent = hidden). Fills its parent. Hover keeps the full colour;
 // out-of-focus is darkened (never transparent, D5).
 // The value inside the bar takes --color-text or --color-text-inverse, whichever contrasts more with the bar's colour (G2 #18, Nov 25; as
-// the slice labels, rule 11.10): white on the dark slots, black on the light ones.
+// the slice labels, rule 10.11): white on the dark slots, black on the light ones.
 function DataVizBar({ state = 'default', color = 1, step = 4, children, className, style, ...rest }) {
   const ref = React.useRef(null);
   const fill = dvColor(color, 0, step);
@@ -477,7 +477,7 @@ function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue =
 }
 
 // Text on a mark (slice labels): --color-text or --color-text-inverse, whichever has the higher contrast on that fill (both resolved from the
-// tokens at run time, so a palette swap stays right). Slots 1–12 + Other all reach 4.5:1 with their pick (rule 11.10).
+// tokens at run time, so a palette swap stays right). Slots 1–12 + Other all reach 4.5:1 with their pick (rule 10.11).
 const lumOf = c => {
   const m = String(c).trim().match(/^#([0-9a-f]{6})$/i) || String(c).match(/rgba?\(([^)]+)\)/);
   if (!m) return null;
@@ -656,7 +656,7 @@ const STATE_COPY = {
 // view / defaultView chart|table / onViewChange, defaultActive (index — or [row, col] for heatmap — whose tooltip starts open), onCooper,
 // onEditWithCooper, actions (a screen's real extra actions, in the hover row), menuItems (its ⋯ items, after Move), movable / onMove /
 // onMoveEnd / onDragEnd (item 9; see DataVizCard), bare (no frame or header: for a chart inside a widget frame),
-// valueTicks (2–8 value-axis intervals, default 4 = 5 labels, D3), tooltipFormat (the tooltip's full value, rule 11.5), emptyTitle / emptyText, noResultsTitle / noResultsText /
+// valueTicks (2–8 value-axis intervals, default 4 = 5 labels, D3), tooltipFormat (the tooltip's full value, rule 10.6), emptyTitle / emptyText, noResultsTitle / noResultsText /
 // onClearFilters, errorTitle / errorText / onRetry, className, style.
 // States (D9): the card keeps its height in every state and the title stays; the switch, Evidence and the legend hide while there is no data.
 // Loading shows the skeleton after 300 ms; empty / no results / error show an EmptyState (section) inside the card.
@@ -837,7 +837,7 @@ const shellProps = ({ title, subtitle, description, state, size, view, defaultVi
     movable, onMove, onMoveEnd, onDragEnd, bare, height,
     emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry, className, style });
 
-// D5 / rule 11.5: the tooltip shows the full value (the axis may be compact). tooltipFormat sets it; without one, a chart on the default
+// D5 / rule 10.6: the tooltip shows the full value (the axis may be compact). tooltipFormat sets it; without one, a chart on the default
 // format shows the full number, and a chart with its own format uses that (pass tooltipFormat, e.g. v => IFS.format.money(v, { compact: false }),
 // when the axis format is compact).
 const fullFormat = v => IFS.format.number(v);
@@ -1098,7 +1098,7 @@ function LineChart(props) {
     for (let i = 1; i < sorted.length; i++) if (sorted[i] - sorted[i - 1] < lineH) return null;
     return { ticks, padR, ys };
   };
-  // every series up to 12 gets its own colour (keeping it to 8 is guidance, rule 11.6); the 13th and later draw grey as "Other"
+  // every series up to 12 gets its own colour (keeping it to 8 is guidance, rule 10.7); the 13th and later draw grey as "Other"
   const series = greyLines(all, SERIES_MAX_LABELLED);
   const lab = tryLabels(series);
   // the legend lists the lines in the order they END, top to bottom (highest last value first, like the end labels); colours stay with the series

@@ -9,7 +9,7 @@ export default {
   component: IFS["Alert"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** alert-organism (1440:5440)\n\n\nUse: Rule 7.12." } },
+    docs: { description: { component: "**Figma:** alert-organism (1440:5440)\n\n\nUse: Rule 14.12." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5440"},
   },
 };

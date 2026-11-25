@@ -13,7 +13,7 @@ export default IFS_GALLERY;
   const STATES = ['default', 'hover', 'cooper', 'loading', 'empty', 'no-results', 'error']; // D9 (2.0.6): every state keeps the card height
   const usd = v => IFS.format.money(v); // $860K, $19.4M, −$1.8M
   const usdAxis = v => IFS.format.money(v, { unit: 'M' }); // one unit per axis: $0, $0.5M, $1M, $1.5M
-  const usdFull = v => IFS.format.money(v, { compact: false }); // tooltips show the full value (rule 11.5)
+  const usdFull = v => IFS.format.money(v, { compact: false }); // tooltips show the full value (rule 10.6)
   // One gallery block per chart: every State (Default / Hover / Cooper / Loading / Empty / No results / Error), with the Chart / Table switch.
   const states = (Chart, props, hot = 0) => () => <Grid>{STATES.map(s => <Chart key={s} {...(props.format === usdAxis || props.format === usd ? { tooltipFormat: usdFull } : null)} {...props} state={s === 'default' ? undefined : s} defaultActive={s === 'hover' ? hot : undefined}
     onRetry={() => {}} onClearFilters={() => {}} />)}</Grid>;

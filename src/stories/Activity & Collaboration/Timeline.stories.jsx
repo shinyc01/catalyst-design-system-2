@@ -9,7 +9,7 @@ export default {
   component: IFS["Timeline"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** activity-organism (3713:13396) + marker-atom (3713:12836) + connector-atom (3713:12835)\n\n\nUse: The timeline base: build any activity/timeline entry type from slots (rule 7.8).\n\n\nLegacy cards (rule 7.8). Legacy sets with no kit component: question-card, portfolio-card, submodel-card, impact-usage-card, photo-item, photo-gallery, capex-card, create-card, duplicate-framework-card. Kit-built legacy cards follow.\n\n\nUse: Timeline marker (icon/avatar circle); building block of `activity-organism`.\n\n\nUse: Line between timeline markers; building block." } },
+    docs: { description: { component: "**Figma:** activity-organism (3713:13396) + marker-atom (3713:12836) + connector-atom (3713:12835)\n\n\nUse: The timeline base: build any activity/timeline entry type from slots (rule 14.8).\n\n\nLegacy cards (rule 14.8). Legacy sets with no kit component: question-card, portfolio-card, submodel-card, impact-usage-card, photo-item, photo-gallery, capex-card, create-card, duplicate-framework-card. Kit-built legacy cards follow.\n\n\nUse: Timeline marker (icon/avatar circle); building block of `activity-organism`.\n\n\nUse: Line between timeline markers; building block." } },
     design: [{"name":"activity-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3713-13396"},{"name":"marker-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3713-12836"},{"name":"connector-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3713-12835"}],
   },
 };
