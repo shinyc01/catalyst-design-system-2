@@ -589,7 +589,8 @@ Figma: data-viz-modal-organism (4440:32681) and the chart-info-modal tooltip use
 Props: title, subtitle (Category line above the title → organism layout, value right of the title),
 value (chart layout: second line), delta = { text, direction up|down, tone positive|negative }, items = [{ label, value, color, shape }]
 (shape square | line | dashed | dot: the same swatch as the legend, D4; no shape = dot; swatches show only when more than one item has a colour,
-so a single-series tooltip has none), showValue (Figma show-value),
+so a single-series tooltip has none; sub: true = a row under the one above, indented, no swatch, e.g. the series folded into "Other"),
+showValue (Figma show-value),
 variant chart (content-sized, 12–20rem, D5) | modal (256). children are appended under the items.
 `function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue = true, variant = 'modal', children, className, ...rest })`
 
@@ -642,8 +643,8 @@ Figma: chart-line (9863:11650) — change over time; actual solid vs planned das
 Props: data = [{ label, [series.key]: number, … }], series = [{ key, label, color?, dashed?, points? }] (first series shows its
 points), band = { low, high, mid?, label } (keys into data; drawn as a white 16% band + dashed mid line), referenceKey/referenceLabel
 (dashed white line), zeroBased (default false — lines need not start at 0), endLabels (default true: each line is named at its end, D4;
-when the names collide or don't fit, the legend sits below instead), format, tooltip, valueTicks. Up to 8 series (12 with end labels);
-the rest draw in the "Other" grey with one legend entry. Hover anywhere picks the nearest point; ← → move it with the keyboard.
+when the names collide or don't fit, a vertical legend sits on the end side of the plot instead), format, tooltip, valueTicks. Every
+series up to 12 has its own colour (keep it to 8 where you can: guidance); the 13th and later draw in the "Other" grey with one legend entry. Hover anywhere picks the nearest point; ← → move it with the keyboard.
 `function LineChart(props)`
 
 ### AreaChart
@@ -657,7 +658,7 @@ Props: as LineChart (zeroBased defaults to true; points hidden unless series.poi
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-pie (9866:12309) — parts of one whole with few slices (prefer DonutChart). Slices largest → smallest clockwise from 12;
-up to 8, then "Other". The legend is a list beside the chart with each slice's value (D4); share labels sit on the bigger slices.
+up to 7, then "Other"; colours follow the displayed order. The legend is a list beside the chart with each slice's value (D4); share labels sit on the bigger slices.
 Props: data = [{ label, value, color?, opacity?, delta?, details? }], sort (default true), valueLabel, format, tooltip. + shell props.
 `function PieChart(props) { return <RoundChart {...props} donut={false} />; }`
 
@@ -740,7 +741,7 @@ labels = [reject, review, approve] captions. Type (Reject|Review|Approve) follow
 **Tier:** Component
 Figma: Data Visualisation page (3487:19894) — data-viz Base atoms + the generic "core chart types".
 Rules (2.0.6, data viz round D1–D9, Nov 24; guide/rules.md 7.18): charts are built from the Base atoms; bars are zero-based; one measure
-= one colour (categorical slot 1); series take the categorical slots in order (up to 8, 9–12 only with direct labels, then "Other");
+= one colour (categorical slot 1); series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other");
 every chart backs its picture with exact values (hover/focus tooltip + the Chart / Table switch + a screen-reader table).
 `function dvColor(color, i = 0, step = DV_STEP)`
 
