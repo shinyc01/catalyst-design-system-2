@@ -440,7 +440,7 @@
 --table-header-pad-bottom: var(--space-0) | spacious: var(--space-0) | compact: var(--space-0)
 --density-scale: 1.05 | spacious: 1.2 | compact: 0.95
 --size-data-viz-row: 5.25rem | spacious: 6rem | compact: 4.5rem
---size-data-viz-card: calc(3 * var(--size-data-viz-row) + 2 * var(--space-400)) | spacious: calc(3 * var(--size-data-viz-row) + 2 * var(--space-400)) | compact: calc(3 * var(--size-data-viz-row) + 2 * var(--space-400))
+--size-data-viz-card: calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap)) | spacious: calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap)) | compact: calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap))
 --size-data-viz-card-large: calc(2 * var(--size-data-viz-card) + var(--page-gap)) | spacious: calc(2 * var(--size-data-viz-card) + var(--page-gap)) | compact: calc(2 * var(--size-data-viz-card) + var(--page-gap))
 --bp-sm: 600px
 --bp-md: 1024px

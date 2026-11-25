@@ -571,7 +571,7 @@ slot = always-visible end node (Figma "Slot"; the chart card's Evidence button).
 Figma: data-viz-card-organism (4457:33030)
 Props: state default|hover|drag|cooper, title, header = extra DataVizHeader props, children = Content slot, legend (node, below content).
 variant="chart" is the card every core chart (chart-column … chart-funnel) is drawn in (2.0.6, D1 / D2): the container rule (inset on
-all four sides, stack gap between header, plot and legend) and a fixed height, size default (--size-data-viz-card, 320 / 284 / 248) |
+all four sides, stack gap between header, plot and legend) and a fixed height, size default (--size-data-viz-card, 3 stat-card rows + 2 page gaps: 320 / 284 / 248 at a 16 gap) |
 large (2 default cards + the page gap: heatmaps, many bars, long legends); the plot fills what is left. Header, at the end:
 [hover / focus: Edit with Cooper (onEditWithCooper; false hides it) + actions] · Chart / Table switch (icon-only SegmentedControl M, when
 onViewChange is set; `view` = 'chart' | 'table') · Evidence button (onCooper; always visible). A chart's own control (header.segments,
