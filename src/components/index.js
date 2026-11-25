@@ -1,4 +1,5 @@
 // Kit entry: styles, icons and every component family. Import from here, not from family files.
+import '../foundations/fonts.css'; // G6: self-hosted Inter + JetBrains Mono, first
 import '../foundations/palette.css';
 import '../tokens.css';
 import '../foundations/spacing.css';

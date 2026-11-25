@@ -30,15 +30,17 @@ async function build() {
     entryPoints: [join(root, 'src/iife.js')],
     outfile: join(dist, 'ifs-ds.js'),
     bundle: true, format: 'iife', target: 'es2020', minify: true,
-    loader: { '.jsx': 'jsx', '.js': 'jsx' }, jsx: 'transform',
+    loader: { '.jsx': 'jsx', '.js': 'jsx', '.woff2': 'file' }, jsx: 'transform', assetNames: 'fonts/[name]', // G6: fonts → dist/fonts/
     plugins: [reactGlobal], logLevel: 'error', metafile: true,
   });
   return Object.fromEntries(Object.entries(r.metafile.outputs).map(([k, v]) => [k.split('/').pop(), v.bytes]));
 }
 
+// G6: a single-file prototype carries the self-hosted fonts as data URIs, so it still shows Inter offline.
+const embedFonts = css => css.replace(/url\("\.\/fonts\/([a-z0-9-]+\.woff2)"\)/g, (m, f) => `url("data:font/woff2;base64,${readFileSync(join(dist, 'fonts', f)).toString('base64')}")`);
 function inline(html) {
   if (!html.includes('<!-- IFS-KIT -->')) throw new Error('Missing <!-- IFS-KIT --> marker');
-  const block = `<style>\n${read(join(dist, 'ifs-ds.css'))}\n</style>\n<script>\n${read(join(dist, 'ifs-ds.js'))}\n</script>`;
+  const block = `<style>\n${embedFonts(read(join(dist, 'ifs-ds.css')))}\n</style>\n<script>\n${read(join(dist, 'ifs-ds.js'))}\n</script>`;
   // Replaces the whole <!-- IFS-KIT --> … <!-- /IFS-KIT --> block (the template's live-kit links), or a bare marker.
   return html.replace(/<!-- IFS-KIT -->[\s\S]*?<!-- \/IFS-KIT -->|<!-- IFS-KIT -->/, () => block);
 }

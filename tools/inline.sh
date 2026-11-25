@@ -10,6 +10,12 @@ END='<!-- IFS-KIT -->'; grep -q '<!-- /IFS-KIT -->' "$IN" && END='<!-- \/IFS-KIT
 TMP="$(mktemp -d)"
 if [ -d "$BASE" ]; then cp "$BASE/ifs-ds.css" "$BASE/ifs-ds.js" "$TMP/"; else
   curl -fsSL "$BASE/ifs-ds.css" -o "$TMP/ifs-ds.css"; curl -fsSL "$BASE/ifs-ds.js" -o "$TMP/ifs-ds.js"; fi
+# G6: the kit's fonts are relative to dist/ (./fonts/…). A local build embeds them as data URIs (the file works offline); a remote kit
+# points them at the published dist/fonts/.
+if [ -d "$BASE" ]; then
+  for f in "$BASE"/fonts/*.woff2; do [ -f "$f" ] || continue; n="$(basename "$f")"; b64="$(base64 < "$f" | tr -d '\n')"
+    perl -0pi -e "s#url\(\"\./fonts/$n\"\)#url(\"data:font/woff2;base64,$b64\")#g" "$TMP/ifs-ds.css"; done
+else perl -0pi -e "s#url\(\"\./fonts/#url(\"$BASE/fonts/#g" "$TMP/ifs-ds.css"; fi
 {
   sed '/<!-- IFS-KIT -->/,$d' "$IN"
   printf '<style>\n'; cat "$TMP/ifs-ds.css"; printf '\n</style>\n<script>\n'; cat "$TMP/ifs-ds.js"; printf '\n</script>\n'
