@@ -149,6 +149,8 @@
 .ifs-dv-tooltip__swatch--dashed{height:2px;border-radius:0;background:repeating-linear-gradient(90deg,var(--sw) 0 4px,transparent 4px 6px)} /* px: chart dash */
 .ifs-dv-tooltip__swatch--dot{width:var(--size-8);height:var(--size-8);margin-inline:var(--space-50);border-radius:var(--radius-pill)}
 .ifs-dv-tooltip__name{flex:1;min-width:0;color:var(--color-text-soft)}
+.ifs-dv-tooltip__item--sub{padding-inline-start:calc(var(--size-12) + var(--space-200))} /* under the row above (the series folded into "Other"), aligned with its name */
+.ifs-dv-tooltip__item--sub .ifs-dv-tooltip__name{color:var(--color-text-softer)}
 .ifs-dv-tooltip__val{color:var(--color-text);white-space:nowrap}
 
 /* ================= core charts (chart-column 9862:12468 … chart-funnel 9867:1065) ================= */

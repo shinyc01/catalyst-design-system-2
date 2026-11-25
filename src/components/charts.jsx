@@ -2,7 +2,7 @@ import React from 'react';
 import { IFS } from './registry.js';
 // Figma: Data Visualisation page (3487:19894) — data-viz Base atoms + the generic "core chart types".
 // Rules (2.0.6, data viz round D1–D9, Nov 24; guide/rules.md 7.18): charts are built from the Base atoms; bars are zero-based; one measure
-// = one colour (categorical slot 1); series take the categorical slots in order (up to 8, 9–12 only with direct labels, then "Other");
+// = one colour (categorical slot 1); series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other");
 // every chart backs its picture with exact values (hover/focus tooltip + the Chart / Table switch + a screen-reader table).
 
 /* ------------------------------------------------------------------ helpers */
@@ -328,7 +328,8 @@ function DataVizCard({ variant = 'organism', state, title, header, legend, child
 // Props: title, subtitle (Category line above the title → organism layout, value right of the title),
 // value (chart layout: second line), delta = { text, direction up|down, tone positive|negative }, items = [{ label, value, color, shape }]
 // (shape square | line | dashed | dot: the same swatch as the legend, D4; no shape = dot; swatches show only when more than one item has a colour,
-// so a single-series tooltip has none), showValue (Figma show-value),
+// so a single-series tooltip has none; sub: true = a row under the one above, indented, no swatch, e.g. the series folded into "Other"),
+// showValue (Figma show-value),
 // variant chart (content-sized, 12–20rem, D5) | modal (256). children are appended under the items.
 function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue = true, variant = 'modal', children, className, ...rest }) {
   const deltaEl = delta && (
@@ -354,7 +355,7 @@ function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue =
       {items.length > 0 && (
         <div className="ifs-dv-tooltip__items">
           {items.map((it, i) => (
-            <div key={i} className="ifs-dv-tooltip__item">
+            <div key={i} className={IFS.cx('ifs-dv-tooltip__item', it.sub && 'ifs-dv-tooltip__item--sub')}>
               {swatches && it.color && <span className={IFS.cx(it.shape ? 'ifs-dv-tooltip__swatch' : 'ifs-dv-tooltip__dot', it.shape && `ifs-dv-tooltip__swatch--${it.shape}`)}
                 style={it.shape ? { '--sw': legendColor(it.color) } : { background: legendColor(it.color) }} />}
               <span className="ifs-dv-tooltip__name">{it.label}</span>
@@ -366,6 +367,28 @@ function DataVizTooltip({ title, subtitle, value, delta, items = [], showValue =
       {children}
     </div>
   );
+}
+
+// Text on a mark (slice labels): --color-text or --color-text-inverse, whichever has the higher contrast on that fill (both resolved from the
+// tokens at run time, so a palette swap stays right). Slots 1–12 + Other all reach 4.5:1 with their pick (rule 11.10).
+const lumOf = c => {
+  const m = String(c).trim().match(/^#([0-9a-f]{6})$/i) || String(c).match(/rgba?\(([^)]+)\)/);
+  if (!m) return null;
+  const v = m[1].includes(',') ? m[1].split(',').slice(0, 3).map(Number) : [0, 2, 4].map(i => parseInt(m[1].slice(i, i + 2), 16));
+  const [r, g, b] = v.map(x => { x /= 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const inkCache = new Map();
+function inkOn(fill, el) {
+  const name = (String(fill).match(/^var\((--[a-z0-9-]+)\)$/) || [])[1];
+  if (!name || !el || typeof getComputedStyle === 'undefined') return 'var(--color-text)';
+  if (inkCache.has(name)) return inkCache.get(name);
+  const cs = getComputedStyle(el), f = lumOf(cs.getPropertyValue(name)), lt = lumOf(cs.getPropertyValue('--color-text')), dk = lumOf(cs.getPropertyValue('--color-text-inverse'));
+  if (f == null || lt == null || dk == null) return 'var(--color-text)';
+  const cr = (a, b) => (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  const ink = cr(f, lt) >= cr(f, dk) ? 'var(--color-text)' : 'var(--color-text-inverse)';
+  inkCache.set(name, ink);
+  return ink;
 }
 
 /* ------------------------------------------------------------------ chart shell */
@@ -877,11 +900,15 @@ function StackedColumnChart(props) {
   const a = p.active != null ? data[p.active] : null;
   const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: L.cx(p.active) - bw / 2, x1: L.cx(p.active) + bw / 2, y: L.y(totals[p.active]) },
-    content: tipFrom(a, { title: a.label, value: `Total ${tf(totals[p.active])}`, items: series.map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })).reverse() }, tooltip, p.active) };
+    // named segments top to bottom, then "Other" with its total and each folded series under it (no swatch)
+    content: tipFrom(a, { title: a.label, value: `Total ${tf(totals[p.active])}`, items: [
+      ...series.filter(s => !s.members).map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })).reverse(),
+      ...series.filter(s => s.members).flatMap(s => [{ label: 'Other', value: tf(valOf(a, s)), color: 'other', shape: 'square' },
+        ...s.members.map(k => ({ label: (all.find(x => x.key === k) || {}).label, value: tf(a[k]), sub: true }))])] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length || !series.length}>
-      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick} describe={i => `${data[i].label}: total ${format(totals[i])}; ${series.map(s => `${s.label} ${format(valOf(data[i], s))}`).join(', ')}`}>
+      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick} describe={i => `${data[i].label}: total ${tf(totals[i])}; ${series.map(s => (s.members ? `Other ${tf(valOf(data[i], s))}: ${s.members.map(k => `${(all.find(x => x.key === k) || {}).label} ${tf(data[i][k])}`).join(', ')}` : `${s.label} ${tf(valOf(data[i], s))}`)).join('; ')}`}>
         <YAxis L={L} ticks={ticks} format={format} />
         {data.map((d, i) => {
           const on = p.active === i;
@@ -911,8 +938,8 @@ const linePath = pts => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x},${y}`).join
 // Props: data = [{ label, [series.key]: number, … }], series = [{ key, label, color?, dashed?, points? }] (first series shows its
 // points), band = { low, high, mid?, label } (keys into data; drawn as a white 16% band + dashed mid line), referenceKey/referenceLabel
 // (dashed white line), zeroBased (default false — lines need not start at 0), endLabels (default true: each line is named at its end, D4;
-// when the names collide or don't fit, the legend sits below instead), format, tooltip, valueTicks. Up to 8 series (12 with end labels);
-// the rest draw in the "Other" grey with one legend entry. Hover anywhere picks the nearest point; ← → move it with the keyboard.
+// when the names collide or don't fit, a vertical legend sits on the end side of the plot instead), format, tooltip, valueTicks. Every
+// series up to 12 has its own colour (keep it to 8 where you can: guidance); the 13th and later draw in the "Other" grey with one legend entry. Hover anywhere picks the nearest point; ← → move it with the keyboard.
 function LineChart(props) {
   const { data = [], band, referenceKey, referenceLabel = 'Peer median', zeroBased = false, format = defaultFormat, tooltip, area = false, endLabels = true, valueTicks } = props;
   const all = props.series || [];
@@ -938,9 +965,9 @@ function LineChart(props) {
     for (let i = 1; i < sorted.length; i++) if (sorted[i] - sorted[i - 1] < lineH) return null;
     return { ticks, padR, ys };
   };
-  let series = greyLines(all, SERIES_MAX_LABELLED);
-  let lab = tryLabels(series);
-  if (!lab) series = greyLines(all, SERIES_MAX);
+  // every series up to 12 gets its own colour (keeping it to 8 is guidance, rule 11.6); the 13th and later draw grey as "Other"
+  const series = greyLines(all, SERIES_MAX_LABELLED);
+  const lab = tryLabels(series);
   const legendSeries = series.filter(s => !s.group).concat(series.some(s => s.group) ? [{ key: '__other', label: 'Other', color: 'other' }] : []);
   const ticks = lab ? lab.ticks : range(series);
   const L = catLayout(p, 1, ticks, format, lab ? lab.padR : 0);
@@ -948,7 +975,8 @@ function LineChart(props) {
   const X = i => (n > 1 ? L.x0 + step * i : (L.x0 + L.x1) / 2);
   const pts = s => data.map((d, i) => { const v = typeof s === 'string' ? d[s] : valOf(d, s); return v == null ? null : [X(i), L.y(v)]; }).filter(Boolean);
   const shape = s => (s.dashed ? 'dashed' : 'line');
-  const legend = lab ? null : { active: p.series, onActive: p.setSeries, items: [
+  // names at the line ends when they fit; when they collide, a vertical legend on the end side of the plot (like the pie / donut list)
+  const legend = lab ? null : { beside: true, layout: 'row', active: p.series, onActive: p.setSeries, items: [
     ...legendSeries.map((s, i) => ({ key: s.key, label: s.label, color: s.color ?? i + 1, shape: area ? 'square' : shape(s) })),
     band && { label: band.label, color: 'band' },
     referenceKey && { label: referenceLabel, color: WHITE, shape: 'dashed' }] };
@@ -1015,10 +1043,12 @@ function RoundChart(props) {
   const data = ordered.length > SERIES_MAX
     ? [...ordered.slice(0, SERIES_MAX - 1), { label: 'Other', value: ordered.slice(SERIES_MAX - 1).reduce((t, d) => t + Math.max(0, d.value || 0), 0), color: 'other', _i: -1 }]
     : ordered;
+  data.forEach((d, k) => { d._k = k; });
   const p = usePlot(props);
   const total = data.reduce((t, d) => t + Math.max(0, d.value || 0), 0);
   const R = Math.max(8, Math.min(124, p.H / 2 - 4, p.W / 2 - 8)), r0 = donut ? R * 0.66 : 0, cx = p.W / 2, cy = p.H / 2;
-  const color = d => d.color ?? (d._i % SLOTS) + 1;
+  // colours follow the displayed order (slot 1 = the first, largest slice), so the dark / light alternation holds; an explicit d.color wins
+  const color = d => d.color ?? (d._k % SLOTS) + 1;
   let acc = 0;
   const arcs = data.map(d => { const a0 = (acc / total) * Math.PI * 2; acc += Math.max(0, d.value || 0); return { d, a0, a1: (acc / total) * Math.PI * 2 }; });
   const pct = v => (total ? Math.round((v / total) * 100) : 0);
@@ -1048,7 +1078,8 @@ function RoundChart(props) {
             <g key={i}>
               <path d={arcPath(cx, cy, r0, R, a0, a1)} fill={dvColor(color(d))} fillOpacity={d.opacity}
                 className={IFS.cx('ifs-chart__slice', markCls(p, on, d.label))} />
-              {a1 - a0 > 0.5 && R > 48 && <text x={cx + lr * Math.sin(m)} y={cy - lr * Math.cos(m)} dy="0.35em" textAnchor="middle" className="ifs-chart__slice-label">{pct(d.value)}%</text>}
+              {a1 - a0 > 0.5 && R > 48 && <text x={cx + lr * Math.sin(m)} y={cy - lr * Math.cos(m)} dy="0.35em" textAnchor="middle" className="ifs-chart__slice-label"
+                style={{ fill: inkOn(dvColor(color(d)), p.ref.current) }}>{pct(d.value)}%</text>}
             </g>
           );
         })}
@@ -1062,7 +1093,7 @@ function RoundChart(props) {
 }
 
 // Figma: chart-pie (9866:12309) — parts of one whole with few slices (prefer DonutChart). Slices largest → smallest clockwise from 12;
-// up to 8, then "Other". The legend is a list beside the chart with each slice's value (D4); share labels sit on the bigger slices.
+// up to 7, then "Other"; colours follow the displayed order. The legend is a list beside the chart with each slice's value (D4); share labels sit on the bigger slices.
 // Props: data = [{ label, value, color?, opacity?, delta?, details? }], sort (default true), valueLabel, format, tooltip. + shell props.
 function PieChart(props) { return <RoundChart {...props} donut={false} />; }
 

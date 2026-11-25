@@ -509,7 +509,7 @@ Use: One phase row of the Gantt; building block.
 Use: Gantt: tasks/phases on a time axis (e.g. investment phases across a 5-year plan); shows sequential vs parallel work.
 Notes: A phase row expands and collapses with a caret `IconButton` S; the phase name is plain text, not a button (rule 3.10).
 
-Core chart types. All share the states Default, Hover, Cooper, Loading, Empty (no data), No results and Error, each at the card's height (rule 11.9; `state`, `onRetry`, `onClearFilters`), and the props `title`, `size` (default | large), `valueTicks` (2–8 value-axis intervals, default 4), `view` / `onViewChange`, `onCooper`, `onEditWithCooper`, `actions`, `bare`, `height` (escape hatch). Series take the categorical slots (up to 8, 9–12 with direct labels, then "Other", rule 11.6). Types with no kit component: box plot, radar, treemap.
+Core chart types. All share the states Default, Hover, Cooper, Loading, Empty (no data), No results and Error, each at the card's height (rule 11.9; `state`, `onRetry`, `onClearFilters`), and the props `title`, `size` (default | large), `valueTicks` (2–8 value-axis intervals, default 4), `view` / `onViewChange`, `onCooper`, `onEditWithCooper`, `actions`, `bare`, `height` (escape hatch). Series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other", rule 11.6). Types with no kit component: box plot, radar, treemap.
 
 ### chart-column · `ColumnChart`
 Use: One measure across few or time-ordered categories ("which is biggest"); zero-based, one colour (slot 1). Legend only with a reference (one series = no legend); the radius sits on the end away from the baseline.
@@ -521,22 +521,22 @@ Use: Horizontal bars for many categories, long labels or rankings (sort biggest 
 Use: A few series side by side per category; every series and group is drawn (4 or fewer read best), legend below, consistent series order; bars at least `--size-data-viz-bar-min` with a 1 gap and groups at least `--size-data-viz-group-gap-min` apart, otherwise the plot scrolls sideways under a fixed value axis (rule 11.8).
 
 ### chart-stacked-column · `StackedColumnChart`
-Use: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 segments + "Other" (5 or fewer read best), most important on the baseline, a 1 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the segments top to bottom.
+Use: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 named segments + one grey "Other" (5 or fewer read best), most important on the baseline, a 1 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the named segments top to bottom, then "Other" with its total and each folded series under it.
 
 ### chart-line · `LineChart`
-Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit the legend sits below (line / dashed swatches). Up to 8 lines (12 with end labels), the rest grey with one "Other" entry.
+Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit, a vertical legend sits on the end side of the plot (line / dashed swatches). Every line up to 12 has its own colour (keep it to 8: guidance); the 13th and later grey with one "Other" entry.
 
 ### chart-area · `AreaChart`
-Use: Cumulative volume over time; zero-based; legend below (square swatches).
+Use: Cumulative volume over time; zero-based; names at the line ends, or a vertical legend on the end side when they collide (square swatches).
 
 ### chart-histogram · `HistogramChart`
 Use: Distribution of one measure across bins.
 
 ### chart-pie · `PieChart`
-Use: Parts of one whole with few slices. Prefer `chart-donut` (documented). Legend: a list beside the chart with values; share labels on the bigger slices; up to 8 slices, then "Other".
+Use: Parts of one whole with few slices. Prefer `chart-donut` (documented). Legend: a list beside the chart with values; share labels on the bigger slices, in white or black by contrast; up to 7 slices + "Other"; colours follow the displayed order.
 
 ### chart-donut · `DonutChart`
-Use: Share of a whole; slices largest → smallest clockwise from top; the legend is a list beside the chart with each slice's value (rule 11.4); up to 8 slices, then "Other".
+Use: Share of a whole; slices largest → smallest clockwise from top; the legend is a list beside the chart with each slice's value (rule 11.4); up to 7 slices + "Other"; colours follow the displayed order (slot 1 = largest).
 
 ### chart-scatter · `ScatterChart`
 Use: Relationship between two measures; clusters and outliers. Legend below (dot swatches); every point has a 24 hit area (rule 3.9).
