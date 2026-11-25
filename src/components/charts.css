@@ -91,7 +91,7 @@
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 
 /* variant="chart": the card every core chart is drawn in (2.0.6, D1 / D2): the container rule (inset on all four sides, stack gap between
-   header, plot and legend) and a fixed height (default 320 / 284 / 248; large = 2 default cards + the page gap); the plot fills what is left */
+   header, plot and legend) and a fixed height (default = 3 stat-card rows + 2 page gaps, 320 / 284 / 248 at a 16 gap; large = 2 default cards + the page gap); the plot fills what is left */
 .ifs-dv-card--chart{gap:var(--space-stack);padding:var(--space-inset);height:var(--size-data-viz-card);overflow:visible;
   background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-dv-card--chart.ifs-dv-card--large{height:var(--size-data-viz-card-large)}

@@ -126,7 +126,7 @@ function App() {
       h('label', null, 'Columns', h(Seg, { value: cols, onChange: setCols, options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }] }))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D1 · D2 · Every chart type (state and density from the bar above)'),
-      h('p', null, 'Default card 320 / 284 / 248 (Spacious / Comfortable / Compact); the plot fills what is left after the header and legend. Header: title · [hover: drag, Edit with Cooper] · Chart / Table switch · Evidence. The switch and Evidence hide while there is no data.'),
+      h('p', null, 'Default card = 3 stat-card rows + 2 page gaps: 320 / 284 / 248 (Spacious / Comfortable / Compact) at a 16 gap, more at the wider gaps from 1440 px; the plot fills what is left after the header and legend. Header: title · [hover: drag, Edit with Cooper] · Chart / Table switch · Evidence. The switch and Evidence hide while there is no data.'),
       h('div', { className: 'rv-grid', style: { '--cols': cols } }, CHARTS.map(([name, title, f]) => Cell(name, f({ title, state: st, onRetry: () => {}, onClearFilters: () => {} }), name)))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D9 · States keep the card height'),

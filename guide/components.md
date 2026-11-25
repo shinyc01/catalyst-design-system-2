@@ -447,7 +447,7 @@ Base (building blocks; atoms/molecules) and chart containers:
 ### data-viz-card-organism · `DataVizCard`
 Use: The card that holds any chart on a dashboard; Drag for dashboard edit mode.
 Anatomy (`variant="chart"`, drawn by every core chart; rule 11.1): inset on all four sides, stack gap between header · plot · legend. Header: drag (hover) · title · the chart's own control · [hover / focus: Edit with Cooper, `actions`] · Chart / Table switch (icon-only `SegmentedControl` M, when `onViewChange` is set) · Evidence button (always visible). No ⋮ by default.
-Size (rule 11.2): `size` default (`--size-data-viz-card`, 320 / 284 / 248) | large (2 default cards + the page gap); the plot fills what is left. `autoHeight` for the `height` escape hatch; `bare` fills its frame. `legendPlacement` below | beside (pie, donut). `hideControls` hides the switch and Evidence (no data, rule 11.9).
+Size (rule 11.2): `size` default (`--size-data-viz-card`, 3 stat-card rows + 2 page gaps: 320 / 284 / 248 at a 16 gap) | large (2 default cards + the page gap); the plot fills what is left. `autoHeight` for the `height` escape hatch; `bare` fills its frame. `legendPlacement` below | beside (pie, donut). `hideControls` hides the switch and Evidence (no data, rule 11.9).
 
 ### data-viz-header-molecule · `DataVizHeader`
 Use: Chart title row with optional view toggle or button. `viewSwitch` sits after the hover row and before `slot` (Evidence), so it never moves when the hover row shows.
