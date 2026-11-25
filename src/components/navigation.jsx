@@ -336,7 +336,7 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
       <div className="ifs-navbar__actions">
         <div className="ifs-navbar__buttons">
           {actions || <>
-            <IFS.IconButton icon="system-search" label="Search" size="s" onClick={onSearch} />
+            <IFS.IconButton icon="system-search" label="Search" size="s" onClick={onSearch} data-global-search="" aria-keyshortcuts="/" /* "/" opens it (rule 9.18) */ />
             <IFS.IconButton icon="system-settings" label="Settings" size="s" onClick={onSettings} />
             {IFS.NotificationButton
               ? <IFS.NotificationButton hasNew={hasNotifications} onClick={onNotifications} />

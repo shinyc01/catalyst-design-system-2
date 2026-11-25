@@ -264,7 +264,7 @@ export default IFS_GALLERY;
     return (
       <div>
         <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
-          Click the Cooper avatar (or press /) → collapsed bar (voice by default; keyboard icon switches to text) → send → floating window with Analysing, streaming and Stop →
+          Click the Cooper avatar (or press Ctrl+. / ⌘+.) → collapsed bar (voice by default; keyboard icon switches to text) → send → floating window with Analysing, streaming and Stop →
           window icon docks it as the side panel; − collapses back to the avatar. Prompt chips send straight away.</p>
         <MapScreen sheet={<IFS.BottomSheet {...sheetProps} prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} showPrompts={!open} showCooper={!open}
           onCooper={() => { setMode('voice'); setSize('bar'); }} onPrompt={p => { setMode('text'); api.current.send(p); }} />}>

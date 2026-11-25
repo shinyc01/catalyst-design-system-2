@@ -755,7 +755,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
   const mounted = React.useRef(false);
   React.useEffect(() => { const el = scrollRef.current; if (el && mounted.current) el.scrollTop = el.scrollHeight; mounted.current = true; }, [msgs]);
   React.useEffect(() => {
-    const onKey = e => { if (e.key === '/' && sz === 'closed' && IFS.shortcutAllowed(e)) { e.preventDefault(); setSz('bar'); } }; // G4 rule 9.18: single-key, switchable
+    const onKey = e => { if (sz === 'closed' && IFS.isCooperShortcut(e)) { e.preventDefault(); setSz('bar'); } }; // Ctrl+. / ⌘+. opens Cooper (Nov 25; "/" is search, rule 9.18)
     document.addEventListener('keydown', onKey); return () => document.removeEventListener('keydown', onKey);
   }, [sz]);
   const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.current.push(t); };

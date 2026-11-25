@@ -105,7 +105,7 @@ if (typeof document !== 'undefined') {
   if (document.body) mountRegions(); else document.addEventListener('DOMContentLoaded', mountRegions, { once: true });
 }
 
-// G4 (Nov 25), rule 9.18: single-key shortcuts ("/" …) work only while focus is not in a text field, and the user can turn them off
+// G4 (Nov 25), rule 9.18: single-key shortcuts ("/" for search …) work only while focus is not in a text field, and the user can turn them off
 // (a setting, remembered like density). shortcutAllowed(e) is the one check every single-key shortcut makes.
 const SHORTCUT_KEY = 'catalyst-shortcuts';
 function setShortcuts(v) { try { localStorage.setItem(SHORTCUT_KEY, v === 'off' ? 'off' : 'on'); } catch (e) { /* storage blocked: stays on */ } }
@@ -118,5 +118,33 @@ function shortcutAllowed(e) {
   return !(a.isContentEditable || textInput || /^(textarea|select)$/i.test(a.tagName) || (a.closest && a.closest('[role=combobox],[role=textbox],[contenteditable=true]')));
 }
 
-Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS, useExit, motionMs, announce, setShortcuts, getShortcuts, shortcutAllowed });
+// "/" focuses the global search (G4 convention, decided Nov 25: GitHub, Gmail, YouTube, Linear, Salesforce): never inside a text field or
+// with a modifier held, and off when the user turns single-key shortcuts off (rule 9.18; USER-SETTINGS row 13). The target, first found:
+// an element marked [data-global-search] (the NavBar's search button carries it; a button is clicked, a field focused), the PageTop or
+// ExploreHeader search, then the first visible search field on the page.
+const GLOBAL_SEARCH = ['[data-global-search]', '.ifs-page-top .ifs-smart-search__input', '.ifs-explore-header .ifs-smart-search__input',
+  '.ifs-smart-search__input', '.ifs-search__input'];
+function focusGlobalSearch() {
+  for (const sel of GLOBAL_SEARCH) {
+    const el = [...document.querySelectorAll(sel)].find(n => n.getClientRects().length && !n.disabled && !n.closest('[inert]'));
+    if (!el) continue;
+    if (el.matches('input, textarea, [contenteditable=true]')) el.focus(); else el.click();
+    return true;
+  }
+  return false;
+}
+// The Cooper panel's shortcut (decided Nov 25, as Atlassian Rovo): Ctrl+. on Windows / Linux, ⌘+. on Mac. A modifier shortcut, so it
+// works in text fields and is not switched off with the single-key ones. cooperHotkey is the text to show in tooltips and menus.
+const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || '');
+const cooperHotkey = IS_MAC ? '⌘.' : 'Ctrl+.';
+const isCooperShortcut = e => e.key === '.' && (IS_MAC ? e.metaKey && !e.ctrlKey : e.ctrlKey && !e.metaKey) && !e.altKey && !e.shiftKey;
+if (typeof document !== 'undefined' && !IFS.__searchKey) {
+  IFS.__searchKey = true;
+  document.addEventListener('keydown', e => {
+    if (e.key !== '/' || e.defaultPrevented || !shortcutAllowed(e)) return;
+    if (focusGlobalSearch()) e.preventDefault();
+  });
+}
+
+Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS, useExit, motionMs, announce, setShortcuts, getShortcuts, shortcutAllowed, focusGlobalSearch, cooperHotkey, isCooperShortcut });
 export { Icon, cx, remOf, useExit, motionMs, announce };
