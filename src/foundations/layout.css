@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Layout & grid (Catalyst Design System 2.0.3). Rules: guide/rules.md §4–6
+   Layout & grid (Catalyst Design System 2.0.3). Rules: guide/rules.md §3 (layout), §12 (page headers), §13 (map slots)
    Matches the standard (Material 3, Atlassian, Fluent 2, Carbon, Primer, Polaris). Cards on columns, panels at fixed sizes, map slots.
    Margins and gutters follow SCREEN WIDTH only, never density.
 
@@ -185,12 +185,15 @@
    that matches the theme, map glass is --color-surface-map-glass (black 40); on one that doesn't (light street map or imagery in Dark), it is
    --color-surface-overlay (black 85). Light-theme counterparts come with L01. Map glass = floating bar, map tools, the Cooper panel, map
    popovers and the snackbar over a map. */
-[data-base-map]{--map-glass:var(--color-surface-map-glass)}
-[data-base-map="light"],[data-base-map="imagery"]{--map-glass:var(--color-surface-overlay)}
+/* --map-glass is a local custom property (like --fill or --pin), not a token. Safe default (user decision, Nov 25): a map that does not
+   declare what it is ("undeclared") gets the mismatched glass, black 85; only a map that declares it matches the theme gets black 40. */
+[data-base-map]{--map-glass:var(--color-surface-overlay)}
+[data-base-map="dark"]{--map-glass:var(--color-surface-map-glass)} /* Dark theme; the Light counterpart (a light map) comes with L01 */
 :not(html)[data-base-map] :is(.ifs-floating-bar,.ifs-map-cluster,.ifs-chat-panel:not(.ifs-cooper-dock > .ifs-chat-panel),.ifs-popover,.ifs-snackbar){background-color:var(--map-glass)}
 /* On <html> (IFS.setBaseMap) it reaches only the snackbar stack, which lives outside the map container; other popovers and menus on the
    page keep their own glass. */
 html[data-base-map] .ifs-snackbar-stack .ifs-snackbar{background-color:var(--map-glass)}
+@media (forced-colors: active){[data-base-map]{--map-glass:Canvas}} /* glass turns solid in forced colours (rule 9.13) */
 /* Without backdrop-filter support nothing changes: every glass fill already passes without its blur (G2). */
 @media (prefers-reduced-transparency: reduce){
   *,*::before,*::after{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}

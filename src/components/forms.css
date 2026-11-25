@@ -193,6 +193,7 @@
 .ifs-field[data-state=hover] .ifs-field__control,.ifs-select__trigger:hover .ifs-select__field,.ifs-select__trigger[data-state=hover] .ifs-select__field{--line:var(--color-border-input-strong-hover)}
 :is(.ifs-search,.ifs-smart-search__field){background-color:var(--color-background-input)} /* a field fill under the line, as Field and Select */
 .ifs-select--xl .ifs-select__trigger .ifs-select__field{background-image:none} /* XL: the line is on the outer trigger */
+/* disabled: the line stays, at 5% (decided Nov 25) */
 :is(.ifs-field--disabled .ifs-field__control,.ifs-select__trigger.is-disabled .ifs-select__field,.ifs-search--disabled,.ifs-smart-search--disabled .ifs-smart-search__field){--line:var(--color-border-input-disabled)}
 :is(.ifs-field--error .ifs-field__control,.ifs-select__trigger.is-error .ifs-select__field,.ifs-select--xl .ifs-select__trigger.is-error){
   background-image:none;box-shadow:var(--ring,0 0 0 0 transparent),0 0 0 var(--border-width-default) var(--color-border-danger)}
