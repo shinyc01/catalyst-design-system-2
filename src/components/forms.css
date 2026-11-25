@@ -168,7 +168,8 @@
 .ifs-switch__knob{position:absolute;top:50%;inset-inline-start:var(--size-6);width:var(--size-12);height:var(--size-12);border-radius:50%;background:var(--knob);transform:translateY(-50%);transition:inset-inline-start var(--motion-duration-100) var(--motion-ease-standard),width var(--motion-duration-100) var(--motion-ease-standard),height var(--motion-duration-100) var(--motion-ease-standard)}
 .ifs-switch--s{width:var(--size-22);height:var(--size-12)}
 .ifs-switch--s .ifs-switch__knob{inset-inline-start:0.1875rem;width:0.4375rem;height:0.4375rem}
-.ifs-switch:hover,.ifs-switch[data-state=hover],.ifs-switch-row:hover .ifs-switch{--fill:var(--color-background-neutral);--border:var(--color-border-strong)}
+.ifs-switch:not([aria-checked=true]){--border:var(--color-border-strong)} /* G2 (Nov 25): off = 40% track edge (was soft) */
+.ifs-switch:hover,.ifs-switch[data-state=hover],.ifs-switch-row:hover .ifs-switch{--fill:var(--color-background-neutral);--border:var(--color-border-control) /* G2: hover 60 */}
 .ifs-switch:active,.ifs-switch[data-state=pressed]{--fill:var(--color-background-neutral-softer);--border:var(--color-border-soft)}
 .ifs-switch[aria-checked=true]{--fill:var(--color-background-neutral-stronger);--border:transparent;--knob:var(--color-icon-inverse)}
 .ifs-switch[aria-checked=true] .ifs-switch__knob{inset-inline-start:1.4375rem;width:var(--size-18);height:var(--size-18)}
@@ -179,3 +180,19 @@
 /* Disabled: Figma uses toggle/off/border/pressed for the off border */
 .ifs-switch:disabled,.ifs-switch-row:hover .ifs-switch:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-softer);--border:var(--color-border-soft);--knob:var(--color-icon-disabled)}
 .ifs-switch[aria-checked=true]:disabled,.ifs-switch-row:hover .ifs-switch[aria-checked=true]:disabled{--fill:var(--color-background-neutral-soft);--border:transparent;--knob:var(--color-icon-disabled-inverse)}
+
+/* G2 fields, C3 at white 30 (Nov 25): fields keep their rounded corners and fill; a straight 1 px line runs the full bottom edge as a
+   background layer, clipped by the corners (no curl); hover white 40; no outline at rest (focus = the ring); in the error state the line is
+   removed and the danger outline alone marks the field. Field, Select (S–XL), Combobox, MultiSelect, DatePicker, Search, RangeField,
+   RoleSelect. The Cooper message input keeps its 40% outline. Check Safari and Firefox before release. */
+:is(.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,.ifs-select--xl .ifs-select__trigger,.ifs-role-select__trigger){
+  --line:var(--color-border-input-strong);
+  box-shadow:var(--ring,0 0 0 0 transparent);background-image:linear-gradient(var(--line),var(--line));background-repeat:no-repeat;
+  background-size:100% var(--border-width-default);background-position:center bottom}
+:is(.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,.ifs-select--xl .ifs-select__trigger,.ifs-role-select__trigger):hover,
+.ifs-field[data-state=hover] .ifs-field__control,.ifs-select__trigger:hover .ifs-select__field,.ifs-select__trigger[data-state=hover] .ifs-select__field{--line:var(--color-border-input-strong-hover)}
+.ifs-search{background-color:var(--color-background-input)}
+.ifs-select--xl .ifs-select__trigger .ifs-select__field{background-image:none} /* XL: the line is on the outer trigger */
+:is(.ifs-field--disabled .ifs-field__control,.ifs-select__trigger.is-disabled .ifs-select__field,.ifs-search--disabled){--line:var(--color-border-input-disabled)}
+:is(.ifs-field--error .ifs-field__control,.ifs-select__trigger.is-error .ifs-select__field,.ifs-select--xl .ifs-select__trigger.is-error){
+  background-image:none;box-shadow:var(--ring,0 0 0 0 transparent),0 0 0 var(--border-width-default) var(--color-border-danger)}

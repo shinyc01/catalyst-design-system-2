@@ -285,7 +285,10 @@ function MapPin({ status: st = 'neutral', icon, selected, defaultSelected = fals
 // Props: image (url; Figma State=Image — a map), view {x, y, zoom} / defaultView / onViewChange (drag to pan,
 // ctrl/⌘ + wheel or pinch to zoom, plain wheel pans), minZoom, maxZoom, children = world content (absolute-positioned
 // in world px), overlay = fixed UI on top (toolbars, mini-map), apiRef receives { setView, fit(bounds) }.
-function CanvasBackground({ image, view, defaultView = { x: 0, y: 0, zoom: 1 }, onViewChange, minZoom = 0.25, maxZoom = 2,
+// baseMap dark|light|imagery (G3, Nov 25): what the map image is, so map glass picks its fill (data-base-map; foundations/layout.css):
+// matching the theme → --color-surface-map-glass (black 40), not matching → --color-surface-overlay (black 85). Default: dark with an
+// image, none without one (a node canvas is not a map). Put the same attribute on the map container that holds the slots.
+function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zoom: 1 }, onViewChange, minZoom = 0.25, maxZoom = 2,
   children, overlay, apiRef, className, style, ...rest }) {
   const [v, setV] = useCanvasValue(view, defaultView, onViewChange);
   const vRef = React.useRef(v); vRef.current = v;
@@ -335,6 +338,7 @@ function CanvasBackground({ image, view, defaultView = { x: 0, y: 0, zoom: 1 }, 
   const tile = 20 * v.zoom;
   return (
     <div ref={el} tabIndex={0} role="application" aria-roledescription="canvas" aria-label={rest['aria-label'] || 'Canvas'}
+      data-base-map={baseMap || (image ? 'dark' : undefined)}
       className={IFS.cx('ifs-canvas', image && 'ifs-canvas--image', panning && 'ifs-canvas--panning', className)}
       style={{ ...(image ? { backgroundImage: `url(${image})` } : { '--dot-size': `${tile}px`, '--dot-x': `${v.x}px`, '--dot-y': `${v.y}px` }), ...style }}
       onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={end} onPointerCancel={end} onKeyDown={onKeyDown} {...rest}>

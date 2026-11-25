@@ -23,7 +23,7 @@ const collaborationUser = avatarType => USER_OF_AVATAR[avatarType] || 16;
 // Props: user 1…16 | "cooper" (Figma User; pill = collaboration/user-N, Cooper = user-9 + Cooper visual), name (Figma "user name"),
 //   x / y (px; when given the cursor is absolutely positioned and glides between positions), label (accessible name).
 // Users 4, 6, 11, 13, 15 use dark text (--color-text-inverse), as in Figma.
-const DARK_TEXT = [4, 6, 11, 13, 15];
+const DARK_TEXT = []; // G2 (Nov 25): every collaboration colour takes white text (≥ 4.5:1), so no cursor uses dark text
 function CollaboratorCursor({ user = 1, name, x, y, className, style, ...rest }) {
   const cooper = user === 'cooper';
   const n = cooper ? 9 : Math.min(16, Math.max(1, +user || 1));
@@ -413,7 +413,7 @@ function CollaboratorsMenu({ controller: c, open, defaultOpen = false, onOpenCha
       onInvite={p => setModal({ kind: 'invite', person: p })}
       onOpen={p => p.status !== 'owner' && setModal({ kind: 'edit', person: p })}
       onRemove={p => setModal({ kind: 'remove', person: p })}
-      onPush={p => { c.push(p.id); IFS.toast && IFS.toast({ title: <>Reminder sent.<br />You can push again in 24h.</>, duration: 4000 }); }} />
+      onPush={p => { c.push(p.id); IFS.toast && IFS.toast({ title: <>Reminder sent.<br />You can push again in 24h.</> }); }} />
     <InviteCollaboratorModal open={modal && (modal.kind === 'invite' || modal.kind === 'edit')} person={modal && modal.person}
       mode={modal && modal.kind === 'edit' ? 'edit' : 'invite'}
       defaultAccess={(modal && modal.person.access) || 'editor'}

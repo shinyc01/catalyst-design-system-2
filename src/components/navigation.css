@@ -65,7 +65,7 @@
 .ifs-nav-subtitle{box-sizing:border-box;display:flex;align-items:center;gap:var(--space-100);min-height:1.875rem;
   padding-block:var(--space-300) var(--space-100);padding-inline:var(--space-200) var(--space-100);
   border-radius:var(--radius-control)}
-.ifs-nav-subtitle__label{flex:1;min-width:0;margin:0;color:var(--color-text-disabled);
+.ifs-nav-subtitle__label{flex:1;min-width:0;margin:0;color:var(--color-text-softer) /* G2 #9 */;
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 
 /* ---------- Tabs: tab-organism + tab ---------- */
@@ -138,7 +138,7 @@
 .ifs-pager__status{display:flex;align-items:center;gap:var(--space-100);white-space:nowrap}
 .ifs-pager__status .ifs-icon{color:var(--color-icon-success)}
 .ifs-pager__count{font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking);color:var(--color-text);font-variant-numeric:var(--font-numeric)}
-.ifs-pager__total{color:var(--color-text-disabled)}
+.ifs-pager__total{color:var(--color-text-softer)} /* G2 #9: live text, not disabled */
 .ifs-pager__pct{font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking);color:var(--color-text-softer);font-variant-numeric:var(--font-numeric)}
 .ifs-pager__actions{display:flex;align-items:center;gap:var(--space-stack)}
 .ifs-pager__steps{display:inline-flex;align-items:center;gap:var(--space-50);height:var(--size-control-s);border-radius:var(--radius-control);

@@ -7,7 +7,7 @@
   background:
     radial-gradient(ellipse 95% 70% at 0% 100%,var(--color-cooper-glow-center),var(--color-cooper-glow-edge) 70%,transparent) /* geometry from gradientTransform, approx. */,
     var(--color-cooper-insight);
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-cooper-surface--drop{background:
     radial-gradient(ellipse 95% 70% at 0% 100%,var(--color-cooper-glow-center),var(--color-cooper-glow-edge) 70%,transparent),
     var(--color-cooper-insight-inverse)}
@@ -68,7 +68,7 @@
 .ifs-attachment__icon{display:flex;align-items:center;justify-content:center;width:var(--size-24);height:var(--size-24);border-radius:var(--radius-control);background:var(--color-background-accent-white-soft);flex:none}
 .ifs-attachment__text{display:flex;flex-direction:column;min-width:0}
 .ifs-attachment__name{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ifs-attachment__meta{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-softer)}
+.ifs-attachment__meta{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)} /* G2 #13 (Nov 25) */
 
 /* ---------- chat-card-molecule ---------- */
 .ifs-chat-card{display:flex;flex-direction:column;gap:var(--space-150);box-sizing:border-box;width:100%;padding:var(--space-inset);
@@ -281,3 +281,4 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 
 /* C4: one Cooper entry point at a time. While a Cooper chat is open, the orb and the prompt chips hide (display:none, so the blur goes too). */
 html[data-cooper-chat] .ifs-bottom-sheet__agent > .ifs-fta,html[data-cooper-chat] .ifs-bottom-sheet__prompts,html[data-cooper-chat] .ifs-slot-fab .ifs-fta{display:none}
+.ifs-msg-input:not(:focus-within){box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)} /* G2 (Nov 25): the Cooper message input keeps a 40% outline (not the field line); focus = the ring */

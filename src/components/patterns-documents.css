@@ -2,12 +2,12 @@
    Tokens only; raw values carry a "raw in Figma" note. */
 /* Pins, pin dots and the vertical bar chart stay px on purpose: map and chart geometry. */
 /* ================= map-pin-dot (d2686af3…) ================= */
-.ifs-pin-dot{--pd-fill:var(--color-icon-danger);--pd-size:24px;--pd-in:22px;
+.ifs-pin-dot{--pd-fill:var(--color-icon-map-pin-danger) /* G2 option B */;--pd-size:24px;--pd-in:22px;
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
   min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-pill);cursor:pointer; /* grows into a pill when the count needs it */
   background:var(--color-background-accent-white-strong);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
 .ifs-pin-dot--warning{--pd-fill:var(--color-icon-warning)}
-.ifs-pin-dot--neutral{--pd-fill:var(--color-icon-softer)} /* Nov 24: danger · warning · neutral only (grey = low risk); the old names success and info map here (MapPinDot) */
+.ifs-pin-dot--neutral{--pd-fill:var(--color-icon-map-pin-neutral)} /* Nov 24: danger · warning · neutral only (grey = low risk); the old names success and info map here (MapPinDot) */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}
 .ifs-pin-dot--s{--pd-size:16px;--pd-in:14px}
 .ifs-pin-dot--xs{--pd-size:8px;--pd-in:7px;padding:var(--size-0-5);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin-xs)}
@@ -126,3 +126,6 @@ button.ifs-vbar{cursor:pointer}
 .ifs-docs-details li{display:flex;flex-direction:column;gap:var(--space-50)}
 .ifs-docs-details__name{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 .ifs-docs-details__why{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
+/* G2 map pins and clusters, option B (Nov 25): neutral core 450 and danger 550 fills (above; white counts ≥ 4.5:1, pin ≥ 3:1 on the dark
+   map); warning keeps its fill with a black count */
+.ifs-pin-dot--warning :is(.ifs-pin-dot__fill,.ifs-pin-dot__text){color:var(--color-icon-inverse)}

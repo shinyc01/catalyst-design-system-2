@@ -92,7 +92,7 @@
 .wb-frame--drag .ifs-dv-header__hover,.wb-frame--drag .ifs-dv-header__drag{opacity:0;pointer-events:none}
 .wb-frame--drag{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 /* ghost (content-card-organism State=Drag): --color-surface-tertiary, --color-border-strong 1 inside, blur 80 */
-.wb-frame--ghost{background:var(--color-surface-tertiary);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong),var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;backdrop-filter:blur(var(--blur-80))}
+.wb-frame--ghost{background:var(--color-surface-tertiary);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong),var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;backdrop-filter:blur(var(--blur-glass))}
 .wb-frame--ghost .ifs-dv-header__drag{display:inline-flex}
 .wb-frame--ghost .ifs-dv-header{padding-inline-start:var(--space-100)}
 

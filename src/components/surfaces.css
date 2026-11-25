@@ -15,11 +15,11 @@
   pointer-events:none;z-index:var(--z-index-tooltip) /* C2: tooltips only, above toasts */}
 .ifs-tooltip--grey{--tt-fill:var(--color-surface-elevation-2)}
 .ifs-tooltip__body{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-50) var(--space-200);
-  border-radius:var(--radius-control);background:var(--tt-fill);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));
+  border-radius:var(--radius-control);background:var(--tt-fill);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));
   color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking); /* Body/M/regular */ white-space:nowrap}
-.ifs-tooltip__hotkey{color:var(--color-text-disabled)} /* hotkey-atom */
+.ifs-tooltip__hotkey{color:var(--color-text-softer)} /* hotkey-atom; G2 #9: live text, not disabled */
 .ifs-tooltip__arrow{flex:none;width:8.6px;height:5px;background:var(--tt-fill);clip-path:polygon(0 0,100% 0,50% 100%);
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 /* Figma Type = side the arrow is on. Arrow = where along that side (8px inset). */
 .ifs-tooltip--bottom{flex-direction:column}
 .ifs-tooltip--top{flex-direction:column-reverse}
@@ -64,7 +64,7 @@
 .ifs-snackbar{display:flex;align-items:center;gap:var(--space-stack);width:25rem;max-width:100%;padding:var(--space-inset);
   border-radius:var(--radius-floating);background:var(--color-surface-secondary);color:var(--color-text);
   box-shadow:var(--elevation-floating); /* C1 level 2: floating */
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-snackbar__text{display:flex;flex-direction:column;gap:var(--space-100);flex:none;max-width:60%}
 .ifs-snackbar__title{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text)} /* Label/M/medium */
 .ifs-snackbar__desc{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
@@ -82,7 +82,7 @@
 .ifs-modal-layer{position:fixed;inset:0;z-index:var(--z-index-modal);display:flex;align-items:center;justify-content:center;padding:var(--space-600) /* scrim gutter */}
 .ifs-modal{display:flex;flex-direction:column;width:var(--layout-modal-width-m);min-width:min(var(--layout-popover-width),100%);max-width:min(var(--layout-modal-width-l),100%);max-height:85vh;
   border-radius:var(--radius-floating);background:var(--color-surface-secondary);color:var(--color-text);
-  box-shadow:var(--elevation-modal) /* C1 level 3 */;backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));outline:none}
+  box-shadow:var(--elevation-modal) /* C1 level 3 */;backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));outline:none}
 .ifs-modal__header{display:flex;align-items:center;gap:var(--space-stack);flex:none;padding:var(--space-inset-l) /* inset-l on all four sides, every part (Nov 19) */;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-modal__header .ifs-surface__title{flex:1 1 auto;color:var(--color-text)}
 .ifs-modal__body{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-height:0;overflow:auto;padding:var(--space-inset-l)}
@@ -92,7 +92,7 @@
 /* ---------- Drawer ---------- */
 .ifs-drawer{display:flex;flex-direction:column;width:var(--region-panel);min-width:min(var(--region-panel-min),100%);max-width:min(var(--region-panel-max),100%);overflow:hidden;
   border-radius:var(--radius-floating);background:var(--color-surface-secondary);color:var(--color-text);
-  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));outline:none}
+  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));outline:none}
 /* C4: one floating inset (= page margin), below the header, above the bottom sheet, from the window edge. C1 level 2. */
 .ifs-drawer--floating{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));bottom:calc(var(--float-bottom, 0px) + var(--float-inset));z-index:var(--z-index-floating);box-shadow:var(--elevation-floating);animation:ifs-slide-in-end var(--motion-duration-200) var(--motion-ease-enter)}
 .ifs-drawer--floating.ifs-drawer--right{inset-inline-end:var(--float-inset)}
@@ -129,7 +129,7 @@
 .ifs-popover{display:flex;flex-direction:column;width:var(--layout-popover-width);min-width:10rem /* narrowest a popover gets */;max-width:var(--layout-modal-width-l);max-height:37.5rem;overflow:hidden;
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);color:var(--color-text);
   box-shadow:var(--elevation-floating); /* C1 level 2 (was elevation-3) */
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));outline:none}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));outline:none}
 .ifs-popover-anchor > .ifs-popover{position:absolute;top:calc(100% + var(--space-100)) /* C4: 4 from the trigger */;inset-inline-start:0;z-index:var(--z-index-popover)}
 .ifs-popover-anchor > .ifs-popover--end{inset-inline-start:auto;inset-inline-end:0}
 .ifs-popover__header{display:flex;align-items:center;gap:var(--space-200);flex:none;padding:var(--space-inset);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
@@ -155,7 +155,7 @@
 /* ---------- Floating bar ---------- */
 .ifs-floating-bar{display:inline-flex;align-items:center;gap:var(--space-200);padding:var(--space-200);
   border-radius:var(--radius-floating);background:var(--color-background-neutral-soft-inverse);color:var(--color-text);
-  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-floating-bar--floating{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));left:50%;transform:translateX(-50%);z-index:var(--z-index-floating);box-shadow:var(--elevation-floating);animation:ifs-bar-in var(--motion-duration-100) var(--motion-ease-enter)} /* ltr: centred with translateX */
 @keyframes ifs-bar-in{from{opacity:0;transform:translate(-50%,var(--motion-distance-2))}to{opacity:1;transform:translateX(-50%)}}
 .ifs-floating-bar__context{display:flex;flex-direction:column;gap:var(--space-50);min-width:0;max-width:20rem}

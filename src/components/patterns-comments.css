@@ -7,7 +7,7 @@
   gap:var(--space-300);padding:var(--space-100);
   border-radius:var(--size-20) var(--size-20) var(--size-20) var(--radius-mark) /* the comment pin shape: half its 40 height, with a 2 mark corner (Figma 30/100/100/2, which Figma clamps); a pill radius would scale the 2 corner away */;background:var(--pin-fill);
   box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);cursor:pointer;color:var(--color-text);transition:border-radius var(--motion-duration-50) var(--motion-ease-standard)}
-.ifs-cpin--read{--pin-fill:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+.ifs-cpin--read{--pin-fill:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-cpin--cooper{--pin-fill:var(--color-cooper-background-strong)}
 .ifs-cpin{pointer-events:auto}
 .ifs-cpin:focus-visible{box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--focus-ring)}
@@ -66,3 +66,6 @@
 .ifs-cpanel__search{flex:none;padding:var(--space-inset)}
 .ifs-cpanel__list{display:flex;flex-direction:column}
 .ifs-cpanel__empty{padding:var(--space-inset)}
+/* G2 (Nov 25): white meta on the pin; the Cooper pin moves to cooper 600 so its white text passes */
+.ifs-cpin__time,.ifs-cpin__replies{color:var(--color-text-on-solid)}
+.ifs-cpin--cooper{--pin-fill:var(--color-cooper-background-stronger)}

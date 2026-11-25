@@ -3,7 +3,7 @@
 
 /* ================= Hotkey — hotkey-atom (67:6150) ================= */
 .ifs-hotkey{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-50);flex:none;
-  margin:0;padding:0;background:none;border:0;color:var(--color-text-disabled);
+  margin:0;padding:0;background:none;border:0;color:var(--color-text-softer) /* G2 #9 (Nov 25): live text, not disabled (was text-disabled) */;
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking); /* Label/M/medium */ white-space:nowrap}
 
 /* ================= Counter — counter-atom (88:24147) ================= */
@@ -25,7 +25,7 @@
 .ifs-scroll-area__track[hidden]{display:none}
 .ifs-scroll-area__bar{position:absolute;inset-inline-start:var(--space-50);inset-inline-end:var(--space-50);top:0;min-height:var(--size-24);
   border-radius:var(--radius-pill);background:var(--color-background-neutral);
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));cursor:default;touch-action:none}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));cursor:default;touch-action:none}
 /* Gallery: show the Figma atom alone */
 .ifs-scroll-bar{position:relative;display:inline-flex;width:8px;padding:0 var(--space-50);box-sizing:border-box;flex:none}
 .ifs-scroll-bar .ifs-scroll-area__bar{position:absolute;height:140px}
@@ -118,7 +118,7 @@
   display:flex;flex-direction:column;min-width:13.75rem;max-height:12.25rem;overflow-y:auto;box-sizing:border-box;
   padding:var(--space-100);border-radius:var(--radius-floating);
   background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating) /* C1 level 2 */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));
   scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;text-transform:none;letter-spacing:var(--font-body-m-regular-tracking)}
 .ifs-phone__option{flex:none;display:flex;align-items:center;gap:var(--space-200);height:var(--size-control-m) /* list row 36 / 32 / 28 */;box-sizing:border-box;
   padding:var(--space-100) var(--space-200);border-radius:var(--radius-control);
@@ -147,7 +147,7 @@
 .ifs-slider-track--disabled .ifs-slider-track__fill{background:transparent}
 /* atom: 12px thumb */
 .ifs-slider-thumb{position:absolute;top:50%;width:var(--size-12);height:var(--size-12);margin:calc(-1 * var(--space-150)) 0 0 calc(-1 * var(--space-150)) /* ltr: slider thumb placed by JS from clientX */;box-sizing:border-box;border-radius:50%;
-  background:var(--color-icon);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));
+  background:var(--color-icon);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));
   outline:none;cursor:grab;transition:none}
 .ifs-slider-thumb:hover,.ifs-slider-thumb[data-state=hover]{box-shadow:var(--elevation-2)}
 .ifs-slider-thumb.is-dragging,.ifs-slider-thumb[data-state=drag]{cursor:grabbing;box-shadow:0 0 0 var(--border-width-selected) var(--color-border-strong)}
@@ -160,7 +160,7 @@
 .ifs-form-card{position:relative;display:flex;flex-direction:column;box-sizing:border-box;width:100%;min-width:29rem;max-width:42.5rem;
   max-height:var(--ifs-form-card-max-h,calc(100vh - var(--layout-global-header-height)));
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);box-shadow:var(--elevation-floating) /* C1 level 2 */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-form-card__header{flex:none;display:flex;align-items:flex-start;gap:var(--space-stack);padding:var(--space-inset-l) var(--space-inset-l) 0}
 .ifs-form-card__heading{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-form-card__title{margin:0;color:var(--color-text);font:var(--font-heading-h1-medium);letter-spacing:var(--font-heading-h1-medium-tracking) /* Heading/H1 */}
@@ -202,3 +202,5 @@
 /* ================= Logo — logo (788:52389) used in global-header (69:3736) ================= */
 .ifs-logo{display:inline-block;flex:none;color:var(--color-icon);vertical-align:middle}
 .ifs-logo svg{display:block;width:100%;height:100%}
+/* G2 (Nov 25): no change while the slider's value is shown; with the value hidden the track is 40% white so it reaches 3:1 */
+.ifs-slider--no-value .ifs-slider-track{background:var(--color-border-strong)}

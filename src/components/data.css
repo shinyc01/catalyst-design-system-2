@@ -74,22 +74,23 @@ button.ifs-avatar__base{cursor:pointer}
 /* hover / pressed overlay ("hoverLight") */
 .ifs-avatar__overlay{position:absolute;inset:0;border-radius:inherit;z-index:1;background:transparent;pointer-events:none}
 
+/* G2 (Nov 25): every collaboration colour takes white initials (≥ 4.5:1), so no avatar uses dark text */
 .ifs-avatar--black{--av-fill:var(--color-collaboration-user-16)}
 .ifs-avatar--red{--av-fill:var(--color-collaboration-user-12)}
 .ifs-avatar--dark-orange{--av-fill:var(--color-collaboration-user-1)}
-.ifs-avatar--orange{--av-fill:var(--color-collaboration-user-7);--av-text:var(--color-text-on-solid-dark)}
-.ifs-avatar--yellow{--av-fill:var(--color-collaboration-user-13);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--orange{--av-fill:var(--color-collaboration-user-7)}
+.ifs-avatar--yellow{--av-fill:var(--color-collaboration-user-13)}
 .ifs-avatar--brown{--av-fill:var(--color-collaboration-user-9)}
 .ifs-avatar--dark-blue{--av-fill:var(--color-collaboration-user-2)}
 .ifs-avatar--blue{--av-fill:var(--color-collaboration-user-10)}
-.ifs-avatar--light-blue{--av-fill:var(--color-collaboration-user-4);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--light-blue{--av-fill:var(--color-collaboration-user-4)}
 .ifs-avatar--green{--av-fill:var(--color-collaboration-user-3)}
-.ifs-avatar--lime{--av-fill:var(--color-collaboration-user-6);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--lime{--av-fill:var(--color-collaboration-user-6)}
 .ifs-avatar--dark-purple{--av-fill:var(--color-collaboration-user-8)}
 .ifs-avatar--purple{--av-fill:var(--color-collaboration-user-14)}
-.ifs-avatar--light-purple{--av-fill:var(--color-collaboration-user-11);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--light-purple{--av-fill:var(--color-collaboration-user-11)}
 .ifs-avatar--dark-pink{--av-fill:var(--color-collaboration-user-5)}
-.ifs-avatar--light-pink{--av-fill:var(--color-collaboration-user-15);--av-text:var(--color-text-on-solid-dark)}
+.ifs-avatar--light-pink{--av-fill:var(--color-collaboration-user-15)}
 .ifs-avatar--image .ifs-avatar__base,.ifs-avatar--cooper .ifs-avatar__base{--edge:0 0 0 var(--border-width-default) var(--color-border)}
 .ifs-avatar--image .ifs-avatar__base::after{display:none}
 /* Cooper avatar: Figma draws a multi-gradient sphere image; approximated */
@@ -321,7 +322,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-notification[role=button]:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-notification__lead{position:relative;flex:none;width:var(--size-32);height:var(--size-32)}
 .ifs-notification__critical{position:absolute;left:1.4375rem;top:-0.1875rem;display:inline-flex;color:var(--color-icon-danger)} /* ltr: badge offset on icon art */
-.ifs-notification__count{position:absolute;left:var(--size-16);top:-0.5625rem;backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))} /* ltr: badge offset on icon art */
+.ifs-notification__count{position:absolute;left:var(--size-16);top:-0.5625rem;backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))} /* ltr: badge offset on icon art */
 .ifs-notification__content{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-notification__title-row{display:flex;align-items:flex-start;gap:var(--space-200)}
 .ifs-notification--has-tag .ifs-notification__title-row{min-height:var(--size-20)}

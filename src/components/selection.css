@@ -28,7 +28,7 @@
   height:var(--size-control-xl);gap:var(--space-200);padding-block:var(--space-inset-nested);padding-inline:var(--space-200) var(--space-inset-nested);
   border-radius:var(--radius-control);background:var(--color-background-input);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft) /* raw in Figma */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));
 }
 .ifs-select--xl .ifs-select__field{height:calc(var(--size-control-xl) - 2 * var(--space-inset-nested)) /* fills the trigger: 40 / 36 / 32 inside 52 / 48 / 40 */;padding:0 var(--space-250);border-radius:var(--radius-control);background:var(--color-surface-primary)}
 .ifs-select__label{flex:none;color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
@@ -72,7 +72,7 @@
   display:flex;flex-direction:column;box-sizing:border-box;max-height:12.25rem;overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-floating);
   background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating);
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80)); /* effect --blur-80 */
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass)); /* effect --blur-80 */
   scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;
 }
 .ifs-select__list--down{top:calc(100% + var(--space-100))}
@@ -177,7 +177,7 @@
 .ifs-calendar{
   display:inline-flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:17.75rem;padding:var(--space-inset);
   border-radius:var(--radius-control);background:var(--color-surface-elevation-2);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));
 }
 .ifs-calendar__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:calc(var(--size-control-s) + var(--space-100))}
 .ifs-calendar__title{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--color-text);
@@ -221,7 +221,7 @@
 /* DatePicker showApply (date-picker-molecule show-apply-button): the popover becomes the surface; Apply = Secondary M, full width */
 .ifs-datepicker__popover--apply{display:flex;flex-direction:column;gap:var(--space-200);box-sizing:border-box;width:17.75rem;padding:var(--space-inset);
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating) /* C1 level 2 */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-datepicker__popover--apply .ifs-calendar{width:auto;padding:0;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .ifs-datepicker__apply{width:100%}
 
@@ -242,7 +242,7 @@
   display:flex;flex-direction:column;box-sizing:border-box;min-width:7.5rem;max-height:min(25rem, calc(100vh - var(--size-16)));overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-floating);
   background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating) /* C1 level 2 */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80)); /* effect --blur-80 */
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass)); /* effect --blur-80 */
   scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent;
 }
 .ifs-menu__list--s{width:var(--menu-width-s)}
@@ -268,3 +268,10 @@
 .ifs-menu__item.is-danger,.ifs-menu__item.is-danger .ifs-menu__icon{color:var(--color-text-danger)}
 .ifs-menu__item:disabled{color:var(--color-text-disabled);cursor:not-allowed;background:none}
 .ifs-menu__item:disabled .ifs-menu__icon{color:var(--color-icon-disabled)}
+.ifs-menu__item:hover .ifs-menu__description,.ifs-menu__item[data-state=hover] .ifs-menu__description{color:var(--color-text-soft)} /* G2 #12 (Nov 25): steps up on the hover fill */
+/* G2 #11 (Nov 25): a placeholder or empty value inside a menu or popover (overlay surfaces) uses text-soft */
+:is(.ifs-floating,.ifs-popover,.ifs-menu__list) :is(.ifs-select__value.is-placeholder,.ifs-select__input,.ifs-field__input,.ifs-range-field__input,.ifs-search__input,.ifs-popover__search input)::placeholder,
+:is(.ifs-floating,.ifs-popover,.ifs-menu__list) .ifs-select__value.is-placeholder{color:var(--color-text-soft)}
+/* G2 controls (Nov 25): segmented = 40% outline on the selected item; date range = an inset border-strong outline on each day inside the range */
+.ifs-segmented__item.is-selected{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
+.ifs-calendar__date.is-selected:not(.is-endpoint){--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}

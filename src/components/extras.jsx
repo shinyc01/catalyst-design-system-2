@@ -384,7 +384,7 @@ function Slider({ label, hint, description, showValue = true, formatValue, icon,
   const control = <SliderTrack {...track} value={val} onChange={setVal} formatValue={formatValue} label={typeof label === 'string' ? label : (track.label || 'Value')} />;
   if (bare) return React.cloneElement(control, { className, style });
   return (
-    <div className={IFS.cx('ifs-slider', track.disabled && 'ifs-slider--disabled', className)} style={style}>
+    <div className={IFS.cx('ifs-slider', track.disabled && 'ifs-slider--disabled', !showValue && 'ifs-slider--no-value', className)} style={style}>
       {(label != null || showValue) && <div className="ifs-slider__title">
         <span className="ifs-slider__heading">
           {label != null && <span className="ifs-slider__label">{label}</span>}

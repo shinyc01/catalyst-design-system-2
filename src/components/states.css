@@ -79,7 +79,7 @@
   display:inline-flex;align-items:center;justify-content:center;flex:none;margin:0;border:0;cursor:pointer;white-space:nowrap;
   border-radius:var(--radius-pill);background:var(--fill);color:var(--color-text);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--edge),var(--elevation-floating-shadow) /* C1 level 2 */,var(--ring);
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-prompt--l{height:var(--size-control-l);padding:var(--space-200) var(--space-400);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking)}
 .ifs-prompt--m{height:var(--size-control-m);padding:var(--space-150) var(--space-300);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 .ifs-prompt:hover,.ifs-prompt[data-state=hover]{--fill:var(--color-background-neutral);--edge:var(--color-border-strong);color:var(--color-text-soft)}

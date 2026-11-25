@@ -17,6 +17,7 @@
 --palette-white-alpha-10:rgba(255,255,255,0.1);
 /* core */
 --palette-core-150:#262626;
+--palette-core-165:#2a2a2a; /* G3 (Nov 25): grey 600 (rgba 70,70,70,0.6) composited on black, the solid twin of elevation 2 */
 /* white */
 --palette-white-alpha-15:rgba(255,255,255,0.15);
 /* core */
@@ -29,6 +30,7 @@
 --palette-white-alpha-30:rgba(255,255,255,0.3);
 /* core */
 --palette-core-400:#666666;
+--palette-core-450:#737373; /* G2 (Nov 25): neutral map pin fill (white glyph 4.74:1, map 3.28) */
 /* white */
 --palette-white-alpha-40:rgba(255,255,255,0.4);
 /* core */
@@ -95,8 +97,10 @@
 --palette-danger-150:#fbc4be;
 --palette-danger-200:#fcb0a8;
 --palette-danger-300:#fc867c;
+--palette-danger-350:#ff6b51; /* G2 (Nov 25): danger text (red 300 kept, unused for text) */
 --palette-danger-400:#fa5a53;
 --palette-danger-500:#ee3c3b;
+--palette-danger-550:#e5001e; /* G2 (Nov 25): danger map pin fill (white glyph 4.83:1, map 3.22) */
 --palette-danger-500-alpha-0:rgba(238,60,59,0);
 --palette-danger-500-alpha-10:rgba(238,60,59,0.1);
 --palette-danger-600:#c81b23;
@@ -396,6 +400,23 @@
 --palette-cooper-500-alpha-20:rgba(200,121,65,0.2);
 --palette-cooper-500-alpha-40:rgba(200,121,65,0.4);
 /* brand/cooper art (the Cooper avatar artwork; no scale) */
+/* collaboration users (G2, Nov 25): direction 5 at 5% tone-down with user 13 moved toward olive (foundation-gaps/collab-palette.json
+   d5['5'].olive.users). White initials ≥ 4.5:1 on every user; cursors ≥ 3:1 on the black canvas. Replaces the PLACEHOLDER picks. */
+--palette-collaboration-user-1:#a86515;
+--palette-collaboration-user-2:#4c5a76;
+--palette-collaboration-user-3:#188732;
+--palette-collaboration-user-4:#5c77a2;
+--palette-collaboration-user-5:#d222ab;
+--palette-collaboration-user-6:#678000;
+--palette-collaboration-user-7:#b75c47;
+--palette-collaboration-user-8:#9a28f5;
+--palette-collaboration-user-9:#854843;
+--palette-collaboration-user-10:#3359e8;
+--palette-collaboration-user-11:#925fc1;
+--palette-collaboration-user-12:#db3240;
+--palette-collaboration-user-13:#7b6400;
+--palette-collaboration-user-14:#ac4bc9;
+--palette-collaboration-user-15:#b3539d;
 --palette-cooper-art-pink:#fbc4e6;
 --palette-cooper-art-copper:#cd9579;
 --palette-cooper-art-violet:#5a12bf;

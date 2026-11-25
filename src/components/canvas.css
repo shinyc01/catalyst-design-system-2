@@ -5,7 +5,7 @@
 .ifs-map-cluster{display:inline-flex;flex-direction:column;align-items:center;gap:var(--space-50);width:2.375rem;box-sizing:border-box;
   padding:var(--space-50);border-radius:var(--radius-floating);background:var(--color-background-neutral-soft-inverse);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-floating-shadow) /* C1 level 2: map panels */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-map-cluster__divider{display:block;width:var(--size-32);height:var(--size-4);padding:var(--space-50) 0;box-sizing:border-box;flex:none}
 .ifs-map-cluster__divider::before{content:"";display:block;height:1px;margin-top:calc(-1 * var(--size-0-5));background:var(--color-border-soft)}
 .ifs-map-cluster__fit{width:var(--size-32);height:var(--size-32);padding:var(--space-150) var(--space-250)} /* button Ghost M (32) in a fixed 32x32 frame */
@@ -18,7 +18,7 @@
 .ifs-node-actions{display:inline-flex;flex-direction:column;align-items:stretch;gap:var(--space-150);padding:var(--space-100);
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-2);
   box-shadow:var(--elevation-floating) /* C1 level 2 */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-node-actions__item{display:flex;align-items:center;gap:0;height:var(--size-24);margin:0;padding:0;border:0;background:none;cursor:pointer;
   color:var(--color-text);border-radius:var(--radius-control);text-align:start}
 .ifs-node-actions__icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-24);height:var(--size-24);padding:var(--space-100);
@@ -32,7 +32,7 @@
 .ifs-add-node{display:flex;align-items:center;justify-content:center;gap:var(--space-100);width:12.5rem;height:var(--size-40);box-sizing:border-box;margin:0;border:0;
   padding:var(--space-200);border-radius:var(--radius-control);cursor:pointer;color:var(--color-icon);
   background:var(--color-background-neutral-soft-inverse);outline:var(--border-width-default) dashed var(--color-border);outline-offset:-1px;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-add-node:hover,.ifs-add-node[data-state=hover]{background:var(--color-background-neutral-soft-inverse);outline-color:var(--color-border-strong);
   backdrop-filter:blur(var(--blur-40))}
 .ifs-add-node:disabled{cursor:not-allowed;color:var(--color-icon-disabled);background:var(--color-background-neutral-soft-inverse);outline-color:var(--color-border)}
@@ -52,7 +52,7 @@
   position:relative;display:flex;flex:none;align-items:flex-start;gap:var(--space-150);width:200px;min-height:5.5rem;box-sizing:border-box; /* px width on purpose: canvas nodes sit at canvas coordinates; the height grows with text */
   padding:var(--space-200);border-radius:var(--radius-card);background:var(--nc-fill);cursor:pointer;user-select:none;
   box-shadow:inset 0 0 0 var(--border-width-default) var(--nc-stroke),var(--nc-ring),var(--nc-shadow);
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-node-card:focus-visible{outline:none}
 /* Solid types: dark colour fill, --color-border-soft stroke, on-solid text, --blur-10. */
 .ifs-node-card--solid{--nc-stroke:var(--color-border-soft);--nc-title:var(--color-text-on-solid);--nc-caption:var(--color-text-on-solid-soft);
@@ -141,10 +141,10 @@
 .ifs-sidebar-node__desc{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
 
 /* ---------- map-pin-teardrop (43:2020) ---------- */ /* px on purpose: map pins are map geometry and keep their size at any text size */
-.ifs-map-pin{--pin:var(--color-icon-softer);--pin-border:var(--color-icon-softer);--pin-bw:var(--border-width-default) /* B1: Figma 0.72 snaps to 1 */;
+.ifs-map-pin{--pin:var(--color-icon-map-pin-neutral);--pin-border:var(--color-icon-map-pin-neutral) /* G2 option B (Nov 25) */;--pin-bw:var(--border-width-default) /* B1: Figma 0.72 snaps to 1 */;
   position:relative;display:inline-block;width:25px;height:31px;margin:0;padding:0;border:0;background:none;cursor:pointer;
   filter:var(--drop-shadow-map-pin-filter)}
-.ifs-map-pin--error{--pin:var(--color-icon-danger);--pin-border:var(--color-icon-danger)}
+.ifs-map-pin--error{--pin:var(--color-icon-map-pin-danger);--pin-border:var(--color-icon-map-pin-danger)} /* G2 option B (Nov 25) */
 .ifs-map-pin--warning{--pin:var(--color-icon-warning);--pin-border:var(--color-icon-warning)}
 .ifs-map-pin--success{--pin:var(--color-icon-success);--pin-border:var(--color-icon-success)} /* C1: the five status words */
 .ifs-map-pin--info{--pin:var(--color-background-info-strong);--pin-border:var(--color-background-info-strong)}
@@ -196,7 +196,7 @@
 .ifs-sankey-node__stub::after{content:"";position:absolute;right:-2px;top:0;bottom:0;width:2px;background:var(--sankey-accent,var(--color-border-strong))} /* ltr: sankey geometry */
 .ifs-sankey-node__card{display:inline-flex;align-items:center;gap:var(--space-200);height:var(--size-32);box-sizing:border-box;padding:var(--space-100);white-space:nowrap;
   border-radius:var(--radius-mark);background:var(--color-surface-elevation-1);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong) /* raw stroke weight */;
-  backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-sankey-node__label{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
 .ifs-sankey-node__nums{display:inline-flex;align-items:center;gap:var(--space-50);padding:var(--space-100) 0;color:var(--color-icon-softer)}
 .ifs-sankey-node__from{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */;font-variant-numeric:var(--font-numeric)}
@@ -217,7 +217,7 @@
 .ifs-sankey-node--disabled .ifs-sankey-node__change{display:none!important}
 
 .ifs-sankey-header{display:inline-flex;align-items:flex-start;padding:var(--space-200) var(--space-100) var(--space-100);border-radius:var(--radius-control);
-  background:var(--color-surface-secondary);backdrop-filter:blur(var(--blur-80));-webkit-backdrop-filter:blur(var(--blur-80))}
+  background:var(--color-surface-secondary);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-sankey-header__abbr{align-self:flex-end;height:var(--size-24);display:flex;align-items:center;color:var(--color-text-disabled);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */ /* Label/M/medium */}
 .ifs-sankey-header__grid{display:grid;grid-template-columns:minmax(var(--size-56),max-content) var(--size-12) minmax(var(--size-56),max-content);align-items:center;row-gap:0} /* columns hug long labels ("BEST IN CLASS") instead of wrapping */
 .ifs-sankey-header__th{height:var(--size-12);text-align:center;white-space:nowrap;color:var(--color-text-softer);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking) /* table header caption */}
@@ -291,3 +291,9 @@
 .ifs-timeline-phase:hover .ifs-timeline-phase__arrow,.ifs-timeline-phase[data-state=hover] .ifs-timeline-phase__arrow{display:none}
 .ifs-timeline-phase:hover .ifs-timeline-phase__dot,.ifs-timeline-phase[data-state=hover] .ifs-timeline-phase__dot{display:inline-block}
 .ifs-timeline-phase__when{flex:none;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
+/* G2 #19 (Nov 25): a selected or focused solid node card keeps its white 85 caption */
+.ifs-node-card--solid:is(.ifs-node-card--ring-select,.ifs-node-card--ring-cooper,:focus-visible,[data-state=focus]){--nc-caption:var(--color-text-on-solid-soft)}
+/* G2 (Nov 25): the solid card's counter is the tag's chip (10% white, white text), so counter and tag look the same */
+.ifs-node-card--solid .ifs-node-card__counter{background:var(--color-background-neutral-soft);color:var(--color-text)}
+/* G2 map pins, option B (Nov 25): warning keeps its fill with a black glyph; neutral and danger take darker fills (above) so white glyphs pass 4.5:1 */
+.ifs-map-pin--warning .ifs-icon{color:var(--color-icon-inverse)}
