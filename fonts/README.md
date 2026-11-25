@@ -11,6 +11,6 @@ Self-hosted web fonts for the kit (G6, Nov 25, 2026; rule 2.1). `build.mjs` copi
 
 Source: the Google Fonts CSS API (`family=Inter:wght@400..600`, `family=JetBrains+Mono:wght@400..500`), vendored with these checksums.
 
-**Licence:** both families are under the SIL Open Font License 1.1 (Inter © The Inter Project Authors, https://github.com/rsms/inter; JetBrains Mono © The JetBrains Mono Project Authors, https://github.com/JetBrains/JetBrainsMono). The OFL lets the fonts be bundled and redistributed with software; the licence text must travel with them: add the two `OFL.txt` files from those repositories here before release (not fetched in the offline build of Nov 25).
+**Licence:** both families are under the SIL Open Font License 1.1: `OFL-Inter.txt` (Copyright (c) 2016 The Inter Project Authors, https://github.com/rsms/inter) and `OFL-JetBrainsMono.txt` (Copyright 2020 The JetBrains Mono Project Authors, https://github.com/JetBrains/JetBrainsMono). The licence body is the standard OFL 1.1 text (copied from a local OFL 1.1 copy, Nov 25); the copyright lines follow the upstream repositories: compare them with the upstream `OFL.txt` files when online. `build.mjs` copies both files and this README to `dist/fonts/` with the fonts.
 
 **Later:** the G6 recommendation names Inter 4.1 from rsms.me (`InterVariable`); these are Google's Inter v20 subsets of the same design. Swap the files and re-measure the fallback overrides in `fonts.css` if the source changes.

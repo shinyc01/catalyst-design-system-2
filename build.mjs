@@ -5,7 +5,7 @@
 //        with the bundled kit, so the output is one file that opens anywhere
 //        (React + Babel still load from unpkg; React must load before the kit).
 // Components are reviewed in Storybook (npm run storybook), not here.
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, copyFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as esbuild from 'esbuild';
@@ -47,6 +47,9 @@ function inline(html) {
 
 const [cmd, a, b] = process.argv.slice(2);
 const sizes = await build();
+// G6: the font licences (OFL 1.1) and the fonts README travel with the font files.
+mkdirSync(join(dist, 'fonts'), { recursive: true });
+for (const f of ['OFL-Inter.txt', 'OFL-JetBrainsMono.txt', 'README.md']) copyFileSync(join(root, 'fonts', f), join(dist, 'fonts', f));
 if (cmd === 'inline') {
   writeFileSync(b, inline(read(a)));
   console.log(`Wrote ${b}`);
