@@ -518,7 +518,7 @@ Use: One measure across few or time-ordered categories ("which is biggest"); zer
 Use: Horizontal bars for many categories, long labels or rankings (sort biggest → smallest). Also the answer when column labels would need rotating (rule 11.3).
 
 ### chart-grouped-column · `GroupedColumnChart`
-Use: A few series side by side per category; at most 4 series (a 5th and more stay in the table view only, with a console warning), legend below, consistent series order; bars at least 4 wide with a 1 gap (rule 11.8).
+Use: A few series side by side per category; every series and group is drawn (4 or fewer read best), legend below, consistent series order; bars at least `--size-data-viz-bar-min` with a 1 gap and groups at least `--size-data-viz-group-gap-min` apart, otherwise the plot scrolls sideways under a fixed value axis (rule 11.8).
 
 ### chart-stacked-column · `StackedColumnChart`
 Use: Composition of a total per category; the one stacked-column component (rule 11.8). Up to 8 segments + "Other" (5 or fewer read best), most important on the baseline, a 1 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the segments top to bottom.

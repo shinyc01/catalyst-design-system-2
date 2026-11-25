@@ -15,7 +15,6 @@ const LABEL_MIN = 24;    // value-axis labels closer than this thin out; gridlin
 const HIT_R = 12;        // chart points get at least a 24 px hit area (G8, WCAG 2.5.8)
 const SERIES_MAX = 8;    // series per chart by default (D6)
 const SERIES_MAX_LABELLED = 12; // with direct labels (D6)
-const GROUPED_MAX = 4;   // grouped columns (D8)
 
 const SLOTS = 12;
 const slotVar = n => `var(--color-data-viz-categorical-${n})`;
@@ -106,7 +105,7 @@ function measurer(font) {
 // Size of the plot box: charts fill the space the card leaves them (D2). fixedH = the `height` escape hatch.
 function useBox(fixedH) {
   const ref = React.useRef(null);
-  const [box, setBox] = React.useState({ w: 480, h: fixedH || 180, font: '', px: 12 });
+  const [box, setBox] = React.useState({ w: 480, h: fixedH || 180, font: '', px: 12, barMin: 4, groupGap: 8 });
   React.useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return undefined;
@@ -115,9 +114,11 @@ function useBox(fixedH) {
       const cs = probe && getComputedStyle(probe);
       const font = cs ? `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}` : '';
       const px = cs ? parseFloat(cs.fontSize) || 12 : 12;
+      const root = getComputedStyle(el);
+      const barMin = parseFloat(root.getPropertyValue('--size-data-viz-bar-min')) || 4, groupGap = parseFloat(root.getPropertyValue('--size-data-viz-group-gap-min')) || 8;
       setBox(b => {
         const w = el.clientWidth || b.w, h = fixedH || el.clientHeight || b.h;
-        return w === b.w && h === b.h && font === b.font ? b : { w, h, font, px };
+        return w === b.w && h === b.h && font === b.font && barMin === b.barMin && groupGap === b.groupGap ? b : { w, h, font, px, barMin, groupGap };
       });
     };
     read();
@@ -549,13 +550,25 @@ function ChartShell({ title, state, legend, table, isEmpty, skeleton = 'bars', h
 // tracked over the whole plot including the tooltip, so moving sideways goes straight to the next mark and the tooltip never vanishes under
 // the pointer; 100 ms grace on leave. Keyboard: the plot is one tab stop; arrow keys move between marks (2D for a heatmap), Home / End,
 // Esc closes; the active mark is announced.
-function Plot({ p, label, tip, n, pick, describe, children }) {
+// scroll = { start, width, reveal(i) → [x0, x1] } (item 7, Nov 25): the content is wider than the plot, so it scrolls sideways under a fixed
+// value axis (`fixed`, drawn in the first `start` px); an edge fade shows there is more; keyboard focus scrolls the active mark into view.
+function Plot({ p, label, tip, n, pick, describe, scroll, fixed, children }) {
   const [focused, setFocused] = React.useState(false);
   const grid = Array.isArray(n);
+  const sc = scroll || null;
+  React.useEffect(() => { if (!sc && p.sl) p.setSl(0); }, [!!sc]);
+  React.useEffect(() => {
+    const el = p.scRef.current;
+    if (!sc || !el || p.active == null || !focused) return;
+    const [a, b] = sc.reveal(p.active), lo = el.scrollLeft + sc.start, hi = el.scrollLeft + p.W;
+    if (a < lo) el.scrollLeft = Math.max(0, a - sc.start - TIP_GAP); else if (b > hi) el.scrollLeft = b - p.W + TIP_GAP;
+  }, [p.active, focused, !!sc]);
+  const maxSl = sc ? Math.max(0, sc.width - p.W) : 0;
   const move = e => {
     if (!pick || !p.ref.current) return;
     const r = p.ref.current.getBoundingClientRect();
-    const i = pick(e.clientX - r.left, e.clientY - r.top);
+    const x = e.clientX - r.left;
+    const i = pick(sc && x >= sc.start ? x + p.sl : x, e.clientY - r.top);
     if (i == null) p.leave(); else p.show(i);
   };
   const count = grid ? n[0] * n[1] : n;
@@ -584,7 +597,13 @@ function Plot({ p, label, tip, n, pick, describe, children }) {
       onFocus={e => { if (e.target !== e.currentTarget) return; setFocused(true); if (p.active == null && count && e.target.matches(':focus-visible')) p.show(grid ? [0, 0] : 0); }}
       onBlur={e => { if (e.target !== e.currentTarget) return; setFocused(false); p.clear(); }}>
       <span className="ifs-chart__probe" aria-hidden="true">0</span>
-      <svg className="ifs-chart__svg" width={p.W} height={p.H} aria-hidden="true">{children}</svg>
+      {sc ? <>
+        <svg className="ifs-chart__svg" width={sc.start} height={p.H} aria-hidden="true">{fixed}</svg>
+        <div ref={p.scRef} className={IFS.cx('ifs-chart__scroll', p.sl > 1 && 'ifs-chart__scroll--more-start', p.sl < maxSl - 1 && 'ifs-chart__scroll--more-end')}
+          style={{ /* ltr: chart geometry */ left: sc.start, width: p.W - sc.start, height: p.H }} onScroll={e => p.setSl(e.currentTarget.scrollLeft)}>
+          <svg width={sc.width - sc.start} height={p.H} aria-hidden="true" className="ifs-chart__scroll-svg"><g transform={`translate(${-sc.start},0)`}>{children}</g></svg>
+        </div>
+      </> : <svg className="ifs-chart__svg" width={p.W} height={p.H} aria-hidden="true">{children}</svg>}
       {tip && <ChartTip anchor={tip.anchor} box={{ w: p.W, h: p.H }} tip={tip.content} plotRef={p.ref} />}
       <span className="ifs-sr-only" aria-live="polite">{focused && p.active != null && describe ? describe(p.active) : ''}</span>
     </div>
@@ -610,7 +629,9 @@ function usePlot(props) {
   }, [on]);
   React.useEffect(() => () => clearTimeout(t.current), []);
   const measure = React.useMemo(() => measurer(box.font), [box.font]);
-  return { ref, W: box.w, H: box.h, px: box.px, fixed, active, setActive, show, leave, clear, series, setSeries, measure };
+  const [sl, setSl] = React.useState(0);
+  const scRef = React.useRef(null);
+  return { ref, W: box.w, H: box.h, px: box.px, barMin: box.barMin, groupGap: box.groupGap, fixed, active, setActive, show, leave, clear, series, setSeries, measure, sl, setSl, scRef };
 }
 // Hovered mark full colour, the others darkened (never transparent, D5); a hovered legend entry dims the other series the same way.
 const markCls = (p, on, seriesKey) => IFS.cx('ifs-chart__mark',
@@ -618,7 +639,7 @@ const markCls = (p, on, seriesKey) => IFS.cx('ifs-chart__mark',
 
 // D3: value-axis gridlines solid 1 px --color-border, the zero line --color-border-strong; labels closer than 24 px thin out
 // (every other one), gridlines stay.
-function YAxis({ L, ticks, format }) {
+function YAxis({ L, ticks, format, part = 'all' }) {
   const base = ticks[0] <= 0 && ticks[ticks.length - 1] >= 0 ? 0 : ticks[0];
   const gap = ticks.length > 1 ? Math.abs(L.y(ticks[0]) - L.y(ticks[1])) : LABEL_MIN;
   const every = gap < LABEL_MIN ? Math.ceil(LABEL_MIN / Math.max(1, gap)) : 1;
@@ -626,10 +647,10 @@ function YAxis({ L, ticks, format }) {
   return (
     <g aria-hidden="true">
       {ticks.map((t, i) => <g key={t}>
-        {t !== base && <line x1={L.x0} x2={L.x1} y1={L.y(t)} y2={L.y(t)} className="ifs-chart__grid" />}
-        {(i - bi) % every === 0 && <text x={0} y={L.y(t)} dy="0.35em" className="ifs-chart__axis">{format(t)}</text>}
+        {part !== 'labels' && t !== base && <line x1={L.x0} x2={L.x1} y1={L.y(t)} y2={L.y(t)} className="ifs-chart__grid" />}
+        {part !== 'lines' && (i - bi) % every === 0 && <text x={0} y={L.y(t)} dy="0.35em" className="ifs-chart__axis">{format(t)}</text>}
       </g>)}
-      <line x1={L.x0} x2={L.x1} y1={L.y(base)} y2={L.y(base)} className="ifs-chart__baseline" />
+      {part !== 'labels' && <line x1={L.x0} x2={L.x1} y1={L.y(base)} y2={L.y(base)} className="ifs-chart__baseline" />}
     </g>
   );
 }
@@ -789,16 +810,20 @@ const warnOnce = (k, msg) => { if (!dvWarned.has(k)) { dvWarned.add(k); if (type
 function GroupedColumnChart(props) {
   const { data = [], referenceKey = 'reference', referenceLabel = 'Peer median', format = defaultFormat, tooltip, valueTicks } = props;
   const all = props.series || [];
-  if (all.length > GROUPED_MAX) warnOnce('grouped-max', `IFS charts: GroupedColumnChart draws up to ${GROUPED_MAX} series (the rest are in the table view only). Use StackedColumnChart or small multiples for more.`);
-  const series = all.slice(0, GROUPED_MAX);
+  const series = all; // item 7 (Nov 25): every series and group is drawn; 4 series is guidance, not a cap
   const p = usePlot(props);
   const hasRef = data.some(d => d[referenceKey] != null);
   const vals = finite(data.flatMap(d => [...series.map(s => valOf(d, s)), d[referenceKey]]));
   const ticks = scaleTicks(Math.min(0, ...vals), Math.max(0, ...vals), valueTicks);
-  const L = catLayout(p, data.length, ticks, format);
+  const L0 = catLayout(p, data.length, ticks, format);
   const k = Math.max(1, series.length);
-  const gw = Math.max(Math.min(L.band * 0.69, k * 56), Math.min(L.band - 2, k * 4 + (k - 1) * GAP_MARK));
-  const bw = Math.max(1, (gw - GAP_MARK * (k - 1)) / k);
+  // bars keep --size-data-viz-bar-min and groups --size-data-viz-group-gap-min; when that doesn't fit, the plot scrolls sideways
+  const groupMin = k * p.barMin + (k - 1) * GAP_MARK, need = data.length * (groupMin + p.groupGap);
+  const scrolls = need > L0.x1 - L0.x0 + 1;
+  const L = scrolls ? catLayout({ ...p, W: L0.x0 + need + 4 }, data.length, ticks, format) : L0;
+  const gw = Math.max(groupMin, Math.min(L.band * 0.69, k * 56, L.band - p.groupGap));
+  const bw = Math.max(p.barMin, (gw - GAP_MARK * (k - 1)) / k);
+  const sx = x => x - (scrolls ? p.sl : 0); // content x → plot x
   const legend = { active: p.series, onActive: p.setSeries,
     items: [...series.map((s, i) => ({ key: s.key, label: s.label, color: s.color ?? i + 1 })), hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }] };
   const table = seriesTable(data, all, format, hasRef ? [{ key: referenceKey, label: referenceLabel }] : []);
@@ -806,13 +831,15 @@ function GroupedColumnChart(props) {
   const a = p.active != null ? data[p.active] : null;
   const top = a ? Math.max(0, ...finite(series.map(s => valOf(a, s)))) : 0;
   const tf = tipFormat(props, format);
-  const tip = a && { anchor: { x0: L.cx(p.active) - gw / 2, x1: L.cx(p.active) + gw / 2, y: L.y(top) },
+  const tip = a && { anchor: { x0: sx(L.cx(p.active) - gw / 2), x1: sx(L.cx(p.active) + gw / 2), y: L.y(top) },
     content: tipFrom(a, { title: a.label, items: [...series.map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })), ...(a[referenceKey] != null ? [{ label: referenceLabel, value: tf(a[referenceKey]), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length || !series.length}>
-      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick} describe={i => `${data[i].label}: ${series.map(s => `${s.label} ${format(valOf(data[i], s))}`).join(', ')}`}>
-        <YAxis L={L} ticks={ticks} format={format} />
+      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick}
+        scroll={scrolls ? { start: L.x0, width: L.x1 + 4, reveal: i => [L.cx(i) - gw / 2, L.cx(i) + gw / 2] } : null}
+        fixed={<YAxis L={L} ticks={ticks} format={format} part="labels" />} describe={i => `${data[i].label}: ${series.map(s => `${s.label} ${format(valOf(data[i], s))}`).join(', ')}`}>
+        <YAxis L={L} ticks={ticks} format={format} part={scrolls ? 'lines' : 'all'} />
         {data.map((d, i) => {
           const on = p.active === i, gx = L.cx(i) - gw / 2;
           return (
