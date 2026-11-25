@@ -512,7 +512,7 @@ function CommentThread({ number = '#00', comments, defaultComments = [], onComme
     if (at < 0) return;
     const gone = cur[at];
     setList(cur.filter((_, j) => j !== at));
-    IFS.toast && IFS.toast({ title: 'Comment deleted', showClose: false, duration: 5000, secondaryAction: { label: 'Undo', onClick: () => {
+    IFS.toast && IFS.toast({ title: 'Comment deleted', showClose: false, secondaryAction: { label: 'Undo', onClick: () => {
       const now = listRef.current.slice(); now.splice(Math.min(at, now.length), 0, gone); setList(now);
     } } });
   };

@@ -451,11 +451,12 @@ function DocumentsFeedback({ controller: c, top }) {
     )}
   </>;
 }
-function DocSnackbar({ item, onDone, duration = 4000 }) {
-  const [paused, setPaused] = React.useState(false);
-  React.useEffect(() => { if (paused) return; const h = setTimeout(onDone, duration); return () => clearTimeout(h); }, [paused]);
+// Timing and announcement as every snackbar (rules 7.12, 9.19): with Undo at least 10 s, then until the next command; without 6 s.
+function DocSnackbar({ item, onDone, duration }) {
+  const hold = IFS.useSnackbarTiming({ action: !!item.undo, duration, onClose: onDone });
+  React.useEffect(() => { if (typeof item.title === 'string') IFS.announce(item.title); }, []);
   return (
-    <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
+    <div {...hold}>
       <IFS.Snackbar title={item.title} onClose={onDone}
         secondaryAction={item.undo ? { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { item.undo(); onDone(); } } : undefined} />
     </div>

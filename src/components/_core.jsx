@@ -19,7 +19,17 @@ const MIRRORED_ICONS = new Set(['arrow-left', 'arrow-right', 'arrow-chevron-left
 const ICON_FILL_ROLE = { '#EE3C3B': 'danger', '#FFAF2E': 'warning', '#2EBC5D': 'success', '#8366F7': 'accent-purple' }; // raw-ok: the artwork's hex, looked up to find its role
 const roleFills = svg => svg.replace(/fill="(#[0-9A-Fa-f]{6})"/g, (m, h) => (ICON_FILL_ROLE[h.toUpperCase()] ? `${m} class="ifs-icon__fill--${ICON_FILL_ROLE[h.toUpperCase()]}"` : m));
 
+// Icon artwork exported from Figma reuses fixed ids (clipPath, gradients, masks: e.g. cooper-evidence-icon's clip0_4131_18650), so a second
+// instance on the page would point at the first one's defs (and draw nothing once that one is hidden or gone). Each rendered instance gets
+// its own suffix on every id and on the references to it (url(#…), href="#…").
+let iconUid = 0;
+const uniqueIds = (svg, uid) => (svg.includes('id="') ? svg
+  .replace(/\bid="([^"]+)"/g, (m, id) => `id="${id}-${uid}"`)
+  .replace(/url\(#([^)]+)\)/g, (m, id) => `url(#${id}-${uid})`)
+  .replace(/(xlink:)?href="#([^"]+)"/g, (m, x, id) => `${x || ''}href="#${id}-${uid}"`) : svg);
+
 function Icon({ name, size = 16, variant, className, style, title }) {
+  const uid = React.useMemo(() => `i${++iconUid}`, []);
   const set = (window.IFS_ICONS || {})[name];
   if (!set) {
     console.warn(`[IFS] Unknown icon "${name}"`);
@@ -27,7 +37,7 @@ function Icon({ name, size = 16, variant, className, style, title }) {
   }
   const key = variant && set[variant] ? variant : set[size] ? size : [24, 16, 12, 25].find(s => set[s]) || Object.keys(set)[0];
   const entry = set[key];
-  const svg = roleFills(typeof entry === 'string' ? entry : entry.svg);
+  const svg = uniqueIds(roleFills(typeof entry === 'string' ? entry : entry.svg), uid);
   const vb = typeof entry === 'string' ? `0 0 ${key} ${key}` : entry.vb;
   // Icons use their drawn size (12 / 16 / 24) in every density (A3, Nov 23) and follow the component's size, never a multiplier.
   // In rem (size / 16), so they still follow the user's default text size, like the text beside them.
@@ -66,5 +76,47 @@ function useExit(open, ms) {
   }, [open]);
   return { mounted: !!open || state !== 'closed', leaving: !open && state !== 'closed' };
 }
-Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS, useExit, motionMs });
-export { Icon, cx, remOf, useExit, motionMs };
+// G5 (Nov 25), rule 9.19: status messages for screen readers. Two visually hidden live regions (polite and assertive) are in the page from
+// load, so a message is never lost because its region appeared together with it. announce(text) clears the region and writes the text a
+// moment later, so the same message is read again. assertive only for errors that block the user's action.
+const ANNOUNCE_DELAY = 50; // ms between clearing and writing, so a repeated message is announced again
+const liveRegions = {};
+function liveRegion(kind) {
+  if (typeof document === 'undefined' || !document.body) return null;
+  if (!liveRegions[kind] || !liveRegions[kind].isConnected) {
+    const el = document.createElement('div');
+    el.className = 'ifs-sr-only ifs-live-region';
+    el.setAttribute('aria-live', kind);
+    el.setAttribute('aria-atomic', 'true');
+    if (kind === 'assertive') el.setAttribute('role', 'alert'); else el.setAttribute('role', 'status');
+    document.body.appendChild(el);
+    liveRegions[kind] = el;
+  }
+  return liveRegions[kind];
+}
+function announce(text, { assertive = false } = {}) {
+  const el = liveRegion(assertive ? 'assertive' : 'polite');
+  if (!el || text == null || text === '') return;
+  el.textContent = '';
+  setTimeout(() => { el.textContent = String(text); }, ANNOUNCE_DELAY);
+}
+if (typeof document !== 'undefined') {
+  const mountRegions = () => { liveRegion('polite'); liveRegion('assertive'); };
+  if (document.body) mountRegions(); else document.addEventListener('DOMContentLoaded', mountRegions, { once: true });
+}
+
+// G4 (Nov 25), rule 9.18: single-key shortcuts ("/" …) work only while focus is not in a text field, and the user can turn them off
+// (a setting, remembered like density). shortcutAllowed(e) is the one check every single-key shortcut makes.
+const SHORTCUT_KEY = 'catalyst-shortcuts';
+function setShortcuts(v) { try { localStorage.setItem(SHORTCUT_KEY, v === 'off' ? 'off' : 'on'); } catch (e) { /* storage blocked: stays on */ } }
+function getShortcuts() { try { return localStorage.getItem(SHORTCUT_KEY) === 'off' ? 'off' : 'on'; } catch (e) { return 'on'; } }
+function shortcutAllowed(e) {
+  if (getShortcuts() === 'off' || (e && (e.ctrlKey || e.metaKey || e.altKey))) return false;
+  const a = typeof document !== 'undefined' && document.activeElement;
+  if (!a) return true;
+  const textInput = a.tagName === 'INPUT' && !/^(checkbox|radio|button|submit|reset|range|color|file|image)$/i.test(a.type);
+  return !(a.isContentEditable || textInput || /^(textarea|select)$/i.test(a.tagName) || (a.closest && a.closest('[role=combobox],[role=textbox],[contenteditable=true]')));
+}
+
+Object.assign(IFS, { Icon, cx, remOf, MIRRORED_ICONS, useExit, motionMs, announce, setShortcuts, getShortcuts, shortcutAllowed });
+export { Icon, cx, remOf, useExit, motionMs, announce };

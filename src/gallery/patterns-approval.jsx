@@ -191,12 +191,12 @@ export default IFS_GALLERY;
     const reset = () => { setChain(REVIEWER_CHAIN); setDecision(null); setChainMode(null); setModal(null); setNote(''); };
     const approve = () => {
       setModal(null); setDecision('approved'); setMine({ status: 'success' });
-      IFS.toast({ title: 'Framework approved', duration: 5000, secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { setDecision(null); setMine({ status: 'empty' }); } } });
+      IFS.toast({ title: 'Framework approved', secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { setDecision(null); setMine({ status: 'empty' }); } } });
     };
     const requestInfo = () => {
       const text = note.trim();
       setModal(null); setDecision('info'); setChainMode(null); setMine({ status: 'revisions', comment: text });
-      IFS.toast({ title: 'Revision requested — sent back to Jeff Pauska', description: 'Status updated to Revision required', duration: 5000,
+      IFS.toast({ title: 'Revision requested — sent back to Jeff Pauska', description: 'Status updated to Revision required',
         secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { setDecision(null); setMine({ status: 'empty', comment: undefined }); } } });
     };
     const mainAction = decision === 'approved' ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request more information' }]}>Approved</SplitButton>
@@ -258,11 +258,11 @@ export default IFS_GALLERY;
     const sendAgain = () => {
       setModal(null); setPhase('pending');
       setChain(chain.map(a => (a.id === 'jp' ? a : { ...a, status: 'empty', action: undefined, pushedAt: undefined })));
-      IFS.toast({ title: 'Sent for review', description: 'Reviewers can now see the current state and give feedback.', duration: 4000 });
+      IFS.toast({ title: 'Sent for review', description: 'Reviewers can now see the current state and give feedback.' });
     };
     const publish = () => {
       setModal(null); setPhase('active');
-      IFS.toast({ title: 'Q1 2026 Enterprise Framework is now active. Re-scoring 1,621 investments.', duration: 4000 });
+      IFS.toast({ title: 'Q1 2026 Enterprise Framework is now active. Re-scoring 1,621 investments.' });
     };
     const table = <ApprovalChainTable approvers={chain} onChange={setChain} currentUserId="jp" ownerId="jp" view={mode} />;
     const action = phase === 'shaping' || status === 'revisions'

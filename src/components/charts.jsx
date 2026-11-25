@@ -161,10 +161,16 @@ function arcPath(cx, cy, r0, r1, a0, a1) { // angles in radians, 0 = 12 o'clock,
 // Props: state default|hover|out-of-focus|background|loading, color = categorical slot (default 1) or a data-viz token (old group names
 // with step still work), children = the value label (show-value; absent = hidden). Fills its parent. Hover keeps the full colour;
 // out-of-focus is darkened (never transparent, D5).
+// The value inside the bar takes --color-text or --color-text-inverse, whichever contrasts more with the bar's colour (G2 #18, Nov 25; as
+// the slice labels, rule 11.10): white on the dark slots, black on the light ones.
 function DataVizBar({ state = 'default', color = 1, step = 4, children, className, style, ...rest }) {
+  const ref = React.useRef(null);
+  const fill = dvColor(color, 0, step);
+  const [ink, setInk] = React.useState(undefined);
+  React.useLayoutEffect(() => { if (children != null && ref.current) setInk(inkOn(fill, ref.current)); }, [fill, children != null]);
   return (
-    <div data-state={state === 'hover' ? 'hover' : undefined} className={IFS.cx('ifs-dv-bar', `ifs-dv-bar--${state}`, state === 'loading' && 'ifs-sk', className)}
-      style={{ '--dv-c': dvColor(color, 0, step), ...style }} {...rest}>
+    <div ref={ref} data-state={state === 'hover' ? 'hover' : undefined} className={IFS.cx('ifs-dv-bar', `ifs-dv-bar--${state}`, state === 'loading' && 'ifs-sk', className)}
+      style={{ '--dv-c': fill, ...(ink && { '--dv-ink': ink }), ...style }} {...rest}>
       {children != null && state !== 'background' && state !== 'loading' && <ValueLabel>{children}</ValueLabel>}
     </div>
   );
@@ -224,13 +230,14 @@ const legendColor = (color, step) => (typeof color === 'string' && /^var\(--[a-z
 // square (bars, areas, slices, cells) | line | dashed (lines) | dot (scatter); label; value (optional on every entry, tabular figures);
 // icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
 // Hover only: legend entries are not clickable (Figma); hovering one dims the other series in the chart.
-function LegendSwatch({ layout = 'inline', state = 'default', color = 1, step = 4, shape = 'square', neutral, label, value, icon, swatchOpacity, className, ...rest }) {
+// fc = the series' index among lines: in forced colours the line swatch draws that series' dash style (G1).
+function LegendSwatch({ layout = 'inline', state = 'default', color = 1, step = 4, shape = 'square', neutral, label, value, icon, swatchOpacity, fc, className, ...rest }) {
   const isNeutral = neutral || color === 'neutral';
   return (
     <span data-state={state} className={IFS.cx('ifs-dv-legend', `ifs-dv-legend--${layout}`, `ifs-dv-legend--${state}`, className)} {...rest}>
       {state === 'intended-target'
         ? <span className="ifs-dv-legend__target" aria-hidden="true" />
-        : <span className={IFS.cx('ifs-dv-legend__swatch', shape !== 'square' && `ifs-dv-legend__swatch--${shape}`, isNeutral && 'ifs-dv-legend__swatch--neutral')} aria-hidden="true"
+        : <span className={IFS.cx('ifs-dv-legend__swatch', shape !== 'square' && `ifs-dv-legend__swatch--${shape}`, isNeutral && 'ifs-dv-legend__swatch--neutral', fc != null && `ifs-dv-legend__swatch--fc-${fc % 6}`)} aria-hidden="true"
             style={isNeutral ? { opacity: swatchOpacity } : { '--sw': legendColor(color, step), opacity: swatchOpacity }} />}
       {label != null && <span className="ifs-dv-legend__name">{label}</span>}
       {icon && <IFS.Icon name={icon} size={16} className="ifs-dv-legend__icon" />}
@@ -489,6 +496,26 @@ function inkOn(fill, el) {
   const ink = cr(f, lt) >= cr(f, dk) ? 'var(--color-text)' : 'var(--color-text-inverse)';
   inkCache.set(name, ink);
   return ink;
+}
+
+// G1 (Nov 25), forced colours (Windows High Contrast), following Power BI's high-contrast model: marks become CanvasText outlines on
+// Canvas (CSS, charts.css), and line series are told apart by a dash style and a point shape each (legend swatches match). Heatmaps keep
+// their ramp and print each value. useForcedColors() follows the OS setting live.
+const FC_DASH = [undefined, '8 4', '2 3', '10 3 2 3', '4 4', '12 3 2 3 2 3'];
+const FC_SHAPES = ['circle', 'square', 'triangle', 'diamond', 'cross', 'ring'];
+function useForcedColors() {
+  const q = typeof window !== 'undefined' && window.matchMedia ? window.matchMedia('(forced-colors: active)') : null;
+  const [on, setOn] = React.useState(!!(q && q.matches));
+  React.useEffect(() => { if (!q) return undefined; const f = () => setOn(q.matches); q.addEventListener('change', f); return () => q.removeEventListener('change', f); }, []);
+  return on;
+}
+function FcPoint({ kind, x, y, r = 3.5 }) {
+  if (kind === 'square') return <rect x={x - r} y={y - r} width={2 * r} height={2 * r} className="ifs-chart__fc-point" />;
+  if (kind === 'triangle') return <path d={`M${x},${y - r * 1.2}L${x + r * 1.1},${y + r * 0.8}L${x - r * 1.1},${y + r * 0.8}Z`} className="ifs-chart__fc-point" />;
+  if (kind === 'diamond') return <path d={`M${x},${y - r * 1.3}L${x + r * 1.3},${y}L${x},${y + r * 1.3}L${x - r * 1.3},${y}Z`} className="ifs-chart__fc-point" />;
+  if (kind === 'cross') return <path d={`M${x - r},${y - r}L${x + r},${y + r}M${x + r},${y - r}L${x - r},${y + r}`} className="ifs-chart__fc-point ifs-chart__fc-point--stroke" />;
+  if (kind === 'ring') return <circle cx={x} cy={y} r={r} className="ifs-chart__fc-point ifs-chart__fc-point--stroke" />;
+  return <circle cx={x} cy={y} r={r} className="ifs-chart__fc-point" />;
 }
 
 /* ------------------------------------------------------------------ chart shell */
@@ -1049,6 +1076,7 @@ function LineChart(props) {
   const { data = [], band, referenceKey, referenceLabel = 'Peer median', zeroBased = false, format = defaultFormat, tooltip, area = false, endLabels = true, valueTicks } = props;
   const all = props.series || [];
   const p = usePlot(props);
+  const fc = useForcedColors();
   const uid = useUid('ifs-area');
   const rawKeys = [...all.map(s => s.key), band && band.low, band && band.high, referenceKey].filter(Boolean);
   const range = (ser) => {
@@ -1087,7 +1115,7 @@ function LineChart(props) {
   const shape = s => (s.dashed ? 'dashed' : 'line');
   // names at the line ends when they fit; when they collide, a vertical legend on the end side of the plot (like the pie / donut list)
   const legend = lab ? null : { beside: true, layout: 'row', active: p.series, onActive: p.setSeries, items: [
-    ...legendSeries.map(s => ({ key: s.key, label: s.label, color: s._c, shape: area ? 'square' : shape(s) })),
+    ...legendSeries.map(s => ({ key: s.key, label: s.label, color: s._c, shape: area ? 'square' : shape(s), fc: area ? undefined : series.indexOf(s) })),
     band && { label: band.label, color: 'band' },
     referenceKey && { label: referenceLabel, color: WHITE, shape: 'dashed' }] };
   const extra = [band && band.mid && { key: band.mid, label: band.label }, referenceKey && { key: referenceKey, label: referenceLabel }].filter(Boolean);
@@ -1121,8 +1149,10 @@ function LineChart(props) {
         {referenceKey && <path d={linePath(pts(referenceKey))} fill="none" className="ifs-chart__refline" />}
         {series.map((s, k) => (
           <g key={s.key} className={dimS(s.key)}>
-            <path d={linePath(pts(s))} fill="none" stroke={colorOf(s, k)} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" strokeDasharray={s.dashed ? '6 4' : undefined} />
-            {(s.points ?? (k === 0 && !area)) && pts(s).map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3} fill={colorOf(s, k)} />)}
+            <path d={linePath(pts(s))} fill="none" stroke={colorOf(s, k)} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" className="ifs-chart__line"
+              strokeDasharray={fc ? FC_DASH[k % FC_DASH.length] : s.dashed ? '6 4' : undefined} />
+            {fc ? pts(s).map(([x, y], i) => <FcPoint key={i} kind={FC_SHAPES[k % FC_SHAPES.length]} x={x} y={y} />)
+              : (s.points ?? (k === 0 && !area)) && pts(s).map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3} fill={colorOf(s, k)} />)}
           </g>
         ))}
         {lab && series.map((s, k) => lab.ys[k] != null && (
@@ -1320,8 +1350,8 @@ function GaugeChart(props) {
   return (
     <ChartShell {...shellProps(props)} skeleton="ring" legend={legend} table={table}>
       <Plot p={p} label={props.title} tip={tip} n={1} pick={pick} describe={() => `${valueLabel}: ${format(value)}${target != null ? `, ${targetLabel} ${format(target)}` : ''}`}>
-        <path d={value > min ? band(value, max, GAP_MARK) : band(min, max)} fill="var(--color-border-soft)" stroke="var(--color-border-soft)" strokeWidth={2 * R_MARK} strokeLinejoin="round" />
-        {value > min && <path d={band(min, value)} fill={dvColor(color)} stroke={dvColor(color)} strokeWidth={2 * R_MARK} strokeLinejoin="round" />}
+        <path d={value > min ? band(value, max, GAP_MARK) : band(min, max)} fill="var(--color-border-soft)" stroke="var(--color-border-soft)" strokeWidth={2 * R_MARK} strokeLinejoin="round" className="ifs-chart__gauge-track" />
+        {value > min && <path d={band(min, value)} fill={dvColor(color)} stroke={dvColor(color)} strokeWidth={2 * R_MARK} strokeLinejoin="round" className="ifs-chart__gauge-arc" />}
         {reference != null && <line {...tick(reference, R - sw * 0.6, R + sw * 0.6)} stroke={WHITE} strokeWidth={3} strokeDasharray="4 3" />}
         {target != null && <line {...tick(target, R - sw / 2, R + sw)} stroke="var(--color-border-on-solid)" strokeWidth={2} strokeLinecap="round" opacity={0.9} />}
         {/* the number at the optical centre of the arc (the centroid of the inner half-disc, 4r / 3π), its label under it */}
@@ -1446,6 +1476,7 @@ const RAMPS = ['azure', 'teal', 'cyan', 'orchid', 'pink', 'yellow', 'red', 'gree
 function HeatmapChart(props) {
   const { rows = [], columns = [], values = [], ramp = 'azure', classes = 5, color, lowLabel = 'Lower', highLabel = 'Higher', valueLabel = 'Value', format = defaultFormat, tooltip } = props;
   const p = usePlot(props);
+  const fc = useForcedColors();
   const flat = finite(values.flat());
   const lo = Math.min(...flat), hi = Math.max(...flat);
   const fam = RAMPS.includes(ramp) ? ramp : 'azure';
@@ -1487,10 +1518,15 @@ function HeatmapChart(props) {
         {columns.map((c, j) => (colShown(j) ? <text key={c} x={x(j) + cell / 2} y={y(rows.length) + p.px + 4} textAnchor="middle" className="ifs-chart__axis">{c}</text> : null))}
         {rows.map((r, i) => columns.map((c, j) => {
           const v = values[i] && values[i][j], on = ar === i && ac === j;
+          const fill = v == null ? 'var(--color-surface-secondary)' : color ? dvColor(color) : rampVar(cls(v));
           return (
-            <rect key={`${i}-${j}`} x={x(j)} y={y(i)} width={cell} height={cellH} rx={R_MARK}
-              fill={v == null ? 'var(--color-surface-secondary)' : color ? dvColor(color) : rampVar(cls(v))} fillOpacity={color && v != null ? op(v) : undefined}
-              className={IFS.cx('ifs-chart__cell', on && 'ifs-chart__cell--on')} />
+            <React.Fragment key={`${i}-${j}`}>
+              <rect x={x(j)} y={y(i)} width={cell} height={cellH} rx={R_MARK}
+                fill={fill} fillOpacity={color && v != null ? op(v) : undefined}
+                className={IFS.cx('ifs-chart__cell', on && 'ifs-chart__cell--on')} />
+              {fc && v != null && <text x={x(j) + cell / 2} y={y(i) + cellH / 2} dy="0.35em" textAnchor="middle" className="ifs-chart__cell-value"
+                style={{ fill: inkOn(fill, p.ref.current) }}>{format(v)}</text>}
+            </React.Fragment>
           );
         }))}
       </Plot>

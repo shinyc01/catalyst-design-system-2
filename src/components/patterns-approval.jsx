@@ -379,13 +379,13 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages
     const note = t ? { text: t, authorId: currentUserId } : null;
     update(row.id, { note });
     onNoteChange && onNoteChange(row, note, prev);
-    if (prev) IFS.toast({ title: note ? 'Note updated' : 'Note deleted', duration: 4000 });
+    if (prev) IFS.toast({ title: note ? 'Note updated' : 'Note deleted' });
   };
   const deleteNote = row => {
     const prev = row.note;
     update(row.id, { note: null });
     onNoteChange && onNoteChange(row, null, prev);
-    IFS.toast({ title: 'Note deleted', duration: 4000 });
+    IFS.toast({ title: 'Note deleted' });
   };
 
   // The USER filter uses the Table's own header funnel; the popover sits in the table card (outside the Table's sideways
@@ -456,7 +456,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages
                 </IFS.Tooltip>
               : <IFS.IconButton type="secondary" size="s" icon="system-notification" label={`Push ${r.name}`}
                   onClick={() => { const at = Date.now(); setNow(at); update(r.id, { pushedAt: at, lastNotified: new Date(at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) });
-                    IFS.toast({ title: 'Reminder sent.', description: `You can push again in ${pushCooldownHours}h.`, duration: 4000 }); onPush && onPush(r); }} />)}
+                    IFS.toast({ title: 'Reminder sent.', description: `You can push again in ${pushCooldownHours}h.` }); onPush && onPush(r); }} />)}
             {r.action && <IFS.Button type="secondary" size="s" iconLeft={r.action.icon} onClick={() => r.action.onClick && r.action.onClick(r)}>{r.action.label}</IFS.Button>}
           </>;
         } },

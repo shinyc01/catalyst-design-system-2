@@ -13,29 +13,56 @@ function useSurfaceState(value, defaultValue, onChange) {
 
 const SURF_FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
-// While `active`: focus moves into `ref` (first focusable, else the surface), Escape calls onEscape,
-// `trap` keeps Tab inside, and focus returns to the previously focused element afterwards.
+// While `active` (G4, rules 9.17–9.18): focus moves to the surface's first field (input, select, textarea, combobox); with no field, to its
+// title (the aria-labelledby target, given tabIndex -1), never the header ✕; else the surface itself. Escape calls onEscape. `trap` (modal,
+// drawer with a scrim) keeps Tab inside and makes the rest of the page inert (restored on close). On close focus returns to the trigger;
+// if the trigger is gone, to its nearest container that is still in the page (else <main>).
+const SURF_FIELD = 'input:not([disabled]):not([type=hidden]),select:not([disabled]),textarea:not([disabled]),[role=combobox]:not([aria-disabled=true])';
+const SURF_KEEP_LIVE = '.ifs-live-region, .ifs-snackbar-stack, .ifs-overlay, .ifs-floating, .ifs-skip-link';
+function surfInertOthers(el) {
+  const set = [];
+  for (let node = el; node && node.parentElement && node !== document.body; node = node.parentElement) {
+    for (const sib of node.parentElement.children) {
+      if (sib === node || sib.inert || sib.matches(SURF_KEEP_LIVE) || sib.tagName === 'SCRIPT' || sib.tagName === 'STYLE') continue;
+      sib.inert = true; set.push(sib);
+    }
+  }
+  return () => set.forEach(n => { n.inert = false; });
+}
 function useSurfaceFocus(ref, active, { onEscape, trap = false } = {}) {
   const escRef = React.useRef(onEscape);
   escRef.current = onEscape;
   React.useEffect(() => {
     if (!active || !ref.current) return;
     const prev = document.activeElement;
+    const prevPath = [];
+    for (let n = prev && prev.parentElement; n; n = n.parentElement) prevPath.push(n);
     const el = ref.current;
-    const first = el.querySelector(SURF_FOCUSABLE);
-    (first || el).focus({ preventScroll: true });
+    const field = el.querySelector(SURF_FIELD);
+    const titleId = el.getAttribute('aria-labelledby');
+    const title = titleId && document.getElementById(titleId);
+    if (!field && title && !title.hasAttribute('tabindex')) title.setAttribute('tabindex', '-1');
+    (field || title || el).focus({ preventScroll: true });
+    const restoreInert = trap ? surfInertOthers(el) : null;
     const onKey = e => {
       if (e.key === 'Escape' && escRef.current) { e.stopPropagation(); escRef.current(e); }
       if (trap && e.key === 'Tab') {
         const items = [...el.querySelectorAll(SURF_FOCUSABLE)];
         if (!items.length) { e.preventDefault(); return; }
         const a = items[0], z = items[items.length - 1];
-        if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+        if (e.shiftKey && (document.activeElement === a || document.activeElement === title)) { e.preventDefault(); z.focus(); }
         else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
       }
     };
     el.addEventListener('keydown', onKey);
-    return () => { el.removeEventListener('keydown', onKey); if (prev && prev.focus && document.contains(prev)) prev.focus({ preventScroll: true }); };
+    return () => {
+      el.removeEventListener('keydown', onKey);
+      restoreInert && restoreInert();
+      if (prev && prev.focus && document.contains(prev)) { prev.focus({ preventScroll: true }); return; }
+      const near = prevPath.find(n => document.contains(n) && n.matches(SURF_FOCUSABLE + ',main,[tabindex]'));
+      const target = near || document.querySelector('main');
+      if (target) { if (!target.matches(SURF_FOCUSABLE) && !target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
+    };
   }, [active, trap]);
 }
 
@@ -100,11 +127,12 @@ function Alert({ type: t = 'error', title, children, showIcon = false, action, o
 // Figma: snackbar-organism (3795:29459)
 // Props: title, children = description (Content slot), secondaryAction / primaryAction = { label, onClick }
 // (Secondary S + Primary S; add iconLeft, e.g. Undo → 'arrow-back-up'), onClose (close icon-button; showClose=false hides it).
-// Use IFS.toast({...same props, duration}) to show one top-right that auto-dismisses.
+// Use IFS.toast({...same props, duration}) to show one top-end (timing: rule 7.12). The Snackbar has no live role of its own (G5): the
+// message reaches screen readers through IFS.announce (the always-present live regions, rule 9.19), so it is never read twice or missed.
 function Snackbar({ title, children, secondaryAction, primaryAction, onClose, showClose = true, className, ...rest }) {
   const hasActions = secondaryAction || primaryAction || showClose;
   return (
-    <div role="status" aria-live="polite" className={IFS.cx('ifs-snackbar', className)} {...rest}>
+    <div className={IFS.cx('ifs-snackbar', className)} {...rest}>
       <div className="ifs-snackbar__text">
         {title != null && <div className="ifs-snackbar__title">{title}</div>}
         {children != null && <div className="ifs-snackbar__desc">{children}</div>}
@@ -118,7 +146,15 @@ function Snackbar({ title, children, secondaryAction, primaryAction, onClose, sh
   );
 }
 
-// Toast stack: newest on top, auto-dismiss after `duration` ms (default 4000, 0 = sticky), paused on hover/focus.
+// Toast stack: newest on top. Timing (G5, Nov 25; rule 7.12):
+// - with an action (Undo …): shown at least 10 s (TOAST_ACTION_MIN, or `duration` when longer); after that it never closes on time alone: it
+//   closes on the user's next command elsewhere (a click on a control, an edit, a navigation; IFS.toast.command() for app-level ones). While
+//   the user does nothing it stays. Moving focus, Tab, F6, scrolling and clicks on empty space are not commands.
+// - without an action: closes after `duration` (default 6 s).
+// - hover or keyboard focus holds either kind; `duration: 0` = sticky. One action snackbar at a time: a new one replaces the previous (its
+//   action stays reachable through the screen's own undo, e.g. Ctrl+Z / history).
+const TOAST_ACTION_MIN = 10000; // ms, G5: the guaranteed time an action snackbar stays
+const TOAST_INFO = 6000; // ms, G5: a snackbar without an action (5–7 s, default 6)
 const surfToasts = { list: [], subs: new Set(), seq: 0 };
 const surfToastEmit = () => surfToasts.subs.forEach(f => f(surfToasts.list));
 // M3: a dismissed snackbar fades and slides 16 out to the end side in 50 (.is-leaving), then leaves the stack.
@@ -127,18 +163,51 @@ function surfDismissToast(id) {
   surfToasts.list = surfToasts.list.map(t => (t.id === id ? { ...t, leaving: true } : t)); surfToastEmit();
   setTimeout(() => { surfToasts.list = surfToasts.list.filter(t => t.id !== id); surfToastEmit(); }, IFS.motionMs('--motion-duration-50', 50));
 }
-function SurfToastItem({ t }) {
-  const [paused, setPaused] = React.useState(false);
+const hasAction = t => !!(t.primaryAction || t.secondaryAction);
+// A command elsewhere closes every action snackbar that is past its minimum and not held.
+const toastCommandSubs = new Set();
+function surfToastCommand() { [...toastCommandSubs].forEach(f => f()); }
+const TOAST_COMMAND = 'button, a[href], input:not([type=text]):not([type=search]):not([type=email]):not([type=number]):not([type=password]), select, '
+  + '[role=button], [role=menuitem], [role=menuitemradio], [role=menuitemcheckbox], [role=option], [role=radio], [role=tab], [role=switch], [role=checkbox]';
+let toastListening = false;
+function listenForCommands() {
+  if (toastListening || typeof document === 'undefined') return;
+  toastListening = true;
+  const outside = t => t instanceof Element && !t.closest('.ifs-snackbar-stack');
+  document.addEventListener('click', e => { if (outside(e.target) && e.target.closest(TOAST_COMMAND)) surfToastCommand(); }, true);
+  document.addEventListener('change', e => { if (outside(e.target)) surfToastCommand(); }, true);
+  window.addEventListener('popstate', surfToastCommand);
+  window.addEventListener('hashchange', surfToastCommand);
+}
+// The one snackbar timing (rule 7.12), for IFS.toast and any pattern that shows its own Snackbar (Documents feedback):
+// useSnackbarTiming({ action, duration, onClose }) → handlers to spread on the snackbar's wrapper (hover / focus hold it).
+function useSnackbarTiming({ action, duration, onClose }) {
+  const ms = duration === 0 ? 0 : action ? Math.max(TOAST_ACTION_MIN, duration || 0) : (duration || TOAST_INFO);
+  const [held, setHeld] = React.useState(false);
+  const left = React.useRef(ms), armed = React.useRef(false), heldRef = React.useRef(false), closeRef = React.useRef(onClose);
+  heldRef.current = held; closeRef.current = onClose;
   React.useEffect(() => {
-    if (paused || !t.duration) return;
-    const h = setTimeout(() => surfDismissToast(t.id), t.duration);
-    return () => clearTimeout(h);
-  }, [paused]);
-  const wrap = a => a && { ...a, onClick: e => { a.onClick && a.onClick(e); surfDismissToast(t.id); } };
+    listenForCommands();
+    const f = () => { if (armed.current && !heldRef.current) closeRef.current && closeRef.current(); };
+    toastCommandSubs.add(f);
+    return () => { toastCommandSubs.delete(f); };
+  }, []);
+  React.useEffect(() => {
+    if (held || !ms || armed.current) return undefined;
+    const started = Date.now();
+    const h = setTimeout(() => { if (action) armed.current = true; else closeRef.current && closeRef.current(); }, left.current);
+    return () => { clearTimeout(h); left.current = Math.max(0, left.current - (Date.now() - started)); };
+  }, [held]);
+  return { onMouseEnter: () => setHeld(true), onMouseLeave: () => setHeld(false), onFocus: () => setHeld(true), onBlur: () => setHeld(false) };
+}
+function SurfToastItem({ t }) {
+  const close = () => surfDismissToast(t.id);
+  const hold = useSnackbarTiming({ action: hasAction(t), duration: t.duration, onClose: close });
+  const wrap = a => a && { ...a, onClick: e => { a.onClick && a.onClick(e); close(); } };
   const { id, duration, description, leaving, ...props } = t;
   return (
-    <div className={leaving ? 'is-leaving' : undefined} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
-      <Snackbar {...props} primaryAction={wrap(t.primaryAction)} secondaryAction={wrap(t.secondaryAction)} onClose={() => surfDismissToast(id)}>{description}</Snackbar>
+    <div className={leaving ? 'is-leaving' : undefined} {...hold}>
+      <Snackbar {...props} primaryAction={wrap(t.primaryAction)} secondaryAction={wrap(t.secondaryAction)} onClose={close}>{description}</Snackbar>
     </div>
   );
 }
@@ -172,8 +241,10 @@ function SurfToastStack() {
   const h = snackbarHost();
   return h ? ReactDOM.createPortal(<>{list.map(t => <SurfToastItem key={t.id} t={t} />)}</>, h) : null;
 }
-// toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id).
+// toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id). toast.command() = a command the page
+// made outside the DOM events the kit listens to (e.g. a client-side route change). The message is announced politely (IFS.announce).
 function surfToast(opts) {
+  listenForCommands();
   if (!surfToasts.root) {
     const host = document.createElement('div');
     host.style.display = 'contents'; // the toasts render straight into the one stack (snackbarHost) through a portal
@@ -182,11 +253,17 @@ function surfToast(opts) {
     surfToasts.root.render(<SurfToastStack />);
   }
   const id = ++surfToasts.seq;
-  surfToasts.list = [{ duration: 4000, ...opts, id }, ...surfToasts.list];
+  const action = hasAction(opts);
+  const duration = opts.duration;
+  if (action) surfToasts.list.filter(t => hasAction(t) && !t.leaving).forEach(t => surfDismissToast(t.id)); // one action snackbar at a time
+  surfToasts.list = [{ ...opts, duration, id }, ...surfToasts.list];
   surfToastEmit();
+  const desc = typeof opts.description === 'string' ? opts.description : '';
+  if (IFS.announce && typeof opts.title === 'string') IFS.announce(desc ? `${opts.title}. ${desc}` : opts.title);
   return id;
 }
 surfToast.dismiss = surfDismissToast;
+surfToast.command = surfToastCommand;
 // Hook form: const show = useSnackbar(); show({ title: 'Saved' })
 function useSnackbar() { return surfToast; }
 
@@ -399,5 +476,5 @@ function FloatingBar({ category, categoryIcon = 'chat-folder', item, badge, seco
   );
 }
 
-Object.assign(IFS, { Tooltip, Alert, Snackbar, toast: surfToast, useSnackbar, Overlay, Modal, Drawer, Panel, Popover, FloatingBar });
-export { Tooltip, Alert, Snackbar, surfToast as toast, useSnackbar, Overlay, Modal, Drawer, Panel, Popover, FloatingBar };
+Object.assign(IFS, { Tooltip, Alert, Snackbar, toast: surfToast, useSnackbar, useSnackbarTiming, Overlay, Modal, Drawer, Panel, Popover, FloatingBar });
+export { Tooltip, Alert, Snackbar, surfToast as toast, useSnackbar, useSnackbarTiming, Overlay, Modal, Drawer, Panel, Popover, FloatingBar };

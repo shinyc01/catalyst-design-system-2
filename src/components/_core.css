@@ -14,9 +14,30 @@
 
 /* The focus ring (S1, rule 1.6): --focus-ring (2px focus-inner gap + 2px focus-outer, outside) or --focus-ring-inset. Never transitions. */
 .ifs-focus-ring{box-shadow:var(--focus-ring)}
-/* Forced colours (Windows High Contrast) drop box-shadow, so focus falls back to an outline in the system Highlight colour.
-   !important because components set outline:none on their own :focus-visible rules. */
-@media (forced-colors: active){:focus-visible{outline:var(--border-width-200) solid Highlight!important;outline-offset:var(--border-width-200)}}
+/* Forced colours (G1, Nov 25; rule 9.13). Windows High Contrast drops box-shadow and replaces colours, so: strokes (box-shadow, rule 1.6)
+   become a 1 px CanvasText outline inside the box (no layout change); selection is Highlight / HighlightText (tabs get an underline), never a
+   fill change alone; knobs and dots are CanvasText; disabled is GrayText; glass turns solid Canvas with no blur; status dots and map pins
+   keep their colour with a CanvasText edge (forced-color-adjust: none); focus stays a Highlight outline and wins over the stroke outline
+   (!important: components set outline:none on their own :focus-visible rules). Charts: charts.css. System colour keywords are CSS, not
+   tokens, and appear only inside this media query. Simulated: check on real Windows (Edge, Chrome, Firefox; Night sky and Desert). */
+@media (forced-colors: active){
+  :is(.ifs-button:not(.ifs-button--ghost),.ifs-icon-button:not(.ifs-icon-button--ghost),.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,
+      .ifs-check__box,.ifs-switch,.ifs-segmented,.ifs-chip,.ifs-content-card,.ifs-badge,.ifs-snackbar,.ifs-menu__list,.ifs-floating-bar,.ifs-popover,
+      .ifs-modal,.ifs-drawer,.ifs-panel,.ifs-tooltip,.ifs-map-cluster,.ifs-table-card,.ifs-node-card,.ifs-stat-card,.ifs-dv-card){
+    outline:var(--border-width-default) solid CanvasText;outline-offset:calc(-1 * var(--border-width-default))}
+  :is([aria-selected="true"],[aria-pressed="true"],[aria-checked="true"]:not([role=menuitemradio]),.is-selected,.ifs-content-card--selected,.ifs-table__row--selected,
+      .ifs-checkbox--on .ifs-check__box){background-color:Highlight;color:HighlightText;forced-color-adjust:none}
+  .ifs-tab[aria-selected="true"]{background-color:transparent;color:CanvasText;text-decoration:underline var(--border-width-200);text-underline-offset:var(--space-150)}
+  :is(.ifs-switch__knob,.ifs-check__dot){background-color:CanvasText}
+  .ifs-switch[aria-checked="true"] .ifs-switch__knob{background-color:HighlightText}
+  :is(:disabled,[aria-disabled="true"]){color:GrayText;outline-color:GrayText}
+  :is(.ifs-snackbar,.ifs-menu__list,.ifs-floating-bar,.ifs-popover,.ifs-modal,.ifs-drawer,.ifs-tooltip,.ifs-map-cluster,.ifs-navbar,.ifs-cpin,
+      .ifs-select--xl .ifs-select__trigger,.ifs-page-header){background-color:Canvas;background-image:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+  :is(.ifs-status-indicator,.ifs-indicator,.ifs-dv-indicator,.ifs-map-pin,.ifs-pin-dot,.ifs-pin-defect,.ifs-dv-legend__swatch,.ifs-avatar__base){forced-color-adjust:none}
+  :is(.ifs-status-indicator,.ifs-dv-indicator,.ifs-pin-dot,.ifs-pin-defect){outline:var(--border-width-default) solid CanvasText}
+  .ifs-map-pin__shape{box-shadow:0 0 0 var(--border-width-default) CanvasText}
+  :focus-visible{outline:var(--border-width-200) solid Highlight!important;outline-offset:var(--border-width-200)!important}
+}
 
 /* Click area (Nov 19, 2.0.3): every clickable thing is at least --size-target-min (24 x 24).
    Rule 1: a clickable component's own box is at least 24 x 24 (icon buttons, toggles, handles, menus: see each component).
@@ -31,3 +52,10 @@
   inset-inline:min(0px,calc(50% - var(--size-target-min) / 2));inset-block:0}
 :where(.ifs-range-field__stepper button:first-child)::before{inset-block-start:calc(var(--size-target-min) / -6)}
 :where(.ifs-range-field__stepper button:nth-child(2))::before{inset-block-end:calc(var(--size-target-min) / -6)}
+
+/* Skip link (G4, rule 9.16): the app shell's first tab stop, off-screen until it has keyboard focus, then a Primary S button at the top
+   start, one --space-200 in, above everything. */
+.ifs-skip-link{position:fixed;inset-block-start:var(--space-200);inset-inline-start:var(--space-200);z-index:var(--z-index-max);
+  transform:translateY(calc(-100% - var(--space-400)));text-decoration:none}
+.ifs-skip-link:focus,.ifs-skip-link:focus-visible{transform:none}
+.ifs-app-shell__content:focus{outline:none} /* <main> takes focus from the skip link (tabIndex -1); it is not a control, so no ring */

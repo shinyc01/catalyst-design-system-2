@@ -6,6 +6,7 @@
   background:var(--dv-c);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-dv-bar--out-of-focus{filter:var(--effect-data-viz-dim)} /* D5: hover keeps the full colour, the others darken (never transparent) */
 .ifs-dv-bar--background{background:var(--color-background-neutral-soft)}
+.ifs-dv-bar .ifs-dv-value--primary{color:var(--dv-ink,var(--color-text))} /* G2 #18: white or black by contrast with the bar (DataVizBar) */
 .ifs-dv-bar--out-of-focus .ifs-dv-value{color:var(--color-text-disabled)}
 
 /* ================= grouped-bar-molecule (4457:37362) ================= */
@@ -147,7 +148,7 @@
 
 /* ================= data-viz-modal-organism (4440:32681) / chart-info-modal tooltip ================= */
 .ifs-dv-tooltip{display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;width:16rem;padding:var(--space-inset);
-  border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-80));
+  border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-glass));
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text);text-align:start}
 .ifs-dv-tooltip--chart{width:max-content;min-width:12rem;max-width:20rem; /* D5: content-sized */
   gap:var(--space-150);padding-block:var(--space-300)} /* review round 3 (Nov 25): sides --space-inset, top / bottom space-300, title → rows space-150 */
@@ -251,3 +252,36 @@
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-evidence__caption span:nth-child(2){text-align:center}
 .ifs-evidence__caption span:nth-child(3){text-align:right} /* ltr: evidence scale reads left to right */
+/* Forced colours (G1, Nov 25; rule 9.13), Power BI's high-contrast model: data marks in CanvasText; bars, areas and slices are a Canvas fill
+   with a 2 px CanvasText outline; hover / selection = Highlight and the other marks drop to 40% opacity; line series each get a dash style and
+   a point shape (charts.jsx FC_DASH / FC_SHAPES; legend swatches match); bars, stacks and donuts are told apart by the gap, outlines, legend
+   order, tooltip and table view; no pattern fills. Heatmaps keep their ramp with an outline per cell and the value printed in each; the gauge
+   draws its value arc in CanvasText. Simulated: check on real Windows before release. */
+@media (forced-colors: active){
+  .ifs-chart svg,.ifs-dv-bar,.ifs-chart__legend .ifs-dv-legend__swatch{forced-color-adjust:none}
+  .ifs-chart svg text{fill:CanvasText}
+  .ifs-chart svg :is(.ifs-chart__grid,.ifs-chart__guide,.ifs-chart__refline){stroke:GrayText}
+  .ifs-chart svg .ifs-chart__baseline{stroke:CanvasText}
+  .ifs-chart svg :is(path.ifs-chart__mark,rect.ifs-chart__mark,.ifs-chart__slice,.ifs-chart__mark > path:not(.ifs-chart__line),.ifs-chart__gauge-track){
+    fill:Canvas;stroke:CanvasText;stroke-width:var(--border-width-selected);fill-opacity:1}
+  .ifs-chart svg .ifs-chart__line{stroke:CanvasText}
+  .ifs-chart svg .ifs-chart__fc-point{fill:CanvasText;stroke:none}
+  .ifs-chart svg .ifs-chart__fc-point--stroke{fill:none;stroke:CanvasText;stroke-width:var(--border-width-selected)}
+  .ifs-chart svg .ifs-chart__gauge-arc{fill:CanvasText;stroke:CanvasText}
+  .ifs-chart svg .ifs-chart__point--on{fill:Highlight;stroke:CanvasText}
+  .ifs-chart__plot--active :is(path.ifs-chart__mark,rect.ifs-chart__mark,.ifs-chart__slice):not(.ifs-chart__mark--dim){fill:Highlight}
+  .ifs-chart__plot--active .ifs-chart__mark:not(.ifs-chart__mark--dim) .ifs-chart__line{stroke:Highlight}
+  .ifs-chart svg .ifs-chart__mark--dim{filter:none;opacity:.4}
+  .ifs-chart svg .ifs-chart__cell{stroke:CanvasText;stroke-width:var(--border-width-default)}
+  .ifs-chart svg .ifs-chart__cell--on{stroke:Highlight;stroke-width:var(--border-width-selected)}
+  .ifs-chart svg .ifs-chart__cell-value{font:var(--font-label-s-medium);letter-spacing:var(--font-label-s-medium-tracking)}
+  .ifs-dv-bar{background:Canvas;box-shadow:inset 0 0 0 var(--border-width-selected) CanvasText}
+  .ifs-dv-bar .ifs-dv-value{color:CanvasText}
+  .ifs-chart__legend .ifs-dv-legend__swatch{background:Canvas;box-shadow:inset 0 0 0 var(--border-width-selected) CanvasText}
+  .ifs-chart__legend :is(.ifs-dv-legend__swatch--line,.ifs-dv-legend__swatch--dashed,[class*="ifs-dv-legend__swatch--fc-"]){box-shadow:none;background:CanvasText}
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-1{background:repeating-linear-gradient(90deg,CanvasText 0 8px,transparent 8px 12px)} /* ltr: dash pattern */
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-2{background:repeating-linear-gradient(90deg,CanvasText 0 2px,transparent 2px 5px)} /* ltr: dash pattern */
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-3{background:repeating-linear-gradient(90deg,CanvasText 0 10px,transparent 10px 13px,CanvasText 13px 15px,transparent 15px 18px)} /* ltr: dash pattern */
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-4{background:repeating-linear-gradient(90deg,CanvasText 0 4px,transparent 4px 8px)} /* ltr: dash pattern */
+  .ifs-chart__legend .ifs-dv-legend__swatch--fc-5{background:repeating-linear-gradient(90deg,CanvasText 0 12px,transparent 12px 15px,CanvasText 15px 17px,transparent 17px 20px)} /* ltr: dash pattern */
+}

@@ -556,7 +556,7 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // (+ optional CanvasHeader) on top, a scrolling content area and an optional side panel on the right.
 // Bar, sidebar, header and panel stay put; only content scrolls.
 // Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
-// e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
+// e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4).
 // Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
 //   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
 //         whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 4.6).
@@ -581,8 +581,11 @@ function useShellDismiss(ref, active, onDismiss) {
     return () => { document.removeEventListener('pointerdown', down, true); document.removeEventListener('keydown', key); };
   }, [active, onDismiss]);
 }
-function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, className, style, ...rest }) {
+// G4 (rule 9.16): a "Skip to content" link is the shell's first tab stop, shown on focus; it moves focus to <main>.
+let shellUid = 0;
+function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', className, style, ...rest }) {
   const ref = React.useRef(null), sideRef = React.useRef(null), panelRef = React.useRef(null);
+  const mainId = React.useMemo(() => `ifs-main-${++shellUid}`, []);
   const [size, setSize] = React.useState(() => shellSizeOf(typeof window !== 'undefined' ? window.innerWidth : 1440));
   const [roomy, setRoomy] = React.useState(true); // false: a pushed panel would leave the page area under --layout-content-min
   React.useLayoutEffect(() => {
@@ -664,12 +667,14 @@ function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bot
     <div ref={ref} data-size={size}
       className={IFS.cx('ifs-app-shell', navOverlay && 'ifs-app-shell--nav-overlay', pushRail && 'ifs-app-shell--panel-rail', overShown && 'ifs-app-shell--panel-over', className)}
       style={height ? { height, ...style } : style} {...rest}>
+      <a className="ifs-skip-link ifs-button ifs-button--primary ifs-button--s" href={`#${mainId}`}
+        onClick={e => { const m = document.getElementById(mainId); if (m) { e.preventDefault(); m.focus(); } }}><span className="ifs-button__label">{skipLabel}</span></a>
       <div className="ifs-app-shell__bar">{navBar}</div>
       {sideNav && <div ref={sideRef} className="ifs-app-shell__side">{nav}</div>}
       <div className="ifs-app-shell__main" style={sideNav ? undefined : { gridColumn: '1 / -1' }}>
         {header && <div ref={headRef} className="ifs-app-shell__header">{header}</div>}
         <div className="ifs-app-shell__body">
-          <main className="ifs-app-shell__content">{children}</main>
+          <main id={mainId} tabIndex={-1} className="ifs-app-shell__content">{children}</main>
           {pex.mounted && <div ref={panelRef} className={IFS.cx('ifs-app-shell__panel', pushing && 'ifs-app-shell__panel--push', pex.leaving && 'is-leaving')}
             onAnimationEnd={e => { if (e.target === e.currentTarget) redraw(); }}>{panel ? side : lastPanel.current}</div>}
         </div>

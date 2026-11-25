@@ -551,7 +551,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
     update(d => d.map(r => (r[rowKey] === editing.id ? { ...r, [nameCol.key]: name } : r)));
     setEditing(null);
     onRename && onRename(row, name);
-    IFS.toast && IFS.toast({ title: `Renamed to “${name}”`, duration: 5000,
+    IFS.toast && IFS.toast({ title: `Renamed to “${name}”`,
       secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => setData(dd => dd.map(r => (r[rowKey] === row[rowKey] ? { ...r, [nameCol.key]: prev } : r))) } });
   };
 

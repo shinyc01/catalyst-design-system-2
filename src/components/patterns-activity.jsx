@@ -268,7 +268,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
     const next = list.map(v => (v.id === ren.id ? { ...v, title: name } : v));
     setList(next);
     onRename && onRename(prev, name, prev.title);
-    IFS.toast && IFS.toast({ title: `Version renamed to “${name}”`, primaryAction: { label: 'Undo', onClick: () => setList(list) }, duration: 5000 });
+    IFS.toast && IFS.toast({ title: `Version renamed to “${name}”`, primaryAction: { label: 'Undo', onClick: () => setList(list) } });
     return true;
   };
   const currentV = list.find(v => v.current);

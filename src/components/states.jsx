@@ -72,9 +72,10 @@ function EmptyState({ cause = 'first-run', size = 'section', heading, body, icon
 // Figma: empty-state-spinner-molecule (3782:24081)
 // Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."; the kit uses the
 // ellipsis character, guide/rules.md 8.23), showText (show-text).
-function Spinner({ text = 'Loading…', showText = true, className, ...rest }) {
+// announce=false: no live role of its own, for a Spinner inside a region that already announces (LoadingRegion; G5, rule 9.19).
+function Spinner({ text = 'Loading…', showText = true, announce = true, className, ...rest }) {
   return (
-    <div role="status" aria-live="polite" className={IFS.cx('ifs-spinner', className)} {...rest}>
+    <div role={announce ? 'status' : undefined} aria-live={announce ? 'polite' : undefined} className={IFS.cx('ifs-spinner', className)} {...rest}>
       <StateMedia icon="system-loader" spin />
       {showText ? <span className="ifs-spinner__text">{text}</span> : <span className="ifs-sr-only">{text}</span>}
     </div>
@@ -126,7 +127,7 @@ function LoadingRegion({ loading, skeleton, delay = 300, minDuration = 300, labe
   return (
     <div aria-busy={busy || undefined} className={IFS.cx('ifs-loading-region', className)} {...rest}>
       <span className="ifs-sr-only" aria-live="polite">{announce}</span>
-      {visible ? (skeleton || <Spinner />) : (busy ? null : children)}
+      {visible ? (skeleton || <Spinner announce={false} />) : (busy ? null : children)}
     </div>
   );
 }
