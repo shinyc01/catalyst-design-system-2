@@ -292,6 +292,8 @@
 --color-data-viz-band: rgba(255,255,255,0.16)
 --color-data-viz-baseline: var(--palette-white-alpha-30)
 --effect-data-viz-dim: brightness(0.45) saturate(0.7)
+--size-data-viz-bar-min: 4px
+--size-data-viz-group-gap-min: 8px
 --color-background-skeleton: var(--color-background-neutral-soft)
 --color-background-sheen: var(--palette-white-alpha-40)
 --color-background-sheen-from: var(--palette-black-alpha-20)
