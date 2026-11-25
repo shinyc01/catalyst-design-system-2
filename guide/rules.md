@@ -114,7 +114,8 @@ Retired classes still work and render as: Code regular / medium → Code/M; Labe
 | Title in the thin `PageHeader` and `ExploreHeader` | Label/M/medium |
 | Page section on the page background (not in a container) | H3 |
 | Title of a card, panel, modal, drawer, table card, side nav, empty state; every `ContentCard` title (S and M), readiness cards, Cooper fix cards, widget cards | H4 |
-| Chart card (`DataVizCard` header) and stat card titles | Label/M/medium, text tertiary (`--color-text-softer`, #999999 in Dark) |
+| Chart card (`DataVizCard` header) titles | Label/M/medium, text tertiary (`--color-text-softer`, #999999 in Dark); changing to H4 in `--color-text` with an optional Body M subtitle in `--color-text-soft` (item 11, Nov 25) |
+| Stat card titles | Label/M/medium, `--color-text-soft` (the chart subtitle colour; Nov 25, was text-softer) |
 | Command list card title (`HomeRowCard`), notification titles | Label/L/medium |
 | Sub-section inside a titled container | Label/M/medium, primary colour |
 | Content, typed text, menu items, options, cells | Body/M/regular |

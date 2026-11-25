@@ -30,7 +30,7 @@
 /* Text (strength: base · soft · softer; states) */
 --color-text:var(--palette-core-1000);
 --color-text-soft:var(--palette-core-750);
---color-text-softer:var(--palette-core-600); /* C4: tertiary #999999 (was #8c8c8c): 5.04 on menus, 4.57 on a hovered card in a card. Chart and stat card titles stay here (C2) */
+--color-text-softer:var(--palette-core-600); /* C4: tertiary #999999 (was #8c8c8c): 5.04 on menus, 4.57 on a hovered card in a card. Chart titles stay here until the H4 header lands (item 11, Nov 25); stat card titles moved to text-soft (Nov 25) */
 --color-text-disabled:var(--palette-core-300);
 --color-text-focus:var(--palette-info-300);
 --color-text-accent-purple:var(--palette-purple-450); /* C4: was #8366f7 (3.56:1); purple 450 is a code-only step (new for Figma) */

@@ -176,7 +176,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-stat-card--m{gap:var(--space-100) /* the value's line height adds ~8px of its own, so 4 reads as about the padding */;padding:var(--space-inset)}
 .ifs-stat-card--s{gap:var(--space-100);padding:var(--space-inset)}
 .ifs-stat-card__top{display:flex;align-items:center;gap:var(--space-100);min-height:var(--size-20)}
-.ifs-stat-card__title{flex:1;min-width:0;color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
+.ifs-stat-card__title{flex:1;min-width:0;color:var(--color-text-soft) /* Nov 25: the chart subtitle colour, so a dashboard reads as one system (was text-softer) */;font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-stat-card__trend{display:inline-flex;align-items:center;gap:var(--space-50);flex:none;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-stat-card__trend .ifs-icon{color:var(--color-icon-softer)}
 .ifs-stat-card__trend--down .ifs-icon{transform:rotate(180deg)}

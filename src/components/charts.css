@@ -65,7 +65,7 @@
 /* ================= data-viz-header-molecule (2154:2068) ================= */
 .ifs-dv-header{display:flex;align-items:center;gap:var(--space-200);min-height:calc(var(--size-control-s) + var(--space-100)) /* 32 / 28 / 24 */;min-width:0;box-sizing:border-box}
 .ifs-dv-header__left{flex:1;display:flex;align-items:center;gap:var(--space-100);min-width:0}
-.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-softer); /* same colour as the stat card title (Nov 19) */
+.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-softer); /* Nov 19 colour; becomes H4 in --color-text with the item 11 header (Nov 25); stat card titles are now text-soft */
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium: chart cards match the stat cards beside them on dashboards (Nov 19, 2.0.3; was H4) */
 .ifs-dv-header__drag{display:none;color:var(--color-icon-handle) /* raw in Figma */;cursor:grab}
 .ifs-dv-header__hover{display:flex;align-items:center;gap:var(--space-200);opacity:0;pointer-events:none}
