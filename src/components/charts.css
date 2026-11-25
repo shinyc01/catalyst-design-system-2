@@ -65,8 +65,11 @@
 /* ================= data-viz-header-molecule (2154:2068) ================= */
 .ifs-dv-header{display:flex;align-items:center;gap:var(--space-200);min-height:calc(var(--size-control-s) + var(--space-100)) /* 32 / 28 / 24 */;min-width:0;box-sizing:border-box}
 .ifs-dv-header__left{flex:1;display:flex;align-items:center;gap:var(--space-100);min-width:0}
-.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-softer); /* Nov 19 colour; becomes H4 in --color-text with the item 11 header (Nov 25); stat card titles are now text-soft */
-  font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium: chart cards match the stat cards beside them on dashboards (Nov 19, 2.0.3; was H4) */
+.ifs-dv-header__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-softer);
+  font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* the Figma molecule (organism card); the chart card's title is H4 (item 11, below) */
+.ifs-dv-header__subtitle{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-soft);
+  font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* item 11: one line, Body/M/regular, ellipsis + full text on hover (title attribute) */
+.ifs-dv-header__controls{display:contents} /* the organism keeps its one-row layout; the chart card makes this the title row */
 .ifs-dv-header__drag{display:none;color:var(--color-icon-handle) /* raw in Figma */;cursor:grab}
 .ifs-dv-header__hover{display:flex;align-items:center;gap:var(--space-200);opacity:0;pointer-events:none}
 .ifs-dv-header__divider{width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
@@ -97,7 +100,29 @@
 .ifs-dv-card--chart.ifs-dv-card--large{height:var(--size-data-viz-card-large)}
 .ifs-dv-card--chart.ifs-dv-card--auto{height:auto} /* the `height` escape hatch: the plot has a fixed height and the card hugs it */
 .ifs-dv-card--chart:hover,.ifs-dv-card--chart.ifs-dv-card--hover{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
-.ifs-dv-card--chart .ifs-dv-header{flex:none;min-height:var(--size-control-m) /* the Chart / Table switch (M) sets the row */;padding:0}
+.ifs-dv-card--chart .ifs-dv-header{flex:none;align-items:flex-start;min-height:var(--size-control-m) /* the Chart / Table switch (M) sets the row */;padding:0}
+/* Item 11 (Nov 25): title H4 in --color-text; the optional subtitle sits directly under it (space-0). The header is top-aligned and the
+   first line is the control height, so titles share one line in every card with or without a subtitle and the controls stay on the title
+   row; a card without a subtitle gives that line to the plot. */
+.ifs-dv-card--chart .ifs-dv-header__left{flex-direction:column;align-items:stretch;gap:var(--space-0)}
+.ifs-dv-card--chart .ifs-dv-header__title{color:var(--color-text);font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking);
+  line-height:var(--size-control-m)}
+.ifs-dv-card--chart .ifs-dv-header__controls{display:flex;align-items:center;gap:var(--space-200);flex:none;min-height:var(--size-control-m)}
+/* Item 9 (Nov 25): the 6-dot handle sits in the card's start inset, centred on the title line, on hover / keyboard focus; the title never
+   moves. The handle is a cue only (24 hit area): the whole header drags (grab cursor, title not selectable, buttons keep their cursor).
+   Known limit, accepted: the handle touches the edge and title in Comfortable and overlaps the title by 2 px in Compact. */
+.ifs-dv-card--chart .ifs-dv-header__drag{position:absolute;inset-block-start:calc(var(--space-inset) + (var(--size-control-m) - var(--size-16)) / 2);
+  inset-inline-start:calc((var(--space-inset) - var(--size-16)) / 2);width:var(--size-16);height:var(--size-16)}
+.ifs-dv-card--chart .ifs-dv-header__drag::after{content:"";position:absolute;inset:calc((var(--size-16) - var(--size-target-min)) / 2)} /* 24 hit area */
+.ifs-dv-card--chart:focus-within .ifs-dv-header__drag{display:inline-flex}
+.ifs-dv-card--movable .ifs-dv-header{cursor:grab;user-select:none}
+.ifs-dv-card--movable .ifs-dv-header :is(button,[role=radio],a){cursor:pointer}
+.ifs-dv-card--movable{transition:transform var(--motion-duration-200) var(--motion-ease-standard)}
+.ifs-dv-card--movable:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.ifs-dv-card--movable:is(.is-lifted,.is-picked){z-index:var(--z-index-toast);box-shadow:var(--elevation-2),0 0 0 var(--border-width-default) var(--color-border-strong)}
+.ifs-dv-card--movable.is-picked{box-shadow:var(--elevation-2),var(--focus-ring)}
+.ifs-dv-card--movable.is-lifted{transition:none}
+.ifs-dv-card--movable.is-lifted .ifs-dv-header{cursor:grabbing}
 /* D1 header order at the end: [hover / focus: Edit with Cooper, actions] · Chart / Table switch · Evidence (always visible). The hover row
    takes no room until shown, so the switch and Evidence never move; a chart's own control (e.g. Year / Quarter) stays first. */
 .ifs-dv-card--chart .ifs-dv-header__hover{display:none;opacity:1;pointer-events:auto}

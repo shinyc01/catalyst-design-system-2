@@ -152,10 +152,12 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
 // badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
 // compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in --color-text-softer;
 // without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
+// Dashboards (Nov 25): one variant, size="m" descriptionPosition="inline" — its height comes from its content (--space-inset all round,
+// title → value --space-inset) and is the dashboard row unit --size-data-viz-row (116 / 100 / 84); never mixed with below-description cards.
 function StatCard({ size = 's', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest }) {
   const m = size === 'm';
   return (
-    <div className={IFS.cx('ifs-stat-card', `ifs-stat-card--${size}`, compare && 'ifs-stat-card--compare', loading && 'ifs-stat-card--loading', className)} aria-busy={loading || undefined} {...rest}>
+    <div className={IFS.cx('ifs-stat-card', `ifs-stat-card--${size}`, !compare && descriptionPosition === 'inline' && 'ifs-stat-card--inline', compare && 'ifs-stat-card--compare', loading && 'ifs-stat-card--loading', className)} aria-busy={loading || undefined} {...rest}>
       {(title != null || trend != null || badge || loading) && (
         <div className="ifs-stat-card__top">
           {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ flex: 1, height: 'var(--size-14)' }} /> : <span className="ifs-stat-card__title">{title}</span>}

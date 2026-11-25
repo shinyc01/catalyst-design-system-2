@@ -422,10 +422,10 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
   --size-tab-m:2.25rem;--size-tab-l:2.5rem;--size-nav-row:2.5rem;
   --size-table-row:3.25rem;--size-table-header:2rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.05;
-  /* D2 (Nov 24): the chart card has the fixed height, the plot fills what is left. Row unit = one stat card S with its subtext beside the number
-     (5.25rem); a default chart card = 3 rows + 2 page gaps = 284 at a 16 gap (292 / 316 at the 20 / 32 gaps from 1440 / 1920 px; item 6 B, Nov 25), so KPI cards stacked
-     beside a chart line up at every breakpoint; a large card = 2 default cards + the page gap. */
-  --size-data-viz-row:5.25rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap));
+  /* Dashboard row unit (Nov 25): the height of the dashboard stat card (M, description inline, --space-inset all round and title → value)
+     = 100; a default chart card = 3 rows + 2 page gaps = 332 at a 16 gap (340 / 364 at the 20 / 32 gaps from 1440 / 1920 px), so stat cards stacked
+     beside a chart line up at every breakpoint; a large card = 2 default cards + the page gap (replaces item 6's S-inline unit). */
+  --size-data-viz-row:6.25rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap));
   --size-data-viz-card-large:calc(2 * var(--size-data-viz-card) + var(--page-gap));
 }
 
@@ -439,10 +439,10 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
   --size-tab-m:2.5rem;--size-tab-l:3rem;--size-nav-row:2.75rem;
   --size-table-row:4rem;--size-table-header:2.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:1.2;
-  /* D2 (Nov 24): the chart card has the fixed height, the plot fills what is left. Row unit = one stat card S with its subtext beside the number
-     (6rem); a default chart card = 3 rows + 2 page gaps = 320 at a 16 gap (328 / 352 at the 20 / 32 gaps from 1440 / 1920 px; item 6 B, Nov 25), so KPI cards stacked
-     beside a chart line up at every breakpoint; a large card = 2 default cards + the page gap. */
-  --size-data-viz-row:6rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap));
+  /* Dashboard row unit (Nov 25): the height of the dashboard stat card (M, description inline, --space-inset all round and title → value)
+     = 116; a default chart card = 3 rows + 2 page gaps = 380 at a 16 gap (388 / 412 at the 20 / 32 gaps from 1440 / 1920 px), so stat cards stacked
+     beside a chart line up at every breakpoint; a large card = 2 default cards + the page gap (replaces item 6's S-inline unit). */
+  --size-data-viz-row:7.25rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap));
   --size-data-viz-card-large:calc(2 * var(--size-data-viz-card) + var(--page-gap));
 }
 
@@ -456,9 +456,9 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
   --size-tab-m:2rem;--size-tab-l:2.25rem;--size-nav-row:2.25rem;
   --size-table-row:2.5rem;--size-table-header:1.5rem;--table-header-pad-top:var(--space-0);--table-header-pad-bottom:var(--space-0);
   --density-scale:0.95;
-  /* D2 (Nov 24): the chart card has the fixed height, the plot fills what is left. Row unit = one stat card S with its subtext beside the number
-     (4.5rem); a default chart card = 3 rows + 2 page gaps = 248 at a 16 gap (256 / 280 at the 20 / 32 gaps from 1440 / 1920 px; item 6 B, Nov 25), so KPI cards stacked
-     beside a chart line up at every breakpoint; a large card = 2 default cards + the page gap. */
-  --size-data-viz-row:4.5rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap));
+  /* Dashboard row unit (Nov 25): the height of the dashboard stat card (M, description inline, --space-inset all round and title → value)
+     = 84; a default chart card = 3 rows + 2 page gaps = 284 at a 16 gap (292 / 316 at the 20 / 32 gaps from 1440 / 1920 px), so stat cards stacked
+     beside a chart line up at every breakpoint; a large card = 2 default cards + the page gap (replaces item 6's S-inline unit). */
+  --size-data-viz-row:5.25rem;--size-data-viz-card:calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap));
   --size-data-viz-card-large:calc(2 * var(--size-data-viz-card) + var(--page-gap));
 }

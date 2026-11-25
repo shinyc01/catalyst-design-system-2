@@ -175,6 +175,9 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
   background:var(--color-surface-raised);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-stat-card--m{gap:var(--space-100) /* the value's line height adds ~8px of its own, so 4 reads as about the padding */;padding:var(--space-inset)}
 .ifs-stat-card--s{gap:var(--space-100);padding:var(--space-inset)}
+/* The dashboard stat card (Nov 25): M with the description inline; title → value one --space-inset (20 / 16 / 12), so with --space-inset all
+   round its height is the dashboard row unit --size-data-viz-row (116 / 100 / 84) with no free space. */
+.ifs-stat-card--m.ifs-stat-card--inline{gap:var(--space-inset)}
 .ifs-stat-card__top{display:flex;align-items:center;gap:var(--space-100);min-height:var(--size-20)}
 .ifs-stat-card__title{flex:1;min-width:0;color:var(--color-text-soft) /* Nov 25: the chart subtitle colour, so a dashboard reads as one system (was text-softer) */;font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-stat-card__trend{display:inline-flex;align-items:center;gap:var(--space-50);flex:none;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
@@ -184,10 +187,10 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-stat-card__value{flex:none;color:var(--color-text);font-variant-numeric:var(--font-numeric)}
 .ifs-stat-card--m .ifs-stat-card__value{font:var(--font-heading-h2-medium);letter-spacing:var(--font-heading-h2-medium-tracking)} /* Heading/H2 (review, Nov 18: H1 felt too big) */
 .ifs-stat-card--s .ifs-stat-card__value{font:var(--font-heading-h3-medium);letter-spacing:var(--font-heading-h3-medium-tracking)} /* Heading/H3 */
-.ifs-stat-card__desc{flex:1;min-width:0;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-stat-card__desc{flex:1;min-width:0;color:var(--color-text-soft) /* Nov 25: inline = below = text-soft (was text-softer) */;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 /* Figma pattern use (Widget Builder 331:493002): value over a sentence-case description in Label/M/medium (Figma: Caption/regular-UPPER), gap 8 */
 .ifs-stat-card__stack{display:flex;flex-direction:column;gap:var(--space-200);min-width:0}
-.ifs-stat-card__desc--below{flex:none;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
+.ifs-stat-card__desc--below{flex:none}
 .ifs-stat-card__extra{display:flex;align-items:baseline;gap:var(--space-150)}
 .ifs-stat-card--loading .ifs-stat-card__value-row{align-items:center}
 /* compare: from → to (replaces QuickStatCard's compare variant and CompareStatValue) */

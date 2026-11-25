@@ -341,6 +341,7 @@ Use: Every content card (content, selectable, settings, link, media; rule 7.8); 
 
 ### stat-card-organism · `StatCard`
 Use: One key metric: title + value + optional trend or badge; `compare` for from → to. Size S by default; `size="m"` only by rule 2.6. Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6.
+Dashboards and the widget builder (Nov 25): one variant only, `size="m" descriptionPosition="inline"` (never mixed with below-description cards or with S). Its height comes from its content (`--space-inset` all round, title → value `--space-inset`) and is the dashboard row unit `--size-data-viz-row` (116 / 100 / 84). The description (inline or below) is `--color-text-soft`; keep inline descriptions short (they never wrap or truncate).
 
 ### marker-atom · `TimelineMarker`
 Use: Timeline marker (icon/avatar circle); building block of `activity-organism`.
@@ -446,11 +447,12 @@ Base (building blocks; atoms/molecules) and chart containers:
 
 ### data-viz-card-organism · `DataVizCard`
 Use: The card that holds any chart on a dashboard; Drag for dashboard edit mode.
-Anatomy (`variant="chart"`, drawn by every core chart; rule 11.1): inset on all four sides, stack gap between header · plot · legend. Header: drag (hover) · title · the chart's own control · [hover / focus: Edit with Cooper, `actions`] · Chart / Table switch (icon-only `SegmentedControl` M, when `onViewChange` is set) · Evidence button (always visible). No ⋮ by default.
-Size (rule 11.2): `size` default (`--size-data-viz-card`, 3 stat-card rows + 2 page gaps: 320 / 284 / 248 at a 16 gap) | large (2 default cards + the page gap); the plot fills what is left. `autoHeight` for the `height` escape hatch; `bare` fills its frame. `legendPlacement` below | beside (pie, donut). `hideControls` hides the switch and Evidence (no data, rule 11.9).
+Anatomy (`variant="chart"`, drawn by every core chart; rule 11.1): inset on all four sides, stack gap between header · plot · legend. Header (items 9 and 11, Nov 25): `title` (H4, `--color-text`) with an optional one-line `subtitle` (Body/M, `--color-text-soft`, ellipsis + full text on hover) under it · the chart's own control · [hover / focus: Edit with Cooper (its own button on cards 416 px and wider; the first ⋯ item below that), ⋯ (Move, then `menuItems`), `actions`] · Chart / Table switch (icon-only `SegmentedControl` M, when `onViewChange` is set) · Evidence button (always visible). The 6-dot drag handle sits in the start inset on hover / keyboard focus; the title never moves. `description` is screen-reader text (`aria-describedby`, and the top of the table view), never shown on the card (USER-SETTINGS row 11, open).
+Moving (item 9, `movable`, default true): drag from the whole header (grab cursor, 4 px threshold, buttons excluded; `onDragEnd({ dx, dy })`); keyboard: the card is a tab stop, Space picks it up, arrows move one grid step (`onMove({ col, row })`), Space drops, Esc cancels (`onMoveEnd({ col, row, cancelled })`); "Move" in ⋯ does the same; every step is announced. Where the card lands is the dashboard pattern's job (phase 2).
+Size (rule 11.2): `size` default (`--size-data-viz-card`, 3 dashboard rows + 2 page gaps: 380 / 332 / 284 at a 16 gap) | large (2 default cards + the page gap); the plot fills what is left (and the subtitle line when there is none). `autoHeight` for the `height` escape hatch; `bare` fills its frame. `legendPlacement` below | beside (pie, donut). `hideControls` hides the switch and Evidence (no data, rule 11.9).
 
 ### data-viz-header-molecule · `DataVizHeader`
-Use: Chart title row with optional view toggle or button. `viewSwitch` sits after the hover row and before `slot` (Evidence), so it never moves when the hover row shows.
+Use: Chart title row with optional view toggle or button. `viewSwitch` sits after the hover row and before `slot` (Evidence), so it never moves when the hover row shows. `subtitle` (chart card): one line under the title; the controls stay on the title row (`.ifs-dv-header__controls`).
 
 ### data-viz-modal-organism · `DataVizTooltip`
 Use: Chart tooltip / info pop-up showing exact values on hover.
@@ -509,7 +511,7 @@ Use: One phase row of the Gantt; building block.
 Use: Gantt: tasks/phases on a time axis (e.g. investment phases across a 5-year plan); shows sequential vs parallel work.
 Notes: A phase row expands and collapses with a caret `IconButton` S; the phase name is plain text, not a button (rule 3.10).
 
-Core chart types. All share the states Default, Hover, Cooper, Loading, Empty (no data), No results and Error, each at the card's height (rule 11.9; `state`, `onRetry`, `onClearFilters`), and the props `title`, `size` (default | large), `valueTicks` (2–8 value-axis intervals, default 4), `view` / `onViewChange`, `onCooper`, `onEditWithCooper`, `actions`, `bare`, `height` (escape hatch). Series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other", rule 11.6). Types with no kit component: box plot, radar, treemap.
+Core chart types. All share the states Default, Hover, Cooper, Loading, Empty (no data), No results and Error, each at the card's height (rule 11.9; `state`, `onRetry`, `onClearFilters`), and the props `title`, `subtitle`, `description` (screen-reader only), `size` (default | large), `valueTicks` (2–8 value-axis intervals, default 4), `view` / `onViewChange`, `onCooper`, `onEditWithCooper`, `actions`, `menuItems`, `movable` / `onMove` / `onMoveEnd` / `onDragEnd`, `bare`, `height` (escape hatch). Give the same entity the same `color` on every chart of a screen (rule 11.11). Series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other", rule 11.6). Types with no kit component: box plot, radar, treemap.
 
 ### chart-column · `ColumnChart`
 Use: One measure across few or time-ordered categories ("which is biggest"); zero-based, one colour (slot 1). Legend only with a reference (one series = no legend); the radius sits on the end away from the baseline.

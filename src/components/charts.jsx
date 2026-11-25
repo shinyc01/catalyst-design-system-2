@@ -251,12 +251,15 @@ function Legend({ items = [], layout = 'inline', showValues = true, align = 'cen
 }
 
 // Figma: data-viz-header-molecule (2154:2068)
-// Props: title, state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
+// Props: title, subtitle (chart card only, item 11: one line under the title, Body/M, ellipsis with the full text on hover),
+// state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
 // Right element: segments = SegmentedControl options (size S) with segmentValue/defaultSegmentValue/onSegmentChange,
 // or button = { label, onClick, iconRight } (Tertiary S). Hover row: drag handle (draggable), and ghost icon-buttons
 // for onEdit / onDelete / onMore. hoverActions = custom hover-only node, viewSwitch = the chart card's Chart / Table switch (after the hover row),
 // slot = always-visible end node (Figma "Slot"; the chart card's Evidence button).
-function DataVizHeader({ title, state, segments, segmentValue, defaultSegmentValue, onSegmentChange, button, onEdit, onDelete, onMore,
+// The controls sit in one row (.ifs-dv-header__controls); on the chart card that row is the title row (item 11: titles line up in every card,
+// with or without a subtitle).
+function DataVizHeader({ title, subtitle, state, segments, segmentValue, defaultSegmentValue, onSegmentChange, button, onEdit, onDelete, onMore,
   draggable = true, hoverActions, viewSwitch, slot, className, ...rest }) {
   const icons = (onEdit || onDelete || onMore) && <>
     {onEdit && <IFS.IconButton type="ghost" size="s" icon="system-edit-rename" label="Edit" onClick={onEdit} />}
@@ -268,14 +271,87 @@ function DataVizHeader({ title, state, segments, segmentValue, defaultSegmentVal
       <div className="ifs-dv-header__left">
         {draggable && <span className="ifs-dv-header__drag" aria-hidden="true"><IFS.Icon name="system-drag-and-drop" size={16} /></span>}
         <span className="ifs-dv-header__title">{title}</span>
+        {subtitle != null && subtitle !== '' && <span className="ifs-dv-header__subtitle" title={typeof subtitle === 'string' ? subtitle : undefined}>{subtitle}</span>}
       </div>
-      {segments && <IFS.SegmentedControl size="s" options={segments} value={segmentValue} defaultValue={defaultSegmentValue ?? (segments[0] && (segments[0].value ?? segments[0]))} onChange={onSegmentChange} />}
-      {button && <IFS.Button type="tertiary" size="s" iconRight={button.iconRight === undefined ? 'arrow-right' : button.iconRight} onClick={button.onClick}>{button.label}</IFS.Button>}
-      {(icons || hoverActions) && <div className="ifs-dv-header__hover">{hoverActions}{icons}</div>}
-      {viewSwitch}
-      {slot}
+      <div className="ifs-dv-header__controls">
+        {segments && <IFS.SegmentedControl size="s" options={segments} value={segmentValue} defaultValue={defaultSegmentValue ?? (segments[0] && (segments[0].value ?? segments[0]))} onChange={onSegmentChange} />}
+        {button && <IFS.Button type="tertiary" size="s" iconRight={button.iconRight === undefined ? 'arrow-right' : button.iconRight} onClick={button.onClick}>{button.label}</IFS.Button>}
+        {(icons || hoverActions) && <div className="ifs-dv-header__hover">{hoverActions}{icons}</div>}
+        {viewSwitch}
+        {slot}
+      </div>
     </div>
   );
+}
+
+// Item 9 (Nov 25): moving a chart card. Pointer: drag from the whole header (grab cursor, 4 px threshold, buttons and controls excluded,
+// title not selectable); the card lifts and follows the pointer, then drops back (where it lands is the dashboard's job, phase 2:
+// onDragEnd({ dx, dy })). Keyboard: the card is a tab stop; Space picks it up, the arrow keys move it one grid step (onMove({ col, row })),
+// Space drops it (onMoveEnd({ col, row })), Esc cancels (onMoveEnd({ col, row, cancelled: true })); "Move" in ⋯ picks it up too.
+// Every step is announced (IFS.announce, rule 9.19). Until a dashboard places it, a step shows as a --size-24 nudge.
+const MOVE_THRESHOLD = 4; // px: the pointer travel before a press becomes a drag (item 9)
+const MOVE_SKIP = 'button, a, input, select, textarea, [role=radio], [role=menu], [role=menuitem], [role=switch], [tabindex]:not(.ifs-dv-card)';
+function useCardMove(ref, { enabled, title, onMove, onMoveEnd, onDragEnd }) {
+  const [picked, setPicked] = React.useState(false);
+  const [off, setOff] = React.useState([0, 0]);
+  const offRef = React.useRef(off); offRef.current = off;
+  const name = typeof title === 'string' ? title : 'Chart';
+  const say = t => IFS.announce && IFS.announce(t);
+  const pick = () => { if (!ref.current) return; setPicked(true); setOff([0, 0]); ref.current.focus({ preventScroll: true });
+    say(`Picked up ${name}. Use the arrow keys to move it, Space to drop, Esc to cancel.`); };
+  const drop = cancelled => { const [col, row] = offRef.current; setPicked(false); setOff([0, 0]);
+    onMoveEnd && onMoveEnd({ col, row, cancelled: !!cancelled }); say(cancelled ? `Move cancelled. ${name} is back in place.` : `${name} dropped.`); };
+  React.useEffect(() => {
+    const el = ref.current; if (!enabled || !el) return undefined;
+    let start = null, dragging = false;
+    const down = e => {
+      if (e.button !== 0 || !e.target.closest('.ifs-dv-header') || e.target.closest(MOVE_SKIP)) return;
+      start = { x: e.clientX, y: e.clientY }; e.preventDefault();
+    };
+    const move = e => {
+      if (!start) return;
+      const dx = e.clientX - start.x, dy = e.clientY - start.y;
+      if (!dragging && Math.hypot(dx, dy) < MOVE_THRESHOLD) return;
+      dragging = true; el.classList.add('is-lifted'); el.style.transform = `translate(${dx}px, ${dy}px)`; // ltr: pointer geometry
+    };
+    const up = e => {
+      if (!start) return;
+      const dx = e.clientX - start.x, dy = e.clientY - start.y; start = null;
+      if (dragging) { dragging = false; el.classList.remove('is-lifted'); el.style.transform = ''; onDragEnd && onDragEnd({ dx, dy }); }
+    };
+    el.addEventListener('pointerdown', down); window.addEventListener('pointermove', move); window.addEventListener('pointerup', up);
+    return () => { el.removeEventListener('pointerdown', down); window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); };
+  }, [enabled, onDragEnd]);
+  const onKeyDown = e => {
+    if (!enabled || e.target !== ref.current) return;
+    if (e.key === ' ') { e.preventDefault(); if (picked) drop(false); else pick(); return; }
+    if (!picked) return;
+    if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); drop(true); return; }
+    const rtl = IFS.getDirection && IFS.getDirection() === 'rtl';
+    const d = { ArrowRight: [rtl ? -1 : 1, 0], ArrowLeft: [rtl ? 1 : -1, 0], ArrowDown: [0, 1], ArrowUp: [0, -1] }[e.key];
+    if (!d) return;
+    e.preventDefault();
+    const n = [off[0] + d[0], off[1] + d[1]];
+    setOff(n); onMove && onMove({ col: n[0], row: n[1] });
+    say(`Moved ${e.key.replace('Arrow', '').toLowerCase()}: column ${n[0] >= 0 ? '+' : ''}${n[0]}, row ${n[1] >= 0 ? '+' : ''}${n[1]}.`);
+  };
+  const style = picked ? { transform: `translate(calc(${off[0]} * var(--size-24)), calc(${off[1]} * var(--size-24)))` } : undefined; // ltr: grid offset
+  return { picked, pick, onKeyDown, style };
+}
+
+// Item 9: below 26rem (416 px) of outer card width (a quarter of a 1440 dashboard), Edit with Cooper moves from its own button into ⋯.
+const NARROW_CARD_REM = 26;
+function useNarrow(ref, enabled) {
+  const [narrow, setNarrow] = React.useState(false);
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (!enabled || !el || typeof ResizeObserver === 'undefined') return undefined;
+    const rem = () => parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    const check = () => setNarrow(el.getBoundingClientRect().width < NARROW_CARD_REM * rem());
+    check();
+    const ro = new ResizeObserver(check); ro.observe(el);
+    return () => ro.disconnect();
+  }, [enabled]);
+  return narrow;
 }
 
 const VIEW_OPTIONS = [{ value: 'chart', icon: 'chart', label: 'Chart' }, { value: 'table', icon: 'system-table', label: 'Table' }];
@@ -283,30 +359,54 @@ const VIEW_OPTIONS = [{ value: 'chart', icon: 'chart', label: 'Chart' }, { value
 // Figma: data-viz-card-organism (4457:33030)
 // Props: state default|hover|drag|cooper, title, header = extra DataVizHeader props, children = Content slot, legend (node, below content).
 // variant="chart" is the card every core chart (chart-column … chart-funnel) is drawn in (2.0.6, D1 / D2): the container rule (inset on
-// all four sides, stack gap between header, plot and legend) and a fixed height, size default (--size-data-viz-card, 3 stat-card rows + 2 page gaps: 320 / 284 / 248 at a 16 gap) |
-// large (2 default cards + the page gap: heatmaps, many bars, long legends); the plot fills what is left. Header, at the end:
-// [hover / focus: Edit with Cooper (onEditWithCooper; false hides it) + actions] · Chart / Table switch (icon-only SegmentedControl M, when
-// onViewChange is set; `view` = 'chart' | 'table') · Evidence button (onCooper; always visible). A chart's own control (header.segments,
-// e.g. Year / Quarter) stays first. No ⋮ by default: `actions` is for a screen's real extra actions (download, full screen …).
+// all four sides, stack gap between header, plot and legend) and a fixed height, size default (--size-data-viz-card, 3 stat-card rows + 2 page gaps:
+// 380 / 332 / 284 at a 16 gap) | large (2 default cards + the page gap: heatmaps, many bars, long legends); the plot fills what is left.
+// Header (items 9 and 11, Nov 25): title (H4, --color-text) with an optional one-line subtitle (Body/M, --color-text-soft) under it; the
+// 6-dot drag handle sits in the start inset on hover / keyboard focus (the title never moves). At the end: [hover / focus: Edit with Cooper
+// (onEditWithCooper; false hides it; inside ⋯ on cards under 416 px), ⋯ (Move, then menuItems), actions] · Chart / Table switch (icon-only
+// SegmentedControl M, when onViewChange is set; `view` = 'chart' | 'table') · Evidence button (onCooper; always visible). A chart's own
+// control (header.segments, e.g. Year / Quarter) stays first. description = screen-reader text for the chart (aria-describedby; also at the
+// top of the table view); never shown on the card (showing it is a user setting, USER-SETTINGS row 11, open).
+// movable (default true): drag from the header and keyboard move (Space / arrows / Space / Esc; useCardMove), with onMove, onMoveEnd,
+// onDragEnd. menuItems = the screen's real extra ⋯ items (Menu items: download, full screen, remove from dashboard …).
 // hideControls hides the switch and Evidence (no data to switch or explain: loading, empty, error, no results; D9).
 // legendPlacement below (default) | beside (pie and donut: the list sits beside the plot). autoHeight = no fixed height (the `height`
 // escape hatch). bare = no frame: no padding, fill, border or header — just the content and legend, for a chart placed inside another
 // frame that already draws the header (e.g. a dashboard widget); it fills that frame's height.
-function DataVizCard({ variant = 'organism', state, title, header, legend, children, onCooper, onEditWithCooper, view, onViewChange,
-  actions, bare, size = 'default', legendPlacement = 'below', hideControls, autoHeight, className, ...rest }) {
+let dvCardUid = 0;
+function DataVizCard({ variant = 'organism', state, title, subtitle, description, header, legend, children, onCooper, onEditWithCooper, view, onViewChange,
+  actions, menuItems, movable = true, onMove, onMoveEnd, onDragEnd, bare, size = 'default', legendPlacement = 'below', hideControls, autoHeight, className, style, ...rest }) {
+  const ref = React.useRef(null);
+  const descId = React.useMemo(() => `ifs-dv-desc-${++dvCardUid}`, []);
+  const isChart = variant === 'chart' && !bare;
+  const canMove = isChart && movable && !(header && header.draggable === false);
+  const narrow = useNarrow(ref, isChart);
+  const mv = useCardMove(ref, { enabled: canMove, title, onMove, onMoveEnd, onDragEnd });
   if (variant === 'chart') {
+    const cooper = onEditWithCooper !== false;
+    const items = [
+      cooper && narrow && { label: 'Edit with Cooper', icon: 'cooper-system-icon', onClick: onEditWithCooper || undefined },
+      canMove && { label: 'Move', icon: 'system-drag-and-drop', onClick: mv.pick },
+      ...(menuItems || []),
+    ].filter(Boolean);
+    const hover = (cooper && !narrow) || items.length || actions;
     return (
-      <section data-state={state} aria-label={typeof title === 'string' ? title : undefined}
+      <section ref={ref} data-state={state} aria-label={typeof title === 'string' ? (canMove ? `${title}, chart card. Space to move.` : title) : undefined}
+        aria-describedby={description ? descId : undefined}
+        tabIndex={canMove ? 0 : undefined} onKeyDown={canMove ? mv.onKeyDown : undefined}
         className={IFS.cx('ifs-dv-card', 'ifs-dv-card--chart', bare && 'ifs-dv-card--bare', size === 'large' && 'ifs-dv-card--large', autoHeight && 'ifs-dv-card--auto',
-          state && `ifs-dv-card--${state}`, className)} {...rest}>
-        {!bare && <DataVizHeader title={title} draggable {...header}
-          hoverActions={(onEditWithCooper !== false || actions) ? <>
-            {onEditWithCooper !== false && <IFS.Button type="tertiary" size="s" iconLeft="cooper-system-icon" onClick={onEditWithCooper || undefined}>Edit with Cooper</IFS.Button>}
+          canMove && 'ifs-dv-card--movable', mv.picked && 'is-picked', narrow && 'ifs-dv-card--narrow', state && `ifs-dv-card--${state}`, className)}
+        style={mv.style ? { ...style, ...mv.style } : style} {...rest}>
+        {!bare && <DataVizHeader title={title} subtitle={subtitle} {...header} draggable={canMove}
+          hoverActions={hover ? <>
+            {cooper && !narrow && <IFS.Button type="tertiary" size="s" iconLeft="cooper-system-icon" onClick={onEditWithCooper || undefined}>Edit with Cooper</IFS.Button>}
+            {items.length > 0 && <IFS.Menu more="More actions" items={items} />}
             {actions}
           </> : undefined}
           viewSwitch={onViewChange && !hideControls ? <IFS.SegmentedControl iconOnly size="m" className="ifs-dv-header__view" aria-label="View as"
             options={VIEW_OPTIONS} value={view || 'chart'} onChange={onViewChange} /> : undefined}
           slot={hideControls ? undefined : <IFS.EvidenceButton label="Ask Cooper about this chart" onClick={onCooper} />} />}
+        {description && <p id={descId} className="ifs-sr-only">{description}</p>}
         <div className={IFS.cx('ifs-dv-card__body', legend && legendPlacement === 'beside' && 'ifs-dv-card__body--beside')}>
           {children}
           {legend && legendPlacement === 'beside' && <div className="ifs-dv-card__legend ifs-dv-card__legend--beside">{legend}</div>}
@@ -317,7 +417,7 @@ function DataVizCard({ variant = 'organism', state, title, header, legend, child
   }
   return (
     <section data-state={state} aria-label={typeof title === 'string' ? title : undefined}
-      className={IFS.cx('ifs-dv-card', bare && 'ifs-dv-card--bare', state && `ifs-dv-card--${state}`, className)} {...rest}>
+      className={IFS.cx('ifs-dv-card', bare && 'ifs-dv-card--bare', state && `ifs-dv-card--${state}`, className)} style={style} {...rest}>
       {!bare && <DataVizHeader title={title} {...header} hoverActions={actions || (header && header.hoverActions) ? <>{header && header.hoverActions}{actions}</> : undefined} />}
       <div className="ifs-dv-card__content">{children}{legend && <div className="ifs-dv-card__legend">{legend}</div>}</div>
     </section>
@@ -523,16 +623,18 @@ const STATE_COPY = {
 };
 
 // Shared frame for every core chart: DataVizCard (variant chart) + states + Chart / Table switch + screen-reader table.
-// Shell props (all charts): title, state default|hover|cooper|loading|empty|no-results|error (hover = forced card hover; real hover works
+// Shell props (all charts): title, subtitle (one line under the title, item 11), description (screen-reader text: aria-describedby on the
+// card and the top of the table view; never shown on the card), state default|hover|cooper|loading|empty|no-results|error (hover = forced card hover; real hover works
 // too), size default|large (the card height, D2), height (escape hatch: a fixed plot height in px, the card then hugs it),
 // view / defaultView chart|table / onViewChange, defaultActive (index — or [row, col] for heatmap — whose tooltip starts open), onCooper,
-// onEditWithCooper, actions (a screen's real extra actions, in the hover row), bare (no frame or header: for a chart inside a widget frame),
+// onEditWithCooper, actions (a screen's real extra actions, in the hover row), menuItems (its ⋯ items, after Move), movable / onMove /
+// onMoveEnd / onDragEnd (item 9; see DataVizCard), bare (no frame or header: for a chart inside a widget frame),
 // valueTicks (2–8 value-axis intervals, default 4 = 5 labels, D3), tooltipFormat (the tooltip's full value, rule 11.5), emptyTitle / emptyText, noResultsTitle / noResultsText /
 // onClearFilters, errorTitle / errorText / onRetry, className, style.
 // States (D9): the card keeps its height in every state and the title stays; the switch, Evidence and the legend hide while there is no data.
 // Loading shows the skeleton after 300 ms; empty / no results / error show an EmptyState (section) inside the card.
-function ChartShell({ title, state, legend, table, isEmpty, skeleton = 'bars', height, size, view, defaultView = 'chart', onViewChange,
-  onCooper, onEditWithCooper, actions, bare, emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry,
+function ChartShell({ title, subtitle, description, state, legend, table, isEmpty, skeleton = 'bars', height, size, view, defaultView = 'chart', onViewChange,
+  onCooper, onEditWithCooper, actions, menuItems, movable, onMove, onMoveEnd, onDragEnd, bare, emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry,
   className, style, children }) {
   const [v, setV] = useControlled(view, defaultView, onViewChange);
   const mode = state === 'loading' ? 'loading' : state === 'error' ? 'error' : state === 'no-results' ? 'no-results'
@@ -554,16 +656,17 @@ function ChartShell({ title, state, legend, table, isEmpty, skeleton = 'bars', h
   const hasLegend = legend && ((legend.items || []).filter(Boolean).length > 1 || legend.extra);
   const legendNode = mode === 'chart' && hasLegend ? <ChartLegend {...legend} /> : null;
   return (
-    <DataVizCard variant="chart" title={title} state={cardState} size={size} autoHeight={height != null && !bare} style={style}
+    <DataVizCard variant="chart" title={title} subtitle={subtitle} description={description} state={cardState} size={size} autoHeight={height != null && !bare} style={style}
       className={IFS.cx('ifs-chart', `ifs-chart--${mode}`, className)}
-      onCooper={onCooper} onEditWithCooper={onEditWithCooper} actions={actions} bare={bare} hideControls={noData}
+      onCooper={onCooper} onEditWithCooper={onEditWithCooper} actions={actions} menuItems={menuItems} movable={movable} onMove={onMove} onMoveEnd={onMoveEnd} onDragEnd={onDragEnd}
+      bare={bare} hideControls={noData}
       view={mode === 'table' ? 'table' : 'chart'} onViewChange={table ? setV : undefined}
       legend={legendNode} legendPlacement={legend && legend.beside ? 'beside' : 'below'}>
       {mode === 'loading' ? (skel ? <ChartSkeleton kind={skeleton} height={height} /> : <div className="ifs-chart__wait" aria-busy="true" style={height ? { height } : undefined} />)
         : copy ? <div className="ifs-chart__state" style={height ? { minHeight: height } : undefined}>
             <IFS.EmptyState size="section" cause={copy.cause} icon={copy.icon} heading={heading || copy.heading} body={body || copy.body} primaryAction={action} />
           </div>
-        : mode === 'table' ? <div className="ifs-chart__table" style={height ? { height } : undefined}><IFS.Table columns={table.columns.map((c, i) => ({ ...c, align: i ? 'right' : undefined }))} rows={table.rows} /></div>
+        : mode === 'table' ? <div className="ifs-chart__table" style={height ? { height } : undefined}>{description && <p className="ifs-sr-only">{description}</p>}<IFS.Table columns={table.columns.map((c, i) => ({ ...c, align: i ? 'right' : undefined }))} rows={table.rows} /></div>
         : <>{children}{tbl}</>}
     </DataVizCard>
   );
@@ -700,9 +803,11 @@ function catShown(labels, pitch, measure) {
   return i => set.has(i);
 }
 
-const shellProps = ({ title, state, size, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, bare, height,
+const shellProps = ({ title, subtitle, description, state, size, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, menuItems,
+  movable, onMove, onMoveEnd, onDragEnd, bare, height,
   emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry, className, style }) =>
-  ({ title, state, size, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, bare, height,
+  ({ title, subtitle, description, state, size, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, menuItems,
+    movable, onMove, onMoveEnd, onDragEnd, bare, height,
     emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry, className, style });
 
 // D5 / rule 11.5: the tooltip shows the full value (the axis may be compact). tooltipFormat sets it; without one, a chart on the default
