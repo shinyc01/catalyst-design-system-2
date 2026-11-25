@@ -134,7 +134,7 @@ function App() {
         h('div', { className: 'rv-grid', style: { '--cols': 5 } }, STATES.map(([s, l]) => Cell(l, h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money, tooltipFormat: moneyFull, state: s === 'default' ? undefined : s, onRetry: () => {}, onClearFilters: () => {} }), s)))))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D2 · Dashboard grid: stat row, default and large cards'),
-      h('p', null, 'Stat cards sit in their own full-width row. A large card is exactly two default cards plus the gap, so it lines up with two stacked default cards.'),
+      h('p', null, 'Stat cards may sit beside charts: three stacked stat cards are exactly one default chart card tall. A large card is exactly two default cards plus the gap, so it lines up with two stacked default cards. (The dashboard layout itself is a phase 2 pattern.)'),
       h('div', { className: 'rv-dash' },
         ['Total cost FY27', 'Investments', 'Over budget', 'Risk reduced'].map((t, i) => h(I.StatCard, { key: t, className: 's3', title: t, value: [money(48.2e6), '1,621', '14', money(21.4e6)][i], description: ['12% over budget', 'In 14 portfolios', '3 more than Q1', 'Across all regions'][i], descriptionPosition: 'inline' })),
         h('div', { className: 's6' }, h(I.HeatmapChart, { size: 'large', title: 'Risk by asset class and year (large)', rows: hmRows, columns: hmCols, values: hmVals, valueLabel: 'risk score', classes: 9 })),
