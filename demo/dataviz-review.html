@@ -126,7 +126,7 @@ function App() {
       h('label', null, 'Columns', h(Seg, { value: cols, onChange: setCols, options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }] }))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D1 · D2 · Every chart type (state and density from the bar above)'),
-      h('p', null, 'Default card = 3 stat-card rows + 2 page gaps: 320 / 284 / 248 (Spacious / Comfortable / Compact) at a 16 gap, more at the wider gaps from 1440 px; the plot fills what is left after the header and legend. Header: title · [hover: drag, Edit with Cooper] · Chart / Table switch · Evidence. The switch and Evidence hide while there is no data.'),
+      h('p', null, 'Default card = 3 dashboard rows (the M stat card with an inline description: 116 / 100 / 84) + 2 page gaps: 380 / 332 / 284 (Spacious / Comfortable / Compact) at a 16 gap, more at the wider gaps from 1440 px; the plot fills what is left after the header and legend. Header (items 9, 11): H4 title with an optional subtitle · [hover / focus: Edit with Cooper (in ⋯ below 416 px), ⋯ with Move] · Chart / Table switch · Evidence; the drag handle sits in the start inset. The switch and Evidence hide while there is no data.'),
       h('div', { className: 'rv-grid', style: { '--cols': cols } }, CHARTS.map(([name, title, f]) => Cell(name, f({ title, state: st, onRetry: () => {}, onClearFilters: () => {} }), name)))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D9 · States keep the card height'),
@@ -136,10 +136,10 @@ function App() {
     h('section', { className: 'rv-sec' }, h('h2', null, 'D2 · Dashboard grid: stat row, default and large cards'),
       h('p', null, 'Stat cards may sit beside charts: three stacked stat cards are exactly one default chart card tall. A large card is exactly two default cards plus the gap, so it lines up with two stacked default cards. (The dashboard layout itself is a phase 2 pattern.)'),
       h('div', { className: 'rv-dash' },
-        ['Total cost FY27', 'Investments', 'Over budget', 'Risk reduced'].map((t, i) => h(I.StatCard, { key: t, className: 's3', title: t, value: [money(48.2e6), '1,621', '14', money(21.4e6)][i], description: ['12% over budget', 'In 14 portfolios', '3 more than Q1', 'Across all regions'][i], descriptionPosition: 'inline' })),
+        ['Total cost FY27', 'Investments', 'Over budget', 'Risk reduced'].map((t, i) => h(I.StatCard, { key: t, className: 's3', size: 'm', title: t, value: [money(48.2e6), '1,621', '14', money(21.4e6)][i], description: ['12% over budget', 'In 14 portfolios', '3 more than Q1', 'Across all regions'][i], descriptionPosition: 'inline' })),
         h('div', { className: 's6' }, h(I.HeatmapChart, { size: 'large', title: 'Risk by asset class and year (large)', rows: hmRows, columns: hmCols, values: hmVals, valueLabel: 'risk score', classes: 9 })),
         h('div', { className: 's6 rv-stack' },
-          h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money, tooltipFormat: moneyFull }),
+          h(I.ColumnChart, { title: 'Spend by quarter', subtitle: 'FY27, all regions', description: 'Spend peaks in Q4.', data: col, valueLabel: 'Spend', format: money, tooltipFormat: moneyFull }),
           h(I.LineChart, { title: 'Forecast by program', data: lineData(3), series: ser(3), format: money, tooltipFormat: moneyFull })))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D3 · Axes and grid'),

@@ -1,4 +1,4 @@
-# Catalyst Design System 2.0.5 — components and patterns
+# Catalyst Design System 2.0.6 — components and patterns
 
 The catalogue: which component to use for what, then how the patterns work. Rules live in [rules.md](rules.md) and are referenced by number, not repeated. Full props: [`dist/api.md`](../dist/api.md). Figma keys, node ids, variant axes and review items: [figma.json](figma.json).
 
@@ -111,6 +111,7 @@ Family note: organisms are the fields to place. `checkbox`, `radio-button`, `swi
 
 ### text-field-organism · `TextField`
 Use: Single-line input. L full-page forms, M drawers, modals, embedded surfaces (rule 7.3). Cooper / Cooper Generating states show Cooper-filled values.
+Boundary (G2 C3, Nov 25; every field family: Select, Combobox, MultiSelect, DatePicker, Search, RangeField, RoleSelect): rounded fill with a straight 1 px `--color-border-input-strong` (30%) line along the bottom, hover `-strong-hover` (40%); error = the danger outline alone; focus = the ring (rule 9.14).
 
 ### mobile-number-field-organism · `PhoneField`
 Use: Phone numbers; supports country/region selection and international format. L full page, M compact.
@@ -284,7 +285,8 @@ Use: Rule 7.12.
 
 ### snackbar-organism · `Snackbar`
 Use: Rule 7.12; show one with `IFS.toast`. Placement: the one top-end stack, rule 4.8 (one page margin in, below the header, 8 apart, newest on top).
-Motion: slides in 16 from the end side over 100; stays 4000, paused on hover and focus; closes with a fade and 16 back to the end side in 50 (rule 1.8).
+Timing (rule 7.12, G5): with an action at least 10 s, then until the user's next command elsewhere; without one 6 s; hover and focus hold it; one action snackbar at a time. A pattern that renders its own Snackbar uses `IFS.useSnackbarTiming({ action, duration, onClose })`. No live role of its own: `IFS.toast` announces it (rule 9.19).
+Motion: slides in 16 from the end side over 100; closes with a fade and 16 back to the end side in 50 (rule 1.8).
 
 ## Surfaces
 
@@ -292,6 +294,7 @@ Family note: all surfaces are organisms with a free content slot; the slot holds
 
 ### modal-organism · `Modal`
 Use: Rule 7.13. Examples: confirm a collaborator and role, a critical decision, a short Save/Cancel form.
+Focus (rules 9.17–9.18): opens on its first field, else its title (never ✕); traps Tab and makes the page behind `inert`; returns focus to the trigger (or its nearest container) on close. A drawer with a scrim does the same.
 Motion: rises 2 over 200 and the scrim fades in over 200; both fade out in 100 (rule 1.8).
 
 ### floating-bar-organism · `FloatingBar`
@@ -311,6 +314,7 @@ Motion: slides in from its edge over 200; slides back out in 100; reduced motion
 
 ### canvas-background · `CanvasBackground`
 Use: The infinite, pannable, zoomable ground plane for map-first and node-graph views (Value framework, Explore map).
+`baseMap` dark | light | imagery (G3): what the map image is, so map glass picks black 40 (matches the theme) or black 85 (doesn't); default dark with an `image` (rule 4.8).
 Don't: Document-flow pages — those use the 12-column grid.
 
 ### overlay-background · `Overlay`
@@ -614,13 +618,13 @@ Use: Explore tab only: base + map controls.
 ## Content States (pattern page)
 
 ### empty-state-organism · `EmptyState`
-Use: A region with no content: heading (required) + optional icon, body, suggestion chips, one primary + one secondary action. Cause and size: rule 7.15; copy: rule 8.22. Errors (L3): a load failure shows `cause="error"` (section) in the frame of the region that failed, `size="full"` only when the whole page has nothing; partial data keeps its content with a warning `Alert` above it; load errors keep the warning icon and tone, danger is for destructive actions and field validation. The look is restyled in 2.0.6.
+Use: A region with no content: heading (required) + optional icon, body, suggestion chips, one primary + one secondary action. Cause and size: rule 7.15; copy: rule 8.22. Errors (L3): a load failure shows `cause="error"` (section) in the frame of the region that failed, `size="full"` only when the whole page has nothing; partial data keeps its content with a warning `Alert` above it; load errors keep the warning icon and tone, danger is for destructive actions and field validation. The look is restyled in 2.0.7 (components).
 
 ### Skeleton · `Skeleton`, `LoadingRegion`
 Use: One skeleton look for every loading variant (L1, Nov 24): static shapes on `--color-background-skeleton` (Figma background/elevation-1/secondary) with a slow pulse, opacity 1 → 0.5 → 1 on `--motion-loop-pulse` (1.6 s, linear); no shimmer. The class is `.ifs-sk`; every Loading variant (stat, content, file, user and version cards, avatar, badge, indicator, readiness, chart, home-row card, node card, trace solution, table cells) uses it. Reduced motion: no pulse, the shapes stay. `Skeleton` only for an owning component without a Loading variant; `LoadingRegion` around the component that owns the async data. Which indicator, when: rule 8.23.
 
 ### empty-state-spinner-molecule · `Spinner`
-Use: Indeterminate or shapeless waits where no layout can be previewed.
+Use: Indeterminate or shapeless waits where no layout can be previewed. `announce={false}` drops its live role inside a region that already announces (`LoadingRegion` does this, rule 9.9).
 
 ### empty-state-loading-more-molecule · `LoadingMore`
 Use: Appending items to an already visible list.
@@ -690,7 +694,7 @@ Use: Layer category card with active count ("1/5 layers on").
 
 ### map-pin-teardrop · `MapPin`
 Use: Default location marker for one asset on an exact spot. Other pins on the page (`map-pin-dot`, `-square`, `-pole`, `-defect`, `-flow`) cover counts, clusters, readings, defects and direction.
-Status: `MapPin` takes the five C1 words, `neutral` · `danger` · `warning` · `success` · `info` (`error` = old name for danger). The dot pin `MapPinDot` takes `danger` · `warning` · `neutral` (old-name aliases: `error` draws danger, `success` and `info` draw neutral; rule 7.16).
+Status: `MapPin` takes the five C1 words, `neutral` · `danger` · `warning` · `success` · `info` (`error` = old name for danger). Fills (G2 option B, Nov 25): neutral `--color-icon-map-pin-neutral` (#737373) and danger `--color-icon-map-pin-danger` (#e5001e) with white glyphs and counts; warning keeps its fill with a black glyph and count. The dot pin `MapPinDot` takes `danger` · `warning` · `neutral` (old-name aliases: `error` draws danger, `success` and `info` draw neutral; rule 7.16).
 
 ### map-status-risk
 Use: Planning-risk severity on a map asset (icon + %).
@@ -723,7 +727,7 @@ Use: Ready-made Home and Review screen sections.
 ## Layout (code only, not Figma components)
 
 ### AppShell · `AppShell`
-Use: The product shell: nav bar, side nav, page header, content, optional panel, bottom sheet (rule 4.9). `panelMode` push | over (rule 4.6).
+Use: The product shell: nav bar, side nav, page header, content, optional panel, bottom sheet (rule 4.9). `panelMode` push | over (rule 4.6). Renders the "Skip to content" link as the first tab stop (`skipLabel`, rule 9.16).
 
 ### Stack and Inline · `Stack`, `Inline`
 Use: Layout spacing between things in a screen (rule 1.5).

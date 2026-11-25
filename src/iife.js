@@ -3,7 +3,7 @@
 // React itself comes from the page (UMD script), so prototypes and the kit share one React.
 import { IFS } from './components/index.js';
 
-IFS.version = '2.0.5';
+IFS.version = '2.0.6';
 IFS.DENSITIES = ['spacious', 'comfortable', 'compact'];
 // Theme (C3, Nov 23): sets data-theme on <html> (or a given element). Only Dark has values today; Light comes right after phase 1.
 IFS.setTheme = (t, el = document.documentElement) => { el.setAttribute('data-theme', t); return t; };
@@ -18,5 +18,16 @@ IFS.getDensity = () => { try { return localStorage.getItem('catalyst-density') |
 IFS.DIRECTIONS = ['ltr', 'rtl'];
 IFS.setDirection = (d, el = document.documentElement) => { el.setAttribute('dir', d === 'rtl' ? 'rtl' : 'ltr'); };
 IFS.getDirection = (el = document.documentElement) => (el.getAttribute('dir') === 'rtl' ? 'rtl' : 'ltr');
+// Lite glass (G3, Nov 25; USER-SETTINGS row 12): 'lite' drops the glass blur from 80 to 10 (low-end machines, remote desktops); fills stay
+// the same. Sets data-glass on <html> (or a given element) and remembers it, like density.
+IFS.GLASS = ['full', 'lite'];
+IFS.setGlass = (g, el = document.documentElement) => {
+  if (g === 'lite') el.setAttribute('data-glass', 'lite'); else el.removeAttribute('data-glass');
+  try { localStorage.setItem('catalyst-glass', g === 'lite' ? 'lite' : 'full'); } catch (e) {}
+};
+IFS.getGlass = () => { try { return localStorage.getItem('catalyst-glass') === 'lite' ? 'lite' : 'full'; } catch (e) { return 'full'; } };
+// Base map (G3): which kind of map the screen shows, for map glass on surfaces outside the map container (snackbars over a map).
+// 'dark' | 'light' | 'imagery' sets data-base-map on <html>; null removes it when the map screen closes.
+IFS.setBaseMap = (kind, el = document.documentElement) => { if (kind) el.setAttribute('data-base-map', kind); else el.removeAttribute('data-base-map'); };
 window.IFS = IFS;
 window.Catalyst = IFS;
