@@ -3,11 +3,14 @@
 --color-surface-primary: var(--palette-core-0)
 --color-surface-secondary: var(--palette-white-alpha-5)
 --color-surface-tertiary: var(--palette-white-alpha-15)
---color-surface-overlay: var(--palette-black-alpha-85)
+--color-surface-overlay: var(--palette-black-alpha-85) | prefers-reduced-transparency: reduce: var(--color-surface-primary)
+--color-surface-map-glass: var(--palette-black-alpha-40) | prefers-reduced-transparency: reduce: var(--color-surface-primary)
 --color-surface-primary-inverse: var(--palette-core-1000)
 --color-surface-overlay-inverse: var(--palette-white-alpha-85)
---color-surface-elevation-1: var(--palette-black-alpha-60)
---color-surface-elevation-2: var(--palette-grey-600)
+--color-surface-elevation-1: var(--palette-black-alpha-60) | prefers-reduced-transparency: reduce: var(--color-surface-elevation-1-solid)
+--color-surface-elevation-2: var(--palette-grey-600) | prefers-reduced-transparency: reduce: var(--color-surface-elevation-2-solid)
+--color-surface-elevation-1-solid: var(--palette-core-0)
+--color-surface-elevation-2-solid: var(--palette-core-165)
 --color-surface-elevation-3: var(--palette-white-alpha-10)
 --color-surface-canvas: var(--palette-white-alpha-5)
 --color-surface-page: var(--palette-core-0)
@@ -28,7 +31,7 @@
 --color-text-info: var(--palette-info-300)
 --color-text-link: var(--color-text-info)
 --color-text-success: var(--palette-success-500)
---color-text-danger: var(--palette-danger-400)
+--color-text-danger: var(--palette-danger-350)
 --color-text-warning: var(--palette-warning-500)
 --color-text-on-solid: var(--palette-core-1000)
 --color-text-on-solid-soft: var(--palette-white-alpha-85)
@@ -46,6 +49,8 @@
 --color-icon-info: var(--palette-info-300)
 --color-icon-success: var(--palette-success-500)
 --color-icon-danger: var(--palette-danger-500)
+--color-icon-map-pin-neutral: var(--palette-core-450)
+--color-icon-map-pin-danger: var(--palette-danger-550)
 --color-icon-warning: var(--palette-warning-500)
 --color-icon-completed: var(--palette-white-alpha-75)
 --color-border-soft: var(--palette-white-alpha-10)
@@ -69,6 +74,8 @@
 --color-border-input-hover: var(--palette-white-alpha-20)
 --color-border-input-focus: var(--palette-white-alpha-55)
 --color-border-input-disabled: var(--palette-white-alpha-5)
+--color-border-input-strong: var(--palette-white-alpha-30)
+--color-border-input-strong-hover: var(--palette-white-alpha-40)
 --color-border-control: var(--palette-white-alpha-60)
 --color-border-control-hover: var(--palette-white-alpha-85)
 --color-border-selected-hover: var(--palette-white-alpha-75)
@@ -141,6 +148,7 @@
 --color-cooper-icon: var(--palette-cooper-500)
 --color-cooper-border: var(--palette-cooper-500)
 --color-cooper-background-strong: var(--palette-cooper-500)
+--color-cooper-background-stronger: var(--palette-cooper-600)
 --color-cooper-logo: var(--palette-core-1000)
 --color-cooper-logo-soft: var(--palette-white-alpha-50)
 --color-cooper-logo-softer: var(--palette-white-alpha-10)
@@ -166,21 +174,21 @@
 --color-cooper-highlight-edge: var(--palette-black-alpha-60)
 --color-cooper-fab-rim: var(--palette-core-1000)
 --color-cooper-fab-shadow: var(--palette-purple-300)
---color-collaboration-user-1: var(--palette-coral-orange-500)
---color-collaboration-user-2: var(--palette-steel-blue-700)
---color-collaboration-user-3: var(--palette-success-600)
---color-collaboration-user-4: var(--palette-info-200)
---color-collaboration-user-5: var(--palette-fuchsia-500)
---color-collaboration-user-6: var(--palette-lime-500)
---color-collaboration-user-7: var(--palette-coral-orange-300)
---color-collaboration-user-8: var(--palette-violet-500)
---color-collaboration-user-9: var(--palette-danger-900)
---color-collaboration-user-10: var(--palette-electric-blue-500)
---color-collaboration-user-11: var(--palette-violet-200)
---color-collaboration-user-12: var(--palette-danger-500)
---color-collaboration-user-13: var(--palette-warning-500)
---color-collaboration-user-14: var(--palette-violet-300)
---color-collaboration-user-15: var(--palette-fuchsia-200)
+--color-collaboration-user-1: var(--palette-collaboration-user-1)
+--color-collaboration-user-2: var(--palette-collaboration-user-2)
+--color-collaboration-user-3: var(--palette-collaboration-user-3)
+--color-collaboration-user-4: var(--palette-collaboration-user-4)
+--color-collaboration-user-5: var(--palette-collaboration-user-5)
+--color-collaboration-user-6: var(--palette-collaboration-user-6)
+--color-collaboration-user-7: var(--palette-collaboration-user-7)
+--color-collaboration-user-8: var(--palette-collaboration-user-8)
+--color-collaboration-user-9: var(--palette-collaboration-user-9)
+--color-collaboration-user-10: var(--palette-collaboration-user-10)
+--color-collaboration-user-11: var(--palette-collaboration-user-11)
+--color-collaboration-user-12: var(--palette-collaboration-user-12)
+--color-collaboration-user-13: var(--palette-collaboration-user-13)
+--color-collaboration-user-14: var(--palette-collaboration-user-14)
+--color-collaboration-user-15: var(--palette-collaboration-user-15)
 --color-collaboration-user-16: var(--palette-core-0)
 --color-data-viz-categorical-1: var(--palette-data-viz-categorical-1)
 --color-data-viz-categorical-2: var(--palette-data-viz-categorical-2)
@@ -375,9 +383,9 @@
 --z-index-toast: 700
 --z-index-tooltip: 800
 --z-index-max: 999
---font-family-display: "Inter", system-ui, sans-serif
---font-family-text: "Inter", system-ui, sans-serif
---font-family-mono: "JetBrains Mono", ui-monospace, monospace
+--font-family-display: "Inter", "Inter Fallback", sans-serif
+--font-family-text: "Inter", "Inter Fallback", sans-serif
+--font-family-mono: "JetBrains Mono", "JetBrains Mono Fallback", monospace
 --font-weight-regular: 400
 --font-weight-medium: 500
 --font-weight-semibold: 600
@@ -387,6 +395,7 @@
 --blur-20: 20px
 --blur-10: 10px
 --blur-4: 4px
+--blur-glass: var(--blur-80) | [data-glass="lite"]: var(--blur-10)
 --drop-shadow-elevation-1: 0 4px 8px 0 var(--palette-black-alpha-10)
 --drop-shadow-floating: 0 4px 8px 0 var(--color-shadow-floating)
 --elevation-1: 0 4px 8px 0 var(--color-shadow-elevation-1)
@@ -441,7 +450,7 @@
 --table-header-pad-top: var(--space-0) | spacious: var(--space-0) | compact: var(--space-0)
 --table-header-pad-bottom: var(--space-0) | spacious: var(--space-0) | compact: var(--space-0)
 --density-scale: 1.05 | spacious: 1.2 | compact: 0.95
---size-data-viz-row: 5.25rem | spacious: 6rem | compact: 4.5rem
+--size-data-viz-row: 6.25rem | spacious: 7.25rem | compact: 5.25rem
 --size-data-viz-card: calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap)) | spacious: calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap)) | compact: calc(3 * var(--size-data-viz-row) + 2 * var(--page-gap))
 --size-data-viz-card-large: calc(2 * var(--size-data-viz-card) + var(--page-gap)) | spacious: calc(2 * var(--size-data-viz-card) + var(--page-gap)) | compact: calc(2 * var(--size-data-viz-card) + var(--page-gap))
 --bp-sm: 600px
@@ -501,6 +510,7 @@
 --slot-top-r: var(--slot-inset) | .ifs-slots.has-right: calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))
 --slot-bottom-r: calc(var(--slot-inset) + var(--slot-fab) + var(--page-gap)) | .ifs-slots.has-right: calc(var(--slot-inset) + var(--region-panel) + var(--page-gap))
 --slot-legend-w: 210px
+--map-glass: var(--color-surface-map-glass) | [data-base-map="light"],[data-base-map="imagery"]: var(--color-surface-overlay)
 --motion-duration-0: 0ms
 --motion-duration-50: 50ms
 --motion-duration-100: 100ms
@@ -523,12 +533,14 @@
 --palette-core-100: #1a1a1a
 --palette-white-alpha-10: rgba(255,255,255,0.1)
 --palette-core-150: #262626
+--palette-core-165: #2a2a2a
 --palette-white-alpha-15: rgba(255,255,255,0.15)
 --palette-core-200: #333333
 --palette-white-alpha-20: rgba(255,255,255,0.2)
 --palette-core-300: #4d4d4d
 --palette-white-alpha-30: rgba(255,255,255,0.3)
 --palette-core-400: #666666
+--palette-core-450: #737373
 --palette-white-alpha-40: rgba(255,255,255,0.4)
 --palette-core-500: #808080
 --palette-white-alpha-50: rgba(255,255,255,0.5)
@@ -578,8 +590,10 @@
 --palette-danger-150: #fbc4be
 --palette-danger-200: #fcb0a8
 --palette-danger-300: #fc867c
+--palette-danger-350: #ff6b51
 --palette-danger-400: #fa5a53
 --palette-danger-500: #ee3c3b
+--palette-danger-550: #e5001e
 --palette-danger-500-alpha-0: rgba(238,60,59,0)
 --palette-danger-500-alpha-10: rgba(238,60,59,0.1)
 --palette-danger-600: #c81b23
@@ -852,6 +866,21 @@
 --palette-cooper-450: #d08a57
 --palette-cooper-500-alpha-20: rgba(200,121,65,0.2)
 --palette-cooper-500-alpha-40: rgba(200,121,65,0.4)
+--palette-collaboration-user-1: #a86515
+--palette-collaboration-user-2: #4c5a76
+--palette-collaboration-user-3: #188732
+--palette-collaboration-user-4: #5c77a2
+--palette-collaboration-user-5: #d222ab
+--palette-collaboration-user-6: #678000
+--palette-collaboration-user-7: #b75c47
+--palette-collaboration-user-8: #9a28f5
+--palette-collaboration-user-9: #854843
+--palette-collaboration-user-10: #3359e8
+--palette-collaboration-user-11: #925fc1
+--palette-collaboration-user-12: #db3240
+--palette-collaboration-user-13: #7b6400
+--palette-collaboration-user-14: #ac4bc9
+--palette-collaboration-user-15: #b3539d
 --palette-cooper-art-pink: #fbc4e6
 --palette-cooper-art-copper: #cd9579
 --palette-cooper-art-violet: #5a12bf

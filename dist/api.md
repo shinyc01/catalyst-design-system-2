@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.5, generated 2026-11-25. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.6, generated 2026-11-25. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -61,11 +61,9 @@ Examples (read before using any component below — shows the data shapes props 
 ### Icon
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: Icons page (1399:9134). `name` is the Figma icon set name, `size` one of 12 | 16 | 24.
-Figma draws every size from its own artwork, so pick the nearest exported size rather than scaling.
-A few sets (cooper-*-icon, voice-input-animation) vary by state instead of size: pass `variant`.
-Directional icons point along the reading direction, so they flip in RTL (class ifs-icon--mirror; CSS in _core.css).
-Never listed: check marks, media, clocks, trend up/down, logos, up/down carets.
+Icon artwork exported from Figma reuses fixed ids (clipPath, gradients, masks: e.g. cooper-evidence-icon's clip0_4131_18650), so a second
+instance on the page would point at the first one's defs (and draw nothing once that one is hidden or gone). Each rendered instance gets
+its own suffix on every id and on the references to it (url(#…), href="#…").
 `function Icon({ name, size = 16, variant, className, style, title })`
 
 ### remOf
@@ -86,6 +84,10 @@ ms: a number, or a motion token name ('--motion-duration-100').
 A motion token in ms, read from the CSS (foundations/motion.css), so JS timers follow the tokens: motionMs('--motion-duration-100').
 `fallback` is used before the stylesheet loads or outside a browser.
 `function motionMs(token, fallback = 0)`
+
+### announce
+**Tier:** Component
+`function announce(text, { assertive = false } = {})`
 
 ## activity
 
@@ -411,7 +413,10 @@ Figma: canvas-background (1395:196712), Surfaces.
 Props: image (url; Figma State=Image — a map), view {x, y, zoom} / defaultView / onViewChange (drag to pan,
 ctrl/⌘ + wheel or pinch to zoom, plain wheel pans), minZoom, maxZoom, children = world content (absolute-positioned
 in world px), overlay = fixed UI on top (toolbars, mini-map), apiRef receives { setView, fit(bounds) }.
-`function CanvasBackground({ image, view, defaultView = { x: 0, y: 0, zoom: 1 }, onViewChange, minZoom = 0.25, maxZoom = 2, children, overlay, apiRef, className, style, ...rest })`
+baseMap dark|light|imagery (G3, Nov 25): what the map image is, so map glass picks its fill (data-base-map; foundations/layout.css):
+matching the theme → --color-surface-map-glass (black 40), not matching → --color-surface-overlay (black 85). Default: dark with an
+image, none without one (a node canvas is not a map). Put the same attribute on the map container that holds the slots.
+`function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zoom: 1 }, onViewChange, minZoom = 0.25, maxZoom = 2, children, overlay, apiRef, className, style, ...rest })`
 
 ### CanvasConnector
 **Tier:** Component
@@ -503,6 +508,8 @@ Figma: bar-atom (4457:32996)
 Props: state default|hover|out-of-focus|background|loading, color = categorical slot (default 1) or a data-viz token (old group names
 with step still work), children = the value label (show-value; absent = hidden). Fills its parent. Hover keeps the full colour;
 out-of-focus is darkened (never transparent, D5).
+The value inside the bar takes --color-text or --color-text-inverse, whichever contrasts more with the bar's colour (G2 #18, Nov 25; as
+the slice labels, rule 11.10): white on the dark slots, black on the light ones.
 `function DataVizBar({ state = 'default', color = 1, step = 4, children, className, style, ...rest })`
 
 ### DataVizGroupedBar
@@ -545,7 +552,8 @@ no-change data; `neutral` prop does the same); for non-chart legends any colour 
 square (bars, areas, slices, cells) | line | dashed (lines) | dot (scatter); label; value (optional on every entry, tabular figures);
 icon (16, after the name); state default|hover|out-of-hover|intended-target; swatchOpacity (opacity-coded ramps).
 Hover only: legend entries are not clickable (Figma); hovering one dims the other series in the chart.
-`function LegendSwatch({ layout = 'inline', state = 'default', color = 1, step = 4, shape = 'square', neutral, label, value, icon, swatchOpacity, className, ...rest })`
+fc = the series' index among lines: in forced colours the line swatch draws that series' dash style (G1).
+`function LegendSwatch({ layout = 'inline', state = 'default', color = 1, step = 4, shape = 'square', neutral, label, value, icon, swatchOpacity, fc, className, ...rest })`
 
 ### Legend
 **Tier:** Component
@@ -558,12 +566,15 @@ when it has one; false hides all values), align center|start (inline only).
 **Tier:** Component
 **In handovers:** placed 123× (Plan, Value) · usual: Right element false 72%
 Figma: data-viz-header-molecule (2154:2068)
-Props: title, state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
+Props: title, subtitle (chart card only, item 11: one line under the title, Body/M, ellipsis with the full text on hover),
+state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
 Right element: segments = SegmentedControl options (size S) with segmentValue/defaultSegmentValue/onSegmentChange,
 or button = { label, onClick, iconRight } (Tertiary S). Hover row: drag handle (draggable), and ghost icon-buttons
 for onEdit / onDelete / onMore. hoverActions = custom hover-only node, viewSwitch = the chart card's Chart / Table switch (after the hover row),
 slot = always-visible end node (Figma "Slot"; the chart card's Evidence button).
-`function DataVizHeader({ title, state, segments, segmentValue, defaultSegmentValue, onSegmentChange, button, onEdit, onDelete, onMore, draggable = true, hoverActions, viewSwitch, slot, className, ...rest })`
+The controls sit in one row (.ifs-dv-header__controls); on the chart card that row is the title row (item 11: titles line up in every card,
+with or without a subtitle).
+`function DataVizHeader({ title, subtitle, state, segments, segmentValue, defaultSegmentValue, onSegmentChange, button, onEdit, onDelete, onMore, draggable = true, hoverActions, viewSwitch, slot, className, ...rest })`
 
 ### DataVizCard
 **Tier:** Component
@@ -571,16 +582,21 @@ slot = always-visible end node (Figma "Slot"; the chart card's Evidence button).
 Figma: data-viz-card-organism (4457:33030)
 Props: state default|hover|drag|cooper, title, header = extra DataVizHeader props, children = Content slot, legend (node, below content).
 variant="chart" is the card every core chart (chart-column … chart-funnel) is drawn in (2.0.6, D1 / D2): the container rule (inset on
-all four sides, stack gap between header, plot and legend) and a fixed height, size default (--size-data-viz-card, 3 stat-card rows + 2 page gaps: 320 / 284 / 248 at a 16 gap) |
-large (2 default cards + the page gap: heatmaps, many bars, long legends); the plot fills what is left. Header, at the end:
-[hover / focus: Edit with Cooper (onEditWithCooper; false hides it) + actions] · Chart / Table switch (icon-only SegmentedControl M, when
-onViewChange is set; `view` = 'chart' | 'table') · Evidence button (onCooper; always visible). A chart's own control (header.segments,
-e.g. Year / Quarter) stays first. No ⋮ by default: `actions` is for a screen's real extra actions (download, full screen …).
+all four sides, stack gap between header, plot and legend) and a fixed height, size default (--size-data-viz-card, 3 stat-card rows + 2 page gaps:
+380 / 332 / 284 at a 16 gap) | large (2 default cards + the page gap: heatmaps, many bars, long legends); the plot fills what is left.
+Header (items 9 and 11, Nov 25): title (H4, --color-text) with an optional one-line subtitle (Body/M, --color-text-soft) under it; the
+6-dot drag handle sits in the start inset on hover / keyboard focus (the title never moves). At the end: [hover / focus: Edit with Cooper
+(onEditWithCooper; false hides it; inside ⋯ on cards under 416 px), ⋯ (Move, then menuItems), actions] · Chart / Table switch (icon-only
+SegmentedControl M, when onViewChange is set; `view` = 'chart' | 'table') · Evidence button (onCooper; always visible). A chart's own
+control (header.segments, e.g. Year / Quarter) stays first. description = screen-reader text for the chart (aria-describedby; also at the
+top of the table view); never shown on the card (showing it is a user setting, USER-SETTINGS row 11, open).
+movable (default true): drag from the header and keyboard move (Space / arrows / Space / Esc; useCardMove), with onMove, onMoveEnd,
+onDragEnd. menuItems = the screen's real extra ⋯ items (Menu items: download, full screen, remove from dashboard …).
 hideControls hides the switch and Evidence (no data to switch or explain: loading, empty, error, no results; D9).
 legendPlacement below (default) | beside (pie and donut: the list sits beside the plot). autoHeight = no fixed height (the `height`
 escape hatch). bare = no frame: no padding, fill, border or header — just the content and legend, for a chart placed inside another
 frame that already draws the header (e.g. a dashboard widget); it fills that frame's height.
-`function DataVizCard({ variant = 'organism', state, title, header, legend, children, onCooper, onEditWithCooper, view, onViewChange, actions, bare, size = 'default', legendPlacement = 'below', hideControls, autoHeight, className, ...rest })`
+`function DataVizCard({ variant = 'organism', state, title, subtitle, description, header, legend, children, onCooper, onEditWithCooper, view, onViewChange, actions, menuItems, movable = true, onMove, onMoveEnd, onDragEnd, bare, size = 'default', legendPlacement = 'below', hideControls, autoHeight, className, style, ...rest })`
 
 ### DataVizTooltip
 **Tier:** Component
@@ -811,6 +827,8 @@ Label/M/medium caption, as the Patterns file draws it; inline = the library's de
 badge = Badge props (show-badge; Figma default Color=Red S), children = additional content slot, loading,
 compare = { from, to, fromLabel, toLabel } (replaces value: two caption-over-value columns joined by an arrow, from in --color-text-softer;
 without `from` only the `to` column shows). The one stat card: it replaces QuickStatCard and CompareStatValue (2.0.3).
+Dashboards (Nov 25): one variant, size="m" descriptionPosition="inline" — its height comes from its content (--space-inset all round,
+title → value --space-inset) and is the dashboard row unit --size-data-viz-row (116 / 100 / 84); never mixed with below-description cards.
 `function StatCard({ size = 's', title, value, description, descriptionPosition = 'below', trend, trendDirection = 'up', badge, compare, loading, children, className, ...rest })`
 
 ### ContentCard
@@ -1266,7 +1284,7 @@ AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map 
 (+ optional CanvasHeader) on top, a scrolling content area and an optional side panel on the right.
 Bar, sidebar, header and panel stay put; only content scrolls.
 Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
-e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose.
+e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4).
 Panel mode (decided Nov 19, guide/rules.md 4.6): set by the panel's JOB, not the screen.
   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
         whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 4.6).
@@ -1279,7 +1297,7 @@ The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav w
 panel with a controlled `expanded`, is left alone.
 Content (rule 4.3): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
 pages (rule 4.10) fill the content area instead.
-`function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, className, style, ...rest })`
+`function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', className, style, ...rest })`
 
 ## patterns-activity
 
@@ -1553,7 +1571,7 @@ invite to the framework" + Cancel / Remove. Props: open, person, onCancel, onCon
 
 ### collaborationUser
 **Tier:** Pattern helper
-`const collaborationUser = avatarType => USER_OF_AVATAR[avatarType] || 16;  // ───────────────────────────── cursor-atom ───────────────────────────── // Figma: cursor-atom (55:1645; set key 80c816a4…) — live multiplayer cursor: cursor-pointer + name pill. // Props: user 1…16 | "cooper" (Figma User; pill = collaboration/user-N, Cooper = user-9 + Cooper visual), name (Figma "user name"), //   x / y (px; when given the cursor is absolutely positioned and glides between positions), label (accessible name). // Users 4, 6, 11, 13, 15 use dark text (--color-text-inverse), as in Figma. const DARK_TEXT = [4, 6, 11, 13, 15]; function CollaboratorCursor({ user = 1, name, x, y, className, style, ...rest })`
+`const collaborationUser = avatarType => USER_OF_AVATAR[avatarType] || 16;  // ───────────────────────────── cursor-atom ───────────────────────────── // Figma: cursor-atom (55:1645; set key 80c816a4…) — live multiplayer cursor: cursor-pointer + name pill. // Props: user 1…16 | "cooper" (Figma User; pill = collaboration/user-N, Cooper = user-9 + Cooper visual), name (Figma "user name"), //   x / y (px; when given the cursor is absolutely positioned and glides between positions), label (accessible name). // Users 4, 6, 11, 13, 15 use dark text (--color-text-inverse), as in Figma. const DARK_TEXT = []; // G2 (Nov 25): every collaboration colour takes white text (≥ 4.5:1), so no cursor uses dark text function CollaboratorCursor({ user = 1, name, x, y, className, style, ...rest })`
 
 ## patterns-comments
 
@@ -2525,7 +2543,8 @@ primaryAction / secondaryAction = { label, icon, onClick, type } (show-primary-b
 Figma: empty-state-spinner-molecule (3782:24081)
 Indeterminate or shapeless wait where no layout can be previewed. Props: text (Figma "Loading..."; the kit uses the
 ellipsis character, guide/rules.md 8.23), showText (show-text).
-`function Spinner({ text = 'Loading…', showText = true, className, ...rest })`
+announce=false: no live role of its own, for a Spinner inside a region that already announces (LoadingRegion; G5, rule 9.19).
+`function Spinner({ text = 'Loading…', showText = true, announce = true, className, ...rest })`
 
 ### LoadingMore
 **Tier:** Component
@@ -2629,18 +2648,26 @@ icon-button; Figma show-close-icon), closable=false to hide it.
 Figma: snackbar-organism (3795:29459)
 Props: title, children = description (Content slot), secondaryAction / primaryAction = { label, onClick }
 (Secondary S + Primary S; add iconLeft, e.g. Undo → 'arrow-back-up'), onClose (close icon-button; showClose=false hides it).
-Use IFS.toast({...same props, duration}) to show one top-right that auto-dismisses.
+Use IFS.toast({...same props, duration}) to show one top-end (timing: rule 7.12). The Snackbar has no live role of its own (G5): the
+message reaches screen readers through IFS.announce (the always-present live regions, rule 9.19), so it is never read twice or missed.
 `function Snackbar({ title, children, secondaryAction, primaryAction, onClose, showClose = true, className, ...rest })`
 
 ### toast
 **Tier:** Component
-toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id).
+toast({ title, description, primaryAction, secondaryAction, duration }) → id. toast.dismiss(id). toast.command() = a command the page
+made outside the DOM events the kit listens to (e.g. a client-side route change). The message is announced politely (IFS.announce).
 `function surfToast(opts)`
 
 ### useSnackbar
 **Tier:** Component
 Hook form: const show = useSnackbar(); show({ title: 'Saved' })
 `function useSnackbar() { return surfToast; }`
+
+### useSnackbarTiming
+**Tier:** Component
+The one snackbar timing (rule 7.12), for IFS.toast and any pattern that shows its own Snackbar (Documents feedback):
+useSnackbarTiming({ action, duration, onClose }) → handlers to spread on the snackbar's wrapper (hover / focus hold it).
+`function useSnackbarTiming({ action, duration, onClose })`
 
 ### Overlay
 **Tier:** Component

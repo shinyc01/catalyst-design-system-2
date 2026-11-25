@@ -9,7 +9,7 @@ export default {
   component: IFS["Snackbar"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** snackbar-organism (3795:29459)\n\n\nUse: Rule 7.12; show one with `IFS.toast`. Placement: the one top-end stack, rule 4.8 (one page margin in, below the header, 8 apart, newest on top).\n\nMotion: slides in 16 from the end side over 100; stays 4000, paused on hover and focus; closes with a fade and 16 back to the end side in 50 (rule 1.8)." } },
+    docs: { description: { component: "**Figma:** snackbar-organism (3795:29459)\n\n\nUse: Rule 7.12; show one with `IFS.toast`. Placement: the one top-end stack, rule 4.8 (one page margin in, below the header, 8 apart, newest on top).\n\nTiming (rule 7.12, G5): with an action at least 10 s, then until the user's next command elsewhere; without one 6 s; hover and focus hold it; one action snackbar at a time. A pattern that renders its own Snackbar uses `IFS.useSnackbarTiming({ action, duration, onClose })`. No live role of its own: `IFS.toast` announces it (rule 9.19).\n\nMotion: slides in 16 from the end side over 100; closes with a fade and 16 back to the end side in 50 (rule 1.8)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3795-29459"},
   },
 };
