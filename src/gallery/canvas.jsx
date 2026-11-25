@@ -105,10 +105,10 @@ export default IFS_GALLERY;
   const groups = ['2027', '2028', '2029', '2030', '2031'].map(y => ({ label: y, slots: ['Q1', 'Q2', 'Q3', 'Q4'] }));
   const tasks = [{ title: 'sub task', label: 'Q1 2027', start: 0, end: 0.75 }, { title: 'sub task', label: 'Q1 2027', start: 0.75, end: 1.6 }, { title: 'sub task', label: 'Q1 2027', start: 0, end: 1.9 }];
   const phases = [
-    { id: 1, title: '{phase-title}', subtitle: 'Internal', color: 'teal', start: 0, end: 1.9, tasks, defaultExpanded: true },
-    { id: 2, title: '{phase-title}', subtitle: 'Internal', color: 'muted-purple', start: 4.2, end: 8.9 },
-    { id: 3, title: '{phase-title}', badge: '6 weeks behind', color: 'steel-blue', start: 9.1, end: 13.2 },
-    { id: 4, title: '{phase-title}', subtitle: 'Internal', color: 'rose', start: 14.2, end: 18.9 },
+    { id: 1, title: '{phase-title}', subtitle: 'Internal', color: 1, start: 0, end: 1.9, tasks, defaultExpanded: true },
+    { id: 2, title: '{phase-title}', subtitle: 'Internal', color: 3, start: 4.2, end: 8.9 },
+    { id: 3, title: '{phase-title}', badge: '6 weeks behind', color: 7, start: 9.1, end: 13.2 },
+    { id: 4, title: '{phase-title}', subtitle: 'Internal', color: 9, start: 14.2, end: 18.9 },
   ];
   IFS_GALLERY.push({ name: 'TimelineChart', figma: 'timeline-chart-organism (3967:38286) + timiline-phase-molecule (3967:1765)', render: () => <div style={{ width: 1368 }}>
     <Row label="default" top><div style={{ flex: 1 }}><TimelineChart groups={groups} phases={phases} /></div></Row>

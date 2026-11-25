@@ -286,8 +286,8 @@ function MapPin({ status: st = 'neutral', icon, selected, defaultSelected = fals
 // ctrl/⌘ + wheel or pinch to zoom, plain wheel pans), minZoom, maxZoom, children = world content (absolute-positioned
 // in world px), overlay = fixed UI on top (toolbars, mini-map), apiRef receives { setView, fit(bounds) }.
 // baseMap dark|light|imagery (G3, Nov 25): what the map image is, so map glass picks its fill (data-base-map; foundations/layout.css):
-// matching the theme → --color-surface-map-glass (black 40), not matching → --color-surface-overlay (black 85). Default: dark with an
-// image, none without one (a node canvas is not a map). Put the same attribute on the map container that holds the slots.
+// matching the theme → --color-surface-map-glass (black 40), not matching → --color-surface-overlay (black 85). With an image and no
+// baseMap the map is "undeclared" and takes the safe black 85 (user decision, Nov 25). Without an image (a node canvas) no attribute. Put the same attribute on the map container that holds the slots.
 function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zoom: 1 }, onViewChange, minZoom = 0.25, maxZoom = 2,
   children, overlay, apiRef, className, style, ...rest }) {
   const [v, setV] = useCanvasValue(view, defaultView, onViewChange);
@@ -338,7 +338,7 @@ function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zo
   const tile = 20 * v.zoom;
   return (
     <div ref={el} tabIndex={0} role="application" aria-roledescription="canvas" aria-label={rest['aria-label'] || 'Canvas'}
-      data-base-map={baseMap || (image ? 'dark' : undefined)}
+      data-base-map={baseMap || (image ? 'undeclared' : undefined)}
       className={IFS.cx('ifs-canvas', image && 'ifs-canvas--image', panning && 'ifs-canvas--panning', className)}
       style={{ ...(image ? { backgroundImage: `url(${image})` } : { '--dot-size': `${tile}px`, '--dot-x': `${v.x}px`, '--dot-y': `${v.y}px` }), ...style }}
       onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={end} onPointerCancel={end} onKeyDown={onKeyDown} {...rest}>
@@ -535,13 +535,17 @@ function sankeyLayout(columns, nodes, links, W, H) {
 /* ------------------------------------------------------------------------------------------ */
 // Figma: timiline-phase-molecule (3967:1765) — one phase row of the Gantt (+ its task list when expanded).
 // Props: title (Figma Title), subtitle ("Internal"), badge = red badge text (Figma Badge=True, e.g. "6 weeks behind"),
-// color teal|muted-purple|steel-blue|rose|… (data-viz family, data-4), start / end (fractional slot indexes on the axis),
+// color = a categorical slot 1–12 (rule 10.7; default 1); the pre-2.0.6 family names (teal, muted-purple, steel-blue, rose …) still work
+// and draw the current role their data-4 step became (deprecated, until 3.0), start / end (fractional slot indexes on the axis),
 // tasks = [{ title, label ("Q1 2027"), start, end }], expanded / defaultExpanded / onExpandedChange,
 // onAdd, onMore (hover actions), slots (number of axis slots, set by the chart), state hover (gallery).
-function TimelinePhase({ title, subtitle, badge, color = 'teal', start = 0, end = 1, tasks = [], expanded, defaultExpanded = false,
+const PHASE_LEGACY = { rose: 'sequential-orchid-4', 'muted-purple': 'categorical-7', teal: 'sequential-teal-3', 'steel-blue': 'sequential-azure-1',
+  'deep-green': 'sequential-green-3', alert: 'sequential-red-5', violet: 'sequential-orchid-3', cyan: 'sequential-teal-7' };
+function TimelinePhase({ title, subtitle, badge, color = 1, start = 0, end = 1, tasks = [], expanded, defaultExpanded = false,
   onExpandedChange, onAdd, onMore, slots = 20, groups = 5, state, className, ...rest }) {
   const [open, setOpen] = useCanvasValue(expanded, defaultExpanded, onExpandedChange);
-  const bar = `var(--color-data-viz-${color}-data-4)`;
+  const bar = /^\d+$/.test(String(color)) ? `var(--color-data-viz-categorical-${((Number(color) - 1) % 12 + 12) % 12 + 1})`
+    : `var(--color-data-viz-${PHASE_LEGACY[color] || 'categorical-1'})`;
   const pct = x => `${(x / slots) * 100}%`;
   const grid = <span className="ifs-timeline-chart__grid" style={{ '--groups': groups }}>{Array.from({ length: groups }, (_, i) => <i key={i} />)}</span>;
   return (

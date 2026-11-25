@@ -15,6 +15,8 @@ const HELD = /--element-(checkbox-off-border-pressed|radiobutton-off-border-pres
 const HELD_OTHER = /^--(white-alpha-50|white-500|border-blue)$/;
 const { customProps } = await import(join(root, 'tools/css-tokens.mjs'));
 const DEPRECATED = new Set(customProps(readFileSync(join(root, 'src/foundations/deprecated.css'), 'utf8')).map(d => d.name));
+const LIVE = new Set([...customProps(readFileSync(join(root, 'src/tokens.css'), 'utf8')), ...readdirSync(join(root, 'src/foundations')).filter(f => f.endsWith('.css') && f !== 'deprecated.css')
+  .flatMap(f => customProps(readFileSync(join(root, 'src/foundations', f), 'utf8')))].map(d => d.name));
 const RAW = /#[0-9a-fA-F]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)/g;
 const out = { primitive: [], element: [], deprecated: [], role: [], raw: [], held: [] };
 for (const d of customProps(readFileSync(join(root, 'src/tokens.css'), 'utf8')))
@@ -24,6 +26,11 @@ for (const f of readdirSync(dir).filter(f => /\.(css|jsx?)$/.test(f))) {
     const at = `${f}:${i + 1}`;
     for (const m of l.matchAll(/var\((--palette-[a-z0-9-]+)/g)) out.primitive.push(`${at} ${m[1]}`);
     for (const m of l.matchAll(/var\((--element-[a-z0-9-]+)/g)) (HELD.test(m[1]) ? out.held : out.element).push(`${at} ${m[1]}`);
+    // A name built at run time (`var(--color-data-viz-${x}-data-4)`): flag it when its literal prefix only matches deprecated names.
+    for (const m of l.matchAll(/var\((--[a-z0-9-]*)\$\{[^}]*\}([a-z0-9-]*)/g)) {
+      const [pre, post] = [m[1], m[2]], hits = [...DEPRECATED].filter(n => n.startsWith(pre) && n.endsWith(post));
+      if (hits.length && hits.length === [...DEPRECATED, ...LIVE].filter(n => n.startsWith(pre) && n.endsWith(post)).length) out.deprecated.push(`${at} ${pre}\${…}${post} (built at run time)`);
+    }
     for (const m of l.matchAll(/var\((--[a-z0-9-]+)/g)) {
       if (HELD_OTHER.test(m[1])) out.held.push(`${at} ${m[1]}`);
       else if (DEPRECATED.has(m[1]) && !/^--element-/.test(m[1])) out.deprecated.push(`${at} ${m[1]}`);

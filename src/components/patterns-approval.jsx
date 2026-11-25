@@ -48,9 +48,12 @@ function ApprovalStatus({ type = 'empty', label, className, ...rest }) {
 
 
 /* ===================================================== Investment-value-impact ===================================================== */
+// Loss / gain is good / bad change, so it uses the diverging pair (rule 10.8, confirmed Nov 25): worse (loss) = pink (the -positive-*
+// side), better (gain) = azure (the -negative-* side), deeper = farther from the midpoint (step 3 / 4 / 5 → 1 / 2 / 3). Was red / green.
+const IVI_DEPTH = { 3: 1, 4: 2, 5: 3 };
 const IVI_TONE = {
-  loss: step => `var(--color-data-viz-alert-data-${step || 4})`,
-  gain: step => `var(--color-data-viz-deep-green-data-${step || 4})`,
+  loss: step => `var(--color-data-viz-diverging-positive-${IVI_DEPTH[step] || 2})`,
+  gain: step => `var(--color-data-viz-diverging-negative-${IVI_DEPTH[step] || 2})`,
   unchanged: () => 'var(--color-data-viz-neutral)',
 };
 const IVI_METRICS = [
