@@ -60,7 +60,7 @@ Use: Every action and every navigation move (rule 14.1). Types and sizes: rule 1
 Don't: Links inside user-authored content or to external resources — those stay links.
 
 ### icon-button · `IconButton`
-Use: An action in a dense context where a label won't fit. Tooltip + aria-label: rule 9.2. Usual: ghost square S.
+Use: An action in a dense context where a label won't fit. Tooltip + aria-label: rule 9.2. Usual: ghost square S, the code default since 2.0.7 (was M; map tool buttons and the bottom-sheet upload pass `size="m"`).
 
 ### circular-button-molecule · `CircularButton`
 Use: One directional trigger inside `circular-button-organism`; not placed alone.
@@ -201,7 +201,7 @@ Notes: While searching the field shows the query, not the selection; clearing th
 Use: One segment; building block.
 
 ### segmented-control-organism · `SegmentedControl`
-Use: Picking one of 2–5 always-visible options, usually switching a view mode in a card, drawer or chart header. Size: rule 14.15.
+Use: Picking one of 2–5 always-visible options, usually switching a view mode in a card, drawer or chart header. Size: rule 14.15; S is the code default since 2.0.7 (was M), the Chart / Table switch passes M.
 Notes: `iconOnly` (2.0.6) shows each option's icon only, 16 in a square segment, with `label` as the accessible name and tooltip; M is `--size-control-m` outside. Used for the chart card's Chart / Table switch (rule 10.2).
 Don't: More than 5 options — use `single-select-organism`.
 
@@ -329,7 +329,7 @@ Use: Dashboard edit mode: widgets become draggable tiles and the background show
 Place `content-card-organism`, `stat-card-organism` and `table-card-organism`. Status, table and activity sets go atom → molecule → organism; place organisms and molecules.
 
 ### badge-atom · `Badge`
-Use: A small read-only marker of status or category attached to another object (Passed / At risk / Failed; Active / Draft / Archived; Critical / Recommended). Status words and colours: rule 1.1. Heights S / M / L = ladder xs / s / m (rule 3.5). Rules 2.10, 1.1.
+Use: A small read-only marker of status or category attached to another object (Passed / At risk / Failed; Active / Draft / Archived; Critical / Recommended). Status words and colours: rule 1.1. Heights S / M / L = ladder xs / s / m (rule 3.5); S is the code default since 2.0.7 (was M). Rules 2.10, 1.1.
 Don't: The primary content (→ text). Don't badge everything.
 
 ### avatar-atom · `Avatar`

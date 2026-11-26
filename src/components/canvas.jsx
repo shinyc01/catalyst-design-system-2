@@ -29,8 +29,8 @@ function ValueMapButton({ type = 'shape', selected, defaultSelected, onSelect, o
   return (
     <div role="toolbar" aria-orientation="vertical" aria-label="Map view" className={IFS.cx('ifs-map-cluster', className)} {...rest}>
       {type === 'shape' && <>
-        <IFS.IconButton icon="node" label="Collapse all" state={sel === 'collapse' ? 'pressed' : undefined} aria-pressed={sel === 'collapse'} onClick={run('collapse', onCollapse)} />
-        <IFS.IconButton icon="ecosystem" label="Expand all" state={sel === 'expand' ? 'pressed' : undefined} aria-pressed={sel === 'expand'} onClick={run('expand', onExpand)} />
+        <IFS.IconButton size="m" icon="node" label="Collapse all" state={sel === 'collapse' ? 'pressed' : undefined} aria-pressed={sel === 'collapse'} onClick={run('collapse', onCollapse)} />
+        <IFS.IconButton size="m" icon="ecosystem" label="Expand all" state={sel === 'expand' ? 'pressed' : undefined} aria-pressed={sel === 'expand'} onClick={run('expand', onExpand)} />
       </>}
       <IFS.Button type="ghost" size="m" className={IFS.cx('ifs-map-cluster__fit', type === 'shape' && sel !== 'fit' && 'ifs-map-cluster__fit--idle')}
         state={sel === 'fit' ? 'pressed' : undefined} aria-pressed={type === 'shape' ? sel === 'fit' : undefined} onClick={run('fit', onFit)}>Fit</IFS.Button>
@@ -48,7 +48,7 @@ function ValueMapButton({ type = 'shape', selected, defaultSelected, onSelect, o
 // MapToolCluster: children = MapToolButton / MapToolDivider. MapToolDivider: hairline between action families.
 // MapToolButton: icon, label (accessible name + tooltip), active (pressed state, aria-pressed), onClick.
 function MapToolButton({ icon, label, active, className, ...rest }) {
-  return <IFS.IconButton icon={icon} label={label} state={active ? 'pressed' : undefined} aria-pressed={active == null ? undefined : !!active}
+  return <IFS.IconButton size="m" icon={icon} label={label} state={active ? 'pressed' : undefined} aria-pressed={active == null ? undefined : !!active}
     className={IFS.cx('ifs-map-tool', className)} {...rest} />;
 }
 function MapToolDivider() { return <span className="ifs-map-cluster__divider" role="separator" />; }

@@ -361,7 +361,7 @@ function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper's
             aria-expanded={c.open} aria-haspopup="dialog" onClick={() => c.setOpen(!c.open)}>{docLabel(c.count)}</IFS.Button>
         )}
         {c.editable && <>
-          <IFS.Tooltip content="Upload documents"><IFS.IconButton type="tertiary" icon="system-upload" label="Upload documents" onClick={() => input.current && input.current.click()} /></IFS.Tooltip>
+          <IFS.Tooltip content="Upload documents"><IFS.IconButton type="tertiary" size="m" icon="system-upload" label="Upload documents" onClick={() => input.current && input.current.click()} /></IFS.Tooltip>
           <input ref={input} className="ifs-docs-context__file" type="file" multiple tabIndex={-1} aria-hidden="true"
             accept={c.formats.map(f => `.${f}`).join(',')} onChange={e => { c.addFiles(e.target.files); e.target.value = ''; }} />
         </>}

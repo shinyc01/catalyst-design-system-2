@@ -282,10 +282,10 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
 
 // Figma: segmented-control-organism (1387:244501) built from segmented-control-atom (1387:244511)
 // Props: options = [{ value, label, iconLeft, iconRight, counter, disabled, state }] (strings allowed), value/defaultValue/onChange,
-// size m | s: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 4 smaller inside the 2 track (20 inside 24 in Comfortable), each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
+// size s (default since 2.0.7, rule 14.15; was m) | m: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 4 smaller inside the 2 track (20 inside 24 in Comfortable), each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
 // iconOnly (2.0.6, D1): each option shows only its icon (o.icon or o.iconLeft, 16) in a square segment; o.label becomes the accessible name
 // and the native tooltip. M size: the segments are squares 4 smaller than the control height inside the 2 track, so the control is --size-control-m outside.
-function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm', fullWidth = false, iconOnly = false, className, ...rest }) {
+function SegmentedControl({ options = [], value, defaultValue, onChange, size = 's', fullWidth = false, iconOnly = false, className, ...rest }) {
   const opts = options.map(norm);
   const [val, setVal] = useControlled(value, defaultValue !== undefined ? defaultValue : (opts[0] && opts[0].value), onChange);
   const refs = useRef([]);

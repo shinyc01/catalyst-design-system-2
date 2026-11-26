@@ -236,7 +236,7 @@ function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true
         </div>
         <div className="ifs-bottom-sheet__buttons">
           {documents && <IFS.Button type="tertiary" iconLeft={documents.icon === undefined ? 'system-file' : documents.icon} onClick={documents.onClick}>{documents.label}</IFS.Button>}
-          {onUpload && <IFS.Tooltip content="Upload documents"><IFS.IconButton type="tertiary" icon="system-upload" label="Upload documents" onClick={onUpload} /></IFS.Tooltip>}
+          {onUpload && <IFS.Tooltip content="Upload documents"><IFS.IconButton type="tertiary" size="m" icon="system-upload" label="Upload documents" onClick={onUpload} /></IFS.Tooltip>}
         </div>
       </div>
     );

@@ -26,9 +26,9 @@ function StatusIndicator({ state = 'default', stroke, label, className, ...rest 
 // Figma: badge-atom (83:52162)
 // Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, sentence-case Label/M/medium caption; info = black fill
 // with --color-text-info + --color-icon-info, as the Patterns source-card draws it), borderless (drops the black badge's --color-border edge —
-// the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
+// the library's Black variant has that stroke hidden), size l|m|s (default s since 2.0.7, rule 14.15; was m), iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 // indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
-function Badge({ color = 'white', size = 'm', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest }) {
+function Badge({ color = 'white', size = 's', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest }) {
   color = { danger: 'red', success: 'green', warning: 'orange', neutral: 'white' }[color] || color; // C1 status words (hue words stay as aliases)
   const sz = color === 'false' ? 's' : size;
   const iconSize = sz === 's' ? 12 : 16;

@@ -20,9 +20,9 @@ function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, 
 }
 
 // Figma: icon-button (71:4250)
-// Props: icon (required), type ghost|primary|secondary|tertiary, size l|m|s, shape square|circle.
+// Props: icon (required), type ghost|primary|secondary|tertiary, size l|m|s (default s since 2.0.7, rules 6.2 / 14.15; was m), shape square|circle.
 // Always pass a `label` — it becomes the accessible name and tooltip.
-function IconButton({ icon, iconVariant, label, type = 'ghost', size = 'm', shape = 'square', state, className, ...rest }) {
+function IconButton({ icon, iconVariant, label, type = 'ghost', size = 's', shape = 'square', state, className, ...rest }) {
   return (
     <button type="button" aria-label={label} title={label} data-state={state}
       className={IFS.cx('ifs-icon-button', `ifs-icon-button--${type}`, `ifs-icon-button--${size}`, shape === 'circle' && 'ifs-icon-button--circle', className)} {...rest}>
