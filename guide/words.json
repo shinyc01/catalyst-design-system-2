@@ -1,0 +1,990 @@
+{
+  "version": "2.0.7",
+  "updated": "2026-11-26",
+  "about": "The Catalyst word list (rule 8.43). Terms are settled; a definition with \"confirmed\": false is a draft waiting for a product owner pass (BACKLOG). A term's definition doubles as its hint-tooltip text (rule 8.49).",
+  "settings": [
+    {
+      "name": "entity name",
+      "row": 15,
+      "default": "investment",
+      "values": [
+        "investment",
+        "project"
+      ],
+      "notes": "An organisation may rename \"investment\" to \"project\"; copy takes the name from the setting."
+    }
+  ],
+  "terms": [
+    {
+      "term": "investment",
+      "kind": "domain",
+      "definition": "A piece of work that competes for funding, with one or more alternatives.",
+      "avoid": [
+        "request",
+        "initiative",
+        "job"
+      ],
+      "notes": "An organisation may rename it \"project\" (USER-SETTINGS row 15): copy takes the entity name from the setting and never hard-codes \"investment\" or \"project\". \"Project\" is not a banned word.",
+      "rule": "8.9",
+      "confirmed": false
+    },
+    {
+      "term": "program",
+      "kind": "domain",
+      "definition": "An investment type that groups related work.",
+      "avoid": [],
+      "notes": "A real investment type (decided Nov 26), not a level of portfolio. Whether an organisation may rename it is in the backlog.",
+      "rule": "8.9",
+      "confirmed": true
+    },
+    {
+      "term": "alternative",
+      "kind": "domain",
+      "definition": "One way to carry out an investment, with its own cost, timing and value.",
+      "avoid": [
+        "option",
+        "variant",
+        "version",
+        "scenario"
+      ],
+      "notes": "Distinct from scenario (a whole plan). \"Option\" stays fine for menu and radio choices, never for an alternative.",
+      "rule": "8.9",
+      "confirmed": true
+    },
+    {
+      "term": "selected alternative",
+      "kind": "domain",
+      "definition": "The alternative the plan currently uses for an investment.",
+      "avoid": [
+        "chosen option",
+        "active alternative",
+        "preferred"
+      ],
+      "notes": "One number per investment = the selected alternative.",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "scenario",
+      "kind": "domain",
+      "definition": "One version of the portfolio plan, under its own constraints and assumptions.",
+      "avoid": [
+        "what-if",
+        "plan version",
+        "case",
+        "run"
+      ],
+      "notes": "Names as entered (\"02_Optimized\").",
+      "rule": "8.9",
+      "confirmed": false
+    },
+    {
+      "term": "portfolio",
+      "kind": "domain",
+      "definition": "A group of investments planned and funded together. Portfolios can contain other portfolios.",
+      "avoid": [
+        "bucket",
+        "folder"
+      ],
+      "notes": "\"Program\" is an investment type, not a portfolio (decided Nov 26), so it is no longer on this list.",
+      "rule": "8.9",
+      "confirmed": true
+    },
+    {
+      "term": "planning group",
+      "kind": "domain",
+      "definition": "A set of investments in a scenario that the optimization treats the same way.",
+      "avoid": [
+        "tier",
+        "category",
+        "bucket"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "value",
+      "kind": "domain",
+      "definition": "A score from the value framework, not money. Higher is better.",
+      "avoid": [
+        "benefit",
+        "ROI",
+        "worth",
+        "$ value"
+      ],
+      "notes": "Never with a currency symbol; K / M allowed (\"Value 15.85M\", rules 8.26, 8.43).",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "value framework",
+      "kind": "domain",
+      "definition": "Your organization's model for measuring the value of investments against its goals.",
+      "avoid": [
+        "scoring model",
+        "value model (for the whole)",
+        "framework (alone, on first use)"
+      ],
+      "notes": "",
+      "rule": "8.9",
+      "confirmed": false
+    },
+    {
+      "term": "value model",
+      "kind": "domain",
+      "definition": "A calculation in a value framework that scores investments on one measure.",
+      "avoid": [
+        "formula",
+        "calculator"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "value measure",
+      "kind": "domain",
+      "definition": "One thing the value framework measures, such as reliability risk or aggregate risk.",
+      "avoid": [
+        "metric",
+        "KPI (for value measures)",
+        "criterion"
+      ],
+      "notes": "Measure names as entered (\"Reliability-Risk\").",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "constraint",
+      "kind": "domain",
+      "definition": "A limit the optimization must respect, such as a yearly capex cap.",
+      "avoid": [
+        "rule",
+        "restriction",
+        "limit (as a noun label)",
+        "guardrail"
+      ],
+      "notes": "The umbrella word: \"14 constraints\". A spend limit is a budget.",
+      "rule": "8.9",
+      "confirmed": false
+    },
+    {
+      "term": "budget",
+      "kind": "domain",
+      "definition": "A constraint that limits spend, such as the FY27 budget.",
+      "avoid": [
+        "budget (for value or other limits)"
+      ],
+      "notes": "One kind of constraint (decided Nov 26): \"budget\" for a spend limit, \"constraint\" as the umbrella; never \"budget\" for value or other limits.",
+      "rule": "8.9",
+      "confirmed": true
+    },
+    {
+      "term": "optimization",
+      "kind": "domain",
+      "definition": "A run that picks alternatives and timing to get the most value within the constraints.",
+      "avoid": [
+        "optimisation",
+        "solver run",
+        "AI plan",
+        "calculation"
+      ],
+      "notes": "US spelling. Verb \"optimize\", adjective \"optimized\"; re-optimize is hyphenated (rule 8.42).",
+      "rule": "8.9",
+      "confirmed": false
+    },
+    {
+      "term": "deferred",
+      "kind": "domain",
+      "definition": "Status: the investment starts later than requested.",
+      "avoid": [
+        "pushed out",
+        "delayed (for this status)",
+        "postponed"
+      ],
+      "notes": "Optimizer status.",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "brought forward",
+      "kind": "domain",
+      "definition": "Status: the investment starts earlier than requested.",
+      "avoid": [
+        "pulled in",
+        "accelerated",
+        "advanced"
+      ],
+      "notes": "Optimizer status.",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "alternative changed",
+      "kind": "domain",
+      "definition": "Status: the plan uses a different alternative than requested.",
+      "avoid": [
+        "swapped",
+        "option changed"
+      ],
+      "notes": "Optimizer status.",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "as requested",
+      "kind": "domain",
+      "definition": "Status: no change from the request.",
+      "avoid": [
+        "unchanged",
+        "original",
+        "baseline"
+      ],
+      "notes": "\"Requested\" is the scenario name.",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "spend forecast",
+      "kind": "domain",
+      "definition": "The planned spend of an alternative by year.",
+      "avoid": [
+        "cash flow",
+        "spend profile",
+        "burn"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "capex / opex",
+      "kind": "domain",
+      "definition": "Capital and operating expenditure.",
+      "avoid": [
+        "CAPEX",
+        "CapEx",
+        "OPEX",
+        "OpEx",
+        "capital costs (in labels)"
+      ],
+      "notes": "\"capex\" in running text, \"Capex\" to start a label. Demo measure names keep their source spelling.",
+      "rule": "8.9",
+      "confirmed": true
+    },
+    {
+      "term": "total investment cost",
+      "kind": "domain",
+      "definition": "Capex plus opex over the life of an alternative.",
+      "avoid": [
+        "TIC",
+        "total cost of ownership"
+      ],
+      "notes": "Spell it out (rule 8.34).",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "milestone",
+      "kind": "domain",
+      "definition": "A dated point in an alternative's schedule.",
+      "avoid": [
+        "checkpoint",
+        "deliverable"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "stage",
+      "kind": "domain",
+      "definition": "A step in an investment's life cycle, such as Concept or Approved.",
+      "avoid": [
+        "phase",
+        "state",
+        "status (for stages)"
+      ],
+      "notes": "Stage names as entered.",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "gate",
+      "kind": "domain",
+      "definition": "An approval point between stages.",
+      "avoid": [
+        "checkpoint",
+        "hurdle"
+      ],
+      "notes": "\"Approved at every gate\" (rule 14.12).",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "approval chain",
+      "kind": "domain",
+      "definition": "The ordered people who approve an investment or framework.",
+      "avoid": [
+        "sign-off chain",
+        "workflow",
+        "approval flow"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "approve / approval",
+      "kind": "domain",
+      "definition": "Agree that the item can move on.",
+      "avoid": [
+        "sign off",
+        "accept",
+        "OK"
+      ],
+      "notes": "",
+      "rule": "8.9",
+      "confirmed": false
+    },
+    {
+      "term": "needs revision",
+      "kind": "domain",
+      "definition": "Status: an approver sent the item back to its author to revise.",
+      "avoid": [
+        "Revisions required",
+        "Revision required",
+        "Revision requested",
+        "Revisions requested (as a status)",
+        "Changes requested"
+      ],
+      "notes": "The send-back pair (decided Nov 26): the asker's button \"Request revisions\", their snackbar \"Revisions requested — sent back to {name}\", the status everyone sees \"Needs revision\". A status that asks for action may start with \"Needs\" (rule 8.52).",
+      "rule": "8.9",
+      "confirmed": true
+    },
+    {
+      "term": "risk",
+      "kind": "domain",
+      "definition": "The chance and impact of an unwanted event, such as an asset failure.",
+      "avoid": [
+        "threat",
+        "hazard",
+        "exposure"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "residual risk",
+      "kind": "domain",
+      "definition": "The risk left after an investment is done.",
+      "avoid": [
+        "remaining risk",
+        "leftover risk"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "risk register",
+      "kind": "domain",
+      "definition": "The list of identified risks and their scores.",
+      "avoid": [
+        "risk log",
+        "risk list"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "asset",
+      "kind": "domain",
+      "definition": "A physical thing the organization owns and maintains, such as a transformer or pole.",
+      "avoid": [
+        "equipment",
+        "item",
+        "unit"
+      ],
+      "notes": "Asset names as entered (\"Transformer T-118\").",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "condition",
+      "kind": "domain",
+      "definition": "How healthy an asset is today, on the organization's scale.",
+      "avoid": [
+        "health score",
+        "state"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "evidence",
+      "kind": "domain",
+      "definition": "The sources that support a score, a recommendation or Cooper's answer.",
+      "avoid": [
+        "proof",
+        "backup",
+        "references"
+      ],
+      "notes": "\"Supporting evidence\" in CooperMessage (rule 8.59).",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "confidence",
+      "kind": "domain",
+      "definition": "How sure Cooper or the system is about an inference: High, Medium or Low.",
+      "avoid": [
+        "certainty",
+        "accuracy",
+        "trust score"
+      ],
+      "notes": "",
+      "rule": "8.58",
+      "confirmed": false
+    },
+    {
+      "term": "Cooper",
+      "kind": "domain",
+      "definition": "The IFS Copperleaf assistant.",
+      "avoid": [
+        "the AI",
+        "the bot",
+        "chatbot",
+        "assistant",
+        "Copilot",
+        "agent (alone)"
+      ],
+      "notes": "Always capitalised. \"I\" only for its own actions and limits; third person outside the chat (\"Suggested by Cooper\").",
+      "rule": "8.6",
+      "confirmed": true
+    },
+    {
+      "term": "people",
+      "kind": "ui",
+      "definition": "The people who use Copperleaf, when UI text talks about others (\"People with access\"); the reader is \"you\".",
+      "avoid": [
+        "users",
+        "user (in UI text)"
+      ],
+      "notes": "Decided Nov 26. \"User\" stays fine in code and prop names; the approval column is \"Person\".",
+      "rule": "8.9",
+      "confirmed": true
+    },
+    {
+      "term": "Other",
+      "kind": "ui",
+      "definition": "The group a chart folds its smallest series or slices into.",
+      "avoid": [
+        "Misc",
+        "Rest",
+        "Others"
+      ],
+      "notes": "Grey --color-data-viz-other (rules 10.1, 10.7).",
+      "rule": "8.44",
+      "confirmed": true
+    },
+    {
+      "term": "No data",
+      "kind": "ui",
+      "definition": "A missing data point in a chart tooltip. Only there; empty states follow rules 8.22 and 8.51.",
+      "avoid": [
+        "0",
+        "N/A",
+        "blank"
+      ],
+      "notes": "Rule 10.10.",
+      "rule": "8.44",
+      "confirmed": true
+    },
+    {
+      "term": "collaborator",
+      "kind": "domain",
+      "definition": "A person working on a record with you.",
+      "avoid": [
+        "member",
+        "participant",
+        "contributor"
+      ],
+      "notes": "",
+      "rule": "8.43",
+      "confirmed": false
+    },
+    {
+      "term": "owner",
+      "kind": "domain",
+      "definition": "The person responsible for a record.",
+      "avoid": [
+        "creator",
+        "manager (unless the role is \"Investment manager\")",
+        "assignee"
+      ],
+      "notes": "Role names are labels in sentence case (\"Portfolio owner\"), lowercase mid-sentence (rule 8.33).",
+      "rule": "8.43",
+      "confirmed": false
+    }
+  ],
+  "verbs": [
+    {
+      "use": "Create",
+      "for": "making a new object (\"Create scenario\")",
+      "avoid": [
+        "New (as a verb)",
+        "Make",
+        "Add (for new objects)",
+        "Generate (unless Cooper writes it)"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Add",
+      "for": "putting an existing or new item into a container (\"Add model\")",
+      "avoid": [
+        "Insert",
+        "Attach (except files)",
+        "Include"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Remove",
+      "for": "taking out of a group, without deleting (\"Remove collaborator\")",
+      "avoid": [
+        "Delete (for this)",
+        "Unassign"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Delete",
+      "for": "removing for good (\"Delete scenario\")",
+      "avoid": [
+        "Remove (for this)",
+        "Erase",
+        "Destroy",
+        "Trash"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Archive / Restore",
+      "for": "hiding and undoing it",
+      "avoid": [
+        "Hide",
+        "Retire"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Edit",
+      "for": "changing fields of an object",
+      "avoid": [
+        "Modify",
+        "Change (as a button)"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Rename…",
+      "for": "changing the name only (rule 8.13 ellipsis)",
+      "avoid": [
+        "Edit name"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Duplicate",
+      "for": "making a copy in the same place (\"Duplicate scenario\")",
+      "avoid": [
+        "Copy (for objects)",
+        "Clone"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Copy",
+      "for": "the clipboard (\"Copy link\")",
+      "avoid": [
+        "Duplicate (for clipboard)"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Save",
+      "for": "keeping edits; the FormCard fallback label",
+      "avoid": [
+        "Submit",
+        "Apply (for forms)",
+        "OK",
+        "Done (in edit forms)"
+      ],
+      "rule": "8.10"
+    },
+    {
+      "use": "Apply",
+      "for": "applying filters or a setting without leaving",
+      "avoid": [
+        "Save (for filters)",
+        "OK",
+        "Apply (for a Cooper suggestion: name the change)"
+      ],
+      "rule": "8.10"
+    },
+    {
+      "use": "Send for approval",
+      "for": "starting the approval chain",
+      "avoid": [
+        "Submit",
+        "Sign off"
+      ],
+      "rule": "8.10"
+    },
+    {
+      "use": "Approve / Request revisions / Reject",
+      "for": "approver decisions; \"Request revisions\" sends the item back to its author",
+      "avoid": [
+        "Accept",
+        "Decline",
+        "Return",
+        "Sign off",
+        "Request changes",
+        "Request more information",
+        "Request more info"
+      ],
+      "rule": "8.9",
+      "notes": "After \"Request revisions\" the status is \"Needs revision\" and the snackbar \"Revisions requested — sent back to {name}\"."
+    },
+    {
+      "use": "Export / Import",
+      "for": "files out of or into the product (\"Export plan (CSV)\")",
+      "avoid": [
+        "Download (for export)",
+        "Upload (for import)"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Download / Upload",
+      "for": "moving a file as a file",
+      "avoid": [
+        "Export",
+        "Import"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Share",
+      "for": "giving people access",
+      "avoid": [
+        "Invite (except a new collaborator: \"Invite collaborators\")"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Request access",
+      "for": "asking for access (rule 8.22)",
+      "avoid": [
+        "Ask for permission"
+      ],
+      "rule": "8.12"
+    },
+    {
+      "use": "Select",
+      "for": "choosing, in instructions",
+      "avoid": [
+        "Click",
+        "Tap",
+        "Hit",
+        "Press (except keys)"
+      ],
+      "rule": "9.26"
+    },
+    {
+      "use": "Choose",
+      "for": "a decision between options, in instructions",
+      "avoid": [
+        "Pick"
+      ],
+      "rule": "8.8"
+    },
+    {
+      "use": "Try again",
+      "for": "repeating a failed load or action",
+      "avoid": [
+        "Retry",
+        "Reload",
+        "Refresh (except the data's own Refresh)"
+      ],
+      "rule": "8.18"
+    },
+    {
+      "use": "Cancel",
+      "for": "leaving without changes",
+      "avoid": [
+        "Close (in dialogs with edits)",
+        "Abort",
+        "Discard (unless edits are lost: \"Discard changes\")"
+      ],
+      "rule": "8.11"
+    },
+    {
+      "use": "Undo",
+      "for": "reversing the last action (snackbar)",
+      "avoid": [
+        "Revert",
+        "Roll back"
+      ],
+      "rule": "8.20"
+    },
+    {
+      "use": "Optimize / Re-optimize",
+      "for": "starting an optimization",
+      "avoid": [
+        "Run",
+        "Solve",
+        "Calculate",
+        "Reoptimize"
+      ],
+      "rule": "8.42"
+    },
+    {
+      "use": "Re-score",
+      "for": "recalculating value",
+      "avoid": [
+        "Recalculate",
+        "Rescore"
+      ],
+      "rule": "8.42"
+    }
+  ],
+  "banned": [
+    {
+      "avoid": "please, sorry (more than once, or when nothing failed), oops",
+      "use": "the fact and the next step",
+      "rule": "8.7"
+    },
+    {
+      "avoid": "simply, just, easy, obviously, quick",
+      "use": "(leave out)",
+      "rule": "8.7"
+    },
+    {
+      "avoid": "seamless, powerful, robust, magic, smart, AI-powered, revolutionary",
+      "use": "say what it does",
+      "rule": "8.7"
+    },
+    {
+      "avoid": "leverage, utilize, facilitate, empower",
+      "use": "use, help, let",
+      "rule": "8.7"
+    },
+    {
+      "avoid": "click here, here, read more, learn more (alone)",
+      "use": "the destination (\"See the storm report\")",
+      "rule": "8.14"
+    },
+    {
+      "avoid": "click, tap, hit",
+      "use": "select",
+      "rule": "9.26"
+    },
+    {
+      "avoid": "invalid, illegal, failed, fatal, abort, error (alone)",
+      "use": "say what's wrong (\"Enter a date after Jan 1, 2027\")",
+      "rule": "8.18"
+    },
+    {
+      "avoid": "Submit, OK, Yes / No (alone)",
+      "use": "verb + object (\"Send for approval\"); \"Save\" in a form",
+      "rule": "8.11"
+    },
+    {
+      "avoid": "Apply, Do it (on a Cooper suggestion)",
+      "use": "the change, named in full (\"Defer 3 investments\")",
+      "rule": "8.60"
+    },
+    {
+      "avoid": "Retry",
+      "use": "Try again",
+      "rule": "8.18"
+    },
+    {
+      "avoid": "Are you sure?",
+      "use": "the consequence (\"This can't be undone.\")",
+      "rule": "8.24"
+    },
+    {
+      "avoid": "No data, No data found, Nothing here, No results found",
+      "use": "the rule 8.22 heading for the cause (\"No results for “WDRM-2”\", \"No matches for these filters\")",
+      "rule": "8.51"
+    },
+    {
+      "avoid": "Insufficient data",
+      "use": "\"Not enough data yet\" + when it will appear",
+      "rule": "8.51"
+    },
+    {
+      "avoid": "Success!, Error:, Warning:, Info:, Notification:",
+      "use": "the message itself",
+      "rule": "8.54"
+    },
+    {
+      "avoid": "user, users (in UI text)",
+      "use": "people (\"People with access\"), you, or the person's name",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "the AI, bot, chatbot, assistant",
+      "use": "Cooper",
+      "rule": "8.6"
+    },
+    {
+      "avoid": "As an AI…, I think, I feel, I'd love to, Great question",
+      "use": "(leave out)",
+      "rule": "8.61"
+    },
+    {
+      "avoid": "e.g., i.e., etc., vs. (in sentences)",
+      "use": "for example, that is, the full list, compared with",
+      "rule": "8.34"
+    },
+    {
+      "avoid": "& (outside names)",
+      "use": "and",
+      "rule": "8.38"
+    },
+    {
+      "avoid": "and/or, / for \"or\"",
+      "use": "or, and",
+      "rule": "8.39"
+    },
+    {
+      "avoid": "N/A",
+      "use": "— (missing value) or \"Doesn't apply\"",
+      "rule": "8.39"
+    },
+    {
+      "avoid": "... (three dots)",
+      "use": "… (one character)",
+      "rule": "8.40"
+    },
+    {
+      "avoid": "straight quotes and apostrophes (\" ' ) in UI strings",
+      "use": "curly ones (“ ” ’)",
+      "rule": "8.40"
+    },
+    {
+      "avoid": "CAPEX, CapEx, OPEX, OpEx",
+      "use": "capex, Capex, opex, Opex",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "optimisation, prioritise, colour (in UI)",
+      "use": "optimization, prioritize, color",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "log in, login, log out, sign on",
+      "use": "sign in, sign out",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "e-mail",
+      "use": "email",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "sign off (approval)",
+      "use": "approve",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "Request more information, Request more info, Request changes",
+      "use": "Request revisions",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "Revisions required, Revision required, Revision requested, Changes requested (as a status)",
+      "use": "Needs revision",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "budget (for value or other limits)",
+      "use": "constraint, or the limit's own name",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "what-if",
+      "use": "scenario",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "option (for an alternative)",
+      "use": "alternative",
+      "rule": "8.9"
+    },
+    {
+      "avoid": "whitelist, blacklist",
+      "use": "allowlist, blocklist",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "master, slave",
+      "use": "primary, main, replica",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "sanity check",
+      "use": "quick check",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "dummy (data, value)",
+      "use": "sample, placeholder",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "kill, execute, hang (processes)",
+      "use": "stop, run, stop responding",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "grandfathered",
+      "use": "existing, kept",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "native (speaker)",
+      "use": "first-language",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "he / she (generic)",
+      "use": "they, you",
+      "rule": "8.8"
+    },
+    {
+      "avoid": "ALL CAPS, Title Case, emoji, !",
+      "use": "sentence case (rule 2.9), no emoji, a full stop",
+      "rule": "2.9"
+    },
+    {
+      "avoid": "~, approx.",
+      "use": "about",
+      "rule": "8.35"
+    },
+    {
+      "avoid": "12th Nov, Nov 12th, 11/12/2026",
+      "use": "Nov 12, 2026",
+      "rule": "8.36"
+    }
+  ]
+}

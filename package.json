@@ -9,7 +9,7 @@
     "stories": "node tools/gen-stories.mjs",
     "build": "node build.mjs",
     "build-storybook": "node tools/gen-stories.mjs && storybook build -o dist/storybook --quiet",
-    "release": "node tools/gen-stories.mjs && node build.mjs && node tools/gen-api.mjs && node tools/gen-examples.mjs && npm run demo && storybook build -o dist/storybook --quiet",
+    "release": "node tools/gen-words.mjs && node tools/gen-stories.mjs && node build.mjs && node tools/gen-api.mjs && node tools/gen-examples.mjs && npm run demo && storybook build -o dist/storybook --quiet",
     "demo": "bash demo/build.sh"
   },
   "dependencies": {

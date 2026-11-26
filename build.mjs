@@ -50,6 +50,8 @@ const sizes = await build();
 // G6: the font licences (OFL 1.1) and the fonts README travel with the font files.
 mkdirSync(join(dist, 'fonts'), { recursive: true });
 for (const f of ['OFL-Inter.txt', 'OFL-JetBrainsMono.txt', 'README.md']) copyFileSync(join(root, 'fonts', f), join(dist, 'fonts', f));
+// G9: the word list (rule 8.43) ships with the kit for the content-check skill and other tools.
+for (const f of ['words.md', 'words.json']) copyFileSync(join(root, 'guide', f), join(dist, f));
 if (cmd === 'inline') {
   writeFileSync(b, inline(read(a)));
   console.log(`Wrote ${b}`);
