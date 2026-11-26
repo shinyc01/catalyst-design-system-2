@@ -21,7 +21,10 @@ const slotVar = n => `var(--color-data-viz-categorical-${n})`;
 const OTHER = 'var(--color-data-viz-other)';
 const WHITE = 'var(--color-data-viz-reference)'; // peer-median / reference marks
 // Before 2.0.6 charts took a colour group name; those names still work (deprecated: each old step is an alias of the nearest new role).
-const DV_GROUPS = ['muted-purple', 'teal', 'rose', 'steel-blue', 'deep-green', 'violet', 'cyan', 'alert'];
+// The 2.0.7 family names win (audit T-6, Nov 26): violet / indigo / azure / teal / terracotta / rose = that family's dark colour, so color="rose"
+// draws rose like ramp="rose". Only the old names that aren't families any more still go through the deprecated groups.
+const DV_FAMILIES = ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose']; // the dark colour = ramp step 2 (never a slot number)
+const DV_GROUPS = ['muted-purple', 'steel-blue', 'deep-green', 'cyan', 'alert'];
 const DV_STEP = 3;
 const dvVar = (group, step = DV_STEP) => `var(--color-data-viz-${group}-data-${step})`; // deprecated-ok: the documented path for old group names (until 3.0)
 // Charts use data-viz colours only. color = a categorical slot (1–12), 'other', 'neutral' | 'reference' | 'target' | 'band', a data-viz token
@@ -34,6 +37,7 @@ function dvColor(color, i = 0, step = DV_STEP) {
   if (typeof color === 'number' || /^\d+$/.test(String(color))) return slotVar(((Number(color) - 1) % SLOTS + SLOTS) % SLOTS + 1);
   if (DV_SPECIAL[color]) return DV_SPECIAL[color];
   if (typeof color === 'string' && /^var\(--(color-)?data-viz-[a-z0-9-]+\)$/.test(color.trim())) return color.trim();
+  if (DV_FAMILIES.includes(color)) return `var(--color-data-viz-sequential-${color}-2)`;
   if (DV_GROUPS.includes(color)) return dvVar(color, step);
   if (!dvWarned.has(color)) {
     dvWarned.add(color);

@@ -48,6 +48,11 @@ if (!main) { /* imported as a module */ } else if (args[0] === '--codemod') {
   const reAll = new RegExp(`(${[...MAP.keys(), ...LEGACY_DV.keys()].sort((a, b) => b.length - a.length).map(s => s.replace(/[-]/g, '\\-')).join('|')})(?![\\w-])`, 'g');
   for (const f of ['src/components', 'src/gallery', 'demo/screens'].flatMap(d => walk(join(root, d))).filter(f => /\.(css|jsx?)$/.test(f)))
     for (const m of readFileSync(f, 'utf8').matchAll(reAll)) hits[m[1]] = (hits[m[1]] || 0) + 1;
+  // Audit T-8 (Nov 26): names built at run time ('sequential-orchid-4' in a lookup table, `sequential-${fam}-…`) have no "--color-" prefix,
+  // so the full-name scan above misses them. Flag the deprecated ramp family names wherever they appear after "sequential-".
+  const reFam = /sequential-(orchid|pink|yellow|cyan)-\d/g;
+  for (const f of ['src/components', 'src/gallery', 'demo/screens'].flatMap(d => walk(join(root, d))).filter(f => /\.(css|jsx?)$/.test(f)))
+    for (const m of readFileSync(f, 'utf8').matchAll(reFam)) { const k = `sequential-${m[1]}-* (${f.split('/').slice(-2).join('/')})`; hits[k] = (hits[k] || 0) + 1; }
   console.log(Object.keys(hits).length ? hits : 'no old token names in components, gallery or demo screens');
 } else {
   // Aliases are declared on every density container too, so an old density-dependent name (--type-m, --control-h-m,

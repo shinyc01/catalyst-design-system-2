@@ -118,7 +118,7 @@ function IssueSolution({ title, description, recommended, onSelect, onUndo, undo
   );
   return (
     <IFS.ContentCard className={cx('ifs-trc-solution', recommended && 'ifs-trc-solution--recommended', onUndo && 'ifs-trc-solution--applied', className)}
-      title={text} onClick={onSelect} state={state} aria-label={onSelect ? `Apply: ${title}` : undefined}
+      title={text} onClick={onSelect} state={state} aria-label={onSelect ? `${title}, apply` : undefined} /* WCAG 2.5.3: the visible title first */
       iconButton={onUndo ? { icon: 'arrow-back-up', label: undoLabel, onClick: onUndo } : undefined} {...rest} />
   );
 }

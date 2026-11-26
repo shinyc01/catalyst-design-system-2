@@ -296,6 +296,16 @@ function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zo
   const drag = React.useRef(null);
   const [panning, setPanning] = React.useState(false);
   const clampZ = z => Math.min(maxZoom, Math.max(minZoom, z));
+  // A focused node is panned into the visible area, clear of floating bars (WCAG 2.4.11; rule 13.10; audit M1, Nov 26)
+  const panToFocus = e => {
+    const host = e.currentTarget.parentElement, node = e.target;
+    if (!host || !node || node === e.currentTarget) return;
+    const h = host.getBoundingClientRect(), n = node.getBoundingClientRect(), pad = 64, cur = vRef.current;
+    let dx = 0, dy = 0;
+    if (n.left < h.left + pad) dx = h.left + pad - n.left; else if (n.right > h.right - pad) dx = h.right - pad - n.right;
+    if (n.top < h.top + pad) dy = h.top + pad - n.top; else if (n.bottom > h.bottom - pad) dy = h.bottom - pad - n.bottom;
+    if (dx || dy) setV({ ...cur, x: cur.x + dx, y: cur.y + dy });
+  };
   const zoomAt = React.useCallback((z, cx, cy) => {
     const cur = vRef.current; const nz = clampZ(z);
     if (cx == null) { const r = el.current.getBoundingClientRect(); cx = r.width / 2; cy = r.height / 2; }
@@ -342,7 +352,8 @@ function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zo
       className={IFS.cx('ifs-canvas', image && 'ifs-canvas--image', panning && 'ifs-canvas--panning', className)}
       style={{ ...(image ? { backgroundImage: `url(${image})` } : { '--dot-size': `${tile}px`, '--dot-x': `${v.x}px`, '--dot-y': `${v.y}px` }), ...style }}
       onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={end} onPointerCancel={end} onKeyDown={onKeyDown} {...rest}>
-      <div className="ifs-canvas__world" style={{ transform: `translate(${v.x}px, ${v.y}px) scale(${v.zoom})` }}>{children}</div>
+      <div className="ifs-canvas__world" style={{ transform: `translate(${v.x}px, ${v.y}px) scale(${v.zoom})`, '--canvas-zoom': v.zoom }}
+        onFocus={panToFocus}>{children}</div>
       {overlay && <div className="ifs-canvas__overlay">{overlay}</div>}
     </div>
   );
@@ -539,8 +550,9 @@ function sankeyLayout(columns, nodes, links, W, H) {
 // and draw the current role their data-4 step became (deprecated, until 3.0), start / end (fractional slot indexes on the axis),
 // tasks = [{ title, label ("Q1 2027"), start, end }], expanded / defaultExpanded / onExpandedChange,
 // onAdd, onMore (hover actions), slots (number of axis slots, set by the chart), state hover (gallery).
-const PHASE_LEGACY = { rose: 'sequential-violet-4', 'muted-purple': 'sequential-indigo-1', teal: 'sequential-teal-4', 'steel-blue': 'sequential-indigo-1',
-  'deep-green': 'sequential-green-3', alert: 'sequential-red-5', violet: 'sequential-violet-3', cyan: 'sequential-teal-7' }; // re-pointed Nov 26 to ramp steps (never slot numbers) for the 2.0.7 palette
+const PHASE_LEGACY = { 'muted-purple': 'sequential-indigo-1', 'steel-blue': 'sequential-indigo-1', 'deep-green': 'sequential-green-3', alert: 'sequential-red-5', cyan: 'sequential-teal-7',
+  // the 2.0.7 family names win (audit T-6): the family's dark colour = its ramp step 2, as in charts (ramp steps, never slot numbers)
+  violet: 'sequential-violet-2', indigo: 'sequential-indigo-2', azure: 'sequential-azure-2', teal: 'sequential-teal-2', terracotta: 'sequential-terracotta-2', rose: 'sequential-rose-2' };
 function TimelinePhase({ title, subtitle, badge, color = 1, start = 0, end = 1, tasks = [], expanded, defaultExpanded = false,
   onExpandedChange, onAdd, onMore, slots = 20, groups = 5, state, className, ...rest }) {
   const [open, setOpen] = useCanvasValue(expanded, defaultExpanded, onExpandedChange);

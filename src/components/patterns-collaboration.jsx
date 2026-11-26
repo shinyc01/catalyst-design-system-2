@@ -82,7 +82,7 @@ function LiveCursors({ users = [], simulate = true, positions, interval = 1400, 
 function CollaboratorsButton({ accepted = 1, invited = 1, className, ...rest }) {
   return (
     <IFS.Button type="tertiary" size="s" iconLeft="users-group" className={ccx('ifs-collab-button', className)}
-      aria-label={`Collaborators: ${accepted} of ${invited} joined`} {...rest}>{`${accepted}/${invited}`}</IFS.Button>
+      aria-label={`${accepted}/${invited} collaborators joined`} /* WCAG 2.5.3: the name starts with the visible text (rule 9.21) */ {...rest}>{`${accepted}/${invited}`}</IFS.Button>
   );
 }
 
