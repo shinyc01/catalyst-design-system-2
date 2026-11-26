@@ -16,14 +16,17 @@ const dashboardStats = [
 ];
 
 // Series fills (portfolio rows) and legend
-// One categorical slot per value driver (rules 10.7, 10.12; decided Nov 25): the same driver keeps its colour in every chart here.
+// Value drivers: one dark categorical slot each (rules 10.7, 10.12; decided Nov 25), the same in every chart here.
+// The stacked columns split each driver into levels: the driver's own sequential ramp, step 2 (= its slot) then lighter (rule 10.7, groups with levels).
 const dashboardSlot = n => `var(--color-data-viz-categorical-${n})`;
+const dashboardDriverRamp = ['azure', 'teal', 'yellow', 'orchid', 'pink'];
+const dashboardLevel = (d, i) => `var(--color-data-viz-sequential-${dashboardDriverRamp[d]}-${2 + 2 * i})`;
 const dashboardSeries = [
   { label: 'Reliability', fill: dashboardSlot(1), legend: dashboardSlot(1), proj: dashboardSlot(1) },
-  { label: 'Financial', fill: dashboardSlot(2), legend: dashboardSlot(2), proj: dashboardSlot(2) },
-  { label: 'Environment', fill: dashboardSlot(3), legend: dashboardSlot(3), proj: dashboardSlot(3) },
-  { label: 'Social', fill: dashboardSlot(4), legend: dashboardSlot(4), proj: dashboardSlot(4) },
-  { label: 'Governance', fill: dashboardSlot(5), legend: dashboardSlot(5), proj: dashboardSlot(5) },
+  { label: 'Financial', fill: dashboardSlot(3), legend: dashboardSlot(3), proj: dashboardSlot(3) },
+  { label: 'Environment', fill: dashboardSlot(5), legend: dashboardSlot(5), proj: dashboardSlot(5) },
+  { label: 'Social', fill: dashboardSlot(7), legend: dashboardSlot(7), proj: dashboardSlot(7) },
+  { label: 'Governance', fill: dashboardSlot(9), legend: dashboardSlot(9), proj: dashboardSlot(9) },
 ];
 const dashboardPortfolio = {
   weight: [['You', [40, 35, 13, 7, 5]], ['Peer avg', [35, 25, 16, 8, 16]], ['Best in class', [38, 28, 19, 4, 11]]],
@@ -33,19 +36,19 @@ const dashboardPortfolio = {
 
 const dashboardColumns = {
   budget: [
-    ['Reliability', [[32, dashboardSlot(1)], [21, dashboardSlot(1)], [20, dashboardSlot(1)], [230, dashboardSlot(1)]]],
-    ['Financial', [[260, dashboardSlot(2)], [20, dashboardSlot(2)], [25, dashboardSlot(2)]]],
-    ['Environmental', [[20, dashboardSlot(3)], [230, dashboardSlot(3)], [28, dashboardSlot(3)], [25, dashboardSlot(3)]]],
-    ['Social', [[260, dashboardSlot(4)], [20, dashboardSlot(4)], [25, dashboardSlot(4)]]],
-    ['Governance', [[20, dashboardSlot(5)], [230, dashboardSlot(5)], [28, dashboardSlot(5)], [25, dashboardSlot(5)]]],
+    ['Reliability', [[32, dashboardLevel(0, 0)], [21, dashboardLevel(0, 1)], [20, dashboardLevel(0, 2)], [230, dashboardLevel(0, 3)]]],
+    ['Financial', [[260, dashboardLevel(1, 0)], [20, dashboardLevel(1, 1)], [25, dashboardLevel(1, 2)]]],
+    ['Environmental', [[20, dashboardLevel(2, 0)], [230, dashboardLevel(2, 1)], [28, dashboardLevel(2, 2)], [25, dashboardLevel(2, 3)]]],
+    ['Social', [[260, dashboardLevel(3, 0)], [20, dashboardLevel(3, 1)], [25, dashboardLevel(3, 2)]]],
+    ['Governance', [[20, dashboardLevel(4, 0)], [230, dashboardLevel(4, 1)], [28, dashboardLevel(4, 2)], [25, dashboardLevel(4, 3)]]],
   ],
   // "By investment" is not drawn in Figma — illustrative split so the toggle works.
   investment: [
-    ['Reliability', [[48, dashboardSlot(1)], [36, dashboardSlot(1)], [30, dashboardSlot(1)], [189, dashboardSlot(1)]]],
-    ['Financial', [[210, dashboardSlot(2)], [52, dashboardSlot(2)], [43, dashboardSlot(2)]]],
-    ['Environmental', [[34, dashboardSlot(3)], [196, dashboardSlot(3)], [40, dashboardSlot(3)], [33, dashboardSlot(3)]]],
-    ['Social', [[225, dashboardSlot(4)], [42, dashboardSlot(4)], [38, dashboardSlot(4)]]],
-    ['Governance', [[31, dashboardSlot(5)], [205, dashboardSlot(5)], [36, dashboardSlot(5)], [31, dashboardSlot(5)]]],
+    ['Reliability', [[48, dashboardLevel(0, 0)], [36, dashboardLevel(0, 1)], [30, dashboardLevel(0, 2)], [189, dashboardLevel(0, 3)]]],
+    ['Financial', [[210, dashboardLevel(1, 0)], [52, dashboardLevel(1, 1)], [43, dashboardLevel(1, 2)]]],
+    ['Environmental', [[34, dashboardLevel(2, 0)], [196, dashboardLevel(2, 1)], [40, dashboardLevel(2, 2)], [33, dashboardLevel(2, 3)]]],
+    ['Social', [[225, dashboardLevel(3, 0)], [42, dashboardLevel(3, 1)], [38, dashboardLevel(3, 2)]]],
+    ['Governance', [[31, dashboardLevel(4, 0)], [205, dashboardLevel(4, 1)], [36, dashboardLevel(4, 2)], [31, dashboardLevel(4, 3)]]],
   ],
 };
 const dashboardCoverage = [

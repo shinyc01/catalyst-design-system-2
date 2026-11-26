@@ -101,7 +101,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
   - States and components (Nov 24): one focus ring on every control; loading (one dotted loader, one pulsing skeleton); rebalanced status scales with five status words; the map pin (`MapPinDot` danger · warning · neutral); the stepper's completed steps; record preview as a push panel.
   - Data viz moved to 2.0.6.
 
-- **2.0.6** (Nov 25): the remaining foundations. Changelog headings per `guide/release.md` from here on.
+- **2.0.6** (Nov 26): the remaining foundations. Changelog headings per `guide/release.md` from here on.
   - **Added**
     - Data viz foundation (rule 10.1 and section 10): the chart card, heights on the dashboard row unit `--size-data-viz-row` (116 / 100 / 84), axes, legends, hover and tooltip, the v2g categorical palette, sequential and diverging ramps, stacks and bars, states, one chart text scale (`--font-label-s-medium`), chart-point targets (G8).
     - Chart header: H4 title with an optional one-line `subtitle`; `description` for screen readers; the drag handle, drag from the header and keyboard move (Space, arrows, Esc; "Move" in ⋯); Edit with Cooper folds into ⋯ below 416 px. Rule 10.12: the same entity keeps the same colour across a screen's charts.

@@ -6,7 +6,7 @@ Decided Nov 25, 2026 (G7, `prototypes/phase1-prep/foundation-gaps/DECISIONS.md`)
 
 | Release | When | What |
 |---|---|---|
-| 2.0.6 | Nov 25 | The remaining foundations: data viz, forced colours, contrast, glass, keyboard and focus, status messages, fonts, this policy |
+| 2.0.6 | Nov 26 | The remaining foundations: data viz, forced colours, contrast, glass, keyboard and focus, status messages, fonts, this policy |
 | 2.0.7 | Nov 26 | G9 content foundations and the components (CircularButton D3, line-chart gaps, legend position …) |
 | 2.1.0 | Nov 27 | Phase 1 done; the first release judged by this policy |
 
