@@ -452,12 +452,13 @@ function FormCard({ title, description, action, divider, fields = [], children, 
     if (first) {
       // One polite count (rule 9.19): focus moves to the first field, which then reads its own error.
       const n = Object.keys(errs).length;
-      IFS.announce(IFS.format.plural(n, { one: '# field needs attention', other: '# fields need attention' }));
       requestAnimationFrame(() => {
         const box = body.current && body.current.querySelector(`[data-field="${first.name}"]`);
         const el = box && box.querySelector('input:not([disabled]),textarea,[role=combobox],button,[tabindex="0"]');
         if (box) box.scrollIntoView({ block: 'nearest' });
         el && el.focus();
+        // Announce once focus has settled, so the focus change can't cut the polite message off (audit final L1)
+        setTimeout(() => IFS.announce(IFS.format.plural(n, { one: '# field needs attention', other: '# fields need attention' })), 150 /* after the focused field is read */);
       });
       return;
     }
@@ -470,18 +471,9 @@ function FormCard({ title, description, action, divider, fields = [], children, 
     const v = vals[f.name];
     if (f.type === 'textarea') return <IFS.TextArea {...common} value={v} onChange={x => setField(f.name, x)} />;
     if (f.type === 'phone') return <PhoneField {...common} value={v} onChange={x => setField(f.name, x)} />;
-    // A select gets the same title row as TextField (label + required marker), named by it; Select L / M draw no label of their own (audit final T3-2)
-    if (f.type === 'select') {
-      const sz = fieldSize === 'l' ? 'l' : 'm', req = f.required !== false, msg = errors[f.name] || (errors[f.name] ? undefined : f.description);
-      return (
-        <div className={IFS.cx('ifs-field', 'ifs-field--select', `ifs-field--${sz}`, errors[f.name] && 'ifs-field--error', f.disabled && 'ifs-field--disabled')}>
-          <div className="ifs-field__title"><span className="ifs-field__label" id={`${common.id}-label`}>{f.label}{req && f.label != null && IFS.RequiredMark && <IFS.RequiredMark />}</span></div>
-          <IFS.Select options={f.options || []} placeholder={f.placeholder} size={sz} error={!!errors[f.name]} disabled={f.disabled || submitting} required={req}
-            value={v} onChange={x => setField(f.name, x)} aria-labelledby={`${common.id}-label`} aria-describedby={msg ? `${common.id}-desc` : undefined} />
-          {msg && <p className="ifs-field__desc" id={`${common.id}-desc`}>{msg}</p>}
-        </div>
-      );
-    }
+    // A select draws the same title row as TextField (label + required marker) and shows its error string under it (audit final T3-2 / H1)
+    if (f.type === 'select') return <IFS.Select options={f.options || []} label={f.label} placeholder={f.placeholder} size={fieldSize === 'l' ? 'l' : 'm'}
+      error={common.error} description={common.description} disabled={f.disabled || submitting} required={common.required} value={v} onChange={x => setField(f.name, x)} />;
     return <IFS.TextField {...common} type={f.type === 'email' || f.type === 'password' ? f.type : 'text'} value={v} onChange={x => setField(f.name, x)} />;
   };
   const anyRequired = fields.some(f => f.required !== false);
@@ -503,7 +495,7 @@ function FormCard({ title, description, action, divider, fields = [], children, 
         {anyRequired && !loading && fields.length > 0 && <p className="ifs-form-card__required-note">Fields marked * are required.</p>}
         {loading
           ? fields.map(f => <div key={f.name} className="ifs-form-card__skeleton" aria-hidden="true">
-              {Skel ? <><Skel width="30%" height={16} /><Skel height={fieldSize === 'l' ? 40 : 32} shape="block" /></> : null}
+              {Skel ? <><Skel width="30%" height="var(--size-16)" /><Skel height={fieldSize === 'l' ? 'var(--size-control-l)' : 'var(--size-control-m)'} shape="block" /></> : null /* T3-4: heights follow density */}
             </div>)
           : fields.map(f => <div key={f.name} data-field={f.name}>{renderField(f)}</div>)}
         {!loading && children}

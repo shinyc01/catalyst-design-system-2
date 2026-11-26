@@ -27,7 +27,10 @@ function Floating({ anchorRef, floatRef, position = 'down', matchWidth = true, a
       let up = position === 'up';
       if (flip && fh) { if (!up && r.bottom + gap + fh > window.innerHeight && r.top - gap - fh >= 0) up = true; else if (up && r.top - gap - fh < 0) up = false; }
       const vw = document.documentElement.clientWidth;
-      setPos({ ...(align === 'end' ? { /* ltr: popover placed from getBoundingClientRect */ right: vw - r.right } : { left: r.left }), ...(matchWidth ? { width: r.width } : {}),
+      // Keep the list inside the window (audit final M12): shift it back from the edge it would cross, 8 from the window edge.
+      const fw = !matchWidth && floatRef && floatRef.current ? floatRef.current.offsetWidth : 0, edge = 8;
+      const left = Math.max(edge, Math.min(r.left, vw - fw - edge)), right = Math.max(edge, Math.min(vw - r.right, vw - fw - edge));
+      setPos({ ...(align === 'end' ? { /* ltr: popover placed from getBoundingClientRect */ right: fw ? right : vw - r.right } : { left: fw ? left : r.left }), ...(matchWidth ? { width: r.width } : {}),
         ...(up ? { bottom: window.innerHeight - r.top + gap } : { top: r.bottom + gap }) });
     };
     calc();
@@ -50,6 +53,33 @@ function useOutside(active, refs, onOutside) {
   }, [active]);
 }
 const norm = o => (o && typeof o === 'object') ? (o.divider ? { ...o, disabled: true } : o) : { value: o, label: String(o) };
+
+// Field shell for the select family (audit final H1, rules 8.46 / 14.4 / 9.19): at size m / l a `label` is drawn above the control
+// (with the * marker when required) and names it; a description, or an error string in its place, sits below and is linked with
+// aria-describedby (m / l / xl). xl keeps its label prefix and s its label text. Without a shell the control renders as before.
+function useSelectField({ size, label, description, error, required, disabled, ariaLabel, labelledBy, focus, className, style }) {
+  const labelId = useUid('ifs-select-label'), descId = useUid('ifs-select-desc');
+  const msg = typeof error === 'string' && error ? error : description;
+  const showLabel = (size === 'm' || size === 'l') && label != null;
+  const showDesc = size !== 's' && msg != null;
+  const shell = showLabel || showDesc;
+  useEffect(() => {
+    if (label == null && !ariaLabel && !labelledBy && typeof console !== 'undefined')
+      console.warn('IFS select family: give the field a `label` (or aria-label / aria-labelledby) so it has a name (WCAG 4.1.2, rule 8.46).');
+  }, []);
+  const aria = {
+    ...(showLabel && !ariaLabel && !labelledBy ? { 'aria-labelledby': labelId } : { 'aria-label': ariaLabel || (labelledBy ? undefined : label) }),
+    ...(labelledBy ? { 'aria-labelledby': labelledBy } : {}),
+    ...(showDesc ? { 'aria-describedby': descId } : {}),
+  };
+  const wrap = root => !shell ? root : (
+    <div className={cx('ifs-field', 'ifs-field--select', `ifs-field--${size === 'xl' ? 'l' : size}`, error && 'ifs-field--error', disabled && 'ifs-field--disabled', className)} style={style}>
+      {showLabel && <div className="ifs-field__title"><span className="ifs-field__label" id={labelId} onClick={focus}>{label}{required && <IFS.RequiredMark />}</span></div>}
+      {root}
+      {showDesc && <p className="ifs-field__desc" id={descId}>{msg}</p>}
+    </div>);
+  return { aria, wrap, rootClass: shell ? undefined : className, rootStyle: shell ? undefined : style };
+}
 
 // Trigger shared by Select, MultiSelect, Combobox and DatePicker.
 // Figma: single-select-atom (789:18085) / multiple-select-atom (3200:7897). Sizes s (32, text-only) | m (32) | l (40) | xl (44, with label prefix).
@@ -161,7 +191,7 @@ function scrollActive(listRef, active) {
 // Base for Select and MultiSelect.
 function SelectBase({ multi, options = [], value, defaultValue, onChange, open, defaultOpen = false, onOpenChange,
   size = 'm', label, placeholder, iconLeft, clearable = true, loading, error, disabled, required, maxTags = 5,
-  listPosition = 'down', listTitle, listSize = 's', state, className, style, id, 'aria-label': ariaLabel, ...rest }) {
+  listPosition = 'down', listTitle, listSize = 's', state, className, style, id, description, 'aria-label': ariaLabel, 'aria-labelledby': labelledBy, ...rest }) {
   const opts = useMemo(() => options.map(norm), [options]);
   const [val, setVal] = useControlled(value, defaultValue !== undefined ? defaultValue : (multi ? [] : null), onChange);
   const values = multi ? (val || []) : (val == null ? [] : [val]);
@@ -198,13 +228,14 @@ function SelectBase({ multi, options = [], value, defaultValue, onChange, open, 
     content = <Tags items={selOpts} max={maxTags} />;
   else if (filled) content = selOpts[0].label;
 
-  return (
-    <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, className)} style={style}>
+  const fld = useSelectField({ size, label, description, error, required, disabled, ariaLabel, labelledBy, className, style, focus: () => trigRef.current && trigRef.current.focus() });
+  return fld.wrap(
+    <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, fld.rootClass)} style={fld.rootStyle}>
       <Trigger size={size} label={label} placeholder={placeholder /* rule 8.46: empty shows nothing; the label says what to pick */}
         filled={filled} iconLeft={iconLeft} isOpen={dd.isOpen} loading={loading} error={error} disabled={disabled} required={required}
         clearable={clearable} onClear={clear} state={state} triggerRef={trigRef}
-        role="combobox" aria-haspopup="listbox" aria-expanded={dd.isOpen} aria-controls={listId} aria-invalid={error || undefined} aria-required={required || undefined}
-        aria-label={ariaLabel || label} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
+        role="combobox" aria-haspopup="listbox" aria-expanded={dd.isOpen} aria-controls={dd.isOpen ? listId : undefined} aria-invalid={error ? true : undefined} aria-required={required || undefined}
+        {...fld.aria} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
         onClick={() => { if (!disabled) dd.isOpen ? dd.setOpen(false) : dd.open(); }} onKeyDown={onKeyDown} {...rest}>
         {content}
       </Trigger>
@@ -219,8 +250,9 @@ function SelectBase({ multi, options = [], value, defaultValue, onChange, open, 
 // Figma: single-select-organism (3273:26820) = single-select-atom (789:18085) + single-select-list-molecule (153:62054)
 // Props: options (strings or {value,label,icon,disabled}; {divider:true} draws a separator; {action:true,label,icon,danger,onClick} is a
 // command row such as "Remove" (danger = red) that runs onClick and closes without selecting), value/defaultValue/onChange(value, option), open/defaultOpen/onOpenChange,
-// size s|m|l|xl, label (xl prefix / s text), placeholder (none by default: an empty Select shows nothing, rule 8.46; an example value only),
-// iconLeft, clearable (Figma show-remove-select, default true), loading, error, required (rule 14.4: * after the visible label + aria-required),
+// size s|m|l|xl, label (m / l: drawn above the field and names it, with the * when required; xl: prefix; s: text, audit final H1),
+// description (under the field at m / l / xl, linked with aria-describedby; an error string replaces it), placeholder (none by default: an empty Select shows nothing, rule 8.46; an example value only),
+// iconLeft, clearable (Figma show-remove-select, default true), loading, error (true, or a string shown under the field), required (rule 14.4: * after the visible label + aria-required),
 // disabled, listPosition down|up (Figma "List position"), listTitle (e.g. "Suggested"), listSize s|l, state hover|focus|open (gallery).
 function Select(props) { return <SelectBase {...props} multi={false} />; }
 
@@ -229,7 +261,7 @@ function Select(props) { return <SelectBase {...props} multi={false} />; }
 function MultiSelect(props) { return <SelectBase {...props} multi={true} />; }
 
 // Figma: signle-combobox-organism (3375:5415). Type to filter.
-// Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder (none by default, rule 8.46),
+// Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label (above at m / l, as Select), description, placeholder (none by default, rule 8.46),
 // iconLeft, clearable, loading, error, required (* after the visible label + aria-required, rule 14.4),
 // disabled, listPosition, listTitle ("Suggested", shown before typing), resultsTitle ("Results", while typing),
 // emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query;
@@ -238,7 +270,7 @@ function MultiSelect(props) { return <SelectBase {...props} multi={true} />; }
 function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder, iconLeft, clearable = true,
   loading, error, disabled, required, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's',
   emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id,
-  filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest }) {
+  filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), description, 'aria-label': ariaLabel, 'aria-labelledby': labelledBy, ...rest }) {
   const all = useMemo(() => options.map(norm), [options]);
   const [val, setVal] = useControlled(value, defaultValue, onChange);
   const selected = all.find(o => o.value === val);
@@ -260,14 +292,15 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
     else if (k === 'Tab' && dd.isOpen) close();
   };
   const text = query != null ? query : (selected ? selected.label : '');
-  return (
-    <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, 'ifs-combobox', className)} style={style}>
+  const fld = useSelectField({ size, label, description, error, required, disabled, ariaLabel, labelledBy, className, style, focus: () => inputRef.current && inputRef.current.focus() });
+  return fld.wrap(
+    <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, 'ifs-combobox', fld.rootClass)} style={fld.rootStyle}>
       <Trigger size={size} label={label} filled={!!selected} iconLeft={iconLeft} isOpen={dd.isOpen} loading={loading} error={error}
         disabled={disabled} required={required} clearable={clearable} state={state} onClear={() => { setVal(null); setQuery(null); }}
         onClick={() => { if (!disabled) { inputRef.current && inputRef.current.focus(); if (!dd.isOpen) dd.open(); } }}
         input={<input ref={inputRef} className="ifs-select__input" value={text} placeholder={placeholder} disabled={disabled}
-          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={listId} aria-label={ariaLabel || label} aria-required={required || undefined}
-          aria-invalid={error || undefined} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
+          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={dd.isOpen ? listId : undefined /* audit final L7: only while the list is in the page */} {...fld.aria} aria-required={required || undefined}
+          aria-invalid={error ? true : undefined} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
           onChange={e => { setQuery(e.target.value); dd.setOpen(true); dd.setActive(-1); }}
           onKeyDown={onKeyDown} {...rest} />} />
       {dd.isOpen && <Floating anchorRef={rootRef} floatRef={floatRef} position={listPosition}>{loading
@@ -290,10 +323,20 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
 // size m (default; outer 40 / 36 / 32: segments at the control height plus a 2px track) | s (only in tight fixed-height bars such as the page and thin header, rule 14.15; outer 32 / 28 / 28: segments at the s height, 24 in Comfortable, decided Nov 26); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
 // iconOnly (2.0.6, D1): each option shows only its icon (o.icon or o.iconLeft, 16) in a square segment; o.label becomes the accessible name
 // and the native tooltip. M size: the segments are squares 4 smaller than the control height inside the 2 track, so the control is --size-control-m outside.
-function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm' /* M by default; headers pass S (rule 14.15, Nov 26) */, fullWidth = false, iconOnly = false, className, ...rest }) {
+// Every option needs a name: a visible label, or ariaLabel when it shows only an icon (a console warning says which, audit final H3).
+// narrowSelect (audit final M10, decided Nov 26): with counts on any option, below 600 (content area, or the window outside AppShell) the
+// same choice renders as a Select, "Label (count)", because the counted control doesn't fit; default on when an option has a counter.
+// Pass false where the screen builds its own narrow form. The Select takes the group's aria-label / aria-labelledby.
+function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm' /* M by default; headers pass S (rule 14.15, Nov 26) */, fullWidth = false, iconOnly = false, narrowSelect, className, ...rest }) {
   const opts = options.map(norm);
   const [val, setVal] = useControlled(value, defaultValue !== undefined ? defaultValue : (opts[0] && opts[0].value), onChange);
   const refs = useRef([]);
+  useEffect(() => {
+    const unnamed = opts.filter(o => !(o.ariaLabel || (o.label != null && o.label !== '')));
+    if (unnamed.length && typeof console !== 'undefined')
+      console.warn(`IFS.SegmentedControl: ${unnamed.length} option(s) show only an icon and have no name; pass label or ariaLabel (WCAG 4.1.2): ${unnamed.map(o => String(o.value)).join(', ')}`);
+  }, []);
+  const counted = narrowSelect !== undefined ? narrowSelect : opts.some(o => o.counter != null);
   const onKeyDown = (e, i) => {
     const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
     if (!dir) return;
@@ -303,8 +346,8 @@ function SegmentedControl({ options = [], value, defaultValue, onChange, size = 
       if (!opts[j].disabled) { setVal(opts[j].value, opts[j]); refs.current[j] && refs.current[j].focus(); break; }
     }
   };
-  return (
-    <div role="radiogroup" className={cx('ifs-segmented', `ifs-segmented--${size}`, fullWidth && 'ifs-segmented--full', iconOnly && 'ifs-segmented--icon', className)} {...rest}>
+  const group = (
+    <div role="radiogroup" className={cx('ifs-segmented', `ifs-segmented--${size}`, fullWidth && 'ifs-segmented--full', iconOnly && 'ifs-segmented--icon', counted ? 'ifs-segmented-switch__wide' : className)} {...rest}>
       {opts.map((o, i) => {
         const sel = o.value === val;
         return (
@@ -323,6 +366,15 @@ function SegmentedControl({ options = [], value, defaultValue, onChange, size = 
         );
       })}
     </div>
+  );
+  if (!counted) return group;
+  return (
+    <span className={cx('ifs-segmented-switch', fullWidth && 'ifs-segmented-switch--full', className)}>
+      {group}
+      <Select size={size === 's' ? 's' : 'm'} clearable={false} className="ifs-segmented-switch__narrow" value={val} onChange={(v, o) => setVal(v, opts.find(x => x.value === v) || o)}
+        aria-label={rest['aria-label']} aria-labelledby={rest['aria-labelledby']}
+        options={opts.map(o => ({ value: o.value, label: o.counter != null ? `${o.label} (${o.counter})` : o.label, disabled: o.disabled }))} />
+    </span>
   );
 }
 
@@ -445,7 +497,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
 }
 
 // DatePicker = select trigger (single-select-atom look) + Calendar popup (date-picker-molecule 3406:9510).
-// Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label,
+// Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label (above at m / l, as Select), description,
 // placeholder (none by default: an empty DatePicker shows nothing, rule 8.46), required (* after the visible label + aria-required, rule 14.4),
 // format(date) → string, range, clearable, iconLeft (default system-calendar-date; null hides it), showApply (Figma show-apply-button:
 // picks stay a draft until the full-width Apply button commits them), applyLabel, error, disabled, listPosition down|up, state,
@@ -453,7 +505,7 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
 function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder,
   format = d => IFS.format.date(d), range = false, clearable = true,
   iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply',
-  error, disabled, required, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest }) {
+  error, disabled, required, listPosition = 'down', state, today, events, min, max, className, style, id, description, 'aria-label': ariaLabel, 'aria-labelledby': labelledBy, ...rest }) {
   const [val, setVal] = useControlled(value, defaultValue, onChange);
   const [isOpen, setOpenRaw] = useControlled(open, defaultOpen, onOpenChange);
   const [draft, setDraft] = useState(val);
@@ -466,11 +518,12 @@ function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = 
   const done = () => { setOpen(false); trigRef.current && trigRef.current.focus(); };
   const onPick = v => { if (showApply) { setDraft(v); return; } setVal(v); if (!range || (v && v.end)) done(); };
   const canApply = range ? !!(draft && draft.start && draft.end) : !!draft;
-  return (
-    <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, 'ifs-datepicker', className)} style={style}>
+  const fld = useSelectField({ size, label, description, error, required, disabled, ariaLabel, labelledBy, className, style, focus: () => trigRef.current && trigRef.current.focus() });
+  return fld.wrap(
+    <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, 'ifs-datepicker', fld.rootClass)} style={fld.rootStyle}>
       <Trigger size={size} label={label} placeholder={placeholder} filled={filled} iconLeft={iconLeft} isOpen={isOpen} error={error} disabled={disabled}
         required={required} clearable={clearable} onClear={() => setVal(null)} state={state} triggerRef={trigRef}
-        role="combobox" aria-haspopup="dialog" aria-expanded={isOpen} aria-controls={popId} aria-label={ariaLabel || label} aria-required={required || undefined}
+        role="combobox" aria-haspopup="dialog" aria-expanded={isOpen} aria-controls={isOpen ? popId : undefined} {...fld.aria} aria-required={required || undefined} aria-invalid={error ? true : undefined}
         onClick={() => setOpen(!isOpen)}
         onKeyDown={e => {
           if (disabled) return;

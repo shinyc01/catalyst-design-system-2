@@ -112,9 +112,10 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'Weekday', figma: 'weekday-atom (2704:74414)', render: () => <>
-    <Row label="atom"><Weekday>Wed</Weekday></Row>
-    <Row label="row (Mon start)"><Weekdays /></Row>
-    <Row label="row (Sun start)"><Weekdays weekStartsOn={0} /></Row>
+    {/* Shown inside their parent roles (grid > row), as in the calendar, so the gallery itself is valid ARIA (audit final A11Y L5) */}
+    <Row label="atom"><div role="grid" aria-label="Weekday"><div role="row"><Weekday>Wed</Weekday></div></div></Row>
+    <Row label="row (Mon start)"><div role="grid" aria-label="Weekdays, Monday start"><Weekdays /></div></Row>
+    <Row label="row (Sun start)"><div role="grid" aria-label="Weekdays, Sunday start"><Weekdays weekStartsOn={0} /></div></Row>
   </> });
 
   IFS_GALLERY.push({ name: 'Logo', figma: 'logo (788:52389) in global-header (69:3736)', render: () => <>

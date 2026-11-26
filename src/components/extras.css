@@ -162,7 +162,7 @@
 /* ================= FormCard — form-card-organism (5826:24755) ================= */
 /* 464–680px wide, --radius-floating (8, B2), --color-surface-elevation-1, --color-border-soft outside.
    Branch: padding 20 (--space-inset-l), field gap 16 (--space-stack) — was 32 / 24 from the canvas notes. */
-.ifs-form-card{position:relative;display:flex;flex-direction:column;box-sizing:border-box;width:100%;min-width:29rem;max-width:42.5rem;
+.ifs-form-card{position:relative;display:flex;flex-direction:column;box-sizing:border-box;width:100%;min-width:min(29rem,100%) /* audit final H7: reflows at 320 */;max-width:42.5rem;
   max-height:var(--ifs-form-card-max-h,calc(100vh - var(--layout-global-header-height)));
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);box-shadow:var(--elevation-floating) /* C1 level 2 */;
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
@@ -175,7 +175,9 @@
   padding:var(--space-inset-l) var(--space-inset-l) var(--space-inset-l);scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent}
 .ifs-form-card__header + .ifs-form-card__body{padding-top:var(--space-inset-l)}
 .ifs-form-card > .ifs-form-card__body:first-child{padding-top:var(--space-inset-l)}
-.ifs-form-card__body.is-submitting{opacity:.6;pointer-events:none}
+.ifs-form-card__body.is-submitting{pointer-events:none}
+/* While submitting only the controls lock and dim; labels, markers and descriptions keep their colour (audit final L2) */
+.ifs-form-card__body.is-submitting :is(.ifs-field__control,.ifs-select__field){opacity:.6}
 .ifs-form-card__body fieldset{display:contents}
 .ifs-form-card__skeleton{display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-form-card__message{flex:none;margin:0 var(--space-inset-l) var(--space-stack)}

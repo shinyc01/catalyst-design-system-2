@@ -14,23 +14,24 @@ export default IFS_GALLERY;
   const triggerStates = [
     ['default', {}], ['hover', { state: 'hover' }], ['focus', { state: 'focus' }], ['open', { state: 'open' }],
     ['loading', { loading: true, defaultValue: 1 }], ['filled', { defaultValue: 1 }], ['overflow', { defaultValue: 9 }],
-    ['error', { error: true }], ['disabled', { disabled: true }], ['required (rule 14.4)', { required: true }],
+    ['error', { error: true }], ['error text + description (m / l / xl)', { error: 'Select a type' }], ['description', { description: 'Sets who approves it next.' }],
+    ['disabled', { disabled: true }], ['required (rule 14.4)', { required: true }],
   ];
 
   IFS_GALLERY.push({ name: 'Select', figma: 'single-select-organism (3273:26820) · single-select-atom (789:18085) · single-select-list-atom (153:61939)', render: () => <>
     <Row label="size" style={{ alignItems: 'flex-start' }}>{sizes.map(z => <span key={z} className="g-label t-body-m-regular" style={W}>{z}</span>)}</Row>
     {triggerStates.map(([n, p]) => (
       <Row key={n} label={n}>
-        {sizes.map(z => <div key={z} style={W}><Select size={z} label="Label" placeholder="{label}" options={OPTS} {...p} /></div>)}
+        {sizes.map(z => <div key={z} style={W}><Select size={z} label="Label" options={OPTS} {...p} /></div>)}
       </Row>
     ))}
     <Row label="open: down / up" style={{ alignItems: 'flex-start', height: 520 }}>
-      <div style={{ width: 384 }}><Select size="l" defaultOpen placeholder="{label}" listTitle="Suggested" options={OPTS} defaultValue={3} /></div>
-      <div style={{ width: 384, marginTop: 460 }}><Select size="l" defaultOpen listPosition="up" placeholder="{label}" listTitle="Suggested" options={OPTS} /></div>
-      <div style={{ width: 240 }}><Select size="m" defaultOpen placeholder="{label}" listSize="l" options={[...OPTS.slice(0, 3), { value: 'x', label: 'Disabled option', disabled: true }]} defaultValue={2} /></div>
+      <div style={{ width: 384 }}><Select size="l" defaultOpen label="Owner" listTitle="Suggested" options={OPTS} defaultValue={3} /></div>
+      <div style={{ width: 384, marginTop: 460 }}><Select size="l" defaultOpen listPosition="up" label="Reviewer" listTitle="Suggested" options={OPTS} /></div>
+      <div style={{ width: 240 }}><Select size="m" defaultOpen label="Approver" listSize="l" options={[...OPTS.slice(0, 3), { value: 'x', label: 'Disabled option', disabled: true }]} defaultValue={2} /></div>
     </Row>
     <Row label="divider + action" style={{ alignItems: 'flex-start', height: 240 }}>
-      <div style={{ width: 240 }}><Select size="m" defaultOpen placeholder="Owner" defaultValue={1}
+      <div style={{ width: 240 }}><Select size="m" defaultOpen label="Owner" defaultValue={1}
         options={[...OPTS.slice(0, 3), { divider: true }, { action: true, danger: true, icon: 'system-trash-delete', label: 'Remove' }]} /></div>
     </Row>
   </> });
@@ -40,11 +41,11 @@ export default IFS_GALLERY;
       ['loading', { loading: true, defaultValue: [1, 2, 3] }], ['filled', { defaultValue: [1, 2, 3] }], ['overflow', { defaultValue: [1, 2, 3, 4, 5, 6, 7, 8] }],
       ['error', { error: true }], ['disabled', { disabled: true }]].map(([n, p]) => (
       <Row key={n} label={n}>
-        {sizes.map(z => <div key={z} style={{ width: z === 's' ? 120 : 340 }}><MultiSelect size={z} label="Label" placeholder="{label}" options={OPTS} {...p} /></div>)}
+        {sizes.map(z => <div key={z} style={{ width: z === 's' ? 120 : 340 }}><MultiSelect size={z} label="Label" options={OPTS} {...p} /></div>)}
       </Row>
     ))}
     <Row label="open" style={{ alignItems: 'flex-start', height: 250 }}>
-      <div style={{ width: 384 }}><MultiSelect size="l" defaultOpen placeholder="{label}" listTitle="Suggested" options={OPTS} defaultValue={[2, 4]} /></div>
+      <div style={{ width: 384 }}><MultiSelect size="l" defaultOpen label="Reviewers" listTitle="Suggested" options={OPTS} defaultValue={[2, 4]} /></div>
     </Row>
   </> });
 
@@ -53,8 +54,8 @@ export default IFS_GALLERY;
       <Row key={n} label={n}>{['m', 'l', 'xl'].map(z => <div key={z} style={{ width: 300 }}><Combobox size={z} label="Label" options={OPTS} {...p} /></div>)}</Row>
     ))}
     <Row label="open: results / no results / searching" style={{ alignItems: 'flex-start', height: 230 }}>
-      <div style={{ width: 300 }}><Combobox size="m" defaultOpen defaultQuery="a" options={OPTS} /></div>
-      <div style={{ width: 300 }}><Combobox size="l" defaultOpen defaultQuery="place" options={OPTS} suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></div>
+      <div style={{ width: 300 }}><Combobox size="m" label="Asset" defaultOpen defaultQuery="a" options={OPTS} /></div>
+      <div style={{ width: 300 }}><Combobox size="l" label="Asset" defaultOpen defaultQuery="place" options={OPTS} suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></div>
       <div style={{ width: 300 }}><Combobox size="xl" label="Label" defaultOpen defaultQuery="place" loading options={OPTS} /></div>
     </Row>
   </> });
@@ -114,13 +115,13 @@ export default IFS_GALLERY;
       <Calendar range defaultMonth={feb} today={new Date(2026, 1, 12)} defaultValue={{ start: new Date(2026, 1, 9), end: new Date(2026, 1, 13) }} />
     </Row>
     <Row label="picker" style={{ alignItems: 'flex-start', height: 340 }}>
-      <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
-      <div style={{ width: 240 }}><DatePicker size="l" /></div>
+      <div style={{ width: 240 }}><DatePicker label="Due date" defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
+      <div style={{ width: 240 }}><DatePicker size="l" label="Start date" /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Date" range /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Start date" required /></div>
     </Row>
     <Row label="showApply" style={{ alignItems: 'flex-start', height: 380 }}>
-      <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
+      <div style={{ width: 240 }}><DatePicker label="Due date" defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
     </Row>
   </> });
 }
