@@ -91,9 +91,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Row label="interactive">
       <Col w={432}>
         <ApprovalChain defaultSteps={[
-          { state: 'success', name: 'Aubrey Larkin', position: 'Investment Owner', avatar: { initials: 'AL', type: 'purple' }, date: 'May 9', comment: 'Looks good to me.' },
-          { state: 'awaiting', name: 'Zoe Kim', position: 'Finance Lead', avatar: { initials: 'ZK', type: 'light-purple' } },
-          { state: 'empty', name: 'Ivan Grant', position: 'Portfolio Manager', avatar: { initials: 'IG', type: 'blue' } },
+          { state: 'success', name: 'Aubrey Larkin', position: 'Investment owner', avatar: { initials: 'AL', type: 'purple' }, date: 'May 9', comment: 'Looks good to me.' },
+          { state: 'awaiting', name: 'Zoe Kim', position: 'Finance lead', avatar: { initials: 'ZK', type: 'light-purple' } },
+          { state: 'empty', name: 'Ivan Grant', position: 'Portfolio manager', avatar: { initials: 'IG', type: 'blue' } },
         ]} />
       </Col>
     </Row>
@@ -194,7 +194,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </Row>
     <Row label="@ mention picker (type @)">
       <Col w={361}><CommentComposer avatar={{ initials: 'AL', type: 'black' }} defaultValue="Thanks @"
-        mentionables={[{ name: 'Lara Green', role: 'Planning Engineer', avatar: { type: 'green' } }, { name: 'Maria Chen', role: 'Finance Lead', avatar: { type: 'purple' } }]} /></Col>
+        mentionables={[{ name: 'Lara Green', role: 'Planning engineer', avatar: { type: 'green' } }, { name: 'Maria Chen', role: 'Finance lead', avatar: { type: 'purple' } }]} /></Col>
     </Row>
   </> });
 ```
@@ -216,14 +216,14 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'UserCard', figma: 'user-card (1440:5059) (legacy)', render: () => <>
     {[undefined, 'hover', 'drag', 'focus'].map(s => (
       <Row key={s || 'default'} label={s || 'default'}>
-        <Col w={448}><UserCard name="Barbara Dickinson" position="Planning Engineer" avatar={{ initials: 'BD' }} state={s} onEdit={() => {}} /></Col>
-        {s !== 'drag' && <Col w={448}><UserCard type="owner" name="You" position="Planning Engineer" avatar={{ initials: 'BD' }} date="Feb 10, 2026 09:14" state={s} /></Col>}
+        <Col w={448}><UserCard name="Barbara Dickinson" position="Planning engineer" avatar={{ initials: 'BD' }} state={s} onEdit={() => {}} /></Col>
+        {s !== 'drag' && <Col w={448}><UserCard type="owner" name="You" position="Planning engineer" avatar={{ initials: 'BD' }} date="Feb 10, 2026 09:14" state={s} /></Col>}
       </Row>
     ))}
     <Row label="loading / check">
       <Col w={448}><UserCard loading /></Col>
       <Col w={448}><UserCard type="owner" loading date="x" /></Col>
-      <Col w={448}><UserCard name="Barbara Dickinson" position="Planning Engineer" avatar={{ initials: 'BD' }} checked badge={null} /></Col>
+      <Col w={448}><UserCard name="Barbara Dickinson" position="Planning engineer" avatar={{ initials: 'BD' }} checked badge={null} /></Col>
     </Row>
   </> });
 ```
@@ -397,7 +397,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
   // ---- Demo: a pannable framework canvas with nodes, connectors, the map tools and a mini-map ----
   const NODES = [
-    { id: 'eg', type: 'enterprise-goal', badge: 'Goal', title: 'Enterprise Goals', caption: '3 goals', x: 40, y: 220 },
+    { id: 'eg', type: 'enterprise-goal', badge: 'Goal', title: 'Enterprise goals', caption: '3 goals', x: 40, y: 220 },
     { id: 'vf', type: 'value-framework', badge: 'Framework', title: 'Value Framework v12', caption: 'Active', x: 320, y: 220 },
     { id: 'so1', type: 'strategic-objective', badge: 'Objective', title: 'Reliability', caption: '$1.27B', x: 600, y: 120 },
     { id: 'so2', type: 'strategic-objective', badge: 'Objective', title: 'Safety', caption: '$1.24B', x: 600, y: 320 },
@@ -510,7 +510,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
   // ---- Demo: a pannable framework canvas with nodes, connectors, the map tools and a mini-map ----
   const NODES = [
-    { id: 'eg', type: 'enterprise-goal', badge: 'Goal', title: 'Enterprise Goals', caption: '3 goals', x: 40, y: 220 },
+    { id: 'eg', type: 'enterprise-goal', badge: 'Goal', title: 'Enterprise goals', caption: '3 goals', x: 40, y: 220 },
     { id: 'vf', type: 'value-framework', badge: 'Framework', title: 'Value Framework v12', caption: 'Active', x: 320, y: 220 },
     { id: 'so1', type: 'strategic-objective', badge: 'Objective', title: 'Reliability', caption: '$1.27B', x: 600, y: 120 },
     { id: 'so2', type: 'strategic-objective', badge: 'Objective', title: 'Safety', caption: '$1.24B', x: 600, y: 320 },
@@ -920,7 +920,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <ContentCard style={{ width: 332 }} loading {...cardProps('s')} />
     </Row>
     <Row label="avatar + icon" style={{ alignItems: 'flex-start' }}>
-      <ContentCard style={{ width: 332 }} avatar={{ name: 'Tom Nguyen', type: 'blue' }} iconRight="arrow-right" title="Tom Nguyen" description="Neighbouring Asset Manager" />
+      <ContentCard style={{ width: 332 }} avatar={{ name: 'Tom Nguyen', type: 'blue' }} iconRight="arrow-right" title="Tom Nguyen" description="Neighbouring asset manager" />
     </Row>
     <Row label="icon left / slots only" style={{ alignItems: 'flex-start' }}>
       <ContentCard style={{ width: 332 }} iconLeft="arrow-caret-right-filled" title="{card-title}" description="{description}" />
@@ -942,7 +942,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Table columns={[
       { key: 'a', title: 'Check', type: 'check' }, { key: 'b', title: 'User description', type: 'user-description', width: '1.5fr' },
       { key: 'c', title: 'Counter', render: r => <IFS.Icon name="system-dots-horizont" size={16} /> }]}
-      rows={[{ id: 1, a: 'Text', b: { name: 'Tom Nguyen', description: 'Neighbouring Asset Manager', type: 'blue' } }]} />
+      rows={[{ id: 1, a: 'Text', b: { name: 'Tom Nguyen', description: 'Neighbouring asset manager', type: 'blue' } }]} />
     <div style={{ height: 24 }} />
     <Table columns={columns.slice(0, 3)} rows={rows.slice(0, 3)} rowHeight={60}
       rowProps={r => (r.id === 2 ? { className: 'g-dim', style: { opacity: 0.4 }, 'data-row-id': r.id } : { 'data-row-id': r.id })} />
@@ -1522,16 +1522,16 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 (from the CanvasHeader example)
 ```jsx
   IFS_GALLERY.push({ name: 'CanvasHeader', figma: 'canvas-header (1440:5321), canvas-container-atom (1440:5305)', render: () => <>
-    <Row label="column"><Box w={240}><CanvasColumn>Enterprise Goals</CanvasColumn></Box></Row>
-    <div style={{ width: 1200 }}><CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} /></div>
+    <Row label="column"><Box w={240}><CanvasColumn>Enterprise goals</CanvasColumn></Box></Row>
+    <div style={{ width: 1200 }}><CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} /></div>
   </> });
 ```
 
 ### CanvasHeader
 ```jsx
   IFS_GALLERY.push({ name: 'CanvasHeader', figma: 'canvas-header (1440:5321), canvas-container-atom (1440:5305)', render: () => <>
-    <Row label="column"><Box w={240}><CanvasColumn>Enterprise Goals</CanvasColumn></Box></Row>
-    <div style={{ width: 1200 }}><CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} /></div>
+    <Row label="column"><Box w={240}><CanvasColumn>Enterprise goals</CanvasColumn></Box></Row>
+    <div style={{ width: 1200 }}><CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} /></div>
   </> });
 ```
 
@@ -1582,7 +1582,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'PageTop', figma: 'page-top (244:117279, key c5e4c474…)', render: () => <>
     <Frame label="Default — description, New, tabs with counts, smart search (library page)">
-      <PageTop title="Strategy Framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />}
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />}
         tabs={{ items: FW_TABS, defaultValue: 'all' }} search={SEARCH} />
     </Frame>
     <Frame label="cooper = true, Show button = false (Command home; the instance overrides the gap to 12)">
@@ -1591,13 +1591,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         search={{ placeholder: 'Ask anything about your work' }} />
     </Frame>
     <Frame label="show search = false">
-      <PageTop title="Strategy Framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
     </Frame>
     <Frame label="No description — title only, Tabs size L (Build / Idea Pad)">
       <PageTop title="Build" actions={<NewBtn />} tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], defaultValue: 'ideas' }} />
     </Frame>
     <Frame label="Title + description only (no tabs, no search, no button)">
-      <PageTop title="Value Models" description="Value models used across frameworks" />
+      <PageTop title="Value models" description="Value models used across frameworks" />
     </Frame>
   </> });
 ```
@@ -1615,7 +1615,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
           header={<>
             <PageHeader title="Q1 2026 Strategy Framework" onTitleMenu={() => {}} status={<Status />}
               actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
-            <CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />
+            <CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} />
           </>}>
           <div style={{ height: 1600, padding: 'var(--space-600)', background: 'var(--color-surface-canvas)' }} className="t-body-m-regular">
             Content scrolls here — stage: {stage}, section: {sel}
@@ -1709,9 +1709,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'SplitButton', figma: 'header-pattern main action [patterns] (138:291660)', render: () => (
     <Row label="states">
-      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request more information', description: 'Ask for more detail about idea.', onClick: () => IFS.toast({ title: 'Request more information' }) }]}>Approve</SplitButton>
-      <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request more information' }]}>Approved</SplitButton>
-      <SplitButton disabled iconLeft="system-check">Info requested</SplitButton>
+      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska' }) }]}>Approve</SplitButton>
+      <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
+      <SplitButton disabled iconLeft="system-check">Revisions requested</SplitButton>
       <SplitButton type="secondary" onClick={() => {}}>Publish</SplitButton>
     </Row>
   ) });
@@ -1721,8 +1721,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'ReadinessEvaluation', figma: 'Readiness Evaluation sidebar [patterns] (138:293545)', render: () => (
     <Row label="100% / 40% (Budget envelope open)" top>
-      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness Evaluation"><ReadinessEvaluation summary={SUMMARY_READY} readiness={100} checks={CHECKS_READY} sections={sectionsFor(false, [])} /></IFS.Panel></div>
-      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness Evaluation"><ReadinessEvaluation summary={SUMMARY_BLOCKED} readiness={40} checks={CHECKS_BLOCKED} sections={sectionsFor(true, [])} defaultOpenSections={['budget']} /></IFS.Panel></div>
+      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness evaluation"><ReadinessEvaluation summary={SUMMARY_READY} readiness={100} checks={CHECKS_READY} sections={sectionsFor(false, [])} /></IFS.Panel></div>
+      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness evaluation"><ReadinessEvaluation summary={SUMMARY_BLOCKED} readiness={40} checks={CHECKS_BLOCKED} sections={sectionsFor(true, [])} defaultOpenSections={['budget']} /></IFS.Panel></div>
     </Row>
   ) });
 ```
@@ -1859,8 +1859,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
     background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' };
-  const NODES = [['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5], ['value-model', 'Value Models', 7], ['measure', 'Measures', 29]];
-  const COLS = ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
+  const NODES = [['enterprise-goal', 'Enterprise goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic objectives', 5], ['value-model', 'Value models', 7], ['measure', 'Measures', 29]];
+  const COLS = ['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output'];
 
   function FrameworkScreen({ c, panelOpen, onPanelOpen, cursors }) {
     const online = c.members.filter(p => p.online && p.status !== 'owner');
@@ -1893,7 +1893,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
                 {NODES.map(([t, title, n], i) => <div key={t} style={{ position: 'absolute', left: 140 + i * 240, top: 360 }}><IFS.NodeCard type={t} title={title} counter={n} /></div>)}
               </IFS.CanvasBackground>
             </div>
-            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '3 Documents', icon: 'system-file' }} onUpload={() => {}}
+            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '3 documents', icon: 'system-file' }} onUpload={() => {}}
               prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} />
           </div>
         </div>
@@ -2109,16 +2109,16 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### ChatHistoryCard
 ```jsx
   IFS_GALLERY.push({ name: 'ChatHistoryCard', figma: 'chat-history-card [patterns] (12:264367)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="default · hover · active" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Network Capacity Review" time="3d ago" /><ChatHistoryCard title="Power Line Risk Assessment" time="6h ago" state="hover" onMore={() => {}} /><ChatHistoryCard title="Current Strategy Overview" time="Now" active /></div></Cap>
-    <Cap title="pinned · select · selected" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Board prep notes" time="Mar 2" pinned /><ChatHistoryCard title="Outage History Analysis" time="Mar 26" selectable /><ChatHistoryCard title="System Performance Review" time="Mar 20" selectable selected /></div></Cap>
-    <Cap title="rename" w={234}><ChatHistoryCard title="Network Capacity Review" renaming /></Cap>
+    <Cap title="default · hover · active" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Network capacity review" time="3d ago" /><ChatHistoryCard title="Power line risk assessment" time="6h ago" state="hover" onMore={() => {}} /><ChatHistoryCard title="Current strategy overview" time="Now" active /></div></Cap>
+    <Cap title="pinned · select · selected" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Board prep notes" time="Mar 2" pinned /><ChatHistoryCard title="Outage history analysis" time="Mar 26" selectable /><ChatHistoryCard title="System performance review" time="Mar 20" selectable selected /></div></Cap>
+    <Cap title="rename" w={234}><ChatHistoryCard title="Network capacity review" renaming /></Cap>
   </IFS.Inline> });
 ```
 
 ### SearchChatHistoryCard
 ```jsx
   IFS_GALLERY.push({ name: 'SearchChatHistoryCard', figma: 'search-chat-history-card [patterns] (67:120339)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="default · current chat · hover" w={360}><div><SearchChatHistoryCard title="Power Line Risk Assessment" query="Risk" time="6h ago" /><SearchChatHistoryCard title="Risk Analysis" query="Risk" time="Now" currentChat /><SearchChatHistoryCard title="Power Line Risk Evaluation" query="Risk" time="1d ago" state="hover" /></div></Cap>
+    <Cap title="default · current chat · hover" w={360}><div><SearchChatHistoryCard title="Power line risk assessment" query="Risk" time="6h ago" /><SearchChatHistoryCard title="Risk Analysis" query="Risk" time="Now" currentChat /><SearchChatHistoryCard title="Power line risk evaluation" query="Risk" time="1d ago" state="hover" /></div></Cap>
   </IFS.Inline> });
 ```
 
@@ -2159,7 +2159,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### ConfirmDeleteCard
 ```jsx
   IFS_GALLERY.push({ name: 'ConfirmDeleteCard', figma: 'confirm-delete-card-molecule [patterns] (67:129201)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="in Delete modal" w={414}><div className="ifs-confirm-list"><ConfirmDeleteCard onRemove={() => {}}>Saved Scenarios Review</ConfirmDeleteCard><ConfirmDeleteCard icon="chat-folder" onRemove={() => {}}>Risk Analysis</ConfirmDeleteCard></div></Cap>
+    <Cap title="in Delete modal" w={414}><div className="ifs-confirm-list"><ConfirmDeleteCard onRemove={() => {}}>Saved scenarios review</ConfirmDeleteCard><ConfirmDeleteCard icon="chat-folder" onRemove={() => {}}>Risk Analysis</ConfirmDeleteCard></div></Cap>
   </IFS.Inline> });
 ```
 
@@ -2500,7 +2500,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
             <SmartSearch type={t} placeholder={ph} />
             <SmartSearch type={t} placeholder={ph} state="hover" />
             <SmartSearch type={t} placeholder={ph} state="pressed" listening={t === 'voice'} />
-            <SmartSearch type={t} placeholder={ph} state="pressed" defaultValue={t === 'voice' ? 'Strategy...' : 'Strategy'} />
+            <SmartSearch type={t} placeholder={ph} state="pressed" defaultValue={t === 'voice' ? 'Strategy…' : 'Strategy'} />
             <SmartSearch type={t} placeholder={ph} defaultValue="Strategy plan" />
             <SmartSearch type={t} placeholder={ph} state="pressed" defaultValue="Explain how our current pricing model impacts different customer segments" />
             <SmartSearch type={t} placeholder={ph} disabled />
@@ -2508,7 +2508,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
           </IFS.Stack>
         ))}
       </IFS.Inline>
-      <Row label="size s (28, explore-header)"><SmartSearch size="s" width={248} placeholder="Search for..." /><SmartSearch size="s" width={248} defaultValue="Northgate" /></Row>
+      <Row label="size s (28, explore-header)"><SmartSearch size="s" width={248} placeholder="Search" /><SmartSearch size="s" width={248} defaultValue="Northgate" /></Row>
       <Row label="live, with suggestions"><div style={{ height: 300 }}><SmartSearch placeholder="Ask anything about idea pad" suggestions={QUESTIONS} onSubmit={v => IFS.toast({ title: `Asked: ${v}` })} /></div></Row>
     </>;
   } });
@@ -2557,8 +2557,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <IFS.Inline gap="600" align="start" wrap style={grid}>
         <Cell title="chips (Ideas: AI keywords)" w={240}><ColumnFilter options={['Replacement', 'Refurbishment', 'Upgrade', 'Feeder', 'Substation'].map(v => ({ value: v, label: v }))} value={name} onChange={setName} /></Cell>
         <Cell title="chips + custom period (Horizon)" w={240}><ColumnFilter options={['Long', 'Mid', 'Short'].map(v => ({ value: v, label: v }))} value={hz} onChange={setHz} period={{ value: per, onChange: setPer }} /></Cell>
-        <Cell title="presets + custom period (Modified)" w={240}><ColumnFilter multiple={false} options={[{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This Year' }, { value: '2026', label: '2026' }]} value={mod} onChange={setMod} period={{ value: null, onChange: () => {} }} /></Cell>
-        <Cell title="search + chips (Collaboration)" w={240}><ColumnFilter search={{ placeholder: 'Search by name, role...', onFilter: () => {} }} options={['Replied', 'Input required', 'Review required', 'A. Singh', 'P. Nair'].map(v => ({ value: v, label: v }))} value={col} onChange={setCol} /></Cell>
+        <Cell title="presets + custom period (Modified)" w={240}><ColumnFilter multiple={false} options={[{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This year' }, { value: '2026', label: '2026' }]} value={mod} onChange={setMod} period={{ value: null, onChange: () => {} }} /></Cell>
+        <Cell title="search + chips (Collaboration)" w={240}><ColumnFilter search={{ placeholder: 'Search by name or role', onFilter: () => {} }} options={['Replied', 'Input required', 'Review required', 'A. Singh', 'P. Nair'].map(v => ({ value: v, label: v }))} value={col} onChange={setCol} /></Cell>
         <Cell title="range (Progress)" w={240}><ColumnFilter range={{ value: rng, onChange: setRng, min: 11, max: 89, step: 1 }} /></Cell>
       </IFS.Inline>
     );
@@ -2940,7 +2940,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access to this framework" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
       <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results for “WDRM-2”" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
       <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No frameworks match your filters" body="Try a different term, or clear filters to see all frameworks." primaryAction={{}} /></Cell>
-      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it's empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
+      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it’s empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
       <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 'var(--radius-floating)' }}>
@@ -3047,12 +3047,12 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'BottomSheet', figma: 'base-bottom-sheet-organism (4406:25590), value-bottom-sheet-organism (789:37502), explore-bottom-sheet (72:4676)', render: () => <IFS.Stack gap="600" style={{ width: 1141 }}>
     <Labeled label="type=base"><BottomSheet prompts={prompts} /></Labeled>
-    <Labeled label="value, in progress"><BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 Documents' }} onUpload={() => {}} /></Labeled>
-    <Labeled label="value, not in progress"><BottomSheet type="value" prompts={prompts} documents={{ label: '3 Documents' }} onUpload={() => {}} /></Labeled>
-    <Labeled label="value, Active (read-only)"><BottomSheet type="value" prompts={prompts} documents={{ label: '16 Documents' }} /></Labeled>
+    <Labeled label="value, in progress"><BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 documents' }} onUpload={() => {}} /></Labeled>
+    <Labeled label="value, not in progress"><BottomSheet type="value" prompts={prompts} documents={{ label: '3 documents' }} onUpload={() => {}} /></Labeled>
+    <Labeled label="value, Active (read-only)"><BottomSheet type="value" prompts={prompts} documents={{ label: '16 documents' }} /></Labeled>
     <Labeled label="type=explore"><BottomSheet type="explore" prompts={['What’s this signal?', 'Open overnight log']} /></Labeled>
     <Labeled label="600px wide: left side and prompts scroll sideways, nothing overflows"><IFS.Stack gap="300" style={{ width: 600 }}>
-      <BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 Documents' }} onUpload={() => {}} />
+      <BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 documents' }} onUpload={() => {}} />
       <BottomSheet type="explore" prompts={['What’s this signal?', 'Open overnight log']} />
     </IFS.Stack></Labeled>
   </IFS.Stack> });
@@ -3088,7 +3088,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} title="title" action="{label}">text</Alert>)}
       </Row>
       <Row label="show-icon" top>
-        {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} showIcon title="Item can't be added here">Drop it on a framework node instead.</Alert>)}
+        {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} showIcon title="Item can’t be added here">Drop it on a framework node instead.</Alert>)}
       </Row>
       <Live>{shown ? <Alert type="warning" title="Unsaved changes" onClose={() => setShown(false)}>Save the draft before you leave this page.</Alert> : <Button onClick={() => setShown(true)}>Show alert again</Button>}</Live>
     </>;
@@ -3101,7 +3101,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Row label="default"><Snackbar title="{title}" secondaryAction={{ label: '{label}' }} primaryAction={{ label: '{label}' }}>placeholder</Snackbar></Row>
     <Row label="minimal"><Snackbar title="Investment saved">Changes are live for your team.</Snackbar></Row>
     <Row label="action iconLeft"><Snackbar title="Widget removed" secondaryAction={{ label: 'Undo', iconLeft: 'arrow-back-up' }} /></Row>
-    <Live><Button type="primary" onClick={() => IFS.toast({ title: 'Investment archived', description: 'Moved to Archive.', primaryAction: { label: 'Undo' } })}>Show toast</Button></Live>
+    <Live><Button type="primary" onClick={() => IFS.toast({ title: 'Investment archived', description: 'Moved to archive', primaryAction: { label: 'Undo' } })}>Show toast</Button></Live>
   </> });
 ```
 
@@ -3194,7 +3194,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         <Panel title="Details" showEvidence={false} onClose={() => {}} actions={<Button type="tertiary" size="s" iconLeft="system-plus">Add</Button>} />
       </IFS.Inline>
     </Row>
-    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>The panels above collapse with |→ and expand from the 48px rail's ←|.</span></Row>
+    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>The panels above collapse with |→ and expand from the 48px rail’s ←|.</span></Row>
   </> });
 ```
 

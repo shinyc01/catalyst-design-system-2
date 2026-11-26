@@ -1050,11 +1050,11 @@ Props: title, description, action (node, e.g. an IconButton), divider (bool),
 fields = [{ name, label, type text|email|password|phone|textarea|select, placeholder, hint, description, options (select),
   defaultValue, validate(value, values) → message | undefined, requiredMessage }],
 children (extra body content after the fields), values / defaultValues / onValuesChange(values),
-primaryAction = { label } (submit), secondaryAction = { label, onClick }, footer (node replacing the actions),
+primaryAction = { label } (submit; pass the verb + object, rule 8.10: "Send for approval", "Create scenario"; no "Submit" default, the label falls back to "Save"), secondaryAction = { label, onClick }, footer (node replacing the actions),
 onSubmit(values, event) — only called when everything is valid, validate(values) → { name: message } (extra form checks),
 error (form-level message, e.g. rejected credentials), loading (field skeletons, actions disabled),
 submitting (primary spinner, form locked), size of fields (l|m, default l), className, style.
-`function FormCard({ title, description, action, divider, fields = [], children, values, defaultValues, onValuesChange, primaryAction = { label: 'Submit' }, secondaryAction, footer, onSubmit, validate, error, loading, submitting, fieldSize = 'l', className, style, ...rest })`
+`function FormCard({ title, description, action, divider, fields = [], children, values, defaultValues, onValuesChange, primaryAction = { label: 'Save' }, secondaryAction, footer, onSubmit, validate, error, loading, submitting, fieldSize = 'l', className, style, ...rest })`
 
 ### IconPicker
 **Tier:** Component
@@ -1110,10 +1110,10 @@ cooper, generating, value / defaultValue / onChange(value, event), state hover|f
 **Tier:** Component
 **In handovers:** placed 37× (Value, Build) · usual: type general 100%
 Figma: search-regular-organism (153:63462)
-Props: placeholder (default "Search for..."), value / defaultValue / onChange(value, event), onSearch(value) on Enter,
+Props: placeholder (default "Search"; screens name what it searches, "Search investments", rule 8.46), value / defaultValue / onChange(value, event), onSearch(value) on Enter,
 filter (Figma Filter boolean → filter icon button; onFilter called on click), disabled, state hover|focus (gallery only).
 A clear (×) button appears once there is text; Escape also clears.
-`function Search({ placeholder = 'Search for...', value, defaultValue = '', onChange, onSearch, filter, onFilter, disabled, state, className, style, ...rest })`
+`function Search({ placeholder = 'Search', value, defaultValue = '', onChange, onSearch, filter, onFilter, disabled, state, className, style, ...rest })`
 
 ### Checkbox
 **Tier:** Component
@@ -1386,7 +1386,7 @@ Props: groups / value / defaultValue / onChange (the compare-dropdown), stats [{
 ### ActivityPanel
 **Tier:** Pattern helper
 The record's Activity panel ("Library - Strategy Framework - Activity panel", Patterns 52:87879): panel-organism (380px, full height)
-as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version History | Approval Chain, only when the record has
+as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version history | Approval chain, only when the record has
 both), the Cooper smart search that filters the current view, then the version-history timeline or the approval chain.
 Version entries are kit VersionEntry (M marker = expand toggle; card = the version card): click the card or name to
 open that version read-only, ⋮ for Compare / Duplicate / Rename / Restore, the caret to expand the version's full activity log.
@@ -1430,7 +1430,7 @@ Props: title, metrics = [{ title, value, direction up|down, tone danger|success 
 bins = [{ label, value, tone loss|unchanged|gain, step 3|4|5 (colour depth), color (override) }], max (axis top, default 250),
 ticks (axis count, default 6), legend = Legend items [{ label, color, value }] (false hides), button (DataVizHeader right button),
 format(bin) → tooltip text, onBinClick(bin, i).
-`function InvestmentValueImpact({ title = 'Investment value impact', metrics = IVI_METRICS, description = "Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.", bins = IVI_BINS, max = 250, ticks = 6, legend = IVI_LEGEND, button, format, onBinClick, className, ...rest })`
+`function InvestmentValueImpact({ title = 'Investment value impact', metrics = IVI_METRICS, description = "Value change measured as % of each investment’s total value (NPV) under the proposed framework, compared with the current one.", bins = IVI_BINS, max = 250, ticks = 6, legend = IVI_LEGEND, button, format, onBinClick, className, ...rest })`
 
 ### TableReview
 **Tier:** Component
@@ -1497,14 +1497,14 @@ Props:
     note: { text, authorId } | null, comment, lastNotified, pushedAt (ms), replaced: { name, avatar } (previous reviewer), action: { label, icon, onClick } }]
   currentUserId (adds "(You)", decides note rights), ownerId (the investment owner; owner = currentUserId === ownerId),
   view compact | full, details (full view: force the COMMENT / LAST NOTIFIED / action columns; default = when any row has that data), filterable (default: more than 3 approvers), onPush(approver) (owner's manual reminder on an awaiting row:
-  shows the "Reminder sent." toast, stamps Last notified, then "Notified" + live countdown tooltip for pushCooldownHours, default 24),
+  shows the "Reminder sent" toast, stamps Last notified, then "Notified" + live countdown tooltip for pushCooldownHours, default 24),
   onNoteChange(approver, note|null, previous).
   stages (Nov 20, several approval stages on one page): [{ id, label, approvers, locked, note, collapsed }] instead of approvers;
     onStagesChange(stages). Built on the Table's groups: one group row per stage (caret, name, status + done/total at the end),
     the column header under each open stage; locked = a lock, can't open, `note` says when it opens. Which stage is open, folded or
     locked is the screen's call (stages don't have to run one after another). A fully approved stage starts folded.
 Rules built in (Figma notes): approvers add a note to their own row; the owner adds a note to any approver's row; only a
-note's author can edit or delete it; the filter applies live (state chips + name/role search, Clear all, "No results found").
+note's author can edit or delete it; the filter applies live (state chips + name/role search, Clear all, "No matches for these filters").
 `function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages, onStagesChange, currentUserId, ownerId, view = 'compact', details, filterable, onPush, onNoteChange, pushCooldownHours = 24, className, ...rest })`
 
 ## patterns-collaboration
@@ -1662,7 +1662,7 @@ Props: threads [{ id, number, place, type: action|question|info, unread, resolve
 onFilterChange ('unresolved' | 'resolved'), selectedId, onOpen(thread), onResolve(thread), onUnresolve(thread),
 onCopyLink(thread), onClose, currentUser (marks "(you)"), search(threads, query) (default searchComments), style, className.
 Empty states (EmptyState, section): all resolved → "All comments have been resolved / Ready to proceed to review.";
-search without match → "No results found" + "You might be looking for" chip; nothing resolved yet → inferred copy.
+search without match → No results for “<query>” + "You might be looking for" chip; nothing resolved yet → inferred copy.
 `function CommentsPanel({ threads = [], filter, defaultFilter = 'unresolved', onFilterChange, selectedId, onOpen, onResolve, onUnresolve, onCopyLink, onClose, currentUser = { name: 'You' }, search = searchComments, className, style })`
 
 ### useCommentThreads
@@ -1689,7 +1689,7 @@ Examples (read before using any component below — shows the data shapes props 
 ### CooperRecommendations
 **Tier:** Pattern helper
 CooperRecommendations — the recommendation flow (pattern component; Patterns "Recommendation" 67:108295).
-List grouped by framework column → Shape walks through them one by one (detail: Decline / Do it) → Do it shows
+List grouped by framework column → Shape walks through them one by one (detail: Decline / the named change) → confirming shows
 "Working on it…" then confirms and moves to the next → all applied closes the window. Decline removes one from the queue;
 Decline all dismisses the queue. Every recommendation is also saved as a chat in the Recommendations smart folder.
 Props: recommendations / defaultRecommendations / onRecommendationsChange ([{ id, group, title, description, impact }]),
@@ -1920,9 +1920,10 @@ action = { label, onClick } (default Explore).
 
 ### RecommendationDetail
 **Tier:** Pattern helper
-One recommendation in Shape mode (Figma "Shape mode expanded" 67:108940): Back, title, description, impact, Decline / Do it.
-Props: title, description, impact, onBack, onDecline, onApply.
-`function RecommendationDetail({ title, description, impact = [], onBack, onDecline, onApply })`
+One recommendation in Shape mode (Figma "Shape mode expanded" 67:108940): Back, title, description, impact, Decline / the change.
+Props: title, description, impact, onBack, onDecline, onApply, applyLabel (the confirm button names the change, rule 8.60:
+default the title, written as verb + object, "Add reliability model"; never "Do it" or "Apply").
+`function RecommendationDetail({ title, description, impact = [], onBack, onDecline, onApply, applyLabel })`
 
 ### CooperChat
 **Tier:** Pattern helper
@@ -1936,7 +1937,7 @@ messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text
 onHistory, historyOpen, speed (ms per streamed word, default 40; 0 = instant), position {right,bottom} for bar/compact (default: --cooper-compact-end / --cooper-compact-bottom),
 fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 13.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
-`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'], onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--float-inset)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
+`function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange, answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don’t act?'], onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--float-inset)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className })`
 
 ### 
 **Tier:** Pattern helper
@@ -2034,18 +2035,18 @@ state hover|menu (forced, gallery).
 ### DocumentsPopover
 **Tier:** Pattern helper
 Pattern: DocumentsPopover — popover-organism titled "Documents" with the counter, the rows (newest first),
-search from `searchThreshold` (10) documents, "No results found", max height 360 then scroll.
+search from `searchThreshold` (10) documents, No results for “<query>”, max height 360 then scroll.
 Props: documents (rows), count (usable documents; default = done rows), editable, onClose, onOpen, onDownload, onRemove, onRetry,
 searchThreshold, defaultQuery, width (300), className, style.
 `function DocumentsPopover({ documents = [], count, editable = true, onClose, onOpen, onDownload, onRemove, onRetry, searchThreshold = 10, defaultQuery = '', width = 300, className, style })`
 
 ### DocumentsContext
 **Tier:** Pattern helper
-Pattern: DocumentsContext — the left side of the value bottom sheet: "Cooper's Context", the progress bar (required context,
+Pattern: DocumentsContext — the left side of the value bottom sheet: "Cooper’s context", the progress bar (required context,
 until 100 %), the documents button ("1 Document" / "N Documents"; hidden at 0; spinner while uploading), the Upload icon-button
 (editable only) and the popover 4px above the bar (portalled, fixed). Pass it as BottomSheet `left`.
-Props: controller (useDocuments()), popoverOffset (px from the bar's left edge, default 12), title (default "Cooper's Context").
-`function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper's Context", className })`
+Props: controller (useDocuments()), popoverOffset (px from the bar's left edge, default 12), title (default "Cooper’s context").
+`function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper’s context", className })`
 
 ### DocumentsDropArea
 **Tier:** Pattern helper
@@ -2060,7 +2061,7 @@ Props: controller, children, className, style.
 Pattern: DocumentsFeedback — top-right stack under the page header (place it inside the screen, which must be position:relative).
 Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
-Removal = snackbar-organism "The document has been removed" + Undo through IFS.toast: the one snackbar timing (rule 14.12: at least
+Removal = snackbar-organism "Document removed" + Undo through IFS.toast: the one snackbar timing (rule 14.12: at least
 10 s, then until the next command; hover / focus hold it), announced once, and it replaces any other action snackbar; ✕ dismisses.
 Props: controller, top (px from the window top; default = the bottom of the page or Explore header, IFS.floatTop()). C3: one place with the snackbar stack.
 `function DocumentsFeedback({ controller: c, top })`
@@ -2519,9 +2520,10 @@ Same props as Select; value is an array. maxTags (default 5) tags then "+N". Siz
 Figma: signle-combobox-organism (3375:5415). Type to filter.
 Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder, iconLeft, clearable, loading, error,
 disabled, listPosition, listTitle ("Suggested", shown before typing), resultsTitle ("Results", while typing),
-emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query),
+emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query;
+emptyTitle defaults to No results for “<query>”, rule 8.51),
 filter(option, query), state. While loading and open, the list shows Figma's "Searching..." panel.
-`function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder = 'Search item', iconLeft, clearable = true, loading, error, disabled, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's', emptyTitle = 'No results found', emptyText = 'You might be looking for', suggestions = [], state, className, style, id, filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest })`
+`function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder = 'Search item', iconLeft, clearable = true, loading, error, disabled, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's', emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id, filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest })`
 
 ### SegmentedControl
 **Tier:** Component
