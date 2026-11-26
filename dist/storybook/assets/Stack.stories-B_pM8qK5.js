@@ -1,0 +1,4 @@
+import{I as s}from"./layout-D4yxJneO.js";import{I as n}from"./patterns-trace-C6A0PWMg.js";import"./index-B0WjJBI_.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-x-G-dxfr.js";import"./index-CwPCC0ZT.js";const i=s.find(o=>o.name==="Stack"),S={title:"Layout/Stack",component:n.Stack,tags:["autodocs"],parameters:{docs:{description:{component:"**Figma:** none (code-only layout primitive; Figma uses vertical auto layout)"}}}},t={name:"All variants & states",render:()=>i.render()};var a,e,r;t.parameters={...t.parameters,docs:{...(a=t.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  name: 'All variants & states',
+  render: () => section.render()
+}`,...(r=(e=t.parameters)==null?void 0:e.docs)==null?void 0:r.source}}};const A=["AllVariants"];export{t as AllVariants,A as __namedExportsOrder,S as default};

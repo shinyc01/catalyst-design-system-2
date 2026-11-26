@@ -1,4 +1,0 @@
-import{I as s}from"./navigation-D3Gbdbjv.js";import{I as n}from"./patterns-trace-CBR3JMjg.js";import"./index-B0WjJBI_.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-x-G-dxfr.js";import"./index-CwPCC0ZT.js";const i=s.find(t=>t.name==="PageTop: narrow widths"),g={title:"Navigation/PageTop: narrow widths",component:n["PageTop: narrow widths"],tags:["autodocs"],parameters:{docs:{description:{component:"**Figma:** Nov 19 rule: below 720 the tabs and search go onto separate rows"}}}},r={name:"All variants & states",render:()=>i.render()};var a,e,o;r.parameters={...r.parameters,docs:{...(a=r.parameters)==null?void 0:a.docs,source:{originalSource:`{
-  name: 'All variants & states',
-  render: () => section.render()
-}`,...(o=(e=r.parameters)==null?void 0:e.docs)==null?void 0:o.source}}};const h=["AllVariants"];export{r as AllVariants,h as __namedExportsOrder,g as default};

@@ -304,6 +304,23 @@ function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zo
     let dx = 0, dy = 0;
     if (n.left < h.left + pad) dx = h.left + pad - n.left; else if (n.right > h.right - pad) dx = h.right - pad - n.right;
     if (n.top < h.top + pad) dy = h.top + pad - n.top; else if (n.bottom > h.bottom - pad) dy = h.bottom - pad - n.bottom;
+    // then clear of anything floating over the canvas (drawer, chat panel, stepper tip): probe the node's corners and centre at its new place
+    // and move it beside the covering element, on the side with more room (audit run 2 H3)
+    for (let k = 0; k < 3; k++) {
+      const L = n.left + dx, T = n.top + dy, R = n.right + dx, B = n.bottom + dy;
+      const pts = [[(L + R) / 2, (T + B) / 2], [L + 2, T + 2], [R - 2, T + 2], [L + 2, B - 2], [R - 2, B - 2]];
+      let cover = null;
+      for (const [x, y] of pts) {
+        const top = document.elementFromPoint(x, y);
+        if (top && !node.contains(top) && !e.currentTarget.contains(top) && top !== host) { cover = top; break; }
+      }
+      if (!cover) break;
+      const c = cover.getBoundingClientRect();
+      const roomStart = c.left - h.left, roomEnd = h.right - c.right, roomAbove = c.top - h.top, roomBelow = h.bottom - c.bottom;
+      const best = Math.max(roomStart, roomEnd, roomAbove, roomBelow);
+      if (best === roomStart) dx += c.left - pad / 2 - R; else if (best === roomEnd) dx += c.right + pad / 2 - L;
+      else if (best === roomAbove) dy += c.top - pad / 2 - B; else dy += c.bottom + pad / 2 - T;
+    }
     if (dx || dy) setV({ ...cur, x: cur.x + dx, y: cur.y + dy });
   };
   const zoomAt = React.useCallback((z, cx, cy) => {

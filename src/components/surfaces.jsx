@@ -93,9 +93,10 @@ function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'c
   // Esc closes it from anywhere while it is shown (WCAG 1.4.13 dismissible), not only from the trigger
   React.useEffect(() => {
     if (inline || !shown) return undefined;
-    const k = e => { if (e.key === 'Escape') { clearTimeout(timer.current); setShown(false); } };
-    document.addEventListener('keydown', k);
-    return () => document.removeEventListener('keydown', k);
+    // capture phase: inside a Modal / Drawer / Popover the first Esc closes only the tooltip (audit run 2 H1)
+    const k = e => { if (e.key === 'Escape') { e.stopPropagation(); clearTimeout(timer.current); setShown(false); } };
+    document.addEventListener('keydown', k, true);
+    return () => document.removeEventListener('keydown', k, true);
   }, [shown, inline]);
   if (inline) return bubble;
   const show = () => { clearTimeout(timer.current); timer.current = setTimeout(() => setShown(true), shown ? 0 : delay); };

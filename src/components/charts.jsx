@@ -739,7 +739,7 @@ function Plot({ p, label, tip, n, pick, describe, scroll, fixed, children }) {
   };
   const count = grid ? n[0] * n[1] : n;
   const onKeyDown = e => {
-    if (e.key === 'Escape') { p.clear(); return; }
+    if (e.key === 'Escape') { if (p.active != null) e.stopPropagation(); p.clear(); return; }
     if (!count) return;
     let next = null;
     if (grid) {
@@ -765,7 +765,7 @@ function Plot({ p, label, tip, n, pick, describe, scroll, fixed, children }) {
       <span className="ifs-chart__probe" aria-hidden="true">0</span>
       {sc ? <>
         <svg className="ifs-chart__svg" width={sc.start} height={p.H} aria-hidden="true">{fixed}</svg>
-        <div ref={p.scRef} className={IFS.cx('ifs-chart__scroll', p.sl > 1 && 'ifs-chart__scroll--more-start', p.sl < maxSl - 1 && 'ifs-chart__scroll--more-end')}
+        <div ref={p.scRef} tabIndex={-1} /* not a tab stop: the plot itself takes focus and arrows (audit run 2 H4) */ className={IFS.cx('ifs-chart__scroll', p.sl > 1 && 'ifs-chart__scroll--more-start', p.sl < maxSl - 1 && 'ifs-chart__scroll--more-end')}
           style={{ /* ltr: chart geometry */ left: sc.start, width: p.W - sc.start, height: p.H }} onScroll={e => p.setSl(e.currentTarget.scrollLeft)}>
           <svg width={sc.width - sc.start} height={p.H} aria-hidden="true" className="ifs-chart__scroll-svg"><g transform={`translate(${-sc.start},0)`}>{children}</g></svg>
         </div>
@@ -789,9 +789,9 @@ function usePlot(props) {
   const on = active != null;
   React.useEffect(() => {
     if (!on) return undefined;
-    const k = e => { if (e.key === 'Escape') clear(); };
-    document.addEventListener('keydown', k);
-    return () => document.removeEventListener('keydown', k);
+    const k = e => { if (e.key === 'Escape') { e.stopPropagation(); clear(); } }; // capture: closes the chart tooltip before a dialog's Esc
+    document.addEventListener('keydown', k, true);
+    return () => document.removeEventListener('keydown', k, true);
   }, [on]);
   React.useEffect(() => () => clearTimeout(t.current), []);
   const measure = React.useMemo(() => measurer(box.font), [box.font]);

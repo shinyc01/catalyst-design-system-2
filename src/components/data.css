@@ -253,10 +253,11 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 }
 /* Filter with counts: SegmentedControl from 600 up, a Select below (A11Y H8, decided Nov 26). display:contents keeps the bar's layout. */
 .ifs-table-card__filter{display:contents}
-.ifs-table-card__filter-narrow{display:none}
+/* two classes so these beat .ifs-select / .ifs-segmented display, which load later (audit run 2 H2) */
+.ifs-table-card__filter > .ifs-table-card__filter-narrow{display:none}
 @container content (max-width:37.4375rem){
-  .ifs-table-card__filter-wide{display:none}
-  .ifs-table-card__filter-narrow{display:flex;width:100%}
+  .ifs-table-card__filter > .ifs-table-card__filter-wide{display:none}
+  .ifs-table-card__filter > .ifs-table-card__filter-narrow{display:flex;width:100%}
 }
 .ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0;
   overflow-x:auto;padding:var(--size-4);margin:calc(-1 * var(--size-4))} /* scrolls sideways when the columns' minimum widths don't fit; the 4px padding keeps row focus rings (--focus-ring, 4 out) visible */
