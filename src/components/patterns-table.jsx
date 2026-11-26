@@ -673,7 +673,12 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
   const clearFilters = () => { setFilters({}); setOpenFilter(null); };
   const tabsNode = filterTabs && (filterTabs.variant === 'tabs'
     ? <IFS.Tabs items={tabItems.map(t => ({ value: t.value, label: t.label, count: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
-    : <IFS.SegmentedControl size="s" options={tabItems.map(t => ({ value: t.value, label: t.label, counter: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />);
+    : <span className="ifs-table-card__filter">
+        <IFS.SegmentedControl size="s" className="ifs-table-card__filter-wide" options={tabItems.map(t => ({ value: t.value, label: t.label, counter: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
+        {/* Below 600 the segmented control with counts doesn't fit (A11Y H8, decided Nov 26): the same choice as a Select (Carbon / Material) */}
+        <IFS.Select size="m" clearable={false} className="ifs-table-card__filter-narrow" aria-label="Filter rows" value={tab} onChange={v => setTab(v)}
+          options={tabItems.map(t => ({ value: t.value, label: t.count != null ? `${t.label} (${t.count})` : t.label, disabled: t.disabled }))} />
+      </span>);
   const searchNode = search && <SmartSearch placeholder={search.placeholder} suggestions={search.suggestions} value={query}
     onChange={v => { setQuery(v); if (!v) setApplied(''); }} onSubmit={runSearch} onClear={() => runSearch('')} />;
   const toolbar = (tabsNode || searchNode || configurable) && <TableToolbar filter={tabsNode} search={searchNode} onConfigure={configurable && !toolbarOutside ? () => setSettingsOpen(true) : undefined} />;

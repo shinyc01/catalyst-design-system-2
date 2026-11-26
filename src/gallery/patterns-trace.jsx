@@ -132,7 +132,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: System confidence', figma: 'Review - Portfolio impact - Errors [patterns] (30:72985)', render: () => {
     const [key, setKey] = useState(0);
     return <>
-      <Demo>Pick a solution, type My answer, upload a file or press Okay on warnings; ‹ › and All walk the list; the rail dot follows what is open. At 100% Send for approval enables.
+      <Demo>Pick a solution, type My answer, upload a file or press Okay on warnings; ‹ › and All walk the list; the rail dot follows what is open. Send for approval always works: with items still open it shows the first one (rule 14.4).
         <IFS.Button size="s" type="tertiary" onClick={() => setKey(k => k + 1)}>Reset</IFS.Button></Demo>
       <ConfidenceScreen key={key} />
     </>;
@@ -142,7 +142,7 @@ export default IFS_GALLERY;
     return <Screen label="System confidence">
       <ReviewShell status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
         actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton />
-          <IFS.Button type="primary" size="s" disabled={!c.allResolved} onClick={() => IFS.toast({ title: 'Sent for approval' })}>Send for approval</IFS.Button></>}
+          <IFS.Button type="primary" size="s" onClick={() => { if (!c.allResolved) { const n = c.showFirstOpen(); IFS.announce && IFS.announce(`${n} ${n === 1 ? 'item needs' : 'items need'} attention before sending`); return; } IFS.toast({ title: 'Sent for approval' }); }}>Send for approval</IFS.Button></>}
         panel={<div style={{ height: '100%' }}><SystemConfidence controller={c} onEvidence={noop} /></div>} />
     </Screen>;
   }

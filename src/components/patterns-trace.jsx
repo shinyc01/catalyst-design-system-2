@@ -39,6 +39,7 @@ function useIssueReport({ issues = [], kinds = CONFIDENCE_KINDS, gates = [], def
   const [view, setView] = React.useState('detail');
   const [answering, setAnswering] = React.useState(null);
   const timers = React.useRef([]);
+  const [revealKey, setRevealKey] = React.useState(0);
   React.useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
   const resolved = id => isDone(status[id]);
@@ -74,6 +75,16 @@ function useIssueReport({ issues = [], kinds = CONFIDENCE_KINDS, gates = [], def
     setPage: p => { setPage(p); setAnswering(null); },
     showAll: () => { setView('list'); setAnswering(null); },
     open: index => { setPage(index + 1); setView('detail'); },
+    // Rule 14.4 (Nov 26): the primary action stays enabled; when it is pressed with items still open, show the first open item (its list,
+    // the detail view) and bring the panel into view; returns how many are open so the screen can announce the count. revealKey tells the panel.
+    revealKey,
+    showFirstOpen: () => {
+      const first = issues.find(i => !resolved(i.id));
+      if (!first) return 0;
+      setKindState(first.kind); setPage(issues.filter(i => i.kind === first.kind).indexOf(first) + 1); setView('detail'); setAnswering(null);
+      setRevealKey(k => k + 1);
+      return issues.filter(i => !resolved(i.id)).length;
+    },
     apply: (id, solutionId) => set(id, { applied: solutionId }),
     undo: id => set(id, { applied: null, answer: null, file: null, uploading: false }),
     startAnswer: id => setAnswering(id),
@@ -238,9 +249,21 @@ function SystemConfidence({ controller: c, title = 'System confidence', expanded
   const [inner, setInner] = React.useState(defaultExpanded);
   const isExp = expanded !== undefined ? expanded : inner;
   const setExp = v => { if (expanded === undefined) setInner(v); onExpandedChange && onExpandedChange(v); };
+  const tag = React.useRef('ifs-trc-r' + Math.random().toString(36).slice(2, 8)).current;
+  React.useEffect(() => {
+    if (!c.revealKey) return;
+    setExp(true);
+    requestAnimationFrame(() => {
+      const el = document.querySelector('.' + tag);
+      if (!el) return;
+      el.scrollIntoView({ block: 'nearest' });
+      const target = el.querySelector('.ifs-trc-issue__title') || el.querySelector('.ifs-trc-issue');
+      if (target) { if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1'); target.scrollIntoView({ block: 'nearest' }); target.focus({ preventScroll: true }); }
+    });
+  }, [c.revealKey]);
   return (
     <IFS.Panel title={title} expanded={isExp} onExpandedChange={setExp} dot={c.dot || undefined} onEvidence={onEvidence}
-      className={cx(isExp && 'ifs-trc-panel', className)} style={style}>
+      className={cx(isExp && 'ifs-trc-panel', tag, className)} style={style}>
       <IFS.ContentCard className="ifs-trc-card"
         title={<ConfidenceGates controller={c} />}
         bottom={c.issues.length > 0 && <div className={cx('ifs-trc-card__issues', c.present.length > 1 && 'has-kinds')}>

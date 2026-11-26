@@ -5,18 +5,23 @@ import { IFS } from './registry.js';
 // iconLeft / iconRight = icon names (Figma show-icon-* + Icon swap), children = Button label.
 // Leave out children for Figma show-label=false.
 // loading (S2, Nov 24): the dotted loader in the icon slot (in place of iconLeft, same size), aria-busy, not clickable; the label stays.
-function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, ...rest }) {
+// disabledReason (rule 9.10, Nov 26): with `disabled`, the button stays focusable (aria-disabled) and a tooltip says why and what unlocks
+// it ("Only portfolio owners can publish"). Only for reasons the person can't fix on this screen; an incomplete form never disables (14.4).
+function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, disabled, disabledReason, ...rest }) {
   const iconSize = size === 's' ? 12 : 16;
   const lead = loading ? 'system-loader' : iconLeft;
-  return (
+  const soft = disabled && disabledReason;
+  const btn = (
     <button type="button" data-state={state} aria-busy={loading ? true : undefined}
       className={IFS.cx('ifs-button', `ifs-button--${type}`, `ifs-button--${size}`, loading && 'ifs-button--loading', className)}
-      onClick={loading ? e => e.preventDefault() : onClick} {...rest}>
+      disabled={soft ? undefined : disabled} aria-disabled={soft ? true : undefined}
+      onClick={loading || soft ? e => e.preventDefault() : onClick} {...rest}>
       {lead && <IFS.Icon name={lead} size={iconSize} />}
       {children != null && <span className="ifs-button__label">{children}</span>}
       {iconRight && <IFS.Icon name={iconRight} size={iconSize} />}
     </button>
   );
+  return soft && IFS.Tooltip ? <IFS.Tooltip content={disabledReason}>{btn}</IFS.Tooltip> : btn;
 }
 
 // Figma: icon-button (71:4250)

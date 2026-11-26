@@ -273,7 +273,9 @@ Props: type primary|secondary|tertiary|ghost|cooper (Figma "Accent (Cooper)"), s
 iconLeft / iconRight = icon names (Figma show-icon-* + Icon swap), children = Button label.
 Leave out children for Figma show-label=false.
 loading (S2, Nov 24): the dotted loader in the icon slot (in place of iconLeft, same size), aria-busy, not clickable; the label stays.
-`function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, ...rest })`
+disabledReason (rule 9.10, Nov 26): with `disabled`, the button stays focusable (aria-disabled) and a tooltip says why and what unlocks
+it ("Only portfolio owners can publish"). Only for reasons the person can't fix on this screen; an incomplete form never disables (14.4).
+`function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, disabled, disabledReason, ...rest })`
 
 ### IconButton
 **Tier:** Component
@@ -1448,7 +1450,7 @@ Pattern helper: header main action + dropdown menu — built from Button, IconBu
 single-select-list-molecule with a description line). Props: children = label, type (default primary), size (default s),
 iconLeft, disabled, onClick, items = [{ label, description, onClick, disabled }] (absent/empty = no dropdown),
 menuLabel (accessible name of the caret). Esc / outside click close the menu.
-`function SplitButton({ children, type = 'primary', size = 's', iconLeft, disabled, onClick, items, menuLabel = 'More actions', className })`
+`function SplitButton({ children, type = 'primary', size = 's', iconLeft, disabled, disabledReason, onClick, items, menuLabel = 'More actions', className })`
 
 ### ReadinessFacts
 **Tier:** Pattern helper

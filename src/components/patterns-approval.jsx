@@ -177,12 +177,12 @@ function TableReview({ rows = [], defaultCollapsed = [], labels, onFilter, sort,
 // single-select-list-molecule with a description line). Props: children = label, type (default primary), size (default s),
 // iconLeft, disabled, onClick, items = [{ label, description, onClick, disabled }] (absent/empty = no dropdown),
 // menuLabel (accessible name of the caret). Esc / outside click close the menu.
-function SplitButton({ children, type = 'primary', size = 's', iconLeft, disabled, onClick, items, menuLabel = 'More actions', className }) {
+function SplitButton({ children, type = 'primary', size = 's', iconLeft, disabled, disabledReason, onClick, items, menuLabel = 'More actions', className }) {
   const [open, setOpen] = React.useState(false);
   const hasMenu = items && items.length > 0;
   return (
     <span className={apCx('ifs-split-button', className)}>
-      <IFS.Button type={type} size={size} iconLeft={iconLeft} disabled={disabled} onClick={onClick}>{children}</IFS.Button>
+      <IFS.Button type={type} size={size} iconLeft={iconLeft} disabled={disabled} disabledReason={disabledReason} onClick={onClick}>{children}</IFS.Button>
       {hasMenu && <IFS.Menu open={open} onOpenChange={setOpen} size="l" align="end" label={menuLabel}
         items={items.map(it => ({ label: it.label, description: it.description, icon: it.icon, disabled: it.disabled, danger: it.danger, onClick: it.onClick ? () => it.onClick() : undefined }))}
         trigger={<IFS.IconButton type={type} size={size} icon="arrow-caret-down-filled" label={menuLabel} disabled={disabled} />} />}

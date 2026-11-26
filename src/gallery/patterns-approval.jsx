@@ -268,7 +268,7 @@ export default IFS_GALLERY;
     const action = phase === 'shaping' || status === 'revisions'
       ? <IFS.Button type="primary" size="s" onClick={() => setModal('send')}>Send for review</IFS.Button>
       : phase === 'active' ? <SplitButton disabled iconLeft="system-check">Published</SplitButton>
-        : <SplitButton disabled={!allApproved} onClick={() => setModal('publish')}>Publish</SplitButton>;
+        : <SplitButton disabled={!allApproved} disabledReason={`Publishes when every reviewer approves (${reviewers.filter(a => a.status === 'success').length} of ${reviewers.length} so far)`} onClick={() => setModal('publish')}>Publish</SplitButton>; // rule 9.10: other people must approve, so it can't be fixed here
     return <>
       <Demo>
         <IFS.Button size="s" type="secondary" disabled={allApproved || phase !== 'pending'} onClick={nextApproves}>Next reviewer approves</IFS.Button>
