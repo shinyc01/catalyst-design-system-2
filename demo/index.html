@@ -738,10 +738,11 @@ const dashboardColumns = {
     ['Governance', [[31, dashboardLevel(4, 3)], [205, dashboardLevel(4, 2)], [36, dashboardLevel(4, 1)], [31, dashboardLevel(4, 0)]]],
   ],
 };
+// A one-off chart (rule 10.12 step 2): measure types appear nowhere else, so they take the free slots in order after the drivers (1 · 3 · 5 · 7 · 9).
 const dashboardCoverage = [
-  { label: 'Risk', value: 30, color: dashboardSlot(1) }, { label: 'Service measure', value: 19, color: dashboardSlot(2) },
-  { label: 'Benefit', value: 18, color: dashboardSlot(3) }, { label: 'Cost', value: 17, color: dashboardSlot(4) },
-  { label: 'Condition score', value: 10, color: dashboardSlot(5) }, { label: 'Resource', value: 6, color: dashboardSlot(6) },
+  { label: 'Risk', value: 30, color: dashboardSlot(2) }, { label: 'Service measure', value: 19, color: dashboardSlot(4) },
+  { label: 'Benefit', value: 18, color: dashboardSlot(6) }, { label: 'Cost', value: 17, color: dashboardSlot(8) },
+  { label: 'Condition score', value: 10, color: dashboardSlot(10) }, { label: 'Resource', value: 6, color: dashboardSlot(11) },
 ];
 const dashboardProjects = [
   ['Alpine Meadows Transformers', '$192M', [297, 297, 116, 67, 67]],

@@ -141,7 +141,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Categorical palette (rule 10.7): six families in colour-wheel order, violet → indigo → azure → teal → terracotta → rose, each a dark then its light partner; violet is slot 1, the base colour of every dashboard. All 12 stay distinct in normal and colour-blind vision; every slot clears info blue, Cooper copper and the status colours. Values in `foundations/palette.css`.
     - Sequential ramps (rule 10.8): one 9-step ramp per family, step 2 = its dark slot; the default ramp is violet (was azure) and a single-hue chart uses the ramp of the entity it shows (rule 10.12). `HeatmapChart ramp` defaults to `violet`.
     - Diverging: azure ↔ rose (rose replaces pink; same sides as 2.0.6).
-    - Rule 10.12: one colour per entity across the whole dashboard; an unrelated one-off chart may reuse slots when they run out.
+    - Rule 10.12: one colour key per screen: entities in more than one chart take the dark slots first (and own that ramp), other charts take the free slots in order, reuse only when all 12 are taken.
     - Rule 10.7: levels inside a group use the whole ramp (every other step up to 4 levels, every step up to 8, then Other); black labels from step 3.
   - **Deprecated**
     - `--color-data-viz-sequential-orchid | pink | yellow | cyan-*` (and the same `HeatmapChart ramp` values): aliases of violet, rose, terracotta and azure until 3.0 (guide/release.md: deprecated names are removed only in a major).
