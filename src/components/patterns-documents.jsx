@@ -198,7 +198,7 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
     if (bad.length) {
       if (files.length === 1) {
         const b = bad[0];
-        push({ kind: 'alert', title: `Can't add "${b.name}"`, body: b.kind === 'format' ? `Supported formats are ${listFormats(formats)}.` : b.why });
+        push({ kind: 'alert', title: `Can’t add “${b.name}”`, body: b.kind === 'format' ? `Supported formats are ${listFormats(formats)}.` : b.why });
       } else {
         push({ kind: 'alert', title: `${ok.length} of ${files.length} files added`,
           body: `${bad.length} ${bad.length === 1 ? 'file was' : 'files were'} skipped — unsupported format or too large.`, details: bad });
@@ -220,7 +220,7 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
     setDocs(ds => ds.filter(d => d.id !== doc.id));
     onRemove && onRemove(doc);
     // The one snackbar (rule 14.12): IFS.toast times it, announces it once and replaces any other action snackbar (newest wins).
-    IFS.toast({ title: 'The document has been removed', secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up',
+    IFS.toast({ title: 'Document removed', secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up',
       onClick: () => setDocs(ds => { const n = [...ds]; n.splice(Math.min(idx, n.length), 0, doc); return n; }) } });
   }, [onRemove]);
 
@@ -288,7 +288,7 @@ function DocumentRow({ doc, editable = true, onOpen, onDownload, onRemove, onRet
 }
 
 // Pattern: DocumentsPopover — popover-organism titled "Documents" with the counter, the rows (newest first),
-// search from `searchThreshold` (10) documents, "No results found", max height 360 then scroll.
+// search from `searchThreshold` (10) documents, No results for “<query>”, max height 360 then scroll.
 // Props: documents (rows), count (usable documents; default = done rows), editable, onClose, onOpen, onDownload, onRemove, onRetry,
 // searchThreshold, defaultQuery, width (300), className, style.
 function DocumentsPopover({ documents = [], count, editable = true, onClose, onOpen, onDownload, onRemove, onRetry, searchThreshold = 10, defaultQuery = '',
@@ -300,19 +300,19 @@ function DocumentsPopover({ documents = [], count, editable = true, onClose, onO
   const n = count != null ? count : documents.filter(d => d.status !== 'error' && d.status !== 'uploading').length;
   return (
     <IFS.Popover inline open onOpenChange={o => { if (!o && onClose) onClose(); }} title="Documents" count={shown.length ? n : undefined}
-      search={searchable ? 'Search for...' : undefined} onSearch={setQ} width={width} className={cx('ifs-docs-popover', className)} style={style}>
+      search={searchable ? 'Search documents' : undefined} onSearch={setQ} width={width} className={cx('ifs-docs-popover', className)} style={style}>
       {shown.length === 0
-        ? <div className="ifs-docs-popover__empty" role="status">{query ? 'No results found' : 'No documents'}</div>
+        ? <div className="ifs-docs-popover__empty" role="status">{query ? `No results for “${q.trim()}”` : 'No documents'}</div>
         : shown.map(d => <DocumentRow key={d.id || d.name} doc={d} editable={editable} onOpen={onOpen} onDownload={onDownload} onRemove={onRemove} onRetry={onRetry} />)}
     </IFS.Popover>
   );
 }
 
-// Pattern: DocumentsContext — the left side of the value bottom sheet: "Cooper's Context", the progress bar (required context,
+// Pattern: DocumentsContext — the left side of the value bottom sheet: "Cooper’s context", the progress bar (required context,
 // until 100 %), the documents button ("1 Document" / "N Documents"; hidden at 0; spinner while uploading), the Upload icon-button
 // (editable only) and the popover 4px above the bar (portalled, fixed). Pass it as BottomSheet `left`.
-// Props: controller (useDocuments()), popoverOffset (px from the bar's left edge, default 12), title (default "Cooper's Context").
-function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper's Context", className }) {
+// Props: controller (useDocuments()), popoverOffset (px from the bar's left edge, default 12), title (default "Cooper’s context").
+function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper’s context", className }) {
   const input = React.useRef(null);
   const root = React.useRef(null);
   const pop = React.useRef(null);
@@ -350,7 +350,7 @@ function DocumentsContext({ controller: c, popoverOffset = 12, title = "Cooper's
         <span className="ifs-bottom-sheet__context-title">{title}</span>
         {showBar && (
           <div className="ifs-coverage">
-            <IFS.ProgressBar value={c.coverage} label="Cooper's context coverage" />
+            <IFS.ProgressBar value={c.coverage} label="Cooper’s context coverage" />
             <span className="ifs-coverage__value">{Math.round(c.coverage)}%</span>
           </div>
         )}
@@ -415,7 +415,7 @@ function DocumentsDropArea({ controller: c, children, className, style, ...rest 
 // Pattern: DocumentsFeedback — top-right stack under the page header (place it inside the screen, which must be position:relative).
 // Errors = alert-organism Type=Error with the error icon; they don't auto-dismiss and close on ✕ or on the user's next action.
 // "Several files, some rejected" adds "See details" (a modal listing each rejected file and why).
-// Removal = snackbar-organism "The document has been removed" + Undo through IFS.toast: the one snackbar timing (rule 14.12: at least
+// Removal = snackbar-organism "Document removed" + Undo through IFS.toast: the one snackbar timing (rule 14.12: at least
 // 10 s, then until the next command; hover / focus hold it), announced once, and it replaces any other action snackbar; ✕ dismisses.
 // Props: controller, top (px from the window top; default = the bottom of the page or Explore header, IFS.floatTop()). C3: one place with the snackbar stack.
 function DocumentsFeedback({ controller: c, top }) {

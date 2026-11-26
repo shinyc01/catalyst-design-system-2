@@ -675,7 +675,7 @@ function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, o
   else if (error) right = (
     <div className="ifs-file-card__actions ifs-file-card__actions--error">
       <IFS.IconButton type="ghost" size="s" icon="system-trash-delete" label="Delete file" onClick={e => { e.stopPropagation(); onDelete && onDelete(e); }} />
-      <IFS.IconButton type="ghost" size="s" icon="arrow-refresh" label="Retry upload" onClick={e => { e.stopPropagation(); onRetry && onRetry(e); }} />
+      <IFS.IconButton type="ghost" size="s" icon="arrow-refresh" label="Try uploading again" onClick={e => { e.stopPropagation(); onRetry && onRetry(e); }} />
     </div>
   );
   else if (onDownload) right = (

@@ -579,7 +579,7 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
     });
     return [
       { label: 'Resize', icon: 'arrow-horizontal-expand', items: sizes },
-      { label: 'Share', icon: 'chat-share', onClick: () => IFS.toast({ title: `Link to "${w.title}" copied` }) },
+      { label: 'Share', icon: 'chat-share', onClick: () => IFS.toast({ title: `Link to “${w.title}” copied` }) },
       { label: 'Remove', icon: 'system-trash-delete', onClick: () => {
         commit(E.remove(layout, id), removeMessage ? removeMessage(w) : `"${w.title}" widget removed`);
         onRemove && onRemove(id);
@@ -709,7 +709,7 @@ function WidgetsDrawer({ open, onOpenChange, items = [], onAdd, onGrab, title = 
           <WidgetCard key={it.id} title={it.title} description={it.description} preview={it.preview}
             onAdd={() => onAdd && onAdd(it)} onGrab={onGrab ? e => onGrab(it, e) : undefined} />
         ))}
-        {!list.length && <IFS.EmptyState cause="no-results" heading="No widgets found" body="Try describing the data you want to see." />}
+        {!list.length && <IFS.EmptyState cause="no-results" heading={`No widgets match “${q.trim()}”`} body="Try describing the data you want to see." />}
       </div>
     </IFS.Drawer>
   );

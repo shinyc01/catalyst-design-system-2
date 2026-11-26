@@ -210,10 +210,10 @@ function filterApprovals(steps, q) {
 }
 
 const PA_VERSION_SUGGESTIONS = ['Show comments only', 'What did Cooper change automatically?', 'What did A. Singh do?', 'Which version is current?'];
-const PA_APPROVAL_SUGGESTIONS = ['Who hasn\'t responded yet?', 'Who requested changes?', 'Who still needs to approve?'];
+const PA_APPROVAL_SUGGESTIONS = ['Who hasn’t responded yet?', 'Who requested changes?', 'Who still needs to approve?'];
 
 // The record's Activity panel ("Library - Strategy Framework - Activity panel", Patterns 52:87879): panel-organism (380px, full height)
-// as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version History | Approval Chain, only when the record has
+// as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version history | Approval chain, only when the record has
 // both), the Cooper smart search that filters the current view, then the version-history timeline or the approval chain.
 // Version entries are kit VersionEntry (M marker = expand toggle; card = the version card): click the card or name to
 // open that version read-only, ⋮ for Compare / Duplicate / Rename / Restore, the caret to expand the version's full activity log.
@@ -302,7 +302,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
             menu: <IFS.Menu more label={`${v.title} actions`} items={menuFor(v)} /> };
         })} />
     ) : (
-      <IFS.EmptyState cause="no-results" size="section" icon={null} heading="No results found" body="You might be looking for"
+      <IFS.EmptyState cause="no-results" size="section" icon={null} heading={`No results for “${applied}”`} body="You might be looking for"
         suggestions={versionSuggestions.slice(0, 3)} onSuggestion={s => { setQ(s); setApplied(s); }} />
     );
   } else if (!approvals.length) {
@@ -312,7 +312,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
     const shown = filterApprovals(approvals, applied);
     body = shown.length
       ? <IFS.ApprovalChain className="ifs-activity-panel__list" steps={shown.map(s => ({ ...s, actions: false }))} />
-      : <IFS.EmptyState cause="no-results" size="section" icon={null} heading="No results found" body="You might be looking for"
+      : <IFS.EmptyState cause="no-results" size="section" icon={null} heading={`No results for “${applied}”`} body="You might be looking for"
           suggestions={['Who has approved so far?', 'Show me all the approvals', 'Which reviewers approved?']} onSuggestion={s => { setQ(s); setApplied(s); }} />;
   }
 
@@ -321,7 +321,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
       role={layout === 'static' ? undefined : 'dialog'} aria-label={title}>
       <IFS.Panel title={title} showEvidence={false}>
         {hasApprovals && <IFS.SegmentedControl size="s" fullWidth value={tab} onChange={v => setCur(v)}
-          options={[{ value: 'versions', label: 'Version History' }, { value: 'approvals', label: 'Approval Chain' }]} />}
+          options={[{ value: 'versions', label: 'Version history' }, { value: 'approvals', label: 'Approval chain' }]} />}
         <IFS.SmartSearch width="100%" className="ifs-activity-panel__search" value={q}
           onChange={v => { setQ(v); if (!v) setApplied(''); }} onSubmit={v => setApplied(v)} onClear={() => setApplied('')}
           placeholder={tab === 'versions' ? 'Ask anything about version history' : 'Ask anything about approval chain'}

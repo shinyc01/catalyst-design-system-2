@@ -228,11 +228,12 @@ function MultiSelect(props) { return <SelectBase {...props} multi={true} />; }
 // Figma: signle-combobox-organism (3375:5415). Type to filter.
 // Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder, iconLeft, clearable, loading, error,
 // disabled, listPosition, listTitle ("Suggested", shown before typing), resultsTitle ("Results", while typing),
-// emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query),
+// emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query;
+// emptyTitle defaults to No results for “<query>”, rule 8.51),
 // filter(option, query), state. While loading and open, the list shows Figma's "Searching..." panel.
 function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder = 'Search item', iconLeft, clearable = true,
   loading, error, disabled, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's',
-  emptyTitle = 'No results found', emptyText = 'You might be looking for', suggestions = [], state, className, style, id,
+  emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id,
   filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest }) {
   const all = useMemo(() => options.map(norm), [options]);
   const [val, setVal] = useControlled(value, defaultValue, onChange);
@@ -266,11 +267,11 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
           onChange={e => { setQuery(e.target.value); dd.setOpen(true); dd.setActive(-1); }}
           onKeyDown={onKeyDown} {...rest} />} />
       {dd.isOpen && <Floating anchorRef={rootRef} floatRef={floatRef} position={listPosition}>{loading
-        ? <div className={cx('ifs-select__list', `ifs-select__list--${listPosition}`)} role="status"><div className="ifs-select__searching">Searching...</div></div>
+        ? <div className={cx('ifs-select__list', `ifs-select__list--${listPosition}`)} role="status"><div className="ifs-select__searching">Searching…</div></div>
         : <OptionList id={listId} opts={opts} isSelected={o => o.value === val} active={dd.active} onPick={pick}
           listPosition={listPosition} listSize={listSize} listTitle={opts.length ? (query ? resultsTitle : listTitle) : null} listRef={listRef}
           empty={<div className="ifs-select__empty-state" role="status">
-            <div className="ifs-select__empty-title">{emptyTitle}</div>
+            <div className="ifs-select__empty-title">{emptyTitle || (query ? `No results for “${query}”` : 'No matches')}</div>
             {suggestions.length > 0 && <div className="ifs-select__empty-body">
               <div className="ifs-select__empty-text">{emptyText}</div>
               <div className="ifs-select__empty-chips">{suggestions.map(t => <Chip key={t} tabIndex={-1} onClick={e => { e.preventDefault(); setQuery(t); dd.setActive(-1); }}>{t}</Chip>)}</div>

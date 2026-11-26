@@ -82,10 +82,10 @@ function TextArea({ size = 'l', label, hint, description, error, disabled, iconL
 }
 
 // Figma: search-regular-organism (153:63462)
-// Props: placeholder (default "Search for..."), value / defaultValue / onChange(value, event), onSearch(value) on Enter,
+// Props: placeholder (default "Search"; screens name what it searches, "Search investments", rule 8.46), value / defaultValue / onChange(value, event), onSearch(value) on Enter,
 // filter (Figma Filter boolean → filter icon button; onFilter called on click), disabled, state hover|focus (gallery only).
 // A clear (×) button appears once there is text; Escape also clears.
-function Search({ placeholder = 'Search for...', value, defaultValue = '', onChange, onSearch, filter, onFilter, disabled, state, className, style, ...rest }) {
+function Search({ placeholder = 'Search', value, defaultValue = '', onChange, onSearch, filter, onFilter, disabled, state, className, style, ...rest }) {
   const [val, setVal] = useFormsValue(value, defaultValue, onChange);
   const ref = React.useRef(null);
   const filled = val !== '' && val != null;

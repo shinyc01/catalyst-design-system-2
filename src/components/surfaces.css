@@ -19,8 +19,9 @@
 .ifs-tooltip--grey{--tt-fill:var(--color-surface-elevation-2)}
 .ifs-tooltip__body{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-50) var(--space-200);
   border-radius:var(--radius-control);background:var(--tt-fill);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));
-  color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking); /* Body/M/regular */ white-space:nowrap}
-.ifs-tooltip__hotkey{color:var(--color-text-softer)} /* hotkey-atom; G2 #9: live text, not disabled */
+  color:var(--color-text);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking); /* Body/M/regular */
+  white-space:normal;overflow-wrap:break-word;text-align:start /* rule 8.48: 1–2 sentences wrap inside the 20rem bubble */}
+.ifs-tooltip__hotkey{flex:none;white-space:nowrap;color:var(--color-text-softer)} /* hotkey-atom; G2 #9: live text, not disabled */
 .ifs-tooltip__arrow{flex:none;width:8.6px;height:5px;background:var(--tt-fill);clip-path:polygon(0 0,100% 0,50% 100%);
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 /* Figma Type = side the arrow is on. Arrow = where along that side (8px inset). */

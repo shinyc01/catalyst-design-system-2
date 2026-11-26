@@ -121,7 +121,7 @@ function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = '
         <span className="ifs-smart-search__lead">
           <IFS.Icon name="cooper-system-icon" variant="Smart search" size={16} />
           <input ref={input} type="text" className="ifs-smart-search__input" disabled={disabled} value={val}
-            placeholder={isListening ? '...' : placeholder} aria-label={ariaLabel || placeholder} aria-keyshortcuts={keyshortcut}
+            placeholder={isListening ? '…' : placeholder} aria-label={ariaLabel || placeholder} aria-keyshortcuts={keyshortcut}
             role="combobox" aria-expanded={showList} aria-controls={showList ? listId : undefined} aria-autocomplete="list"
             onFocus={() => { setKbd(ptKeyboard); setOpen(true); }} onBlur={() => setKbd(false)}
             onChange={e => { setVal(e.target.value); setOpen(true); setActive(-1); }} onKeyDown={onKeyDown} {...rest} />
@@ -349,7 +349,7 @@ function ColumnSettings({ columns = [], onChange, suggestions = [], onAdd, findC
   return (
     <div className={ptCx('ifs-column-settings', className)}>
       <SmartSearch width="100%" placeholder="Find a suitable column by description" value={q} onChange={v => { setQ(v); if (!v) setFound(null); }} onSubmit={run} onClear={() => setFound(null)} />
-      {searching ? <div className="ifs-data-table__searching">Searching...</div> : <>
+      {searching ? <div className="ifs-data-table__searching">Searching…</div> : <>
         {!found && <>
           <div className="ifs-column-settings__label">Shown in table</div>
           <div className="ifs-column-settings__list" ref={listRef}>
@@ -655,13 +655,13 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
     // default options are the values present in the table's rows (Figma: statuses / creators with zero items are not shown)
     options = options.slice(0, filterCol.maxChips || 8); // a small categorical set; smart search covers the rest
     const nums = data.map(r => Number(valOf(filterCol, r))).filter(n => !isNaN(n));
-    const presets = [{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This Year' }];
+    const presets = [{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This year' }];
     return (
       <div ref={filterRef} className="ifs-data-table__filter-pop" style={{ /* ltr: column filter placed from getBoundingClientRect */ left: Math.max(0, openFilter.left), top: openFilter.top }}>
         <ColumnFilter title="Filter"
           options={fk === 'range' ? [] : fk === 'presets' ? (filterCol.filterOptions || presets) : options}
           multiple={fk !== 'presets'} value={f.values || []} onChange={v => setFilter(k, { values: v })}
-          search={fk === 'search-chips' ? { placeholder: filterCol.searchPlaceholder || 'Search by name, role...' } : undefined}
+          search={fk === 'search-chips' ? { placeholder: filterCol.searchPlaceholder || 'Search by name or role' } : undefined}
           period={fk === 'presets' || fk === 'chips+period' ? { value: f.period || null, onChange: p => setFilter(k, { period: p }) } : undefined}
           range={fk === 'range' ? { value: f.range || { from: null, to: null }, onChange: v => setFilter(k, { range: v }), step: filterCol.step || 1,
             min: nums.length ? Math.min(...nums) : undefined, max: nums.length ? Math.max(...nums) : undefined } : undefined}
@@ -685,17 +685,17 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
 
   let body;
   if (loading) body = <IFS.Table columns={tableCols.map(c => ({ ...c, render: () => <IFS.Skeleton width={c.name ? '50%' : '60%'} height={12} />, filter: undefined }))} rows={[1, 2, 3, 4, 5].map(i => ({ [rowKey]: `sk${i}` }))} rowKey={rowKey} />;
-  else if (searching) body = <div className="ifs-data-table__searching" role="status">Searching...</div>;
-  else if (noSearchMatch) body = <IFS.EmptyState cause="no-results-similar" heading="No results found" body="You might be looking for" suggestions={search.noResults || []}
+  else if (searching) body = <div className="ifs-data-table__searching" role="status">Searching…</div>;
+  else if (noSearchMatch) body = <IFS.EmptyState cause="no-results-similar" heading={`No results for “${applied}”`} body="You might be looking for" suggestions={search.noResults || []}
     onSuggestion={l => runSearch(l)} />;
   else body = (
     <div className="ifs-data-table__table" ref={tableRef}>
       <IFS.Table columns={tableCols} rows={rowsShown} rowKey={rowKey} sort={sort} onSortChange={onSortChange} selectedId={previewId}
         rowProps={drag ? r => (r[rowKey] === drag.id ? { className: 'ifs-data-table__row--dragged' } : null) : undefined}
         onRowClick={onOpen ? r => { if (editing) return; clearTimeout(clickTimer.current); clickTimer.current = setTimeout(() => onOpen(r), 220); } : undefined} />
-      {noFilterMatch && <div className="ifs-data-table__empty"><IFS.EmptyState cause="no-results" heading="No results found" body="Try a different term, or clear filters to see everything."
+      {noFilterMatch && <div className="ifs-data-table__empty"><IFS.EmptyState cause="no-results" heading="No matches for these filters" body="Try a different term, or clear filters to see everything."
         primaryAction={{ label: 'Clear filters', type: 'secondary', onClick: clearFilters }} /></div>}
-      {!noFilterMatch && ordered.length === 0 && <div className="ifs-data-table__empty"><IFS.EmptyState cause="empty-container" heading={emptyText || 'Nothing here yet'} /></div>}
+      {!noFilterMatch && ordered.length === 0 && <div className="ifs-data-table__empty"><IFS.EmptyState cause="empty-container" heading={emptyText || 'No items yet'} /></div>}
       {progressive && visible < ordered.length && <div ref={sentinel}>{loadingMore && <IFS.LoadingMore />}</div>}
     </div>
   );
@@ -721,7 +721,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
   );
   const settings = configurable && (
     <IFS.Drawer open={settingsOpen} onOpenChange={setSettingsOpen} title="Columns" collapsible={false} overlay="base" className="ifs-data-table__drawer"
-      subtitle="You can add, drag, or toggle column visibility in your table.">
+      subtitle="Add, reorder, or hide columns.">
       <ColumnSettings columns={cols.filter(c => c.key)} onChange={setCols} suggestions={(configurable.suggestions || []).filter(s => !cols.some(c => c.key === s.key))}
         onAdd={s => { setCols(cs => [...cs, { ...s }]); setAdded(a => ({ ...a, [s.key]: true })); setTimeout(() => setAdded(a => ({ ...a, [s.key]: false })), 1400); }} />
     </IFS.Drawer>

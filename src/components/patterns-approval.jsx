@@ -79,7 +79,7 @@ const IVI_LEGEND = [
 // ticks (axis count, default 6), legend = Legend items [{ label, color, value }] (false hides), button (DataVizHeader right button),
 // format(bin) → tooltip text, onBinClick(bin, i).
 function InvestmentValueImpact({ title = 'Investment value impact', metrics = IVI_METRICS,
-  description = "Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.",
+  description = "Value change measured as % of each investment’s total value (NPV) under the proposed framework, compared with the current one.",
   bins = IVI_BINS, max = 250, ticks = 6, legend = IVI_LEGEND, button, format, onBinClick, className, ...rest }) {
   const axis = Array.from({ length: ticks }, (_, i) => Math.round(max - (max / (ticks - 1)) * i));
   const tip = b => (format ? format(b) : `${b.label}: ${b.value} investments`);
@@ -338,14 +338,14 @@ function ApcNote({ row, canAdd, canEdit, editing, onStartEdit, onSave, onCancel,
 //     note: { text, authorId } | null, comment, lastNotified, pushedAt (ms), replaced: { name, avatar } (previous reviewer), action: { label, icon, onClick } }]
 //   currentUserId (adds "(You)", decides note rights), ownerId (the investment owner; owner = currentUserId === ownerId),
 //   view compact | full, details (full view: force the COMMENT / LAST NOTIFIED / action columns; default = when any row has that data), filterable (default: more than 3 approvers), onPush(approver) (owner's manual reminder on an awaiting row:
-//   shows the "Reminder sent." toast, stamps Last notified, then "Notified" + live countdown tooltip for pushCooldownHours, default 24),
+//   shows the "Reminder sent" toast, stamps Last notified, then "Notified" + live countdown tooltip for pushCooldownHours, default 24),
 //   onNoteChange(approver, note|null, previous).
 //   stages (Nov 20, several approval stages on one page): [{ id, label, approvers, locked, note, collapsed }] instead of approvers;
 //     onStagesChange(stages). Built on the Table's groups: one group row per stage (caret, name, status + done/total at the end),
 //     the column header under each open stage; locked = a lock, can't open, `note` says when it opens. Which stage is open, folded or
 //     locked is the screen's call (stages don't have to run one after another). A fully approved stage starts folded.
 // Rules built in (Figma notes): approvers add a note to their own row; the owner adds a note to any approver's row; only a
-// note's author can edit or delete it; the filter applies live (state chips + name/role search, Clear all, "No results found").
+// note's author can edit or delete it; the filter applies live (state chips + name/role search, Clear all, "No matches for these filters").
 function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages, onStagesChange, currentUserId, ownerId, view = 'compact', details, filterable,
   onPush, onNoteChange, pushCooldownHours = 24, className, ...rest }) {
   // Stages: the approvers of every stage in one list (each tagged with its stage), split back into stages on change
@@ -425,7 +425,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages
   const columns = [
     { key: 'status', title: <span className="ifs-sr-only">Status</span>, type: 'custom', width: 'calc(var(--size-32) + 2 * var(--space-table-x))',
       render: r => <ApprovalStatus type={r.status === 'revisions' ? 'rejected' : (r.status || 'empty')} /> },
-    { key: 'user', title: 'User', type: 'user-description', primary: true,
+    { key: 'user', title: 'Person', type: 'user-description', primary: true,
       filter: showFilter ? { applied: active > 0, onClick: toggleFilter } : undefined,
       render: r => <>
         {r.replaced && <span className="ifs-apc__replaced">
@@ -459,7 +459,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages
                 </IFS.Tooltip>
               : <IFS.IconButton type="secondary" size="s" icon="system-notification" label={`Push ${r.name}`}
                   onClick={() => { const at = Date.now(); setNow(at); update(r.id, { pushedAt: at, lastNotified: new Date(at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) });
-                    IFS.toast({ title: 'Reminder sent.', description: `You can push again in ${pushCooldownHours}h.` }); onPush && onPush(r); }} />)}
+                    IFS.toast({ title: 'Reminder sent', description: `You can send another in ${pushCooldownHours} hours.` }); onPush && onPush(r); }} />)}
             {r.action && <IFS.Button type="secondary" size="s" iconLeft={r.action.icon} onClick={() => r.action.onClick && r.action.onClick(r)}>{r.action.label}</IFS.Button>}
           </>;
         } },
@@ -476,17 +476,17 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages
           if (st.locked) return { locked: true, note: st.note, end: null };
           const all = list.filter(r => r.stage === st.id), done = all.filter(r => r.status === 'success').length;
           const rejected = all.some(r => r.status === 'rejected' || r.status === 'revisions');
-          const state = rejected ? ['red', 'Changes requested'] : done === all.length && all.length ? ['green', 'Approved'] : ['orange', 'Under review'];
+          const state = rejected ? ['red', 'Needs revision'] : done === all.length && all.length ? ['green', 'Approved'] : ['orange', 'Under review'];
           return { note: st.note, end: <span className="ifs-apc__stage-end"><IFS.Indicator type={state[0]}>{state[1]}</IFS.Indicator><IFS.Counter>{`${done}/${all.length}`}</IFS.Counter></span> };
         }} />
         : <IFS.Table columns={columns} rows={rows} aria-label="Approval chain" />}
-      {rows.length === 0 && <IFS.EmptyState cause="no-results" size="section" heading="No results found" body="Try another name or state." />}
+      {rows.length === 0 && <IFS.EmptyState cause="no-results" size="section" heading="No matches for these filters" body="Try another name or state." />}
       {filterAt && <div ref={popRef} className="ifs-apc__filter-pop" style={{ insetInlineStart: `${Math.max(0, filterAt.start)}px`, insetBlockStart: `calc(${filterAt.top}px + var(--space-100))` }}
         onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); closeFilter(true); } }}>
         <IFS.Popover inline width={240} title="Filter" count={active || undefined} showClose={false}>
           <div className="ifs-apc__filter">
             {active > 0 && <span className="ifs-apc__filter-clear"><IFS.Button type="ghost" size="s" onClick={() => { setQuery(''); setStates([]); }}>Clear all</IFS.Button></span>}
-            <IFS.Search placeholder="Search by name, role..." value={query} onChange={v => setQuery(v)} />
+            <IFS.Search placeholder="Search by name or role" value={query} onChange={v => setQuery(v)} />
             <div className="ifs-apc__chips" role="group" aria-label="Approval state">
               <IFS.Chip selected={!states.length} onChange={() => setStates([])}>All</IFS.Chip>
               {APC_STATES.map(s => <IFS.Chip key={s.value} selected={states.includes(s.value)}

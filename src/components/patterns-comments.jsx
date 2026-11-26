@@ -164,7 +164,7 @@ function searchComments(threads = [], query = '') {
 // onFilterChange ('unresolved' | 'resolved'), selectedId, onOpen(thread), onResolve(thread), onUnresolve(thread),
 // onCopyLink(thread), onClose, currentUser (marks "(you)"), search(threads, query) (default searchComments), style, className.
 // Empty states (EmptyState, section): all resolved → "All comments have been resolved / Ready to proceed to review.";
-// search without match → "No results found" + "You might be looking for" chip; nothing resolved yet → inferred copy.
+// search without match → No results for “<query>” + "You might be looking for" chip; nothing resolved yet → inferred copy.
 function CommentsPanel({ threads = [], filter, defaultFilter = 'unresolved', onFilterChange, selectedId, onOpen, onResolve, onUnresolve,
   onCopyLink, onClose, currentUser = { name: 'You' }, search = searchComments, className, style }) {
   const [view, setView] = useCmValue(filter, defaultFilter, onFilterChange);
@@ -181,7 +181,7 @@ function CommentsPanel({ threads = [], filter, defaultFilter = 'unresolved', onF
   const first = t => t.comments[0] || {};
   let empty = null;
   if (!results.length) {
-    if (query) empty = <IFS.EmptyState cause="no-results-similar" icon={null} heading="No results found" body={suggestion ? 'You might be looking for' : undefined}
+    if (query) empty = <IFS.EmptyState cause="no-results-similar" icon={null} heading={`No results for “${query}”`} body={suggestion ? 'You might be looking for' : undefined}
       suggestions={suggestion ? [suggestion] : undefined} onSuggestion={run} />;
     else if (view === 'unresolved') empty = <IFS.EmptyState cause="all-done" icon={null} heading="All comments have been resolved" body="Ready to proceed to review." />;
     else empty = <IFS.EmptyState cause="empty-container" icon={null} heading="No resolved comments" body="Resolved threads are listed here." />;

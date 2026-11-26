@@ -278,9 +278,9 @@ function CooperMessage({ status = 'answered', step, reasoning = [], reasoningOpe
           <div className="ifs-cooper-msg__list">{followUps.map(f => <ChatLink key={f} onClick={() => onFollowUp && onFollowUp(f)}>{f}</ChatLink>)}</div>
         </div>}
       </div>}
-      {status === 'stopped' && statusLine('Request was interrupted by the user.', stoppedEarly ? onRetry : onRegenerate, stoppedEarly ? 'Try again' : 'Regenerate')}
-      {status === 'error' && statusLine('Something went wrong on our side', onRetry)}
-      {status === 'offline' && statusLine('Connection lost', onRetry)}
+      {status === 'stopped' && statusLine('You stopped this answer.', stoppedEarly ? onRetry : onRegenerate, stoppedEarly ? 'Try again' : 'Regenerate')}
+      {status === 'error' && statusLine('Cooper couldn’t finish this answer.', onRetry)}
+      {status === 'offline' && statusLine('You’re offline. Cooper will answer when you reconnect.', onRetry)}
     </div>
   );
 }
@@ -299,7 +299,7 @@ function ChatCollapsedBar({ type = 'voice', value, defaultValue = '', onChange, 
   const multi = content.length > 32 || content.includes('\n');
   const send = () => { if (!text.trim()) return; onSend && onSend(text.trim()); setText(''); };
   const field = type === 'text'
-    ? <textarea rows={multi ? 2 : 1} className="ifs-chat-bar__field" value={text} placeholder="Write anything, I’m reading" aria-label="Message Cooper" autoFocus={autoFocus}
+    ? <textarea rows={multi ? 2 : 1} className="ifs-chat-bar__field" value={text} placeholder="Ask Cooper" aria-label="Message Cooper" autoFocus={autoFocus}
         onChange={e => setText(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }} />
     : <span className={IFS.cx('ifs-chat-bar__listen', speech && 'ifs-chat-bar__listen--speech')} aria-live="polite">{speech || 'Say anything, I’m listening'}</span>;
   const end = (
@@ -357,7 +357,7 @@ function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children,
             ? <VoiceMessageInput state={analyzing ? 'analyzing' : speech ? 'speaking' : 'default'} onAttach={onAttach} onKeyboard={() => onTypeChange && onTypeChange('text')} onStop={onStop} />
             : <TextMessageInput value={inputValue} onChange={onInputChange} onSend={onSend} analyzing={analyzing} onStop={onStop} onAttach={onAttach}
                 onVoice={() => onTypeChange && onTypeChange('voice')} attachments={attachments} onRemoveAttachment={onRemoveAttachment}
-                placeholder={placeholder || (newChat && showEmpty ? 'Write anything, I’m reading' : 'Ask a follow-up')} />}
+                placeholder={placeholder || (newChat && showEmpty ? 'Ask Cooper' : 'Ask a follow-up')} />}
         </div>
       </div>
     </section>
@@ -590,7 +590,7 @@ function HistorySearch({ chats = [], query, defaultQuery = '', onQueryChange, on
         <Btn icon="system-close" label="Close search" size="s" tip={false} onClick={onClose} />
       </div>
       <div className="ifs-history-search__list">
-        {hits.length === 0 && <IFS.EmptyState cause="no-results" heading="No results found" body="Try a different word or check the spelling." />}
+        {hits.length === 0 && <IFS.EmptyState cause="no-results" heading={q.trim() ? `No results for “${q.trim()}”` : 'No chats yet'} body={q.trim() ? 'Try a different word or check the spelling.' : undefined} />}
         {groups.map(([g, label]) => {
           const list = hits.filter(c => (c.group || 'earlier') === g);
           return list.length ? <React.Fragment key={g}><div className="ifs-history__date">{label}</div>
@@ -682,9 +682,10 @@ function RecommendationItem({ title, description, impact = [], expanded, default
   );
 }
 
-// One recommendation in Shape mode (Figma "Shape mode expanded" 67:108940): Back, title, description, impact, Decline / Do it.
-// Props: title, description, impact, onBack, onDecline, onApply.
-function RecommendationDetail({ title, description, impact = [], onBack, onDecline, onApply }) {
+// One recommendation in Shape mode (Figma "Shape mode expanded" 67:108940): Back, title, description, impact, Decline / the change.
+// Props: title, description, impact, onBack, onDecline, onApply, applyLabel (the confirm button names the change, rule 8.60:
+// default the title, written as verb + object, "Add reliability model"; never "Do it" or "Apply").
+function RecommendationDetail({ title, description, impact = [], onBack, onDecline, onApply, applyLabel }) {
   return (
     <div className="ifs-rec-detail">
       {onBack && <span><IFS.Button type="ghost" size="s" iconLeft="arrow-left" onClick={onBack}>Back</IFS.Button></span>}
@@ -693,7 +694,7 @@ function RecommendationDetail({ title, description, impact = [], onBack, onDecli
       <RecommendationImpact rows={impact} />
       <div className="ifs-cooper-msg__buttons" style={{ paddingTop: 'var(--space-100)' }}>
         <IFS.Button type="tertiary" onClick={onDecline}>Decline</IFS.Button>
-        <IFS.Button type="secondary" onClick={onApply}>Do it</IFS.Button>
+        <IFS.Button type="secondary" onClick={onApply}>{applyLabel || title}</IFS.Button>
       </div>
     </div>
   );
@@ -708,7 +709,7 @@ const STRATEGY_ANSWER = {
     'Cross-referenced your current network state with 31 external benchmarks from utilities operating in similar geographic and load conditions',
     'Executed 4 simulation scenarios (Balanced, Cost-Sensitive, Aggressive Maintenance, and Full Load Redistribution) and performed multi-objective optimization',
   ],
-  text: 'Your Strategy Framework is in good shape overall. Coverage across all three Enterprise Goals is strong, and 18 of 21 value models are up to date. Two areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and two measures still have no owner.',
+  text: 'Your strategy framework is in good shape overall. Coverage across all three enterprise goals is strong, and 18 of 21 value models are up to date. Two areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and two measures still have no owner.',
   scenarios: {
     title: 'Saved scenarios', aside: 'Capture · Recent Activity',
     cards: [
@@ -742,7 +743,7 @@ const genericAnswer = q => ({
 // fullInset (space around the full panel; default the page margin, the same inset as Explore's map tools, rule 13.3; Nov 20), title / defaultTitle / onTitleChange, onNewChat,
 // apiRef receives { send(question), setSize(size) } — e.g. bottom-sheet prompt chips send straight into the chat.
 function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultMode = 'voice', onModeChange, messages, defaultMessages = [], onMessagesChange,
-  answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'],
+  answer, prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don’t act?'],
   onHistory, historyOpen, renderPanel, speed = 40, position /* ltr: prop keys {right, bottom}; applied as inset-inline-end */, fullInset = 'var(--float-inset)', title, defaultTitle = 'New chat', onTitleChange, onNewChat, apiRef, className }) {
   const [sz, setSz] = useCtl(size, defaultSize, onSizeChange);
   // C4 (Nov 23): the orb turns into the chat. While the chat is open the orb and the prompt chips hide (display, not visibility,
@@ -966,7 +967,7 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
           : <div className="ifs-history__empty">No folders yet. Create one from the Folders menu.</div>}</div>
       </>, 'Move', () => { if (moveTo) { upd(modalIds, { folder: moveTo }); setModal(null); endSelect(); } })}
       {modal && modal.kind === 'createFolder' && confirm('Create folder', <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-stack)' }}>
-        <IFS.TextField label="Folder name" placeholder="e.g. Strategy" value={newFolder.name} onChange={v => setNewFolder({ ...newFolder, name: v })} autoFocus />
+        <IFS.TextField label="Folder name" placeholder="Strategy" value={newFolder.name} onChange={v => setNewFolder({ ...newFolder, name: v })} autoFocus />
         <IFS.IconPicker value={newFolder.icon} onChange={v => setNewFolder({ ...newFolder, icon: v })} columns={7} label="Folder icon" bare />
       </div>, 'Create', () => { if (!newFolder.name.trim()) return; setFols([...fols, { id: 'f' + Date.now(), name: newFolder.name.trim(), icon: newFolder.icon }]); setModal(null); })}
     </>
@@ -974,7 +975,7 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
 }
 
 // CooperRecommendations — the recommendation flow (pattern component; Patterns "Recommendation" 67:108295).
-// List grouped by framework column → Shape walks through them one by one (detail: Decline / Do it) → Do it shows
+// List grouped by framework column → Shape walks through them one by one (detail: Decline / the named change) → confirming shows
 // "Working on it…" then confirms and moves to the next → all applied closes the window. Decline removes one from the queue;
 // Decline all dismisses the queue. Every recommendation is also saved as a chat in the Recommendations smart folder.
 // Props: recommendations / defaultRecommendations / onRecommendationsChange ([{ id, group, title, description, impact }]),
@@ -987,15 +988,15 @@ function CooperRecommendations({ recommendations, defaultRecommendations = [], o
   const timer = React.useRef();
   React.useEffect(() => () => clearTimeout(timer.current), []);
   const groups = [...new Set(recs.map(r => r.group))];
-  const intro = note || `I’ve found ${recs.length} recommendation${recs.length === 1 ? '' : 's'} that could meaningfully improve how investments are evaluated, prioritized, and aligned with organizational goals.`;
+  const intro = note || `I found ${recs.length} recommendation${recs.length === 1 ? '' : 's'} for how investments are evaluated, prioritized, and aligned with your goals.`;
   const remove = r => { const next = recs.filter(x => x.id !== r.id); setRecs(next); return next; };
-  const finish = () => { setMode('done'); setNote('All selected recommendations have been applied successfully, enhancing modeling accuracy, risk visibility, and alignment with strategic goals.'); timer.current = setTimeout(() => onDone && onDone(), speed * 2.5); };
+  const finish = () => { setMode('done'); setNote('I made all the recommended changes.'); timer.current = setTimeout(() => onDone && onDone(), speed * 2.5); };
   const apply = r => {
     setMode('applying'); onApply && onApply(r);
     timer.current = setTimeout(() => {
       const next = remove(r);
       if (!next.length) return finish();
-      setNote(`I’ve added ${r.title.replace(/^Add /, '').toLowerCase()}. Let’s go to the next recommendations.`); setMode('list'); setCur(next[0].id);
+      setNote(`I added ${r.title.replace(/^Add /, '').toLowerCase()}. ${next.length} more to review.`); setMode('list'); setCur(next[0].id);
     }, speed);
   };
   const decline = r => { onDecline && onDecline(r); const next = remove(r); if (!next.length) { onClose && onClose(); return; } setCur(next[0].id); };

@@ -412,12 +412,12 @@ const EXTRAS_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // fields = [{ name, label, type text|email|password|phone|textarea|select, placeholder, hint, description, options (select),
 //   defaultValue, validate(value, values) → message | undefined, requiredMessage }],
 // children (extra body content after the fields), values / defaultValues / onValuesChange(values),
-// primaryAction = { label } (submit), secondaryAction = { label, onClick }, footer (node replacing the actions),
+// primaryAction = { label } (submit; pass the verb + object, rule 8.10: "Send for approval", "Create scenario"; no "Submit" default, the label falls back to "Save"), secondaryAction = { label, onClick }, footer (node replacing the actions),
 // onSubmit(values, event) — only called when everything is valid, validate(values) → { name: message } (extra form checks),
 // error (form-level message, e.g. rejected credentials), loading (field skeletons, actions disabled),
 // submitting (primary spinner, form locked), size of fields (l|m, default l), className, style.
 function FormCard({ title, description, action, divider, fields = [], children, values, defaultValues, onValuesChange,
-  primaryAction = { label: 'Submit' }, secondaryAction, footer, onSubmit, validate, error, loading, submitting, fieldSize = 'l',
+  primaryAction = { label: 'Save' }, secondaryAction, footer, onSubmit, validate, error, loading, submitting, fieldSize = 'l',
   className, style, ...rest }) {
   const uid = React.useId().replace(/:/g, '');
   const init = React.useMemo(() => Object.fromEntries(fields.map(f => [f.name, (defaultValues && defaultValues[f.name]) ?? f.defaultValue ?? (f.type === 'select' ? null : '')])), []);
@@ -505,7 +505,7 @@ function FormCard({ title, description, action, divider, fields = [], children, 
           {footer || <>
             {secondaryAction && <IFS.Button type="tertiary" size="l" disabled={loading} onClick={secondaryAction.onClick}>{secondaryAction.label}</IFS.Button>}
             {primaryAction && <IFS.Button type="primary" size="l" disabled={loading}
-              loading={submitting} onClick={submit}>{primaryAction.label}</IFS.Button>}
+              loading={submitting} onClick={submit}>{primaryAction.label || 'Save'}</IFS.Button>}
           </>}
         </div>
       )}

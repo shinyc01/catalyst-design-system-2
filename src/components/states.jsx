@@ -226,10 +226,10 @@ function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true
     leftSide = (
       <div className="ifs-bottom-sheet__left">
         <div className="ifs-bottom-sheet__context">
-          <span className="ifs-bottom-sheet__context-title">Cooper's Context</span>
+          <span className="ifs-bottom-sheet__context-title">Cooper’s context</span>
           {inProgress && (
             <div className="ifs-coverage">
-              <IFS.ProgressBar value={coverage} label="Cooper's context coverage" />
+              <IFS.ProgressBar value={coverage} label="Cooper’s context coverage" />
               <span className="ifs-coverage__value">{Math.round(coverage)}%</span>
             </div>
           )}

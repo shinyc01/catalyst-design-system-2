@@ -442,7 +442,7 @@ function Popover({ trigger, open, defaultOpen, onOpenChange, align = 'start', ti
       {(search || onFilter) && <div className="ifs-popover__tools">
         {search && <label className="ifs-popover__search">
           <IFS.Icon name="system-search" size={12} />
-          <input ref={searchInput} type="search" value={q} placeholder={typeof search === 'string' ? search : 'Search for...'}
+          <input ref={searchInput} type="search" value={q} placeholder={typeof search === 'string' ? search : 'Search'}
             aria-label={typeof search === 'string' ? search : 'Search'} onChange={e => setQ(e.target.value)}
             onKeyDown={e => { if (e.key === 'Escape' && q) { e.stopPropagation(); setQ(''); } }} />
           {q && <IFS.IconButton icon="system-close" label="Clear search" type="ghost" size="s" className="ifs-popover__clear"
