@@ -86,7 +86,7 @@ const Group = ({ title, note, children, open = true }) => (
 );
 const cell = { padding: 'var(--space-200) var(--space-300)', borderBottom: 'var(--border-width-100) solid var(--color-border-soft)', textAlign: 'start', verticalAlign: 'middle' };
 const Table = ({ head, rows }) => (
-  <div style={{ overflowX: 'auto' }}>
+  <div style={{ overflowX: 'auto' }} tabIndex={0} role="region" aria-label="Token table">
     <table style={{ borderCollapse: 'collapse', width: '100%', tableLayout: 'fixed' }}>
       <thead><tr>{head.map((h, i) => <th key={i} className="t-label-m-medium" style={{ ...cell, color: 'var(--color-text-soft)' }}>{h}</th>)}</tr></thead>
       <tbody>{rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j} className={j === 0 ? 't-code-m-regular' : 't-body-m-regular'} style={cell}>{c}</td>)}</tr>)}</tbody>

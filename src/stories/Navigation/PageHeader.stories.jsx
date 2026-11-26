@@ -9,7 +9,7 @@ export default {
   component: IFS["PageHeader"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** page-header (1588:1971)\n\n\nUse: The thin header inside one entity (rules 12.1, 12.3)." } },
+    docs: { description: { component: "**Figma:** page-header (1588:1971)\n\n\nUse: The thin header inside one entity (rules 12.1, 12.3).\n\nNotes: `onBack` + `backLabel` (2.0.7, default \"Back\"): the back button goes up one level and is named for where it goes, \"Back to {parent}\"; the name is also its tooltip (rule 14.1). An icon-only `views` switch is named by the header (group \"View\", each option from its icon or label)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1588-1971"},
     
   },

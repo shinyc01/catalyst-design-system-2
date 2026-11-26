@@ -7,7 +7,8 @@
 .ifs-dv-bar--out-of-focus{filter:var(--effect-data-viz-dim)} /* D5: hover keeps the full colour, the others darken (never transparent) */
 .ifs-dv-bar--background{background:var(--color-background-neutral-soft)}
 .ifs-dv-bar .ifs-dv-value--primary{color:var(--dv-ink,var(--color-text))} /* G2 #18: white or black by contrast with the bar (DataVizBar) */
-.ifs-dv-bar--out-of-focus .ifs-dv-value{color:var(--color-text-softer)} /* A11Y M1: only the mark dims; its text stays readable (4.5:1) */
+.ifs-dv-bar--out-of-focus{filter:none;background:color-mix(in srgb,var(--dv-c) 45%,var(--color-background-accent-black-strong))} /* A11Y M1: only the fill darkens (as --effect-data-viz-dim, brightness .45), not its text */
+.ifs-dv-bar--out-of-focus .ifs-dv-value{color:var(--color-text)} /* white on the darkened fill (4.5:1 or more) */
 
 /* ================= grouped-bar-molecule (4457:37362) ================= */
 .ifs-dv-grouped{display:flex;box-sizing:border-box;gap:var(--space-50);padding:var(--space-50);border-radius:var(--radius-control);min-width:0}

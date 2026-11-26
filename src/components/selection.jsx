@@ -299,7 +299,7 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
         disabled={disabled} required={required} clearable={clearable} state={state} onClear={() => { setVal(null); setQuery(null); }}
         onClick={() => { if (!disabled) { inputRef.current && inputRef.current.focus(); if (!dd.isOpen) dd.open(); } }}
         input={<input ref={inputRef} className="ifs-select__input" value={text} placeholder={placeholder} disabled={disabled}
-          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={dd.isOpen ? listId : undefined /* audit final L7: only while the list is in the page */} {...fld.aria} aria-required={required || undefined}
+          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={dd.isOpen && !loading ? listId : undefined /* audit final L7: only while the list is in the page (not while it shows Searching…) */} {...fld.aria} aria-required={required || undefined}
           aria-invalid={error ? true : undefined} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
           onChange={e => { setQuery(e.target.value); dd.setOpen(true); dd.setActive(-1); }}
           onKeyDown={onKeyDown} {...rest} />} />

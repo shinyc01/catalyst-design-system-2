@@ -9,7 +9,7 @@ export default {
   component: IFS["FileCard"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** file-card (1440:5465) (legacy)\n\n\nUse: An uploaded document." } },
+    docs: { description: { component: "**Figma:** file-card (1440:5465) (legacy)\n\n\nUse: An uploaded document.\n\n\nWith `onClick` (2.0.7, final audit M4) the open action is one button stretched over the card, the actions its siblings; the loading card is `role=\"img\"` (\"Loading {name}\")." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5465"},
     
   },

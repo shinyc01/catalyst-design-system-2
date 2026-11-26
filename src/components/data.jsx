@@ -73,7 +73,7 @@ function Avatar({ initials, name, type = 'black', src, size = 'm', status, state
   return (
     <span className={IFS.cx('ifs-avatar', `ifs-avatar--${size}`, `ifs-avatar--${t}`, className)} {...rest}>
       <Base className={IFS.cx('ifs-avatar__base', t === 'loading' && 'ifs-sk')} data-state={state} onClick={onClick} type={onClick ? 'button' : undefined}
-        role={onClick || t === 'loading' ? undefined : 'img'} aria-hidden={t === 'loading' && !onClick ? true : undefined} /* A11Y L10: the skeleton is hidden, LoadingRegion announces */
+        role={onClick || t === 'loading' || !(label || name || full) ? undefined : 'img'} aria-hidden={!onClick && (t === 'loading' || !(label || name || full)) ? true : undefined} /* A11Y L10: the skeleton is hidden, LoadingRegion announces; an avatar with no name at all is decoration */
         aria-label={t === 'loading' && !onClick ? undefined : label || name || full || undefined} title={onClick ? (label || name) : undefined}>
         {t === 'image' && src && <img className="ifs-avatar__img" src={src} alt="" />}
         <span className="ifs-avatar__overlay" />

@@ -134,3 +134,4 @@ button.ifs-vbar{cursor:pointer}
 /* G2 map pins and clusters, option B (Nov 25): neutral core 450 and danger 550 fills (above; white counts ≥ 4.5:1, pin ≥ 3:1 on the dark
    map); warning keeps its fill with a black count */
 .ifs-pin-dot--warning :is(.ifs-pin-dot__fill,.ifs-pin-dot__text){color:var(--color-icon-inverse)}
+.ifs-pin-dot--dimmed.ifs-pin-dot--warning :is(.ifs-pin-dot__fill,.ifs-pin-dot__text){color:var(--color-text)} /* A11Y M1: the darkened warning fill takes a white count (black was 1.6:1) */

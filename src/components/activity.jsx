@@ -442,7 +442,7 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
           <textarea ref={ref} rows={1} className="ifs-composer__input" value={text} placeholder={ph} disabled={disabled} autoFocus={autoFocus}
             aria-label={rest['aria-label'] || 'Comment'} role={mentionables ? 'combobox' : undefined} aria-autocomplete={mentionables ? 'list' : undefined}
             aria-expanded={mentionables ? open : undefined} aria-controls={mentionables && open ? listId : undefined}
-            aria-activedescendant={mentionables && open ? `${listId}-${ai}` : undefined} aria-multiline={mentionables ? true : undefined}
+            aria-activedescendant={mentionables && open ? `${listId}-${ai}` : undefined}
             onChange={e => setText(e.target.value)} onKeyDown={onKeyDown} />
           {!multi && buttons}
         </div>

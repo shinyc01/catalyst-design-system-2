@@ -9,7 +9,7 @@ export default {
   component: IFS["DataVizLine"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** line-atom (4440:32650)\n\n\nUse: Gridline / reference line; dashed for planned or median. Chart reference lines (budget cap, target, threshold) and forecasts: rule 10.13." } },
+    docs: { description: { component: "**Figma:** line-atom (4440:32650)\n\n\nUse: Gridline / reference line; dashed for reference lines and the forecast part of a line only (a plan on a line is a thin outlined line in the series colour, rule 10.13). Chart reference lines (budget cap, target, threshold) and forecasts: rule 10.13." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4440-32650"},
     
   },
