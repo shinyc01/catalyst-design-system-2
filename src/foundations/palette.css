@@ -427,39 +427,33 @@
 --palette-danger-500-alpha-40:rgba(238,60,59,0.4);
 --palette-warning-500-alpha-40:rgba(255,175,46,0.4);
 --palette-info-500-alpha-40:rgba(43,127,255,0.4);
-/* data-viz (2.0.6, D6 / D7, Nov 24). THE ONE PLACE TO SWAP THE CHART PALETTE: change the hexes here; roles in tokens.css point at them.
-   Categorical v2g (working palette, waiting for the user's confirmation; prototypes/phase1-prep/dataviz/D6-PALETTE-RESEARCH.md §3g):
-   12 colours, fixed order, dark L 0.55 / light L 0.85–0.87; the first 8 are pairwise distinct (normal and colour-blind).
-   Chroma (Nov 25, review): darks 0.095; lights lowered so they look as calm as lemon light (the reference, 0.095), because colourfulness rises
-   with lightness: lilac 0.072, teal light 0.064, sky 0.068, cyan light 0.072, pink light 0.072 (CAM16 M within 21–26 of lemon's 24). Lightness
-   kept. Checks: first-8 worst pair ΔE00 normal 17.1 → 13.9 (teal light / sky), protan 2.8 → 2.3, deutan 3.8 → 3.3, tritan 3.4 → 3.0; neighbours
-   and greyscale unchanged or better; lowest contrast on the card 3.79:1 (unchanged).
-   Slots 10–12 re-checked Nov 25: at this chroma the only hues clear of red, green, warning orange, Cooper copper and ≥ 29° from info blue and accent
-   purple are yellow (H 90–114), teal–azure (176–228) and pink–orchid (314–352), all used by 1–9. A search of every allowed hue (dark L 0.55, light
-   L 0.85–0.87) found nothing better: the best colour-blind option (orchid / mulberry variants) rises from ΔE00 0.5 to 3.1 but drops normal vision
-   from 8.5 to 4.0, so cyan light / cyan dark / pink light stay. They remain for direct-labelled charts only. */
---palette-data-viz-categorical-1:var(--palette-data-viz-azure-2); /* azure dark = azure ramp step 2 (#277b9e) */
---palette-data-viz-categorical-2:#dad98f; /* lemon light */
---palette-data-viz-categorical-3:var(--palette-data-viz-teal-2); /* teal dark = teal ramp step 2 (#04837c) */
---palette-data-viz-categorical-4:#eac5f2; /* lilac light */
---palette-data-viz-categorical-5:var(--palette-data-viz-yellow-2); /* yellow dark = yellow ramp step 2 (#77752c) */
---palette-data-viz-categorical-6:#a4e3dc; /* teal light */
---palette-data-viz-categorical-7:var(--palette-data-viz-orchid-2); /* orchid dark = orchid ramp step 2 (#8a5f94) */
---palette-data-viz-categorical-8:#9fd6f1; /* sky light */
---palette-data-viz-categorical-9:var(--palette-data-viz-pink-2); /* pink dark = pink ramp step 2 (#9b5979) */
---palette-data-viz-categorical-10:#9ce2ee; /* cyan light */
---palette-data-viz-categorical-11:var(--palette-data-viz-cyan-2); /* cyan dark = cyan ramp step 2 (#00808f) */
---palette-data-viz-categorical-12:#f4bcd5; /* pink light */
-/* Sequential ramps, one per hue family, on the shared 9-step lightness ladder (OKLCH L 0.50 → 0.90 in 0.05 steps, C 0.095; step 1 C 0.070, step 9 C 0.050).
-   Azure is the default sequential ramp. Red and green are the good / bad option only (never series colours). Cyan (H 209, added Nov 25 for the v2g cyan
-   slots 10 / 11; step 2 = slot 11, the gamut limit at L 0.55): monotonic, step 1 3.33:1 on the card. Steps 6–8 (Nov 25) taper the chroma
-   toward the calmer light slot of each family (azure, teal, orchid, pink, cyan), so step 8 matches the light colour's strength; adjacent steps ΔE00 4.1–7.1. */
---palette-data-viz-azure-1:#346b84;--palette-data-viz-azure-2:#277b9e;--palette-data-viz-azure-3:#398aae;--palette-data-viz-azure-4:#499abe;--palette-data-viz-azure-5:#5aa9ce;--palette-data-viz-azure-6:#72b8da;--palette-data-viz-azure-7:#89c7e6;--palette-data-viz-azure-8:#a0d7f2;--palette-data-viz-azure-9:#bde5f9;
---palette-data-viz-teal-1:#2a706b;--palette-data-viz-teal-2:#04837c;--palette-data-viz-teal-3:#25928b;--palette-data-viz-teal-4:#39a29a;--palette-data-viz-teal-5:#4cb1a9;--palette-data-viz-teal-6:#69bfb8;--palette-data-viz-teal-7:#84cec7;--palette-data-viz-teal-8:#9ddcd5;--palette-data-viz-teal-9:#b9e9e4;
---palette-data-viz-orchid-1:#75567c;--palette-data-viz-orchid-2:#8a5f94;--palette-data-viz-orchid-3:#996da4;--palette-data-viz-orchid-4:#a97cb3;--palette-data-viz-orchid-5:#b98bc3;--palette-data-viz-orchid-6:#c79cd1;--palette-data-viz-orchid-7:#d5adde;--palette-data-viz-orchid-8:#e3bfec;--palette-data-viz-orchid-9:#edd4f3;
---palette-data-viz-pink-1:#825269;--palette-data-viz-pink-2:#9b5979;--palette-data-viz-pink-3:#ab6888;--palette-data-viz-pink-4:#bb7797;--palette-data-viz-pink-5:#cb86a7;--palette-data-viz-pink-6:#d997b5;--palette-data-viz-pink-7:#e6a9c5;--palette-data-viz-pink-8:#f3bbd4;--palette-data-viz-pink-9:#f9d1e3;
---palette-data-viz-yellow-1:#676635;--palette-data-viz-yellow-2:#77752c;--palette-data-viz-yellow-3:#86843c;--palette-data-viz-yellow-4:#95944b;--palette-data-viz-yellow-5:#a4a35b;--palette-data-viz-yellow-6:#b3b36a;--palette-data-viz-yellow-7:#c3c379;--palette-data-viz-yellow-8:#d3d389;--palette-data-viz-yellow-9:#e1e1bb;
---palette-data-viz-cyan-1:#296e79;--palette-data-viz-cyan-2:#00808f;--palette-data-viz-cyan-3:#238f9f;--palette-data-viz-cyan-4:#389fae;--palette-data-viz-cyan-5:#4aafbe;--palette-data-viz-cyan-6:#65becb;--palette-data-viz-cyan-7:#7eccda;--palette-data-viz-cyan-8:#95dbe7;--palette-data-viz-cyan-9:#b8e8f0;
+/* data-viz (2.0.7, D6 / D7; palette decided Nov 26). THE ONE PLACE TO SWAP THE CHART PALETTE: change the hexes here; roles in tokens.css point at them.
+   Categorical: six hue families in colour-wheel order (violet → indigo → azure → teal → terracotta → rose), each a dark then its light partner, dark first
+   (one measure = slot 1 = violet, the base colour of every dashboard). Checks on the chart card (core-50 #0d0d0d): darks 3.4–4.4:1, white labels on every
+   dark ≥ 4.7:1, black on every light ≥ 10:1; across all 12, the closest pair is ΔE00 12.9 in normal vision and ≥ 4.2 in protan / deutan / tritan; every
+   colour ≥ 12 ΔE00 from info blue, Cooper copper, warning, danger and success. Terracotta has a little more chroma (0.105 vs 0.095) so it reads orange, not
+   brown. Each dark = step 2 of its ramp below. Research and try-out: prototypes/phase1-prep/dataviz/DECISIONS.md, palette-try/. */
+--palette-data-viz-categorical-1:var(--palette-data-viz-violet-2); /* violet dark = violet ramp step 2 (#885b8f) */
+--palette-data-viz-categorical-2:#cfa8d4; /* violet light */
+--palette-data-viz-categorical-3:var(--palette-data-viz-indigo-2); /* indigo dark = indigo ramp step 2 (#5d70ab) */
+--palette-data-viz-categorical-4:#d6e1ff; /* indigo light */
+--palette-data-viz-categorical-5:var(--palette-data-viz-azure-2); /* azure dark = azure ramp step 2 (#147594) */
+--palette-data-viz-categorical-6:#92d2ed; /* azure light */
+--palette-data-viz-categorical-7:var(--palette-data-viz-teal-2); /* teal dark = teal ramp step 2 (#01736b) */
+--palette-data-viz-categorical-8:#7dc7bf; /* teal light */
+--palette-data-viz-categorical-9:var(--palette-data-viz-terracotta-2); /* terracotta dark = terracotta ramp step 2 (#9a5333) */
+--palette-data-viz-categorical-10:#f3c1ac; /* terracotta light */
+--palette-data-viz-categorical-11:var(--palette-data-viz-rose-2); /* rose dark = rose ramp step 2 (#985368) */
+--palette-data-viz-categorical-12:#fecad8; /* rose light */
+/* Sequential ramps, one per categorical family (+ red and green for the good / bad option). Step 2 = the family's dark slot; step 1 slightly darker
+   (≥ 3:1 on the card); steps 3–9 run evenly up to OKLCH L 0.92 with chroma tapering to 0.05, so more = lighter on the dark card. Adjacent steps ΔE00 ≥ 3.7.
+   Labels: white on steps 1–2, black from step 3 (white is 3.9–4.5:1 there, black ≥ 4.7:1). Violet is the default ramp (rule 10.8). */
+--palette-data-viz-violet-1:#77517c;--palette-data-viz-violet-2:#885b8f;--palette-data-viz-violet-3:#976c9e;--palette-data-viz-violet-4:#a67eac;--palette-data-viz-violet-5:#b690bb;--palette-data-viz-violet-6:#c5a2ca;--palette-data-viz-violet-7:#d5b4da;--palette-data-viz-violet-8:#e5c7e9;--palette-data-viz-violet-9:#f5daf9;
+--palette-data-viz-indigo-1:#526293;--palette-data-viz-indigo-2:#5d70ab;--palette-data-viz-indigo-3:#6d80b8;--palette-data-viz-indigo-4:#7e90c5;--palette-data-viz-indigo-5:#8fa0d2;--palette-data-viz-indigo-6:#a1b1df;--palette-data-viz-indigo-7:#b2c2ec;--palette-data-viz-indigo-8:#c5d3fa;--palette-data-viz-indigo-9:#dae4ff;
+--palette-data-viz-azure-1:#1c6680;--palette-data-viz-azure-2:#147594;--palette-data-viz-azure-3:#3685a3;--palette-data-viz-azure-4:#4f96b2;--palette-data-viz-azure-5:#67a7c1;--palette-data-viz-azure-6:#7eb8d0;--palette-data-viz-azure-7:#95c9df;--palette-data-viz-azure-8:#abdbef;--palette-data-viz-azure-9:#c2ecfe;
+--palette-data-viz-teal-1:#1b6962;--palette-data-viz-teal-2:#01736b;--palette-data-viz-teal-3:#2e847c;--palette-data-viz-teal-4:#49958d;--palette-data-viz-teal-5:#62a79f;--palette-data-viz-teal-6:#79b9b1;--palette-data-viz-teal-7:#91cbc4;--palette-data-viz-teal-8:#a8ddd7;--palette-data-viz-teal-9:#c0f0ea;
+--palette-data-viz-terracotta-1:#8a4f34;--palette-data-viz-terracotta-2:#9a5333;--palette-data-viz-terracotta-3:#a96648;--palette-data-viz-terracotta-4:#b8795d;--palette-data-viz-terracotta-5:#c78c72;--palette-data-viz-terracotta-6:#d69f88;--palette-data-viz-terracotta-7:#e5b39d;--palette-data-viz-terracotta-8:#f4c7b4;--palette-data-viz-terracotta-9:#fedcce;
+--palette-data-viz-rose-1:#884e5f;--palette-data-viz-rose-2:#985368;--palette-data-viz-rose-3:#a76578;--palette-data-viz-rose-4:#b67789;--palette-data-viz-rose-5:#c68a9a;--palette-data-viz-rose-6:#d59dac;--palette-data-viz-rose-7:#e4b0be;--palette-data-viz-rose-8:#f3c4d0;--palette-data-viz-rose-9:#fedae3;
 --palette-data-viz-red-1:#875353;--palette-data-viz-red-2:#a25a5a;--palette-data-viz-red-3:#b26868;--palette-data-viz-red-4:#c27777;--palette-data-viz-red-5:#d38686;--palette-data-viz-red-6:#e49695;--palette-data-viz-red-7:#f5a5a4;--palette-data-viz-red-8:#ffb9b8;--palette-data-viz-red-9:#fed2d0;
 --palette-data-viz-green-1:#456f4e;--palette-data-viz-green-2:#458153;--palette-data-viz-green-3:#549062;--palette-data-viz-green-4:#63a070;--palette-data-viz-green-5:#72af7f;--palette-data-viz-green-6:#81bf8e;--palette-data-viz-green-7:#91cf9d;--palette-data-viz-green-8:#a1e0ad;--palette-data-viz-green-9:#c8e8cd;
 }

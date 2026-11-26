@@ -95,17 +95,17 @@ const Cell = (cap, node, key) => h('div', { className: 'rv-cell', key: key || ca
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
 function Palette() {
-  const names = ['Azure dark', 'Lemon light', 'Teal dark', 'Lilac light', 'Olive dark', 'Teal light', 'Orchid dark', 'Sky light', 'Mulberry dark', 'Cyan light', 'Cyan dark', 'Pink light'];
+  const names = ['Violet dark', 'Violet light', 'Indigo dark', 'Indigo light', 'Azure dark', 'Azure light', 'Teal dark', 'Teal light', 'Terracotta dark', 'Terracotta light', 'Rose dark', 'Rose light'];
   const [, force] = React.useState(0);
   React.useEffect(() => { force(1); }, []);
   return h(React.Fragment, null,
-    h('h3', null, 'Categorical v2g (keep it to 8; lines colour up to 12; stacks and slices fold into Other)'),
+    h('h3', null, 'Categorical (Nov 26): six families in colour-wheel order, dark then light (keep it to 8; lines colour up to 12; stacks and slices fold into Other)'),
     h('div', { className: 'rv-sw' }, names.map((n, i) => h('div', { key: n }, h('i', { style: { background: `var(--color-data-viz-categorical-${i + 1})` } }), `${i + 1} · ${n}`, h('span', null, cssVar(`--palette-data-viz-categorical-${i + 1}`)))),
       h('div', { key: 'o' }, h('i', { style: { background: 'var(--color-data-viz-other)' } }), 'Other', h('span', null, cssVar('--palette-core-400')))),
-    h('h3', null, 'Sequential ramps (shared 9-step ladder; azure is the default; red and green are the good / bad option only)'),
+    h('h3', null, 'Sequential ramps (one per categorical family, step 2 = its dark slot; violet is the default; red and green are the good / bad option only)'),
     h('div', { style: { display: 'flex', flexDirection: 'column', gap: 'var(--space-100)' } },
-      ['azure', 'teal', 'cyan', 'orchid', 'pink', 'yellow', 'red', 'green'].map(f => h('div', { key: f, className: 'rv-ramp' }, h('span', null, f), Array.from({ length: 9 }, (_, i) => h('i', { key: i, title: `--color-data-viz-sequential-${f}-${i + 1}`, style: { background: `var(--color-data-viz-sequential-${f}-${i + 1})` } }))))),
-    h('h3', null, 'Diverging: azure ↔ pink, light midpoint core-750 (negative 3 · 2 · 1 · midpoint · positive 1 · 2 · 3)'),
+      ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose', 'red', 'green'].map(f => h('div', { key: f, className: 'rv-ramp' }, h('span', null, f), Array.from({ length: 9 }, (_, i) => h('i', { key: i, title: `--color-data-viz-sequential-${f}-${i + 1}`, style: { background: `var(--color-data-viz-sequential-${f}-${i + 1})` } }))))),
+    h('h3', null, 'Diverging: azure ↔ rose, light midpoint core-750 (negative 3 · 2 · 1 · midpoint · positive 1 · 2 · 3)'),
     h('div', { className: 'rv-ramp', style: { gridTemplateColumns: '6rem repeat(7, 1fr)' } }, h('span', null, 'diverging'),
       ['negative-3', 'negative-2', 'negative-1', 'midpoint', 'positive-1', 'positive-2', 'positive-3'].map(k => h('i', { key: k, title: `--color-data-viz-diverging-${k}`, style: { background: `var(--color-data-viz-diverging-${k})` } }))));
 }
@@ -163,7 +163,7 @@ function App() {
         Cell('Grouped, 4 series (fits)', h(I.GroupedColumnChart, { title: 'Spend by region', data: groupData(4), series: ser(4), format: money, tooltipFormat: moneyFull })),
         Cell('Grouped, 6 series in a narrow card: every bar drawn, the plot scrolls (fixed axis, edge fade)', h('div', { style: { maxWidth: '20rem' } }, h(I.GroupedColumnChart, { title: 'Spend by district', data: multi(['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'D10', 'D11', 'D12'], 6, (i, j) => (2 + ((j * 7 + i * 3) % 9)) * 1e6), series: ser(6), format: money, tooltipFormat: moneyFull }))),
         Cell('Donut, 10 slices → 7 + Other', h(I.DonutChart, { title: 'Spend by asset class', data: donut10, centerValue: '112', centerLabel: 'total', format: v => `${v}%` })),
-        Cell('Heatmap, 5 classes on azure', h(I.HeatmapChart, { title: 'Risk by asset class and year', rows: hmRows, columns: hmCols, values: hmVals })),
+        Cell('Heatmap, 5 classes on violet (the default)', h(I.HeatmapChart, { title: 'Risk by asset class and year', rows: hmRows, columns: hmCols, values: hmVals })),
         Cell('Heatmap, teal ramp', h(I.HeatmapChart, { title: 'Condition by asset class', ramp: 'teal', rows: hmRows, columns: hmCols, values: hmVals })),
         Cell('Grouped, narrow card with 4 series (width clamp)', h('div', { style: { maxWidth: '16rem' } }, h(I.GroupedColumnChart, { title: 'Spend by region', data: groupData(4), series: ser(4), format: money, tooltipFormat: moneyFull }))),
         Cell('Legend over 2 lines → +N more', h('div', { style: { maxWidth: '22rem' } }, h(I.StackedColumnChart, { title: 'Spend by asset class', data: stackData(8), series: ser(8).map((s, i) => ({ ...s, label: s.label + ' programme ' + (i + 1) })), format: money, tooltipFormat: moneyFull }))))),

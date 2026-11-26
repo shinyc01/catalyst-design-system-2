@@ -134,6 +134,15 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
   - **Fixed**
     - Icons with clip paths or gradients (e.g. `cooper-evidence-icon`) get unique ids per instance, so every instance draws its own art.
     - A `Spinner` inside `LoadingRegion` no longer announces twice.
+- **2.0.7** (in progress, Nov 26): content foundations and components.
+  - **Changed**
+    - Categorical palette (rule 10.7): six families in colour-wheel order, violet → indigo → azure → teal → terracotta → rose, each a dark then its light partner; violet is slot 1, the base colour of every dashboard. All 12 stay distinct in normal and colour-blind vision; every slot clears info blue, Cooper copper and the status colours. Values in `foundations/palette.css`.
+    - Sequential ramps (rule 10.8): one 9-step ramp per family, step 2 = its dark slot; the default ramp is violet (was azure) and a single-hue chart uses the ramp of the entity it shows (rule 10.12). `HeatmapChart ramp` defaults to `violet`.
+    - Diverging: azure ↔ rose (rose replaces pink; same sides as 2.0.6).
+    - Rule 10.12: one colour per entity across the whole dashboard; an unrelated one-off chart may reuse slots when they run out.
+    - Rule 10.7: levels inside a group use the whole ramp (every other step up to 4 levels, every step up to 8, then Other); black labels from step 3.
+  - **Deprecated**
+    - `--color-data-viz-sequential-orchid | pink | yellow | cyan-*` (and the same `HeatmapChart ramp` values): aliases of violet, rose, terracotta and indigo until 2.1.0.
 
 Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).
 

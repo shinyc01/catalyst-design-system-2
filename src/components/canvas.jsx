@@ -429,7 +429,7 @@ function SankeyHeader({ abbr, fromLabel, toLabel, from, to, className, ...rest }
 //             type=source draws the tall coloured source block (first column, e.g. "6 Goals").
 //   links   = [{ source, target, value }]  — band colour follows the source block it descends from.
 //   height (chart body px, default 575), onNodeClick(node), showFit + onFit (value-map-button Input in the corner).
-const SANKEY_COLOR = { violet: 'var(--color-data-viz-sequential-orchid-5)' /* 2.0.6: nearest new role to the old violet-data-3 */, green: 'var(--color-background-success-strong)' };
+const SANKEY_COLOR = { violet: 'var(--color-data-viz-sequential-violet-5)' /* nearest role to the old violet-data-3 */, green: 'var(--color-background-success-strong)' };
 function Sankey({ columns = [], nodes = [], links = [], height = 575, onNodeClick, showFit = true, onFit, className, ...rest }) {
   const ref = React.useRef(null);
   const [w, setW] = React.useState(1200);

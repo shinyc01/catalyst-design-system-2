@@ -9,7 +9,7 @@ export default {
   component: IFS["WaterfallChart"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** chart-waterfall (9866:16075)\n\n\nUse: Bridge from a start value to an end value through increments. Totals neutral; increases and decreases on the diverging pair (positive pink, negative azure) and always signed + / −." } },
+    docs: { description: { component: "**Figma:** chart-waterfall (9866:16075)\n\n\nUse: Bridge from a start value to an end value through increments. Totals neutral; increases and decreases on the diverging pair (positive rose, negative azure) and always signed + / −." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-16075"},
     
   },

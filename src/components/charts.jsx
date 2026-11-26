@@ -1475,19 +1475,19 @@ function FunnelChart(props) {
 
 /* ------------------------------------------------------------------ heatmap */
 
-const RAMPS = ['azure', 'teal', 'cyan', 'orchid', 'pink', 'yellow', 'red', 'green'];
+const RAMPS = ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose', 'red', 'green', 'orchid', 'pink', 'yellow', 'cyan']; // the last four: 2.0.6 names, deprecated until 2.1.0 (tokens alias them)
 // Figma: chart-heatmap (9866:14280) — ordered magnitude across a matrix, one sequential ramp (D7): more = lighter, 5 classes
 // (ladder steps 1 · 3 · 5 · 7 · 9) or 9 when the heatmap is dense. The legend is a scale bar below (D4).
-// Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (azure default | teal | cyan | orchid | pink | yellow),
+// Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (violet default | indigo | azure | teal | terracotta | rose; pick the ramp of the entity the chart shows, rule 10.8),
 // classes 5 | 9, color (legacy: one colour with opacity by value, Figma parity), columnLabelEvery (auto),
 // lowLabel / highLabel (scale ends), valueLabel, format, tooltip(cell = { row, column, value, r, c }). + shell props.
 function HeatmapChart(props) {
-  const { rows = [], columns = [], values = [], ramp = 'azure', classes = 5, color, lowLabel = 'Lower', highLabel = 'Higher', valueLabel = 'Value', format = defaultFormat, tooltip } = props;
+  const { rows = [], columns = [], values = [], ramp = 'violet', classes = 5, color, lowLabel = 'Lower', highLabel = 'Higher', valueLabel = 'Value', format = defaultFormat, tooltip } = props;
   const p = usePlot(props);
   const fc = useForcedColors();
   const flat = finite(values.flat());
   const lo = Math.min(...flat), hi = Math.max(...flat);
-  const fam = RAMPS.includes(ramp) ? ramp : 'azure';
+  const fam = RAMPS.includes(ramp) ? ramp : 'violet';
   const steps = classes === 9 ? [1, 2, 3, 4, 5, 6, 7, 8, 9] : [1, 3, 5, 7, 9];
   const cls = v => Math.min(steps.length - 1, Math.floor((hi > lo ? (v - lo) / (hi - lo) : 1) * steps.length));
   const rampVar = k => `var(--color-data-viz-sequential-${fam}-${steps[k]})`;

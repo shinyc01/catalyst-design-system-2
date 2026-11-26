@@ -551,7 +551,7 @@ Use: Relationship between two measures; clusters and outliers. Legend below (dot
 Use: Scatter with a third measure as size; the legend carries a size key (smallest and largest).
 
 ### chart-heatmap · `HeatmapChart`
-Use: Ordered magnitude across a matrix, using a sequential ramp (`ramp` azure default | teal | cyan | orchid | pink | yellow; `classes` 5 or 9; rule 10.8). The legend is a scale bar below. Often the large card.
+Use: Ordered magnitude across a matrix, using a sequential ramp (`ramp` violet default | indigo | azure | teal | terracotta | rose, the ramp of the entity the chart shows; `classes` 5 or 9; rule 10.8). The legend is a scale bar below. Often the large card.
 
 ### chart-box-plot
 Use: Comparing distributions side by side.
@@ -560,7 +560,7 @@ Use: Comparing distributions side by side.
 Use: Profile of 3–6 options across 5–8 criteria.
 
 ### chart-waterfall · `WaterfallChart`
-Use: Bridge from a start value to an end value through increments. Totals neutral; increases and decreases on the diverging pair (positive pink, negative azure) and always signed + / −.
+Use: Bridge from a start value to an end value through increments. Totals neutral; increases and decreases on the diverging pair (positive rose, negative azure) and always signed + / −.
 
 ### chart-treemap
 Use: Hierarchical part-to-whole by area.

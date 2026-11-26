@@ -19,7 +19,7 @@ const dashboardStats = [
 // Value drivers: one dark categorical slot each (rules 10.7, 10.12; decided Nov 25), the same in every chart here.
 // The stacked columns split each driver into levels: the driver's own sequential ramp, step 2 (= its slot) on the baseline, then lighter upwards (rule 10.7, groups with levels; segments draw top to bottom).
 const dashboardSlot = n => `var(--color-data-viz-categorical-${n})`;
-const dashboardDriverRamp = ['azure', 'teal', 'yellow', 'orchid', 'pink'];
+const dashboardDriverRamp = ['violet', 'indigo', 'azure', 'teal', 'terracotta'];
 const dashboardLevel = (d, i) => `var(--color-data-viz-sequential-${dashboardDriverRamp[d]}-${2 + 2 * i})`;
 const dashboardSeries = [
   { label: 'Reliability', fill: dashboardSlot(1), legend: dashboardSlot(1), proj: dashboardSlot(1) },

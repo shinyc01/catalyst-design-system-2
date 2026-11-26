@@ -48,7 +48,7 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'LegendSwatch', figma: 'legend-swatch-atom (4440:32628) + info-hint-item (12:121968)', render: () => {
-    // good / bad on the diverging palette (D7): worse = pink, better = azure, the words name both sides
+    // good / bad on the diverging palette (D7): worse = rose, better = azure, the words name both sides
     const items = [{ label: 'Loss', color: 'var(--color-data-viz-diverging-positive-2)', value: '357' }, { label: 'Unchanged', color: 'neutral', value: '745' }, { label: 'Gain', color: 'var(--color-data-viz-diverging-negative-2)', value: '519' }];
     return <>
       <Row label="states">{['default', 'hover', 'out-of-hover'].map(s => <LegendSwatch key={s} state={s} label="Title" value="Value" />)}
