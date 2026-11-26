@@ -3,7 +3,7 @@
 // React itself comes from the page (UMD script), so prototypes and the kit share one React.
 import { IFS } from './components/index.js';
 
-IFS.version = '2.0.6';
+IFS.version = '2.0.7';
 IFS.DENSITIES = ['spacious', 'comfortable', 'compact'];
 // Theme (C3, Nov 23): sets data-theme on <html> (or a given element). Only Dark has values today; Light comes right after phase 1.
 IFS.setTheme = (t, el = document.documentElement) => { el.setAttribute('data-theme', t); return t; };

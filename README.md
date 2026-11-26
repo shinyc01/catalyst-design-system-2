@@ -1,6 +1,6 @@
 # Catalyst Design System 2.0
 
-A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7ar`), with user-selectable density and a type and spacing scale set against best-in-class design systems. Current version: **2.0.6**. Releases follow [guide/release.md](guide/release.md) (SemVer from 2.1.0).
+A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7ar`), with user-selectable density and a type and spacing scale set against best-in-class design systems. Current version: **2.0.7**. Releases follow [guide/release.md](guide/release.md) (SemVer from 2.1.0).
 
 ## Use it
 

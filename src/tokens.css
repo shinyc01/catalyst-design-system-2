@@ -341,7 +341,7 @@
 }
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
-   17 styles (Label/S/medium for in-chart data labels only). Pick by role (guide/rules.md §2):
+   16 styles (Label/S/medium for in-chart data labels only). Pick by role (guide/rules.md §2):
      PageTop page title H2 · thin PageHeader / ExploreHeader title Label/M/medium · panel/modal/drawer/card title H4 · chart card title H4 in --color-text with an optional Body/M subtitle in --color-text-soft (item 11) · sub-section Label/M/medium
      content, typed text, menu items, meta Body/M/regular · disclaimers, footnotes, text in a fixed small shape Body/S/regular
      names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2 / H3, never H1 (Display for one hero number)

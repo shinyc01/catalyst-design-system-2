@@ -46,7 +46,9 @@ function EmptyState({ cause = 'first-run', size = 'section', heading, body, icon
   const primary = primaryAction && { ...(preset.action || {}), ...primaryAction };
   const hasButtons = primary || secondaryAction;
   return (
-    <div role={cause === 'error' ? 'alert' : 'status'} className={IFS.cx('ifs-empty', `ifs-empty--${size}`, className)} {...rest}>
+    // rule 9.19: every cause is polite (role="status"), error included; a load failure doesn't block the user's action.
+    // A screen whose error does block it passes role="alert" (rest props win).
+    <div role="status" className={IFS.cx('ifs-empty', `ifs-empty--${size}`, className)} {...rest}>
       {mediaIcon && <StateMedia icon={mediaIcon} tone={mediaTone} />}
       <h3 className="ifs-empty__heading">{heading}</h3>
       {(body || (suggestions && suggestions.length > 0)) && (

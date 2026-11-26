@@ -1,7 +1,7 @@
 {
   "name": "catalyst-ds-2",
   "private": true,
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Catalyst Design System 2.0: a separate copy of the IFS DS kit (polish branch values) with user-selectable density (Spacious / Comfortable / Compact).",
   "type": "module",
   "scripts": {

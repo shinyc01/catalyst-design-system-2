@@ -1,4 +1,4 @@
-# Catalyst Design System 2.0.6 — components and patterns
+# Catalyst Design System 2.0.7 — components and patterns
 
 The catalogue: which component to use for what, then how the patterns work. Rules live in [rules.md](rules.md) and are referenced by number, not repeated. Full props: [`dist/api.md`](../dist/api.md). Figma keys, node ids, variant axes and review items: [figma.json](figma.json).
 
@@ -482,7 +482,7 @@ Use: One bar; Background = the meter track. `color` = a categorical slot (defaul
 Use: Grouped bars: compare 2–3 series across the same categories; Progress=True = meter bar against a max. Segments take the categorical slots 1, 2, 3 … in order.
 
 ### donut-chart-atom · `DonutChart`
-Use: Share of a whole; legend right for wide cards, below for narrow; direct labels for 2–3 slices.
+Use: Building block of `DonutChart` (share of a whole); legend and labels: rule 10.5.
 
 ### radar-chart-atom
 Use: Comparing 3–6 options across 5–8 criteria; hover dims other polygons to 15%.
