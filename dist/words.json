@@ -359,7 +359,7 @@
         "Revisions requested (as a status)",
         "Changes requested"
       ],
-      "notes": "The send-back pair (decided Nov 26): the asker's button \"Request revisions\", their snackbar \"Revisions requested\" (description \"Sent back to {name}.\"), the status everyone sees \"Needs revision\". A status that asks for action may start with \"Needs\" (rule 8.52).",
+      "notes": "The send-back pair (decided Nov 26): the asker's button \"Request revisions\", their snackbar \"Revisions requested\" (description \"Sent back to {name}.\"), the status everyone sees \"Needs revision\". A status that asks for action may start with \"Needs\" (rule 8.52). The reviewer’s own button after sending back stays disabled and reads \"Revisions requested\": the action’s past tense, like \"Approved\", not a status (audit run 2 B-14, decided Nov 26), so don’t change it to \"Needs revision\".",
       "rule": "8.9",
       "confirmed": true
     },
@@ -537,12 +537,13 @@
       "use": "Create",
       "for": "making a new object (\"Create scenario\")",
       "avoid": [
-        "New (as a verb)",
+        "New (as a verb or a button label)",
         "Make",
         "Add (for new objects)",
         "Generate (unless Cooper writes it)"
       ],
-      "rule": "8.12"
+      "rule": "8.12",
+      "notes": "Every create button says Create, the PageTop one included (\"Create ▾\" opens the choice of things to create; audit run 2 B-24, decided Nov 26). \"New\" stays only as an adjective (\"New scenario\" as a title)"
     },
     {
       "use": "Add",
@@ -660,7 +661,7 @@
         "Request more info"
       ],
       "rule": "8.9",
-      "notes": "After \"Request revisions\" the status is \"Needs revision\" and the snackbar \"Revisions requested\" (description \"Sent back to {name}.\")."
+      "notes": "After \"Request revisions\" the status is \"Needs revision\" and the snackbar \"Revisions requested\" (description \"Sent back to {name}.\"). The reviewer’s disabled button then reads \"Revisions requested\", the action’s past tense like \"Approved\"."
     },
     {
       "use": "Export / Import",

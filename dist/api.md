@@ -71,6 +71,14 @@ IFS.format.configure({ locale, currency, fyStartMonth, weekStartsOn, empty, acco
   fyStartMonth (F4) is an admin system setting, read once at start.
   fyStartMonth is 1–12 (default 1 = January; 10 = an October–September year). empty is what a missing
   value shows (default "—"). Every function returns `empty` for null, undefined, '' or NaN.
+IFS.format.plural(count, { one, other, zero, two, few, many })              → one whole string per plural form, picked by the
+  locale's CLDR plural rules (Intl.PluralRules); "#" is replaced by the formatted count (rule 11.8: never count + 's').
+  plural(1, { one: '# field needs attention', other: '# fields need attention' }) → "1 field needs attention".
+  An exact `zero` (=0) wins over the locale's category when given.
+IFS.term(key, { count, capital })                                            → an entity's name as the organisation calls it
+  (USER-SETTINGS row 15, rule 8.9): term('investment') → "investment", or "project" after
+  configure({ entity: 'project' }); count picks one / other ("3 projects" needs plural()); capital true starts a label.
+  Keys: 'investment'. configure({ terms: { investment: { one, other } } }) sets the forms directly (other languages).
 ```
 
 ## core
@@ -275,7 +283,11 @@ Leave out children for Figma show-label=false.
 loading (S2, Nov 24): the dotted loader in the icon slot (in place of iconLeft, same size), aria-busy, not clickable; the label stays.
 disabledReason (rule 9.10, Nov 26): with `disabled`, the button stays focusable (aria-disabled) and a tooltip says why and what unlocks
 it ("Only portfolio owners can publish"). Only for reasons the person can't fix on this screen; an incomplete form never disables (14.4).
-`function Button({ type = 'secondary', size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, disabled, disabledReason, ...rest })`
+The reason is also the button's description at all times (a hidden copy, aria-describedby), so a screen reader in browse mode hears it
+without the tooltip (audit run 2 A11Y M1). A permanent reason (a permission) also shows as visible text near the control (rule 9.10).
+href (rule 14.1, audit run 2 item 12): a move (open an object, go to a screen, go up a level) renders as a link, <a href>, with the
+Ghost look by default (type may still be passed), so it opens in a new tab, shows its address and reads as a link.
+`function Button({ type, size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, disabled, disabledReason, href, ...rest })`
 
 ### IconButton
 **Tier:** Component
@@ -383,9 +395,9 @@ actions = [{ id, icon, label }] to override the preset, onAction(id).
 Figma: add-node-button (2879:7311)
 Creates a new (grey, provisional) subnode on the framework canvas; confirmed via its check icon.
 Click → typing state (Figma Pressed/Typing): Enter or ✓ confirms, Esc or ✕ cancels.
-Props: onAdd(name), onCancel, placeholder ("Type…"), disabled, editing / defaultEditing / onEditingChange,
+Props: onAdd(name), onCancel, placeholder (none by default; an example name only, rule 8.46), disabled, editing / defaultEditing / onEditingChange,
 state hover|pressed|typing (forced, gallery), label (accessible name, default "Add node").
-`function AddNodeButton({ onAdd, onCancel, placeholder = 'Type…', disabled, editing, defaultEditing = false, onEditingChange, state, label = 'Add node', defaultValue = '', className, ...rest })`
+`function AddNodeButton({ onAdd, onCancel, placeholder, disabled, editing, defaultEditing = false, onEditingChange, state, label = 'Add node', defaultValue = '', className, ...rest })`
 
 ### NodeCard
 **Tier:** Component
@@ -497,6 +509,7 @@ color = a categorical slot 1–12 (rule 10.7; default 1); the pre-2.0.6 family n
 and draw the current role their data-4 step became (deprecated, until 3.0), start / end (fractional slot indexes on the axis),
 tasks = [{ title, label ("Q1 2027"), start, end }], expanded / defaultExpanded / onExpandedChange,
 onAdd, onMore (hover actions), slots (number of axis slots, set by the chart), state hover (gallery).
+old group names → the same step-3 targets charts use (audit run 2 T2-14), so one old name draws one colour everywhere
 `function TimelinePhase({ title, subtitle, badge, color = 1, start = 0, end = 1, tasks = [], expanded, defaultExpanded = false, onExpandedChange, onAdd, onMore, slots = 20, groups = 5, state, className, ...rest })`
 
 ### TimelineChart
@@ -637,9 +650,10 @@ variant chart (content-sized, 12–20rem, D5) | modal (256). children are append
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-column (9862:12468) — one measure across few or time-ordered categories; zero-based, one colour (slot 1).
-Props: data = [{ label, value, reference?, forecast?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
-references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines), forecast: true on a datum = a forecast / planned value
-(rule 10.13: the light partner slot of `color`, "Forecast" in the legend, tooltip and table),
+Props: data = [{ label, value, reference?, forecast?, plan?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
+references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines), forecast: true on a datum = a forecast (hatched in the
+series colour), plan: true = a planned value (outlined in the series colour, no fill); both are named in the legend ("Forecast", "Plan"),
+the tooltip and the table ("(forecast)", "(plan)"), rule 10.13; forecastLabel / planLabel rename them,
 color (categorical slot or data-viz token; default 1), format(v) for values/axis, tooltip(datum, i) → DataVizTooltip props, valueTicks.
 Shell props (every chart): see ChartShell; among them legendPosition below | beside (2.0.7: where the legend sits; unset = the type's default, rule 10.5).
 `function ColumnChart(props)`
@@ -1013,11 +1027,11 @@ expand button of a collapsed panel rail, which the pattern screens draw as type 
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: mobile-number-field-organism (8947:11306) — text-field shell + country select (single-select-atom S) + divider.
-Props: size l|m, label (Title), hint (clue-icon tooltip), description (Hint text), error (true or message), disabled,
+Props: size l|m, label (Title), hint (clue-icon tooltip), description (Hint text), error (true or message), disabled, required (* marker + native required),
 placeholder (default from the country mask, Figma "(000)000-0000"), value / defaultValue / onChange(value, { country, digits, e164 }),
 country / defaultCountry ("US") / onCountryChange(code), countries ([{ code, name, dial, mask, flag }]),
 cooper / generating (Cooper states), state hover|focus|typing (gallery), id, name, plus <input> attributes.
-`function PhoneField({ size = 'l', label, hint, description, error, disabled, placeholder, value, defaultValue = '', onChange, country, defaultCountry = 'US', onCountryChange, countries = EXTRAS_COUNTRIES, cooper, generating, state, className, style, id, ...rest })`
+`function PhoneField({ size = 'l', label, hint, description, error, disabled, required, placeholder, value, defaultValue = '', onChange, country, defaultCountry = 'US', onCountryChange, countries = EXTRAS_COUNTRIES, cooper, generating, state, className, style, id, ...rest })`
 
 ### SliderTrack
 **Tier:** Component
@@ -1043,12 +1057,15 @@ Use <Slider> without label for the bare molecule. The track fills its parent: in
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: form-card-organism (5826:24755)
 A surface that wraps a form: header (title, description, one action) → optional divider → body (fields) → optional footer.
-Form rules (Figma canvas notes): every visible field is required (no markers); the primary never disables to signal
-"incomplete"; submit validates every field at once, shows errors, focuses (and scrolls to) the first invalid field;
-more than three invalid fields adds a summary above the footer.
+Form rules (rule 14.4, Nov 26): fields are required unless marked `required: false` (optional fields may be shown); a required
+field draws the * marker after its label and the form shows "Fields marked * are required." at the top (WCAG 3.3.2, H90);
+the primary never disables to signal "incomplete"; submit validates every field at once, shows each error inline, scrolls to
+and focuses the first invalid field (which reads its own error) and announces one polite count ("3 fields need attention",
+rule 9.19). No summary list on a single page.
 Props: title, description, action (node, e.g. an IconButton), divider (bool),
 fields = [{ name, label, type text|email|password|phone|textarea|select, placeholder, hint, description, options (select),
-  defaultValue, validate(value, values) → message | undefined, requiredMessage }],
+  required (default true; false = optional, no marker, not checked when empty), defaultValue,
+  validate(value, values) → message | undefined, requiredMessage }],
 children (extra body content after the fields), values / defaultValues / onValuesChange(values),
 primaryAction = { label } (submit; pass the verb + object, rule 8.10: "Send for approval", "Create scenario"; no "Submit" default, the label falls back to "Save"), secondaryAction = { label, onClick }, footer (node replacing the actions),
 onSubmit(values, event) — only called when everything is valid, validate(values) → { name: message } (extra form checks),
@@ -1088,6 +1105,12 @@ color (CSS colour; default var(--color-icon)).
 
 Examples (read before using any component below — shows the data shapes props expect): https://shinyc01.github.io/catalyst-design-system-2/src/gallery/forms.jsx
 
+### RequiredMark
+**Tier:** Component
+The required marker (rule 14.4, decided Nov 26): an asterisk the component draws after the label, never typed into the label text.
+Hidden from screen readers, which hear "required" from the control's native `required` / `aria-required`.
+`function RequiredMark() { return <span className="ifs-field__required" aria-hidden="true">*</span>; }`
+
 ### TextField
 **Tier:** Component
 **In handovers:** placed 30× (Value, Build, Explore) · usual: size m (32) 93%
@@ -1095,16 +1118,17 @@ Figma: text-field-organism (210:77559)
 Props: size l|m, label (Figma Title), hint (tooltip text → question-hint icon), placeholder, description (Hint text),
 error (true, or a string that replaces the description), disabled, iconLeft / iconRight (icon names),
 suffix (Figma textRight), cooper (Figma State=Cooper ring), generating (Cooper Generating: loader),
+required (rule 14.4: draws the * marker after the label and sets the native `required`, so screen readers say "required"),
 value / defaultValue / onChange(value, event), state hover|focus|typing (gallery only), plus any <input> attribute.
-`function TextField({ size = 'l', label, hint, description, error, disabled, iconLeft, iconRight, suffix, cooper, generating, value, defaultValue = '', onChange, state, className, style, id, type = 'text', ...rest })`
+`function TextField({ size = 'l', label, hint, description, error, disabled, iconLeft, iconRight, suffix, cooper, generating, required, value, defaultValue = '', onChange, state, className, style, id, type = 'text', ...rest })`
 
 ### TextArea
 **Tier:** Component
 **In handovers:** placed 5× (Build) · usual: Size l (140) 100%
 Figma: text-area-organism (3024:9383)
 Props: size l (140px tall) | m (100px), label, hint, placeholder, description, error, disabled, iconLeft,
-cooper, generating, value / defaultValue / onChange(value, event), state hover|focus|typing (gallery only).
-`function TextArea({ size = 'l', label, hint, description, error, disabled, iconLeft, cooper, generating, value, defaultValue = '', onChange, state, className, style, id, ...rest })`
+cooper, generating, required (the * marker + native `required`, as TextField), value / defaultValue / onChange(value, event), state hover|focus|typing (gallery only).
+`function TextArea({ size = 'l', label, hint, description, error, disabled, iconLeft, cooper, generating, required, value, defaultValue = '', onChange, state, className, style, id, ...rest })`
 
 ### Search
 **Tier:** Component
@@ -1308,10 +1332,10 @@ Figma: page-top (244:117279, key c5e4c474…) — component set in IFS Design Sy
 Type=Default 244:117280 and the older standalone copy 95:18889 both carry key 771d8425…. Not found in the published IFS Design System library.
 The page intro on a library / list page (a single object's page uses PageHeader instead). Column, gap 20:
   title row (gap 8, bottom-aligned): text column (gap 8) = eyebrow + title (Heading/H2/medium) + description (Label/M/medium),
-  then the actions on the right (Figma "Show button": button Secondary M "New" with system-pencil-plus);
+  then the actions on the right (Figma "Show button": button Secondary M "Create" with system-pencil-plus (rule 14.2; "Create ▾" with a Menu when the page creates more than one kind of thing));
   tabs row (40 tall, space-between, bottom-aligned, gap 32): tab-organism (tabs with counts) + smart-search-organism (360) ("show search").
 Props: title, description (one line; omit for a title-only page-top), eyebrow (Figma "cooper": true → "Cooper", or a string)
-with the Cooper Insight mark, actions (node, e.g. <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>),
+with the Cooper Insight mark, actions (node, e.g. <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">Create</IFS.Button>),
 tabs (IFS.Tabs props, or a node), search (IFS.SmartSearch props, or a node), headingLevel (default 1).
 With neither description nor eyebrow the title row is 32 tall and centred (the Build / Idea Pad page-top).
 `function PageTop({ title, description, eyebrow, actions, tabs, search, headingLevel = 1, className, ...rest })`
@@ -1323,7 +1347,9 @@ AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map 
 (+ optional CanvasHeader) on top, a scrolling content area and an optional side panel on the right.
 Bar, sidebar, header and panel stay put; only content scrolls.
 Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
-e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4).
+e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4),
+title + module (rule 9.27, WCAG 2.4.2): set the browser tab title "{title} – {module} – IFS Copperleaf" while the shell is shown
+(title = the page's own name; module omitted on a module's landing page); the old title comes back on unmount.
 Panel mode (decided Nov 19, guide/rules.md 3.18): set by the panel's JOB, not the screen.
   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
         whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 3.18).
@@ -1336,7 +1362,7 @@ The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav w
 panel with a controlled `expanded`, is left alone.
 Content (rule 3.15): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
 pages (rule 3.21) fill the content area instead.
-`function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', className, style, ...rest })`
+`function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', title, module, className, style, ...rest })`
 
 ## patterns-activity
 
@@ -1358,11 +1384,11 @@ id (listbox id), inline (static position — gallery).
 **In handovers:** placed 1× (Plan) · usual: Property 1=Default (100%)
 ───────────────────────────── compare-dropdown ───────────────────────────── 
 Figma: compare-dropdown (59571d4df483e2b416ca034bafc72eabc902f8f3; Patterns copy 52:82756)
-Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: "Select framework" in --color-text-disabled), Default (open: caret up + list).
+Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: Figma draws "Select framework"; the kit shows nothing, rule 8.46), Default (open: caret up + list).
 Props: groups (see CompareDropdownList), value / defaultValue / onChange(value, item) (✕ sets null),
 open / defaultOpen / onOpenChange, placeholder, clearable (✕ when filled, default true), disabled, width (default 320),
 state open (gallery), aria-label. Keyboard: Enter / Space / ↓ open; ↑ ↓ move; Enter picks; Esc closes.
-`function CompareDropdown({ groups = [], value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, placeholder = 'Select framework', clearable = true, disabled, width = 320, state, className, style, 'aria-label': ariaLabel = 'Compare to' })`
+`function CompareDropdown({ groups = [], value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, placeholder, clearable = true, disabled, width = 320, state, className, style, 'aria-label': ariaLabel = 'Compare to' })`
 
 ### CompareHeader
 **Tier:** Component
@@ -1430,7 +1456,7 @@ Props: title, metrics = [{ title, value, direction up|down, tone danger|success 
 bins = [{ label, value, tone loss|unchanged|gain, step 3|4|5 (colour depth), color (override) }], max (axis top, default 250),
 ticks (axis count, default 6), legend = Legend items [{ label, color, value }] (false hides), button (DataVizHeader right button),
 format(bin) → tooltip text, onBinClick(bin, i).
-`function InvestmentValueImpact({ title = 'Investment value impact', metrics = IVI_METRICS, description = "Value change measured as % of each investment’s total value (NPV) under the proposed framework, compared with the current one.", bins = IVI_BINS, max = 250, ticks = 6, legend = IVI_LEGEND, button, format, onBinClick, className, ...rest })`
+`function InvestmentValueImpact({ title = `${IFS.term('investment', { capital: true })} value impact`, metrics = iviMetrics(), description = `Value change measured as % of each ${IFS.term('investment')}’s total value (NPV) under the proposed framework, compared with the current one.`, bins = IVI_BINS, max = 250, ticks = 6, legend = IVI_LEGEND, button, format, onBinClick, className, ...rest })`
 
 ### TableReview
 **Tier:** Component
@@ -1591,18 +1617,18 @@ Props: controller, defaultOpen, open / onOpenChange.
 ### InviteCollaboratorModal
 **Tier:** Pattern helper
 ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
-Pattern component: modal-organism "Add Collaborator": person (content card, avatar L 40) + access select,
+Pattern component: modal-organism "Add collaborator": person (content card, avatar L 40) + access select,
 "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
 Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
-  title (the screen's own text; example default "Add Collaborator" / "Edit Collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
+  title (the screen's own text; example default "Add collaborator" / "Edit collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 `function InviteCollaboratorModal({ open, person, mode = 'invite', title, defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline })`
 
 ### RemoveCollaboratorModal
 **Tier:** Pattern helper
 ───────────────────────────── RemoveCollaboratorModal ─────────────────────────────
-Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + "This action will revoke the collaborator's
-invite to the framework" + Cancel / Remove. Props: open, person, onCancel, onConfirm, inline.
-`function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)`
+Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + the consequence (body, default
+"They lose access."; the screen names its record) + Cancel / Remove. Props: open, person, title, body, onCancel, onConfirm, inline.
+`function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", body, onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)`
 
 ### useCollaboration
 **Tier:** Pattern helper
@@ -1656,7 +1682,7 @@ unresolved = ⋯ (Copy link) + ✓ + ✕; own reply ⋯ = Edit / Delete; the com
 **Tier:** Pattern helper
 Pattern helper: Comments drawer list — built from Drawer + SegmentedControl + SmartSearch + CommentDrawerCard + EmptyState.
 The Comments panel (Figma "Map - Overview - Comments panel unresolved" 12:34047): kit Drawer titled "Comments" with an
-Unresolved | Resolved SegmentedControl, the SmartSearch "Ask anything about comments", and one CommentDrawerCard per thread,
+Unresolved | Resolved SegmentedControl, the SmartSearch "Search comments", and one CommentDrawerCard per thread,
 newest first. Rows never expand: a click opens the thread's callout on the canvas (onOpen).
 Props: threads [{ id, number, place, type: action|question|info, unread, resolved, comments }], filter / defaultFilter /
 onFilterChange ('unresolved' | 'resolved'), selectedId, onOpen(thread), onResolve(thread), onUnresolve(thread),
@@ -1676,7 +1702,7 @@ setComments(id, comments), add(thread) (newest first, next number; starts read �
 ### searchComments
 **Tier:** Pattern helper
 Pattern helper: comment search stand-in — plain function, no visuals.
-"Ask anything about comments" (Figma note 247:229908): Cooper reads the query and returns the matching threads — by author,
+"Search comments" (Figma note 247:229908): Cooper reads the query and returns the matching threads — by author,
 status, time, element or content — as the same list with fewer items. This stand-in matches every meaningful word of the
 query against author, number, place, type, time and text. Returns { results, suggestion } — suggestion = the closest term
 found in the comments when nothing matches (Figma "You might be looking for").
@@ -1716,6 +1742,15 @@ the window button shows minimize vs maximize), newChat (Figma New chat=True hide
 onNewChat, onHistory, historyOpen (history button pressed), onResize, onMore, onClose (system-minus: collapses Cooper),
 onDragStart (pointerdown on the title area — compact window is draggable).
 `function ChatHeader({ title = 'New chat', size = 'full', newChat, onNewChat, onHistory, historyOpen, onResize, onMore, onClose, onDragStart, className, ...rest })`
+
+### CooperLimitsNote
+**Tier:** Pattern helper
+Figma: chat-collapsed-bar-organism (cf1fb8a41862…) — "chat-inline-quick-mode" (Patterns 12:263488). 320px pill above the bottom sheet.
+Props: type voice|text|fab (Figma Type: Voice opens by default; FAB button = Cooper avatar only),
+value / defaultValue / onChange (text), onSend(text), onTypeChange(type) (mic ↔ keyboard), onAttach, onExpand (hover control:
+"Expand to floating window"), speech (voice transcript; replaces the placeholder while the user talks), onFab (type=fab),
+state hover (gallery). Text over one line switches to the multi-line layout (--radius-control 4).
+`function CooperLimitsNote({ children = COOPER_LIMITS, className, ...rest })`
 
 ### UserMessage
 **Tier:** Component
@@ -2172,14 +2207,14 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 418× (Value, Build, Explore, Plan, Command) · usual: Type text 100% · input text 100%
 ───────────────────────────── smart-search-organism ─────────────────────────────
-Figma: smart-search-organism (2145:3758) — the Cooper "Ask anything…" bar (shown in older screens as "ai smart search").
+Figma: smart-search-organism (2145:3758) — the Cooper search bar (Figma placeholder "Ask anything…"; the kit default is "Search", rule 8.46) (shown in older screens as "ai smart search").
 Props: type text|voice / defaultType / onTypeChange (Text shows the mic button, Voice shows the keyboard button and listens),
 placeholder, value / defaultValue / onChange(value), onSubmit(value) on Enter or suggestion pick, onClear,
 suggestions (strings or {label,type,query}; shown in a search-modal while focused), suggestionsTitle, listening (voice: "…" state),
 disabled, width (default 360, Figma), size l (default: --size-control-m, 36 / 32 / 28) | s (--size-control-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
 state hover|focus|pressed (gallery only), aria-label, keyshortcut (aria-keyshortcuts on the input; PageTop and ExploreHeader pass "/", rule 9.18).
 The default search (AI search: keywords or natural language). IFS.Search (search-regular-organism) is the simple keyword search, when the use case needs no AI.
-`function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear, suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, keyshortcut, ...rest })`
+`function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Search', value, defaultValue = '', onChange, onSubmit, onClear, suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, keyshortcut, ...rest })`
 
 ### SearchModal
 **Tier:** Component
@@ -2290,7 +2325,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Pattern helper
 Pattern helper: issue-report state hook — built on React state (no Figma component). Controller for both panels. Issues: [{ id, kind, title, description, gate, solutions: [{ id, title, description,
 recommended }], upload, answer, okay, status }]. The card layout follows the data (Figma "the system decides"):
-solutions → "Solutions" list; upload / answer → the action buttons; okay → a single Okay button (acknowledge).
+solutions → "Solutions" list; upload / answer → the action buttons; okay → a single **Mark as reviewed** button (acknowledges a non-blocking warning or note; audit run 2 B-09, decided Nov 26).
 status = { applied (solution id), answer (text), file (name), uploading, viewed } — any of the first four (or viewed)
 resolves the issue. gates = [{ id, label }] for the readiness rows; an issue with `gate` counts against that gate.
 Returns state + actions; pass it as `controller` to the components below.
@@ -2315,8 +2350,8 @@ the issue title (Body/M/regular, --color-text-soft) and a 12px status-success-fi
 ### IssueAnswerField
 **Tier:** Pattern helper
 Pattern helper: My-answer input — built from TextField M (State=Typing, ✕ + ✓ on the right). Patterns (30:77533).
-Enter or ✓ submits, Esc or ✕ cancels. Props: value / defaultValue / onChange, onSubmit(text), onCancel, placeholder.
-`function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCancel, placeholder = 'My answer', autoFocus = true, className })`
+Enter or ✓ submits, Esc or ✕ cancels. Props: value / defaultValue / onChange, onSubmit(text), onCancel, placeholder (none by default, rule 8.46; the name is "My answer").
+`function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCancel, placeholder, autoFocus = true, className })`
 
 ### IssueKindSwitch
 **Tier:** Pattern helper
@@ -2360,12 +2395,12 @@ Props: controller, type drawer|sidebar, title, expanded / defaultExpanded / onEx
 **Tier:** Pattern helper
 ------------------------------------------------------------------------------------------ 
 Default issue kinds. value = issue.kind; indicator = Indicator type in the readiness rows; progress = word after the
-percentage in the pager ("resolved" for issues that need a fix, "viewed" for read-and-acknowledge ones).
-`const CONFIDENCE_KINDS = [ { value: 'question', label: 'Open questions', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' }, { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'viewed', dot: 'warning' }, ]; const TRACE_KINDS = [ { value: 'error', label: 'Errors', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' }, { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'resolved', dot: 'warning' }, { value: 'note', label: 'Notes', indicator: 'gray', tooltip: 'Notes', progress: 'viewed' }, ];  const isDone = s => !!(s && (s.applied || s.answer || s.file || s.viewed)); `
+percentage in the pager ("resolved" for issues that need a fix, "reviewed" for read-and-acknowledge ones, matching **Mark as reviewed**).
+`const CONFIDENCE_KINDS = [ { value: 'question', label: 'Open questions', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' }, { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'reviewed', dot: 'warning' }, ]; const TRACE_KINDS = [ { value: 'error', label: 'Errors', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' }, { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'resolved', dot: 'warning' }, { value: 'note', label: 'Notes', indicator: 'gray', tooltip: 'Notes', progress: 'reviewed' }, ];  const isDone = s => !!(s && (s.applied || s.answer || s.file || s.viewed)); `
 
 ### TRACE_KINDS
 **Tier:** Pattern helper
-`const TRACE_KINDS = [ { value: 'error', label: 'Errors', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' }, { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'resolved', dot: 'warning' }, { value: 'note', label: 'Notes', indicator: 'gray', tooltip: 'Notes', progress: 'viewed' }, ];  const isDone = s => !!(s && (s.applied || s.answer || s.file || s.viewed));  // Pattern helper: issue-report state hook — built on React state (no Figma component). Controller for both panels. Issues: [{ id, kind, title, description, gate, solutions: [{ id, title, description, // recommended }], upload, answer, okay, status }]. The card layout follows the data (Figma "the system decides"): // solutions → "Solutions" list; upload / answer → the action buttons; okay → a single Okay button (acknowledge). // status = { applied (solution id), answer `
+`const TRACE_KINDS = [ { value: 'error', label: 'Errors', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' }, { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'resolved', dot: 'warning' }, { value: 'note', label: 'Notes', indicator: 'gray', tooltip: 'Notes', progress: 'reviewed' }, ];  const isDone = s => !!(s && (s.applied || s.answer || s.file || s.viewed));  // Pattern helper: issue-report state hook — built on React state (no Figma component). Controller for both panels. Issues: [{ id, kind, title, description, gate, solutions: [{ id, title, description, // recommended }], upload, answer, okay, status }]. The card layout follows the data (Figma "the system decides"): // solutions → "Solutions" list; upload / answer → the action buttons; okay → a single **Mark as reviewed** button (acknowledges a non-blocking warning or n`
 
 ## patterns-widget-builder
 
@@ -2503,7 +2538,8 @@ Keyboard: ↑/↓ move, Home/End, Enter/Space run, → / ← open / close a subm
 Figma: single-select-organism (3273:26820) = single-select-atom (789:18085) + single-select-list-molecule (153:62054)
 Props: options (strings or {value,label,icon,disabled}; {divider:true} draws a separator; {action:true,label,icon,danger,onClick} is a
 command row such as "Remove" (danger = red) that runs onClick and closes without selecting), value/defaultValue/onChange(value, option), open/defaultOpen/onOpenChange,
-size s|m|l|xl, label (xl prefix / s text), placeholder, iconLeft, clearable (Figma show-remove-select, default true), loading, error,
+size s|m|l|xl, label (xl prefix / s text), placeholder (none by default: an empty Select shows nothing, rule 8.46; an example value only),
+iconLeft, clearable (Figma show-remove-select, default true), loading, error, required (rule 14.4: * after the visible label + aria-required),
 disabled, listPosition down|up (Figma "List position"), listTitle (e.g. "Suggested"), listSize s|l, state hover|focus|open (gallery).
 `function Select(props) { return <SelectBase {...props} multi={false} />; }`
 
@@ -2518,12 +2554,13 @@ Same props as Select; value is an array. maxTags (default 5) tags then "+N". Siz
 **Tier:** Component
 **In handovers:** only inside other components (4×); don't place on its own
 Figma: signle-combobox-organism (3375:5415). Type to filter.
-Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder, iconLeft, clearable, loading, error,
+Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder (none by default, rule 8.46),
+iconLeft, clearable, loading, error, required (* after the visible label + aria-required, rule 14.4),
 disabled, listPosition, listTitle ("Suggested", shown before typing), resultsTitle ("Results", while typing),
 emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query;
 emptyTitle defaults to No results for “<query>”, rule 8.51),
 filter(option, query), state. While loading and open, the list shows Figma's "Searching..." panel.
-`function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder = 'Search item', iconLeft, clearable = true, loading, error, disabled, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's', emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id, filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest })`
+`function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder, iconLeft, clearable = true, loading, error, disabled, required, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's', emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id, filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest })`
 
 ### SegmentedControl
 **Tier:** Component
@@ -2556,11 +2593,12 @@ Keyboard: arrows move a day/week, PageUp/PageDown change month, Home/End week st
 ### DatePicker
 **Tier:** Component
 DatePicker = select trigger (single-select-atom look) + Calendar popup (date-picker-molecule 3406:9510).
-Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label, placeholder,
+Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label,
+placeholder (none by default: an empty DatePicker shows nothing, rule 8.46), required (* after the visible label + aria-required, rule 14.4),
 format(date) → string, range, clearable, iconLeft (default system-calendar-date; null hides it), showApply (Figma show-apply-button:
 picks stay a draft until the full-width Apply button commits them), applyLabel, error, disabled, listPosition down|up, state,
 plus Calendar props (today, events, min, max).
-`function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder = 'Select date', format = d => IFS.format.date(d), range = false, clearable = true, iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply', error, disabled, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest })`
+`function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder, format = d => IFS.format.date(d), range = false, clearable = true, iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply', error, disabled, required, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest })`
 
 ## states
 
@@ -2620,7 +2658,7 @@ the page stays usable · appending to a list → LoadingMore.
 Figma: FTA button (67:4758) — the Cooper FAB.
 Props: stroke (Figma Stroke: true = 48px glass ring for non-black surfaces; false = bare 32px sphere for black footers/bottom sheets),
 indicator (Show indicator), label (tooltip + accessible name, Figma tooltip "{label}" with a hotkey), hotkey (default IFS.cooperHotkey: Ctrl+. or
-⌘+. by platform, Nov 25; Figma's "/" moved to search, rule 9.18), state hover|pressed|focus (gallery),
+⌘. by platform, Nov 25; Figma's "/" moved to search, rule 9.18), state hover|pressed|focus (gallery),
 disabled, onClick. The FAB hides while Cooper chat is open (one entry point).
 `function FtaButton({ stroke = true, indicator = true, label = 'Cooper', hotkey = IFS.cooperHotkey, tooltip = true, state, className, ...rest })`
 

@@ -328,9 +328,6 @@
 --border-blue: var(--palette-info-500)
 --element-checkbox-off-border-pressed: var(--palette-white-alpha-15)
 --element-radiobutton-off-border-pressed: var(--palette-white-alpha-15)
---element-button-circular-fill-default: var(--palette-white-alpha-20)
---element-button-circular-fill-hover: var(--palette-white-alpha-60)
---element-button-circular-fill-pressed: var(--palette-white-alpha-50)
 --white-500: var(--palette-white-alpha-50)
 --white-alpha-50: var(--palette-white-alpha-50)
 --table-col-primary-min: 15rem
@@ -345,7 +342,6 @@
 --table-col-check: 2.75rem
 --table-col-action: 3rem
 --table-col-flex-min: clamp(0px, (1rem - 16px) * 100, 10rem)
---layout-max-content-width: 100rem
 --layout-global-header-height: 3rem
 --layout-sidebar-width: 15rem
 --layout-panel-width: 23.75rem
@@ -462,6 +458,7 @@
 --page-margin: var(--space-400) | min-width:600px: var(--space-600) | min-width:1920px: var(--space-700)
 --page-gap: var(--space-400) | min-width:1440px: var(--space-500) | min-width:1920px: var(--space-700)
 --float-inset: var(--page-margin)
+--layout-max-content-width: 100rem
 --layout-max-content-width-wide: 140rem
 --region-panel-min: 20rem
 --region-panel-max: 50vw
@@ -480,22 +477,22 @@
 --layout-chat-width-max: 45rem
 --cooper-compact-end: var(--float-inset)
 --cooper-compact-bottom: calc(var(--float-bottom, 0px) + var(--float-inset))
---layout-content: calc(min(100cqw, var(--layout-max-content-width) + 2 * var(--page-margin)) - 2 * var(--page-margin))
---layout-inset: calc((100cqw - var(--layout-content)) / 2)
---layout-col: calc((var(--layout-content) - (var(--layout-columns) - 1) * var(--page-gap)) / var(--layout-columns))
+--layout-content: calc(min(100cqw, var(--layout-max-content-width) + 2 * var(--page-margin)) - 2 * var(--page-margin)) | .ifs-page--wide: calc(min(100cqw, var(--layout-max-content-width-wide) + 2 * var(--page-margin)) - 2 * var(--page-margin))
+--layout-inset: calc((100cqw - var(--layout-content)) / 2) | .ifs-page--wide: calc((100cqw - var(--layout-content)) / 2)
+--layout-col: calc((var(--layout-content) - (var(--layout-columns) - 1) * var(--page-gap)) / var(--layout-columns)) | .ifs-page--wide: calc((var(--layout-content) - (var(--layout-columns) - 1) * var(--page-gap)) / var(--layout-columns))
 --panel-cols: 3 | max-width:1439px: 4
---span-1: calc(1 * var(--layout-col) + 0 * var(--page-gap))
---span-2: calc(2 * var(--layout-col) + 1 * var(--page-gap))
---span-3: calc(3 * var(--layout-col) + 2 * var(--page-gap))
---span-4: calc(4 * var(--layout-col) + 3 * var(--page-gap))
---span-5: calc(5 * var(--layout-col) + 4 * var(--page-gap))
---span-6: calc(6 * var(--layout-col) + 5 * var(--page-gap))
---span-7: calc(7 * var(--layout-col) + 6 * var(--page-gap))
---span-8: calc(8 * var(--layout-col) + 7 * var(--page-gap))
---span-9: calc(9 * var(--layout-col) + 8 * var(--page-gap))
---span-10: calc(10 * var(--layout-col) + 9 * var(--page-gap))
---span-11: calc(11 * var(--layout-col) + 10 * var(--page-gap))
---span-12: calc(12 * var(--layout-col) + 11 * var(--page-gap))
+--span-1: calc(1 * var(--layout-col) + 0 * var(--page-gap)) | .ifs-page--wide: calc(1 * var(--layout-col) + 0 * var(--page-gap))
+--span-2: calc(2 * var(--layout-col) + 1 * var(--page-gap)) | .ifs-page--wide: calc(2 * var(--layout-col) + 1 * var(--page-gap))
+--span-3: calc(3 * var(--layout-col) + 2 * var(--page-gap)) | .ifs-page--wide: calc(3 * var(--layout-col) + 2 * var(--page-gap))
+--span-4: calc(4 * var(--layout-col) + 3 * var(--page-gap)) | .ifs-page--wide: calc(4 * var(--layout-col) + 3 * var(--page-gap))
+--span-5: calc(5 * var(--layout-col) + 4 * var(--page-gap)) | .ifs-page--wide: calc(5 * var(--layout-col) + 4 * var(--page-gap))
+--span-6: calc(6 * var(--layout-col) + 5 * var(--page-gap)) | .ifs-page--wide: calc(6 * var(--layout-col) + 5 * var(--page-gap))
+--span-7: calc(7 * var(--layout-col) + 6 * var(--page-gap)) | .ifs-page--wide: calc(7 * var(--layout-col) + 6 * var(--page-gap))
+--span-8: calc(8 * var(--layout-col) + 7 * var(--page-gap)) | .ifs-page--wide: calc(8 * var(--layout-col) + 7 * var(--page-gap))
+--span-9: calc(9 * var(--layout-col) + 8 * var(--page-gap)) | .ifs-page--wide: calc(9 * var(--layout-col) + 8 * var(--page-gap))
+--span-10: calc(10 * var(--layout-col) + 9 * var(--page-gap)) | .ifs-page--wide: calc(10 * var(--layout-col) + 9 * var(--page-gap))
+--span-11: calc(11 * var(--layout-col) + 10 * var(--page-gap)) | .ifs-page--wide: calc(11 * var(--layout-col) + 10 * var(--page-gap))
+--span-12: calc(12 * var(--layout-col) + 11 * var(--page-gap)) | .ifs-page--wide: calc(12 * var(--layout-col) + 11 * var(--page-gap))
 --region-panel: var(--layout-panel-width)
 --region-panel-l: var(--layout-modal-width-l)
 --region-map-bar: 46.625rem
@@ -1357,6 +1354,9 @@
 --element-button-ghost-border-pressed → --color-border-transparent
 --element-button-ghost-border-disabled → --color-border-transparent
 --background-canvas-primary → --color-surface-canvas
+--element-button-circular-fill-default → --color-background-neutral-strong
+--element-button-circular-fill-hover → --color-background-neutral-strong-hover
+--element-button-circular-fill-pressed → --color-background-neutral
 --element-button-circular-fill-disabled → --color-background-neutral-soft
 --element-button-circular-border-default → --color-border-soft
 --element-button-circular-border-hover → --color-border-strong

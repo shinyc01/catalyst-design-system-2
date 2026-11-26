@@ -37,7 +37,7 @@ The Catalyst word list (rule 8.43). Terms are settled; a definition with "confir
 | gate | An approval point between stages. | checkpoint, hurdle | "Approved at every gate" (rule 14.12). | 8.43 | not yet (product owner) |
 | approval chain | The ordered people who approve an investment or framework. | sign-off chain, workflow, approval flow | — | 8.43 | not yet (product owner) |
 | approve / approval | Agree that the item can move on. | sign off, accept, OK | — | 8.9 | not yet (product owner) |
-| needs revision | Status: an approver sent the item back to its author to revise. | Revisions required, Revision required, Revision requested, Revisions requested (as a status), Changes requested | The send-back pair (decided Nov 26): the asker's button "Request revisions", their snackbar "Revisions requested" (description "Sent back to {name}."), the status everyone sees "Needs revision". A status that asks for action may start with "Needs" (rule 8.52). | 8.9 | yes |
+| needs revision | Status: an approver sent the item back to its author to revise. | Revisions required, Revision required, Revision requested, Revisions requested (as a status), Changes requested | The send-back pair (decided Nov 26): the asker's button "Request revisions", their snackbar "Revisions requested" (description "Sent back to {name}."), the status everyone sees "Needs revision". A status that asks for action may start with "Needs" (rule 8.52). The reviewer’s own button after sending back stays disabled and reads "Revisions requested": the action’s past tense, like "Approved", not a status (audit run 2 B-14, decided Nov 26), so don’t change it to "Needs revision". | 8.9 | yes |
 | risk | The chance and impact of an unwanted event, such as an asset failure. | threat, hazard, exposure | — | 8.43 | not yet (product owner) |
 | residual risk | The risk left after an investment is done. | remaining risk, leftover risk | — | 8.43 | not yet (product owner) |
 | risk register | The list of identified risks and their scores. | risk log, risk list | — | 8.43 | not yet (product owner) |
@@ -56,7 +56,7 @@ The Catalyst word list (rule 8.43). Terms are settled; a definition with "confir
 
 | Use | For | Don't use | Rule |
 |---|---|---|---|
-| Create | making a new object ("Create scenario") | New (as a verb), Make, Add (for new objects), Generate (unless Cooper writes it) | 8.12 |
+| Create | making a new object ("Create scenario"). Every create button says Create, the PageTop one included ("Create ▾" opens the choice of things to create; audit run 2 B-24, decided Nov 26). "New" stays only as an adjective ("New scenario" as a title) | New (as a verb or a button label), Make, Add (for new objects), Generate (unless Cooper writes it) | 8.12 |
 | Add | putting an existing or new item into a container ("Add model") | Insert, Attach (except files), Include | 8.12 |
 | Remove | taking out of a group, without deleting ("Remove collaborator") | Delete (for this), Unassign | 8.12 |
 | Delete | removing for good ("Delete scenario") | Remove (for this), Erase, Destroy, Trash | 8.12 |
@@ -68,7 +68,7 @@ The Catalyst word list (rule 8.43). Terms are settled; a definition with "confir
 | Save | keeping edits; the FormCard fallback label | Submit, Apply (for forms), OK, Done (in edit forms) | 8.10 |
 | Apply | applying filters or a setting without leaving | Save (for filters), OK, Apply (for a Cooper suggestion: name the change) | 8.10 |
 | Send for approval | starting the approval chain | Submit, Sign off | 8.10 |
-| Approve / Request revisions / Reject | approver decisions; "Request revisions" sends the item back to its author. After "Request revisions" the status is "Needs revision" and the snackbar "Revisions requested" (description "Sent back to {name}."). | Accept, Decline, Return, Sign off, Request changes, Request more information, Request more info | 8.9 |
+| Approve / Request revisions / Reject | approver decisions; "Request revisions" sends the item back to its author. After "Request revisions" the status is "Needs revision" and the snackbar "Revisions requested" (description "Sent back to {name}."). The reviewer’s disabled button then reads "Revisions requested", the action’s past tense like "Approved". | Accept, Decline, Return, Sign off, Request changes, Request more information, Request more info | 8.9 |
 | Export / Import | files out of or into the product ("Export plan (CSV)") | Download (for export), Upload (for import) | 8.12 |
 | Download / Upload | moving a file as a file | Export, Import | 8.12 |
 | Share | giving people access | Invite (except a new collaborator: "Invite collaborators") | 8.12 |

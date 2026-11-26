@@ -1105,7 +1105,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       </FormCard>
       <FormCard title="New contact" divider style={{ width: 464 }} secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save' }}
         fields={[{ name: 'first', label: 'First name' }, { name: 'last', label: 'Last name' }, { name: 'email', label: 'Email', type: 'email' },
-          { name: 'phone', label: 'Phone', type: 'phone' }]} onSubmit={v => console.log(v)} />
+          { name: 'phone', label: 'Phone', type: 'phone', required: false }]} onSubmit={v => console.log(v)} />
       <FormCard title="Loading" style={{ width: 464 }} loading fields={[{ name: 'a', label: 'A' }, { name: 'b', label: 'B' }]} secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save' }} />
       <FormCard title="Submitting" style={{ width: 464 }} submitting defaultValues={{ a: 'Value' }} fields={[{ name: 'a', label: 'Name' }]} secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save' }} />
       <FormCard title="Form-level error" style={{ width: 464 }} error="Email or password is incorrect." defaultValues={{ email: 'pat@company.com' }}
@@ -1581,20 +1581,20 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### PageTop
 ```jsx
   IFS_GALLERY.push({ name: 'PageTop', figma: 'page-top (244:117279, key c5e4c474…)', render: () => <>
-    <Frame label="Default — description, New, tabs with counts, smart search (library page)">
-      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />}
+    <Frame label="Default — description, Create, tabs with counts, smart search (library page)">
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<CreateBtn />}
         tabs={{ items: FW_TABS, defaultValue: 'all' }} search={SEARCH} />
     </Frame>
     <Frame label="cooper = true, Show button = false (Command home; the instance overrides the gap to 12)">
       <PageTop eyebrow title="Welcome back, Jeff." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
         style={{ gap: 'var(--space-300)' }} tabs={{ items: [{ value: 'w', label: 'My works', count: 3 }, { value: 'd', label: 'Decisions', count: 6 }, { value: 'c', label: 'Conversations', count: 3 }, { value: 'f', label: 'Following', count: 3 }], defaultValue: 'd' }}
-        search={{ placeholder: 'Ask anything about your work' }} />
+        search={{ placeholder: 'Search' }} />
     </Frame>
     <Frame label="show search = false">
-      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<CreateBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
     </Frame>
     <Frame label="No description — title only, Tabs size L (Build / Idea Pad)">
-      <PageTop title="Build" actions={<NewBtn />} tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], defaultValue: 'ideas' }} />
+      <PageTop title="Build" actions={<CreateBtn />} tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], defaultValue: 'ideas' }} />
     </Frame>
     <Frame label="Title + description only (no tabs, no search, no button)">
       <PageTop title="Value models" description="Value models used across frameworks" />
@@ -1854,7 +1854,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### RemoveCollaboratorModal
 ```jsx
   IFS_GALLERY.push({ name: 'RemoveCollaboratorModal', figma: 'modal-organism Remove this collaborator? [patterns] (12:12281)', render: () =>
-    <IFS.RemoveCollaboratorModal inline open person={waiting(JAMES, 2)} onCancel={() => {}} onConfirm={() => {}} /> });
+    <IFS.RemoveCollaboratorModal inline open person={waiting(JAMES, 2)} body="They lose access to this framework." onCancel={() => {}} onConfirm={() => {}} /> });
 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
@@ -1877,7 +1877,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
                 actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />
-                  <span style={{ width: 1, height: 24, margin: '0 var(--space-200)', background: 'var(--color-border-soft)' }} aria-hidden="true" />
+                  <span style={{ width: 'var(--border-width-default)', height: 'var(--size-24)', margin: '0 var(--space-200)', background: 'var(--color-border-soft)' }} aria-hidden="true" />
                   <IFS.Button type="primary" size="s">Review</IFS.Button>
                 </IFS.Inline>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
@@ -1913,7 +1913,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         <CommentPin type={t} state="hover" avatars={t === 'cooper' ? [{ type: 'cooper' }, UN] : [UN, UN2]} preview={preview} />
       </Row>
     ))}
-    <Row label="interactive (hover = preview)"><CommentPin avatars={[P['Lara Green'].avatar]} preview={{ name: 'Lara Green', time: '1d ago', text: 'Should we include additional environmental objectives?' }} onClick={() => IFS.toast({ title: 'Pin clicked — opens the thread' })} /></Row>
+    <Row label="interactive (hover = preview)"><CommentPin avatars={[P['Lara Green'].avatar]} preview={{ name: 'Lara Green', time: '1d ago', text: 'Should we include additional environmental objectives?' }} onClick={() => IFS.toast({ title: 'Pin clicked: opens the thread' })} /></Row>
   </IFS.Stack> });
 ```
 
@@ -2033,7 +2033,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Cap title="Network error" w={426}><CooperMessage status="offline" onRetry={() => {}} /></Cap>
     <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework — coverage report' }]} /></Cap>
     <Cap title="Answer with clarifying options (follow-ups hidden)" w={426}><CooperMessage status="answered" text="I need a little more context. Which would you like to start with?" followUps={followUps}
-      options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours — select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
+      options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours. Select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
   </IFS.Inline> });
 ```
 
@@ -2048,7 +2048,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Cap title="Network error" w={426}><CooperMessage status="offline" onRetry={() => {}} /></Cap>
     <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework — coverage report' }]} /></Cap>
     <Cap title="Answer with clarifying options (follow-ups hidden)" w={426}><CooperMessage status="answered" text="I need a little more context. Which would you like to start with?" followUps={followUps}
-      options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours — select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
+      options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours. Select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
   </IFS.Inline> });
 ```
 
@@ -2246,7 +2246,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         </Row>
       ))}
     </React.Fragment>)}
-    <Row label="interactive"><MapPinDot counter="12" label="12 faults — click to select" /><MapPinDot size="s" status="warning" label="Warning" /></Row>
+    <Row label="interactive"><MapPinDot counter="12" label="12 faults" /><MapPinDot size="s" status="warning" label="Warning" /></Row>
   </IFS.Stack> });
 ```
 
@@ -2347,7 +2347,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {
     const S = 0.47; // the Figma map draws its pins at ~47%
-    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
+    // --pd-hit keeps each pin's hit area 24 px on screen inside the scaled thumbnail (audit run 2 M3)
+    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0', '--pd-hit': `calc(var(--size-24) / ${S})` }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
       <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 'var(--radius-control)', background: 'var(--color-surface-secondary)' }}>
@@ -2379,7 +2380,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>
           {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
-          {data.map(([l, v], i) => <VerticalBarChartItem key={l} label={`${l}: $${v}M`} value={v} max={2.5} width={113} height={200}
   // … cut; full example in src/gallery/patterns-documents.jsx
 ```
 
@@ -2443,7 +2443,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </div>
   );
   const DECISIONS = [
-    { id: 1, title: 'Northgate Cluster · 7 aging feeders replacement', badge: 'Explore', description: '7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.', cpv: '$18.1M', vc: '1,345 V/$K', priority: 'critical' },
+    { id: 1, title: 'Northgate Cluster · 7 aging feeders replacement', badge: 'Explore', description: '7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising, flagged before failure, with an investment idea already drafted.', cpv: '$18.1M', vc: '1,345 V/$K', priority: 'critical' },
     { id: 2, title: 'EastZone C · Transformer Overload Risk', badge: 'Explore', description: '3 zones over safe capacity ahead of peak', cpv: '$12.4M', vc: '1,986 V/$K', priority: 'critical' },
     { id: 3, title: 'Ridgeline Substation · Protection Relay Fault', badge: 'Build', description: 'Relay protection upgrade serving West Corridor', cpv: '8.6M', vc: '2,092 V/$K', priority: 'critical' },
     { id: 4, title: 'Hera SS · Capacitor bank reactive support', badge: 'Plan', description: 'Voltage sagging across the South Loop at evening peak', cpv: '$7.3M', vc: '1,123 V/$K', priority: 'critical' },
@@ -2491,7 +2491,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### SmartSearch
 ```jsx
   IFS_GALLERY.push({ name: 'SmartSearch', figma: 'smart-search-organism (2145:3758)', render: () => {
-    const ph = 'Ask anything about strategy frameworks';
+    const ph = 'Search strategy frameworks';
     return <>
       <IFS.Inline gap="600" align="start" wrap style={grid}>
         {['text', 'voice'].map(t => (
@@ -2509,7 +2509,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         ))}
       </IFS.Inline>
       <Row label="size s (28, explore-header)"><SmartSearch size="s" width={248} placeholder="Search" /><SmartSearch size="s" width={248} defaultValue="Northgate" /></Row>
-      <Row label="live, with suggestions"><div style={{ height: 300 }}><SmartSearch placeholder="Ask anything about idea pad" suggestions={QUESTIONS} onSubmit={v => IFS.toast({ title: `Asked: ${v}` })} /></div></Row>
+      <Row label="live, with suggestions"><div style={{ height: 300 }}><SmartSearch placeholder="Search ideas" suggestions={QUESTIONS} onSubmit={v => IFS.toast({ title: `Asked: ${v}` })} /></div></Row>
     </>;
   } });
 ```
@@ -2569,7 +2569,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'CollaborationBadge', figma: 'badge-atom in Collaboration column [patterns] (95:132266)', render: () => (
     <Row label="types">
-      <CollaborationBadge label="View reply" avatar={{ initials: 'IO', type: 'purple' }} request={{ name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for — see the 2024 tab.”', meta: 'INV-2026-0812 · replied' }} />
+      <CollaborationBadge label="View reply" avatar={{ initials: 'IO', type: 'purple' }} request={{ name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for. See the 2024 tab.”', meta: 'INV-2026-0812 · replied' }} />
       <CollaborationBadge label="Provide asset health" avatar={{ initials: 'MR', type: 'red' }} request={{ name: 'Matthew Ridderikhoff', role: 'Engineering Review', time: '1h ago', text: '“Cost model is locked. Focus on the risk-deferral trade-off in Alternative B.”', meta: 'INV-2026-0840 · sent for review' }} />
       <CollaborationBadge label="Review alternative B" avatar={{ initials: 'MR', type: 'red' }} count={3} request={{ name: 'Matthew Ridderikhoff', role: 'Engineering Review', time: '1h ago', text: '“Newest of three requests.”' }} />
     </Row>
@@ -2591,7 +2591,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
     <div style={{ width: 1000, padding: 'var(--space-400)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-secondary)' }}>
       <TableToolbar filter={<IFS.SegmentedControl size="s" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
-        search={<SmartSearch placeholder="Ask anything about idea pad" />} onConfigure={() => {}} />
+        search={<SmartSearch placeholder="Search ideas" />} onConfigure={() => {}} />
     </div>
   ) });
 ```
@@ -2613,7 +2613,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <RecordPreview id="INV-2026-0912" onDetails={() => {}} onClose={() => {}}>
         <h3 className="t-heading-h2-medium" style={{ margin: '0 0 var(--space-150)', color: 'var(--color-text)' }}>Southern Feeder Replacement — Circuit 17C</h3>
         <IFS.Indicator type="purple">Shaping</IFS.Indicator>
-        <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising.</p>
+        <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising.</p>
       </RecordPreview>
     </div>
   ) });
@@ -2623,7 +2623,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   const today = new Date();
   const ago = n => new Date(today.getFullYear(), today.getMonth(), today.getDate() - n);
   const IDEAS = [
-    { id: 'i1', name: 'Northgate Substation Transformer Replacement', program: true, pinned: true, status: { type: 'orange', label: 'Under review', count: '0/4' }, horizon: 'FY29–FY43', hz: [29, 43], term: 'Long', modified: ago(3), collab: { label: 'View reply', avatar: { initials: 'IO', type: 'purple' }, kind: 'Replied', who: 'I. Okafor', request: { name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for — see the 2024 tab.”', meta: 'INV-2026-0812 · replied' } }, keywords: ['Replacement', 'Substation'] },
+    { id: 'i1', name: 'Northgate Substation Transformer Replacement', program: true, pinned: true, status: { type: 'orange', label: 'Under review', count: '0/4' }, horizon: 'FY29–FY43', hz: [29, 43], term: 'Long', modified: ago(3), collab: { label: 'View reply', avatar: { initials: 'IO', type: 'purple' }, kind: 'Replied', who: 'I. Okafor', request: { name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for. See the 2024 tab.”', meta: 'INV-2026-0812 · replied' } }, keywords: ['Replacement', 'Substation'] },
     { id: 'i2', name: 'Ridgeview Village Backup Tie to Feeder 5', program: true, status: { type: 'blue', label: 'New' }, horizon: 'FY30–FY50', hz: [30, 50], term: 'Long', modified: ago(20), keywords: ['Feeder'] },
     { id: 'i3', name: 'Cedar Park Feeder Hardening Program', program: true, status: { type: 'gray', label: 'Deferred' }, horizon: 'FY29–FY39', hz: [29, 39], term: 'Long', modified: d('2026-04-29'), collab: { label: 'Provide asset health', avatar: { initials: 'MR', type: 'red' }, kind: 'Input required', who: 'M. Ridderikhoff', count: 2, request: { name: 'Matthew Ridderikhoff', role: 'Engineering Review', time: '1h ago', text: '“Cost model is locked. Focus on the risk-deferral trade-off in Alternative B.”', meta: 'INV-2026-0840 · sent for review' } }, keywords: ['Feeder', 'Refurbishment'] },
     { id: 'i4', name: 'Southern Feeder Replacement — Circuit 17C', status: { type: 'purple', label: 'Shaping' }, horizon: 'FY34–FY41', hz: [34, 41], term: 'Mid', modified: d('2026-03-11'), keywords: ['Replacement', 'Feeder'] },
@@ -2853,7 +2853,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### Combobox
 ```jsx
   IFS_GALLERY.push({ name: 'Combobox', figma: 'signle-combobox-organism (3375:5415)', render: () => <>
-    {[['default', {}], ['hover', { state: 'hover' }], ['filled', { defaultValue: 2 }], ['error', { error: true }], ['loading', { loading: true }], ['disabled', { disabled: true }]].map(([n, p]) => (
+    {[['default', {}], ['hover', { state: 'hover' }], ['filled', { defaultValue: 2 }], ['error', { error: true }], ['loading', { loading: true }], ['disabled', { disabled: true }], ['required (rule 14.4)', { required: true }]].map(([n, p]) => (
       <Row key={n} label={n}>{['m', 'l', 'xl'].map(z => <div key={z} style={{ width: 300 }}><Combobox size={z} label="Label" options={OPTS} {...p} /></div>)}</Row>
     ))}
     <Row label="open: results / no results / searching" style={{ alignItems: 'flex-start', height: 230 }}>
@@ -2904,6 +2904,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
       <div style={{ width: 240 }}><DatePicker size="l" /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Date" range /></div>
+      <div style={{ width: 240 }}><DatePicker size="xl" label="Start date" required /></div>
     </Row>
     <Row label="showApply" style={{ alignItems: 'flex-start', height: 380 }}>
       <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
@@ -2922,6 +2923,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
       <div style={{ width: 240 }}><DatePicker size="l" /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Date" range /></div>
+      <div style={{ width: 240 }}><DatePicker size="xl" label="Start date" required /></div>
     </Row>
     <Row label="showApply" style={{ alignItems: 'flex-start', height: 380 }}>
       <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
@@ -2940,7 +2942,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access to this framework" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
       <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results for “WDRM-2”" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
       <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No frameworks match your filters" body="Try a different term, or clear filters to see all frameworks." primaryAction={{}} /></Cell>
-      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it’s empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
+      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences: why it’s empty and what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
       <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 'var(--radius-floating)' }}>
@@ -3121,8 +3123,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       </Row>
       <Live>
         <Button type="primary" onClick={() => setOpen(true)}>Open modal</Button>
-        <Modal open={open} onOpenChange={setOpen} title="Archive investment"
-          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive investment', onClick: () => setOpen(false) }}>
+        <Modal open={open} onOpenChange={setOpen} title="Archive this investment?"
+          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive', onClick: () => setOpen(false) }}>
           <Filler h={80}>Esc, the ✕ or a click on the overlay closes it. Tab stays inside.</Filler>
         </Modal>
       </Live>
@@ -3148,8 +3150,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       </Row>
       <Live>
         <Button type="primary" onClick={() => setOpen(true)}>Open modal</Button>
-        <Modal open={open} onOpenChange={setOpen} title="Archive investment"
-          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive investment', onClick: () => setOpen(false) }}>
+        <Modal open={open} onOpenChange={setOpen} title="Archive this investment?"
+          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive', onClick: () => setOpen(false) }}>
           <Filler h={80}>Esc, the ✕ or a click on the overlay closes it. Tab stays inside.</Filler>
         </Modal>
       </Live>

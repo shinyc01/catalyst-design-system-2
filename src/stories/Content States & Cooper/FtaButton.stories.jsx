@@ -9,7 +9,7 @@ export default {
   component: IFS["FtaButton"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** FTA button (67:4758)\n\n\nUse: Every action and every navigation move (rule 14.1). Types and sizes: rule 14.2; icon sizes: rule 6.1. `loading` while its action runs: the dotted loader replaces the left icon, `aria-busy`, not clickable, label stays (rule 7.1).\n\nDon't: Links inside user-authored content or to external resources — those stay links." } },
+    docs: { description: { component: "**Figma:** FTA button (67:4758)\n\n\nUse: Every action and every navigation move (rule 14.1). Types and sizes: rule 14.2; icon sizes: rule 6.1. `loading` while its action runs: the dotted loader replaces the left icon, `aria-busy`, not clickable, label stays (rule 7.1). `href`: a move renders as a link (`<a href>`) with the Ghost look by default (rule 14.1). `disabled` + `disabledReason`: focusable, the reason in a tooltip and always as the button's screen-reader description; a permanent reason (a permission) also as visible text near the button (rule 9.10).\n\nDon't: Links inside user-authored content or to external resources — those stay links." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=67-4758"},
     
   },
