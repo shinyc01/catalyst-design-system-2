@@ -1348,7 +1348,7 @@ AppShell — NOT a Figma component. Reproduces the shell of pattern screen "Map 
 Bar, sidebar, header and panel stay put; only content scrolls.
 Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
 e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4),
-title + module (rule 9.27, WCAG 2.4.2): set the browser tab title "{title} – {module} – IFS Copperleaf" while the shell is shown
+title + module + product (rule 9.27, WCAG 2.4.2): set the browser tab title "{title} – {module} – {product}" while the shell is shown; product defaults to "IFS Copperleaf", a second product passes its own name
 (title = the page's own name; module omitted on a module's landing page); the old title comes back on unmount.
 Panel mode (decided Nov 19, guide/rules.md 3.18): set by the panel's JOB, not the screen.
   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
@@ -1362,7 +1362,7 @@ The shell measures its own width and sets data-size xs|sm|md|lg|xl. A side nav w
 panel with a controlled `expanded`, is left alone.
 Content (rule 3.15): wrap each page's content in `.ifs-page` (page margin on all four sides, 1600 cap, centred); map and canvas
 pages (rule 3.21) fill the content area instead.
-`function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', title, module, className, style, ...rest })`
+`function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', title, module, product = SHELL_PRODUCT, className, style, ...rest })`
 
 ## patterns-activity
 

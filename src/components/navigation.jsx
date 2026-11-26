@@ -557,7 +557,7 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // Bar, sidebar, header and panel stay put; only content scrolls.
 // Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
 // e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4),
-// title + module (rule 9.27, WCAG 2.4.2): set the browser tab title "{title} – {module} – IFS Copperleaf" while the shell is shown
+// title + module + product (rule 9.27, WCAG 2.4.2): set the browser tab title "{title} – {module} – {product}" while the shell is shown; product defaults to "IFS Copperleaf", a second product passes its own name
 // (title = the page's own name; module omitted on a module's landing page); the old title comes back on unmount.
 // Panel mode (decided Nov 19, guide/rules.md 3.18): set by the panel's JOB, not the screen.
 //   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
@@ -586,13 +586,13 @@ function useShellDismiss(ref, active, onDismiss) {
 // G4 (rule 9.16): a "Skip to content" link is the shell's first tab stop, shown on focus; it moves focus to <main>.
 let shellUid = 0;
 const SHELL_PRODUCT = 'IFS Copperleaf';
-function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', title, module, className, style, ...rest }) {
+function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', title, module, product = SHELL_PRODUCT, className, style, ...rest }) {
   React.useEffect(() => {
     if (typeof document === 'undefined' || (title == null && module == null)) return undefined;
     const before = document.title;
-    document.title = [title, module, SHELL_PRODUCT].filter(Boolean).join(' – ');
+    document.title = [title, module, product].filter(Boolean).join(' – ');
     return () => { document.title = before; };
-  }, [title, module]);
+  }, [title, module, product]);
   const ref = React.useRef(null), sideRef = React.useRef(null), panelRef = React.useRef(null);
   const mainId = React.useMemo(() => `ifs-main-${++shellUid}`, []);
   const [size, setSize] = React.useState(() => shellSizeOf(typeof window !== 'undefined' ? window.innerWidth : 1440));
