@@ -66,9 +66,9 @@
 /* Cooper (AI), not focus: 2px ring-gap + 2px gradient ring (cooper text → text); M: 1 + 1 (B1: Figma 1.5 snaps to 1).
    Gradient angle converted from Figma's gradientTransform (approximate). */
 .ifs-field--cooper .ifs-field__control,.ifs-field--cooper .ifs-field__control:hover,.ifs-field--cooper .ifs-field__control:focus-within{
-  --fill:var(--color-background-input);--border:var(--color-border-input);--ring:0 0 0 var(--border-width-200) var(--color-ring-gap)}
+  --fill:var(--color-background-input);--border:var(--color-border-input);--ring:0 0 0 var(--border-width-selected) var(--color-ring-gap)}
 .ifs-field--cooper .ifs-field__control::after{
-  content:"";position:absolute;inset:calc(-1 * var(--border-width-400));padding:var(--border-width-200);border-radius:calc(var(--radius-control) + var(--border-width-400));pointer-events:none;
+  content:"";position:absolute;inset:calc(-1 * var(--border-width-emphasis));padding:var(--border-width-selected);border-radius:calc(var(--radius-control) + var(--border-width-emphasis));pointer-events:none;
   background:linear-gradient(272deg,var(--color-cooper-text) -8%,var(--color-text) 99%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
@@ -76,10 +76,10 @@
 .ifs-field--cooper.ifs-field--m .ifs-field__control{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap)}
 .ifs-field--cooper.ifs-field--m .ifs-field__control::after{inset:calc(-2 * var(--border-width-default));padding:var(--border-width-default);border-radius:calc(var(--radius-control) + 2 * var(--border-width-default))}
 /* Cooper, focus (S1): the gradient ring stays; the focus ring (--focus-ring widths and colours) is drawn just outside it */
-.ifs-field--cooper .ifs-field__control:focus-within{--ring:0 0 0 var(--border-width-200) var(--color-ring-gap),
-  0 0 0 calc(var(--border-width-400) + var(--border-width-200)) var(--color-focus-inner),0 0 0 calc(var(--border-width-400) + var(--border-width-400)) var(--color-focus-outer)}
+.ifs-field--cooper .ifs-field__control:focus-within{--ring:0 0 0 var(--border-width-selected) var(--color-ring-gap),
+  0 0 0 calc(var(--border-width-emphasis) + var(--border-width-selected)) var(--color-focus-inner),0 0 0 calc(var(--border-width-emphasis) + var(--border-width-emphasis)) var(--color-focus-outer)}
 .ifs-field--cooper.ifs-field--m .ifs-field__control:focus-within{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap),
-  0 0 0 calc(2 * var(--border-width-default) + var(--border-width-200)) var(--color-focus-inner),0 0 0 calc(2 * var(--border-width-default) + var(--border-width-400)) var(--color-focus-outer)}
+  0 0 0 calc(2 * var(--border-width-default) + var(--border-width-selected)) var(--color-focus-inner),0 0 0 calc(2 * var(--border-width-default) + var(--border-width-emphasis)) var(--color-focus-outer)}
 
 /* ---------- Search ---------- */
 .ifs-search{

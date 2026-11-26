@@ -95,7 +95,7 @@
 .ifs-cooper-chip__label{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* gradient direction approx. */; /* ltr: brand gradient art, fixed in both directions */
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-cooper-chip:hover,.ifs-cooper-chip[data-state=hover]{--fill:var(--color-cooper-background)}
-.ifs-cooper-chip.is-selected{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap),0 0 0 var(--border-width-200) var(--color-cooper-border)} /* not focus: selected ring on the ring-gap black */
+.ifs-cooper-chip.is-selected{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap),0 0 0 var(--border-width-selected) var(--color-cooper-border)} /* not focus: selected ring on the ring-gap black */
 .ifs-cooper-chip:focus-visible,.ifs-cooper-chip[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 .ifs-cooper-chip:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);
   box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-10));-webkit-backdrop-filter:blur(var(--blur-10))}
@@ -144,4 +144,4 @@
 .ifs-zoom__tick{width:1px;height:8px;flex:none;background:var(--color-border-selected)}
 .ifs-zoom__tick.is-after{background:var(--color-border)}
 .ifs-zoom__tick.is-current{height:16px}
-.ifs-zoom__marker{position:absolute;top:-3px;width:4px;height:4px;margin-left:calc(-1 * var(--border-width-150));background:var(--color-icon);clip-path:polygon(0 0,100% 0,50% 100%)} /* ltr: zoom marker placed by JS; click reads clientX */
+.ifs-zoom__marker{position:absolute;top:-3px;width:4px;height:4px;margin-left:calc(-1 * var(--border-width-150)) /* marker geometry: half its stem, T3-5 */;background:var(--color-icon);clip-path:polygon(0 0,100% 0,50% 100%)} /* ltr: zoom marker placed by JS; click reads clientX */

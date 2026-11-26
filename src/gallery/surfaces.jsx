@@ -9,7 +9,7 @@ export default IFS_GALLERY;
   const Row = ({ label, children, top }) => <div className="g-row" style={top ? { alignItems: 'flex-start' } : undefined}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Live = ({ children }) => <Row label="live">{children}</Row>;
   const Filler = ({ h = 120, children }) => <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', minHeight: h }}>{children}</div>;
-  const Black = ({ children }) => <IFS.Inline gap="600" align="center" style={{ background: '#000', padding: 'var(--space-400)' }}>{children}</IFS.Inline>;
+  const Black = ({ children }) => <IFS.Inline gap="600" align="center" style={{ background: 'var(--color-surface-primary)', padding: 'var(--space-400)' }}>{children}</IFS.Inline>;
 
   IFS_GALLERY.push({ name: 'Tooltip', figma: 'tooltip-organism (67:6151)', render: () => <>
     {['black', 'grey'].map(c => <React.Fragment key={c}>
@@ -55,7 +55,7 @@ export default IFS_GALLERY;
       <Row label="inline" top>
         <Modal inline title="{title}" secondaryAction={{ label: '{label}' }} primaryAction={{ label: '{label}' }}><div style={{ height: 286 }} /></Modal>
         <Modal inline title="Primary disabled" secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save', disabled: true }}><div style={{ height: 60 }} /></Modal>
-        <div style={{ position: 'relative', width: 240, height: 160, overflow: 'hidden', background: 'linear-gradient(135deg,#335,#a63)' }}>
+        <div style={{ position: 'relative', width: 240, height: 160, overflow: 'hidden', background: 'linear-gradient(135deg,#335,#a63)' /* raw-ok: demo backdrop art behind the glass sample */ }}>
           <Overlay inline type="strong" style={{ inset: '0 50% 0 0' }} /><Overlay inline type="base" style={{ inset: '0 0 0 50%' }} />
         </div>
       </Row>

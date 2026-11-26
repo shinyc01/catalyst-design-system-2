@@ -28,7 +28,7 @@ export default IFS_GALLERY;
       <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences: why it’s empty and what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
-      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 'var(--radius-floating)' }}>
+      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft)', borderRadius: 'var(--radius-floating)' }}>
         <EmptyState size="full" cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} />
       </div>
     </Row>

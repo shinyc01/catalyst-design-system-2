@@ -28,7 +28,7 @@
     outline:var(--border-width-default) solid CanvasText;outline-offset:calc(-1 * var(--border-width-default))}
   :is([aria-selected="true"],[aria-pressed="true"],[aria-checked="true"]:not([role=menuitemradio]),.is-selected,.ifs-content-card--selected,.ifs-table__row--selected,
       .ifs-checkbox--on .ifs-check__box){background-color:Highlight;color:HighlightText;forced-color-adjust:none}
-  .ifs-tab[aria-selected="true"]{background-color:transparent;color:CanvasText;text-decoration:underline var(--border-width-200);text-underline-offset:var(--space-150)}
+  .ifs-tab[aria-selected="true"]{background-color:transparent;color:CanvasText;text-decoration:underline var(--border-width-selected);text-underline-offset:var(--space-150)}
   :is(.ifs-switch__knob,.ifs-check__dot){background-color:CanvasText}
   .ifs-switch[aria-checked="true"] .ifs-switch__knob{background-color:HighlightText}
   :is(:disabled,[aria-disabled="true"]){color:GrayText;outline-color:GrayText}
@@ -49,7 +49,7 @@
   :is(.ifs-status-indicator,.ifs-indicator,.ifs-dv-indicator,.ifs-map-pin,.ifs-pin-dot,.ifs-pin-defect,.ifs-dv-legend__swatch,.ifs-avatar__base){forced-color-adjust:none}
   :is(.ifs-status-indicator,.ifs-dv-indicator,.ifs-pin-dot,.ifs-pin-defect){outline:var(--border-width-default) solid CanvasText}
   .ifs-map-pin__shape{box-shadow:0 0 0 var(--border-width-default) CanvasText}
-  :focus-visible{outline:var(--border-width-200) solid Highlight!important;outline-offset:var(--border-width-200)!important}
+  :focus-visible{outline:var(--border-width-selected) solid Highlight!important;outline-offset:var(--border-width-selected)!important}
 }
 
 /* Click area (Nov 19, 2.0.3): every clickable thing is at least --size-target-min (24 x 24).
