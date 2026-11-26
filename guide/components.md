@@ -277,7 +277,8 @@ Use: A record pager for item-by-item content (Trace report). Never for tables (r
 
 ### tooltip-organism · `Tooltip`
 Use: A short non-interactive label on hover and focus (text, status, date, avatar, metadata), 4 from its trigger, `--z-index-tooltip` above toasts. Rules 14.11, 9.2.
-Motion: fades in over 100 after the 300 pointer wait; at once on keyboard focus; closes at once (rule 5.1).
+Motion: fades in over 100 after the 300 pointer wait; at once on keyboard focus; closes at once (rule 5.1) after a 100 grace once the pointer has left the trigger and the bubble.
+Behaviour (2.0.7, WCAG 1.4.13): hoverable (the pointer can rest on the bubble), Esc closes it from anywhere while shown (rule 14.11, UI version).
 Don't: Essential content, headings, links, buttons or forms (→ popover).
 
 ### alert-organism · `Alert`
@@ -460,7 +461,7 @@ Use: Chart title row with optional view toggle or button. `viewSwitch` sits afte
 
 ### data-viz-modal-organism · `DataVizTooltip`
 Use: Chart tooltip / info pop-up showing exact values on hover.
-Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 10.6). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series. Swatches show only when more than one row has a colour. Spacing: `--space-inset` start and end, `--space-300` top and bottom, `--space-150` title → rows, `--space-100` between rows.
+Notes: `variant="chart"` is content-sized (12–20rem); charts place it beside the mark, 8 away, end side first (rule 10.6); it follows the pointer across the data, swaps to the next point, stays while the pointer is over the plot, Esc closes it (rule 14.11, chart version). Rows: `items` = [{ label, value, color, shape }], `shape` square | line | dashed | dot = the legend swatch of that series. Swatches show only when more than one row has a colour. Spacing: `--space-inset` start and end, `--space-300` top and bottom, `--space-150` title → rows, `--space-100` between rows.
 
 ### indicator-atom · `DataVizIndicator`
 Use: Target/selection marker on a chart (e.g. bullet-chart target).

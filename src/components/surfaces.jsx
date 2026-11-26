@@ -73,7 +73,10 @@ function useSurfaceId(p) { return React.useMemo(() => `${p}-${++surfUid}`, []); 
 // Props: content (Figma Label / Content slot), hotkey (hotkey-atom text, e.g. "⌘/"; absent = show-hotkey off),
 // color black|grey ("grey (for black bg)"), type bottom|top|left|right = side the ARROW is on
 // (bottom → bubble sits above the trigger, the default), arrow left|center|right (top/bottom only).
-// Wraps one trigger child; shows after the 300ms pointer wait (M3) and at once on keyboard focus, hides instantly, Esc dismisses.
+// Wraps one trigger child; shows after the 300ms pointer wait (M3) and at once on keyboard focus. Rule 14.11 (UI tooltip, WCAG 1.4.13,
+// Nov 26): hoverable (the pointer can move from the trigger onto the bubble and rest there), a short grace before it closes
+// (--motion-duration-100, so the 4 px gap between trigger and bubble doesn't close it), and Esc closes it from anywhere while it is shown
+// (a document listener; focus and pointer stay where they are). Closing itself is instant (no fade).
 // open/onOpenChange to control. `inline` renders the bubble alone (gallery).
 function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = IFS.motionMs('--motion-duration-300', 300) /* M3: the pointer wait, the only delay */, open, defaultOpen, onOpenChange, inline, children, className }) {
   const [shown, setShown] = useSurfaceState(open, defaultOpen, onOpenChange);
@@ -87,14 +90,22 @@ function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'c
     </span>
   );
   React.useEffect(() => () => clearTimeout(timer.current), []);
+  // Esc closes it from anywhere while it is shown (WCAG 1.4.13 dismissible), not only from the trigger
+  React.useEffect(() => {
+    if (inline || !shown) return undefined;
+    const k = e => { if (e.key === 'Escape') { clearTimeout(timer.current); setShown(false); } };
+    document.addEventListener('keydown', k);
+    return () => document.removeEventListener('keydown', k);
+  }, [shown, inline]);
   if (inline) return bubble;
-  const show = () => { clearTimeout(timer.current); timer.current = setTimeout(() => setShown(true), delay); };
+  const show = () => { clearTimeout(timer.current); timer.current = setTimeout(() => setShown(true), shown ? 0 : delay); };
   const hide = () => { clearTimeout(timer.current); setShown(false); };
+  // pointer out: a short grace, so the pointer can cross the gap onto the bubble (the bubble is inside the anchor, so resting on it keeps it open)
+  const leave = () => { clearTimeout(timer.current); if (shown) timer.current = setTimeout(() => setShown(false), IFS.motionMs('--motion-duration-100', 100)); };
   const child = React.Children.only(children);
   return (
-    <span className="ifs-tooltip-anchor" onMouseEnter={show} onMouseLeave={hide}
-      onFocus={() => { clearTimeout(timer.current); setShown(true); }} onBlur={hide}
-      onKeyDown={e => { if (e.key === 'Escape' && shown) hide(); }}>
+    <span className="ifs-tooltip-anchor" onMouseEnter={show} onMouseLeave={leave}
+      onFocus={() => { clearTimeout(timer.current); setShown(true); }} onBlur={hide}>
       {React.cloneElement(child, { 'aria-describedby': shown ? id : undefined })}
       {shown && bubble}
     </span>

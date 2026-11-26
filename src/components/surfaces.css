@@ -13,6 +13,9 @@
   display:inline-flex;flex-direction:column;align-items:center;flex:none;width:max-content;max-width:20rem;
   filter:var(--elevation-floating-filter) /* C1 level 2 as a filter, so the arrow casts it too */;
   pointer-events:none;z-index:var(--z-index-tooltip) /* C2: tooltips only, above toasts */}
+/* Rule 14.11 (WCAG 1.4.13 hoverable): an anchored bubble takes the pointer, so it stays open while the pointer rests on it; the Tooltip's
+   100 ms grace covers the 4 px gap from the trigger. The gallery's inline bubbles stay inert. */
+.ifs-tooltip-anchor > .ifs-tooltip{pointer-events:auto}
 .ifs-tooltip--grey{--tt-fill:var(--color-surface-elevation-2)}
 .ifs-tooltip__body{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-50) var(--space-200);
   border-radius:var(--radius-control);background:var(--tt-fill);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));
