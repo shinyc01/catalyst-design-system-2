@@ -23,7 +23,7 @@
 .ifs-dv-line{display:block;flex:none;background:var(--color-border)}
 .ifs-dv-line--horizontal{width:100%;height:1px}
 .ifs-dv-line--vertical{height:100%;width:1px}
-.ifs-dv-line--horizontal.ifs-dv-line--dashed{background:repeating-linear-gradient(90deg,var(--color-border) 0 3px,transparent 3px 8px)}
+.ifs-dv-line--horizontal.ifs-dv-line--dashed{background:repeating-linear-gradient(90deg,var(--color-border) 0 3px,transparent 3px 8px)} /* ltr: brand gradient art, fixed in both directions */
 .ifs-dv-line--vertical.ifs-dv-line--dashed{background:repeating-linear-gradient(180deg,var(--color-border) 0 3px,transparent 3px 8px)}
 
 /* ================= indicator-atom (4440:32643) ================= */
@@ -46,7 +46,7 @@
 .ifs-dv-legend__swatch{flex:none;box-sizing:border-box;width:var(--size-16);height:var(--size-16);border-radius:var(--radius-control);background:var(--sw)}
 /* D4: the swatch matches the mark: square (bars, areas, slices, cells) · line / dashed line (lines) · dot (scatter) */
 .ifs-dv-legend__swatch--line{height:2px;border-radius:0} /* px: chart geometry, the line's stroke */
-.ifs-dv-legend__swatch--dashed{height:2px;border-radius:0;background:repeating-linear-gradient(90deg,var(--sw) 0 4px,transparent 4px 6px)} /* px: the chart's 6 / 4 dash, scaled */
+.ifs-dv-legend__swatch--dashed{height:2px;border-radius:0;background:repeating-linear-gradient(90deg,var(--sw) 0 4px,transparent 4px 6px)} /* px: the chart's 6 / 4 dash, scaled */ /* ltr: brand gradient art, fixed in both directions */
 .ifs-dv-legend__swatch--dot{width:var(--size-8);height:var(--size-8);margin-inline:var(--space-100);border-radius:var(--radius-pill)}
 .ifs-dv-legend__swatch--neutral{background:var(--color-data-viz-neutral)}
 .ifs-dv-legend__target{flex:none;width:2px;height:var(--size-16);border-radius:var(--radius-mark);background:var(--color-icon)}
@@ -97,7 +97,7 @@
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 
 /* variant="chart": the card every core chart is drawn in (2.0.6, D1 / D2): the container rule (inset on all four sides, stack gap between
-   header, plot and legend) and a fixed height (default = 3 stat-card rows + 2 page gaps, 320 / 284 / 248 at a 16 gap; large = 2 default cards + the page gap); the plot fills what is left */
+   header, plot and legend) and a fixed height (default = 3 dashboard rows of 116 / 100 / 84 + 2 page gaps, 380 / 332 / 284 at a 16 gap, rule 10.3; large = 2 default cards + the page gap); the plot fills what is left */
 .ifs-dv-card--chart{gap:var(--space-stack);padding:var(--space-inset);height:var(--size-data-viz-card);overflow:visible;
   background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-dv-card--chart.ifs-dv-card--large{height:var(--size-data-viz-card-large)}
@@ -174,7 +174,7 @@
 /* D4 / D5: the tooltip rows use the legend's swatch shapes */
 .ifs-dv-tooltip__swatch{flex:none;width:var(--size-12);height:var(--size-12);border-radius:var(--radius-mark);background:var(--sw)}
 .ifs-dv-tooltip__swatch--line{height:2px;border-radius:0} /* px: chart geometry */
-.ifs-dv-tooltip__swatch--dashed{height:2px;border-radius:0;background:repeating-linear-gradient(90deg,var(--sw) 0 4px,transparent 4px 6px)} /* px: chart dash */
+.ifs-dv-tooltip__swatch--dashed{height:2px;border-radius:0;background:repeating-linear-gradient(90deg,var(--sw) 0 4px,transparent 4px 6px)} /* px: chart dash */ /* ltr: brand gradient art, fixed in both directions */
 .ifs-dv-tooltip__swatch--dot{width:var(--size-8);height:var(--size-8);margin-inline:var(--space-50);border-radius:var(--radius-pill)}
 .ifs-dv-tooltip__name{flex:1;min-width:0;color:var(--color-text-soft)}
 .ifs-dv-tooltip__item--sub{padding-inline-start:calc(var(--size-12) + var(--space-200))} /* under the row above (the series folded into "Other"), aligned with its name */
@@ -228,7 +228,7 @@
 .ifs-chart__size-key{display:inline-flex;align-items:center;gap:var(--space-300);padding-block:var(--space-50);color:var(--color-text-soft);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking)}
 .ifs-chart__size-key-item{display:inline-flex;align-items:center;gap:var(--space-100);color:var(--color-text);font-variant-numeric:var(--font-numeric)}
 .ifs-chart__size-key-circle{fill:none;stroke:var(--color-text-soft);stroke-width:1}
-.ifs-chart__sr{position:absolute;width:1px;height:1px;padding:0;margin:calc(-1 * var(--size-1));overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.ifs-chart__sr{display:block /* a table lays out at full width even when clipped: block keeps it 1 px, so the page never scrolls sideways */;position:absolute;width:1px;height:1px;padding:0;margin:calc(-1 * var(--size-1));overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ================= progress-ring-molecule (4619:18187) ================= */
 .ifs-progress-ring{display:inline-block;flex:none;vertical-align:middle}
@@ -245,7 +245,7 @@
 .ifs-evidence__seg--approve{--seg:var(--color-background-success-strong)}
 /* inactive bands: thin dotted line in the band's system colour (Figma: 2px frame of dots) */
 .ifs-evidence__seg::before{content:"";position:absolute;left:0;right:0;top:17px;height:2px; /* ltr: evidence scale reads left to right */
-  background:repeating-linear-gradient(90deg,var(--seg) 0 2px,transparent 2px 4px) /* raw in Figma: dot spacing */}
+  background:repeating-linear-gradient(90deg,var(--seg) 0 2px,transparent 2px 4px) /* raw in Figma: dot spacing */} /* ltr: brand gradient art, fixed in both directions */
 .ifs-evidence__seg--on::before{top:14px;height:8px;border-radius:var(--radius-pill);background:var(--seg)}
 .ifs-evidence__marker{position:absolute;top:-9px;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%)}
 .ifs-evidence__value{color:var(--color-text);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking);font-variant-numeric:var(--font-numeric)} /* Label/L/medium */

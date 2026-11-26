@@ -23,7 +23,7 @@ const WHITE = 'var(--color-data-viz-reference)'; // peer-median / reference mark
 // Before 2.0.6 charts took a colour group name; those names still work (deprecated: each old step is an alias of the nearest new role).
 const DV_GROUPS = ['muted-purple', 'teal', 'rose', 'steel-blue', 'deep-green', 'violet', 'cyan', 'alert'];
 const DV_STEP = 3;
-const dvVar = (group, step = DV_STEP) => `var(--color-data-viz-${group}-data-${step})`;
+const dvVar = (group, step = DV_STEP) => `var(--color-data-viz-${group}-data-${step})`; // deprecated-ok: the documented path for old group names (until 3.0)
 // Charts use data-viz colours only. color = a categorical slot (1–12), 'other', 'neutral' | 'reference' | 'target' | 'band', a data-viz token
 // ('var(--color-data-viz-sequential-3)'), an old group name (deprecated), or undefined (= slot i + 1). Anything else is ignored (console
 // warning) and the slot is used, so a chart never draws a colour outside the data-viz palette.
@@ -543,6 +543,8 @@ function ChartTip({ anchor, box, tip, plotRef }) {
     const pr = plot && plot.getBoundingClientRect(), cr = card && card.getBoundingClientRect();
     const minTop = cr ? Math.min(0, cr.top - pr.top + TIP_GAP) : 0, maxTop = (cr ? cr.bottom - pr.top - TIP_GAP : box.h) - h;
     const top = Math.max(minTop, Math.min(anchor.y - TIP_GAP, maxTop));
+    // when neither side has room (a narrow card), it still stays inside the card (rule 10.6), so the page never scrolls sideways
+    if (cr) left = Math.max(cr.left - pr.left + TIP_GAP, Math.min(left, cr.right - pr.left - TIP_GAP - w));
     setPos(p => (p && p.left === left && p.top === top ? p : { left, top }));
   }, [key, box.w, box.h, tip && tip.title, tip && (tip.items || []).length]);
   if (!anchor || !tip) return null;
@@ -960,7 +962,7 @@ const seriesTable = (data, series, format, extra = []) => ({
 });
 const warnOnce = (k, msg) => { if (!dvWarned.has(k)) { dvWarned.add(k); if (typeof console !== 'undefined') console.warn(msg); } };
 
-// Figma: chart-grouped-column (9862:13445) — 2–4 series side by side per category; consistent series order + legend.
+// Figma: chart-grouped-column (9862:13445) — series side by side per category; every series is drawn, 4 or fewer read best (rule 10.9); consistent series order + legend.
 // Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }] (capped at 4: a 5th and
 // more are left out of the plot, kept in the table view, with a console warning; use a stacked column or small multiples), referenceKey (default 'reference') +
 // referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
