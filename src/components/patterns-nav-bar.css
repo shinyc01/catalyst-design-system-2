@@ -72,9 +72,10 @@
 .ifs-nav-tree__row .ifs-icon{flex:none;color:var(--color-icon-soft)}
 .ifs-nav-tree__caret{flex:none;display:inline-flex;width:var(--size-12);height:var(--size-12)}
 .ifs-nav-tree__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ifs-nav-tree__row:hover{background:var(--color-background-neutral-soft);color:var(--color-text)}
 .ifs-nav-tree__row.is-path{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text)}
-.ifs-nav-tree__row.is-current{background:var(--color-background-neutral-soft);color:var(--color-text)}
+.ifs-nav-tree__row.is-current{background:var(--color-state-current);color:var(--color-text)} /* rule 7.1: current 10, hover 15, pressed 5 */
+.ifs-nav-tree__row:hover{background:var(--color-state-hover);color:var(--color-text)}
+.ifs-nav-tree__row:active{background:var(--color-state-pressed);color:var(--color-text)}
 .ifs-nav-tree__row.is-current:has(.ifs-nav-tree__caret){box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-nav-tree__row.is-path .ifs-icon,.ifs-nav-tree__row.is-current .ifs-icon,.ifs-nav-tree__row:hover .ifs-icon{color:var(--color-icon)}
 .ifs-nav-tree__row:focus-visible{outline:none;box-shadow:var(--focus-ring)}

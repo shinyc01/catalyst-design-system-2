@@ -170,8 +170,8 @@
 .ifs-switch--s{width:var(--size-22);height:var(--size-12)}
 .ifs-switch--s .ifs-switch__knob{inset-inline-start:0.1875rem;width:0.4375rem;height:0.4375rem}
 .ifs-switch:not([aria-checked=true]){--border:var(--color-border-strong)} /* G2 (Nov 25): off = 40% track edge (was soft) */
-.ifs-switch:hover,.ifs-switch[data-state=hover],.ifs-switch-row:hover .ifs-switch{--fill:var(--color-background-neutral);--border:var(--color-border-control) /* G2: hover 60 */}
-.ifs-switch:active,.ifs-switch[data-state=pressed]{--fill:var(--color-background-neutral-softer);--border:var(--color-border-soft)}
+.ifs-switch:hover,.ifs-switch[data-state=hover],.ifs-switch-row:hover .ifs-switch{--fill:var(--color-state-hover);--border:var(--color-border-control) /* G2: hover 60 */}
+.ifs-switch:active,.ifs-switch[data-state=pressed]{--fill:var(--color-state-pressed);--border:var(--color-border-soft)}
 .ifs-switch[aria-checked=true]{--fill:var(--color-background-neutral-stronger);--border:transparent;--knob:var(--color-icon-inverse)}
 .ifs-switch[aria-checked=true] .ifs-switch__knob{inset-inline-start:1.4375rem;width:var(--size-18);height:var(--size-18)}
 .ifs-switch--s[aria-checked=true] .ifs-switch__knob{inset-inline-start:var(--size-11);width:var(--size-10);height:var(--size-10)}

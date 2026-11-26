@@ -29,7 +29,8 @@
    (--color-background-neutral-soft, --color-border-soft inside, padding 8). Focus: focus ring. */
 .ifs-cdcard{position:relative;box-sizing:border-box;padding:0;cursor:pointer;outline:none;color:var(--color-text)}
 .ifs-cdcard__box{display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-inset) var(--space-inset)}
-.ifs-cdcard:hover,.ifs-cdcard[data-state=hover],.ifs-cdcard--menu{background:var(--color-background-neutral-soft)}
+.ifs-cdcard:hover,.ifs-cdcard[data-state=hover],.ifs-cdcard--menu{background:var(--color-state-hover)} /* rule 7.1: hover 15, pressed 5 */
+.ifs-cdcard:active{background:var(--color-state-pressed)}
 .ifs-cdcard--selected,.ifs-cdcard--selected:hover{background:none;padding:var(--space-100) var(--space-200)}
 .ifs-cdcard--selected .ifs-cdcard__box{padding:var(--space-200);border-radius:var(--radius-card);
   background:var(--color-background-neutral-soft);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}

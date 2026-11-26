@@ -288,14 +288,23 @@ Icon drawing rules (grid, stroke, metaphor, naming), the small-visuals language 
 
 The focus ring: rule 11.5; target size: rule 3.9; tooltips: rule 14.11.
 
-7.1 **State model (S2, Nov 24): one model for every family.** Hover is the most visible step; pressed sits below hover, never equal to it.
+7.1 **One state pattern (decided Nov 26, 2.0.7; replaces the per-family ladders of S2).** Every interactive component keeps only its own rest fill; hover, pressed and current come from four state tokens, the same in every family:
+
+| Token | Value | Use |
+|---|---|---|
+| `--color-state-hover` | white 15 | hover, every component |
+| `--color-state-hover-strong` | white 20 | hover when the rest fill is already 15 (so hover still steps up) |
+| `--color-state-pressed` | white 5 | pressed, always (below rest and hover) |
+| `--color-state-current` | white 10, white label | selected / current: nav item, header item (current page), nav-tree row, selected segment, selected list row; hovering it brightens it to hover |
+
+Hover is the most visible step; pressed sits below hover, never equal to it.
 
 | State | Rule |
 |---|---|
 | Default | the family's rest fill |
-| Hover | the most visible step: alpha fills +5 or more; white fills 75% (`--color-background-neutral-stronger-hover`) |
-| Pressed | below hover, never equal to it: between rest and hover, or below rest; white fills 60% |
-| Selected | strongest fill or white + `--color-border-selected` / strong; hovering a selected item brightens it, never dims it |
+| Hover | `--color-state-hover` (15), or `--color-state-hover-strong` (20) on a rest fill of 15; white fills 75% (`--color-background-neutral-stronger-hover`) |
+| Pressed | `--color-state-pressed` (5), always; white fills 60% |
+| Selected | `--color-state-current` (10) with a white label (nav items, segments, list rows), or white + `--color-border-selected` (chip, checkbox, radio, switch on); hovering a selected item brightens it, never dims it |
 | Focus | the ring only (rule 11.5); no fill change |
 | Disabled | its own disabled fill, never the rest fill (5%: `--color-background-neutral-softer`, `-softer-inverse` on tertiary); text and icon `--color-text-disabled` / `--color-icon-disabled`; no hover; a tooltip says why (rule 9.10) |
 | Loading | keeps its size; data shows a skeleton, an action shows the loader (`system-loader`) in place of its icon (`Button loading`); `aria-busy`; not clickable |
@@ -310,7 +319,8 @@ The focus ring: rule 11.5; target size: rule 3.9; tooltips: rule 14.11.
 | Cards and rows | ContentCard, NodeCard, Table row, HomeRowCard, Notification | ✓ if clickable | ✓ if clickable | ✓ | ✓ | ✓ | ✓ | — |
 | Read-only display | StatCard, Badge, Status, Indicator | — | — | — | — | — | ✓ | — |
 
-- Ladders on roles: ghost button and header item 0 → 15 → 10 (header pressed = the current page's 10); draw bar the same; secondary and switch off 10 → 15 → 5, disabled 5; tertiary disabled black 5; segmented selected 15 → 20 → 5; checkbox and radio off border 60 → 85 (`--color-border-control-hover`) → 15, disabled 10; white ladders (primary, checkbox, radio, chip and switch on, select check) 100 → 75 → 60.
+- The pattern on each component (rest → hover → pressed; current): ghost button and icon button, Add node, header item, NavItem, nav-tree row, menu item, select option (the keyboard-active option = hover), chip off, segment and draw bar 0 → 15 → 5, current 10 (an on tool toggle in the map and canvas bars is current); secondary button, switch off, Prompt and the clickable neutral cards and rows (user card, Cooper history row, comment card) 10 → 15 → 5; tertiary button black 10 → 15 → 5 (its edge steps up as before); node-card grip and table drag handle 0 → 15 → 5; a rest fill of 15 (the node action icon) → 20 → 5; the selected segment 10 → 15 → 5 and keeps its outline, which steps up on hover (decided Nov 26). Tab and Breadcrumb crumb have no rest fill: hover is the white label as before, pressed is the 5 fill (control radius); the selected tab is its white line and label, the current crumb its white label. CircularButton keeps its D3 rest 20 and hover 30 (its rest is above both state steps), pressed 5. Disabled fills don't change: secondary disabled 5, tertiary disabled black 5.
+- Not on the neutral fills, so not this pattern: white ladders (primary, checkbox, radio, chip and switch on, select check) 100 → 75 → 60; checkbox and radio off border 60 → 85 (`--color-border-control-hover`) → 15, disabled 10; cards on surfaces (`--color-surface-raised-hover` / `-pressed`); Cooper accent fills.
 7.2 **Loading and empty:** skeletons only inside the component that owns the async data; shell, nav, header and static labels render at once. Unknown shape → spinner; user-triggered action → the button's loading state (`Button loading`); one loader everywhere, the dotted `system-loader` (spun on `--motion-loop-spin`, 1.4 s a turn); measurable work → progress bar. Never loading → empty → content: hold the skeleton until the final state is known. The empty-state variant is chosen by cause (first run, empty container, all done, error, no access, no results), never by surface; Full size for a page region, Section size inside a card or panel. Errors and partial data (L3, Nov 24): an error stays in the region that failed: a widget, card, panel or table that can't load shows `EmptyState cause="error" size="section"` in its own frame and the rest of the page keeps working; `size="full"` only when the whole page has nothing. Partial data keeps what loaded, with a warning `Alert` above the region ("2 of 5 sources didn't load." + Try again); never replace the content. A load failure uses the warning tone (the system's problem, nothing the user did wrong; `cause="error"` already shows the warning icon); danger red stays for destructive actions and for field validation (field errors unchanged, rule 8.18). Empty, error, no access and no results stay distinct: the 7 causes (rule 8.22). The look of these states is restyled with Flexy's icon and small-visual exploration (no look decided yet, so not in 2.0.7).
 
 ---

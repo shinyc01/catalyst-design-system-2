@@ -31,7 +31,7 @@
 .ifs-scroll-bar .ifs-scroll-area__bar{position:absolute;height:140px}
 
 /* ================= CircularButton — circular-button-molecule (72:9983) ================= */
-/* D3 (G2, decided Nov 25; built 2.0.7): rest white 20, hover white 30, pressed --color-background-neutral (15); a --color-border-strong edge and
+/* D3 (G2, decided Nov 25; built 2.0.7): rest white 20, hover white 30, pressed --color-state-pressed (5, rule 7.1 since Nov 26); a --color-border-strong edge and
    white ink in every state; the hotkey text-soft at rest and pressed, white on hover */
 .ifs-circular-button{--fill:var(--color-background-neutral-strong);--stroke:var(--color-border-strong);
   --fg:var(--color-text);--ic:var(--color-icon);
@@ -45,7 +45,7 @@
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;white-space:nowrap;color:var(--fg)}
 .ifs-circular-button__arrow{width:var(--size-24);color:var(--ic)}
 .ifs-circular-button:hover,.ifs-circular-button[data-state=hover]{--fill:var(--color-background-neutral-strong-hover)}
-.ifs-circular-button:active,.ifs-circular-button[data-state=pressed]{--fill:var(--color-background-neutral)}
+.ifs-circular-button:active,.ifs-circular-button[data-state=pressed]{--fill:var(--color-state-pressed)} /* rule 7.1: pressed 5; rest 20 and hover 30 stay D3 (the rest is above both state steps) */
 .ifs-circular-button .ifs-hotkey{color:var(--color-text-soft)}
 .ifs-circular-button:hover .ifs-hotkey,.ifs-circular-button[data-state=hover] .ifs-hotkey{color:var(--color-text)}
 .ifs-circular-button:active .ifs-hotkey,.ifs-circular-button[data-state=pressed] .ifs-hotkey{color:var(--color-text-soft)}
@@ -128,8 +128,8 @@
 .ifs-phone__option{flex:none;display:flex;align-items:center;gap:var(--space-200);height:var(--size-control-m) /* list row 36 / 32 / 28 */;box-sizing:border-box;
   padding:var(--space-100) var(--space-200);border-radius:var(--radius-control);
   color:var(--color-text-soft);cursor:pointer;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
-.ifs-phone__option:hover{background:var(--color-background-neutral);color:var(--color-text)}
-.ifs-phone__option.is-active{background:var(--color-background-neutral-soft)}
+.ifs-phone__option:hover,.ifs-phone__option.is-active{background:var(--color-state-hover);color:var(--color-text)} /* the keyboard-active option = hover (rule 7.1) */
+.ifs-phone__option:active{background:var(--color-state-pressed)}
 .ifs-phone__option.is-selected{color:var(--color-text)}
 .ifs-phone__option-name{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-phone__option-dial{color:var(--color-text-softer)}

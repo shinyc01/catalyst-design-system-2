@@ -102,8 +102,8 @@
 .ifs-select__list--l .ifs-select__option{height:var(--size-control-l);padding:var(--space-200);font:var(--font-body-l-regular);letter-spacing:var(--font-body-l-regular-tracking)} /* Body/L/regular */
 .ifs-select__option-label{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-select__option-check{color:var(--color-icon)}
-.ifs-select__option:hover,.ifs-select__option[data-state=hover]{background:var(--color-background-neutral);color:var(--color-text)}
-.ifs-select__option.is-active{background:var(--color-background-neutral-soft)}
+.ifs-select__option:hover,.ifs-select__option[data-state=hover],.ifs-select__option.is-active{background:var(--color-state-hover);color:var(--color-text)} /* the keyboard-active option = hover (rule 7.1) */
+.ifs-select__option:active,.ifs-select__option[data-state=pressed]{background:var(--color-state-pressed)}
 .ifs-select__option.is-selected{color:var(--color-text)}
 .ifs-select__option.is-disabled{color:var(--color-text-disabled);cursor:not-allowed;background:none}
 /* checkbox drawn locally (checkbox-atom inside multiple-select-list-atom): 14×14, radius 4 */
@@ -133,11 +133,11 @@
 .ifs-segmented--icon .ifs-segmented__item{padding:0;gap:0}
 .ifs-segmented--icon.ifs-segmented--m .ifs-segmented__item{width:calc(var(--size-control-m) - 2 * var(--space-50));height:calc(var(--size-control-m) - 2 * var(--space-50))}
 .ifs-segmented--icon.ifs-segmented--s .ifs-segmented__item{width:var(--size-control-s)}
-.ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--color-background-neutral-soft);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft-hover) /* raw in Figma */}
-.ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--color-background-neutral-softer);--stroke:0 0 0 0 transparent;color:var(--color-text-softer)}
-.ifs-segmented__item.is-selected{--fill:var(--color-background-neutral);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
-.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--color-background-neutral-strong);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
-.ifs-segmented__item.is-selected:active,.ifs-segmented__item.is-selected[data-state=pressed]{--fill:var(--color-background-neutral-softer);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
+.ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--color-state-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft-hover) /* raw in Figma */}
+.ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--color-state-pressed);--stroke:0 0 0 0 transparent;color:var(--color-text-softer)}
+.ifs-segmented__item.is-selected{--fill:var(--color-state-current);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
+.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--color-state-hover) /* the outline steps up too (decided Nov 26) */;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
+.ifs-segmented__item.is-selected:active,.ifs-segmented__item.is-selected[data-state=pressed]{--fill:var(--color-state-pressed);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
 .ifs-segmented__item:disabled{cursor:not-allowed;color:var(--color-text-disabled);--fill:var(--color-background-transparent);--stroke:0 0 0 0 transparent}
 .ifs-segmented__item.is-selected:disabled{--fill:var(--color-background-transparent);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-segmented__item:disabled .ifs-icon{color:var(--color-icon-disabled)}
@@ -157,9 +157,9 @@
   transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
 .ifs-chip .ifs-icon{color:var(--ic)}
-.ifs-chip:hover,.ifs-chip[data-state=hover]{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
-.ifs-chip:active,.ifs-chip[data-state=pressed]{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text-soft);--ic:var(--color-icon-soft)}
-.ifs-chip:disabled{cursor:not-allowed;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-softer);color:var(--color-text-disabled);--ic:var(--color-icon-disabled)}
+.ifs-chip:hover,.ifs-chip[data-state=hover]{--fill:var(--color-state-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
+.ifs-chip:active,.ifs-chip[data-state=pressed]{--fill:var(--color-state-pressed);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text-soft);--ic:var(--color-icon-soft)}
+.ifs-chip:disabled{cursor:not-allowed;--fill:transparent;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-softer);color:var(--color-text-disabled);--ic:var(--color-icon-disabled)}
 .ifs-chip.is-selected{--fill:var(--color-background-neutral-stronger);--stroke:0 0 0 0 transparent;color:var(--color-text-inverse);--ic:var(--color-icon-inverse)}
 .ifs-chip.is-selected:hover,.ifs-chip.is-selected[data-state=hover]{--fill:var(--color-background-neutral-stronger-hover)}
 .ifs-chip.is-selected:active,.ifs-chip.is-selected[data-state=pressed]{--fill:var(--color-background-neutral-stronger-pressed);color:var(--color-text-inverse);--ic:var(--color-icon-inverse)}
@@ -196,7 +196,7 @@
 .ifs-calendar__date.is-next{color:var(--color-text-soft)}
 .ifs-calendar__date.is-today{color:var(--color-text-info)}
 .ifs-calendar__date:hover,.ifs-calendar__date[data-state=hover]{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
-.ifs-calendar__date.is-selected{--fill:var(--color-background-neutral-soft)}
+.ifs-calendar__date.is-selected{--fill:var(--color-state-current)}
 .ifs-calendar__date.is-endpoint{--fill:var(--color-surface-overlay-inverse);color:var(--color-text-inverse)}
 .ifs-calendar__date:focus-visible,.ifs-calendar__date[data-state=focus]{outline:none;
   --stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);--ring:var(--focus-ring)}
@@ -261,7 +261,8 @@
 .ifs-menu__description{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:normal} /* Body/M/regular */
 .ifs-menu__shortcut{flex:none;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-menu__caret,.ifs-menu__check{flex:none;color:var(--color-icon)}
-.ifs-menu__item:hover,.ifs-menu__item.is-open,.ifs-menu__item[data-state=hover]{background:var(--color-background-neutral);color:var(--color-text)}
+.ifs-menu__item:hover,.ifs-menu__item.is-open,.ifs-menu__item[data-state=hover]{background:var(--color-state-hover);color:var(--color-text)}
+.ifs-menu__item:active,.ifs-menu__item[data-state=pressed]{background:var(--color-state-pressed);color:var(--color-text)} /* rule 7.1: pressed 5 */
 .ifs-menu__item:focus-visible,.ifs-menu__item[data-state=focus]{color:var(--color-text);outline:none;box-shadow:var(--focus-ring-inset)} /* S1: the ring only, inset inside the clipped list */
 .ifs-menu__item.is-selected{color:var(--color-text)}
 .ifs-menu__item.is-danger,.ifs-menu__item.is-danger .ifs-menu__icon{color:var(--color-text-danger)}

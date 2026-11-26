@@ -24,7 +24,8 @@
 .ifs-node-actions__icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:var(--size-24);height:var(--size-24);padding:var(--space-100);
   box-sizing:border-box;border-radius:var(--radius-control);background:var(--color-background-neutral);color:var(--color-icon-soft)}
 .ifs-node-actions__label{padding:var(--space-50) var(--space-100);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;white-space:nowrap}
-.ifs-node-actions__item:hover .ifs-node-actions__icon{background:var(--color-background-neutral)}
+.ifs-node-actions__item:hover .ifs-node-actions__icon{background:var(--color-state-hover-strong)} /* rule 7.1: rest 15, so hover 20; pressed 5 */
+.ifs-node-actions__item:active .ifs-node-actions__icon{background:var(--color-state-pressed)}
 .ifs-node-actions__item:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-node-actions__line{display:block;height:1px;background:var(--color-border-soft)}
 
@@ -33,8 +34,9 @@
   padding:var(--space-200);border-radius:var(--radius-control);cursor:pointer;color:var(--color-icon);
   background:var(--color-background-neutral-soft-inverse);outline:var(--border-width-default) dashed var(--color-border);outline-offset:-1px;
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
-.ifs-add-node:hover,.ifs-add-node[data-state=hover]{background:var(--color-background-neutral-soft-inverse);outline-color:var(--color-border-strong);
+.ifs-add-node:hover,.ifs-add-node[data-state=hover]{background:var(--color-state-hover) /* rule 7.1 */;outline-color:var(--color-border-strong);
   backdrop-filter:blur(var(--blur-40))}
+.ifs-add-node:active{background:var(--color-state-pressed)}
 .ifs-add-node:disabled{cursor:not-allowed;color:var(--color-icon-disabled);background:var(--color-background-neutral-soft-inverse);outline-color:var(--color-border)}
 .ifs-add-node:focus-visible{outline-style:solid;outline-color:transparent;box-shadow:var(--focus-ring)}
 /* Typing (Figma Pressed/Typing): the focus ring stays on while typing. */
@@ -68,7 +70,7 @@
 .ifs-node-card--solid:hover,.ifs-node-card--solid[data-state=hover],.ifs-node-card--solid.ifs-node-card--drag{
   background:linear-gradient(135deg,var(--color-background-sheen-from),var(--color-background-sheen-to)) /* raw in Figma */,var(--nc-fill);--nc-stroke:var(--color-border-soft)}
 .ifs-node-card:not(.ifs-node-card--solid):hover,.ifs-node-card:not(.ifs-node-card--solid)[data-state=hover],.ifs-node-card:not(.ifs-node-card--solid).ifs-node-card--drag{
-  --nc-fill:var(--color-background-neutral)}
+  --nc-fill:var(--color-state-hover)}
 .ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
 /* Rings (Figma "Inner Focus Wrapper"): Select = 3px ring-gap + 1px white; Focus = --focus-ring;
    Cooper = 3px ring-gap + 1px cooper→white gradient. Select and Cooper use --color-ring-gap (the same black): they are not focus. Text switches to primary / tertiary inside a ring. */
@@ -110,7 +112,8 @@
 .ifs-node-card__icons{gap:var(--space-100)}
 .ifs-node-card__grip{display:inline-flex;align-items:center;justify-content:center;width:var(--size-target-min);height:var(--size-target-min);color:var(--color-icon-softer);cursor:grab} /* same as the table drag handle: 16 icon in a 24 box (Nov 19) */
 .ifs-node-card__grip{border-radius:var(--radius-control)}
-.ifs-node-card__grip:hover{background:var(--color-background-neutral);color:var(--color-icon-soft)}
+.ifs-node-card__grip:hover{background:var(--color-state-hover);color:var(--color-icon-soft)}
+.ifs-node-card__grip:active{background:var(--color-state-pressed)}
 /* Open / Delete / Save / Cancel are standard ghost IconButtons S, like everywhere else (Nov 19, were 12px custom icons) */
 .ifs-node-card__counter{display:inline-flex;align-items:center;justify-content:center;height:var(--size-18);padding:var(--space-50) var(--space-200);box-sizing:border-box;
   border-radius:var(--radius-pill);background:var(--color-background-accent-white);color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* counter-atom S (18): Label/S/medium */;
@@ -205,7 +208,7 @@
 .ifs-sankey-node:hover,.ifs-sankey-node[data-state=hover],.ifs-sankey-node:focus-visible{--stub:var(--color-border-strong)}
 /* hover fill only: focus is the ring alone, no fill change (rule 11.5, S1/S2) */
 .ifs-sankey-node:hover .ifs-sankey-node__card,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__card{
-  background:linear-gradient(var(--color-background-neutral),var(--color-background-neutral)),var(--color-surface-elevation-1)}
+  background:linear-gradient(var(--color-state-hover),var(--color-state-hover)),var(--color-surface-elevation-1)}
 .ifs-sankey-node:hover .ifs-sankey-node__change,.ifs-sankey-node[data-state=hover] .ifs-sankey-node__change,.ifs-sankey-node:focus-visible .ifs-sankey-node__change{display:inline-flex}
 .ifs-sankey-node:focus-visible .ifs-sankey-node__card{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong),var(--focus-ring)} /* B1: Figma 0.71 snaps to 1 */
 .ifs-sankey-node--measure{height:16px;border-radius:var(--radius-mark);background:var(--color-surface-elevation-1)}

@@ -38,8 +38,10 @@
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);transition:background-color var(--motion-duration-50) var(--motion-ease-standard),color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-nav-item__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-nav-item .ifs-icon{color:var(--color-icon-soft)}
-.ifs-nav-item:hover,.ifs-nav-item[data-state=hover],
-.ifs-nav-item[aria-current=page],.ifs-nav-item--active{background:var(--color-background-neutral-soft);color:var(--color-text)}
+/* rule 7.1: current 10 with a white label; hover 15 (also on the current item); pressed 5 */
+.ifs-nav-item[aria-current=page],.ifs-nav-item--active{background:var(--color-state-current);color:var(--color-text)}
+.ifs-nav-item:hover,.ifs-nav-item[data-state=hover]{background:var(--color-state-hover);color:var(--color-text)}
+.ifs-nav-item:active,.ifs-nav-item[data-state=pressed]{background:var(--color-state-pressed);color:var(--color-text)}
 .ifs-nav-item:hover .ifs-icon,.ifs-nav-item[data-state=hover] .ifs-icon,
 .ifs-nav-item[aria-current=page] .ifs-icon,.ifs-nav-item--active .ifs-icon{color:var(--color-icon)}
 .ifs-nav-item:disabled,.ifs-nav-item[aria-disabled=true]{background:transparent;color:var(--color-text-disabled);cursor:not-allowed}
@@ -57,7 +59,7 @@
 /* Submenu: caret + Label/M/medium, tertiary; no fill on hover */
 .ifs-nav-item--submenu{gap:var(--space-100);color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 .ifs-nav-item--submenu .ifs-icon{color:var(--color-icon-softer)}
-.ifs-nav-item--submenu:hover,.ifs-nav-item--submenu[data-state=hover]{background:transparent;color:var(--color-text-soft)}
+.ifs-nav-item--submenu:hover,.ifs-nav-item--submenu[data-state=hover],.ifs-nav-item--submenu:active,.ifs-nav-item--submenu[data-state=pressed]{background:transparent;color:var(--color-text-soft)}
 .ifs-nav-item--submenu:hover .ifs-icon,.ifs-nav-item--submenu[data-state=hover] .ifs-icon{color:var(--color-icon-soft)}
 .ifs-nav-item--submenu[aria-expanded=true]{background:transparent;color:var(--color-text-softer)}
 .ifs-nav-item--submenu[aria-expanded=true] .ifs-icon{color:var(--color-icon-softer)}
@@ -76,6 +78,7 @@
 .ifs-tab--m{height:var(--size-tab-m);padding:0 var(--space-200);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 .ifs-tab--l{height:var(--size-tab-l);padding:0 var(--space-300);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking)}
 .ifs-tab:hover,.ifs-tab[data-state=hover]{color:var(--color-text)}
+.ifs-tab:not(:disabled,[aria-disabled=true]):active,.ifs-tab[data-state=pressed]{background:var(--color-state-pressed);border-radius:var(--radius-control);color:var(--color-text)} /* rule 7.1: no rest fill; pressed 5 */
 .ifs-tab[aria-selected=true]{color:var(--color-text);--line:var(--color-border-selected)}
 /* Focus (S1): the focus ring, inset because the tab row scrolls and clips outside rings; label primary */
 .ifs-tab:focus-visible,.ifs-tab[data-state=focus]{outline:none;color:var(--color-text);box-shadow:var(--focus-ring-inset)}
@@ -99,6 +102,7 @@
 .ifs-crumb .ifs-icon{color:var(--color-icon-softer)}
 .ifs-crumb:hover,.ifs-crumb[data-state=hover]{color:var(--color-text)}
 .ifs-crumb:hover .ifs-icon,.ifs-crumb[data-state=hover] .ifs-icon{color:var(--color-icon)}
+.ifs-crumb:not(.ifs-crumb--current,:disabled,[aria-disabled=true]):active,.ifs-crumb[data-state=pressed]{background:var(--color-state-pressed);color:var(--color-text)} /* rule 7.1: no rest fill; pressed 5 */
 .ifs-crumb:focus-visible,.ifs-crumb[data-state=focus]{outline:none;color:var(--color-text-focus);box-shadow:var(--focus-ring)} /* S1 */
 .ifs-crumb:focus-visible .ifs-icon,.ifs-crumb[data-state=focus] .ifs-icon{color:var(--color-icon-focus)}
 .ifs-crumb:disabled,.ifs-crumb[aria-disabled=true]{color:var(--color-text-disabled);cursor:not-allowed}
@@ -175,9 +179,9 @@
   padding:var(--space-150) var(--space-250) /* raw in Figma */;margin:0;border:0;border-radius:var(--radius-control);cursor:pointer;white-space:nowrap;
   background:var(--color-background-transparent);color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);
   transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
-.ifs-navbar__item:hover,.ifs-navbar__item[data-state=hover]{background:var(--color-background-neutral)}
-.ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--color-background-neutral-soft);color:var(--color-text-soft)}
-.ifs-navbar__item[aria-current=page]{background:var(--color-background-neutral-soft)}
+.ifs-navbar__item[aria-current=page]{background:var(--color-state-current)} /* rule 7.1: current 10, hover 15 (also on the current page), pressed 5 */
+.ifs-navbar__item:hover,.ifs-navbar__item[data-state=hover]{background:var(--color-state-hover)}
+.ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--color-state-pressed);color:var(--color-text-soft)}
 .ifs-navbar__item:disabled,.ifs-navbar__item[aria-disabled=true]{background:var(--color-background-transparent);color:var(--color-text-disabled);cursor:not-allowed}
 .ifs-navbar__actions{display:flex;align-items:center;gap:var(--space-200);flex:none}
 .ifs-navbar__buttons{display:flex;align-items:center;gap:var(--space-100)}

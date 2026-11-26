@@ -97,7 +97,8 @@
 /* ================= Collaboration badge + read-only tooltip ================= */
 .ifs-collab-badge{all:unset;display:inline-flex;align-items:center;gap:var(--space-100);cursor:pointer;border-radius:var(--radius-pill)}
 .ifs-collab-badge .ifs-badge{cursor:pointer;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
-.ifs-collab-badge:hover .ifs-badge{background:var(--color-background-neutral)}
+.ifs-collab-badge:hover .ifs-badge{background:var(--color-state-hover)}
+.ifs-collab-badge:active .ifs-badge{background:var(--color-state-pressed)}
 .ifs-collab-badge:focus-visible{box-shadow:var(--focus-ring)}
 .ifs-collab-tip{display:flex;flex-direction:column;gap:var(--space-200);width:15rem;text-align:start;white-space:normal}
 .ifs-collab-tip__head{display:flex;align-items:flex-start;gap:var(--space-200)}
@@ -188,5 +189,6 @@
 
 /* Drag handles look like ghost icon buttons (Nov 19): 24 box, hover fill, focus ring, grab cursor */
 .ifs-data-table__handle,.ifs-column-settings__handle{border-radius:var(--radius-control)}
-.ifs-data-table__handle:hover,.ifs-column-settings__handle:hover{background:var(--color-background-neutral);color:var(--color-icon-soft)}
+.ifs-data-table__handle:hover,.ifs-column-settings__handle:hover{background:var(--color-state-hover);color:var(--color-icon-soft)}
+.ifs-data-table__handle:active,.ifs-column-settings__handle:active{background:var(--color-state-pressed)}
 .ifs-data-table__handle:focus-visible,.ifs-column-settings__handle:focus-visible{outline:none;box-shadow:var(--focus-ring)}

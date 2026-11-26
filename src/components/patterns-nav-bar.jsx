@@ -111,7 +111,7 @@ function HomeRowCard({ type = 'secondary', rank, title, badge, description, metr
 // folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H4 in sentence case + collapse).
 // Tree row: 32px, padding 8/8/8/4, caret (folders) + chat-folder 16 + Body/M/medium label; children indent 18px with a
 // hairline guide. The open path (folders above the current row) gets a --color-border-soft outline; the current row also the
-// --color-background-neutral-soft fill. Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
+// --color-state-current fill (hover --color-state-hover, pressed --color-state-pressed; rule 7.1). Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
 // Props: title, tree [{ id, label, folder (default: has children), children: [...] }], sections [{ label, action, items: [{ id, label }] }],
 // value / defaultValue / onSelect(id, item), expanded / defaultExpanded (ids) / onExpandedChange,
 // collapsed / defaultCollapsed / onCollapsedChange.

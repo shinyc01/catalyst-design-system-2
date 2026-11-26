@@ -82,8 +82,8 @@
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-prompt--l{height:var(--size-control-l);padding:var(--space-200) var(--space-400);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking)}
 .ifs-prompt--m{height:var(--size-control-m);padding:var(--space-150) var(--space-300);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
-.ifs-prompt:hover,.ifs-prompt[data-state=hover]{--fill:var(--color-background-neutral);--edge:var(--color-border-strong);color:var(--color-text-soft)}
-.ifs-prompt:active,.ifs-prompt[data-state=pressed]{--fill:var(--color-background-neutral-softer);--edge:var(--color-border-soft);color:var(--color-text-softer)}
+.ifs-prompt:hover,.ifs-prompt[data-state=hover]{--fill:var(--color-state-hover);--edge:var(--color-border-strong);color:var(--color-text-soft)}
+.ifs-prompt:active,.ifs-prompt[data-state=pressed]{--fill:var(--color-state-pressed);--edge:var(--color-border-soft);color:var(--color-text-softer)}
 .ifs-prompt:disabled{cursor:not-allowed;--fill:var(--color-background-neutral-soft);--edge:var(--color-border-softer);color:var(--color-text-disabled)}
 .ifs-prompt:focus-visible,.ifs-prompt[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 

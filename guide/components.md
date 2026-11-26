@@ -64,7 +64,7 @@ Use: An action in a dense context where a label won't fit. Tooltip + aria-label:
 
 ### circular-button-molecule · `CircularButton`
 Use: One directional trigger inside `circular-button-organism`; not placed alone.
-States (D3, 2.0.7): rest white 20 (`--color-background-neutral-strong`), hover white 30 (`--color-background-neutral-strong-hover`), pressed `--color-background-neutral`; `--color-border-strong` edge and white ink in every state; hotkey text-soft at rest and pressed, white on hover.
+States (D3, 2.0.7): rest white 20 (`--color-background-neutral-strong`), hover white 30 (`--color-background-neutral-strong-hover`), pressed `--color-state-pressed` (5, the one state pattern, rule 7.1); `--color-border-strong` edge and white ink in every state; hotkey text-soft at rest and pressed, white on hover.
 
 ### circular-button-organism · `CircularMenu`
 Use: A small fixed set (2–4) of related actions tied to a point on a canvas/map node, each with direction + keyboard shortcut, for fast repeat use.

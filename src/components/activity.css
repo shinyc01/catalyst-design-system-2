@@ -168,7 +168,8 @@
 .ifs-user-card--loading{height:var(--size-56)}
 .ifs-user-card--owner.ifs-user-card--loading{height:5.25rem}
 .ifs-user-card--owner .ifs-user-card__main{align-self:center}
-.ifs-user-card:hover,.ifs-user-card[data-state=hover]{background:var(--color-background-neutral)}
+.ifs-user-card:hover,.ifs-user-card[data-state=hover]{background:var(--color-state-hover)} /* rule 7.1: rest 10, hover 15, pressed 5 */
+.ifs-user-card:active,.ifs-user-card[data-state=pressed]{background:var(--color-state-pressed)}
 .ifs-user-card[data-state=drag]{background:var(--color-background-neutral);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-user-card[data-state=drag] .ifs-user-card__drag{color:var(--color-icon)}
 .ifs-user-card:focus-visible,.ifs-user-card[data-state=focus]{outline:none;box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),var(--focus-ring)}

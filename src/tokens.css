@@ -132,6 +132,13 @@
 --color-background-transparent:var(--palette-black-alpha-0);
 --color-background-neutral-strong:var(--palette-white-alpha-20);
 --color-background-neutral-strong-hover:var(--palette-white-alpha-30); /* D3 (2.0.7): CircularButton hover, white 30 (the same step as the field line) */
+/* One state pattern (decided Nov 26, 2.0.7; rule 7.1): every interactive component on the neutral fills keeps only its own rest fill and
+   takes its hover, pressed and current fills from these four. White-fill controls (primary, chip and switch on, checkbox, radio) keep the
+   white ladder 100 → 75 → 60; disabled fills are unchanged. */
+--color-state-hover:var(--palette-white-alpha-15); /* hover, every family */
+--color-state-hover-strong:var(--palette-white-alpha-20); /* hover when the rest fill is already 15 */
+--color-state-pressed:var(--palette-white-alpha-5); /* pressed, always */
+--color-state-current:var(--palette-white-alpha-10); /* selected / current (nav item, header item, nav-tree row, selected segment), with a white label */
 --color-background-info-soft:var(--palette-info-500-alpha-10);
 --color-background-info:var(--palette-info-500-alpha-25);
 --color-background-accent-purple-soft:var(--palette-purple-500-alpha-10);
