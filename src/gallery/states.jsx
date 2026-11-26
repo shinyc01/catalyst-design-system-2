@@ -14,7 +14,7 @@ export default IFS_GALLERY;
       <div style={{ minHeight: h, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{children}</div>
     </IFS.Stack>
   );
-  const grid = { marginBottom: 24 };
+  const grid = { marginBottom: 'var(--space-600)' };
 
   IFS_GALLERY.push({ name: 'EmptyState', figma: 'empty-state-organism (3782:18464)', render: () => <>
     <IFS.Inline gap="600" wrap style={grid}>
@@ -28,7 +28,7 @@ export default IFS_GALLERY;
       <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it's empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
-      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 8 }}>
+      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 'var(--radius-floating)' }}>
         <EmptyState size="full" cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} />
       </div>
     </Row>

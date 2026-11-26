@@ -50,7 +50,7 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-pin-pole--dot{gap:var(--space-100);justify-content:center}
 .ifs-pin-pole__label{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text);white-space:nowrap;
   -webkit-text-stroke:var(--border-width-200) var(--color-border-pin-label) /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px var(--color-shadow-label) /* raw in Figma */}
-.ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--color-background-accent-white-strong)}
+.ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--color-text-on-solid)}
 /* "Pin" / "Hierarchy Pin": teardrop (circle + tail) in white with a status circle and a white asset icon. */
 .ifs-pin-pole__pin{--pp-size:32px;--pp-in:29.5px;--pp-fill:var(--color-icon-softer);--pp-border:var(--color-icon-softer);--pp-bw:var(--border-width-default);
   position:relative;flex:none;width:var(--pp-size);height:calc(var(--pp-size) * 1.22);filter:var(--drop-shadow-pin-filter)}
@@ -62,7 +62,7 @@ button.ifs-pin-defect{cursor:pointer}
 .ifs-pin-pole__shape{position:absolute;left:0;top:0;width:var(--pp-size);height:var(--pp-size);box-sizing:border-box;background:var(--color-background-accent-white-strong); /* ltr: pin art */
   border-radius:50% 50% 0 50%;transform:rotate(45deg);box-shadow:0 0 0 var(--pp-bw) var(--pp-border)}
 .ifs-pin-pole__circle{position:absolute;left:calc((var(--pp-size) - var(--pp-in)) / 2);top:calc((var(--pp-size) - var(--pp-in)) / 2); /* ltr: pin art */
-  display:flex;align-items:center;justify-content:center;width:var(--pp-in);height:var(--pp-in);border-radius:50%;background:var(--pp-fill);color:var(--color-background-accent-white-strong)}
+  display:flex;align-items:center;justify-content:center;width:var(--pp-in);height:var(--pp-in);border-radius:50%;background:var(--pp-fill);color:var(--color-text-on-solid)}
 .ifs-pin-pole__dot{position:relative;flex:none;width:16px;height:16px;box-sizing:border-box;border-radius:50%;background:var(--color-background-accent-white-strong);
   box-shadow:0 0 0 var(--border-width-default) var(--color-icon-softer),var(--drop-shadow-pin-glow)}
 .ifs-pin-pole__dot::after{content:"";position:absolute;inset:1px;border-radius:50%;background:var(--color-background-info-strong)}

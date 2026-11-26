@@ -50,13 +50,13 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'ScrollArea', figma: 'scroll-bar-atom (83:57650)', render: () => <>
     <Row label="atom top / center / bottom">{['top', 'center', 'bottom'].map(l => <ScrollBar key={l} location={l} height={200} />)}</Row>
     <Row label="ScrollArea"><ScrollArea height={160} label="Example list" style={{ width: 240 }}>
-      {Array.from({ length: 20 }, (_, i) => <div key={i} className="t-body-m-regular" style={{ padding: '6px 8px' }}>Row {i + 1}</div>)}
+      {Array.from({ length: 20 }, (_, i) => <div key={i} className="t-body-m-regular" style={{ padding: 'var(--space-150) var(--space-200)' }}>Row {i + 1}</div>)}
     </ScrollArea></Row>
   </> });
 
   IFS_GALLERY.push({ name: 'PhoneField', figma: 'mobile-number-field-organism (8947:11306)', render: () => <>
     {['l', 'm'].map(z => (
-      <div key={z} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 300px)', gap: 24, marginBottom: 24 }}>
+      <div key={z} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 300px)', gap: 'var(--space-600)', marginBottom: 'var(--space-600)' }}>
         <PhoneField size={z} label="{heading-input}" hint="Hint" description="{text}" />
         <PhoneField size={z} label="Hover" hint="Hint" description="{text}" state="hover" />
         <PhoneField size={z} label="Typing" hint="Hint" description="{text}" state="typing" defaultValue="(123)" />
@@ -71,7 +71,7 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'Slider', figma: 'sliter-atom (3029:21077), slider-molecule (3029:20933), slider-organism (3029:20689)', render: () => <>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 352px)', gap: 24, marginBottom: 24 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 352px)', gap: 'var(--space-600)', marginBottom: 'var(--space-600)' }}>
       <Slider defaultValue={0} />
       <Slider type="centered" defaultValue={0} />
       <Slider type="range" defaultValue={[40, 60]} />
@@ -79,7 +79,7 @@ export default IFS_GALLERY;
       <Slider type="centered" defaultValue={25} />
       <Slider type="centered" defaultValue={-25} />
     </div>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 384px)', gap: 24 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 384px)', gap: 'var(--space-600)' }}>
       {[undefined, 'hover', 'drag', 'focus'].map(s => <Slider key={s || 'd'} label="{heading-slider}" hint="Hint" description="{text}" icon="system-star-favourite"
         defaultValue={15} thumbState={s} />)}
       <Slider label="{heading-slider}" hint="Hint" description="{text}" icon="system-star-favourite" defaultValue={15} disabled />

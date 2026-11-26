@@ -12,7 +12,7 @@ export default IFS_GALLERY;
   const Row = ({ label, children, style }) => <div className="g-row" style={{ alignItems: 'flex-start', ...style }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const Cap = ({ title, children, w }) => <IFS.Stack gap="200" style={{ width: w }}><span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>{title}</span>{children}</IFS.Stack>;
   // Cooper surfaces are glass: show them on the dark canvas they sit on in the product.
-  const stage = { padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
+  const stage = { padding: 'var(--space-600)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-canvas)' };
 
   // ---------- sample content (from the Figma frames) ----------
   const Q = 'Can you give me a quick overview of our current Strategy Framework? How healthy is it overall?';
@@ -67,7 +67,7 @@ export default IFS_GALLERY;
     { id: 'human', label: 'Human Performance' },
   ];
   const Status = () => (
-    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--color-text)' }}>
+    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--space-100)', color: 'var(--color-text)' }}>
       <IFS.StatusIndicator state="success" />Active
     </span>
   );
@@ -224,20 +224,20 @@ export default IFS_GALLERY;
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'HistoryPanel', figma: 'history-panel-molecule "chat history" [patterns] (12:264137)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="Default"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 12 }}><HistoryPanel chats={liveChats.filter(c => !c.smart)} folders={folders} smart={{ reminders: 3, recommendations: 2, trash: 2 }} activeChatId="c1" onCollapse={() => {}} onChatMore={() => {}} onFolderMore={() => {}} onFoldersMore={() => {}} onChatsMore={() => {}} /></div></Cap>
-    <Cap title="Select (chats)"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 12 }}><HistoryPanel chats={liveChats.filter(c => !c.smart)} folders={folders.slice(0, 2)} smart={{ reminders: 3, recommendations: 2, trash: 2 }} selecting="chats" selected={['c4', 'c6']}
+    <Cap title="Default"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 'var(--radius-floating-l)' }}><HistoryPanel chats={liveChats.filter(c => !c.smart)} folders={folders} smart={{ reminders: 3, recommendations: 2, trash: 2 }} activeChatId="c1" onCollapse={() => {}} onChatMore={() => {}} onFolderMore={() => {}} onFoldersMore={() => {}} onChatsMore={() => {}} /></div></Cap>
+    <Cap title="Select (chats)"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 'var(--radius-floating-l)' }}><HistoryPanel chats={liveChats.filter(c => !c.smart)} folders={folders.slice(0, 2)} smart={{ reminders: 3, recommendations: 2, trash: 2 }} selecting="chats" selected={['c4', 'c6']}
       footer={<div className="ifs-history__bar"><div className="ifs-history__bar-buttons"><IFS.Button iconLeft="chat-folder-move">Move</IFS.Button><IFS.Button iconLeft="system-trash-delete">Delete</IFS.Button></div><div className="ifs-history__bar-count">Selected <IFS.Counter>2</IFS.Counter></div></div>} /></div></Cap>
-    <Cap title="empty"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 12 }}><HistoryPanel /></div></Cap>
+    <Cap title="empty"><div className="ifs-cooper-surface" style={{ height: 725, borderRadius: 'var(--radius-floating-l)' }}><HistoryPanel /></div></Cap>
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'FolderContent', figma: 'folder content [patterns] (12:264418)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="type=reminders"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent type="reminders" title="Reminders" onCollapse={() => {}}>
+    <Cap title="type=reminders"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 'var(--radius-floating-l)' }}><FolderContent type="reminders" title="Reminders" onCollapse={() => {}}>
       {chats.filter(c => c.smart === 'reminders').map((c, i) => <ChatReminderCard key={c.id} title={c.title} badge={c.badge} due={c.due} active={i === 0} />)}</FolderContent></div></Cap>
-    <Cap title="type=insight (Recommendations)"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent type="insight" title="Recommendations">
+    <Cap title="type=insight (Recommendations)"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 'var(--radius-floating-l)' }}><FolderContent type="insight" title="Recommendations">
       {chats.filter(c => c.smart === 'recommendations').map(c => <ChatHistoryCard key={c.id} title={c.title} time={c.time} />)}</FolderContent></div></Cap>
-    <Cap title="type=trash"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent type="trash" title="Trash">
+    <Cap title="type=trash"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 'var(--radius-floating-l)' }}><FolderContent type="trash" title="Trash">
       {chats.filter(c => c.trashed).map(c => <ChatHistoryCard key={c.id} title={c.title} time={c.time} />)}</FolderContent></div></Cap>
-    <Cap title="type=general (empty)"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 12 }}><FolderContent title="Board prep" onBack={() => {}} onMore={() => {}} empty="No chats in this folder yet" /></div></Cap>
+    <Cap title="type=general (empty)"><div className="ifs-cooper-surface" style={{ height: 480, borderRadius: 'var(--radius-floating-l)' }}><FolderContent title="Board prep" onBack={() => {}} onMore={() => {}} empty="No chats in this folder yet" /></div></Cap>
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'HistorySearch', figma: 'History- search [patterns] (67:125529)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
@@ -263,7 +263,7 @@ export default IFS_GALLERY;
     const open = size !== 'closed';
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 var(--space-300)' }}>
           Click the Cooper avatar (or press Ctrl+. / ⌘+.) → collapsed bar (voice by default; keyboard icon switches to text) → send → floating window with Analysing, streaming and Stop →
           window icon docks it as the side panel; − collapses back to the avatar. Prompt chips send straight away.</p>
         <MapScreen sheet={<IFS.BottomSheet {...sheetProps} prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} showPrompts={!open} showCooper={!open}
@@ -279,7 +279,7 @@ export default IFS_GALLERY;
     const [key, setKey] = React.useState(0);
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 var(--space-300)' }}>
           Docked full panel with an answered message. Click a follow-up or type a question: a user bubble appears, then Cooper runs Step 1/2…, streams, and answers; press Stop to interrupt (Try again / Regenerate).
           Hover your message to copy or edit it. Drag a file onto the panel to attach it. <button type="button" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', background: 'none', border: 0, textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setKey(key + 1)}>Reset</button></p>
         <MapScreen key={key} sheet={<IFS.BottomSheet {...sheetProps} showPrompts={false} showCooper={false} />}>
@@ -301,7 +301,7 @@ export default IFS_GALLERY;
     const open = id => { setActive(id); setMsgs(convo(id)); setTitle(id ? (list.find(c => c.id === id) || {}).title : 'New chat'); };
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 var(--space-300)' }}>
           History docks left of the side panel (history icon in the chat header). Hover a chat for ⋯ (Pin, Rename, Move to folder, Select, Delete → Trash).
           Folders ⋯ creates folders with an icon; smart folders (Reminders, Recommendations, Trash) open in a second column; Search opens the search overlay.</p>
         <MapScreen sheet={<IFS.BottomSheet {...sheetProps} showPrompts={false} showCooper={false} />}>
@@ -321,7 +321,7 @@ export default IFS_GALLERY;
     const [chat, setChat] = React.useState('closed');
     return (
       <div>
-        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
+        <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 var(--space-300)' }}>
           The “N Recommendations” chip opens Cooper’s window. Expand an item, Explore or Shape to walk through them, Decline / Do it; the count updates and the chip disappears at 0.
           Ask opens the Cooper chat (the two are never open together).</p>
         <MapScreen recCount={list.length} recSelected={open} onRecs={() => { setChat('closed'); setOpen(!open); }}

@@ -122,8 +122,8 @@
 .ifs-dv-card--movable .ifs-dv-header :is(button,[role=radio],a){cursor:pointer}
 .ifs-dv-card--movable{transition:transform var(--motion-duration-200) var(--motion-ease-standard)}
 .ifs-dv-card--movable:focus-visible{outline:none;box-shadow:var(--focus-ring)}
-.ifs-dv-card--movable:is(.is-lifted,.is-picked){z-index:var(--z-index-toast);box-shadow:var(--elevation-2),0 0 0 var(--border-width-default) var(--color-border-strong)}
-.ifs-dv-card--movable.is-picked{box-shadow:var(--elevation-2),var(--focus-ring)}
+.ifs-dv-card--movable:is(.is-lifted,.is-picked){z-index:var(--z-index-toast);box-shadow:var(--elevation-modal-shadow) /* rule 4.2: dragged items are level 3 */,0 0 0 var(--border-width-default) var(--color-border-strong)}
+.ifs-dv-card--movable.is-picked{box-shadow:var(--elevation-modal-shadow),var(--focus-ring)}
 .ifs-dv-card--movable.is-lifted{transition:none}
 .ifs-dv-card--movable.is-lifted .ifs-dv-header{cursor:grabbing}
 /* D1 header order at the end: [hover / focus: Edit with Cooper, actions] · Chart / Table switch · Evidence (always visible). The hover row

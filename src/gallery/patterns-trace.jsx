@@ -12,7 +12,7 @@ export default IFS_GALLERY;
   const W = ({ children, w = 340 }) => <div style={{ width: w }}>{children}</div>;
   const STAGES = ['Command', 'Value', 'Explore', 'Build', 'Plan', 'Results'].map(l => ({ value: l.toLowerCase(), label: l }));
   const Screen = ({ children, label }) => <div aria-label={label} style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--color-border-soft)', background: 'var(--color-surface-primary)' }}>{children}</div>;
-  const Demo = ({ children }) => <IFS.Inline gap="200" align="center" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', margin: '0 0 8px' }}>{children}</IFS.Inline>;
+  const Demo = ({ children }) => <IFS.Inline gap="200" align="center" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', margin: '0 0 var(--space-200)' }}>{children}</IFS.Inline>;
 
   /* ---------------- data ---------------- */
   const GATES = [{ id: 'obj', label: 'Objective weighting' }, { id: 'strat', label: 'Strategic alignment' }, { id: 'risk', label: 'Risk balance' }, { id: 'gov', label: 'Governance flags' }];
@@ -104,9 +104,9 @@ export default IFS_GALLERY;
     const ref = React.useRef();
     React.useEffect(() => { if (ref.current) ref.current.scrollTop = 0; }, []);
     return (
-      <IFS.Stack gap="300" ref={ref} className="ifs-scroll" style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 12 }}>
+      <IFS.Stack gap="300" ref={ref} className="ifs-scroll" style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 'var(--space-300)' }}>
         <div><h2 className="t-heading-h1-medium" style={{ margin: 0 }}>Executive summary</h2>
-          <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: '8px 0 0' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p></div>
+          <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: 'var(--space-200) 0 0' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p></div>
         <IFS.StatCardsRow cards={STATS} />
         <div style={{ flex: 'none' }}><IFS.Tabs items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'align', label: 'Strategic Alignment' }]} defaultValue="impact" /></div>
         <IFS.InvestmentValueImpact style={{ flex: 'none' }} />

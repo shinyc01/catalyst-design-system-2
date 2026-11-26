@@ -76,7 +76,7 @@ export default IFS_GALLERY;
 
   /* ---------------- component sections ---------------- */
   IFS_GALLERY.push({ name: 'ApprovalStatus', figma: 'status (12:210060)', render: () => (
-    <Row label="type">{['success', 'rejected', 'awaiting', 'empty'].map(t => <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><ApprovalStatus type={t} /><span className="t-body-m-regular">{t}</span></span>)}</Row>
+    <Row label="type">{['success', 'rejected', 'awaiting', 'empty'].map(t => <span key={t} style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--space-150)' }}><ApprovalStatus type={t} /><span className="t-body-m-regular">{t}</span></span>)}</Row>
   ) });
 
   IFS_GALLERY.push({ name: 'InvestmentValueImpact', figma: 'Investment-value-impact (12:121973)', render: () => (
@@ -135,7 +135,7 @@ export default IFS_GALLERY;
     ready: ['blue', 'Ready to publish'], active: ['green', 'Active'],
   };
   const Screen = ({ children }) => <div style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--color-border-soft)' }}>{children}</div>;
-  const Demo = ({ children }) => <div className="g-row" style={{ gap: 8, flexWrap: 'wrap' }}><span className="g-label t-body-m-regular">demo</span>{children}</div>;
+  const Demo = ({ children }) => <div className="g-row" style={{ gap: 'var(--space-200)', flexWrap: 'wrap' }}><span className="g-label t-body-m-regular">demo</span>{children}</div>;
 
   function Header({ status, step, actions }) {
     const [tone, label] = STATUS[status];
@@ -155,7 +155,7 @@ export default IFS_GALLERY;
   function Summary() {
     const [tab, setTab] = useState('impact');
     return (
-      <div style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 12, display: 'grid', gap: 20, alignContent: 'start' }} className="ifs-scroll">
+      <div style={{ flex: 1, minWidth: 0, overflow: 'auto', padding: 'var(--space-300)', display: 'grid', gap: 'var(--space-500)', alignContent: 'start' }} className="ifs-scroll">
         <IFS.Stack gap="200">
           <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--color-text)' }}>Executive summary</h2>
           <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--color-text-softer)' }}>
@@ -226,11 +226,11 @@ export default IFS_GALLERY;
         <IFS.Modal open={modal === 'approve'} onOpenChange={o => !o && setModal(null)} title="Approve this framework?" width={440} overlay="base"
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Approve', onClick: approve }}>
           <p className="t-body-l-regular" style={{ margin: 0 }}>Are you sure you want to approve <b>“{FRAMEWORK}”</b>?</p>
-          <p className="t-body-l-regular" style={{ margin: '8px 0 0' }}>Once approved, the framework will move forward in the process.</p>
+          <p className="t-body-l-regular" style={{ margin: 'var(--space-200) 0 0' }}>Once approved, the framework will move forward in the process.</p>
         </IFS.Modal>
         <IFS.Modal open={modal === 'info'} onOpenChange={o => !o && setModal(null)} title="Request more information" width={440} overlay="base"
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Request information', onClick: requestInfo }}>
-          <p className="t-body-l-regular" style={{ margin: '0 0 12px' }}>Ask for more detail before deciding whether this idea should move forward. The idea will return to Shape.</p>
+          <p className="t-body-l-regular" style={{ margin: '0 0 var(--space-300)' }}>Ask for more detail before deciding whether this idea should move forward. The idea will return to Shape.</p>
           <IFS.TextArea size="l" label="Note" value={note} onChange={setNote} placeholder="Describe what information is missing before this idea can move forward." />
         </IFS.Modal>
       </Screen>
@@ -288,12 +288,12 @@ export default IFS_GALLERY;
         <IFS.Modal open={modal === 'publish'} onOpenChange={o => !o && setModal(null)} title="Publish this framework?" width={440} overlay="base"
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Publish now', onClick: publish }}>
           <p className="t-body-l-regular" style={{ margin: 0 }}>Are you sure you want to publish <b>“{FRAMEWORK}”</b>? It will become active and available for use.</p>
-          <p className="t-body-l-regular" style={{ margin: '8px 0 0' }}>Once published, further changes will require creating a new version.</p>
+          <p className="t-body-l-regular" style={{ margin: 'var(--space-200) 0 0' }}>Once published, further changes will require creating a new version.</p>
         </IFS.Modal>
         <IFS.Modal open={modal === 'send'} onOpenChange={o => !o && setModal(null)} title="Send for review?" width={440} overlay="base"
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Send now', onClick: sendAgain }}>
           <p className="t-body-l-regular" style={{ margin: 0 }}>Are you sure you want to send <b>“{FRAMEWORK}”</b> for review?</p>
-          <p className="t-body-l-regular" style={{ margin: '8px 0 0' }}>Reviewers will be able to see the current state of the framework and provide feedback.</p>
+          <p className="t-body-l-regular" style={{ margin: 'var(--space-200) 0 0' }}>Reviewers will be able to see the current state of the framework and provide feedback.</p>
         </IFS.Modal>
       </Screen>
     </>;

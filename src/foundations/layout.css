@@ -15,10 +15,10 @@
    --bp-* tokens are for JS and docs and the media queries repeat the numbers.
    ========================================================================== */
 :root{
-  --bp-sm:600px;--bp-md:1024px;--bp-lg:1440px;--bp-xl:1920px;
+  --bp-sm:600px;--bp-md:1024px;--bp-lg:1440px;--bp-xl:1920px; /* reserved: JS and docs tokens (CSS can't read tokens in @media) */
   --layout-columns:4;--page-margin:var(--space-400);--page-gap:var(--space-400);
   --float-inset:var(--page-margin); /* C4: floating panels, the snackbar stack and map slots sit one page margin in, below the header, above the bottom sheet, from the window edge */
-  --layout-max-content-width-wide:140rem;
+  --layout-max-content-width-wide:140rem; /* reserved: no wide page yet */
   /* Regions: min / default / max. Push the content at md and up; overlay below md. */
   --region-panel-min:20rem;--region-panel-max:50vw;
   --region-sidenav:var(--layout-sidebar-width);--region-rail:var(--layout-rail-width);
@@ -42,9 +42,10 @@
 /* ---------- Column width (for page regions and the review overlay) ---------- */
 :root{
   --layout-content:calc(min(100cqw, var(--layout-max-content-width) + 2 * var(--page-margin)) - 2 * var(--page-margin)); /* cqw = the content area (AppShell main) */
-  --layout-inset:calc((100cqw - var(--layout-content)) / 2); /* content-area edge to the grid edge */
+  --layout-inset:calc((100cqw - var(--layout-content)) / 2); /* content-area edge to the grid edge (reserved: for screens; no kit component reads it yet) */
   --layout-col:calc((var(--layout-content) - (var(--layout-columns) - 1) * var(--page-gap)) / var(--layout-columns));
   --panel-cols:3; /* side columns that are part of the page (.ifs-span-panel): 3 columns, 4 below 1440 */
+  /* --span-1…12: reserved for screens (column spans on the page grid); no kit component reads them yet */
   --span-1:calc(1 * var(--layout-col) + 0 * var(--page-gap));--span-2:calc(2 * var(--layout-col) + 1 * var(--page-gap));--span-3:calc(3 * var(--layout-col) + 2 * var(--page-gap));--span-4:calc(4 * var(--layout-col) + 3 * var(--page-gap));--span-5:calc(5 * var(--layout-col) + 4 * var(--page-gap));--span-6:calc(6 * var(--layout-col) + 5 * var(--page-gap));--span-7:calc(7 * var(--layout-col) + 6 * var(--page-gap));--span-8:calc(8 * var(--layout-col) + 7 * var(--page-gap));--span-9:calc(9 * var(--layout-col) + 8 * var(--page-gap));--span-10:calc(10 * var(--layout-col) + 9 * var(--page-gap));--span-11:calc(11 * var(--layout-col) + 10 * var(--page-gap));--span-12:calc(12 * var(--layout-col) + 11 * var(--page-gap));
 }
 @media (max-width:1439px){:root{--panel-cols:4}}
@@ -81,7 +82,7 @@
    below 720 panels become a bottom sheet. CSS can't read tokens in @media, so --bp-map-overlay / --bp-map-sheet repeat the numbers for JS. */
 :root{
   --region-map-bar:46.625rem; /* 746px. Centre map bars (selected, draw, horizon) are at most this wide; the horizon fills it (Figma Explore horizon bar 746) */
-  --bp-map-overlay:1100px;--bp-map-sheet:720px;
+  --bp-map-overlay:1100px;--bp-map-sheet:720px; /* reserved: JS and docs copies of the @media numbers */
 }
 /* C2 (Nov 23): the map slots are their own stacking context with local layers 1 tools and bars · 2 panels · 3 popover · 4 exit,
    so a modal scrim covers map panels. No raw z-index above 9. */

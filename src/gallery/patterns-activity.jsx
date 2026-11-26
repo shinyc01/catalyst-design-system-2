@@ -13,7 +13,7 @@ export default IFS_GALLERY;
       <div style={{ height: h, display: 'flex', alignItems: 'flex-start', minHeight: 0 }}>{children}</div>
     </IFS.Stack>
   );
-  const grid = { display: 'flex', flexWrap: 'wrap', gap: 24, marginBottom: 24, alignItems: 'flex-start' };
+  const grid = { display: 'flex', flexWrap: 'wrap', gap: 'var(--space-600)', marginBottom: 'var(--space-600)', alignItems: 'flex-start' };
   const STAGES = [['command', 'Command'], ['value', 'Value'], ['explore', 'Explore'], ['build', 'Build'], ['plan', 'Plan'], ['results', 'Results']].map(([value, label]) => ({ value, label }));
   const Screen = ({ children, h = 900 }) => <div style={{ position: 'relative', width: 1440, height: h, overflow: 'hidden', background: 'var(--color-surface-primary)', transform: 'translateZ(0)' }}>{children}</div>;
 
@@ -239,7 +239,7 @@ export default IFS_GALLERY;
     };
     const library = (
       <IFS.AppShell height={900} navBar={NAV} sideNav={SIDE} bottom={<IFS.BottomSheet prompts={PROMPTS} />}>
-        <IFS.Stack gap="500" style={{ padding: 12 }}>
+        <IFS.Stack gap="500" style={{ padding: 'var(--space-300)' }}>
           <IFS.DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
             pageTop={{ title: 'Strategy Framework', description: 'Published, archived, and draft strategy frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
             filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending Approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s, match: r => r.status.label === s }))] }}

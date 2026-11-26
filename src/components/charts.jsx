@@ -775,7 +775,7 @@ function usePlot(props) {
   const [series, setSeries] = React.useState(null);
   const t = React.useRef(null);
   const show = i => { clearTimeout(t.current); setActive(prev => (sameIdx(prev, i) ? prev : i)); };
-  const leave = () => { clearTimeout(t.current); t.current = setTimeout(() => setActive(null), 100); };
+  const leave = () => { clearTimeout(t.current); t.current = setTimeout(() => setActive(null), IFS.motionMs('--motion-duration-100', 100)); };
   const clear = () => { clearTimeout(t.current); setActive(null); };
   const on = active != null;
   React.useEffect(() => {

@@ -13,7 +13,7 @@ export default IFS_GALLERY;
       <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>{title}</span>{children}
     </IFS.Stack>
   );
-  const grid = { marginBottom: 24 };
+  const grid = { marginBottom: 'var(--space-600)' };
   const QUESTIONS = ['Which investments address the Northgate cluster?', 'What was deferred in this planning cycle?', 'What changed since the last review?',
     'Which drafts haven\'t moved in 30 days?', 'Drafts created by P. Nair'];
   const STAGES = [{ value: 'command', label: 'Command' }, { value: 'value', label: 'Value' }, { value: 'explore', label: 'Explore' },
@@ -110,7 +110,7 @@ export default IFS_GALLERY;
   } });
 
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
-    <div style={{ width: 1000, padding: 16, borderRadius: 8, background: 'var(--color-surface-secondary)' }}>
+    <div style={{ width: 1000, padding: 'var(--space-400)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-secondary)' }}>
       <TableToolbar filter={<IFS.SegmentedControl size="s" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
         search={<SmartSearch placeholder="Ask anything about idea pad" />} onConfigure={() => {}} />
     </div>
@@ -126,7 +126,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'RecordPreview', figma: 'panel-organism preview [patterns] (95:128070)', render: () => (
     <div style={{ height: 320, display: 'flex' }}>
       <RecordPreview id="INV-2026-0912" onDetails={() => {}} onClose={() => {}}>
-        <h3 className="t-heading-h2-medium" style={{ margin: '0 0 6px', color: 'var(--color-text)' }}>Southern Feeder Replacement — Circuit 17C</h3>
+        <h3 className="t-heading-h2-medium" style={{ margin: '0 0 var(--space-150)', color: 'var(--color-text)' }}>Southern Feeder Replacement — Circuit 17C</h3>
         <IFS.Indicator type="purple">Shaping</IFS.Indicator>
         <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising.</p>
       </RecordPreview>
@@ -169,7 +169,7 @@ export default IFS_GALLERY;
   const ideaTabs = { variant: 'segmented', items: [{ value: 'all', label: 'All ideas' }, { value: 'project', label: 'Project ideas', match: r => !r.program }, { value: 'program', label: 'Program ideas', match: r => r.program }] };
   const ideaActions = (r) => [{ label: 'Navigate to', icon: 'capital-flow', submenu: true }, { label: 'View on map', icon: 'map' }, { label: 'Activity', icon: 'users-group' }, { label: 'Duplicate', icon: 'duplicate' }];
   const PREVIEW_BODY = r => <>
-    <h3 className="t-heading-h2-medium" style={{ margin: '0 0 6px', color: 'var(--color-text)' }}>{r.name}</h3>
+    <h3 className="t-heading-h2-medium" style={{ margin: '0 0 var(--space-150)', color: 'var(--color-text)' }}>{r.name}</h3>
     <IFS.Indicator type={r.status.type}>{r.status.label}</IFS.Indicator>
     <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</p>
     <IFS.ContentCard size="s" title="The need" description="Fault frequency on these feeders is up 3.1× over 24 months, with two sustained outages this year." />
@@ -180,7 +180,7 @@ export default IFS_GALLERY;
       navBar={<IFS.NavBar stages={STAGES} defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
       bottom={<IFS.BottomSheet prompts={['Brief me', 'What needs my input first?']} />}>
       <div style={{ display: 'flex', minHeight: '100%' }}>
-        <IFS.Stack gap="500" style={{ flex: 1, minWidth: 0, padding: 12 }}>{children}</IFS.Stack>
+        <IFS.Stack gap="500" style={{ flex: 1, minWidth: 0, padding: 'var(--space-300)' }}>{children}</IFS.Stack>
         {aside}
       </div>
     </IFS.AppShell>
@@ -240,7 +240,7 @@ export default IFS_GALLERY;
             { id: 'hp', label: 'Human Performance' }]} />}
           bottom={<IFS.BottomSheet prompts={['Walk me through this framework', 'What hasn\'t been updated in a while?']} />}
 >
-          <IFS.Stack gap="500" style={{ padding: 12 }}>
+          <IFS.Stack gap="500" style={{ padding: 'var(--space-300)' }}>
             <DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
               pageTop={{ title: 'Value Framework', description: 'Published, archived and draft value frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
               filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s === 'Pending approval' ? 'Pending Approval' : s, match: r => r.status.label === s }))] }}
@@ -275,7 +275,7 @@ export default IFS_GALLERY;
     .map((name, i) => { const s = SEV[Math.min(2, Math.floor(i / 3.4))]; return { id: `r${i}`, name, sev: s[0], color: s[1], score: s[2] }; });
   const sevCols = [
     { key: 'sev', title: 'Status', width: 140, type: 'custom', filterValue: r => r.sev, render: r => <IFS.Indicator type={r.color}>{r.sev}</IFS.Indicator> },
-    { key: 'score', title: 'Risk score', width: 150, kind: 'number', type: 'counter', render: r => <span style={{ color: `var(--color-text-${r.sev === 'critical' ? 'danger' : r.sev === 'moderate' ? 'warning' : 'success'})`, display: 'inline-flex', alignItems: 'center', gap: 2 }}><IFS.Icon name="arrow-caret-up-filled" size={12} />{r.score}%</span> },
+    { key: 'score', title: 'Risk score', width: 150, kind: 'number', type: 'counter', render: r => <span style={{ color: `var(--color-text-${r.sev === 'critical' ? 'danger' : r.sev === 'moderate' ? 'warning' : 'success'})`, display: 'inline-flex', alignItems: 'center', gap: 'var(--space-50)' }}><IFS.Icon name="arrow-caret-up-filled" size={12} />{r.score}%</span> },
   ];
   const cooperAdd = <IFS.IconButton icon="cooper-system-icon" type="tertiary" size="s" shape="circle" label="Add with Cooper" />;
   IFS_GALLERY.push({ name: 'Pattern: Multiple tables (fixed height, Show more)', figma: 'Investment details / Relationships [patterns] (190:232175)', render: () => (

@@ -365,7 +365,7 @@ function CollaboratorsPanel({ controller: c, open, defaultOpen, onOpenChange, tr
     <IFS.Popover inline title="Collaborators" showClose={!inline} width="var(--layout-popover-width)" className={ccx('ifs-collab-panel', className)} style={style}>
       <div className="ifs-collab-panel__tools">
         <IFS.Search placeholder="Invite by name or role..." value={q} onChange={v => setQ(v)} aria-label="Invite by name or role"
-          onFocus={() => { clearTimeout(blurT.current); setFocus(true); }} onBlur={() => { blurT.current = setTimeout(() => setFocus(false), 200); }} />
+          onFocus={() => { clearTimeout(blurT.current); setFocus(true); }} onBlur={() => { blurT.current = setTimeout(() => setFocus(false), IFS.motionMs('--motion-duration-200', 200)); }} />
         <RoleFilter roles={c.roles} value={roles} onChange={setRoles} />
       </div>
       <div className="ifs-collab-panel__body">{body}</div>

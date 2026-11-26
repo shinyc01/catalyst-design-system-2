@@ -68,7 +68,7 @@
 
 /* ---------- Dropdown list (single-select-list-molecule 153:62054 / multiple-select-list-molecule 3273:33695) ---------- */
 .ifs-select__list{
-  position:absolute;inset-inline-start:0;inset-inline-end:0;min-width:12.5rem;z-index:var(--z-index-popover);
+  position:absolute;inset-inline-start:0;inset-inline-end:0;min-width:var(--menu-width-s);z-index:var(--z-index-popover);
   display:flex;flex-direction:column;box-sizing:border-box;max-height:12.25rem;overflow-y:auto;overscroll-behavior:contain;
   padding:var(--space-100);border-radius:var(--radius-floating);
   background:var(--color-surface-elevation-2);box-shadow:var(--elevation-floating);

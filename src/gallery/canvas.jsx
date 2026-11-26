@@ -45,7 +45,7 @@ export default IFS_GALLERY;
     if (['subnode', 'value-model', 'user'].indexOf(t) < 0 && s === 'edit') return <span key={t} style={{ width: t === 'user' ? 280 : t === 'document' ? 230 : 200 }} />;
     return <NodeCard key={t} type={t} state={s} badge={t === 'document' ? undefined : t === 'user' ? 'Manager' : '{label}'} caption="{caption}" user={t === 'user' ? person : undefined} />;
   };
-  IFS_GALLERY.push({ name: 'NodeCard', figma: 'node-card (1440:4401)', render: () => <div style={{ overflowX: 'auto', padding: 6 }}>
+  IFS_GALLERY.push({ name: 'NodeCard', figma: 'node-card (1440:4401)', render: () => <div style={{ overflowX: 'auto', padding: 'var(--space-150)' }}>
     {STATES.map(s => <Row key={s || 'default'} label={s || 'default'} top nowrap>{TYPES.map(t => card(t, s))}</Row>)}
     <Row label="loading"><NodeCard type="skeleton" /></Row>
     <Row label="counter / interactive"><NodeCard type="value-model" badge="Model" title="Click to select" caption="drag me" counter={7} draggable />
@@ -139,11 +139,11 @@ export default IFS_GALLERY;
     const jump = e => { const r = e.currentTarget.getBoundingClientRect(); onJump((e.clientX - r.left) / scale, (e.clientY - r.top) / scale); };
     return (
       <div onPointerDown={jump} title="Mini-map (not a Figma component)" style={{ position: 'relative', width: mw, height: mh, overflow: 'hidden', cursor: 'pointer',
-        borderRadius: 'var(--radius-200)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft), var(--elevation-1)',
+        borderRadius: 'var(--radius-floating)', background: 'var(--color-background-neutral-soft-inverse)', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft), var(--elevation-1)',
         backdropFilter: 'blur(var(--blur-glass))' }}>
         {NODES.map(n => <span key={n.id} style={{ position: 'absolute', left: n.x * scale, top: n.y * scale, width: W * scale, height: H * scale, borderRadius: 1,
           background: 'var(--color-border-strong)' }} />)}
-        <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 1px var(--color-border-selected)', borderRadius: 2 }} />
+        <span style={{ position: 'absolute', left: vp.x, top: vp.y, width: vp.w, height: vp.h, boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-selected)', borderRadius: 'var(--radius-mark)' }} />
       </div>
     );
   }
@@ -160,7 +160,7 @@ export default IFS_GALLERY;
     const hidden = id => collapsed && ['vm1', 'vm2', 'vm3', 'ms'].includes(id);
     const pos = Object.fromEntries(NODES.map(n => [n.id, n]));
     return (
-      <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)' }}>
+      <div ref={box} style={{ width: 1100, height: 560, borderRadius: 'var(--radius-floating)', overflow: 'hidden', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft)' }}>
         <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Value framework canvas"
           overlay={<>
             <div style={{ position: 'absolute', insetInlineStart: 16, bottom: 16 }}>
@@ -191,7 +191,7 @@ export default IFS_GALLERY;
     );
   }
   IFS_GALLERY.push({ name: 'Canvas demo', figma: 'canvas-background (1395:196712) + node-card + value-map-button + explore-map-button', render: () => <>
-    <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 12px' }}>
+    <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 var(--space-300)' }}>
       Drag the background to pan, ctrl/⌘ + wheel to zoom, click a node to select, hover Value Framework for node actions, Fit / Collapse / Expand bottom-left.
       The mini-map is a gallery-only stand-in (no Figma component exists).</p>
     <CanvasDemo />

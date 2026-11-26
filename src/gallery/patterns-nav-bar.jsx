@@ -20,7 +20,7 @@ export default IFS_GALLERY;
     return (
       <IFS.Stack gap="600">
         <Row label="Width (collapses below 800)"><IFS.SegmentedControl size="s" value={String(w)} onChange={v => setW(+v)} options={['1200', '900', '760', '600'].map(v => ({ value: v, label: `${v}px` }))} /></Row>
-        <div style={{ width: w, transition: 'width .2s' }}><IFS.NavBar stages={STAGES} value={stage} onChange={setStage} hasNotifications user={USER} /></div>
+        <div style={{ width: w, transition: 'width var(--motion-duration-200)' }}><IFS.NavBar stages={STAGES} value={stage} onChange={setStage} hasNotifications user={USER} /></div>
         <Row label="Collapsed opened" top><div style={{ width: 600, height: 300 }}><IFS.NavBar collapsed stages={STAGES} defaultValue="value" defaultMenuOpen hasNotifications user={USER} /></div></Row>
       </IFS.Stack>
     );

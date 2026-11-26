@@ -7,7 +7,7 @@ export default IFS_GALLERY;
 {
   const { CommentPin, CommentDrawerCard, CommentMentionMenu, CommentCallout, CommentsPanel } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const canvasBg = { padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
+  const canvasBg = { padding: 'var(--space-600)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-canvas)' };
   const LONG = 'There are people within organizations that have a say in the results of scenarios but are not Copperleaf users. The report from the previous quarter shows it.';
 
   /* ---------------- data ---------------- */
@@ -42,7 +42,7 @@ export default IFS_GALLERY;
   const UN = { initials: 'UN', type: 'black' }, UN2 = { initials: 'UN', type: 'yellow' };
   IFS_GALLERY.push({ name: 'CommentPin', figma: 'comment-pin-organism (260:47160)', render: () => <IFS.Stack gap="400" style={canvasBg}>
     {['unread', 'read', 'cooper'].map(t => (
-      <Row key={t} label={`Type=${t}`} style={{ alignItems: 'flex-end', gap: 32, minHeight: 200 }}>
+      <Row key={t} label={`Type=${t}`} style={{ alignItems: 'flex-end', gap: 'var(--space-700)', minHeight: 200 }}>
         <CommentPin type={t} avatars={t === 'cooper' ? [{ type: 'cooper' }, UN] : [UN]} />
         <CommentPin type={t} avatars={t === 'cooper' ? [{ type: 'cooper' }, { type: 'inactive', initials: '' }, UN] : [UN, { type: 'inactive', initials: '' }, UN2]} />
         <CommentPin type={t} count={5} />
@@ -53,10 +53,10 @@ export default IFS_GALLERY;
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'CommentDrawerCard', figma: 'comment-drawer-card (1231:170874)', render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 380px)', gap: 16, background: 'var(--color-surface-canvas)', padding: 16, borderRadius: 8 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 380px)', gap: 'var(--space-400)', background: 'var(--color-surface-canvas)', padding: 'var(--space-400)', borderRadius: 'var(--radius-floating)' }}>
       {['default', 'hover', 'selected', 'focus'].map(s => ['read', 'new', 'cooper', 'resolved'].map(t => (
         <div key={`${s}${t}`}>
-          <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', marginBottom: 4 }}>Type={t}, State={s}</div>
+          <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', marginBottom: 'var(--space-100)' }}>Type={t}, State={s}</div>
           <CommentDrawerCard type={t} state={s === 'default' ? undefined : s} number="{number}" place="{screen}" name="{Name}" time="{time ago}"
             avatar={{ initials: 'UN', type: 'yellow' }} avatars={t === 'cooper' ? [{ type: 'cooper' }] : []} actionRequired={t !== 'resolved'}
             onResolve={() => {}} menu={[...(t === 'resolved' ? [{ label: 'Unresolve', icon: 'arrow-back-up' }] : []), { copy: true }]}>
@@ -190,7 +190,7 @@ export default IFS_GALLERY;
         background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' }}>
         <IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
@@ -279,7 +279,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Comments panel — search and empty states', figma: 'Map - Overview - Comment search result / no results [patterns] (12:34132, 12:34205)', render: () => {
     const [ts, setTs] = React.useState(THREADS);
     const [sel, setSel] = React.useState(null);
-    return <IFS.Inline gap="600" align="stretch" style={{ height: 720, background: 'var(--color-surface-canvas)', padding: 12, borderRadius: 8 }}>
+    return <IFS.Inline gap="600" align="stretch" style={{ height: 720, background: 'var(--color-surface-canvas)', padding: 'var(--space-300)', borderRadius: 'var(--radius-floating)' }}>
       <CommentsPanel threads={ts} selectedId={sel} currentUser={ME} onOpen={t => { setSel(t.id); setTs(ts.map(x => x.id === t.id ? { ...x, unread: false } : x)); }}
         onResolve={t => setTs(ts.map(x => x.id === t.id ? { ...x, resolved: true, unread: false } : x))} onUnresolve={t => setTs(ts.map(x => x.id === t.id ? { ...x, resolved: false } : x))} />
       <div className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', maxWidth: 280 }}>

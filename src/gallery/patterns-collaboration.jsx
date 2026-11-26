@@ -6,7 +6,7 @@ export default IFS_GALLERY;
 
 {
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const canvasBg = { position: 'relative', padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
+  const canvasBg = { position: 'relative', padding: 'var(--space-600)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-canvas)' };
   const HOUR = 3600 * 1000;
 
   /* ---------------- data (Figma names) ---------------- */
@@ -62,7 +62,7 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'CollaboratorRow', figma: 'content-card-organism top slot [patterns] (12:8519)', render: () =>
-    <IFS.Stack gap="200" style={{ width: 352, padding: 4, background: 'var(--color-surface-elevation-1)', borderRadius: 8 }}>
+    <IFS.Stack gap="200" style={{ width: 352, padding: 'var(--space-100)', background: 'var(--color-surface-elevation-1)', borderRadius: 'var(--radius-floating)' }}>
       <IFS.CollaboratorRow person={{ ...ME, you: true }} />
       <IFS.CollaboratorRow person={joined(MARIA, true)} onOpen={() => {}} onRemove={() => {}} />
       <IFS.CollaboratorRow person={joined(LARA, false)} onOpen={() => {}} onRemove={() => {}} />
@@ -80,7 +80,7 @@ export default IFS_GALLERY;
   } });
 
   IFS_GALLERY.push({ name: 'CollaboratorsPanel', figma: 'popover-organism Collaborators [patterns] (12:10231 / 12:10037 / 12:9653 / 12:9847)', render: () => {
-    const Panel = ({ preset, q }) => { const c = useCollab(preset); return <div><div className="g-label t-body-m-regular" style={{ marginBottom: 8 }}>{q ? `Search "${q}"` : PRESETS[preset].label}</div>
+    const Panel = ({ preset, q }) => { const c = useCollab(preset); return <div><div className="g-label t-body-m-regular" style={{ marginBottom: 'var(--space-200)' }}>{q ? `Search "${q}"` : PRESETS[preset].label}</div>
       <IFS.CollaboratorsPanel inline controller={c} defaultQuery={q} onInvite={() => {}} onOpen={() => {}} onRemove={() => {}} onPush={p => c.push(p.id)} /></div>; };
     return <IFS.Inline gap="600" align="start" wrap>
       <Panel preset="owner" /><Panel preset="pending" /><Panel preset="partial" /><Panel preset="complete" />
@@ -109,16 +109,16 @@ export default IFS_GALLERY;
       <div style={shell} aria-label="Draft framework with collaborators">
         <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
-            <div style={{ position: 'relative', zIndex: 20 }}>
+            <div style={{ position: 'relative', zIndex: 9 }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
                 views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'flow', iconLeft: 'capital-flow' }]} />}
                 actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />
-                  <span style={{ width: 1, height: 24, margin: '0 8px', background: 'var(--color-border-soft)' }} aria-hidden="true" />
+                  <span style={{ width: 1, height: 24, margin: '0 var(--space-200)', background: 'var(--color-border-soft)' }} aria-hidden="true" />
                   <IFS.Button type="primary" size="s">Review</IFS.Button>
                 </IFS.Inline>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
@@ -152,7 +152,7 @@ export default IFS_GALLERY;
     const [cursors, setCursors] = React.useState(true);
     const next = c.awaiting[0];
     return <>
-      <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
+      <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 'var(--space-300)', maxWidth: 1440 }}>
         <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo — state:</span>
         <IFS.SegmentedControl size="s" value={preset} onChange={setPreset} options={Object.entries(PRESETS).map(([value, p]) => ({ value, label: p.label }))} />
         <IFS.Button size="s" type="tertiary" disabled={!next} onClick={() => next && c.accept(next.id, true)}>{next ? `Simulate: ${next.name} accepts` : 'Everyone accepted'}</IFS.Button>
@@ -163,7 +163,7 @@ export default IFS_GALLERY;
   }
 
   IFS_GALLERY.push({ name: 'Pattern: Collaboration header states', figma: 'Map - Overview - Owner only / Owner with pending invites / Some / All accepted [patterns] (12:9594 / 12:9538 / 12:9423 / 12:9482)', render: () =>
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, max-content)', gap: 16 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, max-content)', gap: 'var(--space-400)' }}>
       {Object.keys(PRESETS).map(k => <HeaderOnly key={k} preset={k} />)}
     </div> });
   function HeaderOnly({ preset }) {

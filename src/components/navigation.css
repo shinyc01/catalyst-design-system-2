@@ -69,7 +69,7 @@
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
 
 /* ---------- Tabs: tab-organism + tab ---------- */
-.ifs-tabs{display:flex;align-items:stretch;box-shadow:inset 0 calc(-1 * var(--border-width-100)) 0 var(--color-border-soft);overflow-x:auto;scrollbar-width:none}
+.ifs-tabs{display:flex;align-items:stretch;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft);overflow-x:auto;scrollbar-width:none}
 .ifs-tab{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-150) /* raw in Figma */;flex:none;
   margin:0;border:0;background:transparent;cursor:pointer;white-space:nowrap;color:var(--color-text-soft);
   --line:transparent;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--line);transition:color var(--motion-duration-50) var(--motion-ease-standard)}
@@ -165,7 +165,7 @@
 /* fixed 48: app chrome (A1 fixed sizes) */
 .ifs-navbar{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-500) /* raw in Figma */;
   width:100%;height:var(--size-48);padding:var(--space-200) var(--space-300);
-  background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-width-100)) 0 var(--color-border-soft);
+  background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft);
   backdrop-filter:blur(var(--blur-10));-webkit-backdrop-filter:blur(var(--blur-10))}
 .ifs-navbar__left{display:flex;align-items:center;gap:var(--space-600) /* raw in Figma */;min-width:0}
 .ifs-navbar__logo{display:flex;align-items:center;flex:none;height:1.875rem;color:var(--color-text)}
@@ -193,7 +193,7 @@
 /* Fill, divider and --blur-10 live on a pseudo layer: backdrop-filter on the header itself would make it the containing
    block of position:fixed descendants (popovers, modals opened from its actions) and clip them. */
 .ifs-page-header::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-width-100)) 0 var(--color-border-soft);
+  background:var(--color-surface-overlay);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft);
   backdrop-filter:blur(var(--blur-10));-webkit-backdrop-filter:blur(var(--blur-10))}
 /* center slot: left and right containers share the remaining width equally so the centre is truly centred */
 .ifs-page-header__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-300);min-width:0}
@@ -233,7 +233,7 @@
 .ifs-page-header__row--meta .ifs-page-header__right{margin-inline-start:auto;gap:var(--space-200)}
 .ifs-page-header__row--meta .ifs-page-header__right--wrapped{margin-inline-start:0} /* on its own line: left-aligned under the title */
 .ifs-page-header__id{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:nowrap}
-.ifs-page-header__divider{width:var(--border-width-100);height:var(--size-20);margin:0 var(--space-50);background:var(--color-border);flex:none}
+.ifs-page-header__divider{width:var(--border-width-default);height:var(--size-20);margin:0 var(--space-50);background:var(--color-border);flex:none}
 .ifs-page-header__right{display:flex;align-items:center;gap:var(--space-200);flex:none;max-width:100%} /* buttons 8 apart, like every button group (Nov 19; was 16); max-width: on a narrow screen the actions wrap instead of running off the end (F-29, WCAG 1.4.10) */
 /* Title menu ▾: a standard ghost IconButton S (Nov 19); the caret sits close to the title, the box overlaps the gap */
 .ifs-page-header__menu{margin-inline-start:calc((var(--size-16) - var(--size-control-s)) / 2)} /* the caret sits as close to the title as before; the 24 box overlaps the gap */

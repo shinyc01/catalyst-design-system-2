@@ -24,22 +24,22 @@ export default IFS_GALLERY;
     { size: 'm', descriptionPosition: 'inline', title: 'Finding tier changes', value: '876', description: '52 gained • 31 lost • 12 major shift' },
     { size: 'm', descriptionPosition: 'inline', title: 'Governance flags', value: '1', description: 'Executing investment affected' },
   ];
-  const Text = ({ children }) => <p className="t-body-l-regular" style={{ margin: 0, padding: '2px 2px 4px' }}>{children}</p>;
+  const Text = ({ children }) => <p className="t-body-l-regular" style={{ margin: 0, padding: 'var(--space-50) var(--space-50) var(--space-100)' }}>{children}</p>;
   const KeyValues = ({ rows, note }) => (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       {rows.map(([k, v]) => (
-        <IFS.Inline gap="400" justify="between" key={k} className="t-body-l-regular" style={{ padding: '6px 0' }}>
+        <IFS.Inline gap="400" justify="between" key={k} className="t-body-l-regular" style={{ padding: 'var(--space-150) 0' }}>
           <span style={{ color: 'var(--color-text-soft)' }}>{k}</span><span style={{ textAlign: 'right' }}>{v}</span>
         </IFS.Inline>
       ))}
-      {note && <div style={{ borderTop: '1px solid var(--color-border-soft)', marginTop: 6, paddingTop: 10 }}>
+      {note && <div style={{ borderTop: '1px solid var(--color-border-soft)', marginTop: 'var(--space-150)', paddingTop: 'var(--space-250)' }}>
         <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>{note[0]}</div>
         <div className="t-body-l-regular">{note[1]}</div>
       </div>}
     </div>
   );
   const MapView = () => (
-    <IFS.CanvasBackground style={{ height: 236, borderRadius: 4 }} defaultView={{ x: 0, y: 0, zoom: 1 }}>
+    <IFS.CanvasBackground style={{ height: 236, borderRadius: 'var(--radius-control)' }} defaultView={{ x: 0, y: 0, zoom: 1 }}>
       {[[90, 120, 'danger'], [230, 150, 'neutral'], [330, 70, 'danger'], [380, 160, 'warning']].map(([x, y, s], i) => (
         <div key={i} style={{ position: 'absolute', left: x, top: y }}><IFS.MapPin status={s} label={`Asset ${i + 1}`} /></div>
       ))}
@@ -69,7 +69,7 @@ export default IFS_GALLERY;
     {CARDS.map((c, i) => (
       <Row key={i} label={`Number=${i + 1}`} top>
         <div style={{ width: 368 }}><WidgetCard {...c} onAdd={() => IFS.toast({ title: `"${c.title}" widget added` })} /></div>
-        <div style={{ width: 368, padding: 4 }}><WidgetCard {...c} state="drag" /></div>
+        <div style={{ width: 368, padding: 'var(--space-100)' }}><WidgetCard {...c} state="drag" /></div>
       </Row>
     ))}
   </> });
@@ -153,7 +153,7 @@ export default IFS_GALLERY;
     <IFS.Panel title="System confidence" defaultExpanded>
       <IFS.Stack gap="300">
         <div className="t-label-l-medium" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Approval readiness
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><IFS.ProgressRing value={35} size={16} />35%</span></div>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--space-150)' }}><IFS.ProgressRing value={35} size={16} />35%</span></div>
         <IFS.ReadinessStatus type="done" right="Passed">Investment readiness</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1 error' }]}>Path forward</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1 error' }]}>Assumption consistency</IFS.ReadinessStatus>
@@ -234,11 +234,11 @@ export default IFS_GALLERY;
           bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} onUpload={() => {}}
             prompts={['Generate Annualized outcome risk by risk type chart', 'Compare to best practice']} />}>
           <div style={{ display: 'flex', minHeight: '100%' }}>
-            <IFS.Stack gap="300" style={{ flex: 1, minWidth: 0, padding: 12 }}>
+            <IFS.Stack gap="300" style={{ flex: 1, minWidth: 0, padding: 'var(--space-300)' }}>
               <IFS.Inline gap="400" align="start" justify="between">
                 <div>
                   <h2 className="t-heading-h1-medium" style={{ margin: 0, color: 'var(--color-text)' }}>Investment overview</h2>
-                  <div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', marginTop: 4 }}>High-level investment summary, key metrics, and current progress</div>
+                  <div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-100)' }}>High-level investment summary, key metrics, and current progress</div>
                 </div>
                 <IFS.Button type="secondary" size="m" iconLeft="chart" onClick={() => setDrawer(true)}>Widgets</IFS.Button>
               </IFS.Inline>
@@ -278,7 +278,7 @@ export default IFS_GALLERY;
             </>} />}
           bottom={<IFS.BottomSheet type="value" inProgress coverage={80} documents={{ label: '3 Documents', icon: 'system-file' }} onUpload={() => {}}
             prompts={['What needs my review?', "What's due this week?"]} />}>
-          <div style={{ padding: 12 }}>
+          <div style={{ padding: 'var(--space-300)' }}>
             <WidgetBoard value={layout} onChange={setLayout} widgets={REPORT_WIDGETS} />
           </div>
         </IFS.AppShell>

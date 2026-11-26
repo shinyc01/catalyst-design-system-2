@@ -45,7 +45,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'RiskStatus', figma: 'status-risk-molecule (69:1729)', render: () => <>
     {['success', 'warning', 'error', 'evaluated'].map(t => (
-      <Row key={t} label={t} style={{ gap: 40 }}>
+      <Row key={t} label={t} style={{ gap: 'var(--space-800)' }}>
         <RiskStatus type={t} onClick={() => {}} />
         <RiskStatus type={t} state="hover" onClick={() => {}} />
         <RiskStatus type={t} disabled onClick={() => {}} />
@@ -57,7 +57,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'ReadinessStatus', figma: 'status-readiness-molecule (1440:5273)', render: () => <>
     {['done', 'warning', 'error', 'in-progress', 'active', 'loading'].map(t => (
-      <Row key={t} label={t} style={{ gap: 20 }}>
+      <Row key={t} label={t} style={{ gap: 'var(--space-500)' }}>
         <div style={{ width: 164 }}><ReadinessStatus type={t} right="Text">Text</ReadinessStatus></div>
         {t !== 'done' && <div style={{ width: 164 }}><ReadinessStatus type={t} indicators={[{ type: 'red', label: 'text' }, { type: 'orange', label: 'text' }]}>Text</ReadinessStatus></div>}
       </Row>
@@ -66,7 +66,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'Indicator', figma: 'indicator-molecule (1074:180251)', render: () => <>
     {['s', 'xs'].map(z => (
-      <Row key={z} label={z} style={{ gap: 24 }}>
+      <Row key={z} label={z} style={{ gap: 'var(--space-600)' }}>
         {['orange', 'green', 'red', 'blue', 'purple', 'gray', 'cooper', 'archive', 'loading'].map(t => <Indicator key={t} size={z} type={t}>text</Indicator>)}
       </Row>
     ))}
@@ -106,12 +106,12 @@ export default IFS_GALLERY;
   }
   IFS_GALLERY.push({ name: 'ContentCard', figma: 'content-card-organism (3643:32067)', render: () => <>
     {[undefined, 'hover', 'drag', 'selected', 'focus', 'cooper'].map(s => (
-      <Row key={s || 'default'} label={s || 'default'} style={{ gap: 24, alignItems: 'flex-start' }}>
+      <Row key={s || 'default'} label={s || 'default'} style={{ gap: 'var(--space-600)', alignItems: 'flex-start' }}>
         <ContentCard style={{ width: 332 }} state={s} {...cardProps('m')} />
         <ContentCard style={{ width: 332 }} state={s} {...cardProps('s')} />
       </Row>
     ))}
-    <Row label="loading" style={{ gap: 24, alignItems: 'flex-start' }}>
+    <Row label="loading" style={{ gap: 'var(--space-600)', alignItems: 'flex-start' }}>
       <ContentCard style={{ width: 332 }} loading {...cardProps('m')} />
       <ContentCard style={{ width: 332 }} loading {...cardProps('s')} />
     </Row>
@@ -165,7 +165,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'NotificationCard', figma: 'notification-card (9943:5373)', render: () => <>
     {['all', 'specific', 'grouped'].map(t => (
-      <Row key={t} label={t} style={{ gap: 32, alignItems: 'flex-start' }}>
+      <Row key={t} label={t} style={{ gap: 'var(--space-700)', alignItems: 'flex-start' }}>
         {[false, true].map(r => <NotificationCard key={String(r)} style={{ width: 380 }} type={t} read={r} title="{title}" details="{details}" meta="{item} · {area}" time="{time}" actionLabel="Type" count={3} />)}
       </Row>
     ))}

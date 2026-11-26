@@ -7,7 +7,7 @@ export default IFS_GALLERY;
 {
   const { MapPinDot, MapPinDefect, MapPinFlow, MapPinPole, BarChartItem, VerticalBarChartItem, DocumentRow, DocumentsPopover } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const mapBg = { padding: 24, borderRadius: 8, background: 'var(--color-surface-canvas)' };
+  const mapBg = { padding: 'var(--space-600)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-canvas)' };
 
   /* ---------------- components ---------------- */
   IFS_GALLERY.push({ name: 'MapPinDot', figma: 'map-pin-dot (d2686af3) [patterns] (12:107153)', render: () => <IFS.Stack gap="100" style={mapBg}>
@@ -26,31 +26,31 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'MapPinPole', figma: 'map-pin-pole "Pole" (b548a660) [patterns] (12:107120)', render: () => <IFS.Stack gap="100" style={mapBg}>
     {['default', 'selected'].map(s => (
-      <Row key={s} label={`state=${s}`} style={{ gap: 40, alignItems: 'flex-end' }}>
+      <Row key={s} label={`state=${s}`} style={{ gap: 'var(--space-800)', alignItems: 'flex-end' }}>
         <MapPinPole state={s} symbol="pin" pinIcon="asset type-substation" />
         <MapPinPole state={s} symbol="defect" defect={{ type: 'cyclone', state: 'confirmed' }} />
         <MapPinPole state={s} symbol="dot" />
         <MapPinPole state={s} symbol="hierarchy-pin" hierarchy="group" />
       </Row>
     ))}
-    <Row label="pin status" style={{ gap: 40, alignItems: 'flex-end' }}>
+    <Row label="pin status" style={{ gap: 'var(--space-800)', alignItems: 'flex-end' }}>
       {['neutral', 'error', 'warning', 'evaluated'].map(p => <MapPinPole key={p} pinStatus={p} number={p} />)}
     </Row>
-    <Row label="hierarchy" style={{ gap: 40, alignItems: 'flex-end' }}>
+    <Row label="hierarchy" style={{ gap: 'var(--space-800)', alignItems: 'flex-end' }}>
       {['group', 'segment', 'structure'].map(h => <MapPinPole key={h} symbol="hierarchy-pin" hierarchy={h} number={h} />)}
     </Row>
-    <Row label="pin=false (route numbers)" style={{ gap: 24 }}>{[1, 2, 3, 4, 5, 6].map(n => <MapPinPole key={n} pin={false} number={n} defaultSelected={n === 4} />)}</Row>
+    <Row label="pin=false (route numbers)" style={{ gap: 'var(--space-600)' }}>{[1, 2, 3, 4, 5, 6].map(n => <MapPinPole key={n} pin={false} number={n} defaultSelected={n === 4} />)}</Row>
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'MapPinDefect', figma: 'map-pin-defect (91cf9e42) [patterns] (12:106855)', render: () => <IFS.Stack gap="100" style={mapBg}>
     {['confirmed', 'unconfirmed', 'monitoring'].map(s => (
-      <Row key={s} label={s} style={{ gap: 24 }}>{['cyclone', 'flood', 'heat', 'storm'].map(t => <MapPinDefect key={t} type={t} state={s} />)}</Row>
+      <Row key={s} label={s} style={{ gap: 'var(--space-600)' }}>{['cyclone', 'flood', 'heat', 'storm'].map(t => <MapPinDefect key={t} type={t} state={s} />)}</Row>
     ))}
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'MapPinFlow', figma: 'Electric Flow Direction Indicator (a6c2010c) [patterns] (12:107306)', render: () => <IFS.Stack gap="100" style={mapBg}>
-    <Row label="type" style={{ gap: 24 }}><MapPinFlow /><MapPinFlow type="error" /></Row>
-    <Row label="rotate" style={{ gap: 24 }}>{[0, 90, 169, 180, -63].map(r => <MapPinFlow key={r} type="error" rotate={r} />)}</Row>
+    <Row label="type" style={{ gap: 'var(--space-600)' }}><MapPinFlow /><MapPinFlow type="error" /></Row>
+    <Row label="rotate" style={{ gap: 'var(--space-600)' }}>{[0, 90, 169, 180, -63].map(r => <MapPinFlow key={r} type="error" rotate={r} />)}</Row>
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
@@ -61,7 +61,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'VerticalBarChartItem', figma: 'vertical-bar-chart-item (c06b1d19) [patterns] (12:107877)', render: () => {
     const [act, setAct] = React.useState(false);
-    return <Row label="default-1 · default-2 · active · click" style={{ gap: 32, alignItems: 'flex-end' }}>
+    return <Row label="default-1 · default-2 · active · click" style={{ gap: 'var(--space-700)', alignItems: 'flex-end' }}>
       <VerticalBarChartItem segments={[{ value: 147, color: 7 }, { value: 20, color: 8 }, { value: 25, color: 8 }]} />
       <VerticalBarChartItem segments={[{ value: 20, color: 8 }, { value: 117, color: 8 }, { value: 28, color: 7 }, { value: 25, color: 8 }]} />
       <VerticalBarChartItem state="active" segments={[{ value: 32, color: 3 }, { value: 21, color: 2 }, { value: 20, color: 5 }, { value: 117, color: 4 }]} />
@@ -121,7 +121,7 @@ export default IFS_GALLERY;
     const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
-      <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 4, background: 'var(--color-surface-secondary)' }}>
+      <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 'var(--radius-control)', background: 'var(--color-surface-secondary)' }}>
         <svg width="646" height="236" style={{ position: 'absolute', inset: 0 }} aria-hidden="true">
           <path d="M20 -16 L84 78 L87 145" fill="none" stroke="var(--color-border-strong)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="3.7" />
@@ -146,7 +146,7 @@ export default IFS_GALLERY;
     const data = [['FY25', 0.42], ['FY26', 1.7], ['FY27', 1.45], ['FY28', 2.25], ['FY29', 1.5]];
     const [sel, setSel] = React.useState(null);
     return (
-      <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '48px 1fr', gridTemplateRows: '200px 20px', gap: '4px 0', padding: '8px 10px 0' }}>
+      <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '48px 1fr', gridTemplateRows: '200px 20px', gap: 'var(--space-100) 0', padding: 'var(--space-200) var(--space-250) 0' }}>
         <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>
           {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
@@ -161,7 +161,7 @@ export default IFS_GALLERY;
   function InvestmentValue() {
     const rows = [['Electrical Distribution Reliability', -0.36], ['Electrical Delivery Capacity', -0.1], ['Compliance Risk', 0.05], ['Financial benefits: opex', 0.11], ['Project Execution Risk', 0.36], ['Total Investment Cost', 0.21]];
     return (
-      <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '180px 1fr', rowGap: 10, padding: '16px 10px 8px', alignItems: 'center' }}>
+      <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '180px 1fr', rowGap: 'var(--space-250)', padding: 'var(--space-400) var(--space-250) var(--space-200)', alignItems: 'center' }}>
         {rows.map(([l, v], i) => <React.Fragment key={l}>
           <span className="t-body-m-regular" style={{ color: i === rows.length - 1 ? 'var(--color-text)' : 'var(--color-text-soft)' }}>{l}</span>
           <div style={{ position: 'relative', height: 16, borderLeft: '1px solid var(--color-border-soft)', borderRight: '1px solid var(--color-border-soft)' }}>
@@ -175,11 +175,11 @@ export default IFS_GALLERY;
   function InvestmentDetails() {
     const kv = [['Name', 'Southern Feeder Replacement — Circuit 14B'], ['Code', 'INV-2026-0418'], ['Type', 'Capital Replacement'], ['Planning portfolio', 'FY26–27 Distribution Capital · Northern Region']];
     return (
-      <div className="t-body-l-regular" style={{ width: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', padding: '0 10px 10px' }}>
-        {kv.map(([k, v]) => <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0' }}><span style={{ color: 'var(--color-text-soft)' }}>{k}</span><span>{v}</span></div>)}
-        <div style={{ borderTop: '1px solid var(--color-border-soft)', marginTop: 6, paddingTop: 12 }}>
+      <div className="t-body-l-regular" style={{ width: '100%', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', padding: '0 var(--space-250) var(--space-250)' }}>
+        {kv.map(([k, v]) => <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: 'var(--space-150) 0' }}><span style={{ color: 'var(--color-text-soft)' }}>{k}</span><span>{v}</span></div>)}
+        <div style={{ borderTop: '1px solid var(--color-border-soft)', marginTop: 'var(--space-150)', paddingTop: 'var(--space-300)' }}>
           <div style={{ color: 'var(--color-text-soft)' }}>Problem statement</div>
-          <div style={{ marginTop: 6 }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
+          <div style={{ marginTop: 'var(--space-150)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
         </div>
       </div>
     );
@@ -189,10 +189,10 @@ export default IFS_GALLERY;
     // (same surface, data-viz-header-molecule header) stands in. See guide/figma.json › patterns › Documents.
     const card = (title, body) => <IFS.DataVizCard title={title} header={{ draggable: false, slot: evidenceBtn }}>{body}</IFS.DataVizCard>;
     return (
-      <IFS.Stack gap="300" style={{ padding: '12px 12px 24px' }}>
+      <IFS.Stack gap="300" style={{ padding: 'var(--space-300) var(--space-300) var(--space-600)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div><div className="t-heading-h1-medium">Investment overview</div>
-            <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 8 }}>High-level investment summary, key metrics, and current progress</div></div>
+            <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-200)' }}>High-level investment summary, key metrics, and current progress</div></div>
           <IFS.Button type="secondary" iconLeft="chart">Widgets</IFS.Button>
         </div>
         {(() => {
@@ -200,9 +200,9 @@ export default IFS_GALLERY;
             { title: 'Investment value', value: '$23k', description: 'Total expected value' }, { title: 'Baseline risk', value: '$12.6M', description: 'Risk before intervention' }];
           // stat-cards-row (IFS.StatCardsRow, built by the widget-builder pattern); falls back to a row of StatCards.
           return IFS.StatCardsRow ? <IFS.StatCardsRow cards={cards} />
-            : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>{cards.map(c => <IFS.StatCard key={c.title} {...c} />)}</div>;
+            : <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-300)' }}>{cards.map(c => <IFS.StatCard key={c.title} {...c} />)}</div>;
         })()}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-300)' }}>
           {card('Investment details', <InvestmentDetails />)}
           {card('Affected assets & area', <AffectedAssets />)}
           {card('Yearly forecast', <YearlyForecast />)}
@@ -221,14 +221,14 @@ export default IFS_GALLERY;
   function DemoBar({ c, extra }) {
     const chip = (f) => (
       <span key={f.name} {...c.dragSource(f)} title="Drag onto the screen" className="t-body-m-regular"
-        style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-soft)' }}>{f.name}</span>
+        style={{ padding: 'var(--space-100) var(--space-200)', borderRadius: 'var(--radius-control)', cursor: 'grab', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft)', color: 'var(--color-text-soft)' }}>{f.name}</span>
     );
     return (
-      <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
+      <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 'var(--space-300)', maxWidth: 1440 }}>
         <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo — drag a file onto the screen:</span>
         {FAKE.slice(0, 2).map(chip)}
-        <span {...c.dragSource(FAKE.slice(1, 6))} className="t-body-m-regular" style={{ padding: '4px 8px', borderRadius: 4, cursor: 'grab', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-soft)' }}>5 files</span>
-        <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)', marginLeft: 8 }}>or add:</span>
+        <span {...c.dragSource(FAKE.slice(1, 6))} className="t-body-m-regular" style={{ padding: 'var(--space-100) var(--space-200)', borderRadius: 'var(--radius-control)', cursor: 'grab', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft)', color: 'var(--color-text-soft)' }}>5 files</span>
+        <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)', marginLeft: 'var(--space-200)' }}>or add:</span>
         <IFS.Button size="s" type="tertiary" onClick={() => c.addFiles([FAKE[0]])}>Valid file</IFS.Button>
         <IFS.Button size="s" type="tertiary" onClick={() => c.addFiles([FAKE[6]])}>Unsupported (.zip)</IFS.Button>
         <IFS.Button size="s" type="tertiary" onClick={() => c.addFiles([FAKE[7]])}>Too large</IFS.Button>
@@ -257,9 +257,9 @@ export default IFS_GALLERY;
           </div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr 48px', minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16 }}><IFS.ArrowButton label="Open navigation" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <IFS.DocumentsDropArea controller={c} style={{ overflow: 'auto', minHeight: 0 }}><InvestmentOverview /></IFS.DocumentsDropArea>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16 }}><IFS.IconButton type="tertiary" size="s" icon="arrow-bar-left" label="Open panel" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)' }}><IFS.IconButton type="tertiary" size="s" icon="arrow-bar-left" label="Open panel" /></div>
         </div>
         <IFS.BottomSheet type="value" style={{ position: 'relative' }} left={<IFS.DocumentsContext controller={c} popoverOffset={48} />}
           prompts={['Generate Annualized outcome risk by risk type chart', 'Compare to best practice']} />
@@ -280,7 +280,7 @@ export default IFS_GALLERY;
       <div style={{ ...shell, gridTemplateRows: '48px 1fr' }} aria-label={label}>
         <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />
         <div style={{ display: 'grid', gridTemplateColumns: draft ? '48px 1fr' : '240px 1fr', minHeight: 0 }}>
-          {draft ? <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          {draft ? <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
             : <IFS.SideNav title="Value" items={nav} defaultValue="active" />}
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
@@ -314,7 +314,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Documents on an active framework (read-only)', figma: 'Map - Overview - Documents search focused [patterns] (168:426467)', render: () => {
     const [n, setN] = React.useState(10);
     return <>
-      <IFS.Inline gap="200" align="center" style={{ marginBottom: 12 }}><span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo — number of documents:</span>
+      <IFS.Inline gap="200" align="center" style={{ marginBottom: 'var(--space-300)' }}><span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo — number of documents:</span>
         <IFS.SegmentedControl size="s" value={String(n)} onChange={v => setN(+v)} options={['1', '7', '8', '10', '16'].map(v => ({ value: v, label: v }))} /></IFS.Inline>
       <FrameworkScreen key={n} label="Active framework, read-only documents" initial={withDates(SAMPLE.slice(0, n))} />
     </>;

@@ -22,7 +22,7 @@ export default IFS_GALLERY;
   ];
   // Small stand-ins for other families' pieces used inside the page header
   const Status = ({ children = 'Active' }) => (
-    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--color-text)' }}>
+    <span className="t-label-m-medium" style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--space-100)', color: 'var(--color-text)' }}>
       <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--color-icon-success)' }} />{children}
     </span>
   );
@@ -142,11 +142,11 @@ export default IFS_GALLERY;
         views={<span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>[views slot]</span>}
         actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
     </div>
-    <div style={{ width: 1200, marginTop: 12 }}>
+    <div style={{ width: 1200, marginTop: 'var(--space-300)' }}>
       <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} onTitleMenu={() => {}} status={<Status>Draft</Status>}
         actions={<IFS.Button type="primary" size="s">Review</IFS.Button>} />
     </div>
-    <div style={{ width: 1200, marginTop: 12 }}>
+    <div style={{ width: 1200, marginTop: 'var(--space-300)' }}>
       <PageHeader title="Q1 2026 Strategy Framework" status={<Status>Draft</Status>}
         center={<Stepper current={1} steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }]} />}
         actions={<IFS.Button type="primary" size="s">Publish</IFS.Button>} />
@@ -157,7 +157,7 @@ export default IFS_GALLERY;
     { value: 'archived', label: 'Archived', count: 3 }, { value: 'draft', label: 'Draft', count: 3 }];
   const NewBtn = () => <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>;
   const SEARCH = { placeholder: 'Ask anything about strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?'] };
-  const Frame = ({ label, children }) => <div style={{ width: 1176, marginBottom: 32 }}><div className="t-label-m-medium" style={{ color: 'var(--color-text-softer)', marginBottom: 12 }}>{label}</div>{children}</div>;
+  const Frame = ({ label, children }) => <div style={{ width: 1176, marginBottom: 'var(--space-700)' }}><div className="t-label-m-medium" style={{ color: 'var(--color-text-softer)', marginBottom: 'var(--space-300)' }}>{label}</div>{children}</div>;
   IFS_GALLERY.push({ name: 'PageHeader: narrow widths', figma: 'Nov 19 rule: the stepper opens from the status once it no longer fits; below 720 two rows: title + id, then status, views, other actions, primary last', render: () => {
     const steps = <IFS.Stepper current={3} active={3} steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} />;
     const acts = <><IFS.CommentButton size="s" /><IFS.Button type="secondary" size="s">Approval chain</IFS.Button></>;
@@ -180,7 +180,7 @@ export default IFS_GALLERY;
     </Frame>
     <Frame label="cooper = true, Show button = false (Command home; the instance overrides the gap to 12)">
       <PageTop eyebrow title="Welcome back, Jeff." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
-        style={{ gap: 12 }} tabs={{ items: [{ value: 'w', label: 'My works', count: 3 }, { value: 'd', label: 'Decisions', count: 6 }, { value: 'c', label: 'Conversations', count: 3 }, { value: 'f', label: 'Following', count: 3 }], defaultValue: 'd' }}
+        style={{ gap: 'var(--space-300)' }} tabs={{ items: [{ value: 'w', label: 'My works', count: 3 }, { value: 'd', label: 'Decisions', count: 6 }, { value: 'c', label: 'Conversations', count: 3 }, { value: 'f', label: 'Following', count: 3 }], defaultValue: 'd' }}
         search={{ placeholder: 'Ask anything about your work' }} />
     </Frame>
     <Frame label="show search = false">
@@ -207,7 +207,7 @@ export default IFS_GALLERY;
               actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
             <CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />
           </>}>
-          <div style={{ height: 1600, padding: 24, background: 'var(--color-surface-canvas)' }} className="t-body-m-regular">
+          <div style={{ height: 1600, padding: 'var(--space-600)', background: 'var(--color-surface-canvas)' }} className="t-body-m-regular">
             Content scrolls here — stage: {stage}, section: {sel}
           </div>
         </AppShell>

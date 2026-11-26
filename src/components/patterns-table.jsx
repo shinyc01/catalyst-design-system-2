@@ -707,7 +707,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
       {!collapsed && <>
         {!toolbarOutside && !pageTop && toolbar}
         <div className="ifs-data-table__scroll">{body}</div>
-        {drag && drag.y != null && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 16, insetInlineEnd: 16, top: drag.y }} />}        {fixedHeight && ordered.length > 0 && !searching && <div className="ifs-data-table__more">
+        {drag && drag.y != null && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 'var(--space-table-x)', insetInlineEnd: 'var(--space-table-x)', top: drag.y }} />}        {fixedHeight && ordered.length > 0 && !searching && <div className="ifs-data-table__more">
           <IFS.Button type="ghost" size="s" iconRight={expanded ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} onClick={() => setExpanded(!expanded)}>{expanded ? 'Show less' : 'Show more'}</IFS.Button>
         </div>}
         {filterPanel}

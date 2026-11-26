@@ -98,7 +98,7 @@ export default IFS_GALLERY;
   }
 
   function DemoBar({ children }) {
-    return <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 12, maxWidth: 1440 }}>
+    return <IFS.Inline gap="200" align="center" wrap style={{ marginBottom: 'var(--space-300)', maxWidth: 1440 }}>
       <span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>Demo —</span>{children}</IFS.Inline>;
   }
 
@@ -109,7 +109,7 @@ export default IFS_GALLERY;
     const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '110,170 170,205 235,222 290,244 316,245 386,244 450,243 400,152';
     return (
-      <div style={{ position: 'relative', width: '100%', height: 352, overflow: 'hidden', borderRadius: 4, background: 'var(--color-surface-secondary)' }}>
+      <div style={{ position: 'relative', width: '100%', height: 352, overflow: 'hidden', borderRadius: 'var(--radius-control)', background: 'var(--color-surface-secondary)' }}>
         <svg width="670" height="352" style={{ position: 'absolute', inset: 0 }} aria-hidden="true">
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="4" />
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".6" strokeDasharray="2.6 1.7" />
@@ -136,14 +136,14 @@ export default IFS_GALLERY;
   function IdeaOverview({ chain, title = 'Southern Feeder Replacement — Circuit 14B' }) {
     const ev = (k) => <EvidenceButton active={chain.key === k} onClick={chain.toggle(k)} label={`Evidence chain: ${k}`} />;
     const card = (k, t, body, extra) => <IFS.DataVizCard title={t} header={{ draggable: false, slot: <IFS.Inline as="span" gap="200" align="center">{extra}{ev(k)}</IFS.Inline> }}>{body}</IFS.DataVizCard>;
-    const pad = { padding: '0 10px 10px', boxSizing: 'border-box', width: '100%' };
+    const pad = { padding: '0 var(--space-250) var(--space-250)', boxSizing: 'border-box', width: '100%' };
     return (
-      <IFS.Stack gap="300" style={{ padding: 12 }}>
+      <IFS.Stack gap="300" style={{ padding: 'var(--space-300)' }}>
         {card('overview', 'Idea overview', <div style={pad}>
           <div className="t-heading-h2-medium">{title}</div>
-          <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 8 }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
+          <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-200)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
         </div>, <IFS.Button type="tertiary" size="s" iconLeft="cooper-system-icon">Edit with Cooper</IFS.Button>)}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-300)', alignItems: 'start' }}>
           <IFS.Stack gap="300">
             {card('need', 'The need', <div className="t-body-l-regular" style={pad}>Fault frequency on these feeders are up 3.1× over 24 months, with two sustained outages this year. Health index has dropped from 74 to 41. Left alone, Cooper projects a likely in-service failure within 18-30 months, affecting ~9400 customers including a hospital.</div>)}
             {card('goals', 'Aligned enterprise goals', <IFS.Inline gap="200" wrap style={{ ...pad }}>{GOALS.map(g => <IFS.Badge key={g} color="black" size="m">{g}</IFS.Badge>)}</IFS.Inline>)}
@@ -152,18 +152,18 @@ export default IFS_GALLERY;
               <IFS.Inline gap="400" justify="center" wrap>{RELEVANCE.map(([l, , c]) => <IFS.LegendSwatch key={l} color={c} label={l} />)}</IFS.Inline>
             </IFS.Stack>)}
           </IFS.Stack>
-          {card('assets', 'Affected assets & area', <div style={{ ...pad, padding: '0 4px 4px' }}><AffectedAssets /></div>)}
+          {card('assets', 'Affected assets & area', <div style={{ ...pad, padding: '0 var(--space-100) var(--space-100)' }}><AffectedAssets /></div>)}
         </div>
         {card('alternative', 'Recommended alternative', <div style={pad}>
-          <div style={{ padding: 12, borderRadius: 4, boxShadow: 'inset 0 0 0 1px var(--color-border-soft)' }}>
+          <div style={{ padding: 'var(--space-300)', borderRadius: 'var(--radius-control)', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft)' }}>
             <div className="t-heading-h2-medium">Targeted Hardening</div>
-            <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: '6px 0 12px' }}>Replaces only the worst ~40% of units, starting with Feeder 4. Lower cost and faster, but leaves aging sections in place. Partial risk reduction — cluster stays exposed to repeat failures.</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+            <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: 'var(--space-150) 0 var(--space-300)' }}>Replaces only the worst ~40% of units, starting with Feeder 4. Lower cost and faster, but leaves aging sections in place. Partial risk reduction — cluster stays exposed to repeat failures.</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-300)' }}>
               {[['BCR', '2.5'], ['Cost range', '$2.4M-$3.8M'], ['Timing', '~ 8 months'], ['Potential value', '6M-9M']].map(([t, v]) => <IFS.StatCard key={t} title={t} value={v} />)}
             </div>
           </div>
         </div>)}
-        {card('options', 'Other options', <div style={{ ...pad, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        {card('options', 'Other options', <div style={{ ...pad, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-300)' }}>
           <IFS.ContentCard title="Full Replacement" description="Replace all 7 feeders in one program. Highest cost, removes the cluster risk." />
           <IFS.ContentCard title="Reactive Repair" description="Fix on failure. Lowest near-term cost; outage exposure keeps rising." />
         </div>)}
@@ -196,7 +196,7 @@ export default IFS_GALLERY;
                 rationale={rationale(FLAGGED_DOCS)} benchmark={benchmark} tab={tab} onTabChange={setTab} />
             </div>}
           </div>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset 1px 0 0 var(--color-border-soft)' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset var(--border-width-default) 0 0 var(--color-border-soft)' }}>
             <IFS.IconButton type="tertiary" size="s" icon="arrow-bar-left" label="Open panel" /></div>
         </div>
         <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '16 Documents', icon: 'system-file', onClick: noop }} onUpload={noop}
@@ -210,15 +210,15 @@ export default IFS_GALLERY;
     ['No material change', 163, 'var(--color-data-viz-neutral)'], ['Minor gain', 82, 'var(--color-data-viz-diverging-negative-1)'], ['Moderate gain', 74, 'var(--color-data-viz-diverging-negative-2)'], ['Major gain', 38, 'var(--color-data-viz-diverging-negative-3)']];
   function ImpactChart() {
     return <IFS.DataVizCard title="Investment value impact" header={{ draggable: false }}>
-      <div style={{ padding: '0 10px 12px', width: '100%', boxSizing: 'border-box' }}>
-        <div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', marginBottom: 12 }}>Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gridTemplateRows: '200px auto', gap: '8px 4px' }}>
+      <div style={{ padding: '0 var(--space-250) var(--space-300)', width: '100%', boxSizing: 'border-box' }}>
+        <div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', marginBottom: 'var(--space-300)' }}>Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.</div>
+        <div style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gridTemplateRows: '200px auto', gap: 'var(--space-200) var(--space-100)' }}>
           <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>{[250, 200, 150, 100, 50, 0].map(t => <span key={t}>{t}</span>)}</div>
           <IFS.Inline gap="150" align="end">{IMPACT.map(([l, v, c]) => <IFS.VerticalBarChartItem key={l} label={`${l}: ${v}`} width="auto" height={200} value={v} max={250} segments={[{ value: 1, fill: c }]} style={{ flex: '1 1 0' }} />)}</IFS.Inline>
           <span />
           <IFS.Inline gap="150" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', textAlign: 'center' }}>{IMPACT.map(([l]) => <span key={l} style={{ flex: '1 1 0' }}>{l}</span>)}</IFS.Inline>
         </div>
-        <IFS.Inline gap="400" justify="center" style={{ marginTop: 12 }}>
+        <IFS.Inline gap="400" justify="center" style={{ marginTop: 'var(--space-300)' }}>
           <IFS.LegendSwatch color="var(--color-data-viz-diverging-positive-3)" label="Loss" /><IFS.LegendSwatch color="neutral" label="Unchanged" /><IFS.LegendSwatch color="var(--color-data-viz-diverging-negative-3)" label="Gain" />
         </IFS.Inline>
       </div>
@@ -243,7 +243,7 @@ export default IFS_GALLERY;
   function SystemConfidence({ onEvidence, evidenceOpen }) {
     return (
       <IFS.Panel title="System confidence" onEvidence={onEvidence} style={{ height: '100%' }}>
-        <IFS.Stack gap="300" style={{ padding: 12, borderRadius: 8, background: 'var(--color-surface-secondary)' }}>
+        <IFS.Stack gap="300" style={{ padding: 'var(--space-300)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-secondary)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span className="t-heading-h3-medium">Approval readiness</span>
             <IFS.Inline as="span" gap="200" align="center"><IFS.ProgressRing value={50} size={16} label="Approval readiness" /><span className="t-heading-h3-medium">50%</span></IFS.Inline>
@@ -254,12 +254,12 @@ export default IFS_GALLERY;
           <IFS.ReadinessStatus style={{ width: "100%" }} type="in-progress" indicators={[{ type: 'red', label: '0/1' }, { type: 'orange', label: '0/2' }]}>Governance flags</IFS.ReadinessStatus>
           <IFS.SegmentedControl size="m" defaultValue="q" options={[{ value: 'q', label: 'Open questions', counter: 2 }, { value: 'w', label: 'Warnings', counter: 2 }]} />
           <IFS.Pager defaultPage={1} total={2} percent={0} onShowAll={noop} showAllLabel="All" />
-          <div><div className="t-heading-h2-medium">Wildfire risk over-weighted</div><div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 4 }}>V2 pulls capital into ignition mitigation</div></div>
+          <div><div className="t-heading-h2-medium">Wildfire risk over-weighted</div><div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-100)' }}>V2 pulls capital into ignition mitigation</div></div>
           <div className="t-label-m-medium" style={{ color: 'var(--color-text-soft)' }}>Solutions</div>
           <IFS.ContentCard size="s" cooper title="Lock weight at 28%, restore methodology only" description="Hybrid restore · Keeps FY26 strategic alignment" />
           <IFS.ContentCard size="s" title="Accept v2's 45% weighting in full" description="Faithful restore · Requires Strategy OKR review" />
           <IFS.ContentCard size="s" title="Skip restore now, plan for v3.2 release" description="Capture V2's calculation features in FY27 release plan" />
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}><IFS.Button type="secondary" size="m" iconLeft="system-upload">Upload file</IFS.Button><IFS.Button type="secondary" size="m" iconLeft="system-plus">My answer</IFS.Button></div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-200)' }}><IFS.Button type="secondary" size="m" iconLeft="system-upload">Upload file</IFS.Button><IFS.Button type="secondary" size="m" iconLeft="system-plus">My answer</IFS.Button></div>
         </IFS.Stack>
       </IFS.Panel>
     );
@@ -276,7 +276,7 @@ export default IFS_GALLERY;
       <div style={{ ...shell, gridTemplateRows: '48px 1fr' }} aria-label={label}>
         <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 16, boxShadow: 'inset -1px 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: '40px 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
               <IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} onTitleMenu={noop}
@@ -291,9 +291,9 @@ export default IFS_GALLERY;
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', minHeight: 0 }}>
-              <IFS.Stack gap="300" ref={scroller} style={{ overflow: 'auto', padding: 12 }}>
+              <IFS.Stack gap="300" ref={scroller} style={{ overflow: 'auto', padding: 'var(--space-300)' }}>
                 <div><div className="t-heading-h1-medium">Executive summary</div>
-                  <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 8 }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</div></div>
+                  <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-200)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</div></div>
                 <IFS.StatCardsRow cards={[{ title: 'Portfolio value', value: '$2.24B', description: 'Proposed · $2.14B current', trend: '4.8%' },
                   { title: 'Investments re-scored', value: '1,621', description: '357 gained · 519 lost · 745 unchanged' },
                   { title: 'Funding tier changes', value: '876', description: '52 gained · 31 lost · 12 significant shift' },

@@ -2,6 +2,8 @@
    Name = the Figma path without the family folder, "-base" and spaces: system/danger/500-base -> --palette-danger-500.
    Roles (tokens.css) point at these, so a theme is a remap of roles. Components never use --palette-* (node tools/color-lint.mjs).
    PLACEHOLDER (not final in Figma, don't use): the expressive families (fuchsia, violet, electric blue, lime, coral orange).
+   Unused in the kit: muted-purple, steel-blue, deep-green, the expressive families and the old violet / teal / cyan scales (rose: 12 of 13 steps).
+   These are NOT the data-viz families: charts use --palette-data-viz-* through the --color-data-viz-* roles. Renamed or dropped at 3.0.
    Status scales (danger, warning, success, info) rebalanced Nov 24 (2.0.5): rebuilt in OKLCH at the same lightness, the 500's hue and even
    chroma; the 500s are unchanged. Old and new values: tools/figma/status-rebalance-2.0.5.json. Figma follows. */
 :root{

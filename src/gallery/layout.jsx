@@ -9,11 +9,11 @@ export default IFS_GALLERY;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   // Placeholder block so the gaps are visible.
   const Box = ({ children = 'Block', w, h }) => (
-    <div className="t-label-m-medium" style={{ inlineSize: w, blockSize: h, padding: 'var(--space-200) var(--space-300)', borderRadius: 'var(--radius-100)',
-      background: 'var(--color-background-neutral-soft)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', color: 'var(--color-text-soft)' }}>{children}</div>
+    <div className="t-label-m-medium" style={{ inlineSize: w, blockSize: h, padding: 'var(--space-200) var(--space-300)', borderRadius: 'var(--radius-control)',
+      background: 'var(--color-background-neutral-soft)', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft)', color: 'var(--color-text-soft)' }}>{children}</div>
   );
   const Frame = ({ children, w = 'var(--layout-popover-width)' }) => (
-    <div style={{ inlineSize: w, padding: 'var(--space-200)', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)', borderRadius: 'var(--radius-100)' }}>{children}</div>
+    <div style={{ inlineSize: w, padding: 'var(--space-200)', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft)', borderRadius: 'var(--radius-control)' }}>{children}</div>
   );
 
   IFS_GALLERY.push({ name: 'Stack', figma: 'none (code-only layout primitive; Figma uses vertical auto layout)', render: () => <>

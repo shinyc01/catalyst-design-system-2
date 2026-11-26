@@ -9,7 +9,7 @@ export default IFS_GALLERY;
     ColumnChart, BarChart, GroupedColumnChart, StackedColumnChart, LineChart, AreaChart, PieChart, DonutChart, ScatterChart, BubbleChart,
     GaugeChart, WaterfallChart, FunnelChart, HeatmapChart, HistogramChart, ProgressRing, EvidenceStrength } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={style}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const Grid = ({ children, w = 558 }) => <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, ${w}px)`, gap: 24, alignItems: 'start' }}>{children}</div>;
+  const Grid = ({ children, w = 558 }) => <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, ${w}px)`, gap: 'var(--space-600)', alignItems: 'start' }}>{children}</div>;
   const STATES = ['default', 'hover', 'cooper', 'loading', 'empty', 'no-results', 'error']; // D9 (2.0.6): every state keeps the card height
   const usd = v => IFS.format.money(v); // $860K, $19.4M, −$1.8M
   const usdAxis = v => IFS.format.money(v, { unit: 'M' }); // one unit per axis: $0, $0.5M, $1M, $1.5M
@@ -55,7 +55,7 @@ export default IFS_GALLERY;
         <LegendSwatch state="intended-target" label="Intended target" /></Row>
       <Row label="inline · values"><IFS.Legend items={items} /></Row>
       <Row label="inline · no values"><IFS.Legend items={items} showValues={false} /></Row>
-      <Row label="row (vertical list)" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={[...items, { label: 'A very long category name that truncates', color: 'teal', value: '12', icon: 'system-info-hint' }]} /></div></Row>
+      <Row label="row (vertical list)" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={[...items, { label: 'A very long category name that truncates', color: 7, value: '12', icon: 'system-info-hint' }]} /></div></Row>
       <Row label="row · no values" top><div style={{ width: 240 }}><IFS.Legend layout="row" items={items} showValues={false} /></div></Row>
       <Row label="shape (matches the mark)">{['square', 'line', 'dashed', 'dot'].map((sh, i) => <LegendSwatch key={sh} shape={sh} color={i + 1} label={sh} />)}</Row>
       <Row label="categorical slots">{Array.from({ length: 12 }, (_, i) => <LegendSwatch key={i} color={i + 1} label={String(i + 1)} />)}<LegendSwatch color="other" label="Other" /></Row>
@@ -73,7 +73,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'DataVizCard', figma: 'data-viz-card-organism (4457:33030)', render: () => <Grid w={582}>
     {[undefined, 'hover', 'drag', 'cooper'].map(s => (
-      <DataVizCard key={s || 'd'} state={s} title="Create a chart or diagram" style={{ width: 582, margin: 6 }}>
+      <DataVizCard key={s || 'd'} state={s} title="Create a chart or diagram" style={{ width: 582, margin: 'var(--space-150)' }}>
         <DataVizGroupedBar type="vertical" showValues values={[42, 28, 18, 12]} style={{ height: 40 }} />
         <div style={{ height: 180 }} />
       </DataVizCard>
@@ -86,7 +86,7 @@ export default IFS_GALLERY;
       <DataVizGroupedBar type="vertical" showValues values={[42, 28, 18, 12]} style={{ height: 40 }} />
       <div style={{ height: 120 }} />
     </DataVizCard>
-    <div style={{ width: 558, padding: 6, borderRadius: 4, background: 'var(--color-surface-secondary)' }}>
+    <div style={{ width: 558, padding: 'var(--space-150)', borderRadius: 'var(--radius-control)', background: 'var(--color-surface-secondary)' }}>
       <ColumnChart bare title="Bare chart" data={spend} valueLabel="Actual spend" format={usdAxis} height={160} />
     </div>
   </Grid> });

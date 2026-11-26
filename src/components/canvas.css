@@ -256,7 +256,7 @@
 .ifs-timeline-chart__add{visibility:hidden;margin-top:calc(-1 * var(--space-100))}
 .ifs-timeline-chart:hover .ifs-timeline-chart__add,.ifs-timeline-chart[data-state=hover] .ifs-timeline-chart__add,.ifs-timeline-chart__add:focus-visible{visibility:visible}
 .ifs-timeline-chart__axis{flex:1;min-width:0;display:flex;flex-direction:column;box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
-.ifs-timeline-chart__years,.ifs-timeline-chart__slots{display:flex;height:1.875rem;padding:var(--space-50) 0;box-sizing:content-box;height:var(--size-26)}
+.ifs-timeline-chart__years,.ifs-timeline-chart__slots{display:flex;padding:var(--space-50) 0;box-sizing:content-box;height:var(--size-26)}
 .ifs-timeline-chart__years{box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-timeline-chart__years span,.ifs-timeline-chart__slots span{flex:1;display:flex;align-items:center;justify-content:center;min-width:0;box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft); /* ltr: timeline axis does not mirror */
   color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}

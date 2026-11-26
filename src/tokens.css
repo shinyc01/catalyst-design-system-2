@@ -42,7 +42,7 @@
 --color-text-softer-inverse:var(--palette-core-550);
 --color-text-disabled-inverse:var(--palette-core-750);
 --color-text-info:var(--palette-info-300);
---color-text-link:var(--color-text-info); /* C1 (Nov 23): links have their own role (blue = info only); same value for now */
+--color-text-link:var(--color-text-info); /* C1 (Nov 23): links have their own role (blue = info only); same value for now. Reserved: no kit component draws a link yet */
 --color-text-success:var(--palette-success-500);
 --color-text-danger:var(--palette-danger-350); /* G2 (Nov 25): red 350 #ff6b51 (was red 400; C4 Nov 23 was #ee3c3b); passes 4.5:1 on menus and on map glass (rule 9.14) */
 --color-text-warning:var(--palette-warning-500);
@@ -263,11 +263,7 @@
 --white-alpha-50:var(--palette-white-alpha-50);
 
 /* 5. Measurements (the spacing scale and the size ruler live in foundations/spacing.css) */
-/* Spacing roles (IFS DS polish, items 1-4): containers get room through these; controls keep their own paddings */
-
-
-
-/* Table column widths by content type */
+/* Table column widths by content type (reserved: rule 3.22 cites them for screens; no kit component reads them yet) */
 --table-col-primary-min:15rem;--table-col-primary-max:30rem;--table-col-short-min:7.5rem;--table-col-short-max:12.5rem;
 --table-col-user-min:10rem;--table-col-user-max:15rem;--table-col-number-min:6rem;--table-col-number-max:10rem;
 --table-col-date:8.5rem;--table-col-check:2.75rem;--table-col-action:3rem;
@@ -313,7 +309,7 @@
 /* Elevation roles (C1, Nov 23). Dark: height comes from lighter fills; shadows only for things that float.
    0 page · 1 raised (cards, docked panels) · 2 floating (popover, menu, select list, date picker, tooltip, snackbar, floating bar and drawer,
    form card, map panels, Cooper chat and button) · 3 modal (over the scrim; also dragged items). Light sets its own shadow values later. */
---elevation-raised:none;
+--elevation-raised:none; /* reserved: level 1 has no shadow; no kit component reads it yet */
 --elevation-floating:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-floating-shadow);
 --elevation-modal:0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-modal-shadow);
 /* the level's shadow without its hairline, for a surface that draws its own edge (chat bar, prompt button, map cluster, nav overlay, dragged items) */

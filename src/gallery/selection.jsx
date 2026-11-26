@@ -89,7 +89,7 @@ export default IFS_GALLERY;
     </Row>
     <Row label="trigger: more (⋯) end / button start" style={{ alignItems: 'flex-start', height: 280 }}>
       <div style={{ width: 240, display: 'flex', justifyContent: 'flex-end' }}><Menu defaultOpen more items={MENU} label="More actions" /></div>
-      <div style={{ width: 240, marginLeft: 40 }}><Menu align="start" items={[{ label: 'Resize', icon: 'arrow-diagonal-expand', items: [{ label: 'Small' }, { label: 'Medium', selected: true }, { label: 'Large' }] }, { label: 'Remove', icon: 'system-trash-delete', danger: true }]}
+      <div style={{ width: 240, marginLeft: 'var(--space-800)' }}><Menu align="start" items={[{ label: 'Resize', icon: 'arrow-diagonal-expand', items: [{ label: 'Small' }, { label: 'Medium', selected: true }, { label: 'Large' }] }, { label: 'Remove', icon: 'system-trash-delete', danger: true }]}
         label="Widget actions" trigger={<IFS.Button type="secondary" size="s" iconRight="arrow-caret-down-filled">Open menu</IFS.Button>} /></div>
     </Row>
   </> });
