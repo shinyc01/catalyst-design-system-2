@@ -183,12 +183,13 @@ function DataVizBar({ state = 'default', color = 1, step = 4, children, classNam
 // Figma: grouped-bar-molecule (4457:37362)
 // Props: type horizontal (segments stacked top→bottom) | vertical (segments side by side), progress (meter: value against max on a
 // neutral track), values = numbers (segment sizes; categorical slots 1, 2, 3 … in order — or, when color is a 2.0.7 family name, that
-// family's ramp steps 2, 4, 6 … (rule 10.7); an old group name (deprecated) keeps its steps 4, 5, 6 …), value + max (progress), showValues.
-function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color, showValues, format = defaultFormat, className, style, ...rest }) {
+// family's ramp steps 2, 4, 6 … (rule 10.7); an old group name (deprecated) keeps its steps 4, 5, 6 …), value + max (progress), showValues,
+// label (the progress meter's accessible name, default "Progress").
+function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color, showValues, format = defaultFormat, label = 'Progress', className, style, ...rest }) {
   if (progress) {
     const pct = Math.max(0, Math.min(1, max ? value / max : 0)) * 100;
     return (
-      <div role="meter" aria-valuemin={0} aria-valuemax={max} aria-valuenow={value} className={IFS.cx('ifs-dv-grouped', `ifs-dv-grouped--${type}`, 'ifs-dv-grouped--progress', className)} style={style} {...rest}>
+      <div role="meter" aria-label={label} /* A11Y M3: a meter needs a name */ aria-valuemin={0} aria-valuemax={max} aria-valuenow={value} className={IFS.cx('ifs-dv-grouped', `ifs-dv-grouped--${type}`, 'ifs-dv-grouped--progress', className)} style={style} {...rest}>
         <DataVizBar state="background" className="ifs-dv-grouped__track" />
         <DataVizBar color={color ?? 1} className="ifs-dv-grouped__fill" style={type === 'vertical' ? { height: `${pct}%` } : { width: `${pct}%` }}>{showValues ? format(value) : null}</DataVizBar>
       </div>
@@ -203,7 +204,7 @@ function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [],
 }
 
 // Figma: line-atom (4440:32650)
-// Props: dashed (3/5 dash — planned, median, reference), orientation horizontal|vertical. Fills its parent's width (or height).
+// Props: dashed (3/5 dash — forecast, median, reference; a dash never means plan, rule 10.13), orientation horizontal|vertical. Fills its parent's width (or height).
 function DataVizLine({ dashed = false, orientation = 'horizontal', className, ...rest }) {
   return <span role="presentation" className={IFS.cx('ifs-dv-line', `ifs-dv-line--${orientation}`, dashed && 'ifs-dv-line--dashed', className)} {...rest} />;
 }
@@ -1158,7 +1159,8 @@ function StackedColumnChart(props) {
 
 const linePath = pts => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x},${y}`).join('');
 
-// Figma: chart-line (9863:11650) — change over time; actual solid vs planned dashed; optional peer band + dashed median.
+// Figma: chart-line (9863:11650) — change over time; actual solid, forecast dashed (forecastFrom; dashed = forecast only, rule 10.13);
+// plan on a line = a thin outlined line in the series colour (decided Nov 26; no plan series in LineChart yet); optional peer band + dashed median.
 // Props: data = [{ label, [series.key]: number, … }], series = [{ key, label, color?, dashed?, points? }] (first series shows its
 // points), band = { low, high, mid?, label } (keys into data; drawn as a white 16% band + dashed mid line), referenceKey/referenceLabel
 // (dashed white line), zeroBased (default false — lines need not start at 0), endLabels (default true: each line is named at its end, D4;
@@ -1319,7 +1321,7 @@ function RoundChart(props) {
   const { data: raw = [], donut, centerValue, centerLabel, sort = true, valueLabel = 'Value', format = defaultFormat, tooltip } = props;
   const indexed = raw.map((d, i) => ({ ...d, _i: i }));
   const ordered = sort ? [...indexed].sort((a, b) => b.value - a.value) : indexed;
-  // Up to 8 slices, then one "Other" slice (D6)
+  // Up to 7 slices + Other: past 8 the 8th place becomes one "Other" slice (D6, rule 10.7)
   const data = ordered.length > SERIES_MAX
     ? [...ordered.slice(0, SERIES_MAX - 1), { label: 'Other', value: ordered.slice(SERIES_MAX - 1).reduce((t, d) => t + Math.max(0, d.value || 0), 0), color: 'other', _i: -1 }]
     : ordered;
