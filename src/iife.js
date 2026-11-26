@@ -26,6 +26,11 @@ IFS.setGlass = (g, el = document.documentElement) => {
   try { localStorage.setItem('catalyst-glass', g === 'lite' ? 'lite' : 'full'); } catch (e) {}
 };
 IFS.getGlass = () => { try { return localStorage.getItem('catalyst-glass') === 'lite' ? 'lite' : 'full'; } catch (e) { return 'full'; } };
+// Good vs bad colours (Nov 26; USER-SETTINGS row 14): an ORGANISATION setting, so the product applies it from the organisation's settings on
+// load; the kit does not remember it per person. 'red-green' sets data-diverging on <html> (or a given element); 'azure-rose' (default) removes it.
+IFS.DIVERGING = ['azure-rose', 'red-green'];
+IFS.setDiverging = (pair, el = document.documentElement) => { if (pair === 'red-green') el.setAttribute('data-diverging', 'red-green'); else el.removeAttribute('data-diverging'); };
+IFS.getDiverging = (el = document.documentElement) => (el.getAttribute('data-diverging') === 'red-green' ? 'red-green' : 'azure-rose');
 // Base map (G3): which kind of map the screen shows, for map glass on surfaces outside the map container (snackbars over a map).
 // 'dark' | 'light' | 'imagery' sets data-base-map on <html>; null removes it when the map screen closes.
 IFS.setBaseMap = (kind, el = document.documentElement) => { if (kind) el.setAttribute('data-base-map', kind); else el.removeAttribute('data-base-map'); };
