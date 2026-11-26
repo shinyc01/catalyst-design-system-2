@@ -482,8 +482,8 @@ html,body{margin:0;background:var(--color-surface-page);color:var(--color-text);
 
 /* G3 (Nov 25): lite glass (USER-SETTINGS row 12): blur 10 instead of 80; fills unchanged. Set by IFS.setGlass('lite'). */
 [data-glass="lite"]{--blur-glass:var(--blur-10)}
-/* Good vs bad colours (Nov 26; USER-SETTINGS row 14, an organisation setting): red ↔ green instead of azure ↔ rose for every diverging chart.
-   Worse (-positive-*) = red, better (-negative-*) = green, the same steps 2 · 4 · 6; ▲▼ / +− and the legend stay (rule 10.8). Set by IFS.setDiverging. */
+/* Good vs bad colours (Nov 26; USER-SETTINGS row 14: the organisation's default, each person may override it): red ↔ green instead of azure ↔ rose for every diverging chart.
+   Worse (-positive-*) = red, better (-negative-*) = green, the same steps 2 · 4 · 6; ▲▼ / +− and the legend stay (rule 10.8). Set by IFS.setOrgDiverging / IFS.setDiverging. */
 [data-diverging="red-green"]{--color-data-viz-diverging-negative-3:var(--palette-data-viz-green-2);--color-data-viz-diverging-negative-2:var(--palette-data-viz-green-4);--color-data-viz-diverging-negative-1:var(--palette-data-viz-green-6);--color-data-viz-diverging-positive-1:var(--palette-data-viz-red-6);--color-data-viz-diverging-positive-2:var(--palette-data-viz-red-4);--color-data-viz-diverging-positive-3:var(--palette-data-viz-red-2)}
 /* G3: reduced transparency (prefers-reduced-transparency, Chromium only today) gets solid twins; the no-blur rule is in foundations/layout.css.
    Forced colours: _core.css. Without backdrop-filter support the same fills are used (they pass without blur, G2). */

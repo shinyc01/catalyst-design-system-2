@@ -26,15 +26,26 @@ IFS.setGlass = (g, el = document.documentElement) => {
   try { localStorage.setItem('catalyst-glass', g === 'lite' ? 'lite' : 'full'); } catch (e) {}
 };
 IFS.getGlass = () => { try { return localStorage.getItem('catalyst-glass') === 'lite' ? 'lite' : 'full'; } catch (e) { return 'full'; } };
-// Good vs bad colours (Nov 26; USER-SETTINGS row 14): an ORGANISATION setting, so the product applies it from the organisation's settings on
-// load; the kit does not remember it per person. 'red-green' sets data-diverging on <html> (or a given element); 'azure-rose' (default) removes it.
+// Good vs bad colours (Nov 26; USER-SETTINGS row 14): the organisation sets the default and each person may override it (someone with
+// red-green colour blindness can go back to azure-rose when the admin chose red-green). setOrgDiverging(pair): the product calls it on load with
+// the organisation's choice; it applies only while the person has no choice of their own. setDiverging(pair): the person's choice, remembered;
+// setDiverging(null) clears it and goes back to the organisation's. 'red-green' sets data-diverging on <html>; 'azure-rose' (default) removes it.
 IFS.DIVERGING = ['azure-rose', 'red-green'];
-IFS.setDiverging = (pair, el = document.documentElement) => { if (pair === 'red-green') el.setAttribute('data-diverging', 'red-green'); else el.removeAttribute('data-diverging'); };
+const applyDiverging = (pair, el = document.documentElement) => { if (pair === 'red-green') el.setAttribute('data-diverging', 'red-green'); else el.removeAttribute('data-diverging'); };
+let orgDiverging = 'azure-rose';
+const ownDiverging = () => { try { const v = localStorage.getItem('catalyst-diverging'); return IFS.DIVERGING.includes(v) ? v : null; } catch (e) { return null; } };
+IFS.setOrgDiverging = (pair, el) => { orgDiverging = pair === 'red-green' ? 'red-green' : 'azure-rose'; applyDiverging(ownDiverging() || orgDiverging, el); };
+IFS.setDiverging = (pair, el) => {
+  try { if (IFS.DIVERGING.includes(pair)) localStorage.setItem('catalyst-diverging', pair); else localStorage.removeItem('catalyst-diverging'); } catch (e) {}
+  applyDiverging(ownDiverging() || (IFS.DIVERGING.includes(pair) ? pair : orgDiverging), el);
+};
 IFS.getDiverging = (el = document.documentElement) => (el.getAttribute('data-diverging') === 'red-green' ? 'red-green' : 'azure-rose');
 // Base map (G3): which kind of map the screen shows, for map glass on surfaces outside the map container (snackbars over a map).
 // 'dark' | 'light' | 'imagery' sets data-base-map on <html>; null removes it when the map screen closes.
 IFS.setBaseMap = (kind, el = document.documentElement) => { if (kind) el.setAttribute('data-base-map', kind); else el.removeAttribute('data-base-map'); };
 // The stored glass choice is applied when the kit loads (rule 4.2: lite glass is remembered).
 if (typeof document !== 'undefined' && IFS.getGlass() === 'lite' && !document.documentElement.hasAttribute('data-glass')) IFS.setGlass('lite');
+// A person's own good vs bad choice is applied when the kit loads (it wins over the organisation's).
+if (typeof document !== 'undefined' && ownDiverging()) applyDiverging(ownDiverging());
 window.IFS = IFS;
 window.Catalyst = IFS;

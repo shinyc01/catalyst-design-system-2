@@ -40,7 +40,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
 
 **Fonts.** Inter and JetBrains Mono ship with the kit (`fonts/`, copied to `dist/fonts/`; rule 2.1): no third-party request, so a strict Content Security Policy needs only `font-src 'self'` (plus `data:` for single-file prototypes, which embed them). If they fail to load, a metric-matched Arial / Courier New fallback keeps the layout steady.
 
-**User settings the kit reads** (the product builds the settings screen): density (`IFS.setDensity`), lite glass (`IFS.setGlass('lite')`, blur 10 for remote desktops), good vs bad colours for the organisation (`IFS.setDiverging('red-green')`, default azure ↔ rose), single-key shortcuts on / off (`IFS.setShortcuts('off')`), and the formatting options in `IFS.format.configure`. Showing chart descriptions on the card is a decided setting with its placement still open.
+**User settings the kit reads** (the product builds the settings screen): density (`IFS.setDensity`), lite glass (`IFS.setGlass('lite')`, blur 10 for remote desktops), good vs bad colours (`IFS.setOrgDiverging('red-green')` for the organisation's default, `IFS.setDiverging(…)` for a person's own choice, which wins; default azure ↔ rose), single-key shortcuts on / off (`IFS.setShortcuts('off')`), and the formatting options in `IFS.format.configure`. Showing chart descriptions on the card is a decided setting with its placement still open.
 
 **Token names.** Every token starts with its type word and matches its Figma path (`color/text/soft` → `--color-text-soft`; rule 11.6). The old names (`--text-primary`, `--control-h-m` …) still work as aliases until 3.0; `dist/tokens.txt` lists the new names, then the deprecated ones; `dist/tokens.json` is DTCG 2025.10 with `$deprecated`; the full old → new list is `tools/figma/rename-map.tsv`.
 
@@ -136,7 +136,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - A `Spinner` inside `LoadingRegion` no longer announces twice.
 - **2.0.7** (in progress, Nov 26): content foundations and components.
   - **Added**
-    - Good vs bad colours setting for the organisation: `IFS.setDiverging('red-green')` / `data-diverging="red-green"` swaps every diverging chart to red (worse) ↔ green (better); default azure ↔ rose (rule 10.8, USER-SETTINGS row 14).
+    - Good vs bad colours setting: the organisation picks the default (`IFS.setOrgDiverging('red-green')`), each person may override it (`IFS.setDiverging`, remembered; `null` goes back to the organisation's), e.g. someone with red-green colour blindness; `data-diverging="red-green"` swaps every diverging chart to red (worse) ↔ green (better); default azure ↔ rose (rule 10.8, USER-SETTINGS row 14).
   - **Changed**
     - Categorical palette (rule 10.7): six families in colour-wheel order, violet → indigo → azure → teal → terracotta → rose, each a dark then its light partner; violet is slot 1, the base colour of every dashboard. All 12 stay distinct in normal and colour-blind vision; every slot clears info blue, Cooper copper and the status colours. Values in `foundations/palette.css`.
     - Sequential ramps (rule 10.8): one 9-step ramp per family, step 2 = its dark slot; the default ramp is violet (was azure) and a single-hue chart uses the ramp of the entity it shows (rule 10.12). `HeatmapChart ramp` defaults to `violet`.
