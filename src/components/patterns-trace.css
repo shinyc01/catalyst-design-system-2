@@ -14,7 +14,7 @@
 .ifs-trc-solution__text{display:flex;flex-direction:column;gap:var(--space-100);min-width:0}
 .ifs-trc-solution__title{font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking);color:var(--color-text)} /* H4: card title (Nov 19, 2.0.3) */
 /* Fill style cooper/Insight/text: --color-cooper-text → --color-text gradient */
-.ifs-trc-solution__title--cooper{background:linear-gradient(270deg,var(--color-cooper-text) 35%,var(--color-text) 75%);
+.ifs-trc-solution__title--cooper{background:linear-gradient(270deg,var(--color-cooper-text) 35%,var(--color-text) 75%); /* ltr: brand gradient art, fixed in both directions */
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-trc-solution__desc{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)} /* Body/M/regular */
 /* "The cancel button appears on hover" */

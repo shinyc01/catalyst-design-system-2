@@ -150,11 +150,11 @@ function Snackbar({ title, children, secondaryAction, primaryAction, onClose, sh
 // - with an action (Undo …): shown at least 10 s (TOAST_ACTION_MIN, or `duration` when longer); after that it never closes on time alone: it
 //   closes on the user's next command elsewhere (a click on a control, an edit, a navigation; IFS.toast.command() for app-level ones). While
 //   the user does nothing it stays. Moving focus, Tab, F6, scrolling and clicks on empty space are not commands.
-// - without an action: closes after `duration` (default 6 s).
+// - without an action: closes after `duration`, kept within 5–7 s (default 6 s).
 // - hover or keyboard focus holds either kind; `duration: 0` = sticky. One action snackbar at a time: a new one replaces the previous (its
 //   action stays reachable through the screen's own undo, e.g. Ctrl+Z / history).
 const TOAST_ACTION_MIN = 10000; // ms, G5: the guaranteed time an action snackbar stays
-const TOAST_INFO = 6000; // ms, G5: a snackbar without an action (5–7 s, default 6)
+const TOAST_INFO = 6000, TOAST_INFO_MIN = 5000, TOAST_INFO_MAX = 7000; // ms, G5: a snackbar without an action (5–7 s, default 6)
 const surfToasts = { list: [], subs: new Set(), seq: 0 };
 const surfToastEmit = () => surfToasts.subs.forEach(f => f(surfToasts.list));
 // M3: a dismissed snackbar fades and slides 16 out to the end side in 50 (.is-leaving), then leaves the stack.
@@ -182,7 +182,8 @@ function listenForCommands() {
 // The one snackbar timing (rule 14.12), for IFS.toast and any pattern that shows its own Snackbar (Documents feedback):
 // useSnackbarTiming({ action, duration, onClose }) → handlers to spread on the snackbar's wrapper (hover / focus hold it).
 function useSnackbarTiming({ action, duration, onClose }) {
-  const ms = duration === 0 ? 0 : action ? Math.max(TOAST_ACTION_MIN, duration || 0) : (duration || TOAST_INFO);
+  const ms = duration === 0 ? 0 : action ? Math.max(TOAST_ACTION_MIN, duration || 0)
+    : Math.min(TOAST_INFO_MAX, Math.max(TOAST_INFO_MIN, duration || TOAST_INFO)); // no action: 5–7 s whatever is passed (rule 14.12)
   const [held, setHeld] = React.useState(false);
   const left = React.useRef(ms), armed = React.useRef(false), heldRef = React.useRef(false), closeRef = React.useRef(onClose);
   heldRef.current = held; closeRef.current = onClose;

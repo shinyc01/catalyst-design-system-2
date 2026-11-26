@@ -35,7 +35,7 @@
 .ifs-collab-section{display:flex;flex-direction:column;gap:var(--space-200);padding-top:var(--space-100)}
 .ifs-collab-section__title{display:flex;align-items:center;gap:var(--space-200);margin:0;padding-inline-start:var(--space-inset);
   color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-collab-section__title--cooper span{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* Figma GRADIENT_LINEAR; same as CooperChip */;
+.ifs-collab-section__title--cooper span{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* Figma GRADIENT_LINEAR; same as CooperChip */; /* ltr: brand gradient art, fixed in both directions */
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-collab-section__list{display:flex;flex-direction:column;gap:var(--space-200);padding:0 var(--space-100)}
 

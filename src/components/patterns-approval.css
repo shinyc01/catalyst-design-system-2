@@ -27,13 +27,13 @@
 .ifs-ivi__divider{flex:none;width:1px;height:var(--size-52);background:var(--color-border-input)}
 .ifs-ivi__text{margin:0;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);max-width:var(--font-measure)} /* Body/M/regular */
 .ifs-ivi__chart{display:flex;gap:var(--space-150);height:234px} /* chart plot geometry stays px (this and the axis/plot/item heights below) */
-.ifs-ivi__axis{display:flex;flex-direction:column;justify-content:space-between;flex:none;width:23px;padding-bottom:var(--space-600) /* raw in Figma */;
+.ifs-ivi__axis{display:flex;flex-direction:column;justify-content:space-between;flex:none;min-width:23px /* raw in Figma; grows to the widest tick (F-30) */;padding-bottom:var(--space-600) /* raw in Figma */;
   color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);font-variant-numeric:var(--font-numeric)} /* Label/M/medium */
 .ifs-ivi__axis span{margin-top:calc(-1 * var(--space-200));margin-bottom:calc(-1 * var(--space-200))} /* centre each tick label on its grid line */
 .ifs-ivi__plot-col{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-width:0;padding-top:var(--space-150)}
 .ifs-ivi__plot{position:relative;height:200px}
 .ifs-ivi__lines{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;opacity:.5}
-.ifs-ivi__line{height:1px;background:repeating-linear-gradient(to right,var(--color-border) 0 3px,transparent 3px 8px)} /* Figma dash 3/5 */
+.ifs-ivi__line{height:1px;background:repeating-linear-gradient(to right,var(--color-border) 0 3px,transparent 3px 8px)} /* Figma dash 3/5 */ /* ltr: brand gradient art, fixed in both directions */
 .ifs-ivi__line:last-child{background:var(--color-border)}
 .ifs-ivi__bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:var(--space-50);padding:0 var(--space-100)}
 .ifs-ivi__bars > .ifs-tooltip-anchor{display:flex;align-items:flex-end;flex:1 1 0;min-width:0;height:100%}

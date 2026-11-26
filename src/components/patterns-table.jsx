@@ -85,10 +85,10 @@ function SearchModal({ title = 'Suggested questions', items = [], activeIndex = 
 // placeholder, value / defaultValue / onChange(value), onSubmit(value) on Enter or suggestion pick, onClear,
 // suggestions (strings or {label,type,query}; shown in a search-modal while focused), suggestionsTitle, listening (voice: "…" state),
 // disabled, width (default 360, Figma), size l (default: --size-control-m, 36 / 32 / 28) | s (--size-control-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
-// state hover|focus|pressed (gallery only), aria-label.
+// state hover|focus|pressed (gallery only), aria-label, keyshortcut (aria-keyshortcuts on the input; PageTop and ExploreHeader pass "/", rule 9.18).
 // The default search (AI search: keywords or natural language). IFS.Search (search-regular-organism) is the simple keyword search, when the use case needs no AI.
 function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear,
-  suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, ...rest }) {
+  suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, keyshortcut, ...rest }) {
   const [val, setVal] = usePtValue(value, defaultValue, onChange);
   const [mode, setMode] = usePtValue(type, defaultType, onTypeChange);
   const [open, setOpen] = React.useState(false);
@@ -121,7 +121,7 @@ function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = '
         <span className="ifs-smart-search__lead">
           <IFS.Icon name="cooper-system-icon" variant="Smart search" size={16} />
           <input ref={input} type="text" className="ifs-smart-search__input" disabled={disabled} value={val}
-            placeholder={isListening ? '...' : placeholder} aria-label={ariaLabel || placeholder}
+            placeholder={isListening ? '...' : placeholder} aria-label={ariaLabel || placeholder} aria-keyshortcuts={keyshortcut}
             role="combobox" aria-expanded={showList} aria-controls={showList ? listId : undefined} aria-autocomplete="list"
             onFocus={() => { setKbd(ptKeyboard); setOpen(true); }} onBlur={() => setKbd(false)}
             onChange={e => { setVal(e.target.value); setOpen(true); setActive(-1); }} onKeyDown={onKeyDown} {...rest} />

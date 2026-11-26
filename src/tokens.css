@@ -207,6 +207,7 @@
 --color-data-viz-other:var(--palette-core-400); /* "Other": the series folded in after the 8th (or 12th) */
 /* Sequential: one hue, more = lighter on the dark card (step 1 darkest → 9 lightest). Default ramp = azure; one ramp per hue family.
    Red and green are the good / bad option only. Charts use 5 classes (steps 1 · 3 · 5 · 7 · 9) unless a heatmap is dense. */
+/* Reserved (F-20): the default sequential ramp (azure, rule 10.8) for screens that don't pick a family; no kit chart uses these names yet. */
 --color-data-viz-sequential-1:var(--color-data-viz-sequential-azure-1);--color-data-viz-sequential-2:var(--color-data-viz-sequential-azure-2);--color-data-viz-sequential-3:var(--color-data-viz-sequential-azure-3);--color-data-viz-sequential-4:var(--color-data-viz-sequential-azure-4);--color-data-viz-sequential-5:var(--color-data-viz-sequential-azure-5);--color-data-viz-sequential-6:var(--color-data-viz-sequential-azure-6);--color-data-viz-sequential-7:var(--color-data-viz-sequential-azure-7);--color-data-viz-sequential-8:var(--color-data-viz-sequential-azure-8);--color-data-viz-sequential-9:var(--color-data-viz-sequential-azure-9);
 --color-data-viz-sequential-azure-1:var(--palette-data-viz-azure-1);--color-data-viz-sequential-azure-2:var(--palette-data-viz-azure-2);--color-data-viz-sequential-azure-3:var(--palette-data-viz-azure-3);--color-data-viz-sequential-azure-4:var(--palette-data-viz-azure-4);--color-data-viz-sequential-azure-5:var(--palette-data-viz-azure-5);--color-data-viz-sequential-azure-6:var(--palette-data-viz-azure-6);--color-data-viz-sequential-azure-7:var(--palette-data-viz-azure-7);--color-data-viz-sequential-azure-8:var(--palette-data-viz-azure-8);--color-data-viz-sequential-azure-9:var(--palette-data-viz-azure-9);
 --color-data-viz-sequential-teal-1:var(--palette-data-viz-teal-1);--color-data-viz-sequential-teal-2:var(--palette-data-viz-teal-2);--color-data-viz-sequential-teal-3:var(--palette-data-viz-teal-3);--color-data-viz-sequential-teal-4:var(--palette-data-viz-teal-4);--color-data-viz-sequential-teal-5:var(--palette-data-viz-teal-5);--color-data-viz-sequential-teal-6:var(--palette-data-viz-teal-6);--color-data-viz-sequential-teal-7:var(--palette-data-viz-teal-7);--color-data-viz-sequential-teal-8:var(--palette-data-viz-teal-8);--color-data-viz-sequential-teal-9:var(--palette-data-viz-teal-9);
@@ -220,7 +221,7 @@
    on both sides. Polarity, not judgement: negative = below the midpoint (azure), positive = above (pink). For good / bad the worse side is pink and the
    better side azure, always with ▲▼ or +/− and a legend naming both sides. Red ↔ green is an option only (ramps above), never the default. */
 --color-data-viz-diverging-negative-3:var(--palette-data-viz-azure-2);--color-data-viz-diverging-negative-2:var(--palette-data-viz-azure-4);--color-data-viz-diverging-negative-1:var(--palette-data-viz-azure-6);
---color-data-viz-diverging-midpoint:var(--palette-core-750);
+--color-data-viz-diverging-midpoint:var(--palette-core-750); /* reserved: the neutral midpoint of the diverging pair (rule 10.8); no kit chart draws it yet */
 --color-data-viz-diverging-positive-1:var(--palette-data-viz-pink-6);--color-data-viz-diverging-positive-2:var(--palette-data-viz-pink-4);--color-data-viz-diverging-positive-3:var(--palette-data-viz-pink-2);
 /* Marks that are not a series (2.0.3). neutral = no-change / total marks (must pass 3:1 non-text contrast); reference = peer-median and
    reference marks; target = target marks; band = the confidence band of a line; baseline = connector lines. Gridlines use --color-border
@@ -228,7 +229,7 @@
 --color-data-viz-neutral:var(--color-icon-softer); /* #8c8c8c: 5.2–6.3:1 on page, card and chart backgrounds (WCAG 1.4.11 needs 3:1) */
 /* C1: status marks in charts (good, warning, bad) are the status icon colours, so a red mark always means danger. Series never use them. */
 --color-data-viz-good:var(--color-icon-success);--color-data-viz-warning:var(--color-icon-warning);--color-data-viz-bad:var(--color-icon-danger);
---color-data-viz-reference:var(--palette-core-1000);--color-data-viz-target:rgba(255,255,255,0.9);--color-data-viz-band:rgba(255,255,255,0.16);
+--color-data-viz-reference:var(--palette-core-1000);--color-data-viz-target:var(--palette-white-alpha-90);--color-data-viz-band:var(--palette-white-alpha-16);
 --color-data-viz-baseline:var(--palette-white-alpha-30); /* connector lines (Figma white/alpha-30); the zero line is --color-border-strong (D3) */
 /* D5: on hover the other marks dim, darkened toward the card and never made transparent, so gridlines never show through (Nov 24) */
 --effect-data-viz-dim:brightness(0.45) saturate(0.7);
@@ -340,7 +341,7 @@
 }
 
 /* Text styles — one class per style; values come from the semantic tokens in src/foundations/typography.css.
-   16 styles. Pick by role (guide/rules.md §2):
+   17 styles (Label/S/medium for in-chart data labels only). Pick by role (guide/rules.md §2):
      PageTop page title H2 · thin PageHeader / ExploreHeader title Label/M/medium · panel/modal/drawer/card title H4 · chart card title H4 in --color-text with an optional Body/M subtitle in --color-text-soft (item 11) · sub-section Label/M/medium
      content, typed text, menu items, meta Body/M/regular · disclaimers, footnotes, text in a fixed small shape Body/S/regular
      names, key values, controls Label/M/medium (L controls Label/L/medium) · big numbers H2 / H3, never H1 (Display for one hero number)

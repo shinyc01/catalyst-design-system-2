@@ -39,7 +39,7 @@
 .ifs-peer-benchmark__ytitle{display:flex;align-items:center;justify-content:center;padding-bottom:var(--space-600);color:var(--color-text-soft);white-space:nowrap;
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-peer-benchmark__ytitle span{transform:rotate(-90deg)}
-.ifs-peer-benchmark__ticks{display:flex;flex-direction:column;justify-content:space-between;height:160px;color:var(--color-text-softer);
+.ifs-peer-benchmark__ticks{display:flex;flex-direction:column;justify-content:space-between;flex:none;min-width:max-content /* never narrower than its widest tick (F-30) */;height:160px;color:var(--color-text-softer);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);text-align:end;font-variant-numeric:var(--font-numeric)} /* Label/M/medium */
 .ifs-peer-benchmark__plot{display:flex;flex-direction:column;gap:var(--space-stack);padding-top:var(--space-200);min-width:0}
 .ifs-peer-benchmark__bars{position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-50);height:156px;

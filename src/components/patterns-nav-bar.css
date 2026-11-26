@@ -26,7 +26,7 @@
 .ifs-home-row-card:focus-visible,.ifs-home-row-card[data-state=focus]{box-shadow:var(--focus-ring)}
 /* Primary: 1px INSIDE gradient stroke, white (left) → Cooper copper (right) */
 .ifs-home-row-card--primary::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:var(--size-1);pointer-events:none;
-  background:linear-gradient(90deg,var(--color-border-on-solid),var(--color-cooper-border));
+  background:linear-gradient(90deg,var(--color-border-on-solid),var(--color-cooper-border)); /* ltr: brand gradient art, fixed in both directions */
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .ifs-home-row-card--loading{cursor:default}
 .ifs-home-row-card--loading::before{display:none}

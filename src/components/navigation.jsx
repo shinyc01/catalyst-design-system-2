@@ -529,7 +529,7 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
   const H = `h${headingLevel}`;
   const node = (v, C) => (v == null || v === false ? null : React.isValidElement(v) ? v : <C {...v} />);
   const tabsNode = node(tabs, IFS.Tabs);
-  const searchNode = node(search, IFS.SmartSearch);
+  const searchNode = node(search && !React.isValidElement(search) && search !== true ? { keyshortcut: '/', ...search } : search, IFS.SmartSearch); // "/" focuses it (rule 9.18)
   const single = !description && !eyebrow;
   return (
     <div className={IFS.cx('ifs-page-top', single && 'ifs-page-top--single', className)} {...rest}>

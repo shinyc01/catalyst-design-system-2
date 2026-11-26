@@ -54,6 +54,8 @@
 --palette-core-900:#f6f6f6;
 /* white */
 --palette-white-alpha-85:rgba(255,255,255,0.85);
+--palette-white-alpha-90:rgba(255,255,255,0.9); /* data-viz target mark (was raw in the role, F-23) */
+--palette-white-alpha-16:rgba(255,255,255,0.16); /* data-viz band (was raw in the role, F-23) */
 /* core */
 --palette-core-1000:#ffffff;
 /* black */

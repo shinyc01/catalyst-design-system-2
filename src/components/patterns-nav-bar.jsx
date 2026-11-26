@@ -29,7 +29,7 @@ function ExploreHeader({ search = {}, onFilter, filtersApplied, collaborators = 
     <div className={cx('ifs-explore-header', className)} {...rest}>
       <div className="ifs-explore-header__bar">
       <div className="ifs-explore-header__search">
-        <IFS.SmartSearch width={248} size="s" placeholder="Search for..." {...search} />
+        <IFS.SmartSearch width={248} size="s" placeholder="Search for..." keyshortcut="/" {...search} />
         <IFS.FilterButton shape="round" hasNew={filtersApplied} onClick={onFilter} />
       </div>
       {children != null && <div className="ifs-explore-header__left">{children}</div>}

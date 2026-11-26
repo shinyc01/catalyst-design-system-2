@@ -21,13 +21,13 @@
 .ifs-scroll-area__viewport::-webkit-scrollbar{display:none}
 .ifs-scroll-area__viewport:focus-visible{box-shadow:var(--focus-ring-inset)}
 /* 8px track, 2px side padding, 4px bar (Figma Bar 4×140, radius 8, --blur-80) */
-.ifs-scroll-area__track{position:absolute;top:0;inset-inline-end:0;bottom:0;width:8px;padding:0 var(--space-50);box-sizing:border-box;opacity:1;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)} /* px: scrollbar geometry */
+.ifs-scroll-area__track{position:absolute;top:0;inset-inline-end:0;bottom:0;width:var(--size-8);padding:0 var(--space-50);box-sizing:border-box;opacity:1;transition:opacity var(--motion-duration-50) var(--motion-ease-standard)} /* px: scrollbar geometry */
 .ifs-scroll-area__track[hidden]{display:none}
 .ifs-scroll-area__bar{position:absolute;inset-inline-start:var(--space-50);inset-inline-end:var(--space-50);top:0;min-height:var(--size-24);
   border-radius:var(--radius-pill);background:var(--color-background-neutral);
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));cursor:default;touch-action:none}
 /* Gallery: show the Figma atom alone */
-.ifs-scroll-bar{position:relative;display:inline-flex;width:8px;padding:0 var(--space-50);box-sizing:border-box;flex:none}
+.ifs-scroll-bar{position:relative;display:inline-flex;width:var(--size-8);padding:0 var(--space-50);box-sizing:border-box;flex:none}
 .ifs-scroll-bar .ifs-scroll-area__bar{position:absolute;height:140px}
 
 /* ================= CircularButton — circular-button-molecule (72:9983) ================= */

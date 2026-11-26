@@ -158,7 +158,7 @@ function SpeakingControl({ speaking, defaultSpeaking = true, onSpeakingChange, c
   return (
     <span className={IFS.cx('ifs-speaking', className)} {...rest}>
       <span className="ifs-speaking__wave"><IFS.Icon name={on ? 'system-sound-waves-ai-speaking' : 'system-sound-waves-ai-paused'} size={16} /></span>
-      <span style={{ width: '3.3125rem' }}>{on ? 'Speaking' : 'Paused'}</span>
+      <span className="ifs-speaking__label">{on ? 'Speaking' : 'Paused'}</span>
       <Btn icon={on ? 'player-pause-fiiled' : 'system-volume-on'} label={on ? 'Pause' : 'Resume speaking'} size="s" onClick={() => setOn(!on)} />
     </span>
   );

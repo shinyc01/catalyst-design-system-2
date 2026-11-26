@@ -156,7 +156,7 @@
 .ifs-data-table__scroll{min-height:0}
 .ifs-data-table--capped{overflow:hidden}
 .ifs-data-table--capped .ifs-data-table__scroll{flex:1;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - 48px),transparent) /* mask alpha only, not a colour */}
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--size-48)),transparent);mask-image:linear-gradient(to bottom,#000 calc(100% - var(--size-48)),transparent) /* mask alpha only, not a colour */}
 .ifs-data-table__more{display:flex;margin-top:calc(-1 * var(--space-200))}
 /* Ranked (Idea Pad) rows follow the table row height like every table (Nov 19, was 60). The row being dragged dims. */
 .ifs-data-table__row--dragged{opacity:.4}

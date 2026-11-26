@@ -61,6 +61,7 @@
 /* ---------- speaking-control-molecule ---------- */
 .ifs-speaking{display:inline-flex;align-items:center;gap:var(--space-50);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft)}
 .ifs-speaking__wave{color:var(--color-cooper-icon)}
+.ifs-speaking__label{flex:none;min-width:3.3125rem /* Figma's 53 box, so Paused / Speaking keep the button in place */;white-space:nowrap} /* grows to its text: "Speaking" is 62 in Comfortable, it must never run into the pause button */
 
 /* ---------- attachments (Attachments Mini chips) ---------- */
 .ifs-attachment{display:inline-flex;align-items:center;gap:var(--space-200);height:var(--size-40);max-width:12.5rem;box-sizing:border-box;padding-block:0;padding-inline:var(--space-200) var(--space-100);
@@ -118,7 +119,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-cooper-progress{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-100) 0;
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-softer);min-width:0}
 .ifs-cooper-progress__text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ifs-cooper-progress--live .ifs-cooper-progress__text{background:linear-gradient(90deg,var(--color-text-softer) 30%,var(--color-text) 50%,var(--color-text-softer) 70%);
+.ifs-cooper-progress--live .ifs-cooper-progress__text{background:linear-gradient(90deg,var(--color-text-softer) 30%,var(--color-text) 50%,var(--color-text-softer) 70%); /* ltr: brand gradient art, fixed in both directions */
   background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
 .ifs-cooper-status{display:flex;align-items:center;gap:var(--space-100);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-softer)}
 .ifs-cooper-options{display:flex;flex-direction:column;gap:var(--space-100)}
@@ -161,7 +162,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-chat-panel__speech{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 var(--space-inset) calc(2 * var(--space-section));
   font:var(--font-heading-h1-medium);letter-spacing:var(--font-heading-h1-medium-tracking);color:var(--color-text)}
 .ifs-chat-panel__bottom{position:absolute;inset-inline-start:0;inset-inline-end:0;bottom:0;padding:var(--space-inset);
-  background:linear-gradient(180deg,transparent,var(--color-cooper-insight-strong) 16px) /* blur overlay (GRADIENT_LINEAR + blur 80) */;
+  background:linear-gradient(180deg,transparent,var(--color-cooper-insight-strong) var(--size-16)) /* blur overlay (GRADIENT_LINEAR + blur 80) */;
   backdrop-filter:blur(var(--blur-40));-webkit-backdrop-filter:blur(var(--blur-40))}
 .ifs-chat-panel__drop{position:absolute;inset:calc(2 * (var(--space-inset) - var(--space-100)) + var(--size-control-s)) 0 0 /* H1: starts right below the chat header (its padding + an S control), follows density */;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-200);
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft);pointer-events:none}

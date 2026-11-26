@@ -92,7 +92,7 @@
   display:inline-flex;align-items:center;gap:var(--space-100);flex:none;height:var(--size-control-s);box-sizing:border-box;margin:0;border:0;cursor:pointer;white-space:nowrap;
   padding:var(--space-50) var(--space-200);border-radius:var(--radius-pill);background:var(--fill);box-shadow:var(--ring);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)}
-.ifs-cooper-chip__label{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* gradient direction approx. */;
+.ifs-cooper-chip__label{background:linear-gradient(to left,var(--color-cooper-text),var(--color-text)) /* gradient direction approx. */; /* ltr: brand gradient art, fixed in both directions */
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .ifs-cooper-chip:hover,.ifs-cooper-chip[data-state=hover]{--fill:var(--color-cooper-background)}
 .ifs-cooper-chip.is-selected{--ring:0 0 0 var(--border-width-default) var(--color-ring-gap),0 0 0 var(--border-width-200) var(--color-cooper-border)} /* not focus: selected ring on the ring-gap black */

@@ -22,6 +22,7 @@
    tokens, and appear only inside this media query. Simulated: check on real Windows (Edge, Chrome, Firefox; Night sky and Desert). */
 @media (forced-colors: active){
   :is(.ifs-button:not(.ifs-button--ghost),.ifs-icon-button:not(.ifs-icon-button--ghost),.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,
+      .ifs-smart-search__field,.ifs-role-select__trigger,.ifs-select--xl .ifs-select__trigger,
       .ifs-check__box,.ifs-switch,.ifs-segmented,.ifs-chip,.ifs-content-card,.ifs-badge,.ifs-snackbar,.ifs-menu__list,.ifs-floating-bar,.ifs-popover,
       .ifs-modal,.ifs-drawer,.ifs-panel,.ifs-tooltip,.ifs-map-cluster,.ifs-table-card,.ifs-node-card,.ifs-stat-card,.ifs-dv-card){
     outline:var(--border-width-default) solid CanvasText;outline-offset:calc(-1 * var(--border-width-default))}
