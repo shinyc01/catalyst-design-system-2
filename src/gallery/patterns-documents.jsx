@@ -66,7 +66,7 @@ export default IFS_GALLERY;
       <VerticalBarChartItem segments={[{ value: 20, color: 8 }, { value: 117, color: 8 }, { value: 28, color: 7 }, { value: 25, color: 8 }]} />
       <VerticalBarChartItem state="active" segments={[{ value: 32, color: 3 }, { value: 21, color: 2 }, { value: 20, color: 5 }, { value: 117, color: 4 }]} />
       <VerticalBarChartItem active={act} onActiveChange={setAct} label="FY27" value={1.6} max={2.5}
-        segments={[{ value: 1, fill: 'var(--color-data-viz-muted-purple-data-4)' }]} />
+        segments={[{ value: 1, fill: 'var(--color-data-viz-categorical-7)' }]} />
     </Row>;
   } });
 
@@ -151,7 +151,7 @@ export default IFS_GALLERY;
           {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
           {data.map(([l, v], i) => <VerticalBarChartItem key={l} label={`${l}: $${v}M`} value={v} max={2.5} width={113} height={200}
-            active={sel === i} onActiveChange={a => setSel(a ? i : null)} segments={[{ value: 1, fill: 'var(--color-data-viz-muted-purple-data-4)' }]} />)}
+            active={sel === i} onActiveChange={a => setSel(a ? i : null)} segments={[{ value: 1, fill: 'var(--color-data-viz-categorical-7)' }]} />)}
         </div>
         <span />
         <div className="t-body-m-regular" style={{ display: 'flex', justifyContent: 'space-around', color: 'var(--color-text-soft)' }}>{data.map(([l]) => <span key={l}>{l}</span>)}</div>

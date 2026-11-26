@@ -29,9 +29,9 @@ const reviewBins = reviewBinsPx.map(([label, px, tone, step, n]) => ({
   color: tone === 'unchanged' ? 'var(--color-data-viz-neutral)' : undefined,
 }));
 const reviewLegend = [
-  { label: 'Loss', color: 'var(--color-data-viz-alert-data-4)' },
+  { label: 'Loss', color: 'var(--color-data-viz-diverging-positive-2)' },
   { label: 'No change', color: 'var(--color-data-viz-neutral)' },
-  { label: 'Gain', color: 'var(--color-data-viz-deep-green-data-4)' },
+  { label: 'Gain', color: 'var(--color-data-viz-diverging-negative-2)' },
 ];
 
 const reviewUnchangedTypes = ['Reliability', 'Safety', 'Cost', 'Asset Replacement'];

@@ -33,7 +33,7 @@ export default IFS_GALLERY;
     { title: 'Considered but not included', items: CONSIDERED },
   ];
   // Figma bars are raw hex (no variables); rose-8 matches a token exactly, the rest are raw in Figma.
-  const SCOPE_COLORS = { a: 'var(--color-data-viz-rose-data-8)', b: '#096b42', c: '#175c65', d: '#312262' }; /* raw in Figma */
+  const SCOPE_COLORS = { a: 'var(--color-data-viz-categorical-1)', b: 'var(--color-data-viz-categorical-3)', c: 'var(--color-data-viz-categorical-5)', d: 'var(--color-data-viz-categorical-7)' }; // categorical slots (rule 10.7; were a light rose and three raw Figma hexes)
   const BENCHMARK = {
     description: 'Peer benchmark supports the current idea context. Similar ideas for aging feeder renewal most often cover 5–10 feeders, use a $3M–$6M early cost range, and are assigned a 12–18 month action window.',
     summary: [{ label: 'Similar past ideas', value: '341 ideas' }, { label: 'Peer utilities', value: '27 utilities' }, { label: 'Typical cost range', value: '$3M–$6M' }, { label: 'Most common action window', value: '12–18 mo' }],
@@ -123,12 +123,12 @@ export default IFS_GALLERY;
         {at(386, 108, <MapPinPole number="Demeter SS" pinIcon="asset type-substation" />, 'dem')}
         {at(92, 140, <MapPinPole number="Recloser R-1" pinIcon="asset type-switcher" />, 'rec')}
         {at(70, 10, <MapPinPole symbol="defect" number="Ridgeview Village" defect={{ type: 'cyclone', state: 'confirmed' }} />, 'rv')}
-        <div style={{ position: 'absolute', right: 8, top: 8 }}><IFS.IconButton type="tertiary" size="s" icon="map" label="Open map" /></div>
+        <div style={{ position: 'absolute', insetInlineEnd: 8, top: 8 }}><IFS.IconButton type="tertiary" size="s" icon="map" label="Open map" /></div>
       </div>
     );
   }
-  const RELEVANCE = [['Reliability', 40, 'var(--color-data-viz-muted-purple-data-5)'], ['Financial', 35, 'var(--color-data-viz-steel-blue-data-4)'],
-    ['Environment', 13, 'var(--color-data-viz-deep-green-data-5)'], ['Social', 7, 'var(--color-data-viz-teal-data-5)'], ['Governance', 5, 'var(--color-data-viz-teal-data-3)']];
+  const RELEVANCE = [['Reliability', 40, 1], ['Financial', 35, 2],
+    ['Environment', 13, 3], ['Social', 7, 4], ['Governance', 5, 5]];
   const GOALS = ['Financial stewardship & efficiency', 'Reduce wildfire & emergency risk', 'Maintain public & worker safety', 'Decarbonize grid by 2045', 'Community & equity outcomes'];
   // Confidence Cooper reports for each block it filled in (drives the strength bar per chain).
   const FIELD_CONF = { overview: 87, need: 92, goals: 74, relevance: 61, assets: 88, alternative: 87, options: 79 };
@@ -148,7 +148,7 @@ export default IFS_GALLERY;
             {card('need', 'The need', <div className="t-body-l-regular" style={pad}>Fault frequency on these feeders are up 3.1× over 24 months, with two sustained outages this year. Health index has dropped from 74 to 41. Left alone, Cooper projects a likely in-service failure within 18-30 months, affecting ~9400 customers including a hospital.</div>)}
             {card('goals', 'Aligned enterprise goals', <IFS.Inline gap="200" wrap style={{ ...pad }}>{GOALS.map(g => <IFS.Badge key={g} color="black" size="m">{g}</IFS.Badge>)}</IFS.Inline>)}
             {card('relevance', 'Strategic relevance', <IFS.Stack gap="400" style={{ ...pad }}>
-              <IFS.Inline gap="50" style={{ height: 24 }}>{RELEVANCE.map(([l, v, c]) => <IFS.BarChartItem key={l} fill={c} style={{ flex: `${v} 1 0`, minWidth: 0 }}>{`${v}%`}</IFS.BarChartItem>)}</IFS.Inline>
+              <IFS.Inline gap="50" style={{ height: 24 }}>{RELEVANCE.map(([l, v, c]) => <IFS.BarChartItem key={l} color={c} style={{ flex: `${v} 1 0`, minWidth: 0 }}>{`${v}%`}</IFS.BarChartItem>)}</IFS.Inline>
               <IFS.Inline gap="400" justify="center" wrap>{RELEVANCE.map(([l, , c]) => <IFS.LegendSwatch key={l} color={c} label={l} />)}</IFS.Inline>
             </IFS.Stack>)}
           </IFS.Stack>
@@ -178,7 +178,7 @@ export default IFS_GALLERY;
       <div style={{ ...shell, gridTemplateRows: '48px 40px 1fr 40px' }} aria-label={label}>
         <IFS.NavBar defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />
         <div style={{ position: 'relative' }}>
-          <IFS.PageHeader title={title} id="INV-2025-0842" onBack={noop} onTitleMenu={recordTitle ? noop : undefined}
+          <IFS.PageHeader title={title} id="INV-2025-0842" onBack={noop} onTitleMenu={noop}
             status={<IFS.Indicator type="purple" size="xs">Shaping</IFS.Indicator>}
             actions={<>
               <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></IFS.Inline>
@@ -191,7 +191,7 @@ export default IFS_GALLERY;
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 48px', minHeight: 0 }}>
           <div style={{ position: 'relative', minHeight: 0 }}>
             <div style={{ position: 'absolute', inset: 0, overflow: 'auto' }}><IdeaOverview chain={chain} title={recordTitle} /></div>
-            {chain.key && <div style={{ ...drawerSlot, top: 12, right: 12, bottom: 12 }}>
+            {chain.key && <div style={{ ...drawerSlot, top: 12, insetInlineEnd: 12, bottom: 12 }}>
               <EvidenceChainDrawer key={chain.key} open onOpenChange={v => !v && chain.close()} value={FIELD_CONF[chain.key]}
                 rationale={rationale(FLAGGED_DOCS)} benchmark={benchmark} tab={tab} onTabChange={setTab} />
             </div>}
@@ -206,8 +206,8 @@ export default IFS_GALLERY;
   }
 
   /* ---- Value › Review (31:76689 → 31:76841 / 31:77627 / 31:78108…78888) ---- */
-  const IMPACT = [['Major loss', 42, 'var(--color-data-viz-alert-data-5)'], ['Moderate loss', 49, 'var(--color-data-viz-alert-data-4)'], ['Minor loss', 67, 'var(--color-data-viz-alert-data-3)'],
-    ['No material change', 163, 'var(--color-data-viz-neutral)'], ['Minor gain', 82, 'var(--color-data-viz-deep-green-data-3)'], ['Moderate gain', 74, 'var(--color-data-viz-deep-green-data-4)'], ['Major gain', 38, 'var(--color-data-viz-deep-green-data-5)']];
+  const IMPACT = [['Major loss', 42, 'var(--color-data-viz-diverging-positive-3)'], ['Moderate loss', 49, 'var(--color-data-viz-diverging-positive-2)'], ['Minor loss', 67, 'var(--color-data-viz-diverging-positive-1)'],
+    ['No material change', 163, 'var(--color-data-viz-neutral)'], ['Minor gain', 82, 'var(--color-data-viz-diverging-negative-1)'], ['Moderate gain', 74, 'var(--color-data-viz-diverging-negative-2)'], ['Major gain', 38, 'var(--color-data-viz-diverging-negative-3)']];
   function ImpactChart() {
     return <IFS.DataVizCard title="Investment value impact" header={{ draggable: false }}>
       <div style={{ padding: '0 10px 12px', width: '100%', boxSizing: 'border-box' }}>
@@ -219,7 +219,7 @@ export default IFS_GALLERY;
           <IFS.Inline gap="150" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', textAlign: 'center' }}>{IMPACT.map(([l]) => <span key={l} style={{ flex: '1 1 0' }}>{l}</span>)}</IFS.Inline>
         </div>
         <IFS.Inline gap="400" justify="center" style={{ marginTop: 12 }}>
-          <IFS.LegendSwatch color="var(--color-data-viz-alert-data-5)" label="Loss" /><IFS.LegendSwatch color="neutral" label="Unchanged" /><IFS.LegendSwatch color="var(--color-data-viz-deep-green-data-5)" label="Gain" />
+          <IFS.LegendSwatch color="var(--color-data-viz-diverging-positive-3)" label="Loss" /><IFS.LegendSwatch color="neutral" label="Unchanged" /><IFS.LegendSwatch color="var(--color-data-viz-diverging-negative-3)" label="Gain" />
         </IFS.Inline>
       </div>
     </IFS.DataVizCard>;

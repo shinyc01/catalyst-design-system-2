@@ -16,12 +16,14 @@ const dashboardStats = [
 ];
 
 // Series fills (portfolio rows) and legend
+// One categorical slot per value driver (rules 10.7, 10.12; decided Nov 25): the same driver keeps its colour in every chart here.
+const dashboardSlot = n => `var(--color-data-viz-categorical-${n})`;
 const dashboardSeries = [
-  { label: 'Reliability', fill: 'var(--color-data-viz-muted-purple-data-5)', legend: 'var(--color-data-viz-muted-purple-data-6)', proj: 'var(--color-data-viz-muted-purple-data-7)' },
-  { label: 'Financial', fill: 'var(--color-data-viz-steel-blue-data-4)', legend: 'var(--color-data-viz-steel-blue-data-4)', proj: 'var(--color-data-viz-steel-blue-data-6)' },
-  { label: 'Environment', fill: 'var(--color-data-viz-deep-green-data-5)', legend: 'var(--color-data-viz-deep-green-data-7)', proj: 'var(--color-data-viz-deep-green-data-7)' },
-  { label: 'Social', fill: 'var(--color-data-viz-cyan-data-6)', legend: 'var(--color-data-viz-cyan-data-8)', proj: 'var(--color-data-viz-cyan-data-8)' },
-  { label: 'Governance', fill: 'var(--color-data-viz-teal-data-3)', legend: 'var(--color-data-viz-teal-data-6)', proj: 'var(--color-data-viz-teal-data-6)' },
+  { label: 'Reliability', fill: dashboardSlot(1), legend: dashboardSlot(1), proj: dashboardSlot(1) },
+  { label: 'Financial', fill: dashboardSlot(2), legend: dashboardSlot(2), proj: dashboardSlot(2) },
+  { label: 'Environment', fill: dashboardSlot(3), legend: dashboardSlot(3), proj: dashboardSlot(3) },
+  { label: 'Social', fill: dashboardSlot(4), legend: dashboardSlot(4), proj: dashboardSlot(4) },
+  { label: 'Governance', fill: dashboardSlot(5), legend: dashboardSlot(5), proj: dashboardSlot(5) },
 ];
 const dashboardPortfolio = {
   weight: [['You', [40, 35, 13, 7, 5]], ['Peer avg', [35, 25, 16, 8, 16]], ['Best in class', [38, 28, 19, 4, 11]]],
@@ -29,28 +31,27 @@ const dashboardPortfolio = {
   budget: [['You', [44, 31, 12, 6, 7]], ['Peer avg', [37, 27, 15, 9, 12]], ['Best in class', [36, 30, 18, 5, 11]]],
 };
 
-const dashboardDv = (g, n) => `var(--color-data-viz-${g}-data-${n})`;
 const dashboardColumns = {
   budget: [
-    ['Reliability', [[32, dashboardDv('muted-purple', 3)], [21, dashboardDv('muted-purple', 4)], [20, dashboardDv('muted-purple', 5)], [230, dashboardDv('muted-purple', 7)]]],
-    ['Financial', [[260, dashboardDv('steel-blue', 4)], [20, dashboardDv('steel-blue', 5)], [25, dashboardDv('steel-blue', 7)]]],
-    ['Environmental', [[20, dashboardDv('deep-green', 3)], [230, dashboardDv('deep-green', 4)], [28, dashboardDv('deep-green', 5)], [25, dashboardDv('deep-green', 7)]]],
-    ['Social', [[260, dashboardDv('teal', 4)], [20, dashboardDv('teal', 5)], [25, dashboardDv('cyan', 8)]]],
-    ['Governance', [[20, dashboardDv('deep-green', 2)], [230, dashboardDv('teal', 3)], [28, dashboardDv('teal', 5)], [25, dashboardDv('teal', 6)]]],
+    ['Reliability', [[32, dashboardSlot(1)], [21, dashboardSlot(1)], [20, dashboardSlot(1)], [230, dashboardSlot(1)]]],
+    ['Financial', [[260, dashboardSlot(2)], [20, dashboardSlot(2)], [25, dashboardSlot(2)]]],
+    ['Environmental', [[20, dashboardSlot(3)], [230, dashboardSlot(3)], [28, dashboardSlot(3)], [25, dashboardSlot(3)]]],
+    ['Social', [[260, dashboardSlot(4)], [20, dashboardSlot(4)], [25, dashboardSlot(4)]]],
+    ['Governance', [[20, dashboardSlot(5)], [230, dashboardSlot(5)], [28, dashboardSlot(5)], [25, dashboardSlot(5)]]],
   ],
   // "By investment" is not drawn in Figma — illustrative split so the toggle works.
   investment: [
-    ['Reliability', [[48, dashboardDv('muted-purple', 3)], [36, dashboardDv('muted-purple', 4)], [30, dashboardDv('muted-purple', 5)], [189, dashboardDv('muted-purple', 7)]]],
-    ['Financial', [[210, dashboardDv('steel-blue', 4)], [52, dashboardDv('steel-blue', 5)], [43, dashboardDv('steel-blue', 7)]]],
-    ['Environmental', [[34, dashboardDv('deep-green', 3)], [196, dashboardDv('deep-green', 4)], [40, dashboardDv('deep-green', 5)], [33, dashboardDv('deep-green', 7)]]],
-    ['Social', [[225, dashboardDv('teal', 4)], [42, dashboardDv('teal', 5)], [38, dashboardDv('cyan', 8)]]],
-    ['Governance', [[31, dashboardDv('deep-green', 2)], [205, dashboardDv('teal', 3)], [36, dashboardDv('teal', 5)], [31, dashboardDv('teal', 6)]]],
+    ['Reliability', [[48, dashboardSlot(1)], [36, dashboardSlot(1)], [30, dashboardSlot(1)], [189, dashboardSlot(1)]]],
+    ['Financial', [[210, dashboardSlot(2)], [52, dashboardSlot(2)], [43, dashboardSlot(2)]]],
+    ['Environmental', [[34, dashboardSlot(3)], [196, dashboardSlot(3)], [40, dashboardSlot(3)], [33, dashboardSlot(3)]]],
+    ['Social', [[225, dashboardSlot(4)], [42, dashboardSlot(4)], [38, dashboardSlot(4)]]],
+    ['Governance', [[31, dashboardSlot(5)], [205, dashboardSlot(5)], [36, dashboardSlot(5)], [31, dashboardSlot(5)]]],
   ],
 };
 const dashboardCoverage = [
-  { label: 'Risk', value: 29, color: dashboardDv('rose', 3) }, { label: 'Service measure', value: 18, color: dashboardDv('rose', 4) },
-  { label: 'Benefit', value: 17, color: dashboardDv('rose', 5) }, { label: 'Cost', value: 16, color: dashboardDv('rose', 6) },
-  { label: 'Condition score', value: 10, color: dashboardDv('rose', 7) }, { label: 'Resource', value: 6, color: dashboardDv('rose', 8) },
+  { label: 'Risk', value: 29, color: dashboardSlot(1) }, { label: 'Service measure', value: 18, color: dashboardSlot(2) },
+  { label: 'Benefit', value: 17, color: dashboardSlot(3) }, { label: 'Cost', value: 16, color: dashboardSlot(4) },
+  { label: 'Condition score', value: 10, color: dashboardSlot(5) }, { label: 'Resource', value: 6, color: dashboardSlot(6) },
 ];
 const dashboardProjects = [
   ['Alpine Meadows Transformers', '$192M', [297, 297, 116, 67, 67]],
