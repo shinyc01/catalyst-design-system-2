@@ -182,8 +182,8 @@ function DataVizBar({ state = 'default', color = 1, step = 4, children, classNam
 
 // Figma: grouped-bar-molecule (4457:37362)
 // Props: type horizontal (segments stacked top→bottom) | vertical (segments side by side), progress (meter: value against max on a
-// neutral track), values = numbers (segment sizes; categorical slots 1, 2, 3 … in order — or one old group's steps 4, 5, 6 … when color
-// is a group name), value + max (progress), showValues.
+// neutral track), values = numbers (segment sizes; categorical slots 1, 2, 3 … in order — or, when color is a 2.0.7 family name, that
+// family's ramp steps 2, 4, 6 … (rule 10.7); an old group name (deprecated) keeps its steps 4, 5, 6 …), value + max (progress), showValues.
 function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color, showValues, format = defaultFormat, className, style, ...rest }) {
   if (progress) {
     const pct = Math.max(0, Math.min(1, max ? value / max : 0)) * 100;
@@ -194,10 +194,10 @@ function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [],
       </div>
     );
   }
-  const group = DV_GROUPS.includes(color);
+  const group = DV_GROUPS.includes(color), fam = DV_FAMILIES.includes(color);
   return (
     <div className={IFS.cx('ifs-dv-grouped', `ifs-dv-grouped--${type}`, className)} style={style} {...rest}>
-      {values.map((v, i) => <DataVizBar key={i} color={group ? color : i + 1} step={Math.min(10, 4 + i)} style={{ flexGrow: Math.max(0, v), flexBasis: 0 }}>{showValues ? format(v) : null}</DataVizBar>)}
+      {values.map((v, i) => <DataVizBar key={i} color={fam ? `var(--color-data-viz-sequential-${color}-${Math.min(9, 2 + 2 * i)})` : group ? color : i + 1} step={Math.min(10, 4 + i)} style={{ flexGrow: Math.max(0, v), flexBasis: 0 }}>{showValues ? format(v) : null}</DataVizBar>)}
     </div>
   );
 }
@@ -873,7 +873,8 @@ function RefLines({ refs, L, x0 = L.x0, x1 = L.x1 }) {
   </g>);
 }
 // Forecast (rule 10.13): bars keep the series' family in its light partner slot (odd slot n → n + 1); a token colour stays as it is.
-const lightOf = c => (c == null ? 2 : (typeof c === 'number' || /^\d+$/.test(String(c))) && Number(c) % 2 === 1 ? Number(c) + 1 : c);
+const lightOf = c => (c == null ? 2 : (typeof c === 'number' || /^\d+$/.test(String(c))) && Number(c) % 2 === 1 ? Number(c) + 1
+  : DV_FAMILIES.includes(c) ? DV_FAMILIES.indexOf(c) * 2 + 2 : c); // a family name → its light partner slot (rose → 12), audit T2-2
 
 /* ------------------------------------------------------------------ column / bar family */
 

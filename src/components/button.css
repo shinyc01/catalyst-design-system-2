@@ -65,12 +65,12 @@
 
 /* Disabled */
 .ifs-button:disabled,.ifs-button[aria-disabled=true],.ifs-icon-button:disabled,.ifs-icon-button[aria-disabled=true]{cursor:not-allowed;color:var(--color-text-disabled)}
-.ifs-button--primary:disabled,.ifs-icon-button--primary:disabled{--fill:var(--color-background-neutral-soft);--stroke-shadow:0 0 0 var(--border-width-default) var(--color-border-transparent)}
-.ifs-button--secondary:disabled,.ifs-icon-button--secondary:disabled{--fill:var(--color-background-neutral-softer);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
-.ifs-button--tertiary:disabled,.ifs-icon-button--tertiary:disabled{--fill:var(--color-background-neutral-softer-inverse);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border)}
-.ifs-button--ghost:disabled,.ifs-icon-button--ghost:disabled{--fill:var(--color-background-transparent)}
-.ifs-button--cooper:disabled{background:var(--color-cooper-button-fill-disabled)}
-.ifs-icon-button:disabled{color:var(--color-icon-disabled)}
+.ifs-button--primary:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active),.ifs-icon-button--primary:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active){--fill:var(--color-background-neutral-soft);--stroke-shadow:0 0 0 var(--border-width-default) var(--color-border-transparent)}
+.ifs-button--secondary:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active),.ifs-icon-button--secondary:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active){--fill:var(--color-background-neutral-softer);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
+.ifs-button--tertiary:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active),.ifs-icon-button--tertiary:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active){--fill:var(--color-background-neutral-softer-inverse);--stroke-shadow:inset 0 0 0 var(--border-width-default) var(--color-border)}
+.ifs-button--ghost:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active),.ifs-icon-button--ghost:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active){--fill:var(--color-background-transparent)}
+.ifs-button--cooper:is(:disabled,[aria-disabled=true],[aria-disabled=true]:hover,[aria-disabled=true]:active){background:var(--color-cooper-button-fill-disabled)}
+.ifs-icon-button:is(:disabled,[aria-disabled=true]){color:var(--color-icon-disabled)}
 
 /* Loading (S2): keeps its size, fill and label; the dotted loader sits in the icon slot; not clickable, so no hover or press */
 .ifs-button--loading{pointer-events:none}

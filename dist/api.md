@@ -539,8 +539,8 @@ the slice labels, rule 10.11): white on the dark slots, black on the light ones.
 **In handovers:** placed 4× (Plan) · usual: Type vertical 100% · Progress false 100%
 Figma: grouped-bar-molecule (4457:37362)
 Props: type horizontal (segments stacked top→bottom) | vertical (segments side by side), progress (meter: value against max on a
-neutral track), values = numbers (segment sizes; categorical slots 1, 2, 3 … in order — or one old group's steps 4, 5, 6 … when color
-is a group name), value + max (progress), showValues.
+neutral track), values = numbers (segment sizes; categorical slots 1, 2, 3 … in order — or, when color is a 2.0.7 family name, that
+family's ramp steps 2, 4, 6 … (rule 10.7); an old group name (deprecated) keeps its steps 4, 5, 6 …), value + max (progress), showValues.
 `function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color, showValues, format = defaultFormat, className, style, ...rest })`
 
 ### DataVizLine

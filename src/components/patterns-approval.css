@@ -62,7 +62,7 @@
 
 /* ---------- SplitButton (header-pattern main action + dropdown) ---------- */
 .ifs-split-button{position:relative;display:inline-flex;align-items:center;gap:var(--size-1) /* raw in Figma */}
-.ifs-split-button > .ifs-button:not(:only-child){border-start-end-radius:0;border-end-end-radius:0}
+.ifs-split-button > .ifs-button:not(:only-child),.ifs-split-button > .ifs-tooltip-anchor:not(:only-child) > .ifs-button{border-start-end-radius:0;border-end-end-radius:0} /* the anchor wraps a Button with disabledReason (audit T2-7) */
 .ifs-split-button > .ifs-menu > .ifs-icon-button{border-start-start-radius:0;border-end-start-radius:0}
 
 /* ---------- ReadinessEvaluation (readiness sidebar content) ---------- */
