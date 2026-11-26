@@ -23,9 +23,8 @@ const mapovIssues = [
   { id: 'e3', kind: 'error', title: 'Existing measures use incompatible units', description: 'Two linked measures report in different units.',
     solutions: [{ id: 'a', title: 'Convert to the framework unit', description: 'Normalise both measures to $ / year.', recommended: true }] },
   { id: 'w1', kind: 'warning', title: 'Objective overlap detected', description: 'Community engagement overlaps with Public safety.', okay: true },
-  { id: 'w2', kind: 'warning', title: 'Existing investments will be rescored', description: 'Investments using this framework will be re-scored when it is published.', okay: true },
+  { id: 'w2', kind: 'warning', title: `Existing ${IFS.term('investment', { count: 2 })} will be re-scored`, description: `${IFS.term('investment', { count: 2, capital: true })} will be re-scored when the framework is published.`, okay: true },
   { id: 'w3', kind: 'warning', title: 'Reports may need updating', description: 'Current dashboards and reports do not include this objective and may show incomplete results until updated.', okay: true },
-  { id: 'n1', kind: 'note', title: 'Existing investments will be recalculated', description: 'Investments using this framework will receive updated scores after the objective is published.', okay: true },
   { id: 'n2', kind: 'note', title: 'Version history updated', description: 'This change is saved as a new draft version.', okay: true },
   { id: 'n3', kind: 'note', title: 'Collaborators notified', description: 'Editors on this framework see the change in their activity.', okay: true },
 ];
@@ -73,7 +72,7 @@ function MapovTree() {
       const isErr = t === o.error;
       node('c' + oi + i, MAPOV_CHILD_X, ys[i], { type: 'subnode', title: t, outOfFocus: !isErr, 'aria-label': isErr ? t + ' (error)' : undefined }, CH_H);
       if (isErr) out.push(<div key={'err' + oi} style={{ position: 'absolute', left: w(MAPOV_CHILD_X) + NODE_W - 24, top: w(ys[i]) + (CH_H - 16) / 2, display: 'flex', color: 'var(--color-icon-danger)', zIndex: 3 }}>
-        <Icon name="status-error-filled" size={16} title="Error" /></div>);
+        <Icon name="status-error-filled" size={16} title="Needs attention" /></div>);
       lines.push(<CanvasConnector key={'e' + oi + i} from={{ x: w(686), y: w(o.y) + TOP_H }} to={{ x: w(MAPOV_CHILD_X), y: w(ys[i]) + CH_H / 2 }} highlighted={isErr} />);
     });
     const addY = o.children.length ? ys[ys.length - 1] + o.step : o.y + 26;
@@ -100,14 +99,14 @@ function ScreenMapoverview({ bp, height }) {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      <AppShell height={height}
+      <AppShell height={height} title="Copy of Q2 2026 Strategy Framework" module="Value" /* tab title, rule 9.27 */
         navBar={<NavBar stages={mapovStages} defaultValue="value" onChange={navStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }}
           onSearch={() => toast('Search')} onSettings={() => toast('Settings')} onNotifications={() => toast('Notifications')} />}
         sideNav={<SideNav title="Value" items={mapovValueNav} defaultValue="active" defaultCollapsed onSelect={goValueNav} />}
         header={<>
           <PageHeader title="Copy of Q2 2026 Strategy Framework" onTitleMenu={() => toast('Framework menu')}
             status={<Indicator type="gray" size="xs">Draft</Indicator>}
-            views={<SegmentedControl size="s" defaultValue="overview" onChange={v => v !== 'overview' && toast('View: ' + v)} options={[
+            views={<SegmentedControl size="s" defaultValue="overview" onChange={v => v !== 'overview' && toast(`${{ 'node-map': 'Node map', 'capital-flow': 'Capital flow' }[v]} view`)} options={[
               { value: 'overview', iconLeft: 'overview', ariaLabel: 'Overview' },
               { value: 'node-map', iconLeft: 'node-map', ariaLabel: 'Node map' },
               { value: 'capital-flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />}

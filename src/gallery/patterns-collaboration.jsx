@@ -26,7 +26,7 @@ export default IFS_GALLERY;
   ];
   const RECENT = [DIRECTORY[5], DIRECTORY[6]];
   const ROLES = ['Asset manager', 'Planning engineer', 'Field team lead', 'Planning manager', 'Cost estimator'];
-  const BRIEF = () => 'Q1 Strategy Framework needs regulatory sign-off on 3 points:\n\n1. Reliability stays above SB-901 30% floor at 40%. No conflict with filed 2023 GRC commitments.\n\n2. Environmental +3pp strengthens SB-100 trajectory alignment.\n\n3. WTRM v1 — new model, methodology mirrors WDRM already approved in D.22-08-013.\n\nI cannot see live pre-filing discussions. If there’s something in your channel that conflicts — flag it.\n\nConfidence (regulatory): medium';
+  const BRIEF = () => 'Q1 Strategy Framework needs regulatory sign-off on 3 points:\n\n1. Reliability stays above SB-901 30% floor at 40%. No conflict with filed 2023 GRC commitments.\n\n2. Environmental +3pp strengthens SB-100 trajectory alignment.\n\n3. WTRM v1 is a new model; its methodology mirrors WDRM already approved in D.22-08-013.\n\nI cannot see live pre-filing discussions. If there’s something in your channel that conflicts, flag it.\n\nConfidence (regulatory): medium';
   const ago = h => Date.now() - h * HOUR;
   const joined = (p, online) => ({ ...p, status: 'joined', access: 'editor', online, brief: BRIEF(), notifiedAt: ago(72) });
   const waiting = (p, h) => ({ ...p, status: 'awaiting', access: 'editor', brief: BRIEF(), notifiedAt: ago(h) });
@@ -95,7 +95,7 @@ export default IFS_GALLERY;
     </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'RemoveCollaboratorModal', figma: 'modal-organism Remove this collaborator? [patterns] (12:12281)', render: () =>
-    <IFS.RemoveCollaboratorModal inline open person={waiting(JAMES, 2)} onCancel={() => {}} onConfirm={() => {}} /> });
+    <IFS.RemoveCollaboratorModal inline open person={waiting(JAMES, 2)} body="They lose access to this framework." onCancel={() => {}} onConfirm={() => {}} /> });
 
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
@@ -118,7 +118,7 @@ export default IFS_GALLERY;
                 actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />
-                  <span style={{ width: 1, height: 24, margin: '0 var(--space-200)', background: 'var(--color-border-soft)' }} aria-hidden="true" />
+                  <span style={{ width: 'var(--border-width-default)', height: 'var(--size-24)', margin: '0 var(--space-200)', background: 'var(--color-border-soft)' }} aria-hidden="true" />
                   <IFS.Button type="primary" size="s">Review</IFS.Button>
                 </IFS.Inline>} />
               <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>

@@ -95,7 +95,7 @@ function ScreenReview({ bp, height }) {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      <AppShell height="100%"
+      <AppShell height="100%" title="Copy of Q1 2026 Enterprise Strategy Framework" module="Value" /* tab title, rule 9.27 */
         navBar={<NavBar stages={reviewStages} defaultValue="value" onChange={navStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
         sideNav={<SideNav title="Value" defaultCollapsed items={[{ id: 'active', label: 'Active framework' }]} onSelect={goValueNav} />}
         header={header}
@@ -119,13 +119,13 @@ function ScreenReview({ bp, height }) {
             <IFS.Stack gap="page-gap" style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto', padding: 'var(--pg-gap) var(--pg-margin)' }}>
               <IFS.Stack gap="200">
                 <span className="t-heading-h2-medium" style={{ color: 'var(--color-text)' }}>Executive summary</span>
-                <span className="t-label-m-medium" style={{ color: 'var(--color-text-soft)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments.</span>
+                <span className="t-label-m-medium" style={{ color: 'var(--color-text-soft)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 {IFS.term('investment', { count: 876 })}.</span>
               </IFS.Stack>
               <StatCardsRow cards={reviewStats} style={{ gap: 'var(--pg-gap)' }} />
               <Tabs aria-label="Review views" value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio impact' }, { value: 'alignment', label: 'Strategic alignment' }]} />
               {tab === 'impact' ? <>
                 <InvestmentValueImpact metrics={reviewMetrics} bins={reviewBins} legend={reviewLegend} max={250} ticks={6}
-                  format={b => `${b.label}: ~${b.n} investments`} />
+                  format={b => `${b.label}: about ${IFS.format.plural(b.n, { one: `# ${IFS.term('investment')}`, other: `# ${IFS.term('investment', { count: 2 })}` })}`} />
                 <TableReview rows={reviewRows} defaultCollapsed={['Unchanged']} onFilter={k => toast(`Filter ${k === 'name' ? 'Investment' : 'Type'}`)} />
               </> : (
                 <EmptyState cause="empty-container" heading="Strategic alignment" body="This view is not part of this prototype." />

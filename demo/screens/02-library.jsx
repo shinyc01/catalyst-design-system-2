@@ -61,7 +61,7 @@ function ScreenLibrary({ bp, height }) {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      <AppShell height={height}
+      <AppShell height={height} title="Strategy frameworks" module="Value" /* tab title, rule 9.27 */
         navBar={<NavBar stages={libraryStages} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }}
           onChange={navStage}
           onSearch={() => toast('Search')} onSettings={() => toast('Settings')} onNotifications={() => toast('Notifications')} />}
@@ -69,11 +69,11 @@ function ScreenLibrary({ bp, height }) {
           onSelect={goValueNav} />}
         bottom={<BottomSheet prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} cooperIndicator={false}
           onPrompt={l => toast(`Asked Cooper: ${l}`)} onCooper={() => toast('Opening Cooper')} />}>
-        <div className="pg-content" style={{ paddingTop: 'var(--pg-gap)', paddingBottom: 'var(--pg-gap)' }}>
+        <div className="pg-content pg-content--wide" style={{ paddingTop: 'var(--pg-gap)', paddingBottom: 'var(--pg-gap)' }}>
           <DataTable variant="standard" rows={rows} onRowsChange={setRows} filterTabs={libraryTabs}
             pageTop={{ title: 'Strategy framework', description: 'Published, archived, and draft strategy frameworks',
-              actions: <Button type="secondary" size="m" iconLeft="system-pencil-plus" onClick={() => toast('New strategy framework')}>New</Button> }}
-            search={{ placeholder: 'Ask anything about strategy frameworks', noResults: ['Q1 2026 Strategy Framework', 'Cost Optimization 2026'] }}
+              actions: <Button type="secondary" size="m" iconLeft="system-pencil-plus" onClick={() => toast('Create strategy framework')}>Create</Button> }}
+            search={{ placeholder: 'Search strategy frameworks', noResults: ['Q1 2026 Strategy Framework', 'Cost Optimization 2026'] }}
             onOpen={r => (r.id === 'f2' ? goScreen('dashboard') : r.id === 'f3' ? goScreen('review') : r.status.type === 'gray' ? goScreen('mapoverview') : toast(`${r.name} is archived`))} onRename={() => {}}
             columns={columns} />
         </div>

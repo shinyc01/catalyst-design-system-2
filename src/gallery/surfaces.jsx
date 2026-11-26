@@ -61,8 +61,8 @@ export default IFS_GALLERY;
       </Row>
       <Live>
         <Button type="primary" onClick={() => setOpen(true)}>Open modal</Button>
-        <Modal open={open} onOpenChange={setOpen} title="Archive investment"
-          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive investment', onClick: () => setOpen(false) }}>
+        <Modal open={open} onOpenChange={setOpen} title="Archive this investment?"
+          secondaryAction={{ label: 'Cancel', onClick: () => setOpen(false) }} primaryAction={{ label: 'Archive', onClick: () => setOpen(false) }}>
           <Filler h={80}>Esc, the ✕ or a click on the overlay closes it. Tab stays inside.</Filler>
         </Modal>
       </Live>

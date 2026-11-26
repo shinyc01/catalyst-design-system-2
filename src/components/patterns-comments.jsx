@@ -129,7 +129,7 @@ function CommentCallout({ thread, currentUser = { name: 'You' }, people = [], on
 const CM_STOP = new Set('a an the me my all any show find get list give what which who whose where when is are was were about of on in for to with by from comments comment everything anything that this those these please do does did there'.split(' '));
 const cmWords = s => (s || '').toLowerCase().replace(/[^\w\s.#-]/g, ' ').split(/\s+/).filter(Boolean);
 // Pattern helper: comment search stand-in — plain function, no visuals.
-// "Ask anything about comments" (Figma note 247:229908): Cooper reads the query and returns the matching threads — by author,
+// "Search comments" (Figma note 247:229908): Cooper reads the query and returns the matching threads — by author,
 // status, time, element or content — as the same list with fewer items. This stand-in matches every meaningful word of the
 // query against author, number, place, type, time and text. Returns { results, suggestion } — suggestion = the closest term
 // found in the comments when nothing matches (Figma "You might be looking for").
@@ -158,7 +158,7 @@ function searchComments(threads = [], query = '') {
 
 // Pattern helper: Comments drawer list — built from Drawer + SegmentedControl + SmartSearch + CommentDrawerCard + EmptyState.
 // The Comments panel (Figma "Map - Overview - Comments panel unresolved" 12:34047): kit Drawer titled "Comments" with an
-// Unresolved | Resolved SegmentedControl, the SmartSearch "Ask anything about comments", and one CommentDrawerCard per thread,
+// Unresolved | Resolved SegmentedControl, the SmartSearch "Search comments", and one CommentDrawerCard per thread,
 // newest first. Rows never expand: a click opens the thread's callout on the canvas (onOpen).
 // Props: threads [{ id, number, place, type: action|question|info, unread, resolved, comments }], filter / defaultFilter /
 // onFilterChange ('unresolved' | 'resolved'), selectedId, onOpen(thread), onResolve(thread), onUnresolve(thread),
@@ -192,7 +192,7 @@ function CommentsPanel({ threads = [], filter, defaultFilter = 'unresolved', onF
       segmented={<IFS.SegmentedControl size="s" value={view} onChange={setView}
         options={[{ value: 'unresolved', label: 'Unresolved' }, { value: 'resolved', label: 'Resolved' }]} />}>
       <div className="ifs-cpanel__search">
-        <IFS.SmartSearch width="100%" placeholder="Ask anything about comments" value={text} onChange={v => { setText(v); if (!v) setQuery(''); }}
+        <IFS.SmartSearch width="100%" placeholder="Search comments" value={text} onChange={v => { setText(v); if (!v) setQuery(''); }}
           onSubmit={setQuery} onClear={() => setQuery('')} />
       </div>
       {empty ? <div className="ifs-cpanel__empty">{empty}</div> : (

@@ -55,7 +55,7 @@ export default IFS_GALLERY;
       : <P>No reviewer notes yet.</P> },
   ];
   const SUMMARY_READY = { title: 'Ready to approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' };
-  const SUMMARY_BLOCKED = { title: 'Budget envelope exceeded', text: 'Proposed framework raises portfolio value to $2.24B — $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' };
+  const SUMMARY_BLOCKED = { title: 'Budget envelope exceeded', text: 'Proposed framework raises portfolio value to $2.24B, $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' };
 
   const LONG_NOTE = 'The 12–18 month action window is being treated as a key reason to move this idea forward, but the current evidence does not fully support that level of urgency yet. I understand the reliability risk is increasing and the affected feeders are becoming harder to defer, but we should not let this move into approval as if the timing is already confirmed.';
   const REVIEWER_CHAIN = [
@@ -285,14 +285,12 @@ export default IFS_GALLERY;
             </>}
         </Shell>
         <IFS.Modal open={modal === 'publish'} onOpenChange={o => !o && setModal(null)} title="Publish this framework?" width={440} overlay="base"
-          secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Publish now', onClick: publish }}>
-          <p className="t-body-l-regular" style={{ margin: 0 }}>Are you sure you want to publish <b>“{FRAMEWORK}”</b>? It will become active and available for use.</p>
-          <p className="t-body-l-regular" style={{ margin: 'var(--space-200) 0 0' }}>Once published, further changes will require creating a new version.</p>
+          secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Publish', onClick: publish }}>
+          <p className="t-body-l-regular" style={{ margin: 0 }}><b>“{FRAMEWORK}”</b> becomes active. Further changes need a new version.</p>
         </IFS.Modal>
         <IFS.Modal open={modal === 'send'} onOpenChange={o => !o && setModal(null)} title="Send for review?" width={440} overlay="base"
-          secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Send now', onClick: sendAgain }}>
-          <p className="t-body-l-regular" style={{ margin: 0 }}>Are you sure you want to send <b>“{FRAMEWORK}”</b> for review?</p>
-          <p className="t-body-l-regular" style={{ margin: 'var(--space-200) 0 0' }}>Reviewers will be able to see the current state of the framework and provide feedback.</p>
+          secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Send for review', onClick: sendAgain }}>
+          <p className="t-body-l-regular" style={{ margin: 0 }}>Reviewers see the current state of <b>“{FRAMEWORK}”</b> and can give feedback. Their earlier approvals are reset.</p>
         </IFS.Modal>
       </Screen>
     </>;

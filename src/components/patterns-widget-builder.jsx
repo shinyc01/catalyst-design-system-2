@@ -31,7 +31,7 @@ const PREVIEW_TITLES = {
   'strategic-objectives': 'Strategic objectives breakdown',
   'framework-coverage': 'Framework coverage by measure type',
   portfolio: 'Portfolio under this framework',
-  'investment-value': 'Investment value',
+  'investment-value': null, // built at render from the organisation's word (IFS.term, USER-SETTINGS row 15)
 };
 function PreviewWidgetCard({ type = 'strategic-objectives', title, className, ...rest }) {
   const sk = (k, s) => <i key={k} className="ifs-preview-widget__sk" style={s} />;
@@ -65,7 +65,7 @@ function PreviewWidgetCard({ type = 'strategic-objectives', title, className, ..
   }
   return (
     <div aria-hidden="true" className={cx('ifs-preview-widget', `ifs-preview-widget--${type}`, className)} {...rest}>
-      <span className="ifs-preview-widget__title">{title ?? PREVIEW_TITLES[type]}</span>
+      <span className="ifs-preview-widget__title">{title ?? (type === 'investment-value' ? `${IFS.term('investment', { capital: true })} value` : PREVIEW_TITLES[type])}</span>
       {body}
     </div>
   );
@@ -219,8 +219,8 @@ function makeEngine(widgets) {
     if (!n) return { ok: true };
     if (ks.includes('metrics')) return { ok: false, reason: 'Metrics take the whole row' };
     if (ks.some(isWhole) || isWhole(k)) return { ok: false, reason: null };
-    if (n >= 3) return { ok: false, reason: 'Row is full — max 3 widgets' };
-    if (ks.includes('chart') && n >= 2) return { ok: false, reason: 'Row is full — max 2 widgets with a chart' };
+    if (n >= 3) return { ok: false, reason: 'Row is full: 3 widgets at most' };
+    if (ks.includes('chart') && n >= 2) return { ok: false, reason: 'Row is full: 2 widgets at most with a chart' };
     if (ks.includes('chart')) return { ok: true };
     if (k === 'chart' && n >= 2) return { ok: false, reason: null };
     return { ok: true };
@@ -703,7 +703,7 @@ function WidgetsDrawer({ open, onOpenChange, items = [], onAdd, onGrab, title = 
   return (
     <IFS.Drawer inline open title={title} onOpenChange={onOpenChange} collapsible={false} className={cx('wb-drawer', className)} style={style}>
       <p className="wb-drawer__desc">{description}</p>
-      <IFS.Search placeholder="Find a suitable widget by description" value={q} onChange={setQ} className="wb-drawer__search" />
+      <IFS.Search placeholder="Search widgets" value={q} onChange={setQ} className="wb-drawer__search" />
       <div className="wb-drawer__list">
         {list.map(it => (
           <WidgetCard key={it.id} title={it.title} description={it.description} preview={it.preview}

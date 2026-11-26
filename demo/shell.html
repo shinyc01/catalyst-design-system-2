@@ -18,6 +18,7 @@ html,body,#root{margin:0;height:100%;background:var(--color-surface-canvas);colo
 .app{position:relative;width:100%;height:100%;overflow:hidden;--pg-margin:var(--page-margin);--pg-gap:var(--page-gap)}
 .density-help{color:var(--color-text-softer);margin:var(--space-100) 0 0}
 .pg-content{box-sizing:border-box;width:100%;max-width:calc(var(--layout-max-content-width) + 2 * var(--pg-margin));margin:0 auto;padding:var(--pg-margin);display:flex;flex-direction:column;gap:var(--pg-gap)}
+.pg-content--wide{max-width:calc(var(--layout-max-content-width-wide) + 2 * var(--pg-margin))} /* tables, dashboards and maps: the 2240 cap (rule 3.15, T2-6) */
 .pg-row{display:flex;gap:var(--pg-gap);min-width:0}
 .pg-row > *{min-width:0}
 .pg-fill{flex:1 1 0;min-width:0}

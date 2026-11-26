@@ -519,10 +519,10 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, act
 // Type=Default 244:117280 and the older standalone copy 95:18889 both carry key 771d8425…. Not found in the published IFS Design System library.
 // The page intro on a library / list page (a single object's page uses PageHeader instead). Column, gap 20:
 //   title row (gap 8, bottom-aligned): text column (gap 8) = eyebrow + title (Heading/H2/medium) + description (Label/M/medium),
-//   then the actions on the right (Figma "Show button": button Secondary M "New" with system-pencil-plus);
+//   then the actions on the right (Figma "Show button": button Secondary M "Create" with system-pencil-plus (rule 14.2; "Create ▾" with a Menu when the page creates more than one kind of thing));
 //   tabs row (40 tall, space-between, bottom-aligned, gap 32): tab-organism (tabs with counts) + smart-search-organism (360) ("show search").
 // Props: title, description (one line; omit for a title-only page-top), eyebrow (Figma "cooper": true → "Cooper", or a string)
-// with the Cooper Insight mark, actions (node, e.g. <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>),
+// with the Cooper Insight mark, actions (node, e.g. <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">Create</IFS.Button>),
 // tabs (IFS.Tabs props, or a node), search (IFS.SmartSearch props, or a node), headingLevel (default 1).
 // With neither description nor eyebrow the title row is 32 tall and centred (the Build / Idea Pad page-top).
 function PageTop({ title, description, eyebrow, actions, tabs, search, headingLevel = 1, className, ...rest }) {
@@ -556,7 +556,9 @@ function PageTop({ title, description, eyebrow, actions, tabs, search, headingLe
 // (+ optional CanvasHeader) on top, a scrolling content area and an optional side panel on the right.
 // Bar, sidebar, header and panel stay put; only content scrolls.
 // Props: navBar, sideNav, header (nodes), panel (node, e.g. <Panel>; right of the content, below the header), bottom (node,
-// e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4).
+// e.g. a bottom sheet), children (content), height (default 100vh), panelMode, onPanelClose, skipLabel (the skip link's text, G4),
+// title + module (rule 9.27, WCAG 2.4.2): set the browser tab title "{title} – {module} – IFS Copperleaf" while the shell is shown
+// (title = the page's own name; module omitted on a module's landing page); the old title comes back on unmount.
 // Panel mode (decided Nov 19, guide/rules.md 3.18): set by the panel's JOB, not the screen.
 //   push  the content shrinks beside the panel and reflows onto its own columns: the user works with the panel and the
 //         whole page together (readiness evaluation, comments, widgets, approval chain, row / record preview). Default. The full Cooper chat is over (rule 3.18).
@@ -583,7 +585,14 @@ function useShellDismiss(ref, active, onDismiss) {
 }
 // G4 (rule 9.16): a "Skip to content" link is the shell's first tab stop, shown on focus; it moves focus to <main>.
 let shellUid = 0;
-function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', className, style, ...rest }) {
+const SHELL_PRODUCT = 'IFS Copperleaf';
+function AppShell({ navBar, sideNav, header, panel, panelMode, onPanelClose, bottom, children, height, skipLabel = 'Skip to content', title, module, className, style, ...rest }) {
+  React.useEffect(() => {
+    if (typeof document === 'undefined' || (title == null && module == null)) return undefined;
+    const before = document.title;
+    document.title = [title, module, SHELL_PRODUCT].filter(Boolean).join(' – ');
+    return () => { document.title = before; };
+  }, [title, module]);
   const ref = React.useRef(null), sideRef = React.useRef(null), panelRef = React.useRef(null);
   const mainId = React.useMemo(() => `ifs-main-${++shellUid}`, []);
   const [size, setSize] = React.useState(() => shellSizeOf(typeof window !== 'undefined' ? window.innerWidth : 1440));

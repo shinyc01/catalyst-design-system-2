@@ -21,7 +21,7 @@ export default IFS_GALLERY;
         </Row>
       ))}
     </React.Fragment>)}
-    <Row label="interactive"><MapPinDot counter="12" label="12 faults — click to select" /><MapPinDot size="s" status="warning" label="Warning" /></Row>
+    <Row label="interactive"><MapPinDot counter="12" label="12 faults" /><MapPinDot size="s" status="warning" label="Warning" /></Row>
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'MapPinPole', figma: 'map-pin-pole "Pole" (b548a660) [patterns] (12:107120)', render: () => <IFS.Stack gap="100" style={mapBg}>
@@ -118,7 +118,8 @@ export default IFS_GALLERY;
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {
     const S = 0.47; // the Figma map draws its pins at ~47%
-    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
+    // --pd-hit keeps each pin's hit area 24 px on screen inside the scaled thumbnail (audit run 2 M3)
+    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0', '--pd-hit': `calc(var(--size-24) / ${S})` }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
       <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 'var(--radius-control)', background: 'var(--color-surface-secondary)' }}>
@@ -179,7 +180,7 @@ export default IFS_GALLERY;
         {kv.map(([k, v]) => <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: 'var(--space-150) 0' }}><span style={{ color: 'var(--color-text-soft)' }}>{k}</span><span>{v}</span></div>)}
         <div style={{ borderTop: '1px solid var(--color-border-soft)', marginTop: 'var(--space-150)', paddingTop: 'var(--space-300)' }}>
           <div style={{ color: 'var(--color-text-soft)' }}>Problem statement</div>
-          <div style={{ marginTop: 'var(--space-150)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
+          <div style={{ marginTop: 'var(--space-150)' }}>7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising, flagged before failure, with an investment idea already drafted.</div>
         </div>
       </div>
     );
@@ -204,7 +205,7 @@ export default IFS_GALLERY;
         })()}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-300)' }}>
           {card('Investment details', <InvestmentDetails />)}
-          {card('Affected assets & area', <AffectedAssets />)}
+          {card('Affected assets and area', <AffectedAssets />)}
           {card('Yearly forecast', <YearlyForecast />)}
           {card('Investment value', <InvestmentValue />)}
         </div>

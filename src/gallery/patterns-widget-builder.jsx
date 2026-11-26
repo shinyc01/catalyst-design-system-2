@@ -178,8 +178,8 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Widget builder — Investment overview', figma: 'Investment overview / Widgets drawer opened [patterns] (331:493265)', render: () => {
     const base = {
       details: { kind: 'text', title: 'Investment details', render: () => <KeyValues rows={[['Name', 'Southern Feeder Replacement — Circuit 14B'], ['Code', 'INV-2025-0842'], ['Type', 'Capital Replacement'], ['Planning portfolio', 'FY26–27 Distribution Capital · Northern Region']]}
-        note={['Problem statement', '7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.']} /> },
-      assets: { kind: 'chart', title: 'Affected assets & area', render: () => <MapView /> },
+        note={['Problem statement', '7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising, flagged before failure, with an investment idea already drafted.']} /> },
+      assets: { kind: 'chart', title: 'Affected assets and area', render: () => <MapView /> },
       forecast: { kind: 'chart', title: 'Yearly forecast', bare: true, render: () => <IFS.ColumnChart data={forecast} valueLabel="Forecast" format={usdAxis} height={220} /> },
       value: { kind: 'chart', title: 'Investment value', bare: true, render: () => <IFS.BarChart data={invValue} valueLabel="Value" format={usdAxis} labelWidth={180} height={220} /> },
     };

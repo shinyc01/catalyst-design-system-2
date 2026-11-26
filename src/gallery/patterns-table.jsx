@@ -34,7 +34,7 @@ export default IFS_GALLERY;
 
   // ── SmartSearch ──
   IFS_GALLERY.push({ name: 'SmartSearch', figma: 'smart-search-organism (2145:3758)', render: () => {
-    const ph = 'Ask anything about strategy frameworks';
+    const ph = 'Search strategy frameworks';
     return <>
       <IFS.Inline gap="600" align="start" wrap style={grid}>
         {['text', 'voice'].map(t => (
@@ -52,7 +52,7 @@ export default IFS_GALLERY;
         ))}
       </IFS.Inline>
       <Row label="size s (28, explore-header)"><SmartSearch size="s" width={248} placeholder="Search" /><SmartSearch size="s" width={248} defaultValue="Northgate" /></Row>
-      <Row label="live, with suggestions"><div style={{ height: 300 }}><SmartSearch placeholder="Ask anything about idea pad" suggestions={QUESTIONS} onSubmit={v => IFS.toast({ title: `Asked: ${v}` })} /></div></Row>
+      <Row label="live, with suggestions"><div style={{ height: 300 }}><SmartSearch placeholder="Search ideas" suggestions={QUESTIONS} onSubmit={v => IFS.toast({ title: `Asked: ${v}` })} /></div></Row>
     </>;
   } });
 
@@ -96,7 +96,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'CollaborationBadge', figma: 'badge-atom in Collaboration column [patterns] (95:132266)', render: () => (
     <Row label="types">
-      <CollaborationBadge label="View reply" avatar={{ initials: 'IO', type: 'purple' }} request={{ name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for — see the 2024 tab.”', meta: 'INV-2026-0812 · replied' }} />
+      <CollaborationBadge label="View reply" avatar={{ initials: 'IO', type: 'purple' }} request={{ name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for. See the 2024 tab.”', meta: 'INV-2026-0812 · replied' }} />
       <CollaborationBadge label="Provide asset health" avatar={{ initials: 'MR', type: 'red' }} request={{ name: 'Matthew Ridderikhoff', role: 'Engineering Review', time: '1h ago', text: '“Cost model is locked. Focus on the risk-deferral trade-off in Alternative B.”', meta: 'INV-2026-0840 · sent for review' }} />
       <CollaborationBadge label="Review alternative B" avatar={{ initials: 'MR', type: 'red' }} count={3} request={{ name: 'Matthew Ridderikhoff', role: 'Engineering Review', time: '1h ago', text: '“Newest of three requests.”' }} />
     </Row>
@@ -112,7 +112,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
     <div style={{ width: 1000, padding: 'var(--space-400)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-secondary)' }}>
       <TableToolbar filter={<IFS.SegmentedControl size="s" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
-        search={<SmartSearch placeholder="Ask anything about idea pad" />} onConfigure={() => {}} />
+        search={<SmartSearch placeholder="Search ideas" />} onConfigure={() => {}} />
     </div>
   ) });
 
@@ -128,7 +128,7 @@ export default IFS_GALLERY;
       <RecordPreview id="INV-2026-0912" onDetails={() => {}} onClose={() => {}}>
         <h3 className="t-heading-h2-medium" style={{ margin: '0 0 var(--space-150)', color: 'var(--color-text)' }}>Southern Feeder Replacement — Circuit 17C</h3>
         <IFS.Indicator type="purple">Shaping</IFS.Indicator>
-        <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising.</p>
+        <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising.</p>
       </RecordPreview>
     </div>
   ) });
@@ -138,7 +138,7 @@ export default IFS_GALLERY;
   const today = new Date();
   const ago = n => new Date(today.getFullYear(), today.getMonth(), today.getDate() - n);
   const IDEAS = [
-    { id: 'i1', name: 'Northgate Substation Transformer Replacement', program: true, pinned: true, status: { type: 'orange', label: 'Under review', count: '0/4' }, horizon: 'FY29–FY43', hz: [29, 43], term: 'Long', modified: ago(3), collab: { label: 'View reply', avatar: { initials: 'IO', type: 'purple' }, kind: 'Replied', who: 'I. Okafor', request: { name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for — see the 2024 tab.”', meta: 'INV-2026-0812 · replied' } }, keywords: ['Replacement', 'Substation'] },
+    { id: 'i1', name: 'Northgate Substation Transformer Replacement', program: true, pinned: true, status: { type: 'orange', label: 'Under review', count: '0/4' }, horizon: 'FY29–FY43', hz: [29, 43], term: 'Long', modified: ago(3), collab: { label: 'View reply', avatar: { initials: 'IO', type: 'purple' }, kind: 'Replied', who: 'I. Okafor', request: { name: 'Ivy Okafor', role: 'Asset Planning', time: '2h ago', text: '“Added the outage history you asked for. See the 2024 tab.”', meta: 'INV-2026-0812 · replied' } }, keywords: ['Replacement', 'Substation'] },
     { id: 'i2', name: 'Ridgeview Village Backup Tie to Feeder 5', program: true, status: { type: 'blue', label: 'New' }, horizon: 'FY30–FY50', hz: [30, 50], term: 'Long', modified: ago(20), keywords: ['Feeder'] },
     { id: 'i3', name: 'Cedar Park Feeder Hardening Program', program: true, status: { type: 'gray', label: 'Deferred' }, horizon: 'FY29–FY39', hz: [29, 39], term: 'Long', modified: d('2026-04-29'), collab: { label: 'Provide asset health', avatar: { initials: 'MR', type: 'red' }, kind: 'Input required', who: 'M. Ridderikhoff', count: 2, request: { name: 'Matthew Ridderikhoff', role: 'Engineering Review', time: '1h ago', text: '“Cost model is locked. Focus on the risk-deferral trade-off in Alternative B.”', meta: 'INV-2026-0840 · sent for review' } }, keywords: ['Feeder', 'Refurbishment'] },
     { id: 'i4', name: 'Southern Feeder Replacement — Circuit 17C', status: { type: 'purple', label: 'Shaping' }, horizon: 'FY34–FY41', hz: [34, 41], term: 'Mid', modified: d('2026-03-11'), keywords: ['Replacement', 'Feeder'] },
@@ -171,7 +171,7 @@ export default IFS_GALLERY;
   const PREVIEW_BODY = r => <>
     <h3 className="t-heading-h2-medium" style={{ margin: '0 0 var(--space-150)', color: 'var(--color-text)' }}>{r.name}</h3>
     <IFS.Indicator type={r.status.type}>{r.status.label}</IFS.Indicator>
-    <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</p>
+    <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)' }}>7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising, flagged before failure, with an investment idea already drafted.</p>
     <IFS.ContentCard size="s" title="The need" description="Fault frequency on these feeders is up 3.1× over 24 months, with two sustained outages this year." />
   </>;
 
@@ -196,11 +196,11 @@ export default IFS_GALLERY;
       <Screen>
         <BuildShell
           aside={preview && <RecordPreview id={`INV-2026-09${preview.id.slice(1).padStart(2, '0')}`} onDetails={() => open(preview)} onClose={() => setPreview(null)}>{PREVIEW_BODY(preview)}</RecordPreview>}>
-          <IFS.PageTop title="Build" actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>}
+          <IFS.PageTop title="Build" actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">Create</IFS.Button>}
             tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], value: page,
               onChange: v => { setPage(v); setLoading(true); setTimeout(() => setLoading(false), 1200); } }} />
           <DataTable variant="ranked" rows={rows} onRowsChange={setRows} columns={ideaCols(r => IFS.toast({ title: `Opening ${r.collab.label.toLowerCase()} on ${r.name}` }))}
-            filterTabs={ideaTabs} search={{ placeholder: 'Ask anything about idea pad', suggestions: QUESTIONS, noResults: ['Cedar Park', 'Birchwood', 'Northgate Full Replacement'] }}
+            filterTabs={ideaTabs} search={{ placeholder: 'Search ideas', suggestions: QUESTIONS, noResults: ['Cedar Park', 'Birchwood', 'Northgate Full Replacement'] }}
             onOpen={open} onPreview={setPreview} previewId={preview && preview.id} rowActions={ideaActions} loading={loading}
             configurable={{ suggestions: SUGGESTED_COLS }} />
         </BuildShell>
@@ -242,9 +242,9 @@ export default IFS_GALLERY;
 >
           <IFS.Stack gap="500" style={{ padding: 'var(--space-300)' }}>
             <DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
-              pageTop={{ title: 'Value framework', description: 'Published, archived and draft value frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
+              pageTop={{ title: 'Value framework', description: 'Published, archived and draft value frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">Create</IFS.Button> }}
               filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s === 'Pending approval' ? 'Pending approval' : s, match: r => r.status.label === s }))] }}
-              search={{ placeholder: 'Ask anything about value frameworks', suggestions: ['Which frameworks are waiting on my approval?', 'What changed between v13 and v14?'], noResults: ['Value Framework v14', 'Reliability 2025'] }}
+              search={{ placeholder: 'Search value frameworks', suggestions: ['Which frameworks are waiting on my approval?', 'What changed between v13 and v14?'], noResults: ['Value Framework v14', 'Reliability 2025'] }}
               onOpen={r => IFS.toast({ title: `Opening ${r.name}` })} onRename={() => {}} rowActions={fwActions}
               columns={[
                 { key: 'name', title: 'Value framework', name: true, width: '1fr', filter: false },
@@ -290,7 +290,7 @@ export default IFS_GALLERY;
           <PageTop title="Investment details" description="Core investment details, context, and current status">
             <IFS.Tabs items={[{ value: 'g', label: 'General' }, { value: 'c', label: 'Cost and schedule' }, { value: 'r', label: 'Relationships' }]} defaultValue="r" />
           </PageTop>
-          <DataTable title="Dependencies" collapsible headerAction={cooperAdd} fixedHeight rows={DEPS} search={{ placeholder: 'Ask anything about investments', noResults: ['Circuit 13C', 'Northgate'] }}
+          <DataTable title="Dependencies" collapsible headerAction={cooperAdd} fixedHeight rows={DEPS} search={{ placeholder: 'Search investments', noResults: ['Circuit 13C', 'Northgate'] }}
             columns={[
               { key: 'name', title: 'Investment', name: true, width: '1fr', code: r => r.code, filter: false },
               { key: 'type', title: 'Dependency type', width: 180, type: 'custom', render: r => <IFS.Badge color="white" size="m">{r.type}</IFS.Badge> },
@@ -312,9 +312,9 @@ export default IFS_GALLERY;
     const cols = ideaCols(() => {}).slice(0, 4);
     return (
       <IFS.Stack gap="600" style={{ width: 1100 }}>
-        <Cell title="Loading (skeleton rows inside the table)" w={1100}><DataTable variant="ranked" defaultRows={IDEAS.slice(0, 3)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Ask anything about idea pad' }} loading /></Cell>
+        <Cell title="Loading (skeleton rows inside the table)" w={1100}><DataTable variant="ranked" defaultRows={IDEAS.slice(0, 3)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Search ideas' }} loading /></Cell>
         <Cell title="Search → Searching… → results / No results for “…” (type a query and press Enter, for example “zzz”)" w={1100}>
-          <DataTable variant="ranked" defaultRows={IDEAS.slice(0, 5)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Ask anything about idea pad', suggestions: QUESTIONS, noResults: ['Cedar Park', 'Birchwood', 'Northgate Full Replacement'] }} />
+          <DataTable variant="ranked" defaultRows={IDEAS.slice(0, 5)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Search ideas', suggestions: QUESTIONS, noResults: ['Cedar Park', 'Birchwood', 'Northgate Full Replacement'] }} />
         </Cell>
         <Cell title="Filter combination with no matches (open Horizon › Short, then Ideas › Substation)" w={1100}>
           <DataTable variant="standard" defaultSort={{ key: 'modified', dir: 'desc' }} defaultRows={IDEAS.slice(0, 5)} columns={cols} filterTabs={{ ...ideaTabs, variant: 'tabs' }} />

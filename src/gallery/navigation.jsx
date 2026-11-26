@@ -155,8 +155,8 @@ export default IFS_GALLERY;
 
   const FW_TABS = [{ value: 'all', label: 'All', count: 8 }, { value: 'active', label: 'Active', count: 1 }, { value: 'pending', label: 'Pending approval', count: 1 },
     { value: 'archived', label: 'Archived', count: 3 }, { value: 'draft', label: 'Draft', count: 3 }];
-  const NewBtn = () => <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>;
-  const SEARCH = { placeholder: 'Ask anything about strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?'] };
+  const CreateBtn = () => <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">Create</IFS.Button>;
+  const SEARCH = { placeholder: 'Search strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?'] };
   const Frame = ({ label, children }) => <div style={{ width: 1176, marginBottom: 'var(--space-700)' }}><div className="t-label-m-medium" style={{ color: 'var(--color-text-softer)', marginBottom: 'var(--space-300)' }}>{label}</div>{children}</div>;
   IFS_GALLERY.push({ name: 'PageHeader: narrow widths', figma: 'Nov 19 rule: the stepper opens from the status once it no longer fits; below 720 two rows: title + id, then status, views, other actions, primary last', render: () => {
     const steps = <IFS.Stepper current={3} active={3} steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} />;
@@ -169,25 +169,25 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'PageTop: narrow widths', figma: 'Nov 19 rule: below 720 the tabs and search go onto separate rows', render: () => <>
     {[1100, 600].map(w => <Row key={w} label={`${w}px`} top><div style={{ width: w }}>
-      <PageTop title="Strategy frameworks" description="Frameworks set how investments are valued." actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>}
+      <PageTop title="Strategy frameworks" description="Frameworks set how investments are valued." actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">Create</IFS.Button>}
         tabs={{ items: [{ value: 'a', label: 'Active', count: 3 }, { value: 'd', label: 'Drafts', count: 5 }, { value: 'r', label: 'Archived', count: 12 }], defaultValue: 'a' }} search={{ placeholder: 'Search frameworks' }} /></div></Row>)}
   </> });
 
   IFS_GALLERY.push({ name: 'PageTop', figma: 'page-top (244:117279, key c5e4c474…)', render: () => <>
-    <Frame label="Default — description, New, tabs with counts, smart search (library page)">
-      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />}
+    <Frame label="Default — description, Create, tabs with counts, smart search (library page)">
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<CreateBtn />}
         tabs={{ items: FW_TABS, defaultValue: 'all' }} search={SEARCH} />
     </Frame>
     <Frame label="cooper = true, Show button = false (Command home; the instance overrides the gap to 12)">
       <PageTop eyebrow title="Welcome back, Jeff." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
         style={{ gap: 'var(--space-300)' }} tabs={{ items: [{ value: 'w', label: 'My works', count: 3 }, { value: 'd', label: 'Decisions', count: 6 }, { value: 'c', label: 'Conversations', count: 3 }, { value: 'f', label: 'Following', count: 3 }], defaultValue: 'd' }}
-        search={{ placeholder: 'Ask anything about your work' }} />
+        search={{ placeholder: 'Search' }} />
     </Frame>
     <Frame label="show search = false">
-      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<CreateBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
     </Frame>
     <Frame label="No description — title only, Tabs size L (Build / Idea Pad)">
-      <PageTop title="Build" actions={<NewBtn />} tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], defaultValue: 'ideas' }} />
+      <PageTop title="Build" actions={<CreateBtn />} tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], defaultValue: 'ideas' }} />
     </Frame>
     <Frame label="Title + description only (no tabs, no search, no button)">
       <PageTop title="Value models" description="Value models used across frameworks" />

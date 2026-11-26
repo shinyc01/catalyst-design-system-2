@@ -25,7 +25,7 @@ const filteringRows = [
 
 const filteringSegments = [
   { value: 'all', label: 'All ideas' },
-  { value: 'project', label: 'Project ideas', match: r => !r.program },
+  { value: 'project', label: `${IFS.term('investment', { capital: true })} ideas`, match: r => !r.program },
   { value: 'program', label: 'Program ideas', match: r => r.program },
 ];
 
@@ -104,22 +104,24 @@ function ScreenFiltering({ bp, height }) {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      <AppShell height={height}
+      <AppShell height={height} title="Idea Pad" module="Build" /* tab title, rule 9.27 */
         navBar={<NavBar stages={filteringStages} defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }}
           onChange={navStage}
           onSearch={() => toast('Search')} onSettings={() => toast('Settings')} onNotifications={() => toast('Notifications')} />}
         bottom={<BottomSheet prompts={['Brief me', 'What needs my input first?']} cooperIndicator={false}
           onPrompt={l => toast(`Asked Cooper: ${l}`)} onCooper={() => toast('Opening Cooper')} />}>
-        <div className="pg-content" style={{ paddingTop: 'var(--pg-gap)', paddingBottom: 'var(--pg-gap)' }}>
+        <div className="pg-content pg-content--wide" style={{ paddingTop: 'var(--pg-gap)', paddingBottom: 'var(--pg-gap)' }}>
           <PageTop title="Build"
-            actions={<Button type="secondary" size="m" iconLeft="system-pencil-plus" onClick={() => toast('New idea')}>New</Button>}
+            actions={<IFS.Menu label="Create" align="end" onSelect={it => toast(`Create ${it.label.toLowerCase()}`)}
+              items={[{ label: 'Idea', icon: 'system-bulb' }, { label: 'Program', icon: 'system-briefcase' }]}
+              trigger={<Button type="secondary" size="m" iconLeft="system-pencil-plus" iconRight="arrow-caret-down-filled">Create</Button>} />}
             tabs={<Tabs size="m" aria-label="Build views" value="ideas" onChange={v => v === 'inv' && toast('Investments isn’t part of this prototype')}
-              items={[{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }]} />} />
+              items={[{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: IFS.term('investment', { count: 2, capital: true }) }]} />} />
           <div ref={cardRef} style={{ position: 'relative' }}>
             <Table columns={columns} rows={rows}
               onRowClick={r => toast(`Opening ${r.name}`)}
               tabs={<SegmentedControl size="m" aria-label="Filter ideas" value={segment} onChange={setSegment} options={segOptions} />}
-              search={<SmartSearch placeholder="Ask anything about idea pad" value={query}
+              search={<SmartSearch placeholder="Search ideas" value={query}
                 onChange={v => { setQuery(v); if (!v) setApplied(''); }} onSubmit={runSearch} onClear={() => runSearch('')} />} />
             {rows.length === 0 && (
               <div style={{ position: 'absolute', left: 0, right: 0, top: 120 }}>

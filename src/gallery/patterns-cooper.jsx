@@ -170,7 +170,7 @@ export default IFS_GALLERY;
     <Cap title="Network error" w={426}><CooperMessage status="offline" onRetry={() => {}} /></Cap>
     <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework — coverage report' }]} /></Cap>
     <Cap title="Answer with clarifying options (follow-ups hidden)" w={426}><CooperMessage status="answered" text="I need a little more context. Which would you like to start with?" followUps={followUps}
-      options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours — select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
+      options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours. Select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'ChatCompactPanel', figma: 'chat-compact-panel-organism "floating-window" [patterns] (12:263560)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>

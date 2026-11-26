@@ -25,7 +25,7 @@ export default IFS_GALLERY;
       <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access to this framework" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
       <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results for “WDRM-2”" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
       <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No frameworks match your filters" body="Try a different term, or clear filters to see all frameworks." primaryAction={{}} /></Cell>
-      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it’s empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
+      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences: why it’s empty and what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
       <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 'var(--radius-floating)' }}>

@@ -562,7 +562,7 @@ function CommentThread({ number = '#00', comments, defaultComments = [], onComme
       </div>
       {confirmId != null && createPortal(
         <IFS.Modal open onOpenChange={o => { if (!o) setConfirmId(null); }} width={440} title="Delete this comment?"
-          secondaryAction={{ label: 'Cancel', onClick: () => setConfirmId(null) }} primaryAction={{ label: 'Delete comment', onClick: () => remove(confirmId) }}>
+          secondaryAction={{ label: 'Cancel', onClick: () => setConfirmId(null) }} primaryAction={{ label: 'Delete', onClick: () => remove(confirmId) }}>
           The comment is deleted for all collaborators. This can't be undone.
         </IFS.Modal>, document.body)}
     </section>

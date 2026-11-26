@@ -318,8 +318,16 @@ function ChatCollapsedBar({ type = 'voice', value, defaultValue = '', onChange, 
   );
 }
 
+// Cooper's limits (rule 8.66, decided Nov 26; benchmark A1): one standing Body/S line in text-soft under the chat input, always shown,
+// never dismissible. Not a pattern of its own: ChatPanel draws it (limitsNote; false hides it only where another surface already says it).
+const COOPER_LIMITS = 'Cooper can make mistakes. Check the sources before you decide.';
+function CooperLimitsNote({ children = COOPER_LIMITS, className, ...rest }) {
+  return <p className={IFS.cx('ifs-cooper-limits', className)} {...rest}>{children}</p>;
+}
+
 // Shared shell of chat-compact-panel-organism and chat-full-panel-organism.
-function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children, empty, prompts = [], onPrompt, speech,
+// limitsNote (default true): the standing line under the input (rule 8.66).
+function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children, empty, prompts = [], onPrompt, speech, limitsNote = true,
   inputValue, onInputChange, onSend, analyzing, onStop, attachments, onRemoveAttachment, onAttach, onTypeChange, onFiles, dropping,
   onNewChat, onHistory, historyOpen, onResize, onMore, onClose, onDragStart, onResizeStart, placeholder, scrollRef, className, style, ...rest }) {
   const [drag, setDrag] = React.useState(false);
@@ -358,6 +366,7 @@ function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children,
             : <TextMessageInput value={inputValue} onChange={onInputChange} onSend={onSend} analyzing={analyzing} onStop={onStop} onAttach={onAttach}
                 onVoice={() => onTypeChange && onTypeChange('voice')} attachments={attachments} onRemoveAttachment={onRemoveAttachment}
                 placeholder={placeholder || (newChat && showEmpty ? 'Ask Cooper' : 'Ask a follow-up')} />}
+          {limitsNote && <CooperLimitsNote>{typeof limitsNote === 'string' ? limitsNote : undefined}</CooperLimitsNote>}
         </div>
       </div>
     </section>
@@ -767,7 +776,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
   const mounted = React.useRef(false);
   React.useEffect(() => { const el = scrollRef.current; if (el && mounted.current) el.scrollTop = el.scrollHeight; mounted.current = true; }, [msgs]);
   React.useEffect(() => {
-    const onKey = e => { if (sz === 'closed' && IFS.isCooperShortcut(e)) { e.preventDefault(); setSz('bar'); } }; // Ctrl+. / ⌘+. opens Cooper (Nov 25; "/" is search, rule 9.18)
+    const onKey = e => { if (sz === 'closed' && IFS.isCooperShortcut(e)) { e.preventDefault(); setSz('bar'); } }; // Ctrl+. / ⌘. opens Cooper (Nov 25; "/" is search, rule 9.18)
     document.addEventListener('keydown', onKey); return () => document.removeEventListener('keydown', onKey);
   }, [sz]);
   const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.current.push(t); };
@@ -988,7 +997,9 @@ function CooperRecommendations({ recommendations, defaultRecommendations = [], o
   const timer = React.useRef();
   React.useEffect(() => () => clearTimeout(timer.current), []);
   const groups = [...new Set(recs.map(r => r.group))];
-  const intro = note || `I found ${recs.length} recommendation${recs.length === 1 ? '' : 's'} for how investments are evaluated, prioritized, and aligned with your goals.`;
+  const intro = note || IFS.format.plural(recs.length, {
+    one: `I found # recommendation for how ${IFS.term('investment', { count: 2 })} are evaluated, prioritized, and aligned with your goals.`,
+    other: `I found # recommendations for how ${IFS.term('investment', { count: 2 })} are evaluated, prioritized, and aligned with your goals.` });
   const remove = r => { const next = recs.filter(x => x.id !== r.id); setRecs(next); return next; };
   const finish = () => { setMode('done'); setNote('I made all the recommended changes.'); timer.current = setTimeout(() => onDone && onDone(), speed * 2.5); };
   const apply = r => {
@@ -1022,7 +1033,7 @@ function CooperRecommendations({ recommendations, defaultRecommendations = [], o
 Object.assign(IFS, {
   CooperRecommendations,
   CooperHistory,
-  ChatHeader, UserMessage, Attachment, TextMessageInput, VoiceMessageInput, SpeakingControl, ChatCard, ChatLink, CooperProgress, CooperMessage,
+  ChatHeader, CooperLimitsNote, UserMessage, Attachment, TextMessageInput, VoiceMessageInput, SpeakingControl, ChatCard, ChatLink, CooperProgress, CooperMessage,
   ChatCollapsedBar, ChatCompactPanel, ChatFullPanel, FolderItem, SectionHeader, ChatHistoryCard, SearchChatHistoryCard, ChatReminderCard,
   HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, AgentWindow, RecommendationImpact, RecommendationGroup,
   RecommendationItem, RecommendationDetail, CooperChat,
@@ -1030,7 +1041,7 @@ Object.assign(IFS, {
 export {
   CooperRecommendations,
   CooperHistory,
-  ChatHeader, UserMessage, Attachment, TextMessageInput, VoiceMessageInput, SpeakingControl, ChatCard, ChatLink, CooperProgress, CooperMessage,
+  ChatHeader, CooperLimitsNote, UserMessage, Attachment, TextMessageInput, VoiceMessageInput, SpeakingControl, ChatCard, ChatLink, CooperProgress, CooperMessage,
   ChatCollapsedBar, ChatCompactPanel, ChatFullPanel, FolderItem, SectionHeader, ChatHistoryCard, SearchChatHistoryCard, ChatReminderCard,
   HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, AgentWindow, RecommendationImpact, RecommendationGroup,
   RecommendationItem, RecommendationDetail, CooperChat,

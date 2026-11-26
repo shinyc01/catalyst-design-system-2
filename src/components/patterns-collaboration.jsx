@@ -82,7 +82,11 @@ function LiveCursors({ users = [], simulate = true, positions, interval = 1400, 
 function CollaboratorsButton({ accepted = 1, invited = 1, className, ...rest }) {
   return (
     <IFS.Button type="tertiary" size="s" iconLeft="users-group" className={ccx('ifs-collab-button', className)}
-      aria-label={`${accepted}/${invited} collaborators joined`} /* WCAG 2.5.3: the name starts with the visible text (rule 9.21) */ {...rest}>{`${accepted}/${invited}`}</IFS.Button>
+      /* rule 8.35: "3/5" only as the compact count inside the button; screen readers hear "3 of 5 collaborators joined"
+         (audit run 2 B-12, decided Nov 26), from hidden text, so the name is the button's own content */ {...rest}>
+      <span aria-hidden="true">{`${accepted}/${invited}`}</span>
+      <span className="ifs-sr-only">{IFS.format.plural(invited, { one: `${accepted} of # collaborator joined`, other: `${accepted} of # collaborators joined` })}</span>
+    </IFS.Button>
   );
 }
 
@@ -223,10 +227,10 @@ function useCollaboration({ people: init = [], suggested: sugInit = [], director
 }
 
 // ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
-// Pattern component: modal-organism "Add Collaborator": person (content card, avatar L 40) + access select,
+// Pattern component: modal-organism "Add collaborator": person (content card, avatar L 40) + access select,
 // "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
 // Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
-//   title (the screen's own text; example default "Add Collaborator" / "Edit Collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
+//   title (the screen's own text; example default "Add collaborator" / "Edit collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 function InviteCollaboratorModal({ open, person, mode = 'invite', title, defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline }) {
   const [access, setAccess] = React.useState(defaultAccess);
   const [text, setText] = React.useState(defaultBrief);
@@ -235,7 +239,7 @@ function InviteCollaboratorModal({ open, person, mode = 'invite', title, default
   const changed = access !== defaultAccess || text !== defaultBrief;
   const submit = () => { if (mode === 'edit' && !changed) { onCancel && onCancel(); return; } onSubmit && onSubmit({ access, brief: text }); };
   return (
-    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title || (mode === 'edit' ? 'Edit Collaborator' : 'Add Collaborator')} width={440} inline={inline}
+    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title || (mode === 'edit' ? 'Edit collaborator' : 'Add collaborator')} width={440} inline={inline}
       footer={<>
         <IFS.Button type="tertiary" size="l" onClick={onCancel}>Cancel</IFS.Button>
         <IFS.Button type="primary" size="l" onClick={submit}>
@@ -260,13 +264,13 @@ function InviteCollaboratorModal({ open, person, mode = 'invite', title, default
 }
 
 // ───────────────────────────── RemoveCollaboratorModal ─────────────────────────────
-// Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + "This action will revoke the collaborator's
-// invite to the framework" + Cancel / Remove. Props: open, person, onCancel, onConfirm, inline.
-function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)
+// Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + the consequence (body, default
+// "They lose access."; the screen names its record) + Cancel / Remove. Props: open, person, title, body, onCancel, onConfirm, inline.
+function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", body, onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)
   if (!person) return null;
   return (
     <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title} width={440} inline={inline}
-      secondaryAction={{ label: 'Cancel', onClick: onCancel }} primaryAction={{ label: 'Remove collaborator', onClick: onConfirm }}>
+      secondaryAction={{ label: 'Cancel', onClick: onCancel }} primaryAction={{ label: 'Remove', onClick: onConfirm }}>
       <div className="ifs-collab-remove">
         <div className="ifs-collab-remove__card">
           <IFS.Avatar size="l" name={person.name} initials={person.initials} {...person.avatar} type={person.status === 'awaiting' ? 'awaiting' : (person.avatar || {}).type} />
@@ -275,7 +279,7 @@ function RemoveCollaboratorModal({ open, person, title = "Remove this collaborat
             <span className="ifs-collab-invite__title">{person.title}</span>
           </div>
         </div>
-        <p className="ifs-collab-remove__text">They lose access to this framework.</p>
+        <p className="ifs-collab-remove__text">{body || 'They lose access.' /* the screen names its record: body "They lose access to this framework." (rule 8.9) */}</p>
       </div>
     </IFS.Modal>
   );

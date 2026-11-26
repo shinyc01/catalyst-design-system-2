@@ -137,7 +137,7 @@ function LoadingRegion({ loading, skeleton, delay = 300, minDuration = 300, labe
 // Figma: FTA button (67:4758) — the Cooper FAB.
 // Props: stroke (Figma Stroke: true = 48px glass ring for non-black surfaces; false = bare 32px sphere for black footers/bottom sheets),
 // indicator (Show indicator), label (tooltip + accessible name, Figma tooltip "{label}" with a hotkey), hotkey (default IFS.cooperHotkey: Ctrl+. or
-// ⌘+. by platform, Nov 25; Figma's "/" moved to search, rule 9.18), state hover|pressed|focus (gallery),
+// ⌘. by platform, Nov 25; Figma's "/" moved to search, rule 9.18), state hover|pressed|focus (gallery),
 // disabled, onClick. The FAB hides while Cooper chat is open (one entry point).
 function FtaButton({ stroke = true, indicator = true, label = 'Cooper', hotkey = IFS.cooperHotkey, tooltip = true, state, className, ...rest }) {
   const btn = (

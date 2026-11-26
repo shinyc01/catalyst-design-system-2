@@ -32,8 +32,8 @@ export default IFS_GALLERY;
     { id: 't46', number: '#46', place: 'Value models', node: 'vm', dx: 40, dy: -8, type: 'action', comments: [c('a', 'Lara Green', '3d ago', 'Carbon footprint v4 needs the latest emissions factors.')] },
     { id: 't45', number: '#45', place: 'Value models', node: 'vm', dx: 95, dy: 96, type: 'info', comments: [c('a', 'Katarina Olsson', '3d ago', 'WDRM v4 weights look different from last quarter.')] },
     { id: 't54', number: '#54', place: 'Enterprise goals', node: 'eg', dx: 170, dy: -8, type: 'question', resolved: true, comments: [c('a', 'Maria Chen', '30 min ago', 'Do these goals reflect the updated business strategy for the upcoming year?')] },
-    { id: 't52', number: '#52', place: 'Strategic objectives', node: 'so', dx: 110, dy: -8, type: 'question', resolved: true, comments: [c('a', 'James Reyes', '1d ago', 'Some goals seem overlapping — can we merge or differentiate them?')] },
-    { id: 't51', number: '#51', place: 'Strategic objectives', node: 'env', dx: 40, dy: 96, type: 'question', resolved: true, comments: [c('a', 'Lara Green', '1d ago', 'Are all risk factors considered in these goals?'), c('b', ME.name, '1d ago', 'Yes — the risk register was merged last week.')] },
+    { id: 't52', number: '#52', place: 'Strategic objectives', node: 'so', dx: 110, dy: -8, type: 'question', resolved: true, comments: [c('a', 'James Reyes', '1d ago', 'Some goals seem to overlap. Can we merge or differentiate them?')] },
+    { id: 't51', number: '#51', place: 'Strategic objectives', node: 'env', dx: 40, dy: 96, type: 'question', resolved: true, comments: [c('a', 'Lara Green', '1d ago', 'Are all risk factors considered in these goals?'), c('b', ME.name, '1d ago', 'Yes, the risk register was merged last week.')] },
     { id: 't44', number: '#44', place: 'Value models', node: 'vm', dx: 170, dy: 96, type: 'info', resolved: true, comments: [c('a', 'Katarina Olsson', '1d ago', 'The impact of each objective on investments is now documented.'), c('b', 'Maria Chen', '1d ago', 'Thanks!')] },
   ];
 
@@ -49,7 +49,7 @@ export default IFS_GALLERY;
         <CommentPin type={t} state="hover" avatars={t === 'cooper' ? [{ type: 'cooper' }, UN] : [UN, UN2]} preview={preview} />
       </Row>
     ))}
-    <Row label="interactive (hover = preview)"><CommentPin avatars={[P['Lara Green'].avatar]} preview={{ name: 'Lara Green', time: '1d ago', text: 'Should we include additional environmental objectives?' }} onClick={() => IFS.toast({ title: 'Pin clicked — opens the thread' })} /></Row>
+    <Row label="interactive (hover = preview)"><CommentPin avatars={[P['Lara Green'].avatar]} preview={{ name: 'Lara Green', time: '1d ago', text: 'Should we include additional environmental objectives?' }} onClick={() => IFS.toast({ title: 'Pin clicked: opens the thread' })} /></Row>
   </IFS.Stack> });
 
   IFS_GALLERY.push({ name: 'CommentDrawerCard', figma: 'comment-drawer-card (1231:170874)', render: () => (
@@ -239,7 +239,7 @@ export default IFS_GALLERY;
                   style={{ position: 'absolute', left: p.x, top: p.y, transform: 'translateY(-100%)' }} onClick={() => { setDraft(null); setOpenId(t.id); st.open(t.id); }} />; })}
               {Object.entries(counts).map(([top, list]) => { const n = byId[top]; const p = S(n.x + 40, n.y - 8);
                 return <CommentPin key={`mc-${top}`} count={list.length} type={tab === 'resolved' || !list.some(t => t.unread) ? 'read' : 'unread'}
-                  label={`${list.length} ${tab} comments on ${n.title} — expand`}
+                  label={IFS.format.plural(list.length, { one: `Expand # ${tab} comment on ${n.title}`, other: `Expand # ${tab} comments on ${n.title}` })}
                   style={{ position: 'absolute', left: p.x, top: p.y, transform: 'translateY(-100%)' }} onClick={() => focusOn(list[0], false)} />; })}
 
               </div>

@@ -142,7 +142,7 @@ const fmtDate = d => {
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 };
 const time = d => (d instanceof Date ? d.getTime() : Date.parse(d) || 0);
-const docLabel = n => `${n} ${n === 1 ? 'Document' : 'Documents'}`;
+const docLabel = n => IFS.format.plural(n, { one: '# document', other: '# documents' });
 let docSeq = 0;
 const newId = () => `doc-${Date.now().toString(36)}-${++docSeq}`;
 const listFormats = f => { const u = f.map(x => x.toUpperCase()); return u.length > 1 ? `${u.slice(0, -1).join(', ')} and ${u[u.length - 1]}` : u[0]; };
@@ -191,7 +191,7 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
     if (!files.length) return;
     const ok = [], bad = [];
     files.forEach(f => {
-      if (!formats.includes(ext(f.name))) bad.push({ name: f.name, why: `Unsupported format — supported formats are ${listFormats(formats)}.` , kind: 'format' });
+      if (!formats.includes(ext(f.name))) bad.push({ name: f.name, why: `Unsupported format. Supported formats are ${listFormats(formats)}.` , kind: 'format' });
       else if (f.size > maxSize) bad.push({ name: f.name, why: `The file is ${fmtSize(f.size)}, the limit is ${fmtSize(maxSize)}.`, kind: 'size' });
       else ok.push(f);
     });
@@ -201,7 +201,7 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
         push({ kind: 'alert', title: `Can’t add “${b.name}”`, body: b.kind === 'format' ? `Supported formats are ${listFormats(formats)}.` : b.why });
       } else {
         push({ kind: 'alert', title: `${ok.length} of ${files.length} files added`,
-          body: `${bad.length} ${bad.length === 1 ? 'file was' : 'files were'} skipped — unsupported format or too large.`, details: bad });
+          body: IFS.format.plural(bad.length, { one: '# file was skipped: unsupported format or too large.', other: '# files were skipped: unsupported format or too large.' }), details: bad });
       }
     }
     if (!ok.length) return;

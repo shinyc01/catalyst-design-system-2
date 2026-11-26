@@ -84,12 +84,12 @@ function ScreenDashboard({ bp, height }) {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      <AppShell height="100%"
+      <AppShell height="100%" title="Q1 2026 Strategy Framework" module="Value" /* tab title, rule 9.27 */
         navBar={<NavBar stages={dashboardStages} defaultValue="value" onChange={navStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
         sideNav={<SideNav title="Value" items={dashboardNav} value={nav} onSelect={id => (id === 'active' ? setNav(id) : goValueNav(id))} />}
         header={header}
         bottom={<BottomSheet prompts={['Generate Cooper from chart', 'Compare to best practice']} onPrompt={l => toast(l)} onCooper={() => toast('Cooper')} />}>
-        <IFS.Stack gap="page-gap" style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto', padding: 'var(--pg-gap) var(--pg-margin)' }}>
+        <IFS.Stack gap="page-gap" style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width-wide) + 2 * var(--pg-margin))' /* a dashboard: the wide cap (rule 3.15) */, margin: '0 auto', padding: 'var(--pg-gap) var(--pg-margin)' }}>
           <div className="ifs-grid">{dashboardStats.map(c => <StatCard key={c.title} size="m" className="ifs-span-3" {...c} />)}</div>
 
           <DataVizCard title="Portfolio under this framework"
@@ -112,7 +112,7 @@ function ScreenDashboard({ bp, height }) {
 
           <div className="ifs-grid">
             <DataVizCard title="Strategic objectives breakdown" className="ifs-span-8"
-              header={{ segments: [{ value: 'budget', label: 'By budget' }, { value: 'investment', label: 'By investment' }], segmentValue: so, onSegmentChange: setSo }}>
+              header={{ segments: [{ value: 'budget', label: 'By budget' }, { value: 'investment', label: `By ${IFS.term('investment')}` }], segmentValue: so, onSegmentChange: setSo }}>
               <StackedColumnChart bare levels height={353} data={dashboardColumns[so]} series={dashboardLevels} />
             </DataVizCard>
             <DataVizCard title="Framework coverage by measure type" className="ifs-span-4">
@@ -120,7 +120,7 @@ function ScreenDashboard({ bp, height }) {
             </DataVizCard>
           </div>
 
-          <DataVizCard title="Projects by value driver" header={{ button: { label: 'Show all', iconRight: 'arrow-right', onClick: () => toast('Show all projects') } }}
+          <DataVizCard title={`${IFS.term('investment', { count: 2, capital: true })} by value driver`} header={{ button: { label: 'Show all', iconRight: 'arrow-right', onClick: () => toast(`Show all ${IFS.term('investment', { count: 2 })}`) } }}
             legend={<DashboardLegend proj />}>
             <IFS.Stack gap="100">
               {dashboardProjects.map(([name, value, segs]) => {

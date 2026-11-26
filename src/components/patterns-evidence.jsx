@@ -120,7 +120,7 @@ function PeerBenchmark({ description, summary = [], scope, empty, emptyHeading =
 function evidenceZone(value, thresholds = [70, 90]) {
   const [t1, t2] = thresholds;
   if (value < t1) return { zone: 'reject', label: 'Reject', autoApply: false, fills: false,
-    behaviour: 'Cooper doesn’t apply the value — a reviewer decides manually.' };
+    behaviour: 'Cooper doesn’t apply the value. A reviewer decides manually.' };
   if (value <= t2) return { zone: 'review', label: 'Review', autoApply: false, fills: true,
     behaviour: 'Cooper proposes the value and fills it in, then waits for a human to check it.' };
   return { zone: 'approve', label: 'Approve', autoApply: true, fills: true,
@@ -157,7 +157,7 @@ function EvidenceChainDrawer({ open, defaultOpen = true, onOpenChange, value = 8
     <div ref={ref} className={cx('ifs-evidence-chain-wrap', floating && 'ifs-evidence-chain--floating')} style={{ display: 'flex', ...style }}
       onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); setOpen(false); } }}>
       <IFS.Drawer inline title={title} collapsible={false} onOpenChange={v => { if (!v) setOpen(false); }} className={cx('ifs-evidence-chain', className)}>
-        <IFS.EvidenceStrength value={value} thresholds={thresholds} min={Math.max(0, t1 - (t2 - t1))} labels={labels} title={`Confidence — ${z.label}`} />
+        <IFS.EvidenceStrength value={value} thresholds={thresholds} min={Math.max(0, t1 - (t2 - t1))} labels={labels} title={`Confidence: ${z.label}`} />
         <IFS.SegmentedControl size="s" fullWidth value={cur} onChange={setCur} aria-label="Evidence view"
           options={[{ value: 'rationale', label: 'Rationale' }, { value: 'benchmark', label: 'Peer benchmark' }]} />
         <div className="ifs-evidence-chain__panel" id={ids.r} hidden={cur !== 'rationale'}>

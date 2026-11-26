@@ -16,16 +16,16 @@ export default IFS_GALLERY;
     { key: 'frm', title: 'Financial Risk Model', children: '“Deferring intervention increases exposure to reactive repairs, outage costs, and accelerated replacement needs.”', badge: 'Delay creates financial risk' },
   ];
   const FLAGGED_SYSTEMS = [
-    { key: 'oms', title: 'OMS · high', icon: null, children: '4 sustained outages across the 7 feeders in 90 days, vs ~1/quarter baseline — a clear trend break.' },
+    { key: 'oms', title: 'OMS · high', icon: null, children: '4 sustained outages across the 7 feeders in 90 days, against a baseline of about 1 a quarter: a clear trend break.' },
     { key: 'reg', title: 'Asset register + inspection · med-high', icon: null, children: 'Avg age 47 yrs, 5 of 7 past service life; condition trending down 3 cycles straight.' },
-    { key: 'cre', title: 'Copperleaf risk engine · high', icon: null, children: 'PoF up ~2.4× over 24 months; ~9,400 customers served incl. 2 critical-care facilities, limited backfeed on 3 feeders. Reliability risk is the dominant, rising driver → #1 in Greater Hartford.' },
+    { key: 'cre', title: 'Copperleaf risk engine · high', icon: null, children: 'PoF up about 2.4× over 24 months; about 9,400 customers served, including 2 critical-care facilities; limited backfeed on 3 feeders. Reliability risk is the dominant, rising driver → #1 in Greater Hartford.' },
   ];
   const DECISIONS = [
     { key: 'sfr', title: 'Southern Feeder Replacement — Circuit 14B', content: 'text', children: 'Proceed with a proactive feeder replacement investment instead of waiting for asset failure.', badge: 'Reduced reliability exposure' },
     { key: 'rrr', title: 'Reliability Risk Review — FY27 Capital Planning', content: 'text', children: 'Prioritize the affected feeder sections due to their increasing failure probability and customer impact.', badge: 'Focused risk reduction' },
   ];
   const CONSIDERED = [
-    { key: 'in', type: 'user', user: { name: 'Ingrid Nielsen', initials: 'IN', type: 'blue' }, children: '“Defer 3 yrs — rejected. The risk trajectory crosses tolerance in roughly 14 months.”' },
+    { key: 'in', type: 'user', user: { name: 'Ingrid Nielsen', initials: 'IN', type: 'blue' }, children: '“Defer 3 years: rejected. The risk trajectory crosses tolerance in roughly 14 months.”' },
   ];
   const rationale = flagged => [
     { title: 'Why it’s flagged', items: flagged },
@@ -141,25 +141,25 @@ export default IFS_GALLERY;
       <IFS.Stack gap="300" style={{ padding: 'var(--space-300)' }}>
         {card('overview', 'Idea overview', <div style={pad}>
           <div className="t-heading-h2-medium">{title}</div>
-          <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-200)' }}>7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.</div>
+          <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-200)' }}>7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising, flagged before failure, with an investment idea already drafted.</div>
         </div>, <IFS.Button type="tertiary" size="s" iconLeft="cooper-system-icon">Edit with Cooper</IFS.Button>)}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-300)', alignItems: 'start' }}>
           <IFS.Stack gap="300">
-            {card('need', 'The need', <div className="t-body-l-regular" style={pad}>Fault frequency on these feeders are up 3.1× over 24 months, with two sustained outages this year. Health index has dropped from 74 to 41. Left alone, Cooper projects a likely in-service failure within 18-30 months, affecting ~9400 customers including a hospital.</div>)}
+            {card('need', 'The need', <div className="t-body-l-regular" style={pad}>Fault frequency on these feeders are up 3.1× over 24 months, with two sustained outages this year. Health index has dropped from 74 to 41. Left alone, Cooper projects a likely in-service failure within 18-30 months, affecting about 9,400 customers, including a hospital.</div>)}
             {card('goals', 'Aligned enterprise goals', <IFS.Inline gap="200" wrap style={{ ...pad }}>{GOALS.map(g => <IFS.Badge key={g} color="black" size="m">{g}</IFS.Badge>)}</IFS.Inline>)}
             {card('relevance', 'Strategic relevance', <IFS.Stack gap="400" style={{ ...pad }}>
               <IFS.Inline gap="50" style={{ height: 24 }}>{RELEVANCE.map(([l, v, c]) => <IFS.BarChartItem key={l} color={c} style={{ flex: `${v} 1 0`, minWidth: 0 }}>{`${v}%`}</IFS.BarChartItem>)}</IFS.Inline>
               <IFS.Inline gap="400" justify="center" wrap>{RELEVANCE.map(([l, , c]) => <IFS.LegendSwatch key={l} color={c} label={l} />)}</IFS.Inline>
             </IFS.Stack>)}
           </IFS.Stack>
-          {card('assets', 'Affected assets & area', <div style={{ ...pad, padding: '0 var(--space-100) var(--space-100)' }}><AffectedAssets /></div>)}
+          {card('assets', 'Affected assets and area', <div style={{ ...pad, padding: '0 var(--space-100) var(--space-100)' }}><AffectedAssets /></div>)}
         </div>
         {card('alternative', 'Recommended alternative', <div style={pad}>
           <div style={{ padding: 'var(--space-300)', borderRadius: 'var(--radius-control)', boxShadow: 'inset 0 0 0 var(--border-width-default) var(--color-border-soft)' }}>
             <div className="t-heading-h2-medium">Targeted Hardening</div>
-            <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: 'var(--space-150) 0 var(--space-300)' }}>Replaces only the worst ~40% of units, starting with Feeder 4. Lower cost and faster, but leaves aging sections in place. Partial risk reduction — cluster stays exposed to repeat failures.</div>
+            <div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: 'var(--space-150) 0 var(--space-300)' }}>Replaces only the worst 40% or so of units, starting with Feeder 4. Lower cost and faster, but leaves aging sections in place. Partial risk reduction: the cluster stays exposed to repeat failures.</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 'var(--space-300)' }}>
-              {[['BCR', '2.5'], ['Cost range', '$2.4M-$3.8M'], ['Timing', '~ 8 months'], ['Potential value', '6M-9M']].map(([t, v]) => <IFS.StatCard key={t} title={t} value={v} />)}
+              {[['BCR', '2.5'], ['Cost range', '$2.4M-$3.8M'], ['Timing', 'about 8 months'], ['Potential value', '6M-9M']].map(([t, v]) => <IFS.StatCard key={t} title={t} value={v} />)}
             </div>
           </div>
         </div>)}

@@ -41,7 +41,7 @@ export default IFS_GALLERY;
     </div>
   );
   const DECISIONS = [
-    { id: 1, title: 'Northgate Cluster · 7 aging feeders replacement', badge: 'Explore', description: '7 aging feeders serving Ridgeview Village and ~9,400 customers — reliability risk rising, flagged before failure, with an investment idea already drafted.', cpv: '$18.1M', vc: '1,345 V/$K', priority: 'critical' },
+    { id: 1, title: 'Northgate Cluster · 7 aging feeders replacement', badge: 'Explore', description: '7 aging feeders serve Ridgeview Village and about 9,400 customers. Reliability risk is rising, flagged before failure, with an investment idea already drafted.', cpv: '$18.1M', vc: '1,345 V/$K', priority: 'critical' },
     { id: 2, title: 'EastZone C · Transformer Overload Risk', badge: 'Explore', description: '3 zones over safe capacity ahead of peak', cpv: '$12.4M', vc: '1,986 V/$K', priority: 'critical' },
     { id: 3, title: 'Ridgeline Substation · Protection Relay Fault', badge: 'Build', description: 'Relay protection upgrade serving West Corridor', cpv: '8.6M', vc: '2,092 V/$K', priority: 'critical' },
     { id: 4, title: 'Hera SS · Capacitor bank reactive support', badge: 'Plan', description: 'Voltage sagging across the South Loop at evening peak', cpv: '$7.3M', vc: '1,123 V/$K', priority: 'critical' },
@@ -76,7 +76,7 @@ export default IFS_GALLERY;
       { id: 'cot', label: 'Claude optimisation test' },
       { id: 'demo', label: 'Demo portfolio', children: [{ id: 'demo-1', label: 'Demo scenario A' }] },
       { id: 'el', label: 'Electrical', children: [{ id: 'el-d', label: 'Electrical Distribution' }, { id: 'el-t', label: 'Electrical Transmission' }] },
-      { id: 'eg', label: 'Electrical Generation', children: [{ id: 'eg-1', label: 'Thermal & gas' }] },
+      { id: 'eg', label: 'Electrical Generation', children: [{ id: 'eg-1', label: 'Thermal and gas' }] },
     ] },
     { id: 'dist', label: 'Distribution', children: [{ id: 'dist-1', label: 'Urban feeders' }] },
   ];

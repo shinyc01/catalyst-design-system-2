@@ -56,8 +56,9 @@ const IVI_TONE = {
   gain: step => `var(--color-data-viz-diverging-negative-${IVI_DEPTH[step] || 2})`,
   unchanged: () => 'var(--color-data-viz-neutral)',
 };
-const IVI_METRICS = [
-  { title: 'Investments re-scored', value: '1,621' },
+// Entity words come from the organisation setting (IFS.term, USER-SETTINGS row 15), so these defaults are built at render.
+const iviMetrics = () => [
+  { title: `${IFS.term('investment', { count: 2, capital: true })} re-scored`, value: '1,621' },
   { title: 'Net value change', value: '-3.1%', direction: 'down', tone: 'danger' },
   { title: 'Materially impacted', value: '225' },
   { title: 'Funding-tier changes', value: '38' },
@@ -78,11 +79,11 @@ const IVI_LEGEND = [
 // bins = [{ label, value, tone loss|unchanged|gain, step 3|4|5 (colour depth), color (override) }], max (axis top, default 250),
 // ticks (axis count, default 6), legend = Legend items [{ label, color, value }] (false hides), button (DataVizHeader right button),
 // format(bin) → tooltip text, onBinClick(bin, i).
-function InvestmentValueImpact({ title = 'Investment value impact', metrics = IVI_METRICS,
-  description = "Value change measured as % of each investment’s total value (NPV) under the proposed framework, compared with the current one.",
+function InvestmentValueImpact({ title = `${IFS.term('investment', { capital: true })} value impact`, metrics = iviMetrics(),
+  description = `Value change measured as % of each ${IFS.term('investment')}’s total value (NPV) under the proposed framework, compared with the current one.`,
   bins = IVI_BINS, max = 250, ticks = 6, legend = IVI_LEGEND, button, format, onBinClick, className, ...rest }) {
   const axis = Array.from({ length: ticks }, (_, i) => Math.round(max - (max / (ticks - 1)) * i));
-  const tip = b => (format ? format(b) : `${b.label}: ${b.value} investments`);
+  const tip = b => (format ? format(b) : `${b.label}: ${IFS.format.plural(b.value, { one: `# ${IFS.term('investment')}`, other: `# ${IFS.term('investment', { count: 2 })}` })}`);
   return (
     <section className={apCx('ifs-ivi', className)} aria-label={typeof title === 'string' ? title : undefined} {...rest}>
       <IFS.DataVizHeader title={title} button={button} draggable={false} />
@@ -143,7 +144,7 @@ function FromTo({ v, direction }) {
     </span>
   );
 }
-const TR_LABELS = { name: 'Investment', type: 'Type', total: 'Total value', change: 'Value change', ratio: 'Value / cost ratio' };
+const trLabels = () => ({ name: IFS.term('investment', { capital: true }), type: 'Type', total: 'Total value', change: 'Value change', ratio: 'Value / cost ratio' });
 
 // Figma: table-review (12:122378, key 8bd2618e; IFS DS now publishes it as "review-investment-table") — the grouped investment
 // table on review screens: Investment, Type (white badge), Total value (from → to), Value change (▲/▼), Value / cost ratio (from → to).
@@ -152,7 +153,7 @@ const TR_LABELS = { name: 'Investment', type: 'Type', total: 'Total value', chan
 // defaultCollapsed = group titles collapsed at first, labels = column-title overrides, onFilter(key) (filter icon on
 // Investment / Type), sort / defaultSort / onSortChange, onRowClick / selectedId.
 function TableReview({ rows = [], defaultCollapsed = [], labels, onFilter, sort, defaultSort, onSortChange, onRowClick, selectedId, className, ...rest }) {
-  const L = { ...TR_LABELS, ...labels };
+  const L = { ...trLabels(), ...labels };
   const columns = [
     { key: 'name', title: L.name, filter: { onClick: () => onFilter && onFilter('name') }, render: r => <span className="ifs-table-review__name">{r.name}</span> },
     { key: 'type', title: L.type, filter: { onClick: () => onFilter && onFilter('type') }, render: r => r.type ? <IFS.Badge color="white" size="m">{r.type}</IFS.Badge> : null },
@@ -477,7 +478,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages
           const all = list.filter(r => r.stage === st.id), done = all.filter(r => r.status === 'success').length;
           const rejected = all.some(r => r.status === 'rejected' || r.status === 'revisions');
           const state = rejected ? ['red', 'Needs revision'] : done === all.length && all.length ? ['green', 'Approved'] : ['orange', 'Under review'];
-          return { note: st.note, end: <span className="ifs-apc__stage-end"><IFS.Indicator type={state[0]}>{state[1]}</IFS.Indicator><IFS.Counter>{`${done}/${all.length}`}</IFS.Counter></span> };
+          return { note: st.note, end: <span className="ifs-apc__stage-end"><IFS.Indicator type={state[0]}>{state[1]}</IFS.Indicator><IFS.Counter><span aria-hidden="true">{`${done}/${all.length}`}</span><span className="ifs-sr-only">{`${done} of ${all.length} approved` /* rule 8.35 */}</span></IFS.Counter></span> };
         }} />
         : <IFS.Table columns={columns} rows={rows} aria-label="Approval chain" />}
       {rows.length === 0 && <IFS.EmptyState cause="no-results" size="section" heading="No matches for these filters" body="Try another name or state." />}

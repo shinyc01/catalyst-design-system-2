@@ -67,12 +67,12 @@ function CompareDropdownList({ groups = [], value, activeValue, onSelect, onActi
 
 /* ───────────────────────────── compare-dropdown ───────────────────────────── */
 // Figma: compare-dropdown (59571d4df483e2b416ca034bafc72eabc902f8f3; Patterns copy 52:82756)
-// Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: "Select framework" in --color-text-disabled), Default (open: caret up + list).
+// Variants: Property 1=Variant2 (filled: name + ✕ + caret), Variant3 (empty: Figma draws "Select framework"; the kit shows nothing, rule 8.46), Default (open: caret up + list).
 // Props: groups (see CompareDropdownList), value / defaultValue / onChange(value, item) (✕ sets null),
 // open / defaultOpen / onOpenChange, placeholder, clearable (✕ when filled, default true), disabled, width (default 320),
 // state open (gallery), aria-label. Keyboard: Enter / Space / ↓ open; ↑ ↓ move; Enter picks; Esc closes.
 function CompareDropdown({ groups = [], value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange,
-  placeholder = 'Select framework', clearable = true, disabled, width = 320, state, className, style, 'aria-label': ariaLabel = 'Compare to' }) {
+  placeholder, clearable = true, disabled, width = 320, state, className, style, 'aria-label': ariaLabel = 'Compare to' }) {
   const [val, setVal] = usePaValue(value, defaultValue, onChange);
   const [isOpen, setOpen] = usePaValue(open, defaultOpen || state === 'open', onOpenChange);
   const items = React.useMemo(() => groups.flatMap(g => g.items || []), [groups]);
@@ -324,7 +324,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
           options={[{ value: 'versions', label: 'Version history' }, { value: 'approvals', label: 'Approval chain' }]} />}
         <IFS.SmartSearch width="100%" className="ifs-activity-panel__search" value={q}
           onChange={v => { setQ(v); if (!v) setApplied(''); }} onSubmit={v => setApplied(v)} onClear={() => setApplied('')}
-          placeholder={tab === 'versions' ? 'Ask anything about version history' : 'Ask anything about approval chain'}
+          placeholder={tab === 'versions' ? 'Search version history' : 'Search approval chain'}
           suggestions={q ? undefined : (tab === 'versions' ? versionSuggestions : approvalSuggestions)} />
         {body}
       </IFS.Panel>

@@ -80,14 +80,14 @@ function SearchModal({ title = 'Suggested questions', items = [], activeIndex = 
 }
 
 // ───────────────────────────── smart-search-organism ─────────────────────────────
-// Figma: smart-search-organism (2145:3758) — the Cooper "Ask anything…" bar (shown in older screens as "ai smart search").
+// Figma: smart-search-organism (2145:3758) — the Cooper search bar (Figma placeholder "Ask anything…"; the kit default is "Search", rule 8.46) (shown in older screens as "ai smart search").
 // Props: type text|voice / defaultType / onTypeChange (Text shows the mic button, Voice shows the keyboard button and listens),
 // placeholder, value / defaultValue / onChange(value), onSubmit(value) on Enter or suggestion pick, onClear,
 // suggestions (strings or {label,type,query}; shown in a search-modal while focused), suggestionsTitle, listening (voice: "…" state),
 // disabled, width (default 360, Figma), size l (default: --size-control-m, 36 / 32 / 28) | s (--size-control-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
 // state hover|focus|pressed (gallery only), aria-label, keyshortcut (aria-keyshortcuts on the input; PageTop and ExploreHeader pass "/", rule 9.18).
 // The default search (AI search: keywords or natural language). IFS.Search (search-regular-organism) is the simple keyword search, when the use case needs no AI.
-function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear,
+function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Search', value, defaultValue = '', onChange, onSubmit, onClear,
   suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, keyshortcut, ...rest }) {
   const [val, setVal] = usePtValue(value, defaultValue, onChange);
   const [mode, setMode] = usePtValue(type, defaultType, onTypeChange);
@@ -201,7 +201,7 @@ function ColumnFilter({ title = 'Filter', options = [], value, defaultValue = []
         {count > 0 && <IFS.Button type="ghost" size="s" className="ifs-column-filter__clear" onClick={clearAll}>Clear all</IFS.Button>}
       </div>
       <div className="ifs-column-filter__body">
-        {search && <IFS.Search placeholder={search.placeholder || 'Search…'} value={q} onChange={v => setQ(v)} filter={!!search.onFilter} onFilter={search.onFilter} style={{ width: '100%' }} />}
+        {search && <IFS.Search placeholder={search.placeholder || 'Search'} value={q} onChange={v => setQ(v)} filter={!!search.onFilter} onFilter={search.onFilter} style={{ width: '100%' }} />}
         {options.length > 0 && (
           <div className="ifs-column-filter__chips" role="group" aria-label={`${title} options`}>
             {!q && <IFS.Chip selected={cur.length === 0} onChange={() => toggle('__all')}>All</IFS.Chip>}
@@ -234,7 +234,9 @@ function ColumnFilter({ title = 'Filter', options = [], value, defaultValue = []
 function CollaborationBadge({ label, avatar, request, count, onOpen, className }) {
   const badge = (
     <button type="button" className={ptCx('ifs-collab-badge', className)} onClick={e => { e.stopPropagation(); onOpen && onOpen(e); }}
-      aria-label={count > 1 ? `${label} (${count} requests)` : label}>
+      aria-label={(() => { // rule 9.21: the visible words first, then who (audit run 2 L7: "View reply from Mia Chen")
+        const who = request && request.name ? `${label} from ${request.name}` : label;
+        return count > 1 ? IFS.format.plural(count, { one: `${who} (# request)`, other: `${who} (# requests)` }) : who; })()}>
       <IFS.Badge color="white" size="m" avatar={avatar}>{label}</IFS.Badge>
       {count > 1 && <IFS.Counter>{count}</IFS.Counter>}
     </button>
@@ -348,7 +350,7 @@ function ColumnSettings({ columns = [], onChange, suggestions = [], onAdd, findC
   const shownSuggestions = found || suggestions;
   return (
     <div className={ptCx('ifs-column-settings', className)}>
-      <SmartSearch width="100%" placeholder="Find a suitable column by description" value={q} onChange={v => { setQ(v); if (!v) setFound(null); }} onSubmit={run} onClear={() => setFound(null)} />
+      <SmartSearch width="100%" placeholder="Search columns" value={q} onChange={v => { setQ(v); if (!v) setFound(null); }} onSubmit={run} onClear={() => setFound(null)} />
       {searching ? <div className="ifs-data-table__searching">Searching…</div> : <>
         {!found && <>
           <div className="ifs-column-settings__label">Shown in table</div>

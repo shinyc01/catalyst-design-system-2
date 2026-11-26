@@ -6,6 +6,11 @@
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
   min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-pill);cursor:pointer; /* grows into a pill when the count needs it */
   background:var(--color-background-accent-white-strong);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
+/* Hit area (audit run 2 M3, decided Nov 26; WCAG 2.5.8): at least 24 × 24 around every pin, the visual dot unchanged.
+   --pd-hit lets a scaled map (a thumbnail drawn with transform: scale) keep 24 on screen: pass var(--size-24) divided by the scale. */
+.ifs-pin-dot::after{content:"";position:absolute;inset-inline-start:50%;top:50%;width:max(100%,var(--pd-hit,var(--size-24)));height:max(100%,var(--pd-hit,var(--size-24)));
+  transform:translate(-50%,-50%);border-radius:var(--radius-pill)} /* ltr: centred on the pin */
+[dir=rtl] .ifs-pin-dot::after{transform:translate(50%,-50%)}
 .ifs-pin-dot--warning{--pd-fill:var(--color-icon-warning)}
 .ifs-pin-dot--neutral{--pd-fill:var(--color-icon-map-pin-neutral)} /* Nov 24: danger · warning · neutral only (grey = low risk); the old names success and info map here (MapPinDot) */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}

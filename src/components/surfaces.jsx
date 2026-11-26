@@ -107,7 +107,7 @@ function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'c
   return (
     <span className="ifs-tooltip-anchor" onMouseEnter={show} onMouseLeave={leave}
       onFocus={() => { clearTimeout(timer.current); setShown(true); }} onBlur={hide}>
-      {React.cloneElement(child, { 'aria-describedby': shown ? id : undefined })}
+      {React.cloneElement(child, { 'aria-describedby': shown ? id : child.props['aria-describedby'] /* keeps the child's own description (Button disabledReason) while hidden */ })}
       {shown && bubble}
     </span>
   );

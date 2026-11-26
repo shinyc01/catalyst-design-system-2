@@ -23,7 +23,7 @@ export default IFS_GALLERY;
   ];
   const CONF_ISSUES = [
     { id: 'q1', kind: 'question', gate: 'risk', title: 'Wildfire risk over-weighted', description: 'V2 pulls capital into ignition mitigation', solutions: WILDFIRE, upload: true, answer: true },
-    { id: 'q2', kind: 'question', gate: 'gov', title: 'WDRM v4 concentration above cap', description: 'concentrates 41% of capital in Corridor 7 — 6pts over the sector cap.',
+    { id: 'q2', kind: 'question', gate: 'gov', title: 'WDRM v4 concentration above cap', description: 'concentrates 41% of capital in Corridor 7, 6 points over the sector cap.',
       solutions: [{ id: 'c1', title: 'Cap Corridor 7 at 35%, redistribute overflow', description: 'Hybrid rebalance · Keeps FY26 diversification targets', recommended: true },
         { id: 'c2', title: "Accept v4's 41% concentration in full", description: 'Faithful rebalance · Requires Risk Committee sign-off' },
         { id: 'c3', title: 'Skip rebalance now, plan for v4.1 patch', description: 'Address WDRM cap logic in Q4 release plan' }], upload: true, answer: true },
@@ -132,7 +132,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: System confidence', figma: 'Review - Portfolio impact - Errors [patterns] (30:72985)', render: () => {
     const [key, setKey] = useState(0);
     return <>
-      <Demo>Pick a solution, type My answer, upload a file or press Okay on warnings; ‹ › and All walk the list; the rail dot follows what is open. Send for approval always works: with items still open it shows the first one (rule 14.4).
+      <Demo>Pick a solution, type My answer, upload a file or select Mark as reviewed on warnings; ‹ › and All walk the list; the rail dot follows what is open. Send for approval always works: with items still open it shows the first one (rule 14.4).
         <IFS.Button size="s" type="tertiary" onClick={() => setKey(k => k + 1)}>Reset</IFS.Button></Demo>
       <ConfidenceScreen key={key} />
     </>;
@@ -194,7 +194,7 @@ export default IFS_GALLERY;
     { id: 'impact', title: 'Portfolio impact', badge: { label: '+4.8%', tone: 'success', icon: 'arrow-caret-up-filled' }, content: <>{P('Net portfolio value rises under the proposed framework, with a modest short-term trade-off across re-scored investments.')}<IFS.ReadinessFacts rows={[['Proposed value', '$2.24B ▴ 3.1%']]} /></> },
     { id: 'rescored', title: 'Investments re-scored', badge: '1,621', content: <>{P('1,621 investments were re-evaluated against the proposed objective weights.')}<IFS.ReadinessFacts rows={[['Gained', '357'], ['Lost', '519'], ['Unchanged', '745']]} /></> },
     { id: 'tiers', title: 'Fundings-tier changes', badge: '38', content: <>{P('38 investments move between funding tiers as a result of re-scoring.')}<IFS.ReadinessFacts rows={[['Total', '876'], ['Gained', '52'], ['Lost', '31'], ['Significant shift', '12']]} /></> },
-    { id: 'risks', title: 'Flagged risks', badge: { label: '1 resolved', tone: 'success' }, content: P('Wildfire risk over-weighted — V2 pulls capital into ignition mitigation.') },
+    { id: 'risks', title: 'Flagged risks', badge: { label: '1 resolved', tone: 'success' }, content: P('Wildfire risk is over-weighted: V2 pulls capital into ignition mitigation.') },
     { id: 'notes', title: 'Reviewer notes', count: 2, content: NOTES },
   ];
   const BUDGET = { id: 'budget', title: 'Budget envelope', badge: { label: 'Over by $140M', tone: 'danger' }, content: <>{P('Proposed value exceeds the FY26 capital envelope approved for this framework.')}
@@ -202,7 +202,7 @@ export default IFS_GALLERY;
   const CASES = {
     approved: { summary: { title: 'Ready to approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' },
       readiness: 100, checks: ['Objective weighting', 'Strategic alignment', 'Risk balance', 'Governance flags'].map(label => ({ label, end: 'Passed' })), sections: BASE_SECTIONS },
-    blocked: { summary: { title: 'Budget envelope exceeded', text: 'Proposed framework raises portfolio value to $2.24B — $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' },
+    blocked: { summary: { title: 'Budget envelope exceeded', text: 'Proposed framework raises portfolio value to $2.24B, $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' },
       readiness: 40, checks: [{ label: 'Objective weighting', end: 'Passed' }, { label: 'Strategic alignment', end: 'Passed' }, { label: 'Budget envelope', type: 'error', end: 'Exceeded' }, { label: 'Governance flags', end: 'Passed' }],
       sections: [BUDGET, ...BASE_SECTIONS] },
   };

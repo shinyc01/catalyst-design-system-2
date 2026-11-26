@@ -133,7 +133,7 @@ function focusGlobalSearch() {
   }
   return false;
 }
-// The Cooper panel's shortcut (decided Nov 25, as Atlassian Rovo): Ctrl+. on Windows / Linux, ⌘+. on Mac. A modifier shortcut, so it
+// The Cooper panel's shortcut (decided Nov 25, as Atlassian Rovo): Ctrl+. on Windows / Linux, ⌘. on Mac. A modifier shortcut, so it
 // works in text fields and is not switched off with the single-key ones. cooperHotkey is the text to show in tooltips and menus.
 const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || '');
 const cooperHotkey = IS_MAC ? '⌘.' : 'Ctrl+.';

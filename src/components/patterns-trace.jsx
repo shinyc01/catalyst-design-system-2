@@ -11,22 +11,22 @@ const cx = (...a) => a.filter(Boolean).join(' ');
 
 /* ------------------------------------------------------------------------------------------ */
 // Default issue kinds. value = issue.kind; indicator = Indicator type in the readiness rows; progress = word after the
-// percentage in the pager ("resolved" for issues that need a fix, "viewed" for read-and-acknowledge ones).
+// percentage in the pager ("resolved" for issues that need a fix, "reviewed" for read-and-acknowledge ones, matching **Mark as reviewed**).
 const CONFIDENCE_KINDS = [
   { value: 'question', label: 'Open questions', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' },
-  { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'viewed', dot: 'warning' },
+  { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'reviewed', dot: 'warning' },
 ];
 const TRACE_KINDS = [
   { value: 'error', label: 'Errors', indicator: 'red', tooltip: 'Errors', progress: 'resolved', dot: 'error' },
   { value: 'warning', label: 'Warnings', indicator: 'orange', tooltip: 'Warnings', progress: 'resolved', dot: 'warning' },
-  { value: 'note', label: 'Notes', indicator: 'gray', tooltip: 'Notes', progress: 'viewed' },
+  { value: 'note', label: 'Notes', indicator: 'gray', tooltip: 'Notes', progress: 'reviewed' },
 ];
 
 const isDone = s => !!(s && (s.applied || s.answer || s.file || s.viewed));
 
 // Pattern helper: issue-report state hook — built on React state (no Figma component). Controller for both panels. Issues: [{ id, kind, title, description, gate, solutions: [{ id, title, description,
 // recommended }], upload, answer, okay, status }]. The card layout follows the data (Figma "the system decides"):
-// solutions → "Solutions" list; upload / answer → the action buttons; okay → a single Okay button (acknowledge).
+// solutions → "Solutions" list; upload / answer → the action buttons; okay → a single **Mark as reviewed** button (acknowledges a non-blocking warning or note; audit run 2 B-09, decided Nov 26).
 // status = { applied (solution id), answer (text), file (name), uploading, viewed } — any of the first four (or viewed)
 // resolves the issue. gates = [{ id, label }] for the readiness rows; an issue with `gate` counts against that gate.
 // Returns state + actions; pass it as `controller` to the components below.
@@ -53,7 +53,9 @@ function useIssueReport({ issues = [], kinds = CONFIDENCE_KINDS, gates = [], def
     const done = its.every(i => resolved(i.id));
     const indicators = kinds.filter(k => its.some(i => i.kind === k.value)).map(k => {
       const ks = its.filter(i => i.kind === k.value);
-      return { kind: k.value, type: k.indicator, tooltip: k.tooltip, label: `${ks.filter(i => resolved(i.id)).length}/${ks.length}` };
+      const n = ks.filter(i => resolved(i.id)).length;
+      // rule 8.35: "2/3" only inside the compact pill; screen readers hear "2 of 3 resolved" (audit run 2 B-12)
+      return { kind: k.value, type: k.indicator, tooltip: k.tooltip, label: `${n}/${ks.length}`, srLabel: `${n} of ${ks.length} ${k.progress || 'resolved'}` };
     });
     return { ...g, done, indicators };
   });
@@ -137,8 +139,8 @@ function IssueListItem({ number, title, resolved, onClick, state, className, ...
 }
 
 // Pattern helper: My-answer input — built from TextField M (State=Typing, ✕ + ✓ on the right). Patterns (30:77533).
-// Enter or ✓ submits, Esc or ✕ cancels. Props: value / defaultValue / onChange, onSubmit(text), onCancel, placeholder.
-function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCancel, placeholder = 'My answer', autoFocus = true, className }) {
+// Enter or ✓ submits, Esc or ✕ cancels. Props: value / defaultValue / onChange, onSubmit(text), onCancel, placeholder (none by default, rule 8.46; the name is "My answer").
+function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCancel, placeholder, autoFocus = true, className }) {
   const [inner, setInner] = React.useState(defaultValue);
   const v = value !== undefined ? value : inner;
   const setV = t => { if (value === undefined) setInner(t); onChange && onChange(t); };
@@ -201,7 +203,7 @@ function IssueNavigator({ controller: c, accept, className }) {
           {issue.answer && <IFS.Button type="tertiary" size="m" iconLeft="system-plus" onClick={() => c.startAnswer(issue.id)}>My answer</IFS.Button>}
           <input ref={fileRef} type="file" hidden accept={accept} onChange={e => { const f = e.target.files && e.target.files[0]; if (f) c.upload(issue.id, f.name); e.target.value = ''; }} />
         </div>)}
-      {issue.okay && <div className="ifs-trc-section"><IFS.Button type="secondary" size="m" iconLeft="system-check" className="ifs-trc-okay" onClick={() => c.acknowledge(issue.id)}>Okay</IFS.Button></div>}
+      {issue.okay && <div className="ifs-trc-section"><IFS.Button type="secondary" size="m" iconLeft="system-check" className="ifs-trc-okay" onClick={() => c.acknowledge(issue.id)}>Mark as reviewed</IFS.Button></div>}
     </>;
   }
   return (
@@ -232,7 +234,7 @@ function ConfidenceGates({ controller: c, label = 'Approval readiness', classNam
           ? <IFS.ReadinessStatus key={g.id} type="done" end="Passed">{g.label}</IFS.ReadinessStatus>
           : <IFS.ReadinessStatus key={g.id} type="in-progress" right={<span className="ifs-trc-gates__inds">
             {g.indicators.map(d => <IFS.Tooltip key={d.kind} content={d.tooltip} type="top" arrow="right">
-              <span tabIndex={0} className="ifs-trc-gates__ind"><IFS.Indicator size="xs" type={d.type}>{d.label}</IFS.Indicator></span>
+              <span tabIndex={0} className="ifs-trc-gates__ind"><IFS.Indicator size="xs" type={d.type}><span aria-hidden="true">{d.label}</span><span className="ifs-sr-only">{d.srLabel || d.label}</span></IFS.Indicator></span>
             </IFS.Tooltip>)}
           </span>}>{g.label}</IFS.ReadinessStatus>)}
       </div>

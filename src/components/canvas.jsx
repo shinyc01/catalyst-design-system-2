@@ -1,5 +1,11 @@
 import React from 'react';
 import { IFS } from './registry.js';
+// A size token in px (rem tokens follow the user's text size), read from the CSS like IFS.motionMs; fallback before the stylesheet loads.
+function canvasSizePx(token, fallback) {
+  if (typeof document === 'undefined' || typeof getComputedStyle === 'undefined') return fallback;
+  const cs = getComputedStyle(document.documentElement), v = cs.getPropertyValue(token).trim(), n = parseFloat(v);
+  return !Number.isFinite(n) ? fallback : /rem$/.test(v) ? n * parseFloat(cs.fontSize) : n;
+}
 // Canvas family: the map / node-graph views (Value Framework, Explore map).
 // Figma pages: Action (1399:9453), Data Display (3501:10172), Surfaces (1399:13914),
 // Data Visualisation (3487:19894), Patterns › Map (1399:13911).
@@ -110,9 +116,9 @@ function NodeHoverActions({ type = 'expand', actions, onAction, className, ...re
 // Figma: add-node-button (2879:7311)
 // Creates a new (grey, provisional) subnode on the framework canvas; confirmed via its check icon.
 // Click → typing state (Figma Pressed/Typing): Enter or ✓ confirms, Esc or ✕ cancels.
-// Props: onAdd(name), onCancel, placeholder ("Type…"), disabled, editing / defaultEditing / onEditingChange,
+// Props: onAdd(name), onCancel, placeholder (none by default; an example name only, rule 8.46), disabled, editing / defaultEditing / onEditingChange,
 // state hover|pressed|typing (forced, gallery), label (accessible name, default "Add node").
-function AddNodeButton({ onAdd, onCancel, placeholder = 'Type…', disabled, editing, defaultEditing = false, onEditingChange,
+function AddNodeButton({ onAdd, onCancel, placeholder, disabled, editing, defaultEditing = false, onEditingChange,
   state, label = 'Add node', defaultValue = '', className, ...rest }) {
   const forcedTyping = state === 'pressed' || state === 'typing';
   const [open, setOpen] = useCanvasValue(editing, defaultEditing || forcedTyping, onEditingChange);
@@ -300,7 +306,7 @@ function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zo
   const panToFocus = e => {
     const host = e.currentTarget.parentElement, node = e.target;
     if (!host || !node || node === e.currentTarget) return;
-    const h = host.getBoundingClientRect(), n = node.getBoundingClientRect(), pad = 64, cur = vRef.current;
+    const h = host.getBoundingClientRect(), n = node.getBoundingClientRect(), pad = canvasSizePx('--size-64', 64), cur = vRef.current; // --size-64: follows the text size (T2-15)
     let dx = 0, dy = 0;
     if (n.left < h.left + pad) dx = h.left + pad - n.left; else if (n.right > h.right - pad) dx = h.right - pad - n.right;
     if (n.top < h.top + pad) dy = h.top + pad - n.top; else if (n.bottom > h.bottom - pad) dy = h.bottom - pad - n.bottom;
@@ -369,7 +375,7 @@ function CanvasBackground({ image, baseMap, view, defaultView = { x: 0, y: 0, zo
       className={IFS.cx('ifs-canvas', image && 'ifs-canvas--image', panning && 'ifs-canvas--panning', className)}
       style={{ ...(image ? { backgroundImage: `url(${image})` } : { '--dot-size': `${tile}px`, '--dot-x': `${v.x}px`, '--dot-y': `${v.y}px` }), ...style }}
       onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={end} onPointerCancel={end} onKeyDown={onKeyDown} {...rest}>
-      <div className="ifs-canvas__world" style={{ transform: `translate(${v.x}px, ${v.y}px) scale(${v.zoom})`, '--canvas-zoom': v.zoom }}
+      <div className="ifs-canvas__world" style={{ transform: `translate(${v.x}px, ${v.y}px) scale(${v.zoom})` }}
         onFocus={panToFocus}>{children}</div>
       {overlay && <div className="ifs-canvas__overlay">{overlay}</div>}
     </div>
@@ -567,7 +573,8 @@ function sankeyLayout(columns, nodes, links, W, H) {
 // and draw the current role their data-4 step became (deprecated, until 3.0), start / end (fractional slot indexes on the axis),
 // tasks = [{ title, label ("Q1 2027"), start, end }], expanded / defaultExpanded / onExpandedChange,
 // onAdd, onMore (hover actions), slots (number of axis slots, set by the chart), state hover (gallery).
-const PHASE_LEGACY = { 'muted-purple': 'sequential-indigo-1', 'steel-blue': 'sequential-indigo-1', 'deep-green': 'sequential-green-3', alert: 'sequential-red-5', cyan: 'sequential-teal-7',
+// old group names → the same step-3 targets charts use (audit run 2 T2-14), so one old name draws one colour everywhere
+const PHASE_LEGACY = { 'muted-purple': 'sequential-violet-4', 'steel-blue': 'sequential-indigo-3', 'deep-green': 'sequential-green-5', alert: 'sequential-red-6', cyan: 'sequential-teal-7',
   // the 2.0.7 family names win (audit T-6): the family's dark colour = its ramp step 2, as in charts (ramp steps, never slot numbers)
   violet: 'sequential-violet-2', indigo: 'sequential-indigo-2', azure: 'sequential-azure-2', teal: 'sequential-teal-2', terracotta: 'sequential-terracotta-2', rose: 'sequential-rose-2' };
 function TimelinePhase({ title, subtitle, badge, color = 1, start = 0, end = 1, tasks = [], expanded, defaultExpanded = false,

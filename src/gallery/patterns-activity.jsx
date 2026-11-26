@@ -41,7 +41,7 @@ export default IFS_GALLERY;
     { id: 'v3', title: 'Version 3', description: 'Added grid-resilience driver, linked to the 2026 capital plan.', author: P.carter, time: '2:40 PM · May 10',
       activity: [
         act('b1', 'carter', 'action', 'Administrator', 'Added the grid-resilience driver under Reliability.', '2:40 PM · May 10'),
-        act('b2', 'singh', 'comment', 'Investment owner', 'Linked to the 2026 capital plan — please check the capex split.', '1:05 PM · May 10'),
+        act('b2', 'singh', 'comment', 'Investment owner', 'Linked to the 2026 capital plan. Please check the capex split.', '1:05 PM · May 10'),
         act('b3', 'cooper', 'auto-action', null, 'Re-scored 12 measures after the driver change.', '2:41 PM · May 10'),
       ] },
     { id: 'v2', title: 'Version 2', description: 'Adjusted reliability KPI thresholds.', author: P.singh, time: '11:15 AM · May 6',
@@ -241,9 +241,9 @@ export default IFS_GALLERY;
       <IFS.AppShell height={900} navBar={NAV} sideNav={SIDE} bottom={<IFS.BottomSheet prompts={PROMPTS} />}>
         <IFS.Stack gap="500" style={{ padding: 'var(--space-300)' }}>
           <IFS.DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
-            pageTop={{ title: 'Strategy framework', description: 'Published, archived, and draft strategy frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
+            pageTop={{ title: 'Strategy framework', description: 'Published, archived, and draft strategy frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">Create</IFS.Button> }}
             filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s, match: r => r.status.label === s }))] }}
-            search={{ placeholder: 'Ask anything about strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?', 'What changed in the active framework?'] }}
+            search={{ placeholder: 'Search strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?', 'What changed in the active framework?'] }}
             onOpen={r => setScreen({ kind: 'map', fw: r.id })} onRename={() => {}} rowActions={(r, api) => fwActions(r, api, go)}
             columns={[
               { key: 'name', title: 'Strategy framework', name: true, width: '1fr', filter: false },

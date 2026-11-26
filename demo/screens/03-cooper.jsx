@@ -70,7 +70,7 @@ function ScreenCooper({ bp, height }) {
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
-      <AppShell height={height}
+      <AppShell height={height} title="Q1 2026 Strategy Framework" module="Value" /* tab title, rule 9.27 */
         navBar={<NavBar stages={cooperStages} defaultValue="value" onChange={navStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }}
           onSearch={() => toast('Search')} onSettings={() => toast('Settings')} onNotifications={() => toast('Notifications')} />}
         sideNav={<SideNav title="Value" items={cooperValueNav} defaultValue="active" defaultCollapsed onSelect={goValueNav} />}
