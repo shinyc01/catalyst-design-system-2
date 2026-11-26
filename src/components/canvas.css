@@ -56,6 +56,11 @@
   box-shadow:inset 0 0 0 var(--border-width-default) var(--nc-stroke),var(--nc-ring),var(--nc-shadow);
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-node-card:focus-visible{outline:none}
+/* A11Y M4: the select toggle is one real button whose ::after covers the card; the card's other controls sit above it */
+.ifs-node-card__main{all:unset;position:static}
+.ifs-node-card__main::after{content:"";position:absolute;inset:0;border-radius:var(--radius-card);cursor:pointer}
+.ifs-node-card__main:disabled::after{cursor:not-allowed}
+.ifs-node-card :is(.ifs-node-card__check,.ifs-node-card__icons){position:relative;z-index:1}
 /* Solid types: dark colour fill, --color-border-soft stroke, on-solid text, --blur-10. */
 .ifs-node-card--solid{--nc-stroke:var(--color-border-soft);--nc-title:var(--color-text-on-solid);--nc-caption:var(--color-text-on-solid-soft);
   backdrop-filter:blur(var(--blur-10));-webkit-backdrop-filter:blur(var(--blur-10))}
@@ -74,14 +79,14 @@
 .ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
 /* Rings (Figma "Inner Focus Wrapper"): Select = 3px ring-gap + 1px white; Focus = --focus-ring;
    Cooper = 3px ring-gap + 1px cooper→white gradient. Select and Cooper use --color-ring-gap (the same black): they are not focus. Text switches to primary / tertiary inside a ring. */
-.ifs-node-card--ring-select{--nc-ring:0 0 0 var(--border-width-300) var(--color-ring-gap),0 0 0 var(--border-width-400) var(--color-border-selected)}
-.ifs-node-card:focus-visible,.ifs-node-card[data-state=focus]{--nc-ring:var(--focus-ring)}
-.ifs-node-card--ring-cooper{--nc-ring:0 0 0 var(--border-width-300) var(--color-ring-gap)}
+.ifs-node-card--ring-select{--nc-ring:0 0 0 var(--border-width-300) /* ring geometry */ var(--color-ring-gap),0 0 0 var(--border-width-emphasis) var(--color-border-selected)}
+.ifs-node-card:focus-visible,.ifs-node-card[data-state=focus],.ifs-node-card:has(> .ifs-node-card__main:focus-visible){--nc-ring:var(--focus-ring)}
+.ifs-node-card--ring-cooper{--nc-ring:0 0 0 var(--border-width-300) /* ring geometry */ var(--color-ring-gap)}
 /* Cooper: Figma's 4px gradient stroke is covered by the 3px ring-gap, so 1px of gradient shows outside it. */
 .ifs-node-card--ring-cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;box-sizing:border-box;
   background:linear-gradient(to top left,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.ifs-node-card--ring-select,.ifs-node-card--ring-cooper,.ifs-node-card:focus-visible,.ifs-node-card[data-state=focus]{--nc-title:var(--color-text);--nc-caption:var(--color-text-softer)}
+.ifs-node-card--ring-select,.ifs-node-card--ring-cooper,.ifs-node-card:focus-visible,.ifs-node-card[data-state=focus],.ifs-node-card:has(> .ifs-node-card__main:focus-visible){--nc-title:var(--color-text);--nc-caption:var(--color-text-softer)}
 /* Out of focus: --color-surface-elevation-1 overlay. Disabled: --color-overlay-screen-strong, no stroke. */
 .ifs-node-card--out::before,.ifs-node-card--disabled::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2}
 .ifs-node-card--out::before{background:var(--color-surface-elevation-1)}
@@ -132,7 +137,7 @@
 .ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--color-surface-tertiary)}
 .ifs-sidebar-node--drag{background:var(--color-surface-tertiary);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
 .ifs-sidebar-node:focus-visible,.ifs-sidebar-node[data-state=focus]{outline:none;--sn-ring:var(--focus-ring)}
-.ifs-sidebar-node--cooper{--sn-ring:0 0 0 var(--border-width-300) var(--color-ring-gap)} /* not focus: Cooper ring on the ring-gap black */
+.ifs-sidebar-node--cooper{--sn-ring:0 0 0 var(--border-width-300) /* ring geometry */ var(--color-ring-gap)} /* not focus: Cooper ring on the ring-gap black */
 .ifs-sidebar-node--cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;
   background:linear-gradient(to top left,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
@@ -221,7 +226,7 @@
 
 .ifs-sankey-header{display:inline-flex;align-items:flex-start;padding:var(--space-200) var(--space-100) var(--space-100);border-radius:var(--radius-control);
   background:var(--color-surface-secondary);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
-.ifs-sankey-header__abbr{align-self:flex-end;height:var(--size-24);display:flex;align-items:center;color:var(--color-text-disabled);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */ /* Label/M/medium */}
+.ifs-sankey-header__abbr{align-self:flex-end;height:var(--size-24);display:flex;align-items:center;color:var(--color-text-softer) /* real text: never the disabled grey (A11Y H5) */;font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);text-transform:uppercase /* initials and abbreviations are capitals */ /* Label/M/medium */}
 .ifs-sankey-header__grid{display:grid;grid-template-columns:minmax(var(--size-56),max-content) var(--size-12) minmax(var(--size-56),max-content);align-items:center;row-gap:0} /* columns hug long labels ("BEST IN CLASS") instead of wrapping */
 .ifs-sankey-header__th{height:var(--size-12);text-align:center;white-space:nowrap;color:var(--color-text-softer);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking) /* table header caption */}
 .ifs-sankey-header__td{height:var(--size-24);display:flex;align-items:center;justify-content:center;color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
@@ -243,7 +248,7 @@
 .ifs-sankey__node--off{opacity:.4}
 .ifs-sankey__source{display:flex;align-items:center;cursor:default}
 .ifs-sankey__source-bar{display:flex;flex-direction:column;align-items:center;justify-content:center;width:40px;height:100%;background:var(--sankey-accent);
-  color:var(--color-text-on-solid);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking) /* Body/S/regular */;text-align:center}
+  color:var(--sankey-ink,var(--color-text-on-solid)) /* rule 10.8: black text from step 3 (violet 4), white on teal slot 7 */;font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking) /* Body/S/regular */;text-align:center}
 .ifs-sankey__source-bar b{font-weight:var(--font-body-m-regular-weight)}
 .ifs-sankey__source-band{width:6px;height:100%;background:var(--sankey-accent);opacity:.5}
 .ifs-sankey__source-label{margin-left:var(--space-100);padding:var(--space-50) var(--space-100);border-radius:var(--radius-mark);white-space:nowrap; /* ltr: sankey geometry */

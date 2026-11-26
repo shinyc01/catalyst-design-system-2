@@ -114,7 +114,7 @@ export default IFS_GALLERY;
             <div style={{ position: 'relative', zIndex: 9 }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
-                views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'flow', iconLeft: 'capital-flow' }]} />}
+                views={<IFS.SegmentedControl size="s" defaultValue="map" aria-label="View" options={[{ value: 'grid', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'map', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />}
                 actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />

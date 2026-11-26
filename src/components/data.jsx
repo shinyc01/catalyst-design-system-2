@@ -73,7 +73,8 @@ function Avatar({ initials, name, type = 'black', src, size = 'm', status, state
   return (
     <span className={IFS.cx('ifs-avatar', `ifs-avatar--${size}`, `ifs-avatar--${t}`, className)} {...rest}>
       <Base className={IFS.cx('ifs-avatar__base', t === 'loading' && 'ifs-sk')} data-state={state} onClick={onClick} type={onClick ? 'button' : undefined}
-        role={onClick ? undefined : 'img'} aria-label={label || name || full || undefined} title={onClick ? (label || name) : undefined}>
+        role={onClick || t === 'loading' ? undefined : 'img'} aria-hidden={t === 'loading' && !onClick ? true : undefined} /* A11Y L10: the skeleton is hidden, LoadingRegion announces */
+        aria-label={t === 'loading' && !onClick ? undefined : label || name || full || undefined} title={onClick ? (label || name) : undefined}>
         {t === 'image' && src && <img className="ifs-avatar__img" src={src} alt="" />}
         <span className="ifs-avatar__overlay" />
         {showText && <span className="ifs-avatar__name" aria-hidden="true">{text}</span>}
@@ -427,7 +428,8 @@ function NotificationCard({ type = 'all', read = false, title, details, meta, ti
   const isRead = read === true || read === 'read';
   const tag = actionRequired && type !== 'specific';
   return (
-    <div {...dataClickable(onClick)} className={IFS.cx('ifs-notification', `ifs-notification--${type}`, isRead ? 'ifs-notification--read' : 'ifs-notification--unread', tag && 'ifs-notification--has-tag', className)} {...rest}>
+    // A11Y M4 (final audit): the card's main action is one real button (the title, stretched over the card), the action buttons are its siblings
+    <div className={IFS.cx('ifs-notification', onClick && 'ifs-notification--clickable', `ifs-notification--${type}`, isRead ? 'ifs-notification--read' : 'ifs-notification--unread', tag && 'ifs-notification--has-tag', className)} {...rest}>
       <div className="ifs-notification__lead">
         <Avatar size="m" type={type === 'grouped' ? 'cooper' : 'black'} initials="UN" {...avatar} />
         {critical && <span className="ifs-notification__critical" role="img" aria-label="Critical"><IFS.Icon name="status-error-filled" size={12} /></span>}
@@ -435,7 +437,7 @@ function NotificationCard({ type = 'all', read = false, title, details, meta, ti
       </div>
       <div className="ifs-notification__content">
         <div className="ifs-notification__title-row">
-          <span className="ifs-notification__title">{title}</span>
+          <span className="ifs-notification__title">{onClick ? <button type="button" className="ifs-notification__main" onClick={onClick}>{title}</button> : title}</span>
           {tag && <Badge color="white" size="s">{actionLabel}</Badge>}
         </div>
         {details != null && <div className="ifs-notification__details">{details}</div>}

@@ -48,7 +48,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'NodeCard', figma: 'node-card (1440:4401)', render: () => <div style={{ overflowX: 'auto', padding: 'var(--space-150)' }}>
     {STATES.map(s => <Row key={s || 'default'} label={s || 'default'} top nowrap>{TYPES.map(t => card(t, s))}</Row>)}
     <Row label="loading"><NodeCard type="skeleton" /></Row>
-    <Row label="counter / interactive"><NodeCard type="value-model" badge="Model" title="Click to select" caption="drag me" counter={7} draggable />
+    <Row label="counter / interactive"><NodeCard type="value-model" badge="Model" title="Select or drag" caption="Value model" counter={7} draggable />
       <NodeCard type="subnode" title="Checkbox" caption="toggle" checkbox defaultChecked={false} /></Row>
   </div> });
 

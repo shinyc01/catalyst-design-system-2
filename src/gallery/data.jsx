@@ -101,7 +101,7 @@ export default IFS_GALLERY;
     primaryAction: { children: '{label}', iconLeft: 'system-star-favourite', iconRight: 'system-heart' } });
   function CardDemo() {
     const [sel, setSel] = React.useState(1);
-    return <Row label="clickable">{[0, 1, 2].map(i => <ContentCard key={i} style={{ width: 240 }} size="s" title={`Card ${i + 1}`} description="Click to select"
+    return <Row label="clickable">{[0, 1, 2].map(i => <ContentCard key={i} style={{ width: 240 }} size="s" title={`Card ${i + 1}`} description="Selectable card"
       selected={sel === i} onClick={() => setSel(i)} />)}</Row>;
   }
   IFS_GALLERY.push({ name: 'ContentCard', figma: 'content-card-organism (3643:32067)', render: () => <>

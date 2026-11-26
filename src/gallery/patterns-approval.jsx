@@ -59,13 +59,13 @@ export default IFS_GALLERY;
 
   const LONG_NOTE = 'The 12–18 month action window is being treated as a key reason to move this idea forward, but the current evidence does not fully support that level of urgency yet. I understand the reliability risk is increasing and the affected feeders are becoming harder to defer, but we should not let this move into approval as if the timing is already confirmed.';
   const REVIEWER_CHAIN = [
-    { id: 'jp', name: 'Jeff Pauska', role: 'Investment owner', avatar: { type: 'black' }, status: 'success' },
+    { id: 'jp', name: 'Jordan Price', role: 'Investment owner', avatar: { type: 'black' }, status: 'success' },
     { id: 'ig', name: 'Isabella Grant', role: 'Asset manager', avatar: { type: 'purple' }, status: 'empty' },
     { id: 'jt', name: 'John Thomson', role: 'Field team lead', avatar: { type: 'orange' }, status: 'empty' },
     { id: 'jr', name: 'James Reyes', role: 'Value framework owner', avatar: { type: 'dark-purple' }, status: 'empty' },
   ];
   const OWNER_CHAIN = [
-    { id: 'jp', name: 'Jeff Pauska', role: 'Investment owner', avatar: { type: 'black' }, status: 'success' },
+    { id: 'jp', name: 'Jordan Price', role: 'Investment owner', avatar: { type: 'black' }, status: 'success' },
     { id: 'ig', name: 'Isabella Grant', role: 'Asset manager', avatar: { type: 'purple' }, status: 'awaiting', note: { text: LONG_NOTE, authorId: 'jp' },
       comment: 'The cost range needs a clearer benchmark before I can sign off.', lastNotified: 'Feb 15, 2025' },
     { id: 'ms', name: 'Michael Swift', role: 'Asset manager', avatar: { type: 'light-purple' }, status: 'empty', replaced: { name: 'Ivan Gomez', avatar: { type: 'purple' } } },
@@ -90,7 +90,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'SplitButton', figma: 'header-pattern main action [patterns] (138:291660)', render: () => (
     <Row label="states">
-      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jeff Pauska.' }) }]}>Approve</SplitButton>
+      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jordan Price.' }) }]}>Approve</SplitButton>
       <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
       <SplitButton disabled iconLeft="system-check">Revisions requested</SplitButton>
       <SplitButton type="secondary" onClick={() => {}}>Publish</SplitButton>
@@ -142,7 +142,7 @@ export default IFS_GALLERY;
     return <IFS.PageHeader title={FRAMEWORK} onBack={() => {}} onTitleMenu={() => {}}
       status={<IFS.Indicator type={tone} size="xs">{label}</IFS.Indicator>}
       views={<IFS.Inline gap="1100" align="center">
-        <IFS.SegmentedControl size="s" defaultValue="overview" options={[{ value: 'overview', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'flow', iconLeft: 'capital-flow' }]} />
+        <IFS.SegmentedControl size="s" defaultValue="overview" aria-label="View" options={[{ value: 'overview', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'map', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />
         <div style={{ width: 352 }}><IFS.Stepper current={step} steps={['Input', 'Shape', 'Review', 'Approve'].map(l => ({ label: l }))} /></div>
       </IFS.Inline>}
       actions={<>
@@ -196,7 +196,7 @@ export default IFS_GALLERY;
     const requestInfo = () => {
       const text = note.trim();
       setModal(null); setDecision('info'); setChainMode(null); setMine({ status: 'revisions', comment: text });
-      IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jeff Pauska. Status: Needs revision.',
+      IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jordan Price. Status: Needs revision.',
         secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { setDecision(null); setMine({ status: 'empty', comment: undefined }); } } });
     };
     const mainAction = decision === 'approved' ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
@@ -275,7 +275,7 @@ export default IFS_GALLERY;
         <IFS.Button size="s" type="tertiary" onClick={() => { setChain(OWNER_CHAIN); setPhase('pending'); setMode('sidebar'); setCollapsed(false); }}>Reset</IFS.Button>
       </Demo>
       <Screen>
-        <Shell user={{ initials: 'JP', name: 'Jeff Pauska' }} prompts={status === 'ready' ? ['Prepare decision summary', 'Summarize unresolved gaps'] : undefined}
+        <Shell user={{ initials: 'JP', name: 'Jordan Price' }} prompts={status === 'ready' ? ['Prepare decision summary', 'Summarize unresolved gaps'] : undefined}
           header={<Header status={status} step={step} actions={action} />}>
           {mode === 'full'
             ? <ApprovalChainPanel mode="full" onExpandedChange={f => setMode(f ? 'full' : 'sidebar')} onCollapsedChange={() => setMode('sidebar')}>{table}</ApprovalChainPanel>
@@ -288,7 +288,7 @@ export default IFS_GALLERY;
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Publish', onClick: publish }}>
           <p className="t-body-l-regular" style={{ margin: 0 }}><b>“{FRAMEWORK}”</b> becomes active. Further changes need a new version.</p>
         </IFS.Modal>
-        <IFS.Modal open={modal === 'send'} onOpenChange={o => !o && setModal(null)} title="Send for review?" width={440} overlay="base"
+        <IFS.Modal open={modal === 'send'} onOpenChange={o => !o && setModal(null)} title="Send this framework for review?" width={440} overlay="base"
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Send for review', onClick: sendAgain }}>
           <p className="t-body-l-regular" style={{ margin: 0 }}>Reviewers see the current state of <b>“{FRAMEWORK}”</b> and can give feedback. Their earlier approvals are reset.</p>
         </IFS.Modal>

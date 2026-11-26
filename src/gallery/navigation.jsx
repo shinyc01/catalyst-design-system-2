@@ -66,11 +66,13 @@ export default IFS_GALLERY;
     return <>
       {['m', 'l'].map(z => (
         <Row key={z} label={`tab ${z}`}>
+          <IFS.Inline gap="200" wrap role="tablist" aria-label={`Tab states, size ${z}`} /* A11Y L5: tabs shown alone sit in their parent role */>
           <Tab size={z} count={7}>Text</Tab>
           <Tab size={z} count={7} state="hover">Text</Tab>
           <Tab size={z} count={7} selected>Text</Tab>
           <Tab size={z} count={7} state="focus">Text</Tab>
           <Tab size={z} count={0} disabled>Text</Tab>
+          </IFS.Inline>
         </Row>
       ))}
       <Row label="organism m">
@@ -163,7 +165,7 @@ export default IFS_GALLERY;
     const acts = <><IFS.CommentButton size="s" /><IFS.Button type="secondary" size="s">Approval chain</IFS.Button></>;
     return <>{[1300, 1000, 640, 360].map(w => <Row key={w} label={`${w}px`} top><div style={{ width: w }}>
       <PageHeader title="Copy of Q1 2026 Enterprise Strategy Framework" id="FW-1042" onTitleMenu={() => {}} status={<IFS.Indicator size="xs" type="warning">Pending approval</IFS.Indicator>}
-        views={<IFS.SegmentedControl size="s" defaultValue="o" options={[{ value: 'o', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'n', iconLeft: 'node-map', ariaLabel: 'Node map' }]} />}
+        views={<IFS.SegmentedControl size="s" defaultValue="o" aria-label="View" options={[{ value: 'o', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'n', iconLeft: 'node-map', ariaLabel: 'Node map' }]} />}
         center={steps} actions={acts} primaryAction={<IFS.Button type="primary" size="s">Approve</IFS.Button>} /></div></Row>)}</>;
   } });
 
@@ -221,7 +223,7 @@ export default IFS_GALLERY;
     return (
       <IFS.Stack gap="300">
         <IFS.Inline gap="200">{[1440, 1100, 900, 700].map(v => <IFS.Button key={v} type={w === v ? 'primary' : 'secondary'} size="s" onClick={() => setW(v)}>{v}px</IFS.Button>)}</IFS.Inline>
-        <div style={{ width: w, border: '1px solid var(--color-border-soft)' }}>
+        <section aria-label="Push panel" /* A11Y L5: each demo shell in its own section, so its nav bar is not a second page banner */ style={{ width: w, border: '1px solid var(--color-border-soft)' }}>
           <AppShell height={520}
             navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
             sideNav={<SideNav title="Value" items={valueNav} defaultValue="active" />}
@@ -229,8 +231,8 @@ export default IFS_GALLERY;
             panel={<IFS.Panel title="Readiness evaluation"><div className="t-body-m-regular">Panel content</div></IFS.Panel>}>
             <div style={{ padding: "var(--page-margin)" }}><div className="ifs-grid">{[1, 2, 3, 4].map(i => <IFS.StatCard key={i} className="ifs-span-3" title={`Metric ${i}`} value="1,621" />)}</div></div>
           </AppShell>
-        </div>
-        <div style={{ width: w, border: '1px solid var(--color-border-soft)' }}>
+        </section>
+        <section aria-label="Over panel" style={{ width: w, border: '1px solid var(--color-border-soft)' }}>
           <AppShell height={420} onPanelClose={() => setRow(null)}
             navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
             header={<PageHeader title="Ideas (row preview: over)" />}
@@ -239,7 +241,7 @@ export default IFS_GALLERY;
               {['ID-1042', 'ID-1043', 'ID-1044', 'ID-1045'].map(id => <IFS.Button key={id} type="secondary" size="m" onClick={() => setRow(id)}>Open {id}</IFS.Button>)}
             </IFS.Stack>
           </AppShell>
-        </div>
+        </section>
       </IFS.Stack>
     );
   } });

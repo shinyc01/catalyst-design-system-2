@@ -71,7 +71,7 @@ export default IFS_GALLERY;
   } });
 
   const PLAN_TREE = [
-    { id: 'dc', label: 'DC Water Capital Improvement Plan', children: [{ id: 'dc-1', label: 'Water mains 2027' }, { id: 'dc-2', label: 'Treatment plant upgrades' }] },
+    { id: 'dc', label: 'Whistler Water Capital Improvement Plan', children: [{ id: 'dc-1', label: 'Water mains 2027' }, { id: 'dc-2', label: 'Treatment plant upgrades' }] },
     { id: 'wa', label: 'Whistler Americas', children: [
       { id: 'cot', label: 'Claude optimisation test' },
       { id: 'demo', label: 'Demo portfolio', children: [{ id: 'demo-1', label: 'Demo scenario A' }] },

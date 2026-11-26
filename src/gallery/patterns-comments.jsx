@@ -195,7 +195,7 @@ export default IFS_GALLERY;
             <div style={{ position: 'relative' }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
-                views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'node-map' }, { value: 'map', iconLeft: 'map-view-2d' }, { value: 'flow', iconLeft: 'map-views' }]} />}
+                views={<IFS.SegmentedControl size="s" defaultValue="map" aria-label="View" options={[{ value: 'grid', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'map', iconLeft: 'map-view-2d', ariaLabel: 'Map' }, { value: 'flow', iconLeft: 'map-views', ariaLabel: 'Map views' }]} />}
                 actions={<IFS.Inline as="span" gap="300" align="center">
                   <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">5/5</IFS.Button>
                     <IFS.CommentButton hasNew={unreadAny} aria-pressed={panel} data-state={panel ? 'pressed' : undefined}

@@ -27,9 +27,9 @@ export default IFS_GALLERY;
     </Row>
     <Row label="connector"><IFS.Inline gap="600" style={{ height: 120 }}><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector /></div><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector type="dash" /></div></IFS.Inline></Row>
     <Row label="organism">
-      <Col><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
+      <Col><div role="list" aria-label="Timeline item" /* A11Y L5: an item shown alone sits in its list */><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
         Surfaced T-902 as top contributor to Hydro Feed Line 3 cluster risk. Scaled Inference — 87% evidence strength. Computational Receipt #441-WD generated.
-      </TimelineItem></Col>
+      </TimelineItem></div></Col>
     </Row>
     <Row label="in use (list)"><Col><Timeline items={ACTIVITY} /></Col><Col><Timeline connector="dash" items={ACTIVITY.slice(0, 3)} /></Col></Row>
   </> });

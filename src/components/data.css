@@ -65,7 +65,7 @@ button.ifs-avatar__base{cursor:pointer}
 .ifs-avatar__name{position:relative;z-index:2}
 .ifs-avatar__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* "color": 1.3px inner rim, white 100% → 0% top to bottom at 40% */
-.ifs-avatar__base::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:var(--border-width-150);z-index:3;pointer-events:none;
+.ifs-avatar__base::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:var(--border-width-150) /* ring geometry */;z-index:3;pointer-events:none;
   background:linear-gradient(180deg,var(--color-background-sheen),var(--color-background-transparent)) /* raw in Figma */;
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 /* "gradient": soft-light highlight on the top half, blurred */
@@ -103,7 +103,7 @@ button.ifs-avatar__base{cursor:pointer}
 /* states */
 button.ifs-avatar__base:hover,.ifs-avatar__base[data-state=hover]{--edge:0 0 0 var(--border-width-default) var(--color-border)}
 button.ifs-avatar__base:hover .ifs-avatar__overlay,.ifs-avatar__base[data-state=hover] .ifs-avatar__overlay{background:var(--color-overlay-element)}
-button.ifs-avatar__base:active,.ifs-avatar__base[data-state=pressed]{--edge:0 0 0 var(--border-width-default) var(--color-border);color:var(--color-text-soft)}
+button.ifs-avatar__base:active,.ifs-avatar__base[data-state=pressed]{--edge:0 0 0 var(--border-width-default) var(--color-border)} /* A11Y M2: initials stay white when pressed (G2), the overlay darkens */
 button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state=pressed] .ifs-avatar__overlay{background:var(--color-overlay-screen)}
 .ifs-avatar__base:focus-visible,.ifs-avatar__base[data-state=focus]{outline:none;--ring:var(--focus-ring)}
 .ifs-avatar__status{position:absolute;inset-inline-end:0;bottom:0;z-index:4;width:var(--av-status);height:var(--av-status)}
@@ -219,8 +219,8 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
    ring-gap stroke drawn over its inner half, so it reads as a 2px black gap, then a 2px gradient ring.
    Gradient brand/cooper/500-base → core/1000-base, orange at bottom-right to white at the left (Figma transform ≈ 282deg).
    --color-cooper-text and --color-text hold the same values as those primitives. */
-.ifs-content-card--cooper,.ifs-content-card[data-state=cooper]{--fill:var(--color-surface-secondary);--ring:0 0 0 var(--border-width-200) var(--color-ring-gap)}
-.ifs-content-card--cooper::before,.ifs-content-card[data-state=cooper]::before{content:"";position:absolute;inset:calc(-1 * var(--border-width-400));padding:var(--border-width-200);border-radius:calc(var(--radius-card) + var(--border-width-400));pointer-events:none;
+.ifs-content-card--cooper,.ifs-content-card[data-state=cooper]{--fill:var(--color-surface-secondary);--ring:0 0 0 var(--border-width-selected) var(--color-ring-gap)}
+.ifs-content-card--cooper::before,.ifs-content-card[data-state=cooper]::before{content:"";position:absolute;inset:calc(-1 * var(--border-width-emphasis));padding:var(--border-width-selected);border-radius:calc(var(--radius-card) + var(--border-width-emphasis));pointer-events:none;
   background:linear-gradient(282deg,var(--color-cooper-text),var(--color-text));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .ifs-content-card__main{display:flex;gap:var(--space-200);min-width:0}
@@ -330,9 +330,13 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 /* ================= NotificationCard — notification-card (9943:5373) ================= */
 .ifs-notification{--fill:var(--color-surface-raised);position:relative;display:flex;align-items:flex-start;gap:var(--space-stack);box-sizing:border-box;
   padding:var(--space-inset);border-radius:var(--radius-control);background:var(--fill);text-align:start;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
-.ifs-notification[role=button]{cursor:pointer}
-.ifs-notification[role=button]:hover,.ifs-notification[data-state=hover]{--fill:var(--color-surface-raised-hover)}
-.ifs-notification[role=button]:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.ifs-notification--clickable{cursor:pointer}
+.ifs-notification--clickable:hover,.ifs-notification[data-state=hover]{--fill:var(--color-surface-raised-hover)}
+/* A11Y M4: the title is the card's one button; its ::after stretches over the card, the action buttons sit above it */
+.ifs-notification__main{all:unset;cursor:pointer}
+.ifs-notification__main::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.ifs-notification--clickable:has(.ifs-notification__main:focus-visible){box-shadow:var(--focus-ring)}
+.ifs-notification--clickable .ifs-notification__actions{position:relative;z-index:1}
 .ifs-notification__lead{position:relative;flex:none;width:var(--size-32);height:var(--size-32)}
 .ifs-notification__critical{position:absolute;left:1.4375rem;top:-0.1875rem;display:inline-flex;color:var(--color-icon-danger)} /* ltr: badge offset on icon art */
 .ifs-notification__count{position:absolute;left:var(--size-16);top:-0.5625rem;backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))} /* ltr: badge offset on icon art */

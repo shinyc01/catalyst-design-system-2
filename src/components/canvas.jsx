@@ -167,7 +167,7 @@ function NodeCard({ type = 'strategic-objective', state, title = '{card-title}',
   const [dragging, setDragging] = React.useState(false);
   const [draft, setDraft] = React.useState(title);
   React.useEffect(() => { setDraft(title); }, [title, editing]);
-  if (type === 'skeleton' || loading || state === 'loading') return <div aria-busy="true" aria-label="Loading node" className={IFS.cx('ifs-node-card', 'ifs-node-card--skeleton', 'ifs-sk', className)} style={style} />;
+  if (type === 'skeleton' || loading || state === 'loading') return <div role="img" aria-busy="true" aria-label="Loading node" className={IFS.cx('ifs-node-card', 'ifs-node-card--skeleton', 'ifs-sk', className)} style={style} />;
 
   const st = state;
   const isEdit = editing || st === 'edit';
@@ -207,17 +207,19 @@ function NodeCard({ type = 'strategic-objective', state, title = '{card-title}',
   );
 
   return (
-    <div role="button" tabIndex={isDis ? -1 : 0} aria-pressed={!!isSel} aria-disabled={isDis || undefined}
-      data-state={forcedHover ? 'hover' : st === 'focus' ? 'focus' : undefined}
+    // A11Y M4 (final audit): the card's main action (select) is one real toggle button stretched over the card; Open, Delete, the checkbox
+    // and the edit buttons are its siblings, so no interactive element sits inside another
+    <div data-state={forcedHover ? 'hover' : st === 'focus' ? 'focus' : undefined} aria-disabled={isDis || undefined}
       draggable={draggable && !isDis && !isEdit ? true : undefined}
       onDragStart={e => { setDragging(true); if (onDragStart) onDragStart(e); }}
       onDragEnd={e => { setDragging(false); if (onDragEnd) onDragEnd(e); }}
-      onClick={e => { if (isDis || isEdit) return; if (onClick) onClick(e); setSel(!sel, e); }}
-      onKeyDown={e => { if (isDis || isEdit) return; if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSel(!sel, e); } }}
       className={IFS.cx('ifs-node-card', `ifs-node-card--${type}`, solid && 'ifs-node-card--solid',
         ring && `ifs-node-card--ring-${ring}`, isDrag && 'ifs-node-card--drag', isDis && 'ifs-node-card--disabled',
         isOut && 'ifs-node-card--out', isCheck && 'ifs-node-card--checkbox', isEdit && 'ifs-node-card--edit', className)}
       style={style} {...rest}>
+      {!isEdit && <button type="button" className="ifs-node-card__main" aria-pressed={!!isSel} disabled={isDis || undefined}
+        aria-label={type === 'user' ? (user && user.name) || title : title}
+        onClick={e => { if (isDis || isEdit) return; if (onClick) onClick(e); setSel(!sel, e); }} />}
       {isCheck && <span onClick={e => e.stopPropagation()} className="ifs-node-card__check">
         <IFS.Checkbox checked={checked} defaultChecked={defaultChecked} onChange={onCheckedChange} aria-label={`Select ${title}`} /></span>}
       {type === 'document' && <span className="ifs-node-card__doc"><IFS.Icon name="system-file" size={16} /></span>}
@@ -463,6 +465,7 @@ function SankeyHeader({ abbr, fromLabel, toLabel, from, to, className, ...rest }
 //             type=source draws the tall coloured source block (first column, e.g. "6 Goals").
 //   links   = [{ source, target, value }]  — band colour follows the source block it descends from.
 //   height (chart body px, default 575), onNodeClick(node), showFit + onFit (value-map-button Input in the corner).
+const SANKEY_INK = { violet: 'var(--color-text-on-solid-dark)' /* rule 10.8: black from step 3; white on violet 4 is 3.39:1 */, green: 'var(--color-text-on-solid)' };
 const SANKEY_COLOR = { violet: 'var(--color-data-viz-sequential-violet-4)' /* nearest role to the old violet-data-3 (2.0.7 palette) */, green: 'var(--color-data-viz-categorical-7)' /* a series colour, not the status green (rules 10.1, 10.7): categorical slot 7, teal dark; the prop value keeps its name */ };
 function Sankey({ columns = [], nodes = [], links = [], height = 575, onNodeClick, showFit = true, onFit, className, ...rest }) {
   const ref = React.useRef(null);
@@ -493,7 +496,7 @@ function Sankey({ columns = [], nodes = [], links = [], height = 575, onNodeClic
         {columns.map(c => c.header && layout.headers[c.id] &&
           <SankeyHeader key={c.id} {...c.header} className="ifs-sankey__summary" style={{ /* ltr: sankey geometry */ left: layout.headers[c.id].x, top: layout.headers[c.id].y }} />)}
         {layout.placed.map(p => p.node.type === 'source' ? (
-          <div key={p.node.id} className="ifs-sankey__source" style={{ /* ltr: sankey geometry */ left: p.x, top: p.y, height: p.h, '--sankey-accent': SANKEY_COLOR[p.node.color] || SANKEY_COLOR.violet }}
+          <div key={p.node.id} className="ifs-sankey__source" style={{ /* ltr: sankey geometry */ left: p.x, top: p.y, height: p.h, '--sankey-accent': SANKEY_COLOR[p.node.color] || SANKEY_COLOR.violet, '--sankey-ink': SANKEY_INK[p.node.color] || SANKEY_INK.violet }}
             onMouseEnter={() => setHover(p.node.id)} onMouseLeave={() => setHover(null)}>
             <span className="ifs-sankey__source-bar"><b>{p.node.count}</b>{p.node.countLabel || 'Goals'}</span>
             <span className="ifs-sankey__source-band" />
@@ -628,9 +631,10 @@ function TimelinePhase({ title, subtitle, badge, color = 1, start = 0, end = 1, 
 function TimelineChart({ groups = [], phases = [], title = 'Phase', onAddPhase, state, className, ...rest }) {
   const slots = groups.reduce((a, g) => a + g.slots.length, 0) || 1;
   return (
-    <div data-state={state} className={IFS.cx('ifs-timeline-chart', className)} role="table" aria-label={rest['aria-label'] || 'Timeline'} {...rest}>
-      <div className="ifs-timeline-chart__head" role="row">
-        <div className="ifs-timeline-chart__phase-head" role="columnheader"><span>{title}</span>
+    // A11Y M3 (final audit): a named group, not role="table": the rows hold buttons and have no cells, so table roles were invalid
+    <div data-state={state} className={IFS.cx('ifs-timeline-chart', className)} role="group" aria-label={rest['aria-label'] || 'Timeline'} {...rest}>
+      <div className="ifs-timeline-chart__head">
+        <div className="ifs-timeline-chart__phase-head"><span>{title}</span>
           {onAddPhase && <IFS.IconButton size="s" icon="system-plus" label="Add phase" className="ifs-timeline-chart__add" onClick={onAddPhase} />}</div>
         <div className="ifs-timeline-chart__axis">
           <div className="ifs-timeline-chart__years">{groups.map(g => <span key={g.label} style={{ flex: g.slots.length }}>{g.label}</span>)}</div>
