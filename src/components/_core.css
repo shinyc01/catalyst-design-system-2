@@ -24,7 +24,7 @@
   :is(.ifs-button:not(.ifs-button--ghost),.ifs-icon-button:not(.ifs-icon-button--ghost),.ifs-field__control,.ifs-select__field,.ifs-search,.ifs-range-field,
       .ifs-smart-search__field,.ifs-role-select__trigger,.ifs-select--xl .ifs-select__trigger,
       .ifs-check__box,.ifs-switch,.ifs-segmented,.ifs-chip,.ifs-content-card,.ifs-badge,.ifs-snackbar,.ifs-menu__list,.ifs-floating-bar,.ifs-popover,
-      .ifs-modal,.ifs-drawer,.ifs-panel,.ifs-tooltip,.ifs-map-cluster,.ifs-table-card,.ifs-node-card,.ifs-stat-card,.ifs-dv-card){
+      .ifs-modal,.ifs-drawer,.ifs-panel,.ifs-tooltip,.ifs-dv-tooltip,.ifs-map-cluster,.ifs-table-card,.ifs-node-card,.ifs-stat-card,.ifs-dv-card){
     outline:var(--border-width-default) solid CanvasText;outline-offset:calc(-1 * var(--border-width-default))}
   :is([aria-selected="true"],[aria-pressed="true"],[aria-checked="true"]:not([role=menuitemradio]),.is-selected,.ifs-content-card--selected,.ifs-table__row--selected,
       .ifs-checkbox--on .ifs-check__box){background-color:Highlight;color:HighlightText;forced-color-adjust:none}

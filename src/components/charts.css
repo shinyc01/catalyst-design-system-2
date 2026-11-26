@@ -49,6 +49,8 @@
 .ifs-dv-legend__swatch--dashed{height:2px;border-radius:0;background:repeating-linear-gradient(90deg,var(--sw) 0 4px,transparent 4px 6px)} /* px: the chart's 6 / 4 dash, scaled */ /* ltr: brand gradient art, fixed in both directions */
 .ifs-dv-legend__swatch--dot{width:var(--size-8);height:var(--size-8);margin-inline:var(--space-100);border-radius:var(--radius-pill)}
 .ifs-dv-legend__swatch--neutral{background:var(--color-data-viz-neutral)}
+.ifs-dv-legend__swatch--outline{background:none;box-shadow:inset 0 0 0 var(--border-width-selected) var(--sw)} /* plan (rule 10.13) */
+.ifs-dv-legend__swatch--hatch{background:repeating-linear-gradient(45deg,var(--sw) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 var(--border-width-default) var(--sw)} /* forecast (rule 10.13) */ /* px: the chart's hatch, scaled */ /* ltr: pattern art, fixed in both directions */
 .ifs-dv-legend__target{flex:none;width:2px;height:var(--size-16);border-radius:var(--radius-mark);background:var(--color-icon)}
 .ifs-dv-legend__name{min-width:0;color:var(--color-text-soft);overflow:hidden;text-overflow:ellipsis}
 .ifs-dv-legend--row .ifs-dv-legend__name{flex:1 1 auto}
@@ -152,7 +154,7 @@
 .ifs-dv-tooltip{display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;width:16rem;padding:var(--space-inset);
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);backdrop-filter:blur(var(--blur-glass));
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);color:var(--color-text);text-align:start}
-.ifs-dv-tooltip--chart{width:max-content;min-width:12rem;max-width:20rem; /* D5: content-sized */
+.ifs-dv-tooltip--chart{width:max-content;min-width:min(12rem,calc(100vw - 2 * var(--space-inset)));max-width:min(20rem,calc(100vw - 2 * var(--space-inset))) /* audit run 2 L1: wraps inside the window at 200% text */; /* D5: content-sized */
   gap:var(--space-150);padding-block:var(--space-300)} /* review round 3 (Nov 25): sides --space-inset, top / bottom space-300, title → rows space-150 */
 .ifs-dv-tooltip--chart .ifs-dv-tooltip__head{gap:var(--space-50)}
 .ifs-dv-tooltip--chart .ifs-dv-tooltip__items{gap:var(--space-100)}
@@ -175,6 +177,8 @@
 .ifs-dv-tooltip__swatch{flex:none;width:var(--size-12);height:var(--size-12);border-radius:var(--radius-mark);background:var(--sw)}
 .ifs-dv-tooltip__swatch--line{height:2px;border-radius:0} /* px: chart geometry */
 .ifs-dv-tooltip__swatch--dashed{height:2px;border-radius:0;background:repeating-linear-gradient(90deg,var(--sw) 0 4px,transparent 4px 6px)} /* px: chart dash */ /* ltr: brand gradient art, fixed in both directions */
+.ifs-dv-tooltip__swatch--outline{background:none;box-shadow:inset 0 0 0 var(--border-width-selected) var(--sw)}
+.ifs-dv-tooltip__swatch--hatch{background:repeating-linear-gradient(45deg,var(--sw) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 var(--border-width-default) var(--sw)} /* px: the chart's hatch, scaled */ /* ltr: pattern art */
 .ifs-dv-tooltip__swatch--dot{width:var(--size-8);height:var(--size-8);margin-inline:var(--space-50);border-radius:var(--radius-pill)}
 .ifs-dv-tooltip__name{flex:1;min-width:0;color:var(--color-text-soft)}
 .ifs-dv-tooltip__item--sub{padding-inline-start:calc(var(--size-12) + var(--space-200))} /* under the row above (the series folded into "Other"), aligned with its name */
@@ -195,6 +199,9 @@
 .ifs-chart__scroll--more-start{-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--size-24));mask-image:linear-gradient(90deg,transparent,#000 var(--size-24))} /* ltr: chart geometry */
 .ifs-chart__scroll--more-start.ifs-chart__scroll--more-end{-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--size-24),#000 calc(100% - var(--size-24)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--size-24),#000 calc(100% - var(--size-24)),transparent)} /* ltr: chart geometry */
 .ifs-chart__mark{transition:filter var(--motion-duration-50) var(--motion-ease-standard)}
+/* Rule 10.13 (IBCS, decided Nov 26): actual solid · plan outlined in the series colour, no fill · forecast hatched in the series colour */
+.ifs-chart__mark--plan{stroke-width:var(--border-width-selected)}
+.ifs-chart__mark--forecast{stroke-width:var(--border-width-default)}
 .ifs-chart__mark--dim{filter:var(--effect-data-viz-dim)} /* the other marks darken, never transparent, so gridlines never show through */
 .ifs-chart__end-label{font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking);fill:var(--color-text-soft)} /* D4: line names at the line ends */
 .ifs-chart__point--on{stroke:var(--color-surface-page);stroke-width:2}
@@ -272,9 +279,14 @@
   .ifs-chart svg .ifs-chart__baseline{stroke:CanvasText}
   .ifs-chart svg :is(.ifs-chart__ref,.ifs-chart__today){stroke:CanvasText}
   .ifs-chart svg .ifs-chart__ref-label{fill:CanvasText;stroke:Canvas}
-  .ifs-chart svg :is(path.ifs-chart__mark,rect.ifs-chart__mark,.ifs-chart__slice,.ifs-chart__mark > path:not(.ifs-chart__line),.ifs-chart__gauge-track){
+  .ifs-chart svg :is(path.ifs-chart__mark:not(.ifs-chart__mark--forecast),rect.ifs-chart__mark,.ifs-chart__slice,.ifs-chart__mark > path:not(.ifs-chart__line),.ifs-chart__gauge-track){
     fill:Canvas;stroke:CanvasText;stroke-width:var(--border-width-selected);fill-opacity:1}
   .ifs-chart svg .ifs-chart__line{stroke:CanvasText}
+  /* rule 10.13: plan and forecast bars get a dashed outline (forecast keeps its hatch in CanvasText), so all three kinds differ (A11Y M2) */
+  .ifs-chart svg :is(.ifs-chart__mark--plan,.ifs-chart__mark--forecast){stroke-dasharray:4 3} /* px: chart geometry */
+  .ifs-chart svg .ifs-chart__mark--plan{fill:none}
+  .ifs-chart svg .ifs-chart__mark--forecast{stroke:CanvasText;stroke-width:var(--border-width-selected)} /* keeps its hatch (pattern below) */
+  .ifs-chart svg .ifs-chart__hatch{stroke:CanvasText}
   .ifs-chart svg .ifs-chart__fc-point{fill:CanvasText;stroke:none}
   .ifs-chart svg .ifs-chart__fc-point--stroke{fill:none;stroke:CanvasText;stroke-width:var(--border-width-selected)}
   .ifs-chart svg .ifs-chart__gauge-arc{fill:CanvasText;stroke:CanvasText}
@@ -288,7 +300,11 @@
   .ifs-dv-bar{background:Canvas;box-shadow:inset 0 0 0 var(--border-width-selected) CanvasText}
   .ifs-dv-bar .ifs-dv-value{color:CanvasText}
   .ifs-chart__legend .ifs-dv-legend__swatch{background:Canvas;box-shadow:inset 0 0 0 var(--border-width-selected) CanvasText}
-  .ifs-chart__legend :is(.ifs-dv-legend__swatch--line,.ifs-dv-legend__swatch--dashed,[class*="ifs-dv-legend__swatch--fc-"]){box-shadow:none;background:CanvasText}
+  .ifs-chart__legend :is(.ifs-dv-legend__swatch--line,[class*="ifs-dv-legend__swatch--fc-"]){box-shadow:none;background:CanvasText}
+  /* dashed keys stay dashed, like the lines they stand for (A11Y M2) */
+  .ifs-chart__legend .ifs-dv-legend__swatch--dashed{box-shadow:none;background:repeating-linear-gradient(90deg,CanvasText 0 4px,transparent 4px 6px)} /* ltr: dash pattern */
+  .ifs-chart__legend .ifs-dv-legend__swatch--outline{background:Canvas;box-shadow:none;border:var(--border-width-selected) dashed CanvasText}
+  .ifs-chart__legend .ifs-dv-legend__swatch--hatch{box-shadow:none;border:var(--border-width-selected) dashed CanvasText;background:repeating-linear-gradient(45deg,CanvasText 0 2px,Canvas 2px 4px)} /* ltr: pattern art */
   /* the series' point shape at the centre of its legend line (same order as charts.jsx FC_SHAPES) */
   .ifs-chart__legend [class*="ifs-dv-legend__swatch--fc-"]{position:relative;overflow:visible}
   .ifs-chart__legend [class*="ifs-dv-legend__swatch--fc-"]::after{content:"";position:absolute;inset:0;margin:auto;width:var(--size-8);height:var(--size-8);

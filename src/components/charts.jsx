@@ -549,6 +549,9 @@ function ChartTip({ anchor, box, tip, plotRef }) {
     const top = Math.max(minTop, Math.min(anchor.y - TIP_GAP, maxTop));
     // when neither side has room (a narrow card), it still stays inside the card (rule 10.6), so the page never scrolls sideways
     if (cr) left = Math.max(cr.left - pr.left + TIP_GAP, Math.min(left, cr.right - pr.left - TIP_GAP - w));
+    // and inside the window (audit run 2 L1: at 200% text the card can be wider than the viewport)
+    if (pr && typeof document !== 'undefined') { const vw = document.documentElement.clientWidth;
+      left = Math.max(TIP_GAP - pr.left, Math.min(left, vw - pr.left - TIP_GAP - w)); }
     setPos(p => (p && p.left === left && p.top === top ? p : { left, top }));
   }, [key, box.w, box.h, tip && tip.title, tip && (tip.items || []).length]);
   if (!anchor || !tip) return null;
@@ -560,14 +563,14 @@ function ChartTip({ anchor, box, tip, plotRef }) {
 }
 
 // Grey skeleton drawn while loading (Figma State=Loading, L1): static plot shapes with the one slow pulse, filling the plot area.
-function ChartSkeleton({ kind = 'bars', height }) {
+function ChartSkeleton({ kind = 'bars', height, title }) {
   const [ref, box] = useBox(height);
   const W = box.w, H = box.h;
   const x0 = 40, x1 = W - 8, yT = 8, yB = H - 24;
   const hs = [0.5, 0.7, 0.59, 0.91, 0.74, 1];
   const band = (x1 - x0) / hs.length;
   return (
-    <div className="ifs-chart__skeleton" aria-busy="true" aria-label="Loading chart">
+    <div className="ifs-chart__skeleton" role="img" aria-busy="true" aria-label={typeof title === 'string' && title ? `Loading ${title}` : 'Loading…' /* rule 9.23: the label names the chart */}>
       <div ref={ref} className="ifs-chart__plot" style={height ? { height } : undefined}>
         <span className="ifs-chart__probe" aria-hidden="true">0</span>
         <svg className="ifs-chart__svg" width={W} height={H} aria-hidden="true">
@@ -652,9 +655,10 @@ function ChartLegend({ items, active, onActive, layout = 'inline', beside, extra
 }
 
 const STATE_COPY = {
-  empty: { cause: 'first-run', icon: null, heading: 'Insufficient data', body: 'Not enough data to display this chart yet.' },
+  // empty: the screen passes emptyText saying when the data will appear (words.md, rule 8.51); no default body.
+  empty: { cause: 'first-run', icon: null, heading: 'Not enough data yet', body: undefined },
   'no-results': { cause: 'no-results', heading: 'No matches for these filters', body: 'Change or clear the filters.' },
-  error: { cause: 'error', heading: 'Couldn’t load this chart', body: 'Check your connection and try again.' },
+  error: { cause: 'error', heading: 'Couldn’t load this chart', body: 'The server didn’t respond. Try again in a minute.' /* rule 8.22: the system's problem, not the connection */ },
 };
 
 // Shared frame for every core chart: DataVizCard (variant chart) + states + Chart / Table switch + screen-reader table.
@@ -702,7 +706,7 @@ function ChartShell({ title, subtitle, description, state, legend: legendIn, leg
       bare={bare} hideControls={noData}
       view={mode === 'table' ? 'table' : 'chart'} onViewChange={table ? setV : undefined}
       legend={legendNode} legendPlacement={legend && legend.beside ? 'beside' : 'below'}>
-      {mode === 'loading' ? (skel ? <ChartSkeleton kind={skeleton} height={height} /> : <div className="ifs-chart__wait" aria-busy="true" style={height ? { height } : undefined} />)
+      {mode === 'loading' ? (skel ? <ChartSkeleton kind={skeleton} height={height} title={title} /> : <div className="ifs-chart__wait" aria-busy="true" style={height ? { height } : undefined} />)
         : copy ? <div className="ifs-chart__state" style={height ? { minHeight: height } : undefined}>
             <IFS.EmptyState size="section" cause={copy.cause} icon={copy.icon} heading={heading || copy.heading} body={body || copy.body} primaryAction={action} />
           </div>
@@ -758,7 +762,7 @@ function Plot({ p, label, tip, n, pick, describe, scroll, fixed, children }) {
   };
   return (
     <div ref={p.ref} className={IFS.cx('ifs-chart__plot', p.active != null && 'ifs-chart__plot--active')} style={p.fixed ? { height: p.H } : undefined}
-      tabIndex={count ? 0 : undefined} role="group" aria-label={`${label || 'Chart'}. Use the arrow keys to read each value.`}
+      tabIndex={count ? 0 : undefined} role="group" aria-label={label ? `${label}. Use the arrow keys to read each value.` : 'Use the arrow keys to read each value.' /* rule 9.23: never "Chart" */}
       onMouseMove={move} onMouseLeave={p.leave} onKeyDown={onKeyDown}
       onFocus={e => { if (e.target !== e.currentTarget) return; setFocused(true); if (p.active == null && count && e.target.matches(':focus-visible')) p.show(grid ? [0, 0] : 0); }}
       onBlur={e => { if (e.target !== e.currentTarget) return; setFocused(false); p.clear(); }}>
@@ -872,48 +876,66 @@ function RefLines({ refs, L, x0 = L.x0, x1 = L.x1 }) {
     {r.label && <text x={x1} y={L.y(Number(r.value)) - 4} textAnchor="end" className="ifs-chart__ref-label">{r.label}</text>}
   </g>);
 }
-// Forecast (rule 10.13): bars keep the series' family in its light partner slot (odd slot n → n + 1); a token colour stays as it is.
-const lightOf = c => (c == null ? 2 : (typeof c === 'number' || /^\d+$/.test(String(c))) && Number(c) % 2 === 1 ? Number(c) + 1
-  : DV_FAMILIES.includes(c) ? DV_FAMILIES.indexOf(c) * 2 + 2 : c); // a family name → its light partner slot (rose → 12), audit T2-2
+// Actual, plan and forecast (rule 10.13, IBCS; audit run 2 R1 + A11Y M2, decided Nov 26): every kind keeps the series colour.
+// Actual = solid; plan = outlined (series-colour stroke, no fill); forecast = hatched in the series colour (a pattern drawn from the
+// series token) inside a thin outline. Forced colours: plan and forecast get a dashed outline (charts.css).
+const HATCH = 6; // px: chart geometry, the hatch spacing
+function Hatch({ id, color }) {
+  return <pattern id={id} patternUnits="userSpaceOnUse" width={HATCH} height={HATCH} patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2={HATCH} stroke={color} strokeWidth={HATCH / 2} className="ifs-chart__hatch" />
+  </pattern>;
+}
+const markKind = d => (d.plan ? 'plan' : d.forecast ? 'forecast' : 'actual');
 
 /* ------------------------------------------------------------------ column / bar family */
 
 // Figma: chart-column (9862:12468) — one measure across few or time-ordered categories; zero-based, one colour (slot 1).
-// Props: data = [{ label, value, reference?, forecast?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
-// references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines), forecast: true on a datum = a forecast / planned value
-// (rule 10.13: the light partner slot of `color`, "Forecast" in the legend, tooltip and table),
+// Props: data = [{ label, value, reference?, forecast?, plan?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
+// references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines), forecast: true on a datum = a forecast (hatched in the
+// series colour), plan: true = a planned value (outlined in the series colour, no fill); both are named in the legend ("Forecast", "Plan"),
+// the tooltip and the table ("(forecast)", "(plan)"), rule 10.13; forecastLabel / planLabel rename them,
 // color (categorical slot or data-viz token; default 1), format(v) for values/axis, tooltip(datum, i) → DataVizTooltip props, valueTicks.
 // Shell props (every chart): see ChartShell; among them legendPosition below | beside (2.0.7: where the legend sits; unset = the type's default, rule 10.5).
 function ColumnChart(props) {
-  const { data = [], valueLabel = 'Value', referenceLabel = 'Peer median', color = 1, format = defaultFormat, tooltip, contiguous, valueTicks } = props;
+  const { data = [], valueLabel = 'Value', referenceLabel = 'Peer median', forecastLabel = 'Forecast', planLabel = 'Plan', color = 1, format = defaultFormat, tooltip, contiguous, valueTicks } = props;
   const refs = refList(props.references);
   const p = usePlot(props);
+  const hatchId = 'ifs-hatch-' + React.useId().replace(/:/g, '');
   const hasRef = data.some(d => d.reference != null);
-  const hasFc = data.some(d => d.forecast);
+  const hasFc = data.some(d => d.forecast && !d.plan), hasPlan = data.some(d => d.plan);
+  const kindLabel = { actual: valueLabel, forecast: forecastLabel, plan: planLabel };
+  const kindSuffix = d => (d.plan ? ` (${planLabel.toLowerCase()})` : d.forecast ? ` (${forecastLabel.toLowerCase()})` : '');
   const ticks = scaleTicks(Math.min(0, ...finite([...data.map(d => d.value), ...refs.map(r => Number(r.value))])), Math.max(0, ...finite([...data.flatMap(d => [d.value, d.reference]), ...refs.map(r => Number(r.value))])), valueTicks);
   const L = catLayout(p, data.length, ticks, format);
   const bw = contiguous ? Math.max(1, L.band - GAP_MARK) : Math.max(4, Math.min(L.band * 0.55, 64));
-  const fill = dvColor(color, 0), fcColor = lightOf(color), fcFill = dvColor(fcColor, 1);
-  const legend = { items: [{ label: valueLabel, color }, hasFc && { label: 'Forecast', color: fcColor }, hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }, ...refLegend(refs)] };
+  const fill = dvColor(color, 0);
+  const legend = { items: [{ label: valueLabel, color }, hasPlan && { label: planLabel, color, shape: 'outline' }, hasFc && { label: forecastLabel, color, shape: 'hatch' }, hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }, ...refLegend(refs)] };
   const table = { columns: [{ key: 'label', title: contiguous ? 'Bin' : 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel },
     ...refs.map((r, i) => ({ key: `r${i}`, title: r.label || 'Reference' }))].filter(Boolean),
-    rows: data.map((d, i) => Object.assign({ id: i, label: d.forecast ? `${d.label} (forecast)` : d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() }, ...refRows(refs, format))) };
+    rows: data.map((d, i) => Object.assign({ id: i, label: `${d.label}${kindSuffix(d)}`, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() }, ...refRows(refs, format))) };
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const a = p.active != null ? data[p.active] : null;
   const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: L.cx(p.active) - bw / 2, x1: L.cx(p.active) + bw / 2, y: L.y(Math.max(a.value, 0, a.reference ?? 0)) },
-    content: tipFrom(a, { title: a.label, items: [{ label: a.forecast ? 'Forecast' : valueLabel, value: tf(a.value), color: a.forecast ? fcColor : color, shape: 'square' }, ...(a.reference != null ? [{ label: referenceLabel, value: tf(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, items: [{ label: kindLabel[markKind(a)], value: tf(a.value), color, shape: { actual: 'square', plan: 'outline', forecast: 'hatch' }[markKind(a)] }, ...(a.reference != null ? [{ label: referenceLabel, value: tf(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length}>
-      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick} describe={i => `${data[i].label}: ${format(data[i].value)}${data[i].forecast ? ' (forecast)' : ''}`}>
+      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick} describe={i => `${data[i].label}${kindSuffix(data[i])}: ${format(data[i].value)}`}>
+        {hasFc && <defs><Hatch id={hatchId} color={fill} /></defs>}
         <YAxis L={L} ticks={ticks} format={format} />
         {data.map((d, i) => {
-          const y0 = L.y(0), y1 = L.y(d.value), on = p.active === i;
+          const y0 = L.y(0), y1 = L.y(d.value), on = p.active === i, kind = markKind(d);
+          // plan / forecast: the outline sits inside the bar's box (inset by half the stroke), so all three kinds keep one width
+          const inset = kind === 'actual' ? 0 : kind === 'plan' ? 1 : 0.5; // px: chart geometry, half of the 2 / 1 px stroke
+          const bx = L.cx(i) - bw / 2 + inset, bwI = Math.max(1, bw - 2 * inset);
+          const top = Math.min(y0, y1) + inset, h = Math.abs(y0 - y1) - 2 * inset;
           return (
             <g key={i}>
-              <path d={d.value >= 0 ? barPath(L.cx(i) - bw / 2, y1, bw, y0 - y1, contiguous ? 'none' : 'top') : barPath(L.cx(i) - bw / 2, y0, bw, y1 - y0, contiguous ? 'none' : 'bottom')}
-                fill={d.forecast ? fcFill : fill} className={markCls(p, on)} />
+              <path d={barPath(bx, top, bwI, h, contiguous ? 'none' : d.value >= 0 ? 'top' : 'bottom')}
+                fill={kind === 'plan' ? 'none' : kind === 'forecast' ? `url(#${hatchId})` : fill}
+                stroke={kind === 'actual' ? undefined : fill} pointerEvents={kind === 'plan' ? 'all' : undefined}
+                className={IFS.cx(markCls(p, on), kind !== 'actual' && `ifs-chart__mark--${kind}`)} />
               {d.reference != null && <rect x={L.cx(i) - bw / 2 - 6} y={L.y(d.reference) - 1} width={bw + 12} height={2} fill={WHITE} className={markCls(p, on)} />}
               {shown(i) && <text x={L.cx(i)} y={L.labelY} textAnchor="middle" className="ifs-chart__axis">{d.label}</text>}
             </g>
@@ -1070,7 +1092,7 @@ function GroupedColumnChart(props) {
 // sequential ramp from step 2 (= the slot) upwards: up to 4 levels every other step (2 · 4 · 6 · 8), 5–8 every step (2 … 9), past 8 the
 // rest fold into "Other". Up to 6 groups. The legend names the levels in the ramp of the hovered column (the first column at rest); the
 // tooltip and table name each level.
-const LEVEL_FAMILIES = ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose'];
+const LEVEL_FAMILIES = DV_FAMILIES; // one family list (T2-17)
 const groupFamily = (c, i) => {
   if (typeof c === 'string' && LEVEL_FAMILIES.includes(c)) return c;
   const n = Number(c);
@@ -1588,7 +1610,7 @@ function FunnelChart(props) {
 
 /* ------------------------------------------------------------------ heatmap */
 
-const RAMPS = ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose', 'red', 'green', 'orchid', 'pink', 'yellow', 'cyan']; // the last four: 2.0.6 names, deprecated until 3.0 (aliases of violet, rose, terracotta, azure)
+const RAMPS = [...DV_FAMILIES, 'red', 'green', 'orchid', 'pink', 'yellow', 'cyan']; // the last four: 2.0.6 names, deprecated until 3.0 (aliases of violet, rose, terracotta, azure)
 // Figma: chart-heatmap (9866:14280) — ordered magnitude across a matrix, one sequential ramp (D7): more = lighter, 5 classes
 // (ladder steps 1 · 3 · 5 · 7 · 9) or 9 when the heatmap is dense. The legend is a scale bar below (D4).
 // Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (violet default | indigo | azure | teal | terracotta | rose; pick the ramp of the entity the chart shows, rule 10.8),
@@ -1684,7 +1706,7 @@ function EvidenceStrength({ value = 0, thresholds = [70, 90], min = 50, title = 
   const [a, b] = seg[k];
   const pos = ((k + Math.max(0, Math.min(1, (value - a) / (b - a || 1)))) / 3) * 100;
   return (
-    <div role="meter" aria-label={title} aria-valuemin={0} aria-valuemax={100} aria-valuenow={value} aria-valuetext={`${value}% — ${caps[k]}`}
+    <div role="meter" aria-label={title} aria-valuemin={0} aria-valuemax={100} aria-valuenow={value} aria-valuetext={`${value}%, ${caps[k]}`}
       className={IFS.cx('ifs-evidence', `ifs-evidence--${type}`, className)} {...rest}>
       <span className="ifs-evidence__title">{title}</span>
       <div className="ifs-evidence__bar">
