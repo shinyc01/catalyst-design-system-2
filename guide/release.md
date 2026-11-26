@@ -1,12 +1,12 @@
 # Releases and versioning
 
-Decided Nov 25, 2026 (G7, `prototypes/phase1-prep/foundation-gaps/DECISIONS.md`). One page: what each kind of release may change, how long old names live, how the changelog reads and how another product upgrades.
+Decided Nov 25, 2026 (G7). One page: what each kind of release may change, how long old names live, how the changelog reads and how another product upgrades.
 
 ## The release line
 
 | Release | When | What |
 |---|---|---|
-| 2.0.6 | Nov 26 | The remaining foundations: data viz, forced colours, contrast, glass, keyboard and focus, status messages, fonts, this policy |
+| 2.0.6 | Nov 25 | The remaining foundations: data viz, forced colours, contrast, glass, keyboard and focus, status messages, fonts, this policy |
 | 2.0.7 | Nov 26 | G9 content foundations and the components (CircularButton D3, line-chart gaps, legend position …) |
 | 2.1.0 | Nov 27 | Phase 1 done; the first release judged by this policy |
 
@@ -29,6 +29,12 @@ Releases before 2.1.0 (2.0.0–2.0.6, and 2.0.7) are foundation-building and are
 ## Changelog
 
 Every release in the README "Versions" list uses these headings, in this order, and leaves out the empty ones: **Added · Changed · Deprecated · Removed · Fixed**.
+
+## Starting (another product)
+
+- Pin a version: the `dist/` of tag `v2.0.7` (for example `https://cdn.jsdelivr.net/gh/shinyc01/catalyst-design-system-2@v2.0.7/dist/ifs-ds.js` and `.css`), never the GitHub Pages build on `main`.
+- Start from `template.html` with the pinned URLs.
+- Read `guide/rules.md`, then `guide/components.md`, `dist/api.md` (props) and `guide/words.md` (words).
 
 ## Upgrading (another product)
 

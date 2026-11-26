@@ -1,7 +1,7 @@
 {
   "version": "2.0.7",
   "updated": "2026-11-26",
-  "about": "The Catalyst word list (rule 8.43). Terms are settled; a definition with \"confirmed\": false is a draft waiting for a product owner pass (BACKLOG). A term's definition doubles as its hint-tooltip text (rule 8.49).",
+  "about": "The Catalyst word list (rule 8.43). Terms are settled; a definition with \"confirmed\": false is a draft waiting for a product owner pass. A term's definition doubles as its hint-tooltip text (rule 8.49).",
   "settings": [
     {
       "name": "entity name",
@@ -24,7 +24,7 @@
         "initiative",
         "job"
       ],
-      "notes": "An organisation may rename it \"project\" (USER-SETTINGS row 15): copy takes the entity name from the setting and never hard-codes \"investment\" or \"project\". \"Project\" is not a banned word.",
+      "notes": "An organisation may rename it \"project\" (a user setting, `IFS.format.configure({ entity })`, read through `IFS.term`): copy takes the entity name from the setting and never hard-codes \"investment\" or \"project\". \"Project\" is not a banned word.",
       "rule": "8.9",
       "confirmed": false
     },
@@ -535,19 +535,19 @@
   "verbs": [
     {
       "use": "Create",
-      "for": "making a new object (\"Create scenario\")",
+      "for": "making a new standalone record (\"Create scenario\", \"Create framework\")",
       "avoid": [
         "New (as a verb or a button label)",
         "Make",
-        "Add (for new objects)",
+        "Add (for a standalone record)",
         "Generate (unless Cooper writes it)"
       ],
       "rule": "8.12",
-      "notes": "Every create button says Create, the PageTop one included (\"Create ▾\" opens the choice of things to create; audit run 2 B-24, decided Nov 26). \"New\" stays only as an adjective (\"New scenario\" as a title)"
+      "notes": "Every create button says Create, the PageTop one included (\"Create ▾\" opens the choice of things to create; audit run 2 B-24, decided Nov 26). \"New\" stays only as an adjective (\"New scenario\" as a title). A chat is not a record, so it is not a Create button: \"New chat\" is fine, \"Start a new chat\" where there is room (decided Nov 26). One test for Create or Add: Add when the new thing lives inside the object on screen (a model in a framework), Create when it is a standalone record (decided Nov 26)."
     },
     {
       "use": "Add",
-      "for": "putting an existing or new item into a container (\"Add model\")",
+      "for": "putting an existing or new item inside the object on screen (\"Add model\" in a framework, \"Add document\")",
       "avoid": [
         "Insert",
         "Attach (except files)",
@@ -661,7 +661,7 @@
         "Request more info"
       ],
       "rule": "8.9",
-      "notes": "After \"Request revisions\" the status is \"Needs revision\" and the snackbar \"Revisions requested\" (description \"Sent back to {name}.\"). The reviewer’s disabled button then reads \"Revisions requested\", the action’s past tense like \"Approved\"."
+      "notes": "After \"Request revisions\" the status is \"Needs revision\" and the snackbar \"Revisions requested\" (description \"Sent back to {name}.\"). The reviewer’s disabled button then reads \"Revisions requested\", the action’s past tense like \"Approved\". The ban on Accept and Decline is for approver decisions in the approval chain only; invitations (Accept, Decline) and Cooper recommendations (Decline) may use them."
     },
     {
       "use": "Export / Import",
@@ -688,6 +688,16 @@
         "Invite (except a new collaborator: \"Invite collaborators\")"
       ],
       "rule": "8.12"
+    },
+    {
+      "use": "Invite",
+      "for": "asking a new collaborator to join; they must accept (\"Invite collaborators\"; the dialog's button is the short verb \"Invite\", rule 8.10)",
+      "avoid": [
+        "Add collaborator",
+        "Send invitation"
+      ],
+      "rule": "8.12",
+      "notes": "One verb for the whole flow (decided Nov 26): the button, the dialog title and the search field all say Invite."
     },
     {
       "use": "Request access",
@@ -819,7 +829,7 @@
     },
     {
       "avoid": "Are you sure?",
-      "use": "the consequence (\"This can't be undone.\")",
+      "use": "the consequence (\"This cannot be undone.\", in full in a confirmation, rule 8.4; left out when an Undo follows)",
       "rule": "8.24"
     },
     {
@@ -944,7 +954,7 @@
     },
     {
       "avoid": "sanity check",
-      "use": "quick check",
+      "use": "check, first check",
       "rule": "8.8"
     },
     {

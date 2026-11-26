@@ -7,10 +7,13 @@ A React code twin of the IFS Design System Figma library (`atgUmwcA1AE5sjFoWBT7a
 | What | Where |
 |---|---|
 | Prototype bundle (exposes `window.IFS` and `window.Catalyst`) | `dist/ifs-ds.js`, `dist/ifs-ds.css` |
-| Over the CDN (GitHub Pages) | `https://shinyc01.github.io/catalyst-design-system-2/dist/ifs-ds.js` (and `.css`) |
+| Over the CDN, pinned (use this in a product) | `https://cdn.jsdelivr.net/gh/shinyc01/catalyst-design-system-2@v2.0.7/dist/ifs-ds.js` (and `.css`), once tag `v2.0.7` is on GitHub |
+| Over the CDN, latest build (GitHub Pages on `main`; prototypes only, it changes with every merge) | `https://shinyc01.github.io/catalyst-design-system-2/dist/ifs-ds.js` (and `.css`) |
 | Prototype starter | `template.html` |
 | Storybook (every component, density switch in the toolbar) | https://shinyc01.github.io/catalyst-design-system-2/dist/storybook/ |
 | Demo: six Catalyst screens, Display settings behind the gear icon | https://shinyc01.github.io/catalyst-design-system-2/demo/ |
+
+**Start here (2.0.7).** 1. Pin a version: the tag URL above, never the latest build ([guide/release.md](guide/release.md)). 2. Copy `template.html` and change the two kit URLs to the pinned ones. 3. Read [guide/rules.md](guide/rules.md), then [guide/components.md](guide/components.md), [dist/api.md](dist/api.md) for props and [guide/words.md](guide/words.md) for the words.
 
 Every component is `IFS.<Name>` (for example `IFS.Button`, `IFS.DataTable`); `IFS.format` formats numbers, money and dates; `IFS.Stack` / `IFS.Inline` lay out screens.
 
@@ -40,7 +43,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
 
 **Fonts.** Inter and JetBrains Mono ship with the kit (`fonts/`, copied to `dist/fonts/`; rule 2.1): no third-party request, so a strict Content Security Policy needs only `font-src 'self'` (plus `data:` for single-file prototypes, which embed them). If they fail to load, a metric-matched Arial / Courier New fallback keeps the layout steady.
 
-**User settings the kit reads** (the product builds the settings screen): density (`IFS.setDensity`), lite glass (`IFS.setGlass('lite')`, blur 10 for remote desktops), good vs bad colours (`IFS.setOrgDiverging('red-green')` for the organisation's default, `IFS.setDiverging(…)` for a person's own choice, which wins; default azure ↔ rose), single-key shortcuts on / off (`IFS.setShortcuts('off')`), and the formatting options in `IFS.format.configure`. Showing chart descriptions on the card is a decided setting with its placement still open.
+**User settings the kit reads** (the product builds the settings screen): density (`IFS.setDensity`), lite glass (`IFS.setGlass('lite')`, blur 10 for remote desktops), good vs bad colours (`IFS.setOrgDiverging('red-green')` for the organisation's default, `IFS.setDiverging(…)` for a person's own choice, which wins; default azure ↔ rose), single-key shortcuts on / off (`IFS.setShortcuts('off')`), the formatting options in `IFS.format.configure`, and the investment / project name (`IFS.format.configure({ entity: 'project' })`, read through `IFS.term`). Showing chart descriptions on the card is a decided setting with its placement still open; the "Cooper suggestions" setting (rule 8.70, personal, on by default) has no kit hook yet.
 
 **Token names.** Every token starts with its type word and matches its Figma path (`color/text/soft` → `--color-text-soft`; rule 11.6). The old names (`--text-primary`, `--control-h-m` …) still work as aliases until 3.0; `dist/tokens.txt` lists the new names, then the deprecated ones; `dist/tokens.json` is DTCG 2025.10 with `$deprecated`; the full old → new list is `tools/figma/rename-map.tsv`.
 
@@ -103,7 +106,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
   - Foundations restructured into 11 categories (Colour, Typography, Layout and space, Shape and depth, Motion, Iconography and imagery, Interaction and states, Accessibility, Content, Data visualisation, Tokens and system), matched in the Figma file.
   - Data viz moved to 2.0.6 (the widget builder pattern later moved to phase 2).
 
-- **2.0.6** (Nov 26): the remaining foundations. Changelog headings per `guide/release.md` from here on.
+- **2.0.6** (Nov 25): the remaining foundations. Changelog headings per `guide/release.md` from here on.
   - **Added**
     - Data viz foundation (rule 10.1 and section 10): the chart card, heights on the dashboard row unit `--size-data-viz-row` (116 / 100 / 84), axes, legends, hover and tooltip, the v2g categorical palette, sequential and diverging ramps, stacks and bars, states, one chart text scale (`--font-label-s-medium`), chart-point targets (G8).
     - Chart header: H4 title with an optional one-line `subtitle`; `description` for screen readers; the drag handle, drag from the header and keyboard move (Space, arrows, Esc; "Move" in ⋯); Edit with Cooper folds into ⋯ below 416 px. Rule 10.12: the same entity keeps the same colour across a screen's charts.
@@ -135,7 +138,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
   - **Fixed**
     - Icons with clip paths or gradients (e.g. `cooper-evidence-icon`) get unique ids per instance, so every instance draws its own art.
     - A `Spinner` inside `LoadingRegion` no longer announces twice.
-- **2.0.7** (in progress, Nov 26): content foundations and components.
+- **2.0.7** (Nov 26): content foundations and components.
   - **Added**
     - Rule 10.13 reference and forecast lines (Carbon, Atlassian convention): `references = [{ value, label }]` on `ColumnChart`, `BarChart`, `GroupedColumnChart`, `StackedColumnChart`, `LineChart` and `AreaChart` (1 px dashed `--color-border-strong`, labelled at the end, in the legend and the table view); `LineChart forecastFrom` (dashed after today, a "Today" marker, "Forecast" in legend, tooltip and table); `forecast: true` on a `ColumnChart` datum (hatched in the series colour, see Changed).
     - `StackedColumnChart levels`: groups with levels inside (rule 10.7): the group's dark slot on the baseline and its family's ramp upwards (every other step up to 4 levels, every step up to 8, then Other). The demo dashboard uses it instead of the bar atoms.
@@ -144,18 +147,18 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - `--color-background-neutral-strong-hover` (white 30), the CircularButton hover.
     - `.ifs-page--wide`: tables, dashboards and maps cap content at `--layout-max-content-width-wide` (2240) instead of 1600 (rule 3.15).
     - Rules: 11.8 strings ready for translation; 9.14 text spacing (WCAG 1.4.12); 9.20 interim table keyboard rule until the phase 2 grid; a 1280 × 720 check frame next to 1440 × 810 (rule 3.13).
-    - Good vs bad colours setting: the organisation picks the default (`IFS.setOrgDiverging('red-green')`), each person may override it (`IFS.setDiverging`, remembered; `null` goes back to the organisation's), e.g. someone with red-green colour blindness; `data-diverging="red-green"` swaps every diverging chart to red (worse) ↔ green (better); default azure ↔ rose (rule 10.8, USER-SETTINGS row 14).
+    - Good vs bad colours setting: the organisation picks the default (`IFS.setOrgDiverging('red-green')`), each person may override it (`IFS.setDiverging`, remembered; `null` goes back to the organisation's), e.g. someone with red-green colour blindness; `data-diverging="red-green"` swaps every diverging chart to red (worse) ↔ green (better); default azure ↔ rose (rule 10.8, a user setting).
     - Content foundations (G9, decided Nov 26): rules 8.33–8.42 grammar and mechanics (names, acronyms, numbers and dates in text, lists, "and" not "&", no slash or N/A, punctuation with the Oxford comma, curly quotes and "…", shortcuts, re- words), 8.43–8.44 word list, 8.45–8.51 help text (the help ladder, placeholders as an example value, descriptions, tooltips, term definitions, teaching, empty-state text), 8.52–8.56 messages by surface, 8.57–8.65 Cooper's voice; 9.21–9.26 accessible text (names, images, chart text, maps, screen-reader-only text, no sensory instructions); 9.19 gets the announcement wording. Appended, so no older number moved.
-    - Word list: `guide/words.md` and `guide/words.json`, shipped as `dist/words.md` and `dist/words.json` (40 terms with definition, don't-use list and notes, 24 UI verbs, 44 words we don't use). 30 definitions are `confirmed: false` until a product owner pass. "Investment" notes the organisation setting that renames it "project" (USER-SETTINGS row 15); "project" is no longer banned. `words.json` is the source; `node tools/gen-words.mjs` writes `words.md` (`--check` to verify).
+    - Word list: `guide/words.md` and `guide/words.json`, shipped as `dist/words.md` and `dist/words.json` (40 terms with definition, don't-use list and notes, 25 UI verbs, 44 words we don't use). 30 definitions are `confirmed: false` until a product owner pass. "Investment" notes the organisation setting that renames it "project" (a user setting); "project" is no longer banned. `words.json` is the source; `node tools/gen-words.mjs` writes `words.md` (`--check` to verify).
     - `RecommendationDetail applyLabel`: the confirm button names the change (default the recommendation's title; rule 8.60).
     - Required marker (audit run 2 C1, rule 14.4): `required` on `TextField`, `TextArea`, `PhoneField`, `Select`, `Combobox` and `DatePicker` draws an asterisk after the label (`RequiredMark`, hidden from screen readers) and sets the native `required` / `aria-required`; `FormCard` fields are required unless `required: false`, and the form shows "Fields marked * are required." at the top (WCAG 3.3.2). Optional fields may be shown again.
     - `ColumnChart plan: true` (rule 10.13, IBCS): a planned value outlined in the series colour, no fill; `planLabel`, `forecastLabel`.
     - Cooper's limits (rule 8.66): `CooperLimitsNote`, the standing line "Cooper can make mistakes. Check the sources before you decide." under the input of both chat panels (`limitsNote`). Rules 8.66 (also the one-time first-open card) and 8.67 (rating answers; not in the kit until it has icons and a Figma component).
-    - `IFS.format.plural(count, { one, other, … })` (ICU-style plural forms, rule 11.8) and `IFS.term('investment', { count, capital })` fed by `IFS.format.configure({ entity: 'project' })` (USER-SETTINGS row 15); the approval, Cooper, widget-builder patterns and the demo take the entity word from it.
+    - `IFS.format.plural(count, { one, other, … })` (ICU-style plural forms, rule 11.8) and `IFS.term('investment', { count, capital })` fed by `IFS.format.configure({ entity: 'project' })` (a user setting); the approval, Cooper, widget-builder patterns and the demo take the entity word from it.
     - `AppShell title module`: the browser tab title "{page} – {module} – IFS Copperleaf" (rule 9.27, WCAG 2.4.2); the demo screens set it.
     - `Button href`: a move renders as a link with the Ghost look (rule 14.1).
     - `RemoveCollaboratorModal body` (the screen names its record; default "They lose access.").
-    - Rules (audit run 2, decided Nov 26): 8.68 positive checkbox and switch labels, 8.69 "by Cooper" outside the chat, 8.70 when Cooper speaks first (USER-SETTINGS row 16 "Cooper suggestions"), 8.71 Cooper's progress text names real work, 9.27 page titles, the text-growth table in 11.8; 9.10 permanent disabled reasons also as visible text.
+    - Rules (audit run 2, decided Nov 26): 8.68 positive checkbox and switch labels, 8.69 "by Cooper" outside the chat, 8.70 when Cooper speaks first (the "Cooper suggestions" user setting), 8.71 Cooper's progress text names real work, 9.27 page titles, the text-growth table in 11.8; 9.10 permanent disabled reasons also as visible text.
   - **Changed**
     - SegmentedControl (Nov 26): small options are 24 px again (28 / 24 / 24 by density; the control 4 taller), and M is the default everywhere; S only in the page and thin headers (rule 14.15).
     - Disabled actions (rules 14.4, 9.10, Nov 26): an incomplete form or a fixable missing step never disables the primary action; on submit the page scrolls to and focuses the first problem (a summary with links only across pages, tabs or steps); grey out only for permissions, work in progress or an empty single text box, with `Button disabledReason` (focusable, a tooltip says why). Trace "Send for approval" now shows the first open item instead of staying disabled; approval Publish says "Publishes when every reviewer approves (n of m so far)".
@@ -168,7 +171,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Rule 10.7: levels inside a group use the whole ramp (every other step up to 4 levels, every step up to 8, then Other); black labels from step 3.
     - Tooltips (rule 14.11, WCAG 1.4.13): two versions. UI tooltips are hoverable (the pointer can rest on the bubble), close after a 100 ms grace (`--motion-duration-100`), and Esc closes them from anywhere; chart tooltips follow the pointer across the data and stay while it is over the plot.
     - `IconButton`, `SegmentedControl` and `Badge` default to size S (was M), as rules 6.2 and 14.15 say; the map tool buttons, the bottom-sheet upload button and the Chart / Table switch pass M.
-    - CircularButton D3: rest white 20, hover white 30, pressed `--color-background-neutral`, a `--color-border-strong` edge and white ink in every state, hotkey text-soft (white on hover). The circular fills leave the held list (rule 11.6).
+    - CircularButton D3: rest white 20, hover white 30, pressed `--color-state-pressed` (5, rule 7.1), a `--color-border-strong` edge and white ink in every state, hotkey text-soft (white on hover). The circular fills leave the held list (rule 11.6).
     - `DataTable` hover-only row actions hide with opacity, so Tab always reaches them (rule 9.20).
     - The empty, loading and error look restyle (rule 7.2) moves to Flexy's icon and small-visual exploration: no look has been decided, so 2.0.7 keeps today's look.
     - Case (rule 2.9, G9 C1): sentence case everywhere, titles, headings, navigation, confirmations and empty states included (was Title Case for titles, headings and navigation); rules 8.18, 8.22 and 8.24 examples follow, with curly quotes. Gallery and demo titles, tabs, segments, column headers and role labels follow; record, people and document names keep their case.
@@ -192,10 +195,13 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Cooper strings (rules 8.61, 8.62): "You stopped this answer.", "Cooper couldn’t finish this answer.", "You’re offline. Cooper will answer when you reconnect."; the chat placeholder "Ask Cooper" (was "Write anything, I’m reading"); recommendation notes without hype.
     - `Tooltip` text wraps inside the 20rem bubble (rule 8.48; was one line).
     - Placeholders: `Search`, `Popover search`, the NavBar search and the documents popover say "Search" or what they search (was "Search for..."); "Search by name or role"; no "e.g." Kit strings use curly quotes, "…", "Document removed", "Try uploading again", "This year".
+    - Rules and words (final audit, decided Nov 26): decided rules win over the code, code that differs is a bug (rules.md intro); 8.4 defines a formal confirmation, which says "This cannot be undone." in full, and 8.24 drops that sentence where an Undo follows; 8.53 allows Cooper's chat line plus the Undo snackbar; 8.46 allows "Ask Cooper" / "Ask a follow-up" in a chat input; 2.12's per-element list decides wrapping (11.8 follows it); 8.66 the limits line in the compact and full chat panels only; reference and "Today" labels in Body/S (10.11, 10.13); dashes on a line mean forecast only, a plan is a thin outlined line (10.13); 9.10 a bulk action is disabled until something is selected, with the reason; Add inside the object on screen, Create for a standalone record (8.12, words.md); "Invite" for new collaborators; "New chat" stays (a chat isn't a record); counted SegmentedControls become a Select below 600 px wherever they are (14.6). Rule and doc text that had fallen behind the code is fixed, and the guides no longer point at files outside the kit.
   - **Deprecated** (until 3.0)
     - `ReadinessStatus right` → `end` (rule 11.4); `right` still works. `ReadinessEvaluation checks[].right` → `end` likewise.
     - `--element-button-circular-fill-default | hover | pressed` (T2-4): no longer read by the kit; aliases of `--color-background-neutral-strong`, `-strong-hover` and `--color-background-neutral` until 3.0 (listed as deprecated in tokens.txt and tokens.json).
     - `--color-data-viz-sequential-orchid | pink | yellow | cyan-*` (and the same `HeatmapChart ramp` values): aliases of violet, rose, terracotta and azure until 3.0 (guide/release.md: deprecated names are removed only in a major).
+  - **Fixed**
+    - `dist/tokens.json` (T3-1, T3-6, T3-7): references to a token that also has children name its root (`{color.text.$root}`), so all 64 deprecated aliases resolve; the generator fails when any reference doesn't resolve. Counts are `number`, the `*-filter` and effect tokens are marked CSS filters, the focus rings are `shadow`; the description says the values are CSS strings (Tokens Studio and Style Dictionary read them as is). Label/S/medium nests like every other text style.
 
 Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).
 

@@ -231,11 +231,12 @@
 --color-data-viz-diverging-negative-3:var(--palette-data-viz-azure-2);--color-data-viz-diverging-negative-2:var(--palette-data-viz-azure-4);--color-data-viz-diverging-negative-1:var(--palette-data-viz-azure-6);
 --color-data-viz-diverging-midpoint:var(--palette-core-750); /* reserved: the neutral midpoint of the diverging pair (rule 10.8); no kit chart draws it yet */
 --color-data-viz-diverging-positive-1:var(--palette-data-viz-rose-6);--color-data-viz-diverging-positive-2:var(--palette-data-viz-rose-4);--color-data-viz-diverging-positive-3:var(--palette-data-viz-rose-2);
-/* Marks that are not a series (2.0.3). neutral = no-change / total marks (must pass 3:1 non-text contrast); reference = peer-median and
-   reference marks; target = target marks; band = the confidence band of a line; baseline = connector lines. Gridlines use --color-border
+/* Marks that are not a series (2.0.3). neutral = no-change / total marks (must pass 3:1 non-text contrast); reference = the peer-median marks only
+   (not the reference lines of rule 10.13, which use --color-border-strong; renamed at 3.0, M13); target = target marks; band = the confidence band of a line; baseline = connector lines. Gridlines use --color-border
    and the zero line --color-border-strong (D3). Older ramps and data-1…10: deprecated aliases (foundations/deprecated.css). */
 --color-data-viz-neutral:var(--color-icon-softer); /* #8c8c8c: 5.2–6.3:1 on page, card and chart backgrounds (WCAG 1.4.11 needs 3:1) */
-/* C1: status marks in charts (good, warning, bad) are the status icon colours, so a red mark always means danger. Series never use them. */
+/* C1: status marks in charts (good, warning, bad) are the status icon colours, so a red mark always means danger. Series never use them.
+   reserved: no kit chart draws a status mark yet (T3-13). */
 --color-data-viz-good:var(--color-icon-success);--color-data-viz-warning:var(--color-icon-warning);--color-data-viz-bad:var(--color-icon-danger);
 --color-data-viz-reference:var(--palette-core-1000);--color-data-viz-target:var(--palette-white-alpha-90);--color-data-viz-band:var(--palette-white-alpha-16);
 --color-data-viz-baseline:var(--palette-white-alpha-30); /* connector lines (Figma white/alpha-30); the zero line is --color-border-strong (D3) */
@@ -259,7 +260,7 @@
 --color-cooper-button-shade:var(--palette-black-alpha-36);--color-cooper-button-fill-disabled:var(--palette-black-alpha-3);
 --color-cooper-art-light:var(--palette-core-1000);--color-cooper-art-pink:var(--palette-cooper-art-pink);--color-cooper-art-copper:var(--palette-cooper-art-copper);--color-cooper-art-violet:var(--palette-cooper-art-violet); /* Cooper avatar artwork */
 
-/* Held (Nov 23): these colours would change a Dark value if folded onto a role; they keep their names and values until the component review
+/* Held (Nov 23): these colours would change a Dark value if folded onto a role; they keep their names and values until the phase 2 component review
    (values read the same primitives, so nothing changes). The three circular-button fills left with CircularButton D3 (2.0.7): they are
    deprecated aliases of --color-background-neutral-strong / -strong-hover / --color-background-neutral until 3.0 (deprecated.css, T2-4). */
 --border-blue:var(--palette-info-500);
