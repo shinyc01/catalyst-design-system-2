@@ -39,7 +39,7 @@
 .ifs-nav-item__label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ifs-nav-item .ifs-icon{color:var(--color-icon-soft)}
 /* rule 7.1: current 10 with a white label; hover 15 (also on the current item); pressed 5 */
-.ifs-nav-item[aria-current=page],.ifs-nav-item--active{background:var(--color-state-current);color:var(--color-text)}
+.ifs-nav-item[aria-current=page],.ifs-nav-item--active{background:var(--color-state-selected);color:var(--color-text)}
 .ifs-nav-item:hover,.ifs-nav-item[data-state=hover]{background:var(--color-state-hover);color:var(--color-text)}
 .ifs-nav-item:active,.ifs-nav-item[data-state=pressed]{background:var(--color-state-pressed);color:var(--color-text)}
 .ifs-nav-item:hover .ifs-icon,.ifs-nav-item[data-state=hover] .ifs-icon,
@@ -179,7 +179,7 @@
   padding:var(--space-150) var(--space-250) /* raw in Figma */;margin:0;border:0;border-radius:var(--radius-control);cursor:pointer;white-space:nowrap;
   background:var(--color-background-transparent);color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);
   transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
-.ifs-navbar__item[aria-current=page]{background:var(--color-state-current)} /* rule 7.1: current 10, hover 15 (also on the current page), pressed 5 */
+.ifs-navbar__item[aria-current=page]{background:var(--color-state-selected)} /* rule 7.1: current 10, hover 15 (also on the current page), pressed 5 */
 .ifs-navbar__item:hover,.ifs-navbar__item[data-state=hover]{background:var(--color-state-hover)}
 .ifs-navbar__item:active,.ifs-navbar__item[data-state=pressed]{background:var(--color-state-pressed);color:var(--color-text-soft)}
 .ifs-navbar__item:disabled,.ifs-navbar__item[aria-disabled=true]{background:var(--color-background-transparent);color:var(--color-text-disabled);cursor:not-allowed}

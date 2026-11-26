@@ -51,7 +51,7 @@
 .ifs-button--ghost:active,.ifs-button--ghost[data-state=pressed],.ifs-icon-button--ghost:active,.ifs-icon-button--ghost[data-state=pressed]{--fill:var(--color-state-pressed)} /* rule 7.1: pressed 5, always */
 /* A tool toggle that is on (state="pressed" + aria-pressed=true: map tools, the canvas draw bar) is selected: the current fill (rule 7.1);
    hover still brightens it, pressing shows 5 */
-.ifs-icon-button--ghost[data-state=pressed][aria-pressed=true]{--fill:var(--color-state-current)}
+.ifs-icon-button--ghost[data-state=pressed][aria-pressed=true]{--fill:var(--color-state-selected)}
 .ifs-icon-button--ghost[data-state=pressed][aria-pressed=true]:hover{--fill:var(--color-state-hover)}
 .ifs-icon-button--ghost[data-state=pressed][aria-pressed=true]:active{--fill:var(--color-state-pressed)}
 .ifs-icon-button--ghost{color:var(--color-icon-soft)}
