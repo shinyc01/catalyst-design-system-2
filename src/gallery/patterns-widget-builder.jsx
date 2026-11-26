@@ -13,7 +13,7 @@ export default IFS_GALLERY;
   const usdAxis = v => IFS.format.money(v, { unit: 'M' }); // one unit per axis: $0, $0.5M, $1M
   // Dashboards and the widget builder use the M stat card with the description inline (rule 2.6, Nov 25).
   const STATS = [
-    { size: 'm', descriptionPosition: 'inline', title: 'Benefit-cost ratio', value: '2.40x', description: 'Benefit returned per $1 spent' },
+    { size: 'm', descriptionPosition: 'inline', title: 'Benefit-cost ratio', value: '2.4', description: 'Benefit returned per $1 spent' },
     { size: 'm', descriptionPosition: 'inline', title: 'Estimated cost', value: '$4.2M', description: 'Expected delivery cost' },
     { size: 'm', descriptionPosition: 'inline', title: 'Investment value', value: '$10.1M', description: 'Total expected value' },
     { size: 'm', descriptionPosition: 'inline', title: 'Baseline risk', value: '$12.6M', description: 'Risk before intervention' },

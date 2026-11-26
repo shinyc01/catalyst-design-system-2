@@ -32,7 +32,7 @@
 .ifs-compare-dd--disabled .ifs-compare-dd__field{cursor:default;opacity:0.5} /* inferred: Figma has no disabled variant */
 .ifs-compare-dd__value{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-compare-dd__value--empty{color:var(--color-text-disabled)}
+.ifs-compare-dd__value--empty{color:var(--color-text-softer)} /* placeholders meet 4.5:1 too (A11Y H5) */
 .ifs-compare-dd__right{display:flex;align-items:center;gap:var(--space-200);flex:none;color:var(--color-icon)}
 
 /* ================= compare-header (Patterns 52:82780) ================= */

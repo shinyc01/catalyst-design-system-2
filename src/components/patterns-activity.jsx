@@ -37,13 +37,13 @@ const usePaId = p => { const r = React.useRef(null); if (r.current == null) r.cu
 // The open list of compare-dropdown: titled groups ("Top benchmarks", "All frameworks") split by a divider.
 // Props: groups [{ title, items: [{ value, label, status: { type, label } (indicator-molecule), badge (badge-atom White S text), disabled }] }],
 // value (selected value), activeValue (keyboard highlight = Figma hover row), onSelect(value, item), onActiveChange(value),
-// id (listbox id), inline (static position — gallery).
-function CompareDropdownList({ groups = [], value, activeValue, onSelect, onActiveChange, id, inline, className, style }) {
+// id (listbox id), inline (static position — gallery), label (the listbox name, default "Compare to").
+function CompareDropdownList({ groups = [], value, activeValue, onSelect, onActiveChange, id, inline, label = 'Compare to', className, style }) {
   return (
-    <div id={id} role="listbox" className={paCx('ifs-compare-list', inline && 'ifs-compare-list--inline', className)} style={style}>
+    <div id={id} role="listbox" aria-label={label} /* A11Y M3: the listbox is named; group dividers are presentational */ className={paCx('ifs-compare-list', inline && 'ifs-compare-list--inline', className)} style={style}>
       {groups.map((g, gi) => (
         <React.Fragment key={g.title || gi}>
-          {gi > 0 && <div role="separator" className="ifs-compare-list__divider" />}
+          {gi > 0 && <div role="presentation" className="ifs-compare-list__divider" />}
           <div role="group" aria-label={g.title} className="ifs-compare-list__group">
             {g.title && <div className="ifs-compare-list__title">{g.title}</div>}
             {(g.items || []).map(it => (
@@ -109,7 +109,7 @@ function CompareDropdown({ groups = [], value, defaultValue = null, onChange, op
           <IFS.Icon name={isOpen ? 'arrow-caret-up-filled' : 'arrow-caret-down-filled'} size={16} />
         </span>
       </div>
-      {isOpen && <CompareDropdownList id={listId} groups={groups} value={val} activeValue={active} onActiveChange={setActive} onSelect={pick} />}
+      {isOpen && <CompareDropdownList id={listId} label={ariaLabel} groups={groups} value={val} activeValue={active} onActiveChange={setActive} onSelect={pick} />}
     </div>
   );
 }

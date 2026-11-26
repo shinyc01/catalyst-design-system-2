@@ -12,7 +12,7 @@ export default IFS_GALLERY;
   const W = ({ children, w = 340 }) => <div style={{ width: w }}>{children}</div>;
   const STAGES = ['Command', 'Value', 'Explore', 'Build', 'Plan', 'Results'].map(l => ({ value: l.toLowerCase(), label: l }));
   const Screen = ({ children, label }) => <div aria-label={label} style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--color-border-soft)', background: 'var(--color-surface-primary)' }}>{children}</div>;
-  const Demo = ({ children }) => <IFS.Inline gap="200" align="center" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', margin: '0 0 var(--space-200)' }}>{children}</IFS.Inline>;
+  const Demo = ({ children }) => <IFS.Inline gap="200" align="center" wrap className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', margin: '0 0 var(--space-200)' }}>{children}</IFS.Inline>;
 
   /* ---------------- data ---------------- */
   const GATES = [{ id: 'obj', label: 'Objective weighting' }, { id: 'strat', label: 'Strategic alignment' }, { id: 'risk', label: 'Risk balance' }, { id: 'gov', label: 'Governance flags' }];
@@ -25,7 +25,7 @@ export default IFS_GALLERY;
     { id: 'q1', kind: 'question', gate: 'risk', title: 'Wildfire risk over-weighted', description: 'V2 pulls capital into ignition mitigation', solutions: WILDFIRE, upload: true, answer: true },
     { id: 'q2', kind: 'question', gate: 'gov', title: 'WDRM v4 concentration above cap', description: 'concentrates 41% of capital in Corridor 7, 6 points over the sector cap.',
       solutions: [{ id: 'c1', title: 'Cap Corridor 7 at 35%, redistribute overflow', description: 'Hybrid rebalance · Keeps FY26 diversification targets', recommended: true },
-        { id: 'c2', title: "Accept v4's 41% concentration in full", description: 'Faithful rebalance · Requires Risk Committee sign-off' },
+        { id: 'c2', title: "Accept v4’s 41% concentration in full", description: 'Faithful rebalance · Requires Risk Committee sign-off' },
         { id: 'c3', title: 'Skip rebalance now, plan for v4.1 patch', description: 'Address WDRM cap logic in Q4 release plan' }], upload: true, answer: true },
     { id: 'w1', kind: 'warning', gate: 'gov', title: 'Wildfire risk over-weighted', description: 'V2 pulls capital into ignition mitigation', okay: true },
     { id: 'w2', kind: 'warning', gate: 'gov', title: 'WDRM v4 concentration above cap', description: 'Corridor 7 sits 6pts over the sector cap.', okay: true },
@@ -132,7 +132,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: System confidence', figma: 'Review - Portfolio impact - Errors [patterns] (30:72985)', render: () => {
     const [key, setKey] = useState(0);
     return <>
-      <Demo>Pick a solution, type My answer, upload a file or select Mark as reviewed on warnings; ‹ › and All walk the list; the rail dot follows what is open. Send for approval always works: with items still open it shows the first one (rule 14.4).
+      <Demo>Pick a solution, add your answer, upload a file or select Mark as reviewed on warnings; ‹ › and All walk the list; the rail dot follows what is open. Send for approval always works: with items still open it shows the first one (rule 14.4).
         <IFS.Button size="s" type="tertiary" onClick={() => setKey(k => k + 1)}>Reset</IFS.Button></Demo>
       <ConfidenceScreen key={key} />
     </>;
@@ -142,7 +142,7 @@ export default IFS_GALLERY;
     return <Screen label="System confidence">
       <ReviewShell status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
         actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton />
-          <IFS.Button type="primary" size="s" onClick={() => { if (!c.allResolved) { const n = c.showFirstOpen(); IFS.announce && IFS.announce(`${n} ${n === 1 ? 'item needs' : 'items need'} attention before sending`); return; } IFS.toast({ title: 'Sent for approval' }); }}>Send for approval</IFS.Button></>}
+          <IFS.Button type="primary" size="s" onClick={() => { if (!c.allResolved) { const n = c.showFirstOpen(); IFS.announce && IFS.announce(IFS.format.plural(n, { one: '# item needs attention before sending', other: '# items need attention before sending' })); return; } IFS.toast({ title: 'Sent for approval' }); }}>Send for approval</IFS.Button></>}
         panel={<div style={{ height: '100%' }}><SystemConfidence controller={c} onEvidence={noop} /></div>} />
     </Screen>;
   }

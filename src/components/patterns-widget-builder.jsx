@@ -619,7 +619,7 @@ function WidgetBoard({ value, defaultValue, onChange, widgets, editable = true, 
     const last = li === row.items.length - 1;
     const st = { flex: last ? '1 1 0' : `0 0 ${WIDTH_CSS[ws[li]] || WIDTH_CSS[2]}` };
     if (id === '__zone__') {
-      return <div key="__zone__" data-wb-zone="" className="wb-cell wb-cell--zone" style={{ ...st, minHeight: drag ? drag.h : 120 }}><IFS.DropZone active text style={{ height: "100%", minHeight: "inherit" }} /></div>;
+      return <div key="__zone__" data-wb-zone="" className="wb-cell wb-cell--zone" style={{ ...st, minHeight: drag ? drag.h : '7.5rem' /* px: drop-zone default height (120), the measured widget height while dragging */ }}><IFS.DropZone active text style={{ height: "100%", minHeight: "inherit" }} /></div>;
     }
     const w = widgets[id]; if (!w) return null;
     const isSrc = drag && !drag.external && drag.id === id;

@@ -50,7 +50,7 @@
 .ifs-widget-card--grabbable{cursor:grab;touch-action:none}
 .ifs-widget-card--drag{background:var(--color-background-neutral);cursor:grabbing;backdrop-filter:blur(var(--blur-10));
   /* Figma: --color-border-on-solid-dark 3px OUTSIDE on the card, a raw #ffffff 4px OUTSIDE ring on the component; the shadow is C1 level 3 (dragged items) */
-  box-shadow:0 0 0 var(--border-width-300) var(--color-border-on-solid-dark),0 0 0 var(--border-width-emphasis) var(--color-border-selected),var(--elevation-modal-shadow)}
+  box-shadow:0 0 0 var(--border-width-300) /* ring geometry */ var(--color-border-on-solid-dark),0 0 0 var(--border-width-emphasis) var(--color-border-selected),var(--elevation-modal-shadow)}
 .ifs-widget-card__head{display:flex;align-items:flex-start;gap:var(--space-stack)}
 .ifs-widget-card__text{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0}
 .ifs-widget-card__title{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-24);color:var(--color-text);

@@ -108,7 +108,7 @@ function useIssueReport({ issues = [], kinds = CONFIDENCE_KINDS, gates = [], def
 // Props: title, description, recommended, onSelect (click applies it), onUndo (shows the arrow-back-up icon-button;
 // Figma "the cancel button appears on hover"), undoLabel, loading (Figma uploading state, 40px; the one skeleton look, L1), state (gallery: hover).
 function IssueSolution({ title, description, recommended, onSelect, onUndo, undoLabel = 'Cancel', loading, state, className, ...rest }) {
-  if (loading) return <div className={cx('ifs-trc-solution--loading', 'ifs-sk', className)} aria-busy="true" aria-label="Uploading" {...rest} />;
+  if (loading) return <div role="img" className={cx('ifs-trc-solution--loading', 'ifs-sk', className)} aria-busy="true" aria-label="Uploading" {...rest} />; // A11Y M5: a label needs a role
   const text = (
     <span className="ifs-trc-solution__body">
       {recommended && <IFS.Icon name="cooper-system-icon" variant="Insight" size={12} className="ifs-trc-solution__cooper" />}
@@ -200,7 +200,7 @@ function IssueNavigator({ controller: c, accept, className }) {
         ? <div className="ifs-trc-actions"><IssueAnswerField onSubmit={t => c.answer(issue.id, t)} onCancel={c.cancelAnswer} /></div>
         : <div className="ifs-trc-actions">
           {issue.upload && <IFS.Button type="tertiary" size="m" iconLeft="system-upload" onClick={() => fileRef.current && fileRef.current.click()}>Upload file</IFS.Button>}
-          {issue.answer && <IFS.Button type="tertiary" size="m" iconLeft="system-plus" onClick={() => c.startAnswer(issue.id)}>My answer</IFS.Button>}
+          {issue.answer && <IFS.Button type="tertiary" size="m" iconLeft="system-plus" onClick={() => c.startAnswer(issue.id)}>Add my answer</IFS.Button>}
           <input ref={fileRef} type="file" hidden accept={accept} onChange={e => { const f = e.target.files && e.target.files[0]; if (f) c.upload(issue.id, f.name); e.target.value = ''; }} />
         </div>)}
       {issue.okay && <div className="ifs-trc-section"><IFS.Button type="secondary" size="m" iconLeft="system-check" className="ifs-trc-okay" onClick={() => c.acknowledge(issue.id)}>Mark as reviewed</IFS.Button></div>}
