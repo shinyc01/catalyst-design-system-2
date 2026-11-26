@@ -176,13 +176,14 @@
 .ifs-data-table__code{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:nowrap} /* never truncated */
 .ifs-data-table__edit{flex:1;min-width:0}
 .ifs-data-table__actions{display:inline-flex;align-items:center;gap:var(--space-100)}
-/* hover-only row controls (pin when not pinned, drag handle, preview, more actions) */
-.ifs-data-table__hover{visibility:hidden}
-.ifs-table__row--content:hover .ifs-data-table__hover,.ifs-table__row--content:focus-within .ifs-data-table__hover{visibility:visible}
+/* hover-only row controls (pin when not pinned, drag handle, preview, more actions). Hidden with opacity, not visibility, so Tab still
+   reaches every row action and focus shows it (interim table keyboard rule 9.20, 2.0.7), also on a table whose rows don't open */
+.ifs-data-table__hover{opacity:0}
+.ifs-table__row--content:hover .ifs-data-table__hover,.ifs-table__row--content:focus-within .ifs-data-table__hover{opacity:1}
 .ifs-data-table--dragging .ifs-data-table__hover{visibility:hidden}
 .ifs-data-table--dragging{cursor:grabbing;user-select:none}
 .ifs-data-table__drawer .ifs-drawer__subtitle{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);text-transform:none}
-.ifs-data-table__hover:has([aria-expanded=true]){visibility:visible} /* keep an open menu visible when the pointer leaves the row */
+.ifs-data-table__hover:has([aria-expanded=true]){opacity:1} /* keep an open menu visible when the pointer leaves the row */
 .ifs-tooltip-anchor:has(> .ifs-truncate){display:flex;min-width:0;max-width:100%} /* let a truncated name keep its cell width inside the tooltip anchor */
 
 /* Drag handles look like ghost icon buttons (Nov 19): 24 box, hover fill, focus ring, grab cursor */
