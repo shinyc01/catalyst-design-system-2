@@ -12,11 +12,11 @@ export default IFS_GALLERY;
 
   // Value stage sidebar, as in sidebar-pattern Page=Value
   const valueNav = [
-    { id: 'active', label: 'Active Framework' },
+    { id: 'active', label: 'Active framework' },
     { type: 'section', label: 'Library', items: [
-      { id: 'strategy', label: 'Strategy Frameworks' },
-      { id: 'value', label: 'Value Frameworks' },
-      { id: 'models', label: 'Value Models' },
+      { id: 'strategy', label: 'Strategy frameworks' },
+      { id: 'value', label: 'Value frameworks' },
+      { id: 'models', label: 'Value models' },
     ] },
     { id: 'human', label: 'Human Performance' },
   ];
@@ -124,8 +124,8 @@ export default IFS_GALLERY;
   } });
 
   IFS_GALLERY.push({ name: 'CanvasHeader', figma: 'canvas-header (1440:5321), canvas-container-atom (1440:5305)', render: () => <>
-    <Row label="column"><Box w={240}><CanvasColumn>Enterprise Goals</CanvasColumn></Box></Row>
-    <div style={{ width: 1200 }}><CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} /></div>
+    <Row label="column"><Box w={240}><CanvasColumn>Enterprise goals</CanvasColumn></Box></Row>
+    <div style={{ width: 1200 }}><CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} /></div>
   </> });
 
   IFS_GALLERY.push({ name: 'NavBar', figma: 'global-header (69:3736), nav-bar-page-atom (69:4012)', render: () => <>
@@ -153,7 +153,7 @@ export default IFS_GALLERY;
     </div>
   </> });
 
-  const FW_TABS = [{ value: 'all', label: 'All', count: 8 }, { value: 'active', label: 'Active', count: 1 }, { value: 'pending', label: 'Pending Approval', count: 1 },
+  const FW_TABS = [{ value: 'all', label: 'All', count: 8 }, { value: 'active', label: 'Active', count: 1 }, { value: 'pending', label: 'Pending approval', count: 1 },
     { value: 'archived', label: 'Archived', count: 3 }, { value: 'draft', label: 'Draft', count: 3 }];
   const NewBtn = () => <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>;
   const SEARCH = { placeholder: 'Ask anything about strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?'] };
@@ -169,13 +169,13 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'PageTop: narrow widths', figma: 'Nov 19 rule: below 720 the tabs and search go onto separate rows', render: () => <>
     {[1100, 600].map(w => <Row key={w} label={`${w}px`} top><div style={{ width: w }}>
-      <PageTop title="Strategy Frameworks" description="Frameworks set how investments are valued." actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>}
+      <PageTop title="Strategy frameworks" description="Frameworks set how investments are valued." actions={<IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button>}
         tabs={{ items: [{ value: 'a', label: 'Active', count: 3 }, { value: 'd', label: 'Drafts', count: 5 }, { value: 'r', label: 'Archived', count: 12 }], defaultValue: 'a' }} search={{ placeholder: 'Search frameworks' }} /></div></Row>)}
   </> });
 
   IFS_GALLERY.push({ name: 'PageTop', figma: 'page-top (244:117279, key c5e4c474…)', render: () => <>
     <Frame label="Default — description, New, tabs with counts, smart search (library page)">
-      <PageTop title="Strategy Framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />}
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />}
         tabs={{ items: FW_TABS, defaultValue: 'all' }} search={SEARCH} />
     </Frame>
     <Frame label="cooper = true, Show button = false (Command home; the instance overrides the gap to 12)">
@@ -184,13 +184,13 @@ export default IFS_GALLERY;
         search={{ placeholder: 'Ask anything about your work' }} />
     </Frame>
     <Frame label="show search = false">
-      <PageTop title="Strategy Framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
+      <PageTop title="Strategy framework" description="Published, archived, and draft strategy frameworks" actions={<NewBtn />} tabs={{ items: FW_TABS, defaultValue: 'all' }} />
     </Frame>
     <Frame label="No description — title only, Tabs size L (Build / Idea Pad)">
       <PageTop title="Build" actions={<NewBtn />} tabs={{ size: 'l', items: [{ value: 'ideas', label: 'Idea Pad' }, { value: 'inv', label: 'Investments' }], defaultValue: 'ideas' }} />
     </Frame>
     <Frame label="Title + description only (no tabs, no search, no button)">
-      <PageTop title="Value Models" description="Value models used across frameworks" />
+      <PageTop title="Value models" description="Value models used across frameworks" />
     </Frame>
   </> });
 
@@ -205,7 +205,7 @@ export default IFS_GALLERY;
           header={<>
             <PageHeader title="Q1 2026 Strategy Framework" onTitleMenu={() => {}} status={<Status />}
               actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
-            <CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />
+            <CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} />
           </>}>
           <div style={{ height: 1600, padding: 'var(--space-600)', background: 'var(--color-surface-canvas)' }} className="t-body-m-regular">
             Content scrolls here — stage: {stage}, section: {sel}
@@ -226,7 +226,7 @@ export default IFS_GALLERY;
             navBar={<NavBar defaultValue="value" user={{ initials: 'JP', name: 'J. Parker' }} />}
             sideNav={<SideNav title="Value" items={valueNav} defaultValue="active" />}
             header={<PageHeader title="Q1 2026 Strategy Framework" />}
-            panel={<IFS.Panel title="Readiness Evaluation"><div className="t-body-m-regular">Panel content</div></IFS.Panel>}>
+            panel={<IFS.Panel title="Readiness evaluation"><div className="t-body-m-regular">Panel content</div></IFS.Panel>}>
             <div style={{ padding: "var(--page-margin)" }}><div className="ifs-grid">{[1, 2, 3, 4].map(i => <IFS.StatCard key={i} className="ifs-span-3" title={`Metric ${i}`} value="1,621" />)}</div></div>
           </AppShell>
         </div>

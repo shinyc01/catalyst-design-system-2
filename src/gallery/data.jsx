@@ -116,7 +116,7 @@ export default IFS_GALLERY;
       <ContentCard style={{ width: 332 }} loading {...cardProps('s')} />
     </Row>
     <Row label="avatar + icon" style={{ alignItems: 'flex-start' }}>
-      <ContentCard style={{ width: 332 }} avatar={{ name: 'Tom Nguyen', type: 'blue' }} iconRight="arrow-right" title="Tom Nguyen" description="Neighbouring Asset Manager" />
+      <ContentCard style={{ width: 332 }} avatar={{ name: 'Tom Nguyen', type: 'blue' }} iconRight="arrow-right" title="Tom Nguyen" description="Neighbouring asset manager" />
     </Row>
     <Row label="icon left / slots only" style={{ alignItems: 'flex-start' }}>
       <ContentCard style={{ width: 332 }} iconLeft="arrow-caret-right-filled" title="{card-title}" description="{description}" />
@@ -157,7 +157,7 @@ export default IFS_GALLERY;
     <Table columns={[
       { key: 'a', title: 'Check', type: 'check' }, { key: 'b', title: 'User description', type: 'user-description', width: '1.5fr' },
       { key: 'c', title: 'Counter', render: r => <IFS.Icon name="system-dots-horizont" size={16} /> }]}
-      rows={[{ id: 1, a: 'Text', b: { name: 'Tom Nguyen', description: 'Neighbouring Asset Manager', type: 'blue' } }]} />
+      rows={[{ id: 1, a: 'Text', b: { name: 'Tom Nguyen', description: 'Neighbouring asset manager', type: 'blue' } }]} />
     <div style={{ height: 24 }} />
     <Table columns={columns.slice(0, 3)} rows={rows.slice(0, 3)} rowHeight={60}
       rowProps={r => (r.id === 2 ? { className: 'g-dim', style: { opacity: 0.4 }, 'data-row-id': r.id } : { 'data-row-id': r.id })} />

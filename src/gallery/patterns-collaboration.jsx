@@ -11,22 +11,22 @@ export default IFS_GALLERY;
 
   /* ---------------- data (Figma names) ---------------- */
   const P = (id, name, title, type, initials) => ({ id, name, title, avatar: { type }, initials });
-  const ME = { ...P('jp', 'Jeff P.', 'Reliability Lead', 'black', 'JP'), status: 'owner', access: 'owner', online: true };
-  const MARIA = P('mc', 'Maria Chen', 'Reliability Lead', 'dark-pink');
-  const LARA = P('lg', 'Lara Green', 'Field Team Lead', 'green');
-  const JAMES = P('jr', 'James Reyes', 'Planning Engineer', 'yellow');
-  const KATARINA = P('ko', 'Katarina Olsson', 'Asset Manager', 'blue');
-  const JAN = P('jan', 'Jan Ray', 'Planning Engineer', 'dark-purple');
-  const ISABELLA = P('ig', 'Isabella Grant', 'Asset Manager', 'yellow');
+  const ME = { ...P('jp', 'Jeff P.', 'Reliability lead', 'black', 'JP'), status: 'owner', access: 'owner', online: true };
+  const MARIA = P('mc', 'Maria Chen', 'Reliability lead', 'dark-pink');
+  const LARA = P('lg', 'Lara Green', 'Field team lead', 'green');
+  const JAMES = P('jr', 'James Reyes', 'Planning engineer', 'yellow');
+  const KATARINA = P('ko', 'Katarina Olsson', 'Asset manager', 'blue');
+  const JAN = P('jan', 'Jan Ray', 'Planning engineer', 'dark-purple');
+  const ISABELLA = P('ig', 'Isabella Grant', 'Asset manager', 'yellow');
   const DIRECTORY = [
-    P('jb', 'Jane Brown', 'Asset Manager', 'dark-pink'), P('jg', 'Jane Green', 'Field Team Lead', 'green'),
-    P('jc', 'Janice Chen', 'Planning Engineer', 'orange'), P('jh', 'Jasmine Hadar', 'Cost Estimator', 'light-purple'),
-    P('jpi', 'Julia Pipes', 'Field Team Lead', 'blue'), P('al', 'Armando Lane', 'Planning Engineer', 'dark-blue'),
-    P('bd', 'Barbara Dickinson', 'Asset Manager', 'brown'), JAN, ISABELLA, MARIA, LARA, JAMES, KATARINA,
+    P('jb', 'Jane Brown', 'Asset manager', 'dark-pink'), P('jg', 'Jane Green', 'Field team lead', 'green'),
+    P('jc', 'Janice Chen', 'Planning engineer', 'orange'), P('jh', 'Jasmine Hadar', 'Cost estimator', 'light-purple'),
+    P('jpi', 'Julia Pipes', 'Field team lead', 'blue'), P('al', 'Armando Lane', 'Planning engineer', 'dark-blue'),
+    P('bd', 'Barbara Dickinson', 'Asset manager', 'brown'), JAN, ISABELLA, MARIA, LARA, JAMES, KATARINA,
   ];
   const RECENT = [DIRECTORY[5], DIRECTORY[6]];
-  const ROLES = ['Asset Manager', 'Planning Engineer', 'Field Team Lead', 'Planning Manager', 'Cost Estimator'];
-  const BRIEF = () => 'Q1 Strategy Framework needs regulatory sign-off on 3 points:\n\n1. Reliability stays above SB-901 30% floor at 40%. No conflict with filed 2023 GRC commitments.\n\n2. Environmental +3pp strengthens SB-100 trajectory alignment.\n\n3. WTRM v1 — new model, methodology mirrors WDRM already approved in D.22-08-013.\n\nI cannot see live pre-filing discussions. If there\'s something in your channel that conflicts — flag it.\n\nConfidence (regulatory): medium';
+  const ROLES = ['Asset manager', 'Planning engineer', 'Field team lead', 'Planning manager', 'Cost estimator'];
+  const BRIEF = () => 'Q1 Strategy Framework needs regulatory sign-off on 3 points:\n\n1. Reliability stays above SB-901 30% floor at 40%. No conflict with filed 2023 GRC commitments.\n\n2. Environmental +3pp strengthens SB-100 trajectory alignment.\n\n3. WTRM v1 — new model, methodology mirrors WDRM already approved in D.22-08-013.\n\nI cannot see live pre-filing discussions. If there’s something in your channel that conflicts — flag it.\n\nConfidence (regulatory): medium';
   const ago = h => Date.now() - h * HOUR;
   const joined = (p, online) => ({ ...p, status: 'joined', access: 'editor', online, brief: BRIEF(), notifiedAt: ago(72) });
   const waiting = (p, h) => ({ ...p, status: 'awaiting', access: 'editor', brief: BRIEF(), notifiedAt: ago(h) });
@@ -100,8 +100,8 @@ export default IFS_GALLERY;
   /* ---------------- pattern screens ---------------- */
   const shell = { position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
     background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' };
-  const NODES = [['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5], ['value-model', 'Value Models', 7], ['measure', 'Measures', 29]];
-  const COLS = ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
+  const NODES = [['enterprise-goal', 'Enterprise goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic objectives', 5], ['value-model', 'Value models', 7], ['measure', 'Measures', 29]];
+  const COLS = ['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output'];
 
   function FrameworkScreen({ c, panelOpen, onPanelOpen, cursors }) {
     const online = c.members.filter(p => p.online && p.status !== 'owner');
@@ -134,7 +134,7 @@ export default IFS_GALLERY;
                 {NODES.map(([t, title, n], i) => <div key={t} style={{ position: 'absolute', left: 140 + i * 240, top: 360 }}><IFS.NodeCard type={t} title={title} counter={n} /></div>)}
               </IFS.CanvasBackground>
             </div>
-            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '3 Documents', icon: 'system-file' }} onUpload={() => {}}
+            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '3 documents', icon: 'system-file' }} onUpload={() => {}}
               prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} />
           </div>
         </div>

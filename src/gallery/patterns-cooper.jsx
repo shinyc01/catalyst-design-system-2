@@ -20,7 +20,7 @@ export default IFS_GALLERY;
     'Cross-referenced your current network state with 31 external benchmarks from utilities operating in similar geographic and load conditions',
     'Executed 4 simulation scenarios (Balanced, Cost-Sensitive, Aggressive Maintenance, and Full Load Redistribution) and performed multi-objective optimization',
   ];
-  const answerText = 'Your Strategy Framework is in good shape overall. Coverage across all three Enterprise Goals is strong, and 18 of 21 value models are up to date. Two areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and two measures still have no owner.';
+  const answerText = 'Your strategy framework is in good shape overall. Coverage across all three enterprise goals is strong, and 18 of 21 value models are up to date. Two areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and two measures still have no owner.';
   const scenarios = { title: 'Saved scenarios', aside: 'Capture · Recent Activity', cards: [
     { title: 'West District Feeder - Balanced', badges: ['T-902', 'T-887'], meta: ['$3.2M', '2yr', 'saved 3:44 AM'] },
     { title: 'West District - Cost-Sensitive', badges: ['T-902'], meta: ['$1.4M', '1yr', 'saved 4:15 AM'] },
@@ -30,40 +30,40 @@ export default IFS_GALLERY;
   const followUps = ['What decisions are waiting?', 'Show agent conflict', 'Auto-confirmed?', 'Defer impact?'];
   const answer = { status: 'answered', reasoning, defaultReasoningOpen: true, text: answerText, scenarios, metrics, followUps };
   const step = { n: 1, total: 3, label: 'Reviewing framework structure' };
-  const prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don\'t act?'];
+  const prompts = ['Highlight all my transformers for me in this area', 'I want to explore flood risks along the coast', 'What happens if I don’t act?'];
 
   const chats = [
-    { id: 'c1', title: 'Current Strategy Overview', time: '3h ago', group: 'today' },
-    { id: 'c2', title: 'Power Line Risk Assessment', time: '6h ago', group: 'today', folder: 'f3' },
-    { id: 'c3', title: 'Power Line Risk Evaluation', time: '1d ago', group: 'week', folder: 'f3' },
-    { id: 'c4', title: 'Network Capacity Review', time: '3d ago', group: 'week' },
-    { id: 'c5', title: 'Infrastructure Upgrade Planning', time: '6d ago', group: 'week', folder: 'f1' },
-    { id: 'c6', title: 'Outage History Analysis', time: 'Mar 26', group: 'earlier' },
-    { id: 'c7', title: 'System Performance Review', time: 'Mar 20', group: 'earlier' },
-    { id: 'c8', title: 'Saved Scenarios Review', time: 'Mar 20', group: 'earlier' },
+    { id: 'c1', title: 'Current strategy overview', time: '3h ago', group: 'today' },
+    { id: 'c2', title: 'Power line risk assessment', time: '6h ago', group: 'today', folder: 'f3' },
+    { id: 'c3', title: 'Power line risk evaluation', time: '1d ago', group: 'week', folder: 'f3' },
+    { id: 'c4', title: 'Network capacity review', time: '3d ago', group: 'week' },
+    { id: 'c5', title: 'Infrastructure upgrade planning', time: '6d ago', group: 'week', folder: 'f1' },
+    { id: 'c6', title: 'Outage history analysis', time: 'Mar 26', group: 'earlier' },
+    { id: 'c7', title: 'System performance review', time: 'Mar 20', group: 'earlier' },
+    { id: 'c8', title: 'Saved scenarios review', time: 'Mar 20', group: 'earlier' },
     { id: 'r1', title: 'Check thermal status of T-902', time: '2d ago', group: 'week', smart: 'reminders', badge: 'In 4 days', due: 'May 2' },
     { id: 'r2', title: 'Inspect corrosion on TL-107 joint', time: 'Mar 18', group: 'earlier', smart: 'reminders', badge: 'In 12 days', due: 'May 14' },
     { id: 'r3', title: 'Check for leaks on T-491 valve', time: 'Mar 16', group: 'earlier', smart: 'reminders', badge: 'In 3 days', due: 'Apr 29' },
-    { id: 'i1', title: 'Add Waste Reduction Objective', time: '1d ago', group: 'week', smart: 'recommendations' },
-    { id: 'i2', title: 'Refine Investment Prioritization', time: '1d ago', group: 'week', smart: 'recommendations' },
-    { id: 't1', title: 'API Error Trends', time: 'Feb 28', group: 'earlier', trashed: true },
-    { id: 't2', title: 'Server Maintenance Log', time: 'Feb 15', group: 'earlier', trashed: true },
+    { id: 'i1', title: 'Add waste reduction objective', time: '1d ago', group: 'week', smart: 'recommendations' },
+    { id: 'i2', title: 'Refine investment prioritization', time: '1d ago', group: 'week', smart: 'recommendations' },
+    { id: 't1', title: 'API error trends', time: 'Feb 28', group: 'earlier', trashed: true },
+    { id: 't2', title: 'Server maintenance log', time: 'Feb 15', group: 'earlier', trashed: true },
   ];
   const folders = [{ id: 'f1', name: 'Strategy', icon: 'chat-folder' }, { id: 'f2', name: 'Harbor Substation', icon: 'system-building' }, { id: 'f3', name: 'Risk Analysis', icon: 'chat-folder' }, { id: 'f4', name: 'Board prep', icon: 'system-briefcase' }, { id: 'f5', name: 'Field work', icon: 'map-pin' }];
   const liveChats = chats.filter(c => !c.trashed);
 
   const impactA = [{ label: 'Total capital', value: '62nd', delta: '1' }, { label: 'Risk coverage', value: '94%', delta: '3%' }];
   const recs = [
-    { id: 'r1', group: 'Strategic objectives', title: 'Add Waste Reduction Objective', description: 'This objective could improve resource efficiency and strengthen sustainability performance across the portfolio.', impact: [{ label: 'Total capital', value: '$1.24B', delta: '0.23%' }, { label: 'Risk coverage', value: '94%', delta: '3%' }] },
-    { id: 'r2', group: 'Measures', title: 'Add Carbon Intensity Measure', description: 'Introduce a Carbon Intensity measure to capture environmental impact more directly at the portfolio level.', impact: [{ label: 'Total capital', value: '62nd', delta: '1' }, { label: 'Portfolio benefit score', value: '2.5', delta: '0.3' }] },
-    { id: 'r3', group: 'Value models', title: 'Refine Investment Prioritization', description: 'Weight long-lead procurement risk in the prioritization model so delayed assets rank correctly.', impact: impactA },
-    { id: 'r4', group: 'Value models', title: 'Update Risk Calculation Inputs', description: 'Refresh probability-of-failure inputs with the latest 12 months of telemetry.', impact: impactA },
+    { id: 'r1', group: 'Strategic objectives', title: 'Add waste reduction objective', description: 'This objective could improve resource efficiency and strengthen sustainability performance across the portfolio.', impact: [{ label: 'Total capital', value: '$1.24B', delta: '0.23%' }, { label: 'Risk coverage', value: '94%', delta: '3%' }] },
+    { id: 'r2', group: 'Measures', title: 'Add carbon intensity measure', description: 'Introduce a Carbon Intensity measure to capture environmental impact more directly at the portfolio level.', impact: [{ label: 'Total capital', value: '62nd', delta: '1' }, { label: 'Portfolio benefit score', value: '2.5', delta: '0.3' }] },
+    { id: 'r3', group: 'Value models', title: 'Refine investment prioritization', description: 'Weight long-lead procurement risk in the prioritization model so delayed assets rank correctly.', impact: impactA },
+    { id: 'r4', group: 'Value models', title: 'Update risk calculation inputs', description: 'Refresh probability-of-failure inputs with the latest 12 months of telemetry.', impact: impactA },
   ];
 
   // ---------- map screen scaffold (as the Figma frames: Map - Cooper - …) ----------
   const valueNav = [
-    { id: 'active', label: 'Active Framework' },
-    { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy Frameworks' }, { id: 'value', label: 'Value Frameworks' }, { id: 'models', label: 'Value Models' }] },
+    { id: 'active', label: 'Active framework' },
+    { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy frameworks' }, { id: 'value', label: 'Value frameworks' }, { id: 'models', label: 'Value models' }] },
     { id: 'human', label: 'Human Performance' },
   ];
   const Status = () => (
@@ -72,7 +72,7 @@ export default IFS_GALLERY;
     </span>
   );
   const stages = [{ value: 'command', label: 'Command' }, { value: 'value', label: 'Value' }, { value: 'explore', label: 'Explore' }, { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' }];
-  const nodes = [['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5], ['value-model', 'Value Models', 7], ['measure', 'Measures', 29]];
+  const nodes = [['enterprise-goal', 'Enterprise goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic objectives', 5], ['value-model', 'Value models', 7], ['measure', 'Measures', 29]];
   function MapScreen({ children, sheet, recCount = 4, onRecs, recSelected, sideCollapsed = true }) {
     const [view, setView] = React.useState({ x: 30, y: 0, zoom: 0.72 });
     return (
@@ -84,7 +84,7 @@ export default IFS_GALLERY;
             <IFS.PageHeader title="Q1 2026 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}} status={<Status />}
               views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'layout-gallery' }, { value: 'map', iconLeft: 'node-map' }, { value: 'tree', iconLeft: 'isolate-path' }]} />}
               actions={recCount > 0 ? <IFS.CooperChip selected={recSelected} onClick={onRecs}>{`${recCount} Recommendation${recCount === 1 ? '' : 's'}`}</IFS.CooperChip> : null} />
-            <IFS.CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />
+            <IFS.CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} />
           </>}
           bottom={sheet}>
           <div style={{ position: 'relative', height: '100%' }}>
@@ -99,7 +99,7 @@ export default IFS_GALLERY;
       </div>
     );
   }
-  const sheetProps = { type: 'value', documents: { label: '16 Documents' } };
+  const sheetProps = { type: 'value', documents: { label: '16 documents' } };
 
   /* ================================================================ components */
 
@@ -202,13 +202,13 @@ export default IFS_GALLERY;
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'ChatHistoryCard', figma: 'chat-history-card [patterns] (12:264367)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="default · hover · active" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Network Capacity Review" time="3d ago" /><ChatHistoryCard title="Power Line Risk Assessment" time="6h ago" state="hover" onMore={() => {}} /><ChatHistoryCard title="Current Strategy Overview" time="Now" active /></div></Cap>
-    <Cap title="pinned · select · selected" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Board prep notes" time="Mar 2" pinned /><ChatHistoryCard title="Outage History Analysis" time="Mar 26" selectable /><ChatHistoryCard title="System Performance Review" time="Mar 20" selectable selected /></div></Cap>
-    <Cap title="rename" w={234}><ChatHistoryCard title="Network Capacity Review" renaming /></Cap>
+    <Cap title="default · hover · active" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Network capacity review" time="3d ago" /><ChatHistoryCard title="Power line risk assessment" time="6h ago" state="hover" onMore={() => {}} /><ChatHistoryCard title="Current strategy overview" time="Now" active /></div></Cap>
+    <Cap title="pinned · select · selected" w={234}><div className="ifs-history__list"><ChatHistoryCard title="Board prep notes" time="Mar 2" pinned /><ChatHistoryCard title="Outage history analysis" time="Mar 26" selectable /><ChatHistoryCard title="System performance review" time="Mar 20" selectable selected /></div></Cap>
+    <Cap title="rename" w={234}><ChatHistoryCard title="Network capacity review" renaming /></Cap>
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'SearchChatHistoryCard', figma: 'search-chat-history-card [patterns] (67:120339)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="default · current chat · hover" w={360}><div><SearchChatHistoryCard title="Power Line Risk Assessment" query="Risk" time="6h ago" /><SearchChatHistoryCard title="Risk Analysis" query="Risk" time="Now" currentChat /><SearchChatHistoryCard title="Power Line Risk Evaluation" query="Risk" time="1d ago" state="hover" /></div></Cap>
+    <Cap title="default · current chat · hover" w={360}><div><SearchChatHistoryCard title="Power line risk assessment" query="Risk" time="6h ago" /><SearchChatHistoryCard title="Risk Analysis" query="Risk" time="Now" currentChat /><SearchChatHistoryCard title="Power line risk evaluation" query="Risk" time="1d ago" state="hover" /></div></Cap>
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'ChatReminderCard', figma: 'chat-reminder-card [patterns] (12:265339)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
@@ -220,7 +220,7 @@ export default IFS_GALLERY;
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'ConfirmDeleteCard', figma: 'confirm-delete-card-molecule [patterns] (67:129201)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="in Delete modal" w={414}><div className="ifs-confirm-list"><ConfirmDeleteCard onRemove={() => {}}>Saved Scenarios Review</ConfirmDeleteCard><ConfirmDeleteCard icon="chat-folder" onRemove={() => {}}>Risk Analysis</ConfirmDeleteCard></div></Cap>
+    <Cap title="in Delete modal" w={414}><div className="ifs-confirm-list"><ConfirmDeleteCard onRemove={() => {}}>Saved scenarios review</ConfirmDeleteCard><ConfirmDeleteCard icon="chat-folder" onRemove={() => {}}>Risk Analysis</ConfirmDeleteCard></div></Cap>
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'HistoryPanel', figma: 'history-panel-molecule "chat history" [patterns] (12:264137)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
@@ -295,9 +295,9 @@ export default IFS_GALLERY;
     const [list, setList] = React.useState(chats);
     const [fols, setFols] = React.useState(folders);
     // Each saved chat reopens with its conversation (sample: the strategy answer, asked with the chat's title).
-    const convo = id => { const t = (list.find(c => c.id === id) || {}).title; return id ? [{ id: 'u' + id, role: 'user', text: t === 'Current Strategy Overview' ? Q : t }, { id: 'a' + id, role: 'cooper', q: t, ...answer, defaultReasoningOpen: false }] : []; };
+    const convo = id => { const t = (list.find(c => c.id === id) || {}).title; return id ? [{ id: 'u' + id, role: 'user', text: t === 'Current strategy overview' ? Q : t }, { id: 'a' + id, role: 'cooper', q: t, ...answer, defaultReasoningOpen: false }] : []; };
     const [msgs, setMsgs] = React.useState(() => convo('c1'));
-    const [title, setTitle] = React.useState('Current Strategy Overview');
+    const [title, setTitle] = React.useState('Current strategy overview');
     const open = id => { setActive(id); setMsgs(convo(id)); setTitle(id ? (list.find(c => c.id === id) || {}).title : 'New chat'); };
     return (
       <div>

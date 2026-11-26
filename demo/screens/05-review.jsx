@@ -87,9 +87,9 @@ function ScreenReview({ bp, height }) {
       </>}
       primaryAction={<>
         {approved
-          ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request more information' }]}>Approved</SplitButton>
+          ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
           : <SplitButton onClick={() => { setApproved(true); toast('Framework approved'); }}
-              items={[{ label: 'Request more information', description: 'Ask for more detail about idea.', onClick: () => toast('Revisions requested') }]}>Approve</SplitButton>}
+              items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => toast('Revisions requested — sent back to the author') }]}>Approve</SplitButton>}
       </>} />
   );
 
@@ -97,13 +97,13 @@ function ScreenReview({ bp, height }) {
     <div style={{ width: '100%', height: '100%' }}>
       <AppShell height="100%"
         navBar={<NavBar stages={reviewStages} defaultValue="value" onChange={navStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
-        sideNav={<SideNav title="Value" defaultCollapsed items={[{ id: 'active', label: 'Active Framework' }]} onSelect={goValueNav} />}
+        sideNav={<SideNav title="Value" defaultCollapsed items={[{ id: 'active', label: 'Active framework' }]} onSelect={goValueNav} />}
         header={header}
         bottom={<BottomSheet prompts={['Explain me the value impact', 'Evaluate publish risk']} onPrompt={l => toast(l)} onCooper={() => toast('Cooper')} />}
         panel={ // through AppShell: below md (1024) the push panel folds to its rail and expands over the content (F-29, WCAG 1.4.10)
           <Panel title="Readiness evaluation" onEvidence={() => toast('Evidence chain')}>
             <ReadinessEvaluation
-              summary={{ title: 'Ready to Approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' }}
+              summary={{ title: 'Ready to approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' }}
               readiness={100}
               checks={[
                 { label: 'Objective weighting', type: 'done', right: 'Passed' },
@@ -122,13 +122,13 @@ function ScreenReview({ bp, height }) {
                 <span className="t-label-m-medium" style={{ color: 'var(--color-text-soft)' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments.</span>
               </IFS.Stack>
               <StatCardsRow cards={reviewStats} style={{ gap: 'var(--pg-gap)' }} />
-              <Tabs aria-label="Review views" value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'alignment', label: 'Strategic Alignment' }]} />
+              <Tabs aria-label="Review views" value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio impact' }, { value: 'alignment', label: 'Strategic alignment' }]} />
               {tab === 'impact' ? <>
                 <InvestmentValueImpact metrics={reviewMetrics} bins={reviewBins} legend={reviewLegend} max={250} ticks={6}
                   format={b => `${b.label}: ~${b.n} investments`} />
                 <TableReview rows={reviewRows} defaultCollapsed={['Unchanged']} onFilter={k => toast(`Filter ${k === 'name' ? 'Investment' : 'Type'}`)} />
               </> : (
-                <EmptyState cause="empty-container" heading="Strategic Alignment" body="This view is not part of this prototype." />
+                <EmptyState cause="empty-container" heading="Strategic alignment" body="This view is not part of this prototype." />
               )}
             </IFS.Stack>
           </div>

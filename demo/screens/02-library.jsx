@@ -5,9 +5,9 @@ const libraryStages = [
 ];
 
 const libraryNav = [
-  { id: 'active', label: 'Active Framework' },
+  { id: 'active', label: 'Active framework' },
   { type: 'section', label: 'Library', items: [
-    { id: 'sf', label: 'Strategy Frameworks' }, { id: 'vf', label: 'Value Frameworks' }, { id: 'vm', label: 'Value Models' },
+    { id: 'sf', label: 'Strategy frameworks' }, { id: 'vf', label: 'Value frameworks' }, { id: 'vm', label: 'Value models' },
   ] },
   { id: 'hp', label: 'Human Performance' },
 ];
@@ -34,7 +34,7 @@ const libraryTabs = {
   items: [
     { value: 'all', label: 'All' },
     { value: 'active', label: 'Active', match: r => r.status.label === 'Active' },
-    { value: 'ready', label: 'Ready to Publish', match: r => r.status.label === 'Ready to publish' },
+    { value: 'ready', label: 'Ready to publish', match: r => r.status.label === 'Ready to publish' },
     { value: 'archived', label: 'Archived', match: r => r.status.label === 'Archived' },
     { value: 'draft', label: 'Draft', match: r => r.status.label === 'Draft' },
   ],
@@ -71,7 +71,7 @@ function ScreenLibrary({ bp, height }) {
           onPrompt={l => toast(`Asked Cooper: ${l}`)} onCooper={() => toast('Opening Cooper')} />}>
         <div className="pg-content" style={{ paddingTop: 'var(--pg-gap)', paddingBottom: 'var(--pg-gap)' }}>
           <DataTable variant="standard" rows={rows} onRowsChange={setRows} filterTabs={libraryTabs}
-            pageTop={{ title: 'Strategy Framework', description: 'Published, archived, and draft strategy frameworks',
+            pageTop={{ title: 'Strategy framework', description: 'Published, archived, and draft strategy frameworks',
               actions: <Button type="secondary" size="m" iconLeft="system-pencil-plus" onClick={() => toast('New strategy framework')}>New</Button> }}
             search={{ placeholder: 'Ask anything about strategy frameworks', noResults: ['Q1 2026 Strategy Framework', 'Cost Optimization 2026'] }}
             onOpen={r => (r.id === 'f2' ? goScreen('dashboard') : r.id === 'f3' ? goScreen('review') : r.status.type === 'gray' ? goScreen('mapoverview') : toast(`${r.name} is archived`))} onRename={() => {}}

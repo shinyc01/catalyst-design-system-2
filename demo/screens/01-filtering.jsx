@@ -123,7 +123,7 @@ function ScreenFiltering({ bp, height }) {
                 onChange={v => { setQuery(v); if (!v) setApplied(''); }} onSubmit={runSearch} onClear={() => runSearch('')} />} />
             {rows.length === 0 && (
               <div style={{ position: 'absolute', left: 0, right: 0, top: 120 }}>
-                <EmptyState cause="no-results" heading="No results found" body="Try a different term, or clear filters to see everything."
+                <EmptyState cause="no-results" heading={applied ? `No results for “${applied}”` : 'No matches for these filters'} body="Try a different term, or clear filters to see everything."
                   primaryAction={{ label: 'Clear filters', type: 'secondary', onClick: () => { setFilters({}); runSearch(''); } }} />
               </div>
             )}

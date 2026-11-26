@@ -39,7 +39,7 @@ export default IFS_GALLERY;
 
   const TYPES = ['strategic-objective', 'value-model', 'measure', 'enterprise-goal', 'value-framework', 'subnode', 'document', 'user'];
   const STATES = [undefined, 'hover', 'drag', 'select', 'cooper', 'focus', 'cooper-drag', 'out-of-focus', 'disabled', 'checkbox', 'edit'];
-  const person = { name: 'Tom Nguyen', role: 'Neighbouring Asset Manager', initials: 'UN' };
+  const person = { name: 'Tom Nguyen', role: 'Neighbouring asset manager', initials: 'UN' };
   const card = (t, s) => {
     if (t === 'document' && ['disabled', 'checkbox', 'edit'].includes(s)) return <span key={t} style={{ width: 230 }} />;
     if (['subnode', 'value-model', 'user'].indexOf(t) < 0 && s === 'edit') return <span key={t} style={{ width: t === 'user' ? 280 : t === 'document' ? 230 : 200 }} />;
@@ -118,7 +118,7 @@ export default IFS_GALLERY;
 
   // ---- Demo: a pannable framework canvas with nodes, connectors, the map tools and a mini-map ----
   const NODES = [
-    { id: 'eg', type: 'enterprise-goal', badge: 'Goal', title: 'Enterprise Goals', caption: '3 goals', x: 40, y: 220 },
+    { id: 'eg', type: 'enterprise-goal', badge: 'Goal', title: 'Enterprise goals', caption: '3 goals', x: 40, y: 220 },
     { id: 'vf', type: 'value-framework', badge: 'Framework', title: 'Value Framework v12', caption: 'Active', x: 320, y: 220 },
     { id: 'so1', type: 'strategic-objective', badge: 'Objective', title: 'Reliability', caption: '$1.27B', x: 600, y: 120 },
     { id: 'so2', type: 'strategic-objective', badge: 'Objective', title: 'Safety', caption: '$1.24B', x: 600, y: 320 },

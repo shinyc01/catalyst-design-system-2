@@ -15,8 +15,8 @@ export default IFS_GALLERY;
     { avatar: { initials: 'JC', type: 'dark-orange' }, title: 'J. Carter', badge: 'Comment', subtitle: 'Administrator', time: '3:42 PM · May 12', children: 'Published this version and set it as the active framework.' },
     { avatar: { type: 'cooper', name: 'Cooper' }, title: 'Cooper', badge: 'Auto-action', time: '3:42 PM · May 12', children: 'Previous active framework "2024 Strategy v2" moved to archived.' },
     { avatar: { type: 'cooper', name: 'Cooper' }, title: 'Cooper', badge: 'Auto-action', time: '5:10 PM · May 9', children: 'Status changed to Ready to Publish. All 5 approvals collected.' },
-    { avatar: { initials: 'LF', type: 'blue' }, title: 'Loid Forger', badge: 'Action', subtitle: 'Field Team Lead', time: '5:10 PM · May 9', children: 'Approved.' },
-    { avatar: { initials: 'SC', type: 'dark-pink' }, title: 'Shiny C.', badge: 'Comment', subtitle: 'Planning Engineer', time: '7:10 PM · May 9', children: 'Approved.' },
+    { avatar: { initials: 'LF', type: 'blue' }, title: 'Loid Forger', badge: 'Action', subtitle: 'Field team lead', time: '5:10 PM · May 9', children: 'Approved.' },
+    { avatar: { initials: 'SC', type: 'dark-pink' }, title: 'Shiny C.', badge: 'Comment', subtitle: 'Planning engineer', time: '7:10 PM · May 9', children: 'Approved.' },
   ];
 
   IFS_GALLERY.push({ name: 'Timeline', figma: 'activity-organism (3713:13396) + marker-atom (3713:12836) + connector-atom (3713:12835)', render: () => <>
@@ -38,9 +38,9 @@ export default IFS_GALLERY;
     <Row label="interactive">
       <Col w={432}>
         <ApprovalChain defaultSteps={[
-          { state: 'success', name: 'Aubrey Larkin', position: 'Investment Owner', avatar: { initials: 'AL', type: 'purple' }, date: 'May 9', comment: 'Looks good to me.' },
-          { state: 'awaiting', name: 'Zoe Kim', position: 'Finance Lead', avatar: { initials: 'ZK', type: 'light-purple' } },
-          { state: 'empty', name: 'Ivan Grant', position: 'Portfolio Manager', avatar: { initials: 'IG', type: 'blue' } },
+          { state: 'success', name: 'Aubrey Larkin', position: 'Investment owner', avatar: { initials: 'AL', type: 'purple' }, date: 'May 9', comment: 'Looks good to me.' },
+          { state: 'awaiting', name: 'Zoe Kim', position: 'Finance lead', avatar: { initials: 'ZK', type: 'light-purple' } },
+          { state: 'empty', name: 'Ivan Grant', position: 'Portfolio manager', avatar: { initials: 'IG', type: 'blue' } },
         ]} />
       </Col>
     </Row>
@@ -109,7 +109,7 @@ export default IFS_GALLERY;
     </Row>
     <Row label="@ mention picker (type @)">
       <Col w={361}><CommentComposer avatar={{ initials: 'AL', type: 'black' }} defaultValue="Thanks @"
-        mentionables={[{ name: 'Lara Green', role: 'Planning Engineer', avatar: { type: 'green' } }, { name: 'Maria Chen', role: 'Finance Lead', avatar: { type: 'purple' } }]} /></Col>
+        mentionables={[{ name: 'Lara Green', role: 'Planning engineer', avatar: { type: 'green' } }, { name: 'Maria Chen', role: 'Finance lead', avatar: { type: 'purple' } }]} /></Col>
     </Row>
   </> });
 
@@ -131,14 +131,14 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'UserCard', figma: 'user-card (1440:5059) (legacy)', render: () => <>
     {[undefined, 'hover', 'drag', 'focus'].map(s => (
       <Row key={s || 'default'} label={s || 'default'}>
-        <Col w={448}><UserCard name="Barbara Dickinson" position="Planning Engineer" avatar={{ initials: 'BD' }} state={s} onEdit={() => {}} /></Col>
-        {s !== 'drag' && <Col w={448}><UserCard type="owner" name="You" position="Planning Engineer" avatar={{ initials: 'BD' }} date="Feb 10, 2026 09:14" state={s} /></Col>}
+        <Col w={448}><UserCard name="Barbara Dickinson" position="Planning engineer" avatar={{ initials: 'BD' }} state={s} onEdit={() => {}} /></Col>
+        {s !== 'drag' && <Col w={448}><UserCard type="owner" name="You" position="Planning engineer" avatar={{ initials: 'BD' }} date="Feb 10, 2026 09:14" state={s} /></Col>}
       </Row>
     ))}
     <Row label="loading / check">
       <Col w={448}><UserCard loading /></Col>
       <Col w={448}><UserCard type="owner" loading date="x" /></Col>
-      <Col w={448}><UserCard name="Barbara Dickinson" position="Planning Engineer" avatar={{ initials: 'BD' }} checked badge={null} /></Col>
+      <Col w={448}><UserCard name="Barbara Dickinson" position="Planning engineer" avatar={{ initials: 'BD' }} checked badge={null} /></Col>
     </Row>
   </> });
 

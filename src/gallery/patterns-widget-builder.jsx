@@ -60,10 +60,10 @@ export default IFS_GALLERY;
   </> });
 
   const CARDS = [
-    { preview: 'strategic-objectives', title: 'Yearly Investment Forecast', description: 'Displays the projected investment spend across fiscal years.', previewTitle: 'Yearly investment forecast' },
-    { preview: 'framework-coverage', title: 'Draft Forecast by Fiscal Year', description: 'Shows draft forecast values by year before the investment is finalized.', previewTitle: 'Draft forecast by fiscal year' },
-    { preview: 'portfolio', title: 'Investment Value by Measure', description: "Breaks down the investment's value across key value measures.", previewTitle: 'Investment value by measure' },
-    { preview: 'investment-value', title: 'Capex Burn by Quarter', description: 'Tracks capital spend against plan for each quarter.', previewTitle: 'Capex burn by quarter' },
+    { preview: 'strategic-objectives', title: 'Yearly investment forecast', description: 'Displays the projected investment spend across fiscal years.', previewTitle: 'Yearly investment forecast' },
+    { preview: 'framework-coverage', title: 'Draft forecast by fiscal year', description: 'Shows draft forecast values by year before the investment is finalized.', previewTitle: 'Draft forecast by fiscal year' },
+    { preview: 'portfolio', title: 'Investment value by measure', description: "Breaks down the investment’s value across key value measures.", previewTitle: 'Investment value by measure' },
+    { preview: 'investment-value', title: 'Capex burn by quarter', description: 'Tracks capital spend against plan for each quarter.', previewTitle: 'Capex burn by quarter' },
   ];
   IFS_GALLERY.push({ name: 'WidgetCard', figma: 'widget-card-organism [patterns] (331:492745)', render: () => <>
     {CARDS.map((c, i) => (
@@ -171,7 +171,7 @@ export default IFS_GALLERY;
     { id: 'valueByMeasure', kind: 'wide', ...CARDS[2], render: () => (
       <IFS.Table columns={[{ key: 'm', title: 'Measure', width: '1fr' }, { key: 'you', title: 'Your company', align: 'right', width: 140 }, { key: 'peer', title: 'Peer avg', align: 'right', width: 120 }, { key: 'best', title: 'Best in class', align: 'right', width: 140 }]}
         rows={[{ id: 1, m: 'Reliability', you: '$3.2M', peer: '$2.4M', best: '$4.1M' }, { id: 2, m: 'Capacity', you: '$0.9M', peer: '$1.1M', best: '$1.6M' }, { id: 3, m: 'Compliance', you: '$0.4M', peer: '$0.5M', best: '$0.7M' }]} />) },
-    { id: 'capex', kind: 'chart', bare: true, ...CARDS[3], title: 'Capex Burn by Quarter', render: () => <IFS.ColumnChart format={usdAxis} height={220} valueLabel="Capex"
+    { id: 'capex', kind: 'chart', bare: true, ...CARDS[3], title: 'Capex burn by quarter', render: () => <IFS.ColumnChart format={usdAxis} height={220} valueLabel="Capex"
       data={[{ label: 'Q1', value: 0.8e6 }, { label: 'Q2', value: 1.2e6 }, { label: 'Q3', value: 1.1e6 }, { label: 'Q4', value: 1.6e6 }]} /> },
   ];
 
@@ -231,7 +231,7 @@ export default IFS_GALLERY;
               <IFS.Button type="secondary" size="s">Dismiss</IFS.Button>
               <IFS.Button type="primary" size="s">Send for approval</IFS.Button>
             </>} />}
-          bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} onUpload={() => {}}
+          bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file' }} onUpload={() => {}}
             prompts={['Generate Annualized outcome risk by risk type chart', 'Compare to best practice']} />}>
           <div style={{ display: 'flex', minHeight: '100%' }}>
             <IFS.Stack gap="300" style={{ flex: 1, minWidth: 0, padding: 'var(--space-300)' }}>
@@ -276,8 +276,8 @@ export default IFS_GALLERY;
               <IFS.Button type="secondary" size="s">Export</IFS.Button>
               <IFS.Button type="primary" size="s">Publish</IFS.Button>
             </>} />}
-          bottom={<IFS.BottomSheet type="value" inProgress coverage={80} documents={{ label: '3 Documents', icon: 'system-file' }} onUpload={() => {}}
-            prompts={['What needs my review?', "What's due this week?"]} />}>
+          bottom={<IFS.BottomSheet type="value" inProgress coverage={80} documents={{ label: '3 documents', icon: 'system-file' }} onUpload={() => {}}
+            prompts={['What needs my review?', "What’s due this week?"]} />}>
           <div style={{ padding: 'var(--space-300)' }}>
             <WidgetBoard value={layout} onChange={setLayout} widgets={REPORT_WIDGETS} />
           </div>

@@ -35,7 +35,7 @@ export default IFS_GALLERY;
         {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} title="title" action="{label}">text</Alert>)}
       </Row>
       <Row label="show-icon" top>
-        {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} showIcon title="Item can't be added here">Drop it on a framework node instead.</Alert>)}
+        {['error', 'warning', 'success'].map(t => <Alert key={t} type={t} showIcon title="Item can’t be added here">Drop it on a framework node instead.</Alert>)}
       </Row>
       <Live>{shown ? <Alert type="warning" title="Unsaved changes" onClose={() => setShown(false)}>Save the draft before you leave this page.</Alert> : <Button onClick={() => setShown(true)}>Show alert again</Button>}</Live>
     </>;
@@ -45,7 +45,7 @@ export default IFS_GALLERY;
     <Row label="default"><Snackbar title="{title}" secondaryAction={{ label: '{label}' }} primaryAction={{ label: '{label}' }}>placeholder</Snackbar></Row>
     <Row label="minimal"><Snackbar title="Investment saved">Changes are live for your team.</Snackbar></Row>
     <Row label="action iconLeft"><Snackbar title="Widget removed" secondaryAction={{ label: 'Undo', iconLeft: 'arrow-back-up' }} /></Row>
-    <Live><Button type="primary" onClick={() => IFS.toast({ title: 'Investment archived', description: 'Moved to Archive.', primaryAction: { label: 'Undo' } })}>Show toast</Button></Live>
+    <Live><Button type="primary" onClick={() => IFS.toast({ title: 'Investment archived', description: 'Moved to archive', primaryAction: { label: 'Undo' } })}>Show toast</Button></Live>
   </> });
 
   IFS_GALLERY.push({ name: 'Modal', figma: 'modal-organism (4169:208596) + overlay-background (338:21403)', render: () => <SurfDemoModal /> });
@@ -101,7 +101,7 @@ export default IFS_GALLERY;
         <Panel title="Details" showEvidence={false} onClose={() => {}} actions={<Button type="tertiary" size="s" iconLeft="system-plus">Add</Button>} />
       </IFS.Inline>
     </Row>
-    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>The panels above collapse with |→ and expand from the 48px rail's ←|.</span></Row>
+    <Row label="live"><span className="t-body-m-regular" style={{ color: 'var(--color-text-softer)' }}>The panels above collapse with |→ and expand from the 48px rail’s ←|.</span></Row>
   </> });
 
   function SurfPopoverSearch() {

@@ -271,10 +271,10 @@ export default IFS_GALLERY;
   // Active value framework (read-only list) — "Map - Overview - Documents …" frames.
   function FrameworkScreen({ initial, editable = false, required = false, draft = false, label }) {
     const c = IFS.useDocuments({ defaultDocuments: initial, editable, required });
-    const nav = [{ id: 'active', label: 'Active Framework' }, { type: 'section', label: 'Library', items: [
-      { id: 'sf', label: 'Strategy Frameworks' }, { id: 'vf', label: 'Value Frameworks' }, { id: 'vm', label: 'Value Models' }] }, { id: 'hp', label: 'Human Performance' }];
-    const cols = draft ? ['Input', 'Enterprise Goals'] : ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
-    const nodes = [['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5], ['value-model', 'Value Models', 7], ['measure', 'Measures', 29]];
+    const nav = [{ id: 'active', label: 'Active framework' }, { type: 'section', label: 'Library', items: [
+      { id: 'sf', label: 'Strategy frameworks' }, { id: 'vf', label: 'Value frameworks' }, { id: 'vm', label: 'Value models' }] }, { id: 'hp', label: 'Human Performance' }];
+    const cols = draft ? ['Input', 'Enterprise goals'] : ['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output'];
+    const nodes = [['enterprise-goal', 'Enterprise goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic objectives', 5], ['value-model', 'Value models', 7], ['measure', 'Measures', 29]];
     return <>
       {editable && <DemoBar c={c} />}
       <div style={{ ...shell, gridTemplateRows: '48px 1fr' }} aria-label={label}>

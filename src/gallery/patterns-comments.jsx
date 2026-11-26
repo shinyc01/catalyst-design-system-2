@@ -13,10 +13,10 @@ export default IFS_GALLERY;
   /* ---------------- data ---------------- */
   const ME = { name: 'Jeff P.', avatar: { initials: 'JP', type: 'black' } };
   const PEOPLE = [
-    { name: 'Maria Chen', role: 'Reliability Lead', avatar: { initials: 'MC', type: 'dark-pink' } },
-    { name: 'Lara Green', role: 'Field Team Lead', avatar: { initials: 'LG', type: 'green' } },
-    { name: 'James Reyes', role: 'Planning Engineer', avatar: { initials: 'JR', type: 'yellow' } },
-    { name: 'Katarina Olsson', role: 'Asset Manager', avatar: { initials: 'KO', type: 'blue' } },
+    { name: 'Maria Chen', role: 'Reliability lead', avatar: { initials: 'MC', type: 'dark-pink' } },
+    { name: 'Lara Green', role: 'Field team lead', avatar: { initials: 'LG', type: 'green' } },
+    { name: 'James Reyes', role: 'Planning engineer', avatar: { initials: 'JR', type: 'yellow' } },
+    { name: 'Katarina Olsson', role: 'Asset manager', avatar: { initials: 'KO', type: 'blue' } },
   ];
   const P = Object.fromEntries(PEOPLE.map(p => [p.name, p]));
   const c = (id, who, time, text, extra) => ({ id, name: who, time, text, avatar: (P[who] || ME).avatar, ...(who === ME.name ? { you: true } : {}), ...extra });
@@ -86,15 +86,15 @@ export default IFS_GALLERY;
 
   /* ---------------- pattern screens ---------------- */
   const STAGES = [['home', 'Command'], ['value', 'Value'], ['explore', 'Explore'], ['build', 'Build'], ['plan', 'Plan'], ['results', 'Results']].map(([value, label]) => ({ value, label }));
-  const COLS = ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
+  const COLS = ['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output'];
   const TOP = [
-    { id: 'eg', type: 'enterprise-goal', title: 'Enterprise Goals', counter: 5 },
+    { id: 'eg', type: 'enterprise-goal', title: 'Enterprise goals', counter: 5 },
     { id: 'vf', type: 'value-framework', title: 'Value Framework v12' },
-    { id: 'so', type: 'strategic-objective', title: 'Strategic Objectives', counter: 5, children: [
+    { id: 'so', type: 'strategic-objective', title: 'Strategic objectives', counter: 5, children: [
       { id: 'fin', title: 'Financial', subs: ['Capital expenditure efficiency', 'Operating cost efficiency', 'Rate-case approvability', 'Avoided liability cost', 'Asset lifecycle value'] },
       { id: 'env', title: 'Environmental', subs: ['Direct emissions (Scope 1)', 'Indirect emissions (Scope 2)', 'Habitat impact', 'Renewable integration', 'Resource efficiency'] },
       { id: 'soc', title: 'Social', subs: ['DAC customer reach', 'Affordability burden', 'Worker safety', 'Public safety', 'Community trust'] }] },
-    { id: 'vm', type: 'value-model', title: 'Value Models', counter: 7 },
+    { id: 'vm', type: 'value-model', title: 'Value models', counter: 7 },
     { id: 'mo', type: 'measure', title: 'Measures', counter: 29 },
   ];
   const NW = 200, NH = 78, STEP = 400, Z = 0.6;
@@ -260,7 +260,7 @@ export default IFS_GALLERY;
                   onOpen={t => focusOn(t)} onResolve={resolve} onUnresolve={unresolve} onCopyLink={copyLink} onClose={() => { setPanel(false); setDraft(null); }} />
               </div>}
             </div>
-            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '3 Documents', icon: 'system-file' }} onUpload={() => {}}
+            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '3 documents', icon: 'system-file' }} onUpload={() => {}}
               prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} />
           </div>
         </div>

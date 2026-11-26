@@ -7,10 +7,10 @@ const mapovStages = [
   { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' },
 ];
 const mapovValueNav = [
-  { id: 'active', label: 'Active Framework' },
-  { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy Frameworks' }, { id: 'value', label: 'Value Frameworks' }, { id: 'models', label: 'Value Models' }] },
+  { id: 'active', label: 'Active framework' },
+  { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy frameworks' }, { id: 'value', label: 'Value frameworks' }, { id: 'models', label: 'Value models' }] },
 ];
-const mapovColumns = ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
+const mapovColumns = ['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output'];
 const mapovIssues = [
   { id: 'e1', kind: 'error', title: 'Weighting is no longer balanced', description: 'Adding this objective increases the total strategic objective weight above 100%.',
     solutions: [
@@ -34,8 +34,8 @@ const mapovIssues = [
 const MAPOV_Z = 0.6;
 const mapovTop = [
   { id: 'vf', type: 'value-framework', title: 'Value Framework v12', x: 211 },
-  { id: 'so', type: 'strategic-objective', title: 'Strategic Objectives', counter: 6, x: 473 },
-  { id: 'vm', type: 'value-model', title: 'Value Models', counter: 9, x: 870 },
+  { id: 'so', type: 'strategic-objective', title: 'Strategic objectives', counter: 6, x: 473 },
+  { id: 'vm', type: 'value-model', title: 'Value models', counter: 9, x: 870 },
   { id: 'ms', type: 'measure', title: 'Measures', counter: 12, x: 1195, focus: true },
 ];
 const MAPOV_TOP_Y = 135, MAPOV_OBJ_X = 636, MAPOV_CHILD_X = 708;

@@ -4,12 +4,12 @@ const dashboardStages = [
   { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' },
 ];
 const dashboardNav = [
-  { id: 'active', label: 'Active Framework' },
-  { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy Frameworks' }, { id: 'valuefw', label: 'Value Frameworks' }, { id: 'models', label: 'Value Models' }] },
+  { id: 'active', label: 'Active framework' },
+  { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy frameworks' }, { id: 'valuefw', label: 'Value frameworks' }, { id: 'models', label: 'Value models' }] },
   { id: 'hp', label: 'Human Performance' },
 ];
 const dashboardStats = [
-  { title: 'Portfolio Benefit-Cost Ratio', value: '2.5' },
+  { title: 'Portfolio benefit-cost ratio', value: '2.5' },
   { title: 'Total capital', value: '$1.24B' },
   { title: 'Risk coverage', value: '94%', description: 'of investments scored', descriptionPosition: 'inline' },
   { title: 'Industry position', value: '62nd', description: 'percentile among peer utilities', descriptionPosition: 'inline' },

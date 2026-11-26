@@ -199,7 +199,7 @@ export default IFS_GALLERY;
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset var(--border-width-default) 0 0 var(--color-border-soft)' }}>
             <IFS.IconButton type="tertiary" size="s" icon="arrow-bar-left" label="Open panel" /></div>
         </div>
-        <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '16 Documents', icon: 'system-file', onClick: noop }} onUpload={noop}
+        <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '16 documents', icon: 'system-file', onClick: noop }} onUpload={noop}
           prompts={['Find similar past ideas', 'What could block this idea?']} />
       </div>
     );
@@ -211,7 +211,7 @@ export default IFS_GALLERY;
   function ImpactChart() {
     return <IFS.DataVizCard title="Investment value impact" header={{ draggable: false }}>
       <div style={{ padding: '0 var(--space-250) var(--space-300)', width: '100%', boxSizing: 'border-box' }}>
-        <div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', marginBottom: 'var(--space-300)' }}>Value change measured as % of each investment's total value (NPV) under the proposed framework vs. current.</div>
+        <div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', marginBottom: 'var(--space-300)' }}>Value change measured as % of each investment’s total value (NPV) under the proposed framework, compared with the current one.</div>
         <div style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gridTemplateRows: '200px auto', gap: 'var(--space-200) var(--space-100)' }}>
           <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>{[250, 200, 150, 100, 50, 0].map(t => <span key={t}>{t}</span>)}</div>
           <IFS.Inline gap="150" align="end">{IMPACT.map(([l, v, c]) => <IFS.VerticalBarChartItem key={l} label={`${l}: ${v}`} width="auto" height={200} value={v} max={250} segments={[{ value: 1, fill: c }]} style={{ flex: '1 1 0' }} />)}</IFS.Inline>
@@ -298,13 +298,13 @@ export default IFS_GALLERY;
                   { title: 'Investments re-scored', value: '1,621', description: '357 gained · 519 lost · 745 unchanged' },
                   { title: 'Funding tier changes', value: '876', description: '52 gained · 31 lost · 12 significant shift' },
                   { title: 'Governance flags', value: '1', description: 'executing investment affected' }]} />
-                <IFS.Tabs items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'align', label: 'Strategic Alignment' }]} defaultValue="impact" />
+                <IFS.Tabs items={[{ value: 'impact', label: 'Portfolio impact' }, { value: 'align', label: 'Strategic alignment' }]} defaultValue="impact" />
                 <ImpactChart />
                 <IFS.Table columns={REVIEW_COLS} rows={REVIEW_ROWS} groupBy="group" />
               </IFS.Stack>
               <SystemConfidence onEvidence={() => set(!open)} evidenceOpen={open} />
             </div>
-            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '16 Documents', icon: 'system-file', onClick: noop }}
+            <IFS.BottomSheet type="value" style={{ position: 'relative' }} documents={{ label: '16 documents', icon: 'system-file', onClick: noop }}
               prompts={['Explain me the value impact', 'Evaluate publish risk']} />
           </div>
         </div>

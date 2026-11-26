@@ -54,23 +54,23 @@ export default IFS_GALLERY;
       ? <ReadinessFacts rows={notes.map(n => [n.name, n.text])} />
       : <P>No reviewer notes yet.</P> },
   ];
-  const SUMMARY_READY = { title: 'Ready to Approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' };
-  const SUMMARY_BLOCKED = { title: 'Budget Envelope Exceeded', text: 'Proposed framework raises portfolio value to $2.24B — $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' };
+  const SUMMARY_READY = { title: 'Ready to approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' };
+  const SUMMARY_BLOCKED = { title: 'Budget envelope exceeded', text: 'Proposed framework raises portfolio value to $2.24B — $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' };
 
   const LONG_NOTE = 'The 12–18 month action window is being treated as a key reason to move this idea forward, but the current evidence does not fully support that level of urgency yet. I understand the reliability risk is increasing and the affected feeders are becoming harder to defer, but we should not let this move into approval as if the timing is already confirmed.';
   const REVIEWER_CHAIN = [
     { id: 'jp', name: 'Jeff Pauska', role: 'Investment owner', avatar: { type: 'black' }, status: 'success' },
-    { id: 'ig', name: 'Isabella Grant', role: 'Asset Manager', avatar: { type: 'purple' }, status: 'empty' },
-    { id: 'jt', name: 'John Thomson', role: 'Field Team Lead', avatar: { type: 'orange' }, status: 'empty' },
-    { id: 'jr', name: 'James Reyes', role: 'Value Framework Owner', avatar: { type: 'dark-purple' }, status: 'empty' },
+    { id: 'ig', name: 'Isabella Grant', role: 'Asset manager', avatar: { type: 'purple' }, status: 'empty' },
+    { id: 'jt', name: 'John Thomson', role: 'Field team lead', avatar: { type: 'orange' }, status: 'empty' },
+    { id: 'jr', name: 'James Reyes', role: 'Value framework owner', avatar: { type: 'dark-purple' }, status: 'empty' },
   ];
   const OWNER_CHAIN = [
     { id: 'jp', name: 'Jeff Pauska', role: 'Investment owner', avatar: { type: 'black' }, status: 'success' },
-    { id: 'ig', name: 'Isabella Grant', role: 'Asset Manager', avatar: { type: 'purple' }, status: 'awaiting', note: { text: LONG_NOTE, authorId: 'jp' },
+    { id: 'ig', name: 'Isabella Grant', role: 'Asset manager', avatar: { type: 'purple' }, status: 'awaiting', note: { text: LONG_NOTE, authorId: 'jp' },
       comment: 'The cost range needs a clearer benchmark before I can sign off.', lastNotified: 'Feb 15, 2025' },
-    { id: 'ms', name: 'Michael Swift', role: 'Asset Manager', avatar: { type: 'light-purple' }, status: 'empty', replaced: { name: 'Ivan Gomez', avatar: { type: 'purple' } } },
-    { id: 'jt', name: 'John Thomson', role: 'Field Team Lead', avatar: { type: 'orange' }, status: 'empty' },
-    { id: 'jr', name: 'James Reyes', role: 'Value Framework Owner', avatar: { type: 'dark-purple' }, status: 'empty' },
+    { id: 'ms', name: 'Michael Swift', role: 'Asset manager', avatar: { type: 'light-purple' }, status: 'empty', replaced: { name: 'Ivan Gomez', avatar: { type: 'purple' } } },
+    { id: 'jt', name: 'John Thomson', role: 'Field team lead', avatar: { type: 'orange' }, status: 'empty' },
+    { id: 'jr', name: 'James Reyes', role: 'Value framework owner', avatar: { type: 'dark-purple' }, status: 'empty' },
   ];
   const notesOf = chain => chain.filter(a => a.note && a.note.text).map(a => ({ name: a.name, text: a.note.text }));
 
@@ -90,17 +90,17 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'SplitButton', figma: 'header-pattern main action [patterns] (138:291660)', render: () => (
     <Row label="states">
-      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request more information', description: 'Ask for more detail about idea.', onClick: () => IFS.toast({ title: 'Request more information' }) }]}>Approve</SplitButton>
-      <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request more information' }]}>Approved</SplitButton>
-      <SplitButton disabled iconLeft="system-check">Info requested</SplitButton>
+      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska' }) }]}>Approve</SplitButton>
+      <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
+      <SplitButton disabled iconLeft="system-check">Revisions requested</SplitButton>
       <SplitButton type="secondary" onClick={() => {}}>Publish</SplitButton>
     </Row>
   ) });
 
   IFS_GALLERY.push({ name: 'ReadinessEvaluation', figma: 'Readiness Evaluation sidebar [patterns] (138:293545)', render: () => (
     <Row label="100% / 40% (Budget envelope open)" top>
-      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness Evaluation"><ReadinessEvaluation summary={SUMMARY_READY} readiness={100} checks={CHECKS_READY} sections={sectionsFor(false, [])} /></IFS.Panel></div>
-      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness Evaluation"><ReadinessEvaluation summary={SUMMARY_BLOCKED} readiness={40} checks={CHECKS_BLOCKED} sections={sectionsFor(true, [])} defaultOpenSections={['budget']} /></IFS.Panel></div>
+      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness evaluation"><ReadinessEvaluation summary={SUMMARY_READY} readiness={100} checks={CHECKS_READY} sections={sectionsFor(false, [])} /></IFS.Panel></div>
+      <div style={{ height: 760, display: 'flex' }}><IFS.Panel title="Readiness evaluation"><ReadinessEvaluation summary={SUMMARY_BLOCKED} readiness={40} checks={CHECKS_BLOCKED} sections={sectionsFor(true, [])} defaultOpenSections={['budget']} /></IFS.Panel></div>
     </Row>
   ) });
 
@@ -127,8 +127,8 @@ export default IFS_GALLERY;
   const STAGES = [{ value: 'command', label: 'Command' }, { value: 'value', label: 'Value' }, { value: 'explore', label: 'Explore' },
     { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' }];
   const VALUE_NAV = [
-    { id: 'active', label: 'Active Framework' },
-    { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy Frameworks' }, { id: 'value', label: 'Value Frameworks' }, { id: 'models', label: 'Value Models' }] },
+    { id: 'active', label: 'Active framework' },
+    { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy frameworks' }, { id: 'value', label: 'Value frameworks' }, { id: 'models', label: 'Value models' }] },
   ];
   const STATUS = {
     draft: ['gray', 'Draft'], shaping: ['gray', 'Shaping'], pending: ['orange', 'Pending approval'], revisions: ['red', 'Needs revision'],
@@ -163,7 +163,7 @@ export default IFS_GALLERY;
             3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p>
         </IFS.Stack>
         <StatCardsRow cards={STATS} />
-        <div><IFS.Tabs value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'alignment', label: 'Strategic Alignment' }]} /></div>
+        <div><IFS.Tabs value={tab} onChange={setTab} items={[{ value: 'impact', label: 'Portfolio impact' }, { value: 'alignment', label: 'Strategic alignment' }]} /></div>
         {tab === 'impact' && <InvestmentValueImpact />}
         <TableReview rows={INVESTMENTS} defaultCollapsed={['Unchanged']} />
       </div>
@@ -174,7 +174,7 @@ export default IFS_GALLERY;
       navBar={<IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={user} />}
       sideNav={<IFS.SideNav title="Value" items={VALUE_NAV} defaultValue="strategy" defaultCollapsed />}
       header={header}
-      bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} prompts={prompts} />}>
+      bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file' }} prompts={prompts} />}>
       <div style={{ display: 'flex', height: '100%', minHeight: 0, position: 'relative' }}>{children}</div>
     </IFS.AppShell>
   );
@@ -199,9 +199,9 @@ export default IFS_GALLERY;
       IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska', description: 'Status updated to Needs revision',
         secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { setDecision(null); setMine({ status: 'empty', comment: undefined }); } } });
     };
-    const mainAction = decision === 'approved' ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request more information' }]}>Approved</SplitButton>
-      : decision === 'info' ? <SplitButton disabled iconLeft="system-check">Info requested</SplitButton>
-        : <SplitButton onClick={() => setModal('approve')} items={[{ label: 'Request more information', description: 'Ask for more detail about idea.', onClick: () => { setNote(''); setModal('info'); } }]}>Approve</SplitButton>;
+    const mainAction = decision === 'approved' ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
+      : decision === 'info' ? <SplitButton disabled iconLeft="system-check">Revisions requested</SplitButton>
+        : <SplitButton onClick={() => setModal('approve')} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => { setNote(''); setModal('info'); } }]}>Approve</SplitButton>;
     const table = <ApprovalChainTable approvers={chain} onChange={setChain} currentUserId={me} ownerId="jp" view={chainMode === 'full' ? 'full' : 'compact'} />;
     return <>
       <Demo>
@@ -216,7 +216,7 @@ export default IFS_GALLERY;
           {chainMode === 'full'
             ? <ApprovalChainPanel mode="full" onExpandedChange={f => setChainMode(f ? 'full' : 'popover')} onClose={() => setChainMode(null)}>{table}</ApprovalChainPanel>
             : <Summary />}
-          <IFS.Panel title="Readiness Evaluation" expanded={chainMode !== 'full'} onExpandedChange={() => {}}>
+          <IFS.Panel title="Readiness evaluation" expanded={chainMode !== 'full'} onExpandedChange={() => {}}>
             <ReadinessEvaluation key={blocked ? 'b' : 'r'} summary={blocked ? SUMMARY_BLOCKED : SUMMARY_READY} readiness={blocked ? 40 : 100}
               checks={blocked ? CHECKS_BLOCKED : CHECKS_READY} sections={sectionsFor(blocked, notesOf(chain))} />
           </IFS.Panel>
@@ -228,10 +228,10 @@ export default IFS_GALLERY;
           <p className="t-body-l-regular" style={{ margin: 0 }}>Are you sure you want to approve <b>“{FRAMEWORK}”</b>?</p>
           <p className="t-body-l-regular" style={{ margin: 'var(--space-200) 0 0' }}>Once approved, the framework will move forward in the process.</p>
         </IFS.Modal>
-        <IFS.Modal open={modal === 'info'} onOpenChange={o => !o && setModal(null)} title="Request more information" width={440} overlay="base"
-          secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Request information', onClick: requestInfo }}>
-          <p className="t-body-l-regular" style={{ margin: '0 0 var(--space-300)' }}>Ask for more detail before deciding whether this idea should move forward. The idea will return to Shape.</p>
-          <IFS.TextArea size="l" label="Note" value={note} onChange={setNote} placeholder="Describe what information is missing before this idea can move forward." />
+        <IFS.Modal open={modal === 'info'} onOpenChange={o => !o && setModal(null)} title="Request revisions" width={440} overlay="base"
+          secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Request revisions', onClick: requestInfo }}>
+          <p className="t-body-l-regular" style={{ margin: '0 0 var(--space-300)' }}>Say what needs to change before this idea can move forward. It returns to Shape, marked Needs revision.</p>
+          <IFS.TextArea size="l" label="Note" value={note} onChange={setNote} placeholder="Add the FY27 cost breakdown for Alternative B." />
         </IFS.Modal>
       </Screen>
     </>;

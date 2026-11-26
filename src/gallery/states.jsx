@@ -25,7 +25,7 @@ export default IFS_GALLERY;
       <Cell title="cause=no-access" h={180}><EmptyState cause="no-access" heading="You don’t have access to this framework" body="Ask the framework owner to share it with you." primaryAction={{}} /></Cell>
       <Cell title="cause=no-results-similar" h={180}><EmptyState cause="no-results-similar" heading="No results for “WDRM-2”" body="You might be looking for" suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></Cell>
       <Cell title="cause=no-results" h={180}><EmptyState cause="no-results" heading="No frameworks match your filters" body="Try a different term, or clear filters to see all frameworks." primaryAction={{}} /></Cell>
-      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it's empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
+      <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences — why it’s empty, what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
       <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 'var(--radius-floating)' }}>
@@ -90,12 +90,12 @@ export default IFS_GALLERY;
   const Labeled = ({ label, children }) => <IFS.Stack gap="200"><span className="g-label t-body-m-regular" style={{ width: 'auto' }}>{label}</span>{children}</IFS.Stack>;
   IFS_GALLERY.push({ name: 'BottomSheet', figma: 'base-bottom-sheet-organism (4406:25590), value-bottom-sheet-organism (789:37502), explore-bottom-sheet (72:4676)', render: () => <IFS.Stack gap="600" style={{ width: 1141 }}>
     <Labeled label="type=base"><BottomSheet prompts={prompts} /></Labeled>
-    <Labeled label="value, in progress"><BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 Documents' }} onUpload={() => {}} /></Labeled>
-    <Labeled label="value, not in progress"><BottomSheet type="value" prompts={prompts} documents={{ label: '3 Documents' }} onUpload={() => {}} /></Labeled>
-    <Labeled label="value, Active (read-only)"><BottomSheet type="value" prompts={prompts} documents={{ label: '16 Documents' }} /></Labeled>
+    <Labeled label="value, in progress"><BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 documents' }} onUpload={() => {}} /></Labeled>
+    <Labeled label="value, not in progress"><BottomSheet type="value" prompts={prompts} documents={{ label: '3 documents' }} onUpload={() => {}} /></Labeled>
+    <Labeled label="value, Active (read-only)"><BottomSheet type="value" prompts={prompts} documents={{ label: '16 documents' }} /></Labeled>
     <Labeled label="type=explore"><BottomSheet type="explore" prompts={['What’s this signal?', 'Open overnight log']} /></Labeled>
     <Labeled label="600px wide: left side and prompts scroll sideways, nothing overflows"><IFS.Stack gap="300" style={{ width: 600 }}>
-      <BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 Documents' }} onUpload={() => {}} />
+      <BottomSheet type="value" inProgress coverage={10} prompts={prompts} documents={{ label: '3 documents' }} onUpload={() => {}} />
       <BottomSheet type="explore" prompts={['What’s this signal?', 'Open overnight log']} />
     </IFS.Stack></Labeled>
   </IFS.Stack> });

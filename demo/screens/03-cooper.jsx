@@ -6,13 +6,13 @@ const cooperStages = [
   { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' },
 ];
 const cooperValueNav = [
-  { id: 'active', label: 'Active Framework' },
-  { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy Frameworks' }, { id: 'value', label: 'Value Frameworks' }, { id: 'models', label: 'Value Models' }] },
+  { id: 'active', label: 'Active framework' },
+  { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy frameworks' }, { id: 'value', label: 'Value frameworks' }, { id: 'models', label: 'Value models' }] },
 ];
-const cooperColumns = ['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output'];
+const cooperColumns = ['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output'];
 const cooperNodes = [
-  ['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5],
-  ['value-model', 'Value Models', 7], ['measure', 'Measures', 29],
+  ['enterprise-goal', 'Enterprise goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic objectives', 5],
+  ['value-model', 'Value models', 7], ['measure', 'Measures', 29],
 ];
 // World units: cards 200 wide, 400 apart (Figma 144 / 287 at 1440 = zoom 0.72; 182 / 364.5 at 2560 = zoom 0.91).
 const COOPER_NODE_W = 200, COOPER_NODE_STEP = 400, COOPER_NODE_H = 40;
@@ -59,7 +59,7 @@ function ScreenCooper({ bp, height }) {
     </React.Fragment>)}
   </>;
   const panelProps = {
-    type: 'text', title: 'Strategy Overview', children: conversation,
+    type: 'text', title: 'Strategy overview', children: conversation,
     onSend: t => { if (t && t.trim()) setExtra(x => [...x, t.trim()]); },
     onNewChat: () => toast('New chat'), onHistory: () => toast('Chat history'), onMore: () => toast('More actions'),
     onAttach: () => toast('Add attachment'), onTypeChange: () => toast('Voice mode'),

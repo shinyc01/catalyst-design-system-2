@@ -15,7 +15,7 @@ export default IFS_GALLERY;
   );
   const grid = { marginBottom: 'var(--space-600)' };
   const QUESTIONS = ['Which investments address the Northgate cluster?', 'What was deferred in this planning cycle?', 'What changed since the last review?',
-    'Which drafts haven\'t moved in 30 days?', 'Drafts created by P. Nair'];
+    'Which drafts haven’t moved in 30 days?', 'Drafts created by P. Nair'];
   const STAGES = [{ value: 'command', label: 'Command' }, { value: 'value', label: 'Value' }, { value: 'explore', label: 'Explore' },
     { value: 'build', label: 'Build' }, { value: 'plan', label: 'Plan' }, { value: 'results', label: 'Results' }];
   const Screen = ({ children, h = 900 }) => <div style={{ position: 'relative', width: 1440, height: h, overflow: 'hidden', background: 'var(--color-surface-primary)', transform: 'translateZ(0)' }}>{children}</div>;
@@ -43,7 +43,7 @@ export default IFS_GALLERY;
             <SmartSearch type={t} placeholder={ph} />
             <SmartSearch type={t} placeholder={ph} state="hover" />
             <SmartSearch type={t} placeholder={ph} state="pressed" listening={t === 'voice'} />
-            <SmartSearch type={t} placeholder={ph} state="pressed" defaultValue={t === 'voice' ? 'Strategy...' : 'Strategy'} />
+            <SmartSearch type={t} placeholder={ph} state="pressed" defaultValue={t === 'voice' ? 'Strategy…' : 'Strategy'} />
             <SmartSearch type={t} placeholder={ph} defaultValue="Strategy plan" />
             <SmartSearch type={t} placeholder={ph} state="pressed" defaultValue="Explain how our current pricing model impacts different customer segments" />
             <SmartSearch type={t} placeholder={ph} disabled />
@@ -51,7 +51,7 @@ export default IFS_GALLERY;
           </IFS.Stack>
         ))}
       </IFS.Inline>
-      <Row label="size s (28, explore-header)"><SmartSearch size="s" width={248} placeholder="Search for..." /><SmartSearch size="s" width={248} defaultValue="Northgate" /></Row>
+      <Row label="size s (28, explore-header)"><SmartSearch size="s" width={248} placeholder="Search" /><SmartSearch size="s" width={248} defaultValue="Northgate" /></Row>
       <Row label="live, with suggestions"><div style={{ height: 300 }}><SmartSearch placeholder="Ask anything about idea pad" suggestions={QUESTIONS} onSubmit={v => IFS.toast({ title: `Asked: ${v}` })} /></div></Row>
     </>;
   } });
@@ -87,8 +87,8 @@ export default IFS_GALLERY;
       <IFS.Inline gap="600" align="start" wrap style={grid}>
         <Cell title="chips (Ideas: AI keywords)" w={240}><ColumnFilter options={['Replacement', 'Refurbishment', 'Upgrade', 'Feeder', 'Substation'].map(v => ({ value: v, label: v }))} value={name} onChange={setName} /></Cell>
         <Cell title="chips + custom period (Horizon)" w={240}><ColumnFilter options={['Long', 'Mid', 'Short'].map(v => ({ value: v, label: v }))} value={hz} onChange={setHz} period={{ value: per, onChange: setPer }} /></Cell>
-        <Cell title="presets + custom period (Modified)" w={240}><ColumnFilter multiple={false} options={[{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This Year' }, { value: '2026', label: '2026' }]} value={mod} onChange={setMod} period={{ value: null, onChange: () => {} }} /></Cell>
-        <Cell title="search + chips (Collaboration)" w={240}><ColumnFilter search={{ placeholder: 'Search by name, role...', onFilter: () => {} }} options={['Replied', 'Input required', 'Review required', 'A. Singh', 'P. Nair'].map(v => ({ value: v, label: v }))} value={col} onChange={setCol} /></Cell>
+        <Cell title="presets + custom period (Modified)" w={240}><ColumnFilter multiple={false} options={[{ value: '7d', label: 'Last 7 days' }, { value: '30d', label: 'Last 30 days' }, { value: '90d', label: 'Last 90 days' }, { value: 'this-year', label: 'This year' }, { value: '2026', label: '2026' }]} value={mod} onChange={setMod} period={{ value: null, onChange: () => {} }} /></Cell>
+        <Cell title="search + chips (Collaboration)" w={240}><ColumnFilter search={{ placeholder: 'Search by name or role', onFilter: () => {} }} options={['Replied', 'Input required', 'Review required', 'A. Singh', 'P. Nair'].map(v => ({ value: v, label: v }))} value={col} onChange={setCol} /></Cell>
         <Cell title="range (Progress)" w={240}><ColumnFilter range={{ value: rng, onChange: setRng, min: 11, max: 89, step: 1 }} /></Cell>
       </IFS.Inline>
     );
@@ -224,7 +224,7 @@ export default IFS_GALLERY;
     return [
       { label: 'Compare', icon: 'compare', disabled: draft && r.stage === 'Input', reason: 'Compare is available once the draft leaves the Input stage' },
       { label: 'Activity', icon: 'users-group' },
-      { label: 'Duplicate & Update', icon: 'duplicate' },
+      { label: 'Duplicate and update', icon: 'duplicate' },
       ...(r.status.label !== 'Archived' ? [{ label: 'Rename', icon: 'system-edit-rename', onClick: api.rename }] : []),
       ...(r.status.label !== 'Active' ? [{ label: 'Archive', icon: 'chat-archive', destructive: true }] : []),
     ];
@@ -236,14 +236,14 @@ export default IFS_GALLERY;
         <IFS.AppShell height={900}
           navBar={<IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
           sideNav={<IFS.SideNav title="Value" defaultValue="vf" items={[{ id: 'active', label: 'Active framework' },
-            { type: 'section', label: 'Library', items: [{ id: 'sf', label: 'Strategy Framework' }, { id: 'vf', label: 'Value Framework' }, { id: 'vm', label: 'Value Models' }] },
+            { type: 'section', label: 'Library', items: [{ id: 'sf', label: 'Strategy framework' }, { id: 'vf', label: 'Value framework' }, { id: 'vm', label: 'Value models' }] },
             { id: 'hp', label: 'Human Performance' }]} />}
-          bottom={<IFS.BottomSheet prompts={['Walk me through this framework', 'What hasn\'t been updated in a while?']} />}
+          bottom={<IFS.BottomSheet prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} />}
 >
           <IFS.Stack gap="500" style={{ padding: 'var(--space-300)' }}>
             <DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
-              pageTop={{ title: 'Value Framework', description: 'Published, archived and draft value frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
-              filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s === 'Pending approval' ? 'Pending Approval' : s, match: r => r.status.label === s }))] }}
+              pageTop={{ title: 'Value framework', description: 'Published, archived and draft value frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
+              filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s === 'Pending approval' ? 'Pending approval' : s, match: r => r.status.label === s }))] }}
               search={{ placeholder: 'Ask anything about value frameworks', suggestions: ['Which frameworks are waiting on my approval?', 'What changed between v13 and v14?'], noResults: ['Value Framework v14', 'Reliability 2025'] }}
               onOpen={r => IFS.toast({ title: `Opening ${r.name}` })} onRename={() => {}} rowActions={fwActions}
               columns={[
@@ -285,10 +285,10 @@ export default IFS_GALLERY;
         header={<IFS.PageHeader title="Southern Feeder Replacement" id="INV-2025-0842" onBack={() => {}} onTitleMenu={() => {}} status={<IFS.Indicator type="purple" size="xs">Refining</IFS.Indicator>}
           views={<div style={{ width: 360 }}><IFS.Stepper current={2} steps={['Shape', 'Review', 'Refine', 'Approve'].map(label => ({ label }))} /></div>}
           actions={<><IFS.Button type="secondary" size="s">Dismiss</IFS.Button><IFS.Button type="primary" size="s">Send for approval</IFS.Button></>} />}
-        bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} onUpload={() => {}} prompts={['Explain gaps in confidence', 'Draft value assessment']} />}>
+        bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file' }} onUpload={() => {}} prompts={['Explain gaps in confidence', 'Draft value assessment']} />}>
         <IFS.Stack gap="300" style={{ padding: '12px 60px' }}>
           <PageTop title="Investment details" description="Core investment details, context, and current status">
-            <IFS.Tabs items={[{ value: 'g', label: 'General' }, { value: 'c', label: 'Cost & Schedule' }, { value: 'r', label: 'Relationships' }]} defaultValue="r" />
+            <IFS.Tabs items={[{ value: 'g', label: 'General' }, { value: 'c', label: 'Cost and schedule' }, { value: 'r', label: 'Relationships' }]} defaultValue="r" />
           </PageTop>
           <DataTable title="Dependencies" collapsible headerAction={cooperAdd} fixedHeight rows={DEPS} search={{ placeholder: 'Ask anything about investments', noResults: ['Circuit 13C', 'Northgate'] }}
             columns={[
@@ -313,7 +313,7 @@ export default IFS_GALLERY;
     return (
       <IFS.Stack gap="600" style={{ width: 1100 }}>
         <Cell title="Loading (skeleton rows inside the table)" w={1100}><DataTable variant="ranked" defaultRows={IDEAS.slice(0, 3)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Ask anything about idea pad' }} loading /></Cell>
-        <Cell title="Search → Searching… → results / No results found (type a query and press Enter, e.g. “zzz”)" w={1100}>
+        <Cell title="Search → Searching… → results / No results for “…” (type a query and press Enter, for example “zzz”)" w={1100}>
           <DataTable variant="ranked" defaultRows={IDEAS.slice(0, 5)} columns={cols} filterTabs={ideaTabs} search={{ placeholder: 'Ask anything about idea pad', suggestions: QUESTIONS, noResults: ['Cedar Park', 'Birchwood', 'Northgate Full Replacement'] }} />
         </Cell>
         <Cell title="Filter combination with no matches (open Horizon › Short, then Ideas › Substation)" w={1100}>

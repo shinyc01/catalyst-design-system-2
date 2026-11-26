@@ -33,20 +33,20 @@ export default IFS_GALLERY;
         act('a1', 'carter', 'comment', 'Administrator', 'Published this version and set it as the active framework.', '3:42 PM · May 12'),
         act('a2', 'cooper', 'auto-action', null, 'Previous active framework “2024 Strategy v2” moved to archived.', '3:42 PM · May 12'),
         act('a3', 'cooper', 'auto-action', null, 'Status changed to Ready to Publish. All 5 approvals collected.', '5:10 PM · May 9'),
-        act('a4', 'loid', 'action', 'Field Team Lead', 'Approved.', '5:10 PM · May 9'),
-        act('a5', 'shiny', 'comment', 'Planning Engineer', 'Approved.', '7:10 PM · May 9'),
-        act('a6', 'singh', 'action', 'Investment Owner', 'Submitted for approval. 2 reviewers requested.', '9:00 AM · May 5'),
-        act('a7', 'singh', 'action', 'Investment Owner', 'Created this version.', '2:20 PM · Apr 28'),
+        act('a4', 'loid', 'action', 'Field team lead', 'Approved.', '5:10 PM · May 9'),
+        act('a5', 'shiny', 'comment', 'Planning engineer', 'Approved.', '7:10 PM · May 9'),
+        act('a6', 'singh', 'action', 'Investment owner', 'Submitted for approval. 2 reviewers requested.', '9:00 AM · May 5'),
+        act('a7', 'singh', 'action', 'Investment owner', 'Created this version.', '2:20 PM · Apr 28'),
       ] },
     { id: 'v3', title: 'Version 3', description: 'Added grid-resilience driver, linked to the 2026 capital plan.', author: P.carter, time: '2:40 PM · May 10',
       activity: [
         act('b1', 'carter', 'action', 'Administrator', 'Added the grid-resilience driver under Reliability.', '2:40 PM · May 10'),
-        act('b2', 'singh', 'comment', 'Investment Owner', 'Linked to the 2026 capital plan — please check the capex split.', '1:05 PM · May 10'),
+        act('b2', 'singh', 'comment', 'Investment owner', 'Linked to the 2026 capital plan — please check the capex split.', '1:05 PM · May 10'),
         act('b3', 'cooper', 'auto-action', null, 'Re-scored 12 measures after the driver change.', '2:41 PM · May 10'),
       ] },
     { id: 'v2', title: 'Version 2', description: 'Adjusted reliability KPI thresholds.', author: P.singh, time: '11:15 AM · May 6',
       activity: [
-        act('c1', 'singh', 'action', 'Investment Owner', 'Raised the SAIDI target from 92 to 95 minutes.', '11:15 AM · May 6'),
+        act('c1', 'singh', 'action', 'Investment owner', 'Raised the SAIDI target from 92 to 95 minutes.', '11:15 AM · May 6'),
         act('c2', 'torres', 'comment', 'Asset Planning', 'Thresholds now match the regulator’s 2026 guidance.', '10:40 AM · May 6'),
       ] },
     { id: 'v1', title: 'Version 1', description: 'Initial draft of the framework.', author: P.carter, time: '11:15 AM · May 6',
@@ -58,19 +58,19 @@ export default IFS_GALLERY;
   const genVersions = (by, n = 3) => Array.from({ length: n }, (_, i) => {
     const k = n - i;
     return { id: `g${k}`, title: `Version ${k}`, current: i === 0, description: k === 1 ? 'Initial draft of the framework.' : `Updated value measures (draft ${k}).`, author: by, time: `${9 + i}:20 AM · Apr ${20 - i * 3}`,
-      activity: [{ id: `g${k}a`, name: by.name, avatar: by, type: 'action', role: 'Investment Owner', text: k === 1 ? 'Created this version.' : 'Saved a new version.', time: `${9 + i}:20 AM · Apr ${20 - i * 3}` }] };
+      activity: [{ id: `g${k}a`, name: by.name, avatar: by, type: 'action', role: 'Investment owner', text: k === 1 ? 'Created this version.' : 'Saved a new version.', time: `${9 + i}:20 AM · Apr ${20 - i * 3}` }] };
   });
   const APPROVED = [
-    { key: 'lf', state: 'success', name: 'Loid Forger', position: 'Field Team Lead', avatar: P.loid, date: '5:10 PM · May 9' },
-    { key: 'sc', state: 'success', name: 'Shiny C.', position: 'Planning Engineer', avatar: P.shiny, date: '7:10 PM · May 9' },
+    { key: 'lf', state: 'success', name: 'Loid Forger', position: 'Field team lead', avatar: P.loid, date: '5:10 PM · May 9' },
+    { key: 'sc', state: 'success', name: 'Shiny C.', position: 'Planning engineer', avatar: P.shiny, date: '7:10 PM · May 9' },
   ];
   const PENDING = [...APPROVED, { key: 'mt', state: 'awaiting', name: 'M. Torres', position: 'Asset Planning', avatar: P.torres, date: 'Requested May 10' },
-    { key: 'as', state: 'rejected', name: 'A. Singh', position: 'Investment Owner', avatar: P.singh, date: '4:12 PM · May 11', comment: 'Capex split needs the updated 2026 figures.' }];
+    { key: 'as', state: 'rejected', name: 'A. Singh', position: 'Investment owner', avatar: P.singh, date: '4:12 PM · May 11', comment: 'Capex split needs the updated 2026 figures.' }];
   const d = s => new Date(`${s}T00:00`);
   const fmt = v => IFS.format.date(v);
   const FRAMEWORKS = [
     { id: 'f1', name: 'Q1 2026 Strategy Framework', status: { type: 'green', label: 'Active' }, modified: d('2026-01-15'), by: P.carter, versions: Q1_VERSIONS, approvals: APPROVED },
-    { id: 'f2', name: 'Q2 2026 Strategy Framework', status: { type: 'orange', label: 'Pending Approval', count: '5/8' }, modified: d('2026-01-10'), by: P.singh, versions: genVersions(P.singh), approvals: PENDING },
+    { id: 'f2', name: 'Q2 2026 Strategy Framework', status: { type: 'orange', label: 'Pending approval', count: '5/8' }, modified: d('2026-01-10'), by: P.singh, versions: genVersions(P.singh), approvals: PENDING },
     { id: 'f3', name: 'Cost Optimization 2026', status: { type: 'gray', label: 'Draft' }, stage: 'Input', modified: d('2025-12-18'), by: P.singh, versions: genVersions(P.singh, 1), approvals: [] },
     { id: 'f4', name: '2025 Strategy Framework v6', status: { type: 'gray', label: 'Draft' }, stage: 'Shape', modified: d('2025-12-05'), by: P.singh, versions: genVersions(P.singh, 2), approvals: [] },
     { id: 'f5', name: 'Decarbonization Review 2026', status: { type: 'gray', label: 'Draft' }, stage: 'Review', modified: d('2025-11-22'), by: P.singh, versions: genVersions(P.singh, 2), approvals: [] },
@@ -82,7 +82,7 @@ export default IFS_GALLERY;
   // Compare data: baselines (compare-dropdown groups) and the numbers per baseline.
   const BASELINES = {
     best: { label: 'Best in class', cap: 'Best in class', goals: 6, k: [61, 91, 1.14, 2.2] },
-    peer: { label: 'Peer Average', cap: 'Peer average', goals: 5, k: [48, 84, 1.02, 1.9] },
+    peer: { label: 'Peer average', cap: 'Peer average', goals: 5, k: [48, 84, 1.02, 1.9] },
     v3: { label: 'Version 3', cap: 'Version 3', goals: 5, k: [60, 92, 1.21, 2.4] },
     v2: { label: 'Version 2', cap: 'Version 2', goals: 5, k: [58, 90, 1.19, 2.3] },
     v1: { label: 'Version 1', cap: 'Version 1', goals: 4, k: [55, 88, 1.16, 2.1] },
@@ -90,7 +90,7 @@ export default IFS_GALLERY;
     f4: { label: '2025 Strategy Framework v6', cap: '2025 v6', goals: 6, k: [59, 90, 1.18, 2.3] },
   };
   const COMPARE_GROUPS = [
-    { title: 'Top benchmarks', items: [{ value: 'best', label: 'Best in class' }, { value: 'peer', label: 'Peer Average' }] },
+    { title: 'Top benchmarks', items: [{ value: 'best', label: 'Best in class' }, { value: 'peer', label: 'Peer average' }] },
     { title: 'Versions', items: [{ value: 'v3', label: 'Version 3', status: { type: 'archive', label: 'Archived' } }, { value: 'v2', label: 'Version 2', status: { type: 'archive', label: 'Archived' } },
       { value: 'v1', label: 'Version 1', status: { type: 'archive', label: 'Archived' } }] },
     { title: 'All frameworks', items: [{ value: 'f4', label: '2025 Strategy Framework v6', status: { type: 'gray', label: 'Draft' }, badge: 'Shape' },
@@ -104,7 +104,7 @@ export default IFS_GALLERY;
       { key: 'pos', title: 'Industry position percentile', trend: `${Math.abs(62 - k[0])}`, trendDirection: up(k[0], 62), fromLabel: cap, from: ordinal(k[0]), toLabel: curLabel, to: '62nd', description: 'among peer utilities' },
       { key: 'risk', title: 'Risk coverage', trend: `${Math.abs(94 - k[1])} %`, trendDirection: up(k[1], 94), fromLabel: cap, from: `${k[1]}%`, toLabel: curLabel, to: '94%', description: 'of investments scored' },
       { key: 'cap', title: 'Total capital', trend: IFS.format.percent(Math.abs((1.24 - k[2]) / k[2] * 100)), trendDirection: up(k[2], 1.24), fromLabel: cap, from: IFS.format.money(k[2] * 1e9), toLabel: curLabel, to: '$1.24B' },
-      { key: 'bcr', title: 'Portfolio Benefit-Cost Ratio', trend: `${Math.abs(2.5 - k[3]).toFixed(1)}`, trendDirection: up(k[3], 2.5), fromLabel: cap, from: `${k[3]}`, toLabel: curLabel, to: '2.5' },
+      { key: 'bcr', title: 'Portfolio benefit-cost ratio', trend: `${Math.abs(2.5 - k[3]).toFixed(1)}`, trendDirection: up(k[3], 2.5), fromLabel: cap, from: `${k[3]}`, toLabel: curLabel, to: '2.5' },
     ];
   };
   const sankeyFor = (b, curName = 'Version 4') => {
@@ -185,15 +185,15 @@ export default IFS_GALLERY;
     { label: 'Compare', icon: 'compare', disabled: r.versions.length < 2 && r.status.label === 'Draft', reason: 'This draft has no earlier version to compare with yet', onClick: () => go.compare(r) },
     { label: 'Activity', icon: 'users-group', onClick: () => go.activity(r) },
     { divider: true },
-    { label: 'Duplicate & Update', icon: 'duplicate', onClick: () => go.duplicate(r, r.versions[0]) },
+    { label: 'Duplicate and update', icon: 'duplicate', onClick: () => go.duplicate(r, r.versions[0]) },
     { label: 'Rename', icon: 'system-edit-rename', onClick: api.rename },
   ];
   const SIDE = <IFS.SideNav title="Value" defaultValue="sf" items={[{ id: 'active', label: 'Active framework' },
-    { type: 'section', label: 'Library', items: [{ id: 'sf', label: 'Strategy Framework' }, { id: 'vf', label: 'Value Frameworks' }, { id: 'vm', label: 'Value Models' }] },
+    { type: 'section', label: 'Library', items: [{ id: 'sf', label: 'Strategy framework' }, { id: 'vf', label: 'Value frameworks' }, { id: 'vm', label: 'Value models' }] },
     { id: 'hp', label: 'Human Performance' }]} />;
   const NAV = <IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />;
-  const PROMPTS = ['Walk me through this framework', 'What hasn\'t been updated in a while?'];
-  const MAP_NODES = [['enterprise-goal', 'Enterprise Goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic Objectives', 5], ['value-model', 'Value Models', 7], ['measure', 'Measures', 29]];
+  const PROMPTS = ['Walk me through this framework', 'What hasn’t been updated in a while?'];
+  const MAP_NODES = [['enterprise-goal', 'Enterprise goals', 5], ['value-framework', 'Value Framework v12'], ['strategic-objective', 'Strategic objectives', 5], ['value-model', 'Value models', 7], ['measure', 'Measures', 29]];
 
   function FrameworkMap({ title, status, draft, onBack, onActivity, onDuplicate }) {
     const [menu, setMenu] = React.useState(false);
@@ -210,9 +210,9 @@ export default IFS_GALLERY;
               <IFS.Menu inline items={[{ label: 'Activity', icon: 'users-group', onClick: () => { setMenu(false); onActivity(); } }, { divider: true },
                 { label: 'Duplicate', icon: 'duplicate', onClick: () => { setMenu(false); onDuplicate(); } }, { label: 'Rename', icon: 'system-edit-rename', onClick: () => setMenu(false) }]} /></div>}
           </div>
-          <IFS.CanvasHeader columns={['Enterprise Goals', 'Value Framework', 'Strategic Objectives', 'Value Models', 'Measure Output']} />
+          <IFS.CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} />
         </>}
-        bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} prompts={PROMPTS} />}>
+        bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file' }} prompts={PROMPTS} />}>
         <div style={{ position: 'relative', height: '100%', minHeight: 640 }}>
           <IFS.CanvasBackground style={{ position: 'absolute', inset: 0 }} overlay={<div style={{ position: 'absolute', insetInlineStart: 14, bottom: 14 }}><IFS.ValueMapButton type="shape" /></div>}>
             {MAP_NODES.map(([t, ttl, n], i) => <div key={t} style={{ position: 'absolute', left: 52 + i * 240, top: 340 }}><IFS.NodeCard type={t} title={ttl} counter={n} /></div>)}
@@ -241,8 +241,8 @@ export default IFS_GALLERY;
       <IFS.AppShell height={900} navBar={NAV} sideNav={SIDE} bottom={<IFS.BottomSheet prompts={PROMPTS} />}>
         <IFS.Stack gap="500" style={{ padding: 'var(--space-300)' }}>
           <IFS.DataTable variant="standard" rows={rows} onRowsChange={setRows} defaultSort={{ key: 'modified', dir: 'desc' }}
-            pageTop={{ title: 'Strategy Framework', description: 'Published, archived, and draft strategy frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
-            filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending Approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s, match: r => r.status.label === s }))] }}
+            pageTop={{ title: 'Strategy framework', description: 'Published, archived, and draft strategy frameworks', actions: <IFS.Button type="secondary" size="m" iconLeft="system-pencil-plus">New</IFS.Button> }}
+            filterTabs={{ variant: 'tabs', items: [{ value: 'all', label: 'All' }, ...['Active', 'Pending approval', 'Archived', 'Draft'].map(s => ({ value: s, label: s, match: r => r.status.label === s }))] }}
             search={{ placeholder: 'Ask anything about strategy frameworks', suggestions: ['Which frameworks are waiting on my approval?', 'What changed in the active framework?'] }}
             onOpen={r => setScreen({ kind: 'map', fw: r.id })} onRename={() => {}} rowActions={(r, api) => fwActions(r, api, go)}
             columns={[
@@ -270,7 +270,7 @@ export default IFS_GALLERY;
             views={<IFS.SegmentedControl size="s" value="compare" onChange={v => v !== 'compare' && setScreen({ kind: 'map', fw: r.id })}
               options={[{ value: 'grid', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'compare', iconLeft: 'compare' }]} />}
             actions={<IFS.CooperChip />} />}
-          bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} prompts={['Summarize risks', 'Explain Best in class']} />}>
+          bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file' }} prompts={['Summarize risks', 'Explain Best in class']} />}>
           <div>
             <CompareView groups={COMPARE_GROUPS} value={screen.baseline} onChange={b => setScreen({ ...screen, baseline: b })}
               stats={statsFor(screen.baseline)} sankey={sankeyFor(screen.baseline, curName)} height={520} />

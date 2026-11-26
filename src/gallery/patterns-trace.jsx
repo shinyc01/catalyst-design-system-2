@@ -33,7 +33,7 @@ export default IFS_GALLERY;
   const TRACE_ISSUES = [
     { id: 'e1', kind: 'error', title: 'Weighting is no longer balanced', description: 'Adding this objective increases the total strategic objective weight above 100%.',
       solutions: [{ id: 'a', title: 'Rebalance all objective weights', description: 'Redistribute the weights across all strategic objectives so the total returns to 100%.', recommended: true },
-        { id: 'b', title: "Use Cooper's suggested weight", description: 'Apply a recommended weight based on the current objective structure.' },
+        { id: 'b', title: "Use Cooper’s suggested weight", description: 'Apply a recommended weight based on the current objective structure.' },
         { id: 'c', title: 'Add without a weight', description: 'Save the objective as a draft and assign its weight before publishing.' }] },
     { id: 'e2', kind: 'error', title: 'Required measures are not configured', description: 'The objective has no measures, so it cannot contribute value.',
       solutions: [{ id: 'a', title: 'Configure measures now', description: 'Open Measure output and link at least one measure.', recommended: true }, { id: 'b', title: 'Inherit measures from parent', description: 'Use the measures of the Social goal.' }] },
@@ -108,7 +108,7 @@ export default IFS_GALLERY;
         <div><h2 className="t-heading-h1-medium" style={{ margin: 0 }}>Executive summary</h2>
           <p className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', margin: 'var(--space-200) 0 0' }}>Applying this change increases Reliability influence by 18%, decreases Safety influence by 7%, and changes the value of 876 investments. 3 investments move into the top funding tier under the proposed framework; 2 safety initiatives drop out of it.</p></div>
         <IFS.StatCardsRow cards={STATS} />
-        <div style={{ flex: 'none' }}><IFS.Tabs items={[{ value: 'impact', label: 'Portfolio Impact' }, { value: 'align', label: 'Strategic Alignment' }]} defaultValue="impact" /></div>
+        <div style={{ flex: 'none' }}><IFS.Tabs items={[{ value: 'impact', label: 'Portfolio impact' }, { value: 'align', label: 'Strategic alignment' }]} defaultValue="impact" /></div>
         <IFS.InvestmentValueImpact style={{ flex: 'none' }} />
         <IFS.TableReview style={{ flex: 'none' }} rows={INVESTMENTS} defaultCollapsed={['Unchanged']} />
       </IFS.Stack>
@@ -122,7 +122,7 @@ export default IFS_GALLERY;
         header={<IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} onTitleMenu={noop} status={status}
           views={<div style={{ width: 344 }}><IFS.Stepper steps={['Input', 'Shape', 'Review', 'Approve'].map(label => ({ label }))} current={stage} /></div>}
           actions={actions} />}
-        bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file', onClick: noop }} prompts={['Explain me the value impact', 'Evaluate publish risk']} />}>
+        bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file', onClick: noop }} prompts={['Explain me the value impact', 'Evaluate publish risk']} />}>
         <div style={{ display: 'flex', height: '100%', minHeight: 0 }}>{children || <ReviewContent />}{panel}</div>
       </IFS.AppShell>
     );
@@ -171,7 +171,7 @@ export default IFS_GALLERY;
           views={<div style={{ width: 344 }}><IFS.Stepper steps={['Input', 'Shape', 'Review', 'Approve'].map(label => ({ label }))} current={1} /></div>}
           actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">1/1</IFS.Button><IFS.CommentButton /><IFS.Button type="primary" size="s" disabled={shown}>Review</IFS.Button></>} />
           <IFS.CanvasHeader columns={COLS} /></>}
-        bottom={<IFS.BottomSheet type="value" documents={{ label: '3 Documents', icon: 'system-file', onClick: noop }} onUpload={noop} prompts={['Walk me through this framework', "What hasn't been updated in a while?"]} />}>
+        bottom={<IFS.BottomSheet type="value" documents={{ label: '3 documents', icon: 'system-file', onClick: noop }} onUpload={noop} prompts={['Walk me through this framework', "What hasn’t been updated in a while?"]} />}>
         <div style={{ position: 'relative', height: '100%' }}>
           <IFS.CanvasBackground defaultView={{ x: 0, y: 0, zoom: 1 }} overlay={<div style={{ position: 'absolute', left: 12, bottom: 12 }}><IFS.ValueMapButton /></div>}>
             <div style={{ position: 'absolute', left: 520, top: 60 }}><IFS.NodeCard type="strategic-objective" title="Social" /></div>
@@ -186,8 +186,8 @@ export default IFS_GALLERY;
 
   /* ---------------- Pattern: Readiness Evaluation ---------------- */
   const NOTES = <IFS.Stack gap="200">
-    <IFS.SourceCard type="user" user={{ name: 'John Thomson' }}>"7 feeder sections show deteriorating condition indicators and increasing likelihood of reliability issues."</IFS.SourceCard>
-    <IFS.SourceCard type="user" user={{ name: 'James R.', initials: 'IN', type: 'purple' }}>"Current feeder loading is approaching operational limits, reducing flexibility during future demand growth or outages."</IFS.SourceCard>
+    <IFS.SourceCard type="user" user={{ name: 'John Thomson' }}>“7 feeder sections show deteriorating condition indicators and increasing likelihood of reliability issues.”</IFS.SourceCard>
+    <IFS.SourceCard type="user" user={{ name: 'James R.', initials: 'IN', type: 'purple' }}>“Current feeder loading is approaching operational limits, reducing flexibility during future demand growth or outages.”</IFS.SourceCard>
   </IFS.Stack>;
   const P = t => <p className="t-body-m-regular" style={{ margin: 0, color: 'var(--color-text-soft)' }}>{t}</p>;
   const BASE_SECTIONS = [
@@ -200,16 +200,16 @@ export default IFS_GALLERY;
   const BUDGET = { id: 'budget', title: 'Budget envelope', badge: { label: 'Over by $140M', tone: 'danger' }, content: <>{P('Proposed value exceeds the FY26 capital envelope approved for this framework.')}
     <IFS.ReadinessFacts rows={[['Approved FY26 envelope', '$2.24B'], ['Proposed value', '$2.24B'], ['Over by', '$140M', 'danger'], ['Requires', 'Finance Committee waiver']]} /></> };
   const CASES = {
-    approved: { summary: { title: 'Ready to Approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' },
+    approved: { summary: { title: 'Ready to approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' },
       readiness: 100, checks: ['Objective weighting', 'Strategic alignment', 'Risk balance', 'Governance flags'].map(label => ({ label, end: 'Passed' })), sections: BASE_SECTIONS },
-    blocked: { summary: { title: 'Budget Envelope Exceeded', text: 'Proposed framework raises portfolio value to $2.24B — $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' },
+    blocked: { summary: { title: 'Budget envelope exceeded', text: 'Proposed framework raises portfolio value to $2.24B — $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' },
       readiness: 40, checks: [{ label: 'Objective weighting', end: 'Passed' }, { label: 'Strategic alignment', end: 'Passed' }, { label: 'Budget envelope', type: 'error', end: 'Exceeded' }, { label: 'Governance flags', end: 'Passed' }],
       sections: [BUDGET, ...BASE_SECTIONS] },
   };
   IFS_GALLERY.push({ name: 'Pattern: Readiness evaluation', figma: 'Review - Portfolio impact - Reviewer: Approved / Blocked view [patterns] (12:193232 / 12:193367)', render: () => {
     const [view, setView] = useState('approved');
     return <>
-      <Demo>Reviewer view. Expand the sections; collapse the panel. Approve, or open the caret menu → Request more info (status becomes Needs revision).
+      <Demo>Reviewer view. Expand the sections; collapse the panel. Approve, or open the caret menu → Request revisions (status becomes Needs revision).
         <IFS.SegmentedControl size="s" value={view} onChange={setView} options={[{ value: 'approved', label: 'Approved view' }, { value: 'blocked', label: 'Blocked view' }]} /></Demo>
       <ReadinessScreen key={view} data={CASES[view]} />
     </>;
@@ -221,15 +221,15 @@ export default IFS_GALLERY;
     const ind = status === 'pending' ? <IFS.Indicator type="orange" size="xs">Pending approval</IFS.Indicator>
       : status === 'approved' ? <IFS.Indicator type="green" size="xs">Approved</IFS.Indicator> : <IFS.Indicator type="red" size="xs">Needs revision</IFS.Indicator>;
     const panel = <div style={{ height: '100%' }}>{exp
-      ? <IFS.Panel title="Readiness Evaluation" expanded onExpandedChange={setExp} onEvidence={noop} style={{ height: '100%' }}>
+      ? <IFS.Panel title="Readiness evaluation" expanded onExpandedChange={setExp} onEvidence={noop} style={{ height: '100%' }}>
         <IFS.ReadinessEvaluation summary={data.summary} readiness={data.readiness} checks={data.checks} sections={data.sections} /></IFS.Panel>
-      : <IFS.Panel title="Readiness Evaluation" expanded={false} onExpandedChange={setExp} dot={blocked ? 'error' : undefined} />}</div>;
+      : <IFS.Panel title="Readiness evaluation" expanded={false} onExpandedChange={setExp} dot={blocked ? 'error' : undefined} />}</div>;
     return <Screen label="Readiness evaluation">
       <ReviewShell stage={3} user="IG" status={ind} panel={panel}
         actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton />
           <IFS.Button type="tertiary" size="s">Approval chain</IFS.Button>
           <IFS.SplitButton disabled={status !== 'pending'} onClick={() => { setStatus('approved'); IFS.toast({ title: 'Framework approved' }); }}
-            items={[{ label: 'Request more info', description: 'Send back to the author as Needs revision', onClick: () => { setStatus('revision'); IFS.toast({ title: 'Revisions requested', description: 'The author sees your comment in the activity log.' }); } }]}>Approve</IFS.SplitButton></>} />
+            items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => { setStatus('revision'); IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska', description: 'The author sees your comment in the activity log.' }); } }]}>Approve</IFS.SplitButton></>} />
     </Screen>;
   }
 }
