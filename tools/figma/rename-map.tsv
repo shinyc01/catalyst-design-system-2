@@ -635,6 +635,9 @@ measure/type	(text style label-l-medium)	--text-label-l-medium-weight	font/label
 measure/type	(text style label-m-medium)	--text-label-m-medium	font/label-m-medium	--font-label-m-medium	CSS rename		146	
 measure/type	(text style label-m-medium)	--text-label-m-medium-tracking	font/label-m-medium/tracking	--font-label-m-medium-tracking	CSS rename		146	
 measure/type	(text style label-m-medium)	--text-label-m-medium-weight	font/label-m-medium/weight	--font-label-m-medium-weight	CSS rename		4	
+measure/type	(new)		font/label-s-medium	--font-label-s-medium	new		0	Label/S/medium, in-chart data labels (rule 10.11; T3-16)
+measure/type	(new)		font/label-s-medium/tracking	--font-label-s-medium-tracking	new		0	
+measure/type	(new)		font/label-s-medium/weight	--font-label-s-medium-weight	new		0	
 measure/type	(text style code-m-regular)	--text-code-m-regular	font/code-m-regular	--font-code-m-regular	CSS rename		0	
 measure/type	(text style code-m-regular)	--text-code-m-regular-tracking	font/code-m-regular/tracking	--font-code-m-regular-tracking	CSS rename		0	
 measure/type	(text style code-m-regular)	--text-code-m-regular-weight	font/code-m-regular/weight	--font-code-m-regular-weight	CSS rename		0	

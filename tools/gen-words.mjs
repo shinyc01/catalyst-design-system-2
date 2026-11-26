@@ -22,7 +22,7 @@ const md = [
   w.about,
   '',
   '**Organisation settings that change words**',
-  ...w.settings.map(s => `- ${s.name} (USER-SETTINGS row ${s.row}): ${s.values.join(' or ')}, default ${s.default}. ${s.notes}`),
+  ...w.settings.map(s => `- ${s.name} (a user setting, README → User settings): ${s.values.join(' or ')}, default ${s.default}. ${s.notes}`),
   '',
   '## 1. Terms',
   '',
