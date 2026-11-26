@@ -136,6 +136,13 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - A `Spinner` inside `LoadingRegion` no longer announces twice.
 - **2.0.7** (in progress, Nov 26): content foundations and components.
   - **Added**
+    - Rule 10.13 reference and forecast lines (Carbon, Atlassian convention): `references = [{ value, label }]` on `ColumnChart`, `BarChart`, `GroupedColumnChart`, `StackedColumnChart`, `LineChart` and `AreaChart` (1 px dashed `--color-border-strong`, labelled at the end, in the legend and the table view); `LineChart forecastFrom` (dashed after today, a "Today" marker, "Forecast" in legend, tooltip and table); `forecast: true` on a `ColumnChart` datum (the light partner slot).
+    - `StackedColumnChart levels`: groups with levels inside (rule 10.7): the group's dark slot on the baseline and its family's ramp upwards (every other step up to 4 levels, every step up to 8, then Other). The demo dashboard uses it instead of the bar atoms.
+    - Line and area charts: missing values break the line, a lone value is a dot, the tooltip says "No data"; `connectGaps` joins across with a dotted bridge (rule 10.10).
+    - `legendPosition` (`below` | `beside`) on every core chart; unset keeps the type's default (rule 10.5).
+    - `--color-background-neutral-strong-hover` (white 30), the CircularButton hover.
+    - `.ifs-page--wide`: tables, dashboards and maps cap content at `--layout-max-content-width-wide` (2240) instead of 1600 (rule 3.15).
+    - Rules: 11.8 strings ready for translation; 9.14 text spacing (WCAG 1.4.12); 9.20 interim table keyboard rule until the phase 2 grid; a 1280 × 720 check frame next to 1440 × 810 (rule 3.13).
     - Good vs bad colours setting: the organisation picks the default (`IFS.setOrgDiverging('red-green')`), each person may override it (`IFS.setDiverging`, remembered; `null` goes back to the organisation's), e.g. someone with red-green colour blindness; `data-diverging="red-green"` swaps every diverging chart to red (worse) ↔ green (better); default azure ↔ rose (rule 10.8, USER-SETTINGS row 14).
   - **Changed**
     - Categorical palette (rule 10.7): six families in colour-wheel order, violet → indigo → azure → teal → terracotta → rose, each a dark then its light partner; violet is slot 1, the base colour of every dashboard. All 12 stay distinct in normal and colour-blind vision; every slot clears info blue, Cooper copper and the status colours. Values in `foundations/palette.css`.
@@ -143,7 +150,14 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Diverging: azure ↔ rose (rose replaces pink; same sides as 2.0.6).
     - Rule 10.12: one colour key per screen: entities in more than one chart take the dark slots first (and own that ramp), other charts take the free slots in order, reuse only when all 12 are taken.
     - Rule 10.7: levels inside a group use the whole ramp (every other step up to 4 levels, every step up to 8, then Other); black labels from step 3.
-  - **Deprecated**
+    - Tooltips (rule 14.11, WCAG 1.4.13): two versions. UI tooltips are hoverable (the pointer can rest on the bubble), close after a 100 ms grace (`--motion-duration-100`), and Esc closes them from anywhere; chart tooltips follow the pointer across the data and stay while it is over the plot.
+    - `IconButton`, `SegmentedControl` and `Badge` default to size S (was M), as rules 6.2 and 14.15 say; the map tool buttons, the bottom-sheet upload button and the Chart / Table switch pass M.
+    - CircularButton D3: rest white 20, hover white 30, pressed `--color-background-neutral`, a `--color-border-strong` edge and white ink in every state, hotkey text-soft (white on hover). The circular fills leave the held list (rule 11.6).
+    - `DataTable` hover-only row actions hide with opacity, so Tab always reaches them (rule 9.20).
+    - The empty, loading and error look restyle (rule 7.2) moves to Flexy's icon and small-visual exploration: no look has been decided, so 2.0.7 keeps today's look.
+  - **Deprecated** (until 3.0)
+    - `ReadinessStatus right` → `end` (rule 11.4); `right` still works. `ReadinessEvaluation checks[].right` → `end` likewise.
+    - `--element-button-circular-fill-default | hover | pressed`: no longer read by the kit; defined, unchanged.
     - `--color-data-viz-sequential-orchid | pink | yellow | cyan-*` (and the same `HeatmapChart ramp` values): aliases of violet, rose, terracotta and azure until 3.0 (guide/release.md: deprecated names are removed only in a major).
 
 Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).

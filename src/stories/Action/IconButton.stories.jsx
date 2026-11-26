@@ -9,7 +9,7 @@ export default {
   component: IFS["IconButton"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** icon-button (71:4250)\n\n\nUse: An action in a dense context where a label won't fit. Tooltip + aria-label: rule 9.2. Usual: ghost square S." } },
+    docs: { description: { component: "**Figma:** icon-button (71:4250)\n\n\nUse: An action in a dense context where a label won't fit. Tooltip + aria-label: rule 9.2. Usual: ghost square S, the code default since 2.0.7 (was M; map tool buttons and the bottom-sheet upload pass `size=\"m\"`)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=71-4250"},
     
   },

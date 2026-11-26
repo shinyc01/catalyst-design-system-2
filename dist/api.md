@@ -279,9 +279,9 @@ loading (S2, Nov 24): the dotted loader in the icon slot (in place of iconLeft, 
 **Tier:** Component
 **In handovers:** placed 1,999× (Value, Explore, Build, Plan, Command) · usual: Shape square 88% · Type ghost 66% · Size s (24) 90%
 Figma: icon-button (71:4250)
-Props: icon (required), type ghost|primary|secondary|tertiary, size l|m|s, shape square|circle.
+Props: icon (required), type ghost|primary|secondary|tertiary, size l|m|s (default s since 2.0.7, rules 6.2 / 14.15; was m), shape square|circle.
 Always pass a `label` — it becomes the accessible name and tooltip.
-`function IconButton({ icon, iconVariant, label, type = 'ghost', size = 'm', shape = 'square', state, className, ...rest })`
+`function IconButton({ icon, iconVariant, label, type = 'ghost', size = 's', shape = 'square', state, className, ...rest })`
 
 ### EvidenceButton
 **Tier:** Component
@@ -635,9 +635,11 @@ variant chart (content-sized, 12–20rem, D5) | modal (256). children are append
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-column (9862:12468) — one measure across few or time-ordered categories; zero-based, one colour (slot 1).
-Props: data = [{ label, value, reference?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
+Props: data = [{ label, value, reference?, forecast?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
+references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines), forecast: true on a datum = a forecast / planned value
+(rule 10.13: the light partner slot of `color`, "Forecast" in the legend, tooltip and table),
 color (categorical slot or data-viz token; default 1), format(v) for values/axis, tooltip(datum, i) → DataVizTooltip props, valueTicks.
-Shell props (every chart): see ChartShell.
+Shell props (every chart): see ChartShell; among them legendPosition below | beside (2.0.7: where the legend sits; unset = the type's default, rule 10.5).
 `function ColumnChart(props)`
 
 ### HistogramChart
@@ -653,6 +655,7 @@ binFormat(lo, hi) for bin labels, valueLabel (default 'Count'), + ColumnChart pr
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-bar (9862:12961) — horizontal bars for many categories, long labels or rankings (sort biggest → smallest).
 Props: as ColumnChart + sort (true = biggest first), labelWidth (category column, default 96). Values are labelled at the bar end.
+references = [{ value, label }] (rule 10.13): vertical dashed lines, labelled at their top end.
 `function BarChart(props)`
 
 ### GroupedColumnChart
@@ -661,7 +664,7 @@ Props: as ColumnChart + sort (true = biggest first), labelWidth (category column
 Figma: chart-grouped-column (9862:13445) — series side by side per category; every series is drawn, 4 or fewer read best (rule 10.9); consistent series order + legend.
 Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }] (capped at 4: a 5th and
 more are left out of the plot, kept in the table view, with a console warning; use a stacked column or small multiples), referenceKey (default 'reference') +
-referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
+referenceLabel, references = [{ value, label }] (rule 10.13), format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
 `function GroupedColumnChart(props)`
 
 ### StackedColumnChart
@@ -670,7 +673,13 @@ referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4
 Figma: chart-stacked-column (9863:11139) — composition of a total per category; the one stacked-column component (D8).
 Series stack bottom → top in series order (most important first, on the baseline); up to 8 segments, the rest fold into "Other"
 (fewer read better: 5 or fewer recommended). 1 px card-colour gap between segments (--border-width-default, WCAG 1.4.11); only the outer end of the whole column is rounded.
-Props: data = [{ label, [series.key]: number, delta?, details? }], series = [{ key, label, color? }], format, tooltip, valueTicks. + shell props.
+Props: data = [{ label, [series.key]: number, color?, delta?, details? }], series = [{ key, label, color? }], format, tooltip, valueTicks,
+references = [{ value, label }] (rule 10.13). + shell props.
+levels (2.0.7, rule 10.7 "groups with levels inside"): each column is a group and the series are its levels (baseline first). The group
+takes a dark slot (data[i].color: 1 · 3 · 5 · 7 · 9 · 11 or a family name; default the i-th dark slot) and its levels take that family's
+sequential ramp from step 2 (= the slot) upwards: up to 4 levels every other step (2 · 4 · 6 · 8), 5–8 every step (2 … 9), past 8 the
+rest fold into "Other". Up to 6 groups. The legend names the levels in the ramp of the hovered column (the first column at rest); the
+tooltip and table name each level.
 `function StackedColumnChart(props)`
 
 ### LineChart
@@ -680,8 +689,13 @@ Figma: chart-line (9863:11650) — change over time; actual solid vs planned das
 Props: data = [{ label, [series.key]: number, … }], series = [{ key, label, color?, dashed?, points? }] (first series shows its
 points), band = { low, high, mid?, label } (keys into data; drawn as a white 16% band + dashed mid line), referenceKey/referenceLabel
 (dashed white line), zeroBased (default false — lines need not start at 0), endLabels (default true: each line is named at its end, D4;
-when the names collide or don't fit, a vertical legend sits on the end side of the plot instead), format, tooltip, valueTicks. Every
+when the names collide or don't fit, a vertical legend sits on the end side of the plot instead; a legendPosition turns them off), format, tooltip, valueTicks. Every
 series up to 12 has its own colour (keep it to 8 where you can: guidance); the 13th and later draw in the "Other" grey with one legend entry. Hover anywhere picks the nearest point; ← → move it with the keyboard.
+Missing data (2.0.7, item 14): a missing value (null / undefined) breaks the line; a value with no neighbours is drawn as a dot so it never
+disappears; the tooltip says "No data" there. connectGaps (default false) joins across the gap with a dotted bridge, so it never reads as data.
+references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines). forecastFrom (rule 10.13) = the last actual point, "today"
+(a data index or label): every line keeps its colour and is dashed after it, a "Today" marker stands on the time axis there, and the legend,
+tooltip ("Forecast") and table ("(forecast)") name the forecast part.
 `function LineChart(props)`
 
 ### AreaChart
@@ -793,9 +807,9 @@ Examples (read before using any component below — shows the data shapes props 
 Figma: badge-atom (83:52162)
 Props: color white|black|red|green|orange|info|false|loading (Figma "False" = no fill, sentence-case Label/M/medium caption; info = black fill
 with --color-text-info + --color-icon-info, as the Patterns source-card draws it), borderless (drops the black badge's --color-border edge —
-the library's Black variant has that stroke hidden), size l|m|s, iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
+the library's Black variant has that stroke hidden), size l|m|s (default s since 2.0.7, rule 14.15; was m), iconLeft / iconRight (icon names; Figma default shows system-star-favourite on the left),
 indicator = status-indicator state (show-indicator), avatar = Avatar props (show-avatar; XS (20) in L, XXS (16) in M/S), flag = node (show-flag), children = label.
-`function Badge({ color = 'white', size = 'm', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest })`
+`function Badge({ color = 'white', size = 's', borderless, iconLeft, iconRight, indicator, avatar, flag, children, className, ...rest })`
 
 ### StatusIndicator
 **Tier:** Component
@@ -828,8 +842,9 @@ children = label (defaults to Figma's: auto-resolved / moderate risk / critical 
 **In handovers:** placed 66× (Plan, Value) · usual: Type done 48% / in progress 45% · Right-section text 56% / status 38%
 Figma: status-readiness-molecule (1440:5273)
 Props: type done|warning|error|in-progress|active|loading (error = red, e.g. "Exceeded" in the Patterns file), children = label (Figma Label),
-right = text (Right-section=Text) OR indicators = [{ type, label }] (Right-section=Status, XS indicators).
-`function ReadinessStatus({ type = 'done', children, right, indicators, className, ...rest })`
+end = text at the end of the row (Right-section=Text; renamed from `right` in 2.0.7, rule 11.4: `right` still works, deprecated until 3.0)
+OR indicators = [{ type, label }] (Right-section=Status, XS indicators).
+`function ReadinessStatus({ type = 'done', children, end: endIn, right, indicators, className, ...rest })`
 
 ### Indicator
 **Tier:** Component
@@ -1454,7 +1469,7 @@ count (counter instead of a badge), open / defaultOpen / onOpenChange, children 
 Pattern helper: Readiness Evaluation sidebar content — built from ProgressRing, ReadinessStatus, ReadinessSection (place it in IFS.Panel). Figma: a content card (summary title + text, then
 "Approval readiness" with a 16px progress ring and status-readiness rows) followed by ReadinessSections.
 Props: summary = { title, text }, readiness (0–100; omit to hide the head), readinessLabel (default "Approval readiness"),
-checks = [{ label, type done|warning, right }] (ReadinessStatus rows), sections = [{ id, title, badge, count, content }],
+checks = [{ label, type done|warning, end }] (ReadinessStatus rows; `right` still works, deprecated until 3.0), sections = [{ id, title, badge, count, content }],
 openSections / defaultOpenSections / onOpenSectionsChange (array of ids).
 `function ReadinessEvaluation({ summary, readiness, readinessLabel = 'Approval readiness', checks = [], sections = [], openSections, defaultOpenSections = [], onOpenSectionsChange, className, ...rest })`
 
@@ -2511,10 +2526,10 @@ filter(option, query), state. While loading and open, the list shows Figma's "Se
 **In handovers:** placed 511× (Build, Explore, Command, Plan, Value) · usual: Number 2 48% / 4 27% · Size s 100% · type 4 72%
 Figma: segmented-control-organism (1387:244501) built from segmented-control-atom (1387:244511)
 Props: options = [{ value, label, iconLeft, iconRight, counter, disabled, state }] (strings allowed), value/defaultValue/onChange,
-size m | s: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 4 smaller inside the 2 track (20 inside 24 in Comfortable), each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
+size s (default since 2.0.7, rule 14.15; was m) | m: outer height 40 / 36 / 32 (m: segments at the control height plus a 2px track) and 28 / 24 / 24 (s: the control height outside, segments 4 smaller inside the 2 track (20 inside 24 in Comfortable), each with an invisible hit layer to the full height, Nov 20); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
 iconOnly (2.0.6, D1): each option shows only its icon (o.icon or o.iconLeft, 16) in a square segment; o.label becomes the accessible name
 and the native tooltip. M size: the segments are squares 4 smaller than the control height inside the 2 track, so the control is --size-control-m outside.
-`function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm', fullWidth = false, iconOnly = false, className, ...rest })`
+`function SegmentedControl({ options = [], value, defaultValue, onChange, size = 's', fullWidth = false, iconOnly = false, className, ...rest })`
 
 ### Chip
 **Tier:** Component
@@ -2653,7 +2668,10 @@ Figma: tooltip-organism (67:6151)
 Props: content (Figma Label / Content slot), hotkey (hotkey-atom text, e.g. "⌘/"; absent = show-hotkey off),
 color black|grey ("grey (for black bg)"), type bottom|top|left|right = side the ARROW is on
 (bottom → bubble sits above the trigger, the default), arrow left|center|right (top/bottom only).
-Wraps one trigger child; shows after the 300ms pointer wait (M3) and at once on keyboard focus, hides instantly, Esc dismisses.
+Wraps one trigger child; shows after the 300ms pointer wait (M3) and at once on keyboard focus. Rule 14.11 (UI tooltip, WCAG 1.4.13,
+Nov 26): hoverable (the pointer can move from the trigger onto the bubble and rest there), a short grace before it closes
+(--motion-duration-100, so the 4 px gap between trigger and bubble doesn't close it), and Esc closes it from anywhere while it is shown
+(a document listener; focus and pointer stay where they are). Closing itself is instant (no fade).
 open/onOpenChange to control. `inline` renders the bubble alone (gallery).
 `function Tooltip({ content, hotkey, color = 'black', type = 'bottom', arrow = 'center', delay = IFS.motionMs('--motion-duration-300', 300) /* M3: the pointer wait, the only delay */, open, defaultOpen, onOpenChange, inline, children, className })`
 

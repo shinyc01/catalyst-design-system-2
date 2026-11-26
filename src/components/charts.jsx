@@ -878,7 +878,7 @@ const lightOf = c => (c == null ? 2 : (typeof c === 'number' || /^\d+$/.test(Str
 // references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines), forecast: true on a datum = a forecast / planned value
 // (rule 10.13: the light partner slot of `color`, "Forecast" in the legend, tooltip and table),
 // color (categorical slot or data-viz token; default 1), format(v) for values/axis, tooltip(datum, i) → DataVizTooltip props, valueTicks.
-// Shell props (every chart): see ChartShell.
+// Shell props (every chart): see ChartShell; among them legendPosition below | beside (2.0.7: where the legend sits; unset = the type's default, rule 10.5).
 function ColumnChart(props) {
   const { data = [], valueLabel = 'Value', referenceLabel = 'Peer median', color = 1, format = defaultFormat, tooltip, contiguous, valueTicks } = props;
   const refs = refList(props.references);

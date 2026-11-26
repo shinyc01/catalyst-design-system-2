@@ -9,7 +9,7 @@ export default {
   component: IFS["Badge"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** badge-atom (83:52162)\n\n\nUse: A small read-only marker of status or category attached to another object (Passed / At risk / Failed; Active / Draft / Archived; Critical / Recommended). Status words and colours: rule 1.1. Heights S / M / L = ladder xs / s / m (rule 3.5). Rules 2.10, 1.1.\n\nDon't: The primary content (→ text). Don't badge everything." } },
+    docs: { description: { component: "**Figma:** badge-atom (83:52162)\n\n\nUse: A small read-only marker of status or category attached to another object (Passed / At risk / Failed; Active / Draft / Archived; Critical / Recommended). Status words and colours: rule 1.1. Heights S / M / L = ladder xs / s / m (rule 3.5); S is the code default since 2.0.7 (was M). Rules 2.10, 1.1.\n\nDon't: The primary content (→ text). Don't badge everything." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=83-52162"},
     
   },

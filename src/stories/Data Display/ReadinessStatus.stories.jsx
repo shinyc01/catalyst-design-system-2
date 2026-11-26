@@ -9,7 +9,7 @@ export default {
   component: IFS["ReadinessStatus"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** status-readiness-molecule (1440:5273)\n\n\nUse: Labelled readiness row (label + readiness icon/text)." } },
+    docs: { description: { component: "**Figma:** status-readiness-molecule (1440:5273)\n\n\nUse: Labelled readiness row (label + readiness icon/text).\n\nNotes: the text at the row's end is `end` (2.0.7; `right` still works, deprecated until 3.0, rule 11.4); or `indicators` for XS status indicators." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5273"},
     
   },

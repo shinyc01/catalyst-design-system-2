@@ -111,6 +111,7 @@
 --color-background-input: var(--palette-white-alpha-10)
 --color-background-transparent: var(--palette-black-alpha-0)
 --color-background-neutral-strong: var(--palette-white-alpha-20)
+--color-background-neutral-strong-hover: var(--palette-white-alpha-30)
 --color-background-info-soft: var(--palette-info-500-alpha-10)
 --color-background-info: var(--palette-info-500-alpha-25)
 --color-background-accent-purple-soft: var(--palette-purple-500-alpha-10)

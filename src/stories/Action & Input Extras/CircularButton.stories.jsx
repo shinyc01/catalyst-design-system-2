@@ -9,7 +9,7 @@ export default {
   component: IFS["CircularButton"],
   tags: ["autodocs"],
   parameters: {
-    docs: { description: { component: "**Figma:** circular-button-molecule (72:9983)\n\n\nUse: One directional trigger inside `circular-button-organism`; not placed alone." } },
+    docs: { description: { component: "**Figma:** circular-button-molecule (72:9983)\n\n\nUse: One directional trigger inside `circular-button-organism`; not placed alone.\n\nStates (D3, 2.0.7): rest white 20 (`--color-background-neutral-strong`), hover white 30 (`--color-background-neutral-strong-hover`), pressed `--color-background-neutral`; `--color-border-strong` edge and white ink in every state; hotkey text-soft at rest and pressed, white on hover." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=72-9983"},
     
   },
