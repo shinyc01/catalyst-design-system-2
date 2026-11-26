@@ -275,7 +275,7 @@ function RemoveCollaboratorModal({ open, person, title = "Remove this collaborat
             <span className="ifs-collab-invite__title">{person.title}</span>
           </div>
         </div>
-        <p className="ifs-collab-remove__text">This action will revoke the collaborator's invite to the framework</p>
+        <p className="ifs-collab-remove__text">They lose access to this framework.</p>
       </div>
     </IFS.Modal>
   );
@@ -350,21 +350,21 @@ function CollaboratorsPanel({ controller: c, open, defaultOpen, onOpenChange, tr
     onRoleChange={(x, r) => c.setAccess(x.id, r)} onRemove={onRemove} push={c.pushState(p)} onPush={onPush} {...extra} />;
   let body;
   if (query && results.length) body = <CollaboratorSection title={results.length === 1 ? 'Result' : 'Results'}>{results.map(p => row(p))}</CollaboratorSection>;
-  else if (query) body = <IFS.EmptyState cause="no-results-similar" size="section" icon={null} heading="No results found" body="You might be looking for"
+  else if (query) body = <IFS.EmptyState cause="no-results-similar" size="section" icon={null} heading={`No results for “${query}”`} body="You might be looking for"
     suggestions={pool.filter(byRole).slice(0, 3).map(p => p.name)} onSuggestion={s => setQ(s)} />;
   else if (focus) body = <>
-    {c.suggested.filter(byRole).length > 0 && <CollaboratorSection cooper title="Suggested people by Cooper">{c.suggested.filter(byRole).map(p => row(p))}</CollaboratorSection>}
+    {c.suggested.filter(byRole).length > 0 && <CollaboratorSection cooper title="Suggested by Cooper">{c.suggested.filter(byRole).map(p => row(p))}</CollaboratorSection>}
     {c.recent.filter(byRole).length > 0 && <CollaboratorSection title="Recently">{c.recent.filter(byRole).map(p => row(p))}</CollaboratorSection>}
   </>;
   else body = <>
-    <CollaboratorSection title="In project">{c.members.map(p => row({ ...p, you: p.status === 'owner' }))}</CollaboratorSection>
+    <CollaboratorSection title="People with access">{c.members.map(p => row({ ...p, you: p.status === 'owner' }))}</CollaboratorSection>
     {c.awaiting.length > 0 && <CollaboratorSection title="Awaiting">{c.awaiting.map(p => row(p))}</CollaboratorSection>}
-    {c.suggested.length > 0 && <CollaboratorSection cooper title="Suggested people by Cooper">{c.suggested.map(p => row(p))}</CollaboratorSection>}
+    {c.suggested.length > 0 && <CollaboratorSection cooper title="Suggested by Cooper">{c.suggested.map(p => row(p))}</CollaboratorSection>}
   </>;
   const card = (
     <IFS.Popover inline title="Collaborators" showClose={!inline} width="var(--layout-popover-width)" className={ccx('ifs-collab-panel', className)} style={style}>
       <div className="ifs-collab-panel__tools">
-        <IFS.Search placeholder="Invite by name or role..." value={q} onChange={v => setQ(v)} aria-label="Invite by name or role"
+        <IFS.Search placeholder="Jeff Pauska" /* an example value only (rule 8.46) */ value={q} onChange={v => setQ(v)} aria-label="Invite by name or role"
           onFocus={() => { clearTimeout(blurT.current); setFocus(true); }} onBlur={() => { blurT.current = setTimeout(() => setFocus(false), IFS.motionMs('--motion-duration-200', 200)); }} />
         <RoleFilter roles={c.roles} value={roles} onChange={setRoles} />
       </div>
@@ -413,7 +413,7 @@ function CollaboratorsMenu({ controller: c, open, defaultOpen = false, onOpenCha
       onInvite={p => setModal({ kind: 'invite', person: p })}
       onOpen={p => p.status !== 'owner' && setModal({ kind: 'edit', person: p })}
       onRemove={p => setModal({ kind: 'remove', person: p })}
-      onPush={p => { c.push(p.id); IFS.toast && IFS.toast({ title: <>Reminder sent.<br />You can push again in 24h.</> }); }} />
+      onPush={p => { c.push(p.id); IFS.toast && IFS.toast({ title: 'Reminder sent', description: 'You can send another in 24 hours.' }); }} />
     <InviteCollaboratorModal open={modal && (modal.kind === 'invite' || modal.kind === 'edit')} person={modal && modal.person}
       mode={modal && modal.kind === 'edit' ? 'edit' : 'invite'}
       defaultAccess={(modal && modal.person.access) || 'editor'}

@@ -90,7 +90,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'SplitButton', figma: 'header-pattern main action [patterns] (138:291660)', render: () => (
     <Row label="states">
-      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska' }) }]}>Approve</SplitButton>
+      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jeff Pauska.' }) }]}>Approve</SplitButton>
       <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
       <SplitButton disabled iconLeft="system-check">Revisions requested</SplitButton>
       <SplitButton type="secondary" onClick={() => {}}>Publish</SplitButton>
@@ -196,7 +196,7 @@ export default IFS_GALLERY;
     const requestInfo = () => {
       const text = note.trim();
       setModal(null); setDecision('info'); setChainMode(null); setMine({ status: 'revisions', comment: text });
-      IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska', description: 'Status updated to Needs revision',
+      IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jeff Pauska. Status: Needs revision.',
         secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { setDecision(null); setMine({ status: 'empty', comment: undefined }); } } });
     };
     const mainAction = decision === 'approved' ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
@@ -225,8 +225,7 @@ export default IFS_GALLERY;
         </Shell>
         <IFS.Modal open={modal === 'approve'} onOpenChange={o => !o && setModal(null)} title="Approve this framework?" width={440} overlay="base"
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Approve', onClick: approve }}>
-          <p className="t-body-l-regular" style={{ margin: 0 }}>Are you sure you want to approve <b>“{FRAMEWORK}”</b>?</p>
-          <p className="t-body-l-regular" style={{ margin: 'var(--space-200) 0 0' }}>Once approved, the framework will move forward in the process.</p>
+          <p className="t-body-l-regular" style={{ margin: 0 }}><b>“{FRAMEWORK}”</b> moves to the next step once you approve it.</p>
         </IFS.Modal>
         <IFS.Modal open={modal === 'info'} onOpenChange={o => !o && setModal(null)} title="Request revisions" width={440} overlay="base"
           secondaryAction={{ label: 'Cancel', onClick: () => setModal(null) }} primaryAction={{ label: 'Request revisions', onClick: requestInfo }}>

@@ -653,8 +653,8 @@ function ChartLegend({ items, active, onActive, layout = 'inline', beside, extra
 
 const STATE_COPY = {
   empty: { cause: 'first-run', icon: null, heading: 'Insufficient data', body: 'Not enough data to display this chart yet.' },
-  'no-results': { cause: 'no-results', heading: 'No results', body: 'No data matches these filters.' },
-  error: { cause: 'error', heading: 'Couldn’t load this chart', body: 'Something went wrong while loading the data.' },
+  'no-results': { cause: 'no-results', heading: 'No matches for these filters', body: 'Change or clear the filters.' },
+  error: { cause: 'error', heading: 'Couldn’t load this chart', body: 'Check your connection and try again.' },
 };
 
 // Shared frame for every core chart: DataVizCard (variant chart) + states + Chart / Table switch + screen-reader table.

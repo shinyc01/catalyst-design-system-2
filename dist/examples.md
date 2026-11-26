@@ -1709,7 +1709,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'SplitButton', figma: 'header-pattern main action [patterns] (138:291660)', render: () => (
     <Row label="states">
-      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska' }) }]}>Approve</SplitButton>
+      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jeff Pauska.' }) }]}>Approve</SplitButton>
       <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
       <SplitButton disabled iconLeft="system-check">Revisions requested</SplitButton>
       <SplitButton type="secondary" onClick={() => {}}>Publish</SplitButton>

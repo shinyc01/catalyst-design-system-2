@@ -89,7 +89,7 @@ function ScreenReview({ bp, height }) {
         {approved
           ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
           : <SplitButton onClick={() => { setApproved(true); toast('Framework approved'); }}
-              items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => toast('Revisions requested — sent back to the author') }]}>Approve</SplitButton>}
+              items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => toast('Revisions requested. Sent back to the author.') }]}>Approve</SplitButton>}
       </>} />
   );
 

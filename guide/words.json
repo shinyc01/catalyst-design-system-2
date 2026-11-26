@@ -359,7 +359,7 @@
         "Revisions requested (as a status)",
         "Changes requested"
       ],
-      "notes": "The send-back pair (decided Nov 26): the asker's button \"Request revisions\", their snackbar \"Revisions requested — sent back to {name}\", the status everyone sees \"Needs revision\". A status that asks for action may start with \"Needs\" (rule 8.52).",
+      "notes": "The send-back pair (decided Nov 26): the asker's button \"Request revisions\", their snackbar \"Revisions requested\" (description \"Sent back to {name}.\"), the status everyone sees \"Needs revision\". A status that asks for action may start with \"Needs\" (rule 8.52).",
       "rule": "8.9",
       "confirmed": true
     },
@@ -660,7 +660,7 @@
         "Request more info"
       ],
       "rule": "8.9",
-      "notes": "After \"Request revisions\" the status is \"Needs revision\" and the snackbar \"Revisions requested — sent back to {name}\"."
+      "notes": "After \"Request revisions\" the status is \"Needs revision\" and the snackbar \"Revisions requested\" (description \"Sent back to {name}.\")."
     },
     {
       "use": "Export / Import",

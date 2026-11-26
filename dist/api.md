@@ -383,9 +383,9 @@ actions = [{ id, icon, label }] to override the preset, onAction(id).
 Figma: add-node-button (2879:7311)
 Creates a new (grey, provisional) subnode on the framework canvas; confirmed via its check icon.
 Click → typing state (Figma Pressed/Typing): Enter or ✓ confirms, Esc or ✕ cancels.
-Props: onAdd(name), onCancel, placeholder ("Type..."), disabled, editing / defaultEditing / onEditingChange,
+Props: onAdd(name), onCancel, placeholder ("Type…"), disabled, editing / defaultEditing / onEditingChange,
 state hover|pressed|typing (forced, gallery), label (accessible name, default "Add node").
-`function AddNodeButton({ onAdd, onCancel, placeholder = 'Type...', disabled, editing, defaultEditing = false, onEditingChange, state, label = 'Add node', defaultValue = '', className, ...rest })`
+`function AddNodeButton({ onAdd, onCancel, placeholder = 'Type…', disabled, editing, defaultEditing = false, onEditingChange, state, label = 'Add node', defaultValue = '', className, ...rest })`
 
 ### NodeCard
 **Tier:** Component
