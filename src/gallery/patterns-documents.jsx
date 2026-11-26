@@ -56,7 +56,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
     <Row label="number=false"><BarChartItem color={4} number={false} style={{ width: 238 }} /></Row>
-    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-sequential-azure-3)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
+    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-sequential-azure-3)" style={{ width: 238, '--bar-ink': 'var(--color-text-on-solid-dark)' }}>$1.2M</BarChartItem></Row>
   </> });
 
   IFS_GALLERY.push({ name: 'VerticalBarChartItem', figma: 'vertical-bar-chart-item (c06b1d19) [patterns] (12:107877)', render: () => {
@@ -118,8 +118,8 @@ export default IFS_GALLERY;
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {
     const S = 0.47; // the Figma map draws its pins at ~47%
-    // --pd-hit keeps each pin's hit area 24 px on screen inside the scaled thumbnail (audit run 2 M3)
-    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0', '--pd-hit': `calc(var(--size-24) / ${S})` }}>{node}</div>;
+    // MapPinDot scale={S} keeps each pin's hit area 24 px on screen inside the scaled thumbnail (audit run 2 M3, final H9)
+    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
       <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 'var(--radius-control)', background: 'var(--color-surface-secondary)' }}>
@@ -128,10 +128,10 @@ export default IFS_GALLERY;
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="3.7" />
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
         </svg>
-        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" />, `o${i}`))}
-        {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" />, `d${i}`))}
-        {at(230, 188, <MapPinDot size="xs" state="selected" label="Fault" />, 'sel')}
-        {at(314, 116, <MapPinDot size="s" label="Fault" />, 's1')}{at(84, 142, <MapPinDot size="s" label="Fault" />, 's2')}
+        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" scale={S} />, `o${i}`))}
+        {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" scale={S} />, `d${i}`))}
+        {at(230, 188, <MapPinDot size="xs" state="selected" label="Fault" scale={S} />, 'sel')}
+        {at(314, 116, <MapPinDot size="s" label="Fault" scale={S} />, 's1')}{at(84, 142, <MapPinDot size="s" label="Fault" scale={S} />, 's2')}
         {[[155, 159, 169], [275, 187, 180], [336, 143, -63]].map(([x, y, r], i) => at(x, y, <MapPinFlow type="error" rotate={r} />, `f${i}`))}
         {[[129, 145, 6], [354, 175, 1], [299, 179, 2], [246, 178, 3], [180, 161, 5]].map(([x, y, n]) => at(x, y, <MapPinPole pin={false} number={n} />, `p${n}`))}
         {at(224, 174, <MapPinPole pin={false} number={4} defaultSelected />, 'p4')}

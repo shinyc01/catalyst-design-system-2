@@ -6,11 +6,11 @@
   position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;
   min-width:var(--pd-size);height:var(--pd-size);margin:0;padding:var(--size-1);border:0;border-radius:var(--radius-pill);cursor:pointer; /* grows into a pill when the count needs it */
   background:var(--color-background-accent-white-strong);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
-/* Hit area (audit run 2 M3, decided Nov 26; WCAG 2.5.8): at least 24 × 24 around every pin, the visual dot unchanged.
-   --pd-hit lets a scaled map (a thumbnail drawn with transform: scale) keep 24 on screen: pass var(--size-24) divided by the scale. */
-.ifs-pin-dot::after{content:"";position:absolute;inset-inline-start:50%;top:50%;width:max(100%,var(--pd-hit,var(--size-24)));height:max(100%,var(--pd-hit,var(--size-24)));
-  transform:translate(-50%,-50%);border-radius:var(--radius-pill)} /* ltr: centred on the pin */
-[dir=rtl] .ifs-pin-dot::after{transform:translate(50%,-50%)}
+/* Hit area (audit run 2 M3, decided Nov 26; WCAG 2.5.8): at least --size-target-min (24 × 24) around every pin, the visual dot unchanged,
+   grown outward and centred like the _core.css click areas (no transform, so RTL needs nothing). A scaled map (a thumbnail drawn with
+   transform: scale) passes MapPinDot `scale`, which sets --pd-hit to the target divided by the scale, so the pin keeps 24 on screen. */
+.ifs-pin-dot::after{content:"";position:absolute;border-radius:var(--radius-pill);
+  inset-block:min(0px,calc(50% - var(--pd-hit,var(--size-target-min)) / 2));inset-inline:min(0px,calc(50% - var(--pd-hit,var(--size-target-min)) / 2))}
 .ifs-pin-dot--warning{--pd-fill:var(--color-icon-warning)}
 .ifs-pin-dot--neutral{--pd-fill:var(--color-icon-map-pin-neutral)} /* Nov 24: danger · warning · neutral only (grey = low risk); the old names success and info map here (MapPinDot) */
 .ifs-pin-dot--l{--pd-size:32px;--pd-in:30px}
@@ -26,7 +26,7 @@
 .ifs-pin-dot--xs.ifs-pin-dot--selected{box-shadow:0 0 0 var(--border-width-default) var(--color-border-selected-soft),var(--drop-shadow-pin-xs)}
 .ifs-pin-dot--dimmed{background:var(--color-background-accent-white-soft);backdrop-filter:blur(var(--blur-40));-webkit-backdrop-filter:blur(var(--blur-40)) /* H1: Figma 40 */;
   box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft),var(--drop-shadow-pin)}
-.ifs-pin-dot--dimmed .ifs-pin-dot__fill{opacity:.4}
+.ifs-pin-dot--dimmed .ifs-pin-dot__fill{background:color-mix(in srgb,var(--pd-fill) 45%,var(--color-background-accent-black-strong))} /* A11Y M1: the fill darkens like --effect-data-viz-dim (brightness .45), the count stays white and readable */
 /* higlight=yes: a ring twice the pin's size behind it (overlay fill + status hairline, 40 %) with the map-highlight glow. */
 .ifs-pin-dot--highlight::before{content:"";position:absolute;left:50%;top:50%;width:calc(var(--pd-size) * 2);height:calc(var(--pd-size) * 2); /* ltr: centred on the pin */
   transform:translate(-50%,-50%);border-radius:50%;box-sizing:border-box;z-index:-1;opacity:.4;
@@ -54,7 +54,7 @@ button.ifs-pin-defect{cursor:pointer}
   cursor:pointer;border-radius:var(--radius-control)}
 .ifs-pin-pole--dot{gap:var(--space-100);justify-content:center}
 .ifs-pin-pole__label{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text);white-space:nowrap;
-  -webkit-text-stroke:var(--border-width-200) var(--color-border-pin-label) /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px var(--color-shadow-label) /* raw in Figma */}
+  -webkit-text-stroke:var(--border-width-selected) var(--color-border-pin-label) /* raw in Figma: 1px OUTSIDE text stroke */;paint-order:stroke fill;text-shadow:0 0 4px var(--color-shadow-label) /* raw in Figma */}
 .ifs-pin-pole--dot .ifs-pin-pole__label{color:var(--color-text-on-solid)}
 /* "Pin" / "Hierarchy Pin": teardrop (circle + tail) in white with a status circle and a white asset icon. */
 .ifs-pin-pole__pin{--pp-size:32px;--pp-in:29.5px;--pp-fill:var(--color-icon-softer);--pp-border:var(--color-icon-softer);--pp-bw:var(--border-width-default);

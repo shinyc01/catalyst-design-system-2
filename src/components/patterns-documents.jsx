@@ -22,9 +22,10 @@ function useCtl(value, defaultValue, onChange) {
 // yellow medium, grey low; old-name aliases: error draws danger, success and info draw neutral),
 // type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 // highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
-// dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).
+// dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery),
+// scale (the transform scale of a scaled map preview the pin sits in, default 1): keeps the 24 px hit area on screen (WCAG 2.5.8).
 function MapPinDot({ size = 'm', status: st = 'danger', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false,
-  onSelectedChange, dimmed, label, state, className, onClick, ...rest }) {
+  onSelectedChange, dimmed, label, state, scale, className, onClick, style, ...rest }) {
   const status = st === 'danger' ? 'error' : st === 'success' || st === 'info' ? 'neutral' : st; // danger = the C1 word (class --error); old names: error = danger, success / info → neutral
   const [sel, setSel] = useCtl(selected, defaultSelected, onSelectedChange);
   const isSel = state ? state === 'selected' : sel;
@@ -33,7 +34,8 @@ function MapPinDot({ size = 'm', status: st = 'danger', type = 'text', counter =
     <button type="button" aria-label={label || `${counter} ${status}`} aria-pressed={!!isSel}
       onClick={e => { setSel(!sel, e); onClick && onClick(e); }}
       className={cx('ifs-pin-dot', `ifs-pin-dot--${size}`, `ifs-pin-dot--${status}`, isSel && 'ifs-pin-dot--selected', isDim && 'ifs-pin-dot--dimmed',
-        highlight && status !== 'neutral' && 'ifs-pin-dot--highlight', className)} {...rest}>
+        highlight && status !== 'neutral' && 'ifs-pin-dot--highlight', className)}
+      style={scale && scale !== 1 ? { ...style, '--pd-hit': `calc(var(--size-target-min) / ${scale})` } : style} {...rest}>
       <span className="ifs-pin-dot__fill">
         {type === 'icon' && (size === 'm' || size === 'l') ? <IFS.Icon name={icon} size={16} /> : <span className="ifs-pin-dot__text">{counter}</span>}
       </span>
@@ -120,7 +122,7 @@ function VerticalBarChartItem({ segments = [{ value: 1, color: 1 }], value, max,
   const isAct = state === 'active' || act;
   const share = value != null && max ? Math.max(0, Math.min(1, value / max)) : 1;
   return (
-    <Tag type={interactive ? 'button' : undefined} aria-pressed={interactive ? !!isAct : undefined} aria-label={label}
+    <Tag type={interactive ? 'button' : undefined} role={!interactive && label ? 'img' : undefined} /* A11Y M5: a labelled bar is an image */ aria-pressed={interactive ? !!isAct : undefined} aria-label={label}
       onClick={interactive ? e => { setAct(!act, e); onClick && onClick(e); } : undefined}
       className={cx('ifs-vbar', isAct && 'ifs-vbar--active', className)} style={{ width, height, ...style }} {...rest}>
       <span style={{ flex: `${1 - share} 1 0` }} aria-hidden="true" />
@@ -264,7 +266,7 @@ function useDocuments({ documents, defaultDocuments = [], onDocumentsChange, edi
 // state hover|menu (forced, gallery).
 function DocumentRow({ doc, editable = true, onOpen, onDownload, onRemove, onRetry, state, className, ...rest }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
-  if (doc.status === 'uploading') return <IFS.FileCard loading aria-label={`Uploading ${doc.name}`} />;
+  if (doc.status === 'uploading') return <IFS.FileCard loading role="img" aria-label={`Uploading ${doc.name}`} />; // A11Y M5: a label needs a role
   const call = fn => () => fn && fn(doc);
   if (doc.status === 'error') {
     return (
@@ -278,7 +280,7 @@ function DocumentRow({ doc, editable = true, onOpen, onDownload, onRemove, onRet
   const active = menuOpen || state === 'menu';
   return (
     <IFS.FileCard name={doc.name} date={fmtDate(doc.date)} onClick={() => onOpen && onOpen(doc)} active={active}
-      state={state === 'hover' ? 'hover' : undefined} aria-label={`${doc.name}, ${fmtDate(doc.date)}`} className={cx('ifs-doc-row', className)} {...rest}
+      state={state === 'hover' ? 'hover' : undefined} className={cx('ifs-doc-row', className)} {...rest}
       actions={editable
         ? <IFS.Menu open={menuOpen} onOpenChange={setMenuOpen} label="More actions"
             items={[{ label: 'Download', icon: 'system-download', onClick: call(onDownload) }, { label: 'Remove', icon: 'system-trash-delete', destructive: true, onClick: call(onRemove) }]}

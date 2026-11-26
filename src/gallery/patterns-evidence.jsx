@@ -114,9 +114,9 @@ export default IFS_GALLERY;
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="4" />
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".6" strokeDasharray="2.6 1.7" />
         </svg>
-        {[[168, 202], [233, 219], [314, 242], [384, 241], [448, 240]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" />, `d${i}`))}
-        {at(286, 240, <MapPinDot size="xs" state="selected" label="Fault" />, 'sel')}
-        {at(396, 148, <MapPinDot size="s" label="Fault" />, 's1')}{at(106, 182, <MapPinDot size="s" label="Fault" />, 's2')}
+        {[[168, 202], [233, 219], [314, 242], [384, 241], [448, 240]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" scale={S} />, `d${i}`))}
+        {at(286, 240, <MapPinDot size="xs" state="selected" label="Fault" scale={S} />, 'sel')}
+        {at(396, 148, <MapPinDot size="s" label="Fault" scale={S} />, 's1')}{at(106, 182, <MapPinDot size="s" label="Fault" scale={S} />, 's2')}
         {[[196, 205, 169], [344, 241, 180], [424, 185, -63]].map(([x, y, r], i) => at(x, y, <MapPinFlow type="error" rotate={r} />, `f${i}`))}
         {[[162, 186, 6], [444, 224, 1], [376, 230, 2], [308, 228, 3], [226, 206, 5]].map(([x, y, n]) => at(x, y, <MapPinPole pin={false} number={n} />, `p${n}`))}
         {at(282, 222, <MapPinPole pin={false} number={4} />, 'p4')}
@@ -281,7 +281,7 @@ export default IFS_GALLERY;
             <div style={{ position: 'relative' }}>
               <IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} onTitleMenu={noop}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
-                views={<IFS.Inline as="span" gap="50">{['node-map', 'map-view-2d', 'map-views'].map(i => <IFS.IconButton key={i} icon={i} label={i} type="ghost" size="s" />)}</IFS.Inline>}
+                views={<IFS.Inline as="span" gap="50">{[['node-map', 'Node map'], ['map-view-2d', 'Map'], ['map-views', 'Map views']].map(([i, l]) => <IFS.IconButton key={i} icon={i} label={l} type="ghost" size="s" />)}</IFS.Inline>}
                 actions={<>
                   <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></IFS.Inline>
                   <IFS.Button type="primary" size="s" disabled>Send for approval</IFS.Button>

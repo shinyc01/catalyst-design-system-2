@@ -85,10 +85,11 @@ function PeerBenchmark({ description, summary = [], scope, empty, emptyHeading =
       {description && <p className="ifs-peer-benchmark__desc">{description}</p>}
       {summary.length > 0 && <>
         <div className="ifs-peer-benchmark__label">Summary</div>
-        <dl className="ifs-peer-benchmark__rows">
-          {summary.map(r => <div key={r.label} className="ifs-peer-benchmark__row"><dt className="ifs-peer-benchmark__key">{r.label}</dt><dd className="ifs-peer-benchmark__value">{r.value}</dd></div>)}
+        {/* A11Y M3 (final audit): each term-value pair is its own <dl>, so the scope's legend and chart sit outside a description list */}
+        <div className="ifs-peer-benchmark__rows">
+          {summary.map(r => <dl key={r.label} className="ifs-peer-benchmark__row"><dt className="ifs-peer-benchmark__key">{r.label}</dt><dd className="ifs-peer-benchmark__value">{r.value}</dd></dl>)}
           {scope && <div className="ifs-peer-benchmark__scope">
-            <div className="ifs-peer-benchmark__row"><dt className="ifs-peer-benchmark__key">{scope.label}</dt><dd className="ifs-peer-benchmark__value">{scope.value}</dd></div>
+            <dl className="ifs-peer-benchmark__row"><dt className="ifs-peer-benchmark__key">{scope.label}</dt><dd className="ifs-peer-benchmark__value">{scope.value}</dd></dl>
             {scope.legend && <div className="ifs-peer-benchmark__legend">{scope.legend.map(l => <IFS.LegendSwatch key={l.label} color={l.color} label={l.label} />)}</div>}
             {scope.columns && <figure className="ifs-peer-benchmark__chart" style={{ margin: 0 }} aria-label={`${scope.label} by ${scope.xTitle || 'Years'}`}>
               <div className="ifs-peer-benchmark__ytitle"><span>{scope.yTitle || 'Number of utilities'}</span></div>
@@ -108,7 +109,7 @@ function PeerBenchmark({ description, summary = [], scope, empty, emptyHeading =
               </div>
             </figure>}
           </div>}
-        </dl>
+        </div>
       </>}
     </div>
   );
