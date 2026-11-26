@@ -86,5 +86,5 @@
 --color-data-viz-data-6 #167bb6 -> --color-data-viz-sequential-azure-3 0.051
 --color-data-viz-data-7 #692917 -> --color-data-viz-sequential-terracotta-1 0.122
 --color-data-viz-data-8 #6a1766 -> --color-data-viz-sequential-violet-1 0.133
---color-data-viz-data-9 #1e1e1e -> --color-data-viz-sequential-teal-1 0.249
+--color-data-viz-data-9 #1e1e1e -> --color-data-viz-other 0.000
 --color-data-viz-data-10 #313131 -> --color-data-viz-other 0.000

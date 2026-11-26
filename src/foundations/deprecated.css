@@ -411,7 +411,7 @@
 --data-viz-data-6:var(--color-data-viz-sequential-azure-3);
 --data-viz-data-7:var(--color-data-viz-sequential-terracotta-1);
 --data-viz-data-8:var(--color-data-viz-sequential-violet-1);
---data-viz-data-9:var(--color-data-viz-sequential-teal-1);
+--data-viz-data-9:var(--color-data-viz-other);
 --data-viz-data-10:var(--color-data-viz-other);
 --size-ruler-master-0:var(--size-0);
 --size-ruler-master-0-5:var(--size-0-5);
@@ -685,7 +685,7 @@
 --color-data-viz-data-6:var(--color-data-viz-sequential-azure-3);
 --color-data-viz-data-7:var(--color-data-viz-sequential-terracotta-1);
 --color-data-viz-data-8:var(--color-data-viz-sequential-violet-1);
---color-data-viz-data-9:var(--color-data-viz-sequential-teal-1);
+--color-data-viz-data-9:var(--color-data-viz-other);
 --color-data-viz-data-10:var(--color-data-viz-other);
 /* 2.0.6 sequential family names, deprecated in 2.0.7 (Nov 26) until 3.0 (guide/release.md): orchid → violet, pink → rose, yellow → terracotta, cyan → azure (the nearest family). */
 --color-data-viz-sequential-orchid-1:var(--color-data-viz-sequential-violet-1);

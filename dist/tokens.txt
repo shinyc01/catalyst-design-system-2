@@ -1549,7 +1549,7 @@
 --data-viz-data-6 → --color-data-viz-sequential-azure-3
 --data-viz-data-7 → --color-data-viz-sequential-terracotta-1
 --data-viz-data-8 → --color-data-viz-sequential-violet-1
---data-viz-data-9 → --color-data-viz-sequential-teal-1
+--data-viz-data-9 → --color-data-viz-other
 --data-viz-data-10 → --color-data-viz-other
 --size-ruler-master-0 → --size-0
 --size-ruler-master-0-5 → --size-0-5
@@ -1850,7 +1850,7 @@
 --color-data-viz-data-6 → --color-data-viz-sequential-azure-3
 --color-data-viz-data-7 → --color-data-viz-sequential-terracotta-1
 --color-data-viz-data-8 → --color-data-viz-sequential-violet-1
---color-data-viz-data-9 → --color-data-viz-sequential-teal-1
+--color-data-viz-data-9 → --color-data-viz-other
 --color-data-viz-data-10 → --color-data-viz-other
 --color-data-viz-sequential-orchid-1 → --color-data-viz-sequential-violet-1
 --color-data-viz-sequential-orchid-2 → --color-data-viz-sequential-violet-2
