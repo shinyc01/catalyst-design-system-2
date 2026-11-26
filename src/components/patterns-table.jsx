@@ -676,7 +676,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
   const tabsNode = filterTabs && (filterTabs.variant === 'tabs'
     ? <IFS.Tabs items={tabItems.map(t => ({ value: t.value, label: t.label, count: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
     : <span className="ifs-table-card__filter">
-        <IFS.SegmentedControl size="s" className="ifs-table-card__filter-wide" options={tabItems.map(t => ({ value: t.value, label: t.label, counter: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
+        <IFS.SegmentedControl size="m" className="ifs-table-card__filter-wide" options={tabItems.map(t => ({ value: t.value, label: t.label, counter: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
         {/* Below 600 the segmented control with counts doesn't fit (A11Y H8, decided Nov 26): the same choice as a Select (Carbon / Material) */}
         <IFS.Select size="m" clearable={false} className="ifs-table-card__filter-narrow" aria-label="Filter rows" value={tab} onChange={v => setTab(v)}
           options={tabItems.map(t => ({ value: t.value, label: t.count != null ? `${t.label} (${t.count})` : t.label, disabled: t.disabled }))} />

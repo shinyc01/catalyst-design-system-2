@@ -320,7 +320,7 @@ function ActivityPanel({ versions, defaultVersions = [], onVersionsChange, appro
     <div ref={ref} className={paCx('ifs-activity-panel', `ifs-activity-panel--${layout}`, ex.leaving && 'is-leaving', className)} style={style}
       role={layout === 'static' ? undefined : 'dialog'} aria-label={title}>
       <IFS.Panel title={title} showEvidence={false}>
-        {hasApprovals && <IFS.SegmentedControl size="s" fullWidth value={tab} onChange={v => setCur(v)}
+        {hasApprovals && <IFS.SegmentedControl size="m" fullWidth value={tab} onChange={v => setCur(v)}
           options={[{ value: 'versions', label: 'Version history' }, { value: 'approvals', label: 'Approval chain' }]} />}
         <IFS.SmartSearch width="100%" className="ifs-activity-panel__search" value={q}
           onChange={v => { setQ(v); if (!v) setApplied(''); }} onSubmit={v => setApplied(v)} onClear={() => setApplied('')}

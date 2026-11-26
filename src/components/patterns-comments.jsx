@@ -189,7 +189,7 @@ function CommentsPanel({ threads = [], filter, defaultFilter = 'unresolved', onF
   return (
     <IFS.Drawer inline title="Comments" collapsible={false} onOpenChange={o => { if (!o && onClose) onClose(); }}
       className={cmCx('ifs-cpanel', className)} style={style}
-      segmented={<IFS.SegmentedControl size="s" value={view} onChange={setView}
+      segmented={<IFS.SegmentedControl size="m" value={view} onChange={setView}
         options={[{ value: 'unresolved', label: 'Unresolved' }, { value: 'resolved', label: 'Resolved' }]} />}>
       <div className="ifs-cpanel__search">
         <IFS.SmartSearch width="100%" placeholder="Search comments" value={text} onChange={v => { setText(v); if (!v) setQuery(''); }}

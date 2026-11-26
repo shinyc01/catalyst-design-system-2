@@ -158,7 +158,7 @@ function EvidenceChainDrawer({ open, defaultOpen = true, onOpenChange, value = 8
       onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); setOpen(false); } }}>
       <IFS.Drawer inline title={title} collapsible={false} onOpenChange={v => { if (!v) setOpen(false); }} className={cx('ifs-evidence-chain', className)}>
         <IFS.EvidenceStrength value={value} thresholds={thresholds} min={Math.max(0, t1 - (t2 - t1))} labels={labels} title={`Confidence: ${z.label}`} />
-        <IFS.SegmentedControl size="s" fullWidth value={cur} onChange={setCur} aria-label="Evidence view"
+        <IFS.SegmentedControl size="m" fullWidth value={cur} onChange={setCur} aria-label="Evidence view"
           options={[{ value: 'rationale', label: 'Rationale' }, { value: 'benchmark', label: 'Peer benchmark' }]} />
         <div className="ifs-evidence-chain__panel" id={ids.r} hidden={cur !== 'rationale'}>
           {rationale.map(s => <EvidenceSection key={s.title} title={s.title} items={s.items} />)}

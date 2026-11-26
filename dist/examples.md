@@ -2590,7 +2590,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
     <div style={{ width: 1000, padding: 'var(--space-400)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-secondary)' }}>
-      <TableToolbar filter={<IFS.SegmentedControl size="s" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
+      <TableToolbar filter={<IFS.SegmentedControl size="m" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
         search={<SmartSearch placeholder="Search ideas" />} onConfigure={() => {}} />
     </div>
   ) });

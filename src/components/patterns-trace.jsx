@@ -161,7 +161,7 @@ function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCanc
 function IssueKindSwitch({ controller: c, className }) {
   if (c.present.length < 2) return null;
   return (
-    <IFS.SegmentedControl size="s" fullWidth className={cx('ifs-trc-kinds', className)} value={c.kind} onChange={c.setKind} aria-label="Issue type"
+    <IFS.SegmentedControl size="m" fullWidth className={cx('ifs-trc-kinds', className)} value={c.kind} onChange={c.setKind} aria-label="Issue type"
       options={c.present.map(k => ({ value: k.value, label: k.label, counter: c.issues.filter(i => i.kind === k.value).length }))} />
   );
 }

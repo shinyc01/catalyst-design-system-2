@@ -143,7 +143,7 @@ export default IFS_GALLERY;
   ];
   function TableDemo({ grouped }) {
     const [sel, setSel] = React.useState(2);
-    const tabs = IFS.SegmentedControl ? <IFS.SegmentedControl size="s" options={['All', 'Approved', 'In review']} /> : null;
+    const tabs = IFS.SegmentedControl ? <IFS.SegmentedControl size="m" options={['All', 'Approved', 'In review']} /> : null;
     const search = IFS.Search ? <IFS.Search placeholder="Search investments" /> : null;
     return <Table title={grouped ? '{name}' : undefined} tabs={grouped ? tabs : undefined} search={grouped ? search : undefined}
       columns={columns} rows={rows} groupBy={grouped ? 'region' : undefined} defaultCollapsed={grouped ? ['East'] : []}

@@ -286,7 +286,7 @@ function DataVizHeader({ title, subtitle, state, segments, segmentValue, default
         {subtitle != null && subtitle !== '' && <span className="ifs-dv-header__subtitle" title={typeof subtitle === 'string' ? subtitle : undefined}>{subtitle}</span>}
       </div>
       <div className="ifs-dv-header__controls">
-        {segments && <IFS.SegmentedControl size="s" options={segments} value={segmentValue} defaultValue={defaultSegmentValue ?? (segments[0] && (segments[0].value ?? segments[0]))} onChange={onSegmentChange} />}
+        {segments && <IFS.SegmentedControl size="m" options={segments} value={segmentValue} defaultValue={defaultSegmentValue ?? (segments[0] && (segments[0].value ?? segments[0]))} onChange={onSegmentChange} />}
         {button && <IFS.Button type="tertiary" size="s" iconRight={button.iconRight === undefined ? 'arrow-right' : button.iconRight} onClick={button.onClick}>{button.label}</IFS.Button>}
         {(icons || hoverActions) && <div className="ifs-dv-header__hover">{hoverActions}{icons}</div>}
         {viewSwitch}
