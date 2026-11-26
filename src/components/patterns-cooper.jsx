@@ -198,14 +198,14 @@ function ChatLink({ children, type = 'follow-up', number, onClick, state, classN
   );
 }
 
-// Cooper progress line (Patterns "Cooper Message content" 67:134213): "Cooper is working on it (Step n/total): <step name>".
-// The total is per run (2 for a simple question, 3–4 for widgets/alternatives); only the text changes between steps.
-// Props: step, total, label, live (shimmer while running; frozen when stopped).
+// Cooper progress line (Patterns "Cooper Message content" 67:134213): "Step n of total: <step name>…" (rules 8.71, 8.35: a real step, no
+// filler, "2 of 3" not "2/3"). The total is per run (2 for a simple question, 3–4 for widgets/alternatives); only the text changes between steps.
+// Props: step, total, label (required: the step being run), live (shimmer while running; frozen when stopped).
 function CooperProgress({ step = 1, total = 3, label = 'Reviewing framework structure', live = true, className, ...rest }) {
   return (
     <div className={IFS.cx('ifs-cooper-progress', live && 'ifs-cooper-progress--live', className)} role="status" {...rest}>
       <CooperMark size={12} />
-      <span className="ifs-cooper-progress__text">Cooper is working on it (Step {step}/{total}): {label}…</span>
+      <span className="ifs-cooper-progress__text">Step {step} of {total}: {label}…</span>
     </div>
   );
 }
@@ -301,7 +301,7 @@ function ChatCollapsedBar({ type = 'voice', value, defaultValue = '', onChange, 
   const field = type === 'text'
     ? <textarea rows={multi ? 2 : 1} className="ifs-chat-bar__field" value={text} placeholder="Ask Cooper" aria-label="Message Cooper" autoFocus={autoFocus}
         onChange={e => setText(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } }} />
-    : <span className={IFS.cx('ifs-chat-bar__listen', speech && 'ifs-chat-bar__listen--speech')} aria-live="polite">{speech || 'Say anything, I’m listening'}</span>;
+    : <span className={IFS.cx('ifs-chat-bar__listen', speech && 'ifs-chat-bar__listen--speech')} aria-live="polite">{speech || 'Listening…'}</span>;
   const end = (
     <span className="ifs-chat-bar__end">
       {onExpand && <span className="ifs-chat-bar__expand"><Btn icon="arrow-diagonal-expand" label="Expand to floating window" size="s" onClick={onExpand} /></span>}
@@ -408,14 +408,15 @@ function FolderItem({ icon = 'chat-folder', iconVariant, children, count, active
   );
   const click = selectable ? () => onSelectedChange && onSelectedChange(!selected) : onClick;
   return (
-    <div role="button" tabIndex={0} aria-pressed={selectable ? !!selected : undefined} aria-current={active ? 'true' : undefined} data-state={state}
-      onClick={click} onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); click && click(); } }}
-      className={IFS.cx('ifs-hrow', (active || selected) && 'ifs-hrow--active', className)} {...rest}>
-      {selectable ? <span className={IFS.cx('ifs-hrow__check', selected && 'ifs-hrow__check--on')}>{selected && <IFS.Icon name="system-check" size={12} />}</span>
-        : <IFS.Icon name={icon} size={16} variant={iconVariant} />}
-      <span className="ifs-hrow__label">{children}</span>
-      {count != null && <span className="ifs-hrow__rest"><IFS.Counter>{count}</IFS.Counter></span>}
-      {onMore && !selectable && <span className="ifs-hrow__hover" onClick={e => e.stopPropagation()}><Btn icon="system-dots-horizont" label="More" size="s" tip={false} onClick={e => onMore(e)} /></span>}
+    <div data-state={state} className={IFS.cx('ifs-hrow', (active || selected) && 'ifs-hrow--active', className)} {...rest}>
+      {/* the main action is one real button stretched over the row; ⋯ is its sibling (audit final A11Y M4) */}
+      <button type="button" className="ifs-hrow__main" aria-pressed={selectable ? !!selected : undefined} aria-current={active ? 'true' : undefined} onClick={click}>
+        {selectable ? <span className={IFS.cx('ifs-hrow__check', selected && 'ifs-hrow__check--on')}>{selected && <IFS.Icon name="system-check" size={12} />}</span>
+          : <IFS.Icon name={icon} size={16} variant={iconVariant} />}
+        <span className="ifs-hrow__label">{children}</span>
+        {count != null && <span className="ifs-hrow__rest"><IFS.Counter>{count}</IFS.Counter></span>}
+      </button>
+      {onMore && !selectable && <span className="ifs-hrow__hover"><Btn icon="system-dots-horizont" label="More" size="s" tip={false} onClick={e => onMore(e)} /></span>}
     </div>
   );
 }
@@ -449,14 +450,14 @@ function ChatHistoryCard({ title, time, pinned, active, onClick, onMore, selecta
   );
   const click = selectable ? () => onSelectedChange && onSelectedChange(!selected) : onClick;
   return (
-    <div role="button" tabIndex={0} data-state={state} aria-current={active ? 'true' : undefined} aria-pressed={selectable ? !!selected : undefined}
-      onClick={click} onKeyDown={e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); click && click(); } }}
-      className={IFS.cx('ifs-hrow', (active || selected) && 'ifs-hrow--active', className)} {...rest}>
-      {selectable && <span className={IFS.cx('ifs-hrow__check', selected && 'ifs-hrow__check--on')}>{selected && <IFS.Icon name="system-check" size={12} />}</span>}
-      {pinned && <IFS.Icon name="chat-pin" size={12} />}
-      <span className="ifs-hrow__label">{title}</span>
-      {time && <span className={IFS.cx('ifs-hrow__time', onMore && !selectable && 'ifs-hrow__rest')}>{time}</span>}
-      {onMore && !selectable && <span className="ifs-hrow__hover" onClick={e => e.stopPropagation()}><Btn icon="system-dots-horizont" label="More" size="s" tip={false} onClick={e => onMore(e)} /></span>}
+    <div data-state={state} className={IFS.cx('ifs-hrow', (active || selected) && 'ifs-hrow--active', className)} {...rest}>
+      <button type="button" className="ifs-hrow__main" aria-current={active ? 'true' : undefined} aria-pressed={selectable ? !!selected : undefined} onClick={click}>
+        {selectable && <span className={IFS.cx('ifs-hrow__check', selected && 'ifs-hrow__check--on')}>{selected && <IFS.Icon name="system-check" size={12} />}</span>}
+        {pinned && <IFS.Icon name="chat-pin" size={12} />}
+        <span className="ifs-hrow__label">{title}</span>
+        {time && <span className={IFS.cx('ifs-hrow__time', onMore && !selectable && 'ifs-hrow__rest')}>{time}</span>}
+      </button>
+      {onMore && !selectable && <span className="ifs-hrow__hover"><Btn icon="system-dots-horizont" label="More" size="s" tip={false} onClick={e => onMore(e)} /></span>}
     </div>
   );
 }
@@ -467,11 +468,12 @@ function SearchChatHistoryCard({ title, query = '', time, currentChat, onClick, 
   const i = query ? title.toLowerCase().indexOf(query.toLowerCase()) : -1;
   const label = i < 0 ? title : <>{title.slice(0, i)}<mark>{title.slice(i, i + query.length)}</mark>{title.slice(i + query.length)}</>;
   return (
-    <div role="button" tabIndex={0} data-state={state} onClick={onClick} onKeyDown={e => { if (e.key === 'Enter') onClick && onClick(); }}
-      className={IFS.cx('ifs-hrow', className)} {...rest}>
-      <span className="ifs-hrow__label">{label}</span>
-      {currentChat && <IFS.Badge color="white" size="m">Current</IFS.Badge>}
-      {time && <span className="ifs-hrow__time">{time}</span>}
+    <div data-state={state} className={IFS.cx('ifs-hrow', className)} {...rest}>
+      <button type="button" className="ifs-hrow__main" onClick={onClick}>
+        <span className="ifs-hrow__label">{label}</span>
+        {currentChat && <IFS.Badge color="white" size="m">Current</IFS.Badge>}
+        {time && <span className="ifs-hrow__time">{time}</span>}
+      </button>
     </div>
   );
 }
@@ -480,11 +482,12 @@ function SearchChatHistoryCard({ title, query = '', time, currentChat, onClick, 
 // Props: title, badge ("In 4 days" — Badge Black M), due ("May 2"), active, onClick, onMore (hover).
 function ChatReminderCard({ title, badge, due, active, onClick, onMore, state, className, ...rest }) {
   return (
-    <div role="button" tabIndex={0} data-state={state} onClick={onClick} onKeyDown={e => { if (e.key === 'Enter') onClick && onClick(); }}
-      className={IFS.cx('ifs-hrow', 'ifs-hrow--reminder', active && 'ifs-hrow--active', className)} {...rest}>
-      <span className="ifs-hrow__line"><span className="ifs-hrow__label">{title}</span>
-        {onMore && <span className="ifs-hrow__hover" onClick={e => e.stopPropagation()}><Btn icon="system-dots-horizont" label="More" size="s" tip={false} onClick={onMore} /></span>}</span>
-      <span className="ifs-hrow__line">{badge && <IFS.Badge color="black" size="m">{badge}</IFS.Badge>}<span className="ifs-hrow__due">Due {due}</span></span>
+    <div data-state={state} className={IFS.cx('ifs-hrow', 'ifs-hrow--reminder', active && 'ifs-hrow--active', className)} {...rest}>
+      <button type="button" className="ifs-hrow__main" aria-current={active ? 'true' : undefined} onClick={onClick}>
+        <span className="ifs-hrow__line"><span className="ifs-hrow__label">{title}</span></span>
+        <span className="ifs-hrow__line">{badge && <IFS.Badge color="black" size="m">{badge}</IFS.Badge>}<span className="ifs-hrow__due">Due {due}</span></span>
+      </button>
+      {onMore && <span className="ifs-hrow__hover"><Btn icon="system-dots-horizont" label="More" size="s" tip={false} onClick={onMore} /></span>}
     </div>
   );
 }
@@ -565,7 +568,7 @@ function FolderContent({ type = 'general', title, count, children, onBack, onMor
       </div>
       <div className="ifs-history__scroll"><div className="ifs-history__section">
         <SectionHeader heading="All" count={count ?? kids.length} />
-        {type === 'trash' && <div className="ifs-history__date" style={{ textTransform: 'none' }}>Deleted chats are kept for 30 days</div>}
+        {type === 'trash' && <div className="ifs-history__date" style={{ textTransform: 'none' }}>Deleted chats are kept for 30 days.</div>}
         {kids.length ? <div className="ifs-history__list">{kids}</div> : <div className="ifs-history__empty">{empty}</div>}
       </div></div>
     </aside>
@@ -718,7 +721,7 @@ const STRATEGY_ANSWER = {
     'Cross-referenced your current network state with 31 external benchmarks from utilities operating in similar geographic and load conditions',
     'Executed 4 simulation scenarios (Balanced, Cost-Sensitive, Aggressive Maintenance, and Full Load Redistribution) and performed multi-objective optimization',
   ],
-  text: 'Your strategy framework is in good shape overall. Coverage across all three enterprise goals is strong, and 18 of 21 value models are up to date. Two areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and two measures still have no owner.',
+  text: 'Your strategy framework is in good shape overall. Coverage across all 3 enterprise goals is strong, and 18 of 21 value models are up to date. 2 areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and 2 measures still have no owner.',
   scenarios: {
     title: 'Saved scenarios', aside: 'Capture · Recent Activity',
     cards: [
@@ -729,21 +732,21 @@ const STRATEGY_ANSWER = {
     actions: [{ label: 'Open recommended' }, { label: 'View all scenarios' }],
   },
   metrics: [{ category: 'Risk reduction', value: '28–35%' }, { category: 'Payback period', value: '2.1 years' }, { category: 'Estimated savings', value: '$3.2M' }, { category: 'Efficiency gain', value: '+21%' }],
-  sources: [{ label: 'Q1 2026 Strategy Framework — coverage report' }, { label: 'Asset health telemetry, last 12 months' }],
+  sources: [{ label: 'Q1 2026 Strategy Framework: coverage report' }, { label: 'Asset health telemetry, last 12 months' }],
   followUps: ['What decisions are waiting?', 'Show agent conflict', 'Auto-confirmed?', 'Defer impact?'],
 };
 const genericAnswer = q => ({
   title: q.length > 34 ? q.slice(0, 32).trim() + '…' : q,
   steps: ['Reading your question', 'Gathering framework data'],
   reasoning: ['Matched your question against the active Q1 2026 Strategy Framework and its 16 context documents'],
-  text: `Here’s what I found for “${q}”. Three value models touch this area; the strongest signal comes from the Risk Exposure Control goal, where coverage dropped 4% this quarter. I’d start by reviewing the two measures without an owner.`,
+  text: `3 value models touch this area; the strongest signal comes from the Risk Exposure Control goal, where coverage dropped 4% this quarter. I’d start by reviewing the 2 measures without an owner.`,
   sources: [{ label: 'Q1 2026 Strategy Framework' }],
   followUps: ['Which measures have no owner?', 'Show the coverage trend'],
 });
 
 // CooperChat — the whole Cooper chat behaviour (pattern component; Patterns "Chat" section 67:121910).
 // Sizes: closed (avatar + prompt chips in the bottom sheet) → bar (chat-collapsed-bar, voice by default) → compact (floating window)
-// → full (floating panel, one page margin in). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n/total) →
+// → full (floating panel, one page margin in). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n of total) →
 // Streaming → Answered; Stop interrupts (keeps the user message; partial answer stays + Regenerate; before any text: Try again).
 // Props: size / defaultSize / onSizeChange ('closed'|'bar'|'compact'|'full'), mode / defaultMode ('voice'|'text'),
 // messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data
@@ -785,7 +788,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
 
   const run = (id, q) => {
     const a = (answer && answer(q)) || (/overview|healthy|strategy/i.test(q) ? STRATEGY_ANSWER : genericAnswer(q));
-    const steps = a.steps || ['Working on it'];
+    const steps = a.steps || ['Reviewing your data']; // a real step label, never filler (rule 8.71)
     const stepMs = speed ? 900 : 0;
     steps.forEach((label, i) => later(() => { const m = msgsRef.current.find(x => x.id === id); if (m && m.status === 'analyzing') patch(id, { step: { n: i + 1, total: steps.length, label } }); }, i * stepMs));
     const words = a.text.split(' ');
@@ -830,7 +833,7 @@ function CooperChat({ size, defaultSize = 'closed', onSizeChange, mode, defaultM
 
   const conversation = msgs.length ? msgs.map(m => m.role === 'user'
     ? <UserMessage key={m.id} onEdit={busy ? undefined : t => edit(m.id, t)}>{m.text}</UserMessage>
-    : <CooperMessage key={m.id} {...m} onFollowUp={q => send(q, [])} onOption={q => send(q, [])} onRetry={() => retry(m.id)} onRegenerate={() => retry(m.id)} />) : null;
+    : (({ role, q, ...msg }) => <CooperMessage key={m.id} {...msg} onFollowUp={q => send(q, [])} onOption={q => send(q, [])} onRetry={() => retry(m.id)} onRegenerate={() => retry(m.id)} />)(m) /* role and q are chat data, not DOM attributes (audit final A11Y M6) */) : null;
 
   const drag = e => {
     if (e.target.closest('button, textarea, input')) return;
@@ -929,8 +932,8 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
   const footer = selecting && (
     <div className="ifs-history__bar">
       <div className="ifs-history__bar-buttons">
-        {selecting === 'chats' && <IFS.Button type="secondary" iconLeft="chat-folder-move" disabled={!selected.length} onClick={() => { setMoveTo(null); setModal({ kind: 'move', ids: selected }); }}>Move</IFS.Button>}
-        <IFS.Button type="secondary" iconLeft="system-trash-delete" disabled={!selected.length} onClick={() => setModal({ kind: selecting === 'chats' ? 'delete' : 'deleteFolders', ids: selected })}>Delete</IFS.Button>
+        {selecting === 'chats' && <IFS.Button type="secondary" iconLeft="chat-folder-move" disabled={!selected.length} disabledReason="Select chats to move" onClick={() => { setMoveTo(null); setModal({ kind: 'move', ids: selected }); }}>Move</IFS.Button>}
+        <IFS.Button type="secondary" iconLeft="system-trash-delete" disabled={!selected.length} disabledReason={selecting === 'chats' ? 'Select chats to delete' : 'Select folders to delete'} onClick={() => setModal({ kind: selecting === 'chats' ? 'delete' : 'deleteFolders', ids: selected })}>Delete</IFS.Button>
       </div>
       <div className="ifs-history__bar-count">Selected <IFS.Counter>{selected.length}</IFS.Counter><Btn icon="system-close" label="Cancel selection" size="s" tip={false} onClick={endSelect} /></div>
     </div>
@@ -965,11 +968,11 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
       {modal && modal.kind === 'delete' && confirm(modalIds.length === 1 ? 'Delete this chat?' : 'Delete these chats?', <>
         <div className="ifs-confirm-list">{modalIds.map(id => <ConfirmDeleteCard key={id} onRemove={modalIds.length > 1 ? () => dropId(id) : undefined}>{nameOf(id)}</ConfirmDeleteCard>)}</div>
         <p className="ifs-confirm-note">Selected chats will be moved to <b>Trash</b> and permanently deleted after <b>30 days</b>.</p>
-      </>, modalIds.length === 1 ? 'Delete chat' : 'Delete chats', () => { upd(modalIds, { trashed: true, pinned: false }); setModal(null); endSelect(); })}
+      </>, 'Delete', () => { upd(modalIds, { trashed: true, pinned: false }); setModal(null); endSelect(); })}
       {modal && modal.kind === 'deleteFolders' && confirm(modalIds.length === 1 ? 'Delete this folder?' : 'Delete these folders?', <>
         <div className="ifs-confirm-list">{modalIds.map(id => <ConfirmDeleteCard key={id} icon={(fols.find(f => f.id === id) || {}).icon || 'chat-folder'} onRemove={modalIds.length > 1 ? () => dropId(id) : undefined}>{nameOf(id)}</ConfirmDeleteCard>)}</div>
         <p className="ifs-confirm-note">Chats are not deleted. They are removed from the folder and stay in your history.</p>
-      </>, modalIds.length === 1 ? 'Delete folder' : 'Delete folders', () => { setFols(fols.filter(f => !modalIds.includes(f.id))); setList(list.map(c => modalIds.includes(c.folder) ? { ...c, folder: undefined } : c)); if (modalIds.includes(open)) setOpen(null); setModal(null); endSelect(); })}
+      </>, 'Delete', () => { setFols(fols.filter(f => !modalIds.includes(f.id))); setList(list.map(c => modalIds.includes(c.folder) ? { ...c, folder: undefined } : c)); if (modalIds.includes(open)) setOpen(null); setModal(null); endSelect(); })}
       {modal && modal.kind === 'move' && confirm('Move to folder', <>
         {modalIds.length > 1 && <div className="ifs-confirm-list" style={{ marginBottom: 'var(--space-300)' }}>{modalIds.map(id => <ConfirmDeleteCard key={id} onRemove={() => dropId(id)}>{nameOf(id)}</ConfirmDeleteCard>)}</div>}
         <div className="ifs-history__list">{fols.length ? fols.map(f => <FolderItem key={f.id} icon={f.icon} active={moveTo === f.id} onClick={() => setMoveTo(f.id)}>{f.name}</FolderItem>)
@@ -985,7 +988,7 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
 
 // CooperRecommendations — the recommendation flow (pattern component; Patterns "Recommendation" 67:108295).
 // List grouped by framework column → Shape walks through them one by one (detail: Decline / the named change) → confirming shows
-// "Working on it…" then confirms and moves to the next → all applied closes the window. Decline removes one from the queue;
+// "Applying to framework structure…" then confirms and moves to the next → all applied closes the window. Decline removes one from the queue;
 // Decline all dismisses the queue. Every recommendation is also saved as a chat in the Recommendations smart folder.
 // Props: recommendations / defaultRecommendations / onRecommendationsChange ([{ id, group, title, description, impact }]),
 // onApply(rec), onDecline(rec), onAsk (opens Cooper chat — the two are never open together), onClose, onDone, speed (ms of the applying step).
@@ -1022,7 +1025,7 @@ function CooperRecommendations({ recommendations, defaultRecommendations = [], o
     </RecommendationGroup>));
   return (
     <AgentWindow className={className} style={style} onAsk={onAsk} onClose={onClose}
-      text={mode === 'applying' ? 'Working on it: Applying to framework structure…' : mode === 'detail' ? null : intro}
+      text={mode === 'applying' ? 'Applying to framework structure…' : mode === 'detail' ? null : intro}
       tertiaryAction={mode === 'list' && recs.length > 1 ? { label: 'Decline all', onClick: () => { recs.forEach(r => onDecline && onDecline(r)); setRecs([]); onClose && onClose(); } } : undefined}
       secondaryAction={mode === 'list' && recs.length ? { label: 'Shape', onClick: () => { setCur((current || recs[0]).id); setMode('detail'); } } : undefined}>
       {body}

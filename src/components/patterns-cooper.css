@@ -119,7 +119,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 @keyframes ifs-cooper-blink{50%{opacity:0}}
 .ifs-cooper-progress{display:flex;align-items:center;gap:var(--space-100);padding:var(--space-100) 0;
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-softer);min-width:0}
-.ifs-cooper-progress__text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ifs-cooper-progress__text{min-width:0;overflow-wrap:anywhere} /* wraps, never cut off: the step being run stays readable at 320 (audit final A11Y M11) */
 .ifs-cooper-progress--live .ifs-cooper-progress__text{background:linear-gradient(90deg,var(--color-text-softer) 30%,var(--color-text) 50%,var(--color-text-softer) 70%); /* ltr: brand gradient art, fixed in both directions */
   background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ifs-shimmer var(--motion-loop-pulse) var(--motion-ease-linear) infinite}
 .ifs-cooper-status{display:flex;align-items:center;gap:var(--space-100);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-softer)}
@@ -165,7 +165,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-chat-panel__bottom{position:absolute;inset-inline-start:0;inset-inline-end:0;bottom:0;padding:var(--space-inset);
   background:linear-gradient(180deg,transparent,var(--color-cooper-insight-strong) var(--size-16)) /* blur overlay (GRADIENT_LINEAR + blur 80) */;
   backdrop-filter:blur(var(--blur-40));-webkit-backdrop-filter:blur(var(--blur-40))}
-.ifs-cooper-limits{margin:var(--space-200) 0 0;text-align:center;color:var(--color-text-soft);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking) /* rule 8.66: Body/S, text-soft */}
+.ifs-cooper-limits{margin:0;margin-block-start:var(--space-200);text-align:center;color:var(--color-text-soft);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking) /* rule 8.66: Body/S, text-soft */}
 .ifs-chat-panel__drop{position:absolute;inset:calc(2 * (var(--space-inset) - var(--space-100)) + var(--size-control-s)) 0 0 /* H1: starts right below the chat header (its padding + an S control), follows density */;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-200);
   font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-soft);pointer-events:none}
 .ifs-chat-panel__resize{position:absolute;left:-3px;top:0;bottom:0;width:6px;cursor:ew-resize} /* ltr: resize handle; JS width from clientX */
@@ -186,10 +186,11 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-history__section{display:flex;flex-direction:column;padding:var(--space-100);box-shadow:inset 0 calc(-1 * var(--border-width-default)) 0 var(--color-border-soft)}
 .ifs-history__section:last-child{box-shadow:none}
 .ifs-history__list{display:flex;flex-direction:column;gap:var(--space-50)}
-.ifs-history__date{padding:var(--space-150) var(--space-200) var(--space-50);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text-disabled)}
+.ifs-history__date{padding:var(--space-150) var(--space-200) var(--space-50);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text-softer) /* real text: 4.5:1 (audit final A11Y H5, was disabled grey) */}
 .ifs-history__see-all{all:unset;align-self:flex-start;display:inline-flex;align-items:center;gap:var(--space-100);padding-block:var(--space-150);padding-inline:var(--space-200) var(--space-150);border-radius:var(--radius-control);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text-soft);cursor:pointer}
 .ifs-history__see-all:hover{color:var(--color-text)}
+.ifs-history__see-all:focus-visible{box-shadow:var(--focus-ring)} /* all:unset drops the outline (audit final A11Y H8) */
 .ifs-history__empty{padding:var(--space-inset);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text-softer)}
 .ifs-history__bar{display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-200);box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft)}
 .ifs-history__bar-buttons{display:flex;gap:var(--space-200)}
@@ -203,7 +204,20 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 .ifs-hrow:hover,.ifs-hrow[data-state=hover]{background:var(--color-state-hover);color:var(--color-text)}
 .ifs-hrow:active{background:var(--color-state-pressed)}
 .ifs-hrow:focus-visible{box-shadow:var(--focus-ring)}
-.ifs-hrow--rename{box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border);padding-inline-end:var(--space-100);background:none;cursor:default}
+/* The row's main action is one real button stretched over the row; ⋯ and the rename actions are its siblings, above it (no button inside a
+   button, audit final A11Y M4). The ring is drawn on the row. */
+.ifs-hrow__main{all:unset;flex:1;min-width:0;display:flex;align-items:center;gap:var(--space-150);cursor:pointer}
+.ifs-hrow__main::before{content:"";position:absolute;inset:0;border-radius:inherit}
+.ifs-hrow:has(> .ifs-hrow__main:focus-visible){box-shadow:var(--focus-ring)}
+.ifs-hrow > .ifs-hrow__hover,.ifs-hrow > .ifs-hrow__actions{position:relative;z-index:1}
+.ifs-hrow--reminder > .ifs-hrow__main{flex-direction:column;align-items:stretch;gap:var(--space-150)}
+.ifs-hrow--reminder > .ifs-hrow__hover{position:absolute;inset-block-start:var(--space-100);inset-inline-end:var(--space-200);margin:0}
+/* Rename in place: a field (rule 9.14): the fill and the 30% bottom line, the focus ring while typing (audit final A11Y M8) */
+.ifs-hrow--rename,.ifs-hrow--rename:is(:hover,:active){--line:var(--color-border-input-strong);padding-inline-end:var(--space-100);cursor:default;
+  background-color:var(--color-background-input);background-image:linear-gradient(var(--line),var(--line));background-repeat:no-repeat;
+  background-size:100% var(--border-width-default);background-position:center bottom} /* the row's hover / pressed fills don't apply to the field */
+.ifs-hrow--rename:hover{--line:var(--color-border-input-strong-hover)}
+.ifs-hrow--rename:focus-within{box-shadow:var(--focus-ring)}
 .ifs-hrow__label{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ifs-hrow__input{all:unset;flex:1;min-width:0;font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);color:var(--color-text)}
 .ifs-hrow__time{flex:none;color:var(--color-text-softer)}

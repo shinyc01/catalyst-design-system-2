@@ -20,7 +20,7 @@ export default IFS_GALLERY;
     'Cross-referenced your current network state with 31 external benchmarks from utilities operating in similar geographic and load conditions',
     'Executed 4 simulation scenarios (Balanced, Cost-Sensitive, Aggressive Maintenance, and Full Load Redistribution) and performed multi-objective optimization',
   ];
-  const answerText = 'Your strategy framework is in good shape overall. Coverage across all three enterprise goals is strong, and 18 of 21 value models are up to date. Two areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and two measures still have no owner.';
+  const answerText = 'Your strategy framework is in good shape overall. Coverage across all 3 enterprise goals is strong, and 18 of 21 value models are up to date. 2 areas need attention: the Carbon footprint model hasn’t been updated in 7 months, and 2 measures still have no owner.';
   const scenarios = { title: 'Saved scenarios', aside: 'Capture · Recent Activity', cards: [
     { title: 'West District Feeder - Balanced', badges: ['T-902', 'T-887'], meta: ['$3.2M', '2yr', 'saved 3:44 AM'] },
     { title: 'West District - Cost-Sensitive', badges: ['T-902'], meta: ['$1.4M', '1yr', 'saved 4:15 AM'] },
@@ -158,17 +158,17 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'ChatLink', figma: 'chat-link-molecule "chat-link-item" [patterns] (12:265109)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="follow-up · Default / Hover" w={426}><div><ChatLink>What decisions are waiting?</ChatLink><ChatLink state="hover">Show agent conflict</ChatLink></div></Cap>
-    <Cap title="source" w={426}><div><ChatLink type="source" number={1}>Q1 2026 Strategy Framework — coverage report</ChatLink><ChatLink type="source" number={2}>Asset health telemetry, last 12 months</ChatLink></div></Cap>
+    <Cap title="source" w={426}><div><ChatLink type="source" number={1}>Q1 2026 Strategy Framework: coverage report</ChatLink><ChatLink type="source" number={2}>Asset health telemetry, last 12 months</ChatLink></div></Cap>
   </IFS.Inline> });
 
   IFS_GALLERY.push({ name: 'CooperMessage', figma: 'Cooper Message content — anatomy & states [patterns] (67:134213)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="Analysing (Step n/total)" w={426}><CooperProgress {...step} /></Cap>
+    <Cap title="Analysing (Step n of total)" w={426}><CooperProgress step={step.n} total={step.total} label={step.label} /></Cap>
     <Cap title="Streaming" w={426}><CooperMessage status="streaming" text={answerText} streamed={120} /></Cap>
     <Cap title="Stopped while analysing → Try again" w={426}><CooperMessage status="stopped" step={step} onRetry={() => {}} /></Cap>
     <Cap title="Stopped while streaming → Regenerate" w={426}><CooperMessage status="stopped" text={answerText} streamed={120} onRegenerate={() => {}} /></Cap>
     <Cap title="Didn’t reply (error)" w={426}><CooperMessage status="error" onRetry={() => {}} /></Cap>
     <Cap title="Network error" w={426}><CooperMessage status="offline" onRetry={() => {}} /></Cap>
-    <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework — coverage report' }]} /></Cap>
+    <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework: coverage report' }]} /></Cap>
     <Cap title="Answer with clarifying options (follow-ups hidden)" w={426}><CooperMessage status="answered" text="I need a little more context. Which would you like to start with?" followUps={followUps}
       options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours. Select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
   </IFS.Inline> });
@@ -176,7 +176,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'ChatCompactPanel', figma: 'chat-compact-panel-organism "floating-window" [patterns] (12:263560)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Text · Default"><ChatCompactPanel type="text" newChat /></Cap>
     <Cap title="Voice · Speaking"><ChatCompactPanel type="voice" newChat speech="Can you give me" /></Cap>
-    <Cap title="Text · Analyzing"><ChatCompactPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress {...step} /></ChatCompactPanel></Cap>
+    <Cap title="Text · Analyzing"><ChatCompactPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress step={step.n} total={step.total} label={step.label} /></ChatCompactPanel></Cap>
     <Cap title="Voice · Interrupted"><ChatCompactPanel type="voice" newChat><UserMessage>{Q}</UserMessage><CooperMessage status="stopped" onRetry={() => {}} /></ChatCompactPanel></Cap>
     <Cap title="Text · Answered"><ChatCompactPanel type="text" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatCompactPanel></Cap>
     <Cap title="Text · Drop file"><ChatCompactPanel type="text" newChat dropping /></Cap>
@@ -184,7 +184,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'ChatFullPanel', figma: 'chat-full-panel-organism [patterns] (67:120161)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Text · Default (show-chips)"><ChatFullPanel type="text" newChat prompts={prompts} /></Cap>
-    <Cap title="Text · Analyzing"><ChatFullPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress {...step} /></ChatFullPanel></Cap>
+    <Cap title="Text · Analyzing"><ChatFullPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress step={step.n} total={step.total} label={step.label} /></ChatFullPanel></Cap>
     <Cap title="Text · Answered"><ChatFullPanel type="text" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatFullPanel></Cap>
     <Cap title="Voice · Answered"><ChatFullPanel type="voice" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatFullPanel></Cap>
   </IFS.Inline> });
@@ -250,7 +250,7 @@ export default IFS_GALLERY;
       {['Strategic objectives', 'Measures', 'Value models'].map(g => <RecommendationGroup key={g} title={g}>{recs.filter(r => r.group === g).map((r, i) => <RecommendationItem key={r.id} {...r} defaultExpanded={g === 'Strategic objectives'} action={{ label: 'Explore' }} />)}</RecommendationGroup>)}
     </AgentWindow></Cap>
     <Cap title="Shape mode · one recommendation"><AgentWindow onAsk={() => {}} onClose={() => {}}><RecommendationDetail {...recs[0]} onBack={() => {}} /></AgentWindow></Cap>
-    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Working on it: Applying to framework structure…" /></Cap>
+    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Applying to framework structure…" /></Cap>
     <Cap title="View=Collapsed · Speaking=False"><AgentWindow defaultView="collapsed" defaultSpeaking={false} onAsk={() => {}} onClose={() => {}} text="x" /></Cap>
   </IFS.Inline> });
 
@@ -264,7 +264,7 @@ export default IFS_GALLERY;
     return (
       <div>
         <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 var(--space-300)' }}>
-          Click the Cooper avatar (or press Ctrl+. / ⌘+.) → collapsed bar (voice by default; keyboard icon switches to text) → send → floating window with Analysing, streaming and Stop →
+          Click the Cooper avatar (or press Ctrl+. / ⌘.) → collapsed bar (voice by default; keyboard icon switches to text) → send → floating window with Analysing, streaming and Stop →
           window icon docks it as the side panel; − collapses back to the avatar. Prompt chips send straight away.</p>
         <MapScreen sheet={<IFS.BottomSheet {...sheetProps} prompts={['Walk me through this framework', 'What hasn’t been updated in a while?']} showPrompts={!open} showCooper={!open}
           onCooper={() => { setMode('voice'); setSize('bar'); }} onPrompt={p => { setMode('text'); api.current.send(p); }} />}>
@@ -275,12 +275,12 @@ export default IFS_GALLERY;
   } });
 
   IFS_GALLERY.push({ name: 'Pattern: Cooper conversation', figma: 'Map - Cooper - Interrupted / Answered 4 - detail [patterns] (67:123835)', render: () => {
-    const seeded = [{ id: 'u0', role: 'user', text: Q }, { id: 'c0', role: 'cooper', q: Q, ...answer, defaultReasoningOpen: true, sources: [{ label: 'Q1 2026 Strategy Framework — coverage report' }] }];
+    const seeded = [{ id: 'u0', role: 'user', text: Q }, { id: 'c0', role: 'cooper', q: Q, ...answer, defaultReasoningOpen: true, sources: [{ label: 'Q1 2026 Strategy Framework: coverage report' }] }];
     const [key, setKey] = React.useState(0);
     return (
       <div>
         <p className="t-body-m-regular" style={{ color: 'var(--color-text-softer)', margin: '0 0 var(--space-300)' }}>
-          Docked full panel with an answered message. Click a follow-up or type a question: a user bubble appears, then Cooper runs Step 1/2…, streams, and answers; press Stop to interrupt (Try again / Regenerate).
+          Docked full panel with an answered message. Click a follow-up or type a question: a user bubble appears, then Cooper runs Step 1 of 2…, streams, and answers; press Stop to interrupt (Try again / Regenerate).
           Hover your message to copy or edit it. Drag a file onto the panel to attach it. <button type="button" className="t-body-m-regular" style={{ color: 'var(--color-text-soft)', background: 'none', border: 0, textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setKey(key + 1)}>Reset</button></p>
         <MapScreen key={key} sheet={<IFS.BottomSheet {...sheetProps} showPrompts={false} showCooper={false} />}>
           <CooperChat defaultSize="full" defaultMode="text" defaultMessages={seeded} defaultTitle="Current strategy overview" />
