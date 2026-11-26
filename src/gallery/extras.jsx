@@ -96,7 +96,7 @@ export default IFS_GALLERY;
       </FormCard>
       <FormCard title="New contact" divider style={{ width: 464 }} secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save' }}
         fields={[{ name: 'first', label: 'First name' }, { name: 'last', label: 'Last name' }, { name: 'email', label: 'Email', type: 'email' },
-          { name: 'phone', label: 'Phone', type: 'phone' }]} onSubmit={v => console.log(v)} />
+          { name: 'phone', label: 'Phone', type: 'phone', required: false }]} onSubmit={v => console.log(v)} />
       <FormCard title="Loading" style={{ width: 464 }} loading fields={[{ name: 'a', label: 'A' }, { name: 'b', label: 'B' }]} secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save' }} />
       <FormCard title="Submitting" style={{ width: 464 }} submitting defaultValues={{ a: 'Value' }} fields={[{ name: 'a', label: 'Name' }]} secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save' }} />
       <FormCard title="Form-level error" style={{ width: 464 }} error="Email or password is incorrect." defaultValues={{ email: 'pat@company.com' }}

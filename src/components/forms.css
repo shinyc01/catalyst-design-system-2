@@ -8,6 +8,7 @@
 .ifs-field__title{display:flex;align-items:flex-start;gap:var(--space-200)}
 .ifs-field__label{flex:1;min-width:0;color:var(--color-text-softer);font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking) /* Label/L/medium */}
 .ifs-field--m .ifs-field__label{font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */}
+.ifs-field__required{margin-inline-start:var(--space-50);color:inherit /* the required marker (rule 14.4): the label's own colour, so it never reads as an error */}
 .ifs-field__hint{color:var(--color-icon-softer);display:inline-flex;cursor:help}
 .ifs-field__desc{margin:0;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
 .ifs-field--m .ifs-field__desc{font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}

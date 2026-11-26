@@ -53,17 +53,19 @@ const norm = o => (o && typeof o === 'object') ? (o.divider ? { ...o, disabled: 
 
 // Trigger shared by Select, MultiSelect, Combobox and DatePicker.
 // Figma: single-select-atom (789:18085) / multiple-select-atom (3200:7897). Sizes s (32, text-only) | m (32) | l (40) | xl (44, with label prefix).
-function Trigger({ size, label, placeholder, filled, children, iconLeft, isOpen, loading, error, disabled, clearable, onClear, state, triggerRef, valueTitle, input, ...rest }) {
+// required: the * marker after a visible label (xl prefix, s label text); the control itself carries aria-required (rule 14.4).
+function Trigger({ size, label, placeholder, filled, children, iconLeft, isOpen, loading, error, disabled, clearable, onClear, state, triggerRef, valueTitle, input, required, ...rest }) {
+  const mark = required ? <IFS.RequiredMark /> : null;
   const forcedOpen = state === 'open';
   return (
     <div ref={triggerRef} tabIndex={input || disabled ? -1 : 0} aria-disabled={disabled || undefined} data-state={state}
       className={cx('ifs-select__trigger', (isOpen || forcedOpen) && 'is-open', filled && 'is-filled', error && 'is-error', loading && 'is-loading', disabled && 'is-disabled')} {...rest}>
-      {size === 'xl' && label && <span className="ifs-select__label">{label}</span>}
+      {size === 'xl' && label && <span className="ifs-select__label">{label}{mark}</span>}
       <span className="ifs-select__field">
         {iconLeft && <IFS.Icon name={iconLeft} size={12} className="ifs-select__icon" />}
         {input || (filled
           ? (typeof children === 'string' ? <span className="ifs-select__value" title={valueTitle || children}>{children}</span> : children)
-          : <span className="ifs-select__value is-placeholder">{size === 's' ? (label || placeholder) : placeholder}</span>)}
+          : <span className="ifs-select__value is-placeholder">{size === 's' && label ? <>{label}{mark}</> : placeholder}</span>)}
         {loading
           ? <IFS.Icon name="system-loader" size={12} className="ifs-select__loader" />
           : <>
@@ -158,7 +160,7 @@ function scrollActive(listRef, active) {
 
 // Base for Select and MultiSelect.
 function SelectBase({ multi, options = [], value, defaultValue, onChange, open, defaultOpen = false, onOpenChange,
-  size = 'm', label, placeholder, iconLeft, clearable = true, loading, error, disabled, maxTags = 5,
+  size = 'm', label, placeholder, iconLeft, clearable = true, loading, error, disabled, required, maxTags = 5,
   listPosition = 'down', listTitle, listSize = 's', state, className, style, id, 'aria-label': ariaLabel, ...rest }) {
   const opts = useMemo(() => options.map(norm), [options]);
   const [val, setVal] = useControlled(value, defaultValue !== undefined ? defaultValue : (multi ? [] : null), onChange);
@@ -198,10 +200,10 @@ function SelectBase({ multi, options = [], value, defaultValue, onChange, open, 
 
   return (
     <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, className)} style={style}>
-      <Trigger size={size} label={label} placeholder={placeholder != null ? placeholder : (size === 's' ? 'Select' : 'Select…')}
-        filled={filled} iconLeft={iconLeft} isOpen={dd.isOpen} loading={loading} error={error} disabled={disabled}
+      <Trigger size={size} label={label} placeholder={placeholder /* rule 8.46: empty shows nothing; the label says what to pick */}
+        filled={filled} iconLeft={iconLeft} isOpen={dd.isOpen} loading={loading} error={error} disabled={disabled} required={required}
         clearable={clearable} onClear={clear} state={state} triggerRef={trigRef}
-        role="combobox" aria-haspopup="listbox" aria-expanded={dd.isOpen} aria-controls={listId} aria-invalid={error || undefined}
+        role="combobox" aria-haspopup="listbox" aria-expanded={dd.isOpen} aria-controls={listId} aria-invalid={error || undefined} aria-required={required || undefined}
         aria-label={ariaLabel || label} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
         onClick={() => { if (!disabled) dd.isOpen ? dd.setOpen(false) : dd.open(); }} onKeyDown={onKeyDown} {...rest}>
         {content}
@@ -217,7 +219,8 @@ function SelectBase({ multi, options = [], value, defaultValue, onChange, open, 
 // Figma: single-select-organism (3273:26820) = single-select-atom (789:18085) + single-select-list-molecule (153:62054)
 // Props: options (strings or {value,label,icon,disabled}; {divider:true} draws a separator; {action:true,label,icon,danger,onClick} is a
 // command row such as "Remove" (danger = red) that runs onClick and closes without selecting), value/defaultValue/onChange(value, option), open/defaultOpen/onOpenChange,
-// size s|m|l|xl, label (xl prefix / s text), placeholder, iconLeft, clearable (Figma show-remove-select, default true), loading, error,
+// size s|m|l|xl, label (xl prefix / s text), placeholder (none by default: an empty Select shows nothing, rule 8.46; an example value only),
+// iconLeft, clearable (Figma show-remove-select, default true), loading, error, required (rule 14.4: * after the visible label + aria-required),
 // disabled, listPosition down|up (Figma "List position"), listTitle (e.g. "Suggested"), listSize s|l, state hover|focus|open (gallery).
 function Select(props) { return <SelectBase {...props} multi={false} />; }
 
@@ -226,13 +229,14 @@ function Select(props) { return <SelectBase {...props} multi={false} />; }
 function MultiSelect(props) { return <SelectBase {...props} multi={true} />; }
 
 // Figma: signle-combobox-organism (3375:5415). Type to filter.
-// Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder, iconLeft, clearable, loading, error,
+// Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder (none by default, rule 8.46),
+// iconLeft, clearable, loading, error, required (* after the visible label + aria-required, rule 14.4),
 // disabled, listPosition, listTitle ("Suggested", shown before typing), resultsTitle ("Results", while typing),
 // emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query;
 // emptyTitle defaults to No results for “<query>”, rule 8.51),
 // filter(option, query), state. While loading and open, the list shows Figma's "Searching..." panel.
-function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder = 'Search item', iconLeft, clearable = true,
-  loading, error, disabled, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's',
+function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder, iconLeft, clearable = true,
+  loading, error, disabled, required, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's',
   emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id,
   filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest }) {
   const all = useMemo(() => options.map(norm), [options]);
@@ -259,10 +263,10 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
   return (
     <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, 'ifs-combobox', className)} style={style}>
       <Trigger size={size} label={label} filled={!!selected} iconLeft={iconLeft} isOpen={dd.isOpen} loading={loading} error={error}
-        disabled={disabled} clearable={clearable} state={state} onClear={() => { setVal(null); setQuery(null); }}
+        disabled={disabled} required={required} clearable={clearable} state={state} onClear={() => { setVal(null); setQuery(null); }}
         onClick={() => { if (!disabled) { inputRef.current && inputRef.current.focus(); if (!dd.isOpen) dd.open(); } }}
         input={<input ref={inputRef} className="ifs-select__input" value={text} placeholder={placeholder} disabled={disabled}
-          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={listId} aria-label={ariaLabel || label}
+          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={listId} aria-label={ariaLabel || label} aria-required={required || undefined}
           aria-invalid={error || undefined} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
           onChange={e => { setQuery(e.target.value); dd.setOpen(true); dd.setActive(-1); }}
           onKeyDown={onKeyDown} {...rest} />} />
@@ -441,14 +445,15 @@ function Calendar({ value, defaultValue = null, onChange, range = false, month, 
 }
 
 // DatePicker = select trigger (single-select-atom look) + Calendar popup (date-picker-molecule 3406:9510).
-// Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label, placeholder,
+// Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label,
+// placeholder (none by default: an empty DatePicker shows nothing, rule 8.46), required (* after the visible label + aria-required, rule 14.4),
 // format(date) → string, range, clearable, iconLeft (default system-calendar-date; null hides it), showApply (Figma show-apply-button:
 // picks stay a draft until the full-width Apply button commits them), applyLabel, error, disabled, listPosition down|up, state,
 // plus Calendar props (today, events, min, max).
-function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder = 'Select date',
+function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder,
   format = d => IFS.format.date(d), range = false, clearable = true,
   iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply',
-  error, disabled, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest }) {
+  error, disabled, required, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest }) {
   const [val, setVal] = useControlled(value, defaultValue, onChange);
   const [isOpen, setOpenRaw] = useControlled(open, defaultOpen, onOpenChange);
   const [draft, setDraft] = useState(val);
@@ -464,8 +469,8 @@ function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = 
   return (
     <div ref={rootRef} id={id} className={cx('ifs-select', `ifs-select--${size}`, 'ifs-datepicker', className)} style={style}>
       <Trigger size={size} label={label} placeholder={placeholder} filled={filled} iconLeft={iconLeft} isOpen={isOpen} error={error} disabled={disabled}
-        clearable={clearable} onClear={() => setVal(null)} state={state} triggerRef={trigRef}
-        role="combobox" aria-haspopup="dialog" aria-expanded={isOpen} aria-controls={popId} aria-label={ariaLabel || label}
+        required={required} clearable={clearable} onClear={() => setVal(null)} state={state} triggerRef={trigRef}
+        role="combobox" aria-haspopup="dialog" aria-expanded={isOpen} aria-controls={popId} aria-label={ariaLabel || label} aria-required={required || undefined}
         onClick={() => setOpen(!isOpen)}
         onKeyDown={e => {
           if (disabled) return;

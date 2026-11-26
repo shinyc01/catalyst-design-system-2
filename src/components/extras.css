@@ -44,8 +44,8 @@
 .ifs-circular-button__label{gap:var(--space-100);padding:0 var(--space-150);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;white-space:nowrap;color:var(--fg)}
 .ifs-circular-button__arrow{width:var(--size-24);color:var(--ic)}
-.ifs-circular-button:hover,.ifs-circular-button[data-state=hover]{--fill:var(--color-background-neutral-strong-hover);--stroke:var(--color-border-strong);--fg:var(--color-text);--ic:var(--color-icon)}
-.ifs-circular-button:active,.ifs-circular-button[data-state=pressed]{--fill:var(--color-background-neutral);--stroke:var(--color-border-strong);--fg:var(--color-text);--ic:var(--color-icon)}
+.ifs-circular-button:hover,.ifs-circular-button[data-state=hover]{--fill:var(--color-background-neutral-strong-hover)}
+.ifs-circular-button:active,.ifs-circular-button[data-state=pressed]{--fill:var(--color-background-neutral)}
 .ifs-circular-button .ifs-hotkey{color:var(--color-text-soft)}
 .ifs-circular-button:hover .ifs-hotkey,.ifs-circular-button[data-state=hover] .ifs-hotkey{color:var(--color-text)}
 .ifs-circular-button:active .ifs-hotkey,.ifs-circular-button[data-state=pressed] .ifs-hotkey{color:var(--color-text-soft)}
@@ -179,8 +179,7 @@
 .ifs-form-card__body fieldset{display:contents}
 .ifs-form-card__skeleton{display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-form-card__message{flex:none;margin:0 var(--space-inset-l) var(--space-stack)}
-.ifs-form-card__summary{margin:0;padding-block:0;padding-inline:var(--space-inset-l) 0}
-.ifs-form-card__summary li{margin:0}
+.ifs-form-card__required-note{margin:0;color:var(--color-text-soft);font:var(--font-body-s-regular);letter-spacing:var(--font-body-s-regular-tracking) /* Body/S: "Fields marked * are required." (WCAG 3.3.2, H90) */}
 .ifs-form-card__footer{flex:none;display:flex;align-items:center;justify-content:flex-end;gap:var(--space-200);
   padding:var(--space-inset-l) var(--space-inset-l);box-shadow:inset 0 var(--border-width-default) 0 var(--color-border-soft)}
 .ifs-form-card__footer--plain{box-shadow:none;padding-top:0}

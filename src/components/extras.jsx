@@ -229,11 +229,11 @@ function ExtrasFlag({ code, flag }) {
 }
 
 // Figma: mobile-number-field-organism (8947:11306) — text-field shell + country select (single-select-atom S) + divider.
-// Props: size l|m, label (Title), hint (clue-icon tooltip), description (Hint text), error (true or message), disabled,
+// Props: size l|m, label (Title), hint (clue-icon tooltip), description (Hint text), error (true or message), disabled, required (* marker + native required),
 // placeholder (default from the country mask, Figma "(000)000-0000"), value / defaultValue / onChange(value, { country, digits, e164 }),
 // country / defaultCountry ("US") / onCountryChange(code), countries ([{ code, name, dial, mask, flag }]),
 // cooper / generating (Cooper states), state hover|focus|typing (gallery), id, name, plus <input> attributes.
-function PhoneField({ size = 'l', label, hint, description, error, disabled, placeholder, value, defaultValue = '', onChange,
+function PhoneField({ size = 'l', label, hint, description, error, disabled, required, placeholder, value, defaultValue = '', onChange,
   country, defaultCountry = 'US', onCountryChange, countries = EXTRAS_COUNTRIES, cooper, generating, state, className, style, id, ...rest }) {
   const autoId = React.useId();
   const fid = id || autoId;
@@ -267,7 +267,7 @@ function PhoneField({ size = 'l', label, hint, description, error, disabled, pla
       className={IFS.cx('ifs-field', 'ifs-field--text', `ifs-field--${size}`, 'ifs-phone', error && 'ifs-field--error', disabled && 'ifs-field--disabled', (cooper || generating) && 'ifs-field--cooper', className)}>
       {(label != null || hint) && (
         <div className="ifs-field__title">
-          <label className="ifs-field__label" htmlFor={fid}>{label}</label>
+          <label className="ifs-field__label" htmlFor={fid}>{label}{required && label != null && <IFS.RequiredMark />}</label>
           {hint && <span className="ifs-field__hint" title={hint} aria-label={hint} role="img"><IFS.Icon name="system-question-hint" size={16} /></span>}
         </div>
       )}
@@ -295,7 +295,7 @@ function PhoneField({ size = 'l', label, hint, description, error, disabled, pla
         <div className="ifs-phone__body">
           <span className="ifs-phone__divider" aria-hidden="true" />
           <input ref={input} id={fid} type="tel" inputMode="tel" autoComplete="tel-national" className="ifs-field__input"
-            value={val} disabled={disabled} placeholder={placeholder != null ? placeholder : (c.mask || '').replace(/#/g, '0')}
+            value={val} disabled={disabled} required={required || undefined} placeholder={placeholder != null ? placeholder : (c.mask || '').replace(/#/g, '0')}
             aria-invalid={error ? true : undefined} aria-describedby={msg != null ? `${fid}-desc` : undefined}
             onChange={e => emit(e.target.value.replace(/\D/g, ''), c, e)} {...rest} />
         </div>
@@ -405,12 +405,15 @@ const EXTRAS_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Figma: form-card-organism (5826:24755)
 // A surface that wraps a form: header (title, description, one action) → optional divider → body (fields) → optional footer.
-// Form rules (Figma canvas notes): every visible field is required (no markers); the primary never disables to signal
-// "incomplete"; submit validates every field at once, shows errors, focuses (and scrolls to) the first invalid field;
-// more than three invalid fields adds a summary above the footer.
+// Form rules (rule 14.4, Nov 26): fields are required unless marked `required: false` (optional fields may be shown); a required
+// field draws the * marker after its label and the form shows "Fields marked * are required." at the top (WCAG 3.3.2, H90);
+// the primary never disables to signal "incomplete"; submit validates every field at once, shows each error inline, scrolls to
+// and focuses the first invalid field (which reads its own error) and announces one polite count ("3 fields need attention",
+// rule 9.19). No summary list on a single page.
 // Props: title, description, action (node, e.g. an IconButton), divider (bool),
 // fields = [{ name, label, type text|email|password|phone|textarea|select, placeholder, hint, description, options (select),
-//   defaultValue, validate(value, values) → message | undefined, requiredMessage }],
+//   required (default true; false = optional, no marker, not checked when empty), defaultValue,
+//   validate(value, values) → message | undefined, requiredMessage }],
 // children (extra body content after the fields), values / defaultValues / onValuesChange(values),
 // primaryAction = { label } (submit; pass the verb + object, rule 8.10: "Send for approval", "Create scenario"; no "Submit" default, the label falls back to "Save"), secondaryAction = { label, onClick }, footer (node replacing the actions),
 // onSubmit(values, event) — only called when everything is valid, validate(values) → { name: message } (extra form checks),
@@ -433,7 +436,7 @@ function FormCard({ title, description, action, divider, fields = [], children, 
     fields.forEach(f => {
       const v = vals[f.name];
       const empty = v == null || (typeof v === 'string' && !v.trim()) || (Array.isArray(v) && !v.length);
-      if (empty) out[f.name] = f.requiredMessage || `${f.label || f.name} is required`;
+      if (empty) { if (f.required !== false) out[f.name] = f.requiredMessage || `${f.label || f.name} is required`; }
       else if (f.type === 'email' && !EXTRAS_EMAIL.test(String(v).trim())) out[f.name] = 'Enter a valid email address';
       else if (f.validate) { const m = f.validate(v, vals); if (m) out[f.name] = m; }
     });
@@ -447,6 +450,9 @@ function FormCard({ title, description, action, divider, fields = [], children, 
     setErrors(errs);
     const first = fields.find(f => errs[f.name]) || (Object.keys(errs).length ? { name: Object.keys(errs)[0] } : null);
     if (first) {
+      // One polite count (rule 9.19): focus moves to the first field, which then reads its own error.
+      const n = Object.keys(errs).length;
+      IFS.announce(IFS.format.plural(n, { one: '# field needs attention', other: '# fields need attention' }));
       requestAnimationFrame(() => {
         const box = body.current && body.current.querySelector(`[data-field="${first.name}"]`);
         const el = box && box.querySelector('input:not([disabled]),textarea,[role=combobox],button,[tabindex="0"]');
@@ -460,15 +466,15 @@ function FormCard({ title, description, action, divider, fields = [], children, 
   const renderField = f => {
     const common = { label: f.label, hint: f.hint, placeholder: f.placeholder, size: fieldSize, error: errors[f.name] || undefined,
       description: errors[f.name] ? undefined : f.description, disabled: f.disabled, id: `${uid}-${f.name}`, name: f.name,
-      readOnly: submitting || undefined };
+      required: f.required !== false, readOnly: submitting || undefined };
     const v = vals[f.name];
     if (f.type === 'textarea') return <IFS.TextArea {...common} value={v} onChange={x => setField(f.name, x)} />;
     if (f.type === 'phone') return <PhoneField {...common} value={v} onChange={x => setField(f.name, x)} />;
     if (f.type === 'select') return <IFS.Select options={f.options || []} label={f.label} placeholder={f.placeholder} size={fieldSize === 'l' ? 'l' : 'm'}
-      error={!!errors[f.name]} disabled={f.disabled || submitting} value={v} onChange={x => setField(f.name, x)} aria-label={f.label} />;
+      error={!!errors[f.name]} disabled={f.disabled || submitting} required={f.required !== false} value={v} onChange={x => setField(f.name, x)} aria-label={f.label} />;
     return <IFS.TextField {...common} type={f.type === 'email' || f.type === 'password' ? f.type : 'text'} value={v} onChange={x => setField(f.name, x)} />;
   };
-  const invalid = Object.keys(errors);
+  const anyRequired = fields.some(f => f.required !== false);
   const Skel = IFS.Skeleton;
   return (
     <form noValidate onSubmit={submit} aria-busy={loading || submitting || undefined}
@@ -484,6 +490,7 @@ function FormCard({ title, description, action, divider, fields = [], children, 
       )}
       {divider && <div className="ifs-form-card__divider" role="separator" />}
       <div ref={body} className={IFS.cx('ifs-form-card__body', submitting && 'is-submitting')}>
+        {anyRequired && !loading && fields.length > 0 && <p className="ifs-form-card__required-note">Fields marked * are required.</p>}
         {loading
           ? fields.map(f => <div key={f.name} className="ifs-form-card__skeleton" aria-hidden="true">
               {Skel ? <><Skel width="30%" height={16} /><Skel height={fieldSize === 'l' ? 40 : 32} shape="block" /></> : null}
@@ -491,13 +498,6 @@ function FormCard({ title, description, action, divider, fields = [], children, 
           : fields.map(f => <div key={f.name} data-field={f.name}>{renderField(f)}</div>)}
         {!loading && children}
       </div>
-      {invalid.length > 3 && (
-        <div className="ifs-form-card__message">
-          <IFS.Alert type="error" closable={false} title={`${invalid.length} fields need attention`}>
-            <ul className="ifs-form-card__summary">{invalid.map(n => <li key={n}>{errors[n]}</li>)}</ul>
-          </IFS.Alert>
-        </div>
-      )}
       {error && <div className="ifs-form-card__message"><IFS.Alert type="error" closable={false} title={error} /></div>}
       <button type="submit" hidden tabIndex={-1} aria-hidden="true" />
       {(footer || primaryAction || secondaryAction) && (

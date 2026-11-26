@@ -12,15 +12,19 @@ function useFormsValue(value, defaultValue, onChange) {
   return [current, set];
 }
 
-// Shared shell for TextField and TextArea: title row (label + hint icon), control, description.
-function FormsFieldShell({ kind, size, label, hint, description, error, disabled, cooper, state, id, className, style, children }) {
+// The required marker (rule 14.4, decided Nov 26): an asterisk the component draws after the label, never typed into the label text.
+// Hidden from screen readers, which hear "required" from the control's native `required` / `aria-required`.
+function RequiredMark() { return <span className="ifs-field__required" aria-hidden="true">*</span>; }
+
+// Shared shell for TextField and TextArea: title row (label + hint icon + required marker), control, description.
+function FormsFieldShell({ kind, size, label, hint, description, error, disabled, cooper, state, id, required, className, style, children }) {
   const msg = typeof error === 'string' ? error : description;
   return (
     <div data-state={state} style={style}
       className={IFS.cx('ifs-field', `ifs-field--${kind}`, `ifs-field--${size}`, error && 'ifs-field--error', disabled && 'ifs-field--disabled', cooper && 'ifs-field--cooper', className)}>
       {(label != null || hint) && (
         <div className="ifs-field__title">
-          <label className="ifs-field__label" htmlFor={id}>{label}</label>
+          <label className="ifs-field__label" htmlFor={id}>{label}{required && label != null && <RequiredMark />}</label>
           {hint && <span className="ifs-field__hint" title={hint} aria-label={hint} role="img"><IFS.Icon name="system-question-hint" size={16} /></span>}
         </div>
       )}
@@ -34,8 +38,9 @@ function FormsFieldShell({ kind, size, label, hint, description, error, disabled
 // Props: size l|m, label (Figma Title), hint (tooltip text → question-hint icon), placeholder, description (Hint text),
 // error (true, or a string that replaces the description), disabled, iconLeft / iconRight (icon names),
 // suffix (Figma textRight), cooper (Figma State=Cooper ring), generating (Cooper Generating: loader),
+// required (rule 14.4: draws the * marker after the label and sets the native `required`, so screen readers say "required"),
 // value / defaultValue / onChange(value, event), state hover|focus|typing (gallery only), plus any <input> attribute.
-function TextField({ size = 'l', label, hint, description, error, disabled, iconLeft, iconRight, suffix, cooper, generating,
+function TextField({ size = 'l', label, hint, description, error, disabled, iconLeft, iconRight, suffix, cooper, generating, required,
   value, defaultValue = '', onChange, state, className, style, id, type = 'text', ...rest }) {
   const autoId = React.useId();
   const fid = id || autoId;
@@ -44,10 +49,10 @@ function TextField({ size = 'l', label, hint, description, error, disabled, icon
   const ref = React.useRef(null);
   return (
     <FormsFieldShell kind="text" size={size} label={label} hint={hint} description={description} error={error} disabled={disabled}
-      cooper={cooper || generating} state={state} id={fid} className={className} style={style}>
+      cooper={cooper || generating} state={state} id={fid} required={required} className={className} style={style}>
       <div className="ifs-field__control" onMouseDown={e => { if (e.target !== ref.current) { e.preventDefault(); ref.current && ref.current.focus(); } }}>
         {iconLeft && <IFS.Icon name={iconLeft} size={iconSize} />}
-        <input ref={ref} id={fid} type={type} className="ifs-field__input" value={val} disabled={disabled}
+        <input ref={ref} id={fid} type={type} className="ifs-field__input" value={val} disabled={disabled} required={required || undefined}
           aria-invalid={error ? true : undefined} aria-describedby={(typeof error === 'string' || description != null) ? `${fid}-desc` : undefined}
           onChange={e => setVal(e.target.value, e)} {...rest} />
         {suffix != null && <span className="ifs-field__suffix">{suffix}</span>}
@@ -60,8 +65,8 @@ function TextField({ size = 'l', label, hint, description, error, disabled, icon
 
 // Figma: text-area-organism (3024:9383)
 // Props: size l (140px tall) | m (100px), label, hint, placeholder, description, error, disabled, iconLeft,
-// cooper, generating, value / defaultValue / onChange(value, event), state hover|focus|typing (gallery only).
-function TextArea({ size = 'l', label, hint, description, error, disabled, iconLeft, cooper, generating,
+// cooper, generating, required (the * marker + native `required`, as TextField), value / defaultValue / onChange(value, event), state hover|focus|typing (gallery only).
+function TextArea({ size = 'l', label, hint, description, error, disabled, iconLeft, cooper, generating, required,
   value, defaultValue = '', onChange, state, className, style, id, ...rest }) {
   const autoId = React.useId();
   const fid = id || autoId;
@@ -69,10 +74,10 @@ function TextArea({ size = 'l', label, hint, description, error, disabled, iconL
   const ref = React.useRef(null);
   return (
     <FormsFieldShell kind="area" size={size} label={label} hint={hint} description={description} error={error} disabled={disabled}
-      cooper={cooper || generating} state={state} id={fid} className={className} style={style}>
+      cooper={cooper || generating} state={state} id={fid} required={required} className={className} style={style}>
       <div className="ifs-field__control" onMouseDown={e => { if (e.target !== ref.current) { e.preventDefault(); ref.current && ref.current.focus(); } }}>
         {iconLeft && <IFS.Icon name={iconLeft} size={size === 'm' ? 16 : 20} />}
-        <textarea ref={ref} id={fid} className="ifs-field__input" value={val} disabled={disabled}
+        <textarea ref={ref} id={fid} className="ifs-field__input" value={val} disabled={disabled} required={required || undefined}
           aria-invalid={error ? true : undefined} aria-describedby={(typeof error === 'string' || description != null) ? `${fid}-desc` : undefined}
           onChange={e => setVal(e.target.value, e)} {...rest} />
         {generating && <IFS.Icon name="system-loader" size={12} className="ifs-field__loader" title="Generating" />}
@@ -195,5 +200,5 @@ function Switch({ size = 'm', checked, defaultChecked = false, onChange, disable
   );
 }
 
-Object.assign(IFS, { TextField, TextArea, Search, Checkbox, Radio, RadioGroup, Switch });
-export { TextField, TextArea, Search, Checkbox, Radio, RadioGroup, Switch };
+Object.assign(IFS, { RequiredMark, TextField, TextArea, Search, Checkbox, Radio, RadioGroup, Switch });
+export { RequiredMark, TextField, TextArea, Search, Checkbox, Radio, RadioGroup, Switch };

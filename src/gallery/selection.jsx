@@ -14,7 +14,7 @@ export default IFS_GALLERY;
   const triggerStates = [
     ['default', {}], ['hover', { state: 'hover' }], ['focus', { state: 'focus' }], ['open', { state: 'open' }],
     ['loading', { loading: true, defaultValue: 1 }], ['filled', { defaultValue: 1 }], ['overflow', { defaultValue: 9 }],
-    ['error', { error: true }], ['disabled', { disabled: true }],
+    ['error', { error: true }], ['disabled', { disabled: true }], ['required (rule 14.4)', { required: true }],
   ];
 
   IFS_GALLERY.push({ name: 'Select', figma: 'single-select-organism (3273:26820) · single-select-atom (789:18085) · single-select-list-atom (153:61939)', render: () => <>
@@ -49,7 +49,7 @@ export default IFS_GALLERY;
   </> });
 
   IFS_GALLERY.push({ name: 'Combobox', figma: 'signle-combobox-organism (3375:5415)', render: () => <>
-    {[['default', {}], ['hover', { state: 'hover' }], ['filled', { defaultValue: 2 }], ['error', { error: true }], ['loading', { loading: true }], ['disabled', { disabled: true }]].map(([n, p]) => (
+    {[['default', {}], ['hover', { state: 'hover' }], ['filled', { defaultValue: 2 }], ['error', { error: true }], ['loading', { loading: true }], ['disabled', { disabled: true }], ['required (rule 14.4)', { required: true }]].map(([n, p]) => (
       <Row key={n} label={n}>{['m', 'l', 'xl'].map(z => <div key={z} style={{ width: 300 }}><Combobox size={z} label="Label" options={OPTS} {...p} /></div>)}</Row>
     ))}
     <Row label="open: results / no results / searching" style={{ alignItems: 'flex-start', height: 230 }}>
@@ -117,6 +117,7 @@ export default IFS_GALLERY;
       <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
       <div style={{ width: 240 }}><DatePicker size="l" /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Date" range /></div>
+      <div style={{ width: 240 }}><DatePicker size="xl" label="Start date" required /></div>
     </Row>
     <Row label="showApply" style={{ alignItems: 'flex-start', height: 380 }}>
       <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>

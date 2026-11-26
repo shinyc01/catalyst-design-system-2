@@ -20,6 +20,7 @@ export default IFS_GALLERY;
     ['focus (keyboard)', { state: 'focus' }],
     ['cooper', { cooper: true }],
     ['cooper generating', { generating: true, defaultValue: 'place' }],
+    ['required (rule 14.4)', { required: true }],
   ].map(([n, p]) => (
     <Row key={n} label={n}>
       {['l', 'm'].map(z => <C key={z} size={z} style={W} label="{heading-input}" hint="More info" placeholder="{placeholder}" description="{text}" {...p} />)}

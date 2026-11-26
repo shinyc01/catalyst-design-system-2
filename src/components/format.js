@@ -42,8 +42,16 @@ import { IFS } from './registry.js';
 //   fyStartMonth (F4) is an admin system setting, read once at start.
 //   fyStartMonth is 1–12 (default 1 = January; 10 = an October–September year). empty is what a missing
 //   value shows (default "—"). Every function returns `empty` for null, undefined, '' or NaN.
+// IFS.format.plural(count, { one, other, zero, two, few, many })              → one whole string per plural form, picked by the
+//   locale's CLDR plural rules (Intl.PluralRules); "#" is replaced by the formatted count (rule 11.8: never count + 's').
+//   plural(1, { one: '# field needs attention', other: '# fields need attention' }) → "1 field needs attention".
+//   An exact `zero` (=0) wins over the locale's category when given.
+// IFS.term(key, { count, capital })                                            → an entity's name as the organisation calls it
+//   (USER-SETTINGS row 15, rule 8.9): term('investment') → "investment", or "project" after
+//   configure({ entity: 'project' }); count picks one / other ("3 projects" needs plural()); capital true starts a label.
+//   Keys: 'investment'. configure({ terms: { investment: { one, other } } }) sets the forms directly (other languages).
 
-const config = { locale: 'en-US', currency: 'USD', fyStartMonth: 1, empty: '—', accounting: false, compactStyle: 'auto' };
+const config = { locale: 'en-US', currency: 'USD', fyStartMonth: 1, empty: '—', accounting: false, compactStyle: 'auto', entity: 'investment', terms: null };
 const MINUS = '−';
 const NBSP = ' ';
 const SCALE = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
@@ -248,7 +256,30 @@ function weekdays({ style = 'short', weekStartsOn = weekStart() } = {}) {
   return Array.from({ length: 7 }, (_, i) => f.format(new Date(2023, 0, 1 + ((i + weekStartsOn) % 7)))); // Jan 1 2023 = Sunday
 }
 
-const format = { money, number, percent, change, date, time, dateTime, dateRange, relative, fy, fyRange, fyBounds, fyDates, empty, fileSize, parse, configure, weekStart, weekdays, toDate,
+// Plural forms (rule 11.8, B-17): the locale chooses the form, the caller writes each form as a whole string.
+function plural(count, forms = {}) {
+  const n = Number(count) || 0;
+  let cat = 'other';
+  try { cat = new Intl.PluralRules(config.locale).select(n); } catch (e) { cat = n === 1 ? 'one' : 'other'; }
+  const s = (n === 0 && forms.zero != null) ? forms.zero : (forms[cat] != null ? forms[cat] : forms.other);
+  return s == null ? '' : String(s).replace(/#/g, number(n));
+}
+
+// Organisation names for entities (USER-SETTINGS row 15). English forms for the two decided words; other languages pass `terms`.
+const TERMS = {
+  investment: { one: 'investment', other: 'investments' },
+  project: { one: 'project', other: 'projects' },
+};
+function term(key = 'investment', { count, capital } = {}) {
+  const forms = (config.terms && config.terms[key]) || (key === 'investment' ? TERMS[config.entity] || TERMS.investment : TERMS[key]) || { one: key, other: key };
+  let cat = 'one';
+  if (count != null) { try { cat = new Intl.PluralRules(config.locale).select(Number(count)); } catch (e) { cat = count === 1 ? 'one' : 'other'; } }
+  const w = forms[cat] || forms.other || forms.one;
+  return capital ? w.charAt(0).toLocaleUpperCase(config.locale) + w.slice(1) : w;
+}
+
+const format = { plural, money, number, percent, change, date, time, dateTime, dateRange, relative, fy, fyRange, fyBounds, fyDates, empty, fileSize, parse, configure, weekStart, weekdays, toDate,
   get config() { return { ...config }; } };
 IFS.format = format;
-export { format };
+IFS.term = term;
+export { format, term };

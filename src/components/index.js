@@ -19,7 +19,7 @@ import '../icons.js';
 
 export { IFS } from './registry.js';
 // Formatting helpers (IFS.format) load first so every family can use them.
-export { format } from './format.js';
+export { format, term } from './format.js';
 // Layout primitives (Stack, Inline) load early so every family and screen can use them.
 import './layout.css';
 export * from './layout.jsx';
