@@ -299,12 +299,12 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
         disabled={disabled} required={required} clearable={clearable} state={state} onClear={() => { setVal(null); setQuery(null); }}
         onClick={() => { if (!disabled) { inputRef.current && inputRef.current.focus(); if (!dd.isOpen) dd.open(); } }}
         input={<input ref={inputRef} className="ifs-select__input" value={text} placeholder={placeholder} disabled={disabled}
-          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={dd.isOpen && !loading ? listId : undefined /* audit final L7: only while the list is in the page (not while it shows Searching…) */} {...fld.aria} aria-required={required || undefined}
+          role="combobox" aria-autocomplete="list" aria-expanded={dd.isOpen} aria-controls={dd.isOpen ? listId : undefined /* audit final L7: only while the list (or its Searching… status) is in the page */} {...fld.aria} aria-required={required || undefined}
           aria-invalid={error ? true : undefined} aria-activedescendant={dd.isOpen && dd.active >= 0 ? `${listId}-${dd.active}` : undefined}
           onChange={e => { setQuery(e.target.value); dd.setOpen(true); dd.setActive(-1); }}
           onKeyDown={onKeyDown} {...rest} />} />
       {dd.isOpen && <Floating anchorRef={rootRef} floatRef={floatRef} position={listPosition}>{loading
-        ? <div className={cx('ifs-select__list', `ifs-select__list--${listPosition}`)} role="status"><div className="ifs-select__searching">Searching…</div></div>
+        ? <div id={listId} className={cx('ifs-select__list', `ifs-select__list--${listPosition}`)} role="status"><div className="ifs-select__searching">Searching…</div></div>
         : <OptionList id={listId} opts={opts} isSelected={o => o.value === val} active={dd.active} onPick={pick}
           listPosition={listPosition} listSize={listSize} listTitle={opts.length ? (query ? resultsTitle : listTitle) : null} listRef={listRef}
           empty={<div className="ifs-select__empty-state" role="status">
