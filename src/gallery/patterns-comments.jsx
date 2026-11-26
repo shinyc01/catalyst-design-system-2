@@ -11,7 +11,7 @@ export default IFS_GALLERY;
   const LONG = 'There are people within organizations that have a say in the results of scenarios but are not Copperleaf users. The report from the previous quarter shows it.';
 
   /* ---------------- data ---------------- */
-  const ME = { name: 'Jeff P.', avatar: { initials: 'JP', type: 'black' } };
+  const ME = { name: 'Jordan P.', avatar: { initials: 'JP', type: 'black' } };
   const PEOPLE = [
     { name: 'Maria Chen', role: 'Reliability lead', avatar: { initials: 'MC', type: 'dark-pink' } },
     { name: 'Lara Green', role: 'Field team lead', avatar: { initials: 'LG', type: 'green' } },
@@ -188,7 +188,7 @@ export default IFS_GALLERY;
     return (
       <div aria-label={label} style={{ position: 'relative', width: 1440, height: 900, display: 'grid', gridTemplateRows: '48px 1fr', overflow: 'hidden',
         background: 'var(--color-surface-canvas)', border: '1px solid var(--color-border-soft)', boxSizing: 'content-box' }}>
-        <IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
+        <IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jordan P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
@@ -229,7 +229,7 @@ export default IFS_GALLERY;
 
               {/* Comments mode: the canvas takes the comment cursor; a click places a new comment. */}
               {panel && <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 404, cursor: 'none', zIndex: 1 }}
-                onClick={e => { if (e.target === e.currentTarget) place(e); }} aria-label="Click to place a comment" />}
+                onClick={e => { if (e.target === e.currentTarget) place(e); }} />} {/* pointer surface only, no name (rule 9.26); keyboard users add comments from the panel */}
               {panel && mouse && mouse.x < 1392 - 404 && !draft && <span style={{ position: 'absolute', left: mouse.x, top: mouse.y - 32, pointerEvents: 'none', zIndex: 3 }}>
                 <IFS.Icon name="cursor-comment" size={32} /></span>}
               <div style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none' }} className="g-cm-pins">

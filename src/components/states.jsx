@@ -218,7 +218,7 @@ const DEFAULT_MAP_TOOLS = [
 // prompts scroll sideways; the FAB, buttons and map tools never get cut.
 function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true, showCooper = true, onCooper, cooperIndicator = false,
   inProgress = false, coverage = 0, cooperContext = true, documents, onUpload,
-  fields = DEFAULT_MAP_FIELDS, values, onFieldChange, zoom, defaultZoom = 20, onZoomChange, lastSync = '{label}', tools = DEFAULT_MAP_TOOLS,
+  fields = DEFAULT_MAP_FIELDS, values, onFieldChange, zoom, defaultZoom = 20, onZoomChange, lastSync, tools = DEFAULT_MAP_TOOLS,
   left, className, ...rest }) {
   if (type === 'documents') type = 'value'; // same sheet, clearer name (Nov 20)
   let leftSide = left;
@@ -256,10 +256,10 @@ function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true
             </div>
           </div>
         ))}
-        <div className="ifs-map-field">
+        {lastSync != null && <div className="ifs-map-field">
           <span className="ifs-map-field__label">Last sync</span>
           <div className="ifs-map-field__row"><span className="ifs-map-field__value">{lastSync}</span></div>
-        </div>
+        </div>}
         </div>
         <span className="ifs-bottom-sheet__divider" aria-hidden="true" />
         <div className="ifs-bottom-sheet__tools">

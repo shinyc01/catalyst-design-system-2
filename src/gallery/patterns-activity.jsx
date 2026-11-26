@@ -201,7 +201,7 @@ export default IFS_GALLERY;
       <IFS.AppShell height={900} navBar={NAV} sideNav={SIDE}
         header={<>
           <div style={{ position: 'relative' }}>
-            <IFS.PageHeader title={title} onBack={onBack} onTitleMenu={() => setMenu(!menu)} status={<IFS.Indicator type={status.type} size="xs">{status.label}</IFS.Indicator>}
+            <IFS.PageHeader title={title} onBack={onBack} backLabel="Back to Value frameworks" onTitleMenu={() => setMenu(!menu)} status={<IFS.Indicator type={status.type} size="xs">{status.label}</IFS.Indicator>}
               views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'compare', iconLeft: 'compare' }]} />}
               actions={draft ? <><IFS.Button type="secondary" size="s" iconLeft="users-group">1/1</IFS.Button><IFS.Button type="primary" size="s">Review</IFS.Button></> : <IFS.CooperChip />} />
             {draft && <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
@@ -265,7 +265,7 @@ export default IFS_GALLERY;
       const r = fw(screen.fw); const curName = (r.versions.find(v => v.current) || r.versions[0]).title;
       body = (
         <IFS.AppShell height={900} navBar={NAV} sideNav={SIDE}
-          header={<IFS.PageHeader title={r.name} onBack={() => setScreen({ kind: 'library' })} onTitleMenu={() => setPanelFor(r.id)}
+          header={<IFS.PageHeader title={r.name} onBack={() => setScreen({ kind: 'library' })} backLabel="Back to Value frameworks" onTitleMenu={() => setPanelFor(r.id)}
             status={<IFS.Indicator type={r.status.type} size="xs">{r.status.label}</IFS.Indicator>}
             views={<IFS.SegmentedControl size="s" value="compare" onChange={v => v !== 'compare' && setScreen({ kind: 'map', fw: r.id })}
               options={[{ value: 'grid', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'compare', iconLeft: 'compare' }]} />}

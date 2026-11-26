@@ -368,7 +368,8 @@ function NavBar({ stages = DEFAULT_STAGES, value, defaultValue, onChange, collap
 //           no separate row for it.
 //   < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden).
 //           Row 2, starting under the title (not under back): id + status together, views, the other actions, primary last.
-// Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
+// Props: title, id, onBack, backLabel (the back button's name and tooltip, default "Back"; name the destination: "Back to Value frameworks",
+// rule 14.1 / WCAG 2.4.4), onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
 // main button: always visible, last), progressLabel.
 const pageHeaderWarned = new Set();
 const pageHeaderWarnOnce = (k, msg) => { if (!pageHeaderWarned.has(k)) { pageHeaderWarned.add(k); console.warn(msg); } };
@@ -385,7 +386,7 @@ function namedViews(views) {
     : { ...o, ariaLabel: VIEW_NAMES[o.icon || o.iconLeft] || `${String(o.value).charAt(0).toUpperCase()}${String(o.value).slice(1)} view` });
   return React.cloneElement(views, { options, 'aria-label': views.props['aria-label'] || views.props.ariaLabel || 'View' });
 }
-function PageHeader({ title, id, onBack, onTitleMenu, status, views: viewsIn, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest }) {
+function PageHeader({ title, id, onBack, backLabel = 'Back', onTitleMenu, status, views: viewsIn, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest }) {
   const views = namedViews(viewsIn);
   const ref = React.useRef(null);
   const [size, setSize] = React.useState('wide');
@@ -478,7 +479,7 @@ function PageHeader({ title, id, onBack, onTitleMenu, status, views: viewsIn, ce
         </IFS.Popover>
       </span>
     : status;
-  const backBtn = onBack && <IFS.IconButton icon="arrow-chevron-left" label="Back" size="s" type="tertiary" onClick={onBack} />;
+  const backBtn = onBack && <IFS.IconButton icon="arrow-chevron-left" label={backLabel} size="s" type="tertiary" onClick={onBack} />;
   const menuBtn = onTitleMenu && <IFS.IconButton icon="arrow-chevron-down" type="ghost" size="s" label={`${title} activity`} onClick={onTitleMenu} className="ifs-page-header__menu" />;
   const titleBits = <>
     {backBtn}

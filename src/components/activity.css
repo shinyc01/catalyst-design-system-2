@@ -205,7 +205,12 @@
 
 /* ================= FileCard — file-card (1440:5465), legacy ================= */
 .ifs-file-card{display:flex;align-items:center;gap:var(--space-200);box-sizing:border-box;height:2.625rem;padding:var(--space-100);border-radius:var(--radius-card);outline:none}
-.ifs-file-card[role=button]{cursor:pointer}
+.ifs-file-card--clickable{position:relative;cursor:pointer}
+/* the open button stretches over the card (A11Y M4); the actions sit above it */
+.ifs-file-card__open{all:unset;box-sizing:border-box;cursor:pointer;text-align:start}
+.ifs-file-card__open::after{content:"";position:absolute;inset:0;border-radius:var(--radius-card)}
+.ifs-file-card--clickable .ifs-file-card__actions{position:relative;z-index:1}
+.ifs-file-card:has(> .ifs-file-card__open:focus-visible){box-shadow:var(--focus-ring)}
 .ifs-file-card:not(.ifs-file-card--error):hover,.ifs-file-card:not(.ifs-file-card--error):focus-within,.ifs-file-card[data-state=hover],.ifs-file-card--active{
   background:var(--color-surface-secondary);padding-inline-end:var(--space-200)}
 .ifs-file-card:focus-visible{box-shadow:var(--focus-ring)}

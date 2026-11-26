@@ -145,7 +145,7 @@ export default IFS_GALLERY;
         actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 'var(--space-300)' }}>
-      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} onTitleMenu={() => {}} status={<Status>Draft</Status>}
+      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} backLabel="Back to Value frameworks" onTitleMenu={() => {}} status={<Status>Draft</Status>}
         actions={<IFS.Button type="primary" size="s">Review</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 'var(--space-300)' }}>
@@ -181,7 +181,7 @@ export default IFS_GALLERY;
         tabs={{ items: FW_TABS, defaultValue: 'all' }} search={SEARCH} />
     </Frame>
     <Frame label="cooper = true, Show button = false (Command home; the instance overrides the gap to 12)">
-      <PageTop eyebrow title="Welcome back, Jeff." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
+      <PageTop eyebrow title="Welcome back, Jordan." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
         style={{ gap: 'var(--space-300)' }} tabs={{ items: [{ value: 'w', label: 'My works', count: 3 }, { value: 'd', label: 'Decisions', count: 6 }, { value: 'c', label: 'Conversations', count: 3 }, { value: 'f', label: 'Following', count: 3 }], defaultValue: 'd' }}
         search={{ placeholder: 'Search' }} />
     </Frame>

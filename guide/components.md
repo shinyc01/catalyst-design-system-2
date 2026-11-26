@@ -31,7 +31,8 @@ How to read an entry: `### <Figma set name> · <kit component>` (no kit name = a
 | Stages (L1) / a stage's sections or one entity's own pages (L2, rule 14.19) | `NavBar` / `SideNav` | `Tabs` |
 | Peer views in a page; table filter on a library page | `Tabs` | `SegmentedControl` |
 | Progress through steps | `Stepper` (non-interactive) | `Tabs` |
-| Place in a hierarchy, go up a level | `Breadcrumb` | Ghost `Button` |
+| Go up a level | `PageHeader onBack` + `backLabel` "Back to {parent}" (rule 14.1) | `Breadcrumb` |
+| A whole trail, only where a screen truly needs it | `Breadcrumb` | — |
 | Step through items one at a time | `Pager` | table pagination |
 | Short hint on hover / focus | `Tooltip` | `Popover` (interactive) |
 | Error / warning | `Alert` | `Snackbar` (the result of the user's own action, Undo) |
@@ -177,6 +178,7 @@ Code: `Select`'s option list, and `Menu`: the same list as a command menu anchor
 Use: Choosing one option from a list. Empty, it shows nothing: no default placeholder (rule 8.46). `required` marks it (rule 14.4).
 Don't: 2–5 options that should all be visible — use `segmented-control-organism`; long lists the user needs to type into — use `signle-combobox-organism`.
 
+Field shell (2.0.7, final audit H1; also `MultiSelect`, `Combobox`, `DatePicker`): `label` shows above the field at m / l (prefix at xl, placeholder text at s), `required` draws the *; `description` or an `error` string sits under it at m / l / xl, linked with `aria-describedby`; a console warning when there is no `label`, `aria-label` or `aria-labelledby`. The list's `aria-controls` is set only while open.
 ### multiple-select-atom · `MultiSelect`
 Use: The closed multi-select field showing chips + "+N"; part of `multiple-select-organism`.
 
@@ -206,6 +208,7 @@ Use: Picking one of 2–5 always-visible options, usually switching a view mode 
 Notes: `iconOnly` (2.0.6) shows each option's icon only, 16 in a square segment, with `label` as the accessible name and tooltip; M is `--size-control-m` outside. Used for the chart card's Chart / Table switch (rule 10.2).
 Don't: More than 5 options — use `single-select-organism`.
 
+Narrow (2.0.7, rule 14.6): with counters it becomes a `Select` ("Label (count)") below 600; `narrowSelect` turns this on or off (`DataTable` passes `false` and keeps its own pair). Every option needs `label` or `ariaLabel` (console warning otherwise). States: rule 7.1 (selected 10 with its outline, hover 15, pressed 5).
 ### chips · `Chip`
 Use: A clickable token for one value. Selection chip = an applied filter value, removable with ✕. Suggestion chip = a fire-once next action or prompt, no ✕, no checked state. Group logic: rule 14.5.
 Don't: Read-only labels (→ badge).
@@ -269,13 +272,14 @@ States (S3, Nov 24): in progress = the one solid white bar (`--color-border-sele
 Use: One crumb; building block.
 
 ### breadcrumb-organism · `Breadcrumb`
-Use: Where the page sits in a hierarchy, with a back ‹ control. Keyboard: rule 9.8.
+Use: The whole trail, only where a screen truly needs it; going up one level is the page header's back button (rule 14.1). Keyboard: rule 9.8.
 
 ### pagination-organism · `Pager`
 Use: A record pager for item-by-item content (Trace report). Never for tables (rule 14.6).
 
 ## Feedback
 
+Notes (2.0.7): `item` (default "issue") names what it pages: buttons "Previous {item}" / "Next {item}", and a screen-reader count "{Item} 1 of 2" (the visible "1 / 2" is hidden from it).
 ### tooltip-organism · `Tooltip`
 Use: A short non-interactive label on hover and focus (text, status, date, avatar, metadata), 4 from its trigger, `--z-index-tooltip` above toasts. Rules 14.11, 9.2.
 Motion: fades in over 100 after the 300 pointer wait; at once on keyboard focus; closes at once (rule 5.1) after a 100 grace once the pointer has left the trigger and the bubble.
@@ -367,6 +371,7 @@ Use: A version entry with change list.
 ### file-card · `FileCard`
 Use: An uploaded document.
 
+With `onClick` (2.0.7, final audit M4) the open action is one button stretched over the card, the actions its siblings; the loading card is `role="img"` ("Loading {name}").
 ### stat-capital-flow-card · `StatCard compare`
 Use: Capital-flow metric.
 
@@ -385,6 +390,7 @@ Use: Draggable node in a side list, dropped onto the canvas.
 ### node-card · `NodeCard`
 Use: The node on the framework/map canvas — the named exception that earns its own component because of canvas behaviour (drag/connect, map-tied selection).
 
+Structure (2.0.7, final audit M4): selecting is one `aria-pressed` button stretched over the card (`.ifs-node-card__main`, named by the title or person); Open, Delete, the checkbox and edit buttons are its siblings. The skeleton is `role="img"`.
 ### approval-chain-timeline · `ApprovalChain`
 Use: One step in the display-only approval history in `ActivityPanel` (rule 14.9).
 
@@ -453,12 +459,14 @@ Build charts from the base atoms and a core chart type inside `DataVizCard` + `D
 
 Base (building blocks; atoms/molecules) and chart containers:
 
+With `onClick` (2.0.7, final audit M4) the title is the one button, stretched over the card; the actions are its siblings.
 ### data-viz-card-organism · `DataVizCard`
 Use: The card that holds any chart on a dashboard; Drag for dashboard edit mode.
 Anatomy (`variant="chart"`, drawn by every core chart; rule 10.2): inset on all four sides, stack gap between header · plot · legend. Header (items 9 and 11, Nov 25): `title` (H4, `--color-text`) with an optional one-line `subtitle` (Body/M, `--color-text-soft`, ellipsis + full text on hover) under it · the chart's own control · [hover / focus: Edit with Cooper (its own button on cards 416 px and wider; the first ⋯ item below that), ⋯ (Move, then `menuItems`), `actions`] · Chart / Table switch (icon-only `SegmentedControl` M, when `onViewChange` is set) · Evidence button (always visible). The 6-dot drag handle sits in the start inset on hover / keyboard focus; the title never moves. `description` is screen-reader text (`aria-describedby`, and the top of the table view), never shown on the card (showing it is a decided user setting; its placement is open).
 Moving (item 9, `movable`, default true): drag from the whole header (grab cursor, 4 px threshold, buttons excluded; `onDragEnd({ dx, dy })`); keyboard: the card is a tab stop, Space picks it up, arrows move one grid step (`onMove({ col, row })`), Space drops, Esc cancels (`onMoveEnd({ col, row, cancelled })`); "Move" in ⋯ does the same; every step is announced. Where the card lands is the dashboard pattern's job (phase 2).
 Size (rule 10.3): `size` default (`--size-data-viz-card`, 3 dashboard rows + 2 page gaps: 380 / 332 / 284 at a 16 gap) | large (2 default cards + the page gap); the plot fills what is left (and the subtitle line when there is none). `autoHeight` for the `height` escape hatch; `bare` fills its frame. `legendPlacement` below | beside (pie, donut). `hideControls` hides the switch and Evidence (no data, rule 10.10).
 
+`legendPosition` (below | beside, 2.0.7) is the one name, as on the charts; `legendPlacement` is its deprecated alias until 3.0 (release.md).
 ### data-viz-header-molecule · `DataVizHeader`
 Use: Chart title row with optional view toggle or button. `viewSwitch` sits after the hover row and before `slot` (Evidence), so it never moves when the hover row shows. `subtitle` (chart card): one line under the title; the controls stay on the title row (`.ifs-dv-header__controls`).
 
@@ -602,6 +610,7 @@ Use: Level 3 page header; build it with `PageHeader`.
 
 ### page-header · `PageHeader`
 Use: The thin header inside one entity (rules 12.1, 12.3).
+Notes: `onBack` + `backLabel` (2.0.7, default "Back"): the back button goes up one level and is named for where it goes, "Back to {parent}"; the name is also its tooltip (rule 14.1). An icon-only `views` switch is named by the header (group "View", each option from its icon or label).
 
 ### page-top · `PageTop`
 Use: The intro of a broad page (rule 12.1). Also the Command home intro (Cooper eyebrow, no button) and the Build page (title, Tabs L and "Create ▾", no search).
@@ -698,7 +707,7 @@ Use: Layer category card with active count ("1/5 layers on").
 
 ### map-pin-teardrop · `MapPin`
 Use: Default location marker for one asset on an exact spot. Other pins on the page (`map-pin-dot`, `-square`, `-pole`, `-defect`, `-flow`) cover counts, clusters, readings, defects and direction.
-Status: `MapPin` takes the five C1 words, `neutral` · `danger` · `warning` · `success` · `info` (`error` = old name for danger). Fills (G2 option B, Nov 25): neutral `--color-icon-map-pin-neutral` (#737373) and danger `--color-icon-map-pin-danger` (#e5001e) with white glyphs and counts; warning keeps its fill with a black glyph and count. The dot pin `MapPinDot` takes `danger` · `warning` · `neutral` (old-name aliases: `error` draws danger, `success` and `info` draw neutral; rule 1.1).
+Status: `MapPin` takes the five C1 words, `neutral` · `danger` · `warning` · `success` · `info` (`error` = old name for danger). Fills (G2 option B, Nov 25): neutral `--color-icon-map-pin-neutral` (#737373) and danger `--color-icon-map-pin-danger` (#e5001e) with white glyphs and counts; warning keeps its fill with a black glyph and count. The dot pin `MapPinDot` keeps a 24 px hit area by itself (`--size-target-min`; `scale` = the transform scale of a scaled preview, so the target stays 24 on screen; rule 3.9) and takes `danger` · `warning` · `neutral` (old-name aliases: `error` draws danger, `success` and `info` draw neutral; rule 1.1).
 
 ### map-status-risk
 Use: Planning-risk severity on a map asset (icon + %).
@@ -855,7 +864,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 2. The panel is never empty (the owner is always listed first, "(you)"). Sections: People with access, Awaiting, Suggested by Cooper; empty sections hide.
 3. The indicator counts invited collaborators, not approvers or reviewers: "joined / invited", both including the owner (1/1 alone).
 4. Search: empty focus shows Suggested by Cooper + Recently; typing matches name or job role; only people not yet on the record; no match shows suggestion chips of people who can be invited. The role filter narrows to roles; clearing every role returns to All.
-5. Invite: "+" → "Add collaborator" dialog (access defaults to Editor; Cooper's brief pre-filled and editable) → Send invitation → under Awaiting, invited count +1. Clicking a collaborator opens the same dialog to edit ("Edit collaborator"; the title is the screen's text, `title` prop); Save is always on (rule 14.4): with no change it just closes the dialog.
+5. Invite: "+" → "Invite collaborator" dialog (access defaults to Editor; Cooper's brief pre-filled and editable) → **Invite** → under Awaiting, invited count +1. Clicking a collaborator opens the same dialog to edit ("Edit collaborator"; the title is the screen's text, `title` prop); Save is always on (rule 14.4): with no change it just closes the dialog.
 6. Remove: role select → Remove → "Remove this collaborator?" (revokes the invite) → gone, count −1. Always confirmed.
 7. Push: an awaiting row shows the bell 24h after the last notification (sending the invite counts). Push sends an in-app notification and email (both deep-link to the invitation's Accept / Decline), attributed to the owner, reusing the invite and brief (no new invite, no count change); toast "Reminder sent" + "You can send another in 24 hours."; the row then shows a disabled "Notified". At most 1 per invitee per 24h.
 8. Auto-reminders: system-sent after N days (§15 Open), impersonal, repeat at intervals then stop; manual and auto reminders are never merged. All reminders stop (queued ones are cancelled) when the invitee accepts or declines, is removed or replaced, or the record is archived; every reminder is logged in Activity ("A. Singh resent the invitation to …"); notification preferences apply (email off → in-app only).

@@ -229,7 +229,7 @@ export default IFS_GALLERY;
         actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton />
           <IFS.Button type="tertiary" size="s">Approval chain</IFS.Button>
           <IFS.SplitButton disabled={status !== 'pending'} onClick={() => { setStatus('approved'); IFS.toast({ title: 'Framework approved' }); }}
-            items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => { setStatus('revision'); IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jeff Pauska. They see your comment in the activity log.' }); } }]}>Approve</IFS.SplitButton></>} />
+            items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => { setStatus('revision'); IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jordan Price. They see your comment in the activity log.' }); } }]}>Approve</IFS.SplitButton></>} />
     </Screen>;
   }
 }

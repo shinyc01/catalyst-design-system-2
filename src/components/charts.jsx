@@ -383,13 +383,15 @@ const VIEW_OPTIONS = [{ value: 'chart', icon: 'chart', label: 'Chart' }, { value
 // movable (default true): drag from the header and keyboard move (Space / arrows / Space / Esc; useCardMove), with onMove, onMoveEnd,
 // onDragEnd. menuItems = the screen's real extra ⋯ items (Menu items: download, full screen, remove from dashboard …).
 // hideControls hides the switch and Evidence (no data to switch or explain: loading, empty, error, no results; D9).
-// legendPlacement below (default) | beside (pie and donut: the list sits beside the plot). autoHeight = no fixed height (the `height`
+// legendPosition below (default) | beside (pie and donut: the list sits beside the plot); the same name as the charts' prop (rule 10.5).
+// legendPlacement is its deprecated alias (removed in 3.0). autoHeight = no fixed height (the `height`
 // escape hatch). bare = no frame: no padding, fill, border or header — just the content and legend, for a chart placed inside another
 // frame that already draws the header (e.g. a dashboard widget); it fills that frame's height.
 let dvCardUid = 0;
 function DataVizCard({ variant = 'organism', state, title, subtitle, description, header, legend, children, onCooper, onEditWithCooper, view, onViewChange,
-  actions, menuItems, movable = true, onMove, onMoveEnd, onDragEnd, bare, size = 'default', legendPlacement = 'below', hideControls, autoHeight, className, style, ...rest }) {
+  actions, menuItems, movable = true, onMove, onMoveEnd, onDragEnd, bare, size = 'default', legendPosition: legendPositionIn, legendPlacement, hideControls, autoHeight, className, style, ...rest }) {
   const ref = React.useRef(null);
+  const legendPosition = legendPositionIn || legendPlacement || 'below'; // legendPlacement: deprecated alias (RULES M14, 2.0.7)
   const descId = React.useMemo(() => `ifs-dv-desc-${++dvCardUid}`, []);
   const isChart = variant === 'chart' && !bare;
   const canMove = isChart && movable && !(header && header.draggable === false);
@@ -420,11 +422,11 @@ function DataVizCard({ variant = 'organism', state, title, subtitle, description
             options={VIEW_OPTIONS} value={view || 'chart'} onChange={onViewChange} /> : undefined}
           slot={hideControls ? undefined : <IFS.EvidenceButton label="Ask Cooper about this chart" onClick={onCooper} />} />}
         {description && <p id={descId} className="ifs-sr-only">{description}</p>}
-        <div className={IFS.cx('ifs-dv-card__body', legend && legendPlacement === 'beside' && 'ifs-dv-card__body--beside')}>
+        <div className={IFS.cx('ifs-dv-card__body', legend && legendPosition === 'beside' && 'ifs-dv-card__body--beside')}>
           {children}
-          {legend && legendPlacement === 'beside' && <div className="ifs-dv-card__legend ifs-dv-card__legend--beside">{legend}</div>}
+          {legend && legendPosition === 'beside' && <div className="ifs-dv-card__legend ifs-dv-card__legend--beside">{legend}</div>}
         </div>
-        {legend && legendPlacement !== 'beside' && <div className="ifs-dv-card__legend">{legend}</div>}
+        {legend && legendPosition !== 'beside' && <div className="ifs-dv-card__legend">{legend}</div>}
       </section>
     );
   }
@@ -706,7 +708,7 @@ function ChartShell({ title, subtitle, description, state, legend: legendIn, leg
       onCooper={onCooper} onEditWithCooper={onEditWithCooper} actions={actions} menuItems={menuItems} movable={movable} onMove={onMove} onMoveEnd={onMoveEnd} onDragEnd={onDragEnd}
       bare={bare} hideControls={noData}
       view={mode === 'table' ? 'table' : 'chart'} onViewChange={table ? setV : undefined}
-      legend={legendNode} legendPlacement={legend && legend.beside ? 'beside' : 'below'}>
+      legend={legendNode} legendPosition={legend && legend.beside ? 'beside' : 'below'}>
       {mode === 'loading' ? (skel ? <ChartSkeleton kind={skeleton} height={height} title={title} /> : <div className="ifs-chart__wait" aria-busy="true" style={height ? { height } : undefined} />)
         : copy ? <div className="ifs-chart__state" style={height ? { minHeight: height } : undefined}>
             <IFS.EmptyState size="section" cause={copy.cause} icon={copy.icon} heading={heading || copy.heading} body={body || copy.body} primaryAction={action} />

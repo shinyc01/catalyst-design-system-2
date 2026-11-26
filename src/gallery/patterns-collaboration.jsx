@@ -11,7 +11,7 @@ export default IFS_GALLERY;
 
   /* ---------------- data (Figma names) ---------------- */
   const P = (id, name, title, type, initials) => ({ id, name, title, avatar: { type }, initials });
-  const ME = { ...P('jp', 'Jeff P.', 'Reliability lead', 'black', 'JP'), status: 'owner', access: 'owner', online: true };
+  const ME = { ...P('jp', 'Jordan P.', 'Reliability lead', 'black', 'JP'), status: 'owner', access: 'owner', online: true };
   const MARIA = P('mc', 'Maria Chen', 'Reliability lead', 'dark-pink');
   const LARA = P('lg', 'Lara Green', 'Field team lead', 'green');
   const JAMES = P('jr', 'James Reyes', 'Planning engineer', 'yellow');
@@ -107,7 +107,7 @@ export default IFS_GALLERY;
     const online = c.members.filter(p => p.online && p.status !== 'owner');
     return (
       <div style={shell} aria-label="Draft framework with collaborators">
-        <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
+        <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jordan P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>

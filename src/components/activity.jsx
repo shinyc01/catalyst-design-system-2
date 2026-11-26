@@ -679,7 +679,7 @@ function FileCardName({ name }) {
 // e.g. a Menu with more or Tooltip-wrapped icon-buttons; shown on hover/focus, always on error), active (keeps the hover look and
 // the actions visible, e.g. while its menu is open), state hover (gallery).
 function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, onClick, actions, active, state, className, ...rest }) {
-  if (loading) return <div className={actCx('ifs-file-card', 'ifs-file-card--loading', 'ifs-sk', className)} aria-busy="true" {...rest} />;
+  if (loading) return <div className={actCx('ifs-file-card', 'ifs-file-card--loading', 'ifs-sk', className)} role="img" aria-label={name ? `Loading ${name}` : 'Loading file'} aria-busy="true" {...rest} />;
   let right = null;
   if (actions != null) right = <div className={actCx('ifs-file-card__actions', error && 'ifs-file-card__actions--error')} onClick={e => e.stopPropagation()}>{actions}</div>;
   else if (error) right = (
@@ -693,16 +693,23 @@ function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, o
       <IFS.IconButton type="ghost" size="s" icon="system-download" label="Download file" onClick={e => { e.stopPropagation(); onDownload(e); }} />
     </div>
   );
+  // A11Y M4 (final audit): with onClick the open action is one real button stretched over the card (::after); the actions are its
+  // siblings above it, so no control sits inside another. Without onClick the card itself takes focus to show its actions.
+  const content = (
+    <>
+      <span className="ifs-file-card__tile"><IFS.Icon name={error ? 'status-error-filled' : 'system-file'} size={16} /></span>
+      <span className="ifs-file-card__text">
+        <FileCardName name={name} />
+        {date != null && <span className="ifs-file-card__date">{date}</span>}
+      </span>
+    </>
+  );
   return (
-    <div className={actCx('ifs-file-card', error && 'ifs-file-card--error', active && 'ifs-file-card--active', className)} data-state={state}
-      tabIndex={onClick ? undefined : 0} {...actKeyClick(onClick)} {...rest}>
-      <div className="ifs-file-card__main">
-        <span className="ifs-file-card__tile"><IFS.Icon name={error ? 'status-error-filled' : 'system-file'} size={16} /></span>
-        <div className="ifs-file-card__text">
-          <FileCardName name={name} />
-          {date != null && <span className="ifs-file-card__date">{date}</span>}
-        </div>
-      </div>
+    <div className={actCx('ifs-file-card', error && 'ifs-file-card--error', active && 'ifs-file-card--active', onClick && 'ifs-file-card--clickable', className)} data-state={state}
+      tabIndex={onClick ? undefined : 0} {...rest}>
+      {onClick
+        ? <button type="button" className="ifs-file-card__main ifs-file-card__open" onClick={onClick}>{content}</button>
+        : <div className="ifs-file-card__main">{content}</div>}
       {right}
     </div>
   );
