@@ -30,7 +30,7 @@ function useApOutside(ref, active, onOutside) {
 // awaiting = the reviewer is overdue ("it's time to notify the user", Figma note); empty = not acted yet.
 const AP_STATUS = {
   success: { icon: 'status-success-filled', label: 'Approved' },
-  rejected: { icon: 'status-error-filled', label: 'Revisions required' },
+  rejected: { icon: 'status-error-filled', label: 'Needs revision' },
   awaiting: { icon: 'clock-filled', label: 'Awaiting, time to notify' },
   empty: { icon: null, label: 'Not acted yet' },
 };
@@ -293,7 +293,7 @@ ApprovalChainPanel.panelMode = 'push'; // AppShell panel mode by job (Nov 19): u
 
 const APC_STATES = [
   { value: 'success', label: 'Approved' }, { value: 'awaiting', label: 'Awaiting' },
-  { value: 'rejected', label: 'Rejected' }, { value: 'revisions', label: 'Revisions required' },
+  { value: 'rejected', label: 'Rejected' }, { value: 'revisions', label: 'Needs revision' },
 ];
 const apcMatch = (status, sel) => sel.some(s => (s === 'awaiting' ? status === 'awaiting' || status === 'empty' || !status : s === status));
 const apcHours = (pushedAt, now, cooldown) => Math.max(0, cooldown * 36e5 - (now - pushedAt));

@@ -209,7 +209,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Pattern: Readiness evaluation', figma: 'Review - Portfolio impact - Reviewer: Approved / Blocked view [patterns] (12:193232 / 12:193367)', render: () => {
     const [view, setView] = useState('approved');
     return <>
-      <Demo>Reviewer view. Expand the sections; collapse the panel. Approve, or open the caret menu → Request more info (status becomes Revision required).
+      <Demo>Reviewer view. Expand the sections; collapse the panel. Approve, or open the caret menu → Request more info (status becomes Needs revision).
         <IFS.SegmentedControl size="s" value={view} onChange={setView} options={[{ value: 'approved', label: 'Approved view' }, { value: 'blocked', label: 'Blocked view' }]} /></Demo>
       <ReadinessScreen key={view} data={CASES[view]} />
     </>;
@@ -219,7 +219,7 @@ export default IFS_GALLERY;
     const [status, setStatus] = useState('pending');
     const blocked = data.readiness < 100;
     const ind = status === 'pending' ? <IFS.Indicator type="orange" size="xs">Pending approval</IFS.Indicator>
-      : status === 'approved' ? <IFS.Indicator type="green" size="xs">Approved</IFS.Indicator> : <IFS.Indicator type="red" size="xs">Revision required</IFS.Indicator>;
+      : status === 'approved' ? <IFS.Indicator type="green" size="xs">Approved</IFS.Indicator> : <IFS.Indicator type="red" size="xs">Needs revision</IFS.Indicator>;
     const panel = <div style={{ height: '100%' }}>{exp
       ? <IFS.Panel title="Readiness Evaluation" expanded onExpandedChange={setExp} onEvidence={noop} style={{ height: '100%' }}>
         <IFS.ReadinessEvaluation summary={data.summary} readiness={data.readiness} checks={data.checks} sections={data.sections} /></IFS.Panel>
@@ -229,7 +229,7 @@ export default IFS_GALLERY;
         actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton />
           <IFS.Button type="tertiary" size="s">Approval chain</IFS.Button>
           <IFS.SplitButton disabled={status !== 'pending'} onClick={() => { setStatus('approved'); IFS.toast({ title: 'Framework approved' }); }}
-            items={[{ label: 'Request more info', description: 'Send back to the author as Revision required', onClick: () => { setStatus('revision'); IFS.toast({ title: 'Revision requested', description: 'The author sees your comment in the activity log.' }); } }]}>Approve</IFS.SplitButton></>} />
+            items={[{ label: 'Request more info', description: 'Send back to the author as Needs revision', onClick: () => { setStatus('revision'); IFS.toast({ title: 'Revisions requested', description: 'The author sees your comment in the activity log.' }); } }]}>Approve</IFS.SplitButton></>} />
     </Screen>;
   }
 }

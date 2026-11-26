@@ -1,0 +1,4 @@
+import{I as t}from"./navigation-CPc8VeOq.js";import{I as p}from"./patterns-trace-C_N42cH9.js";import"./index-B0WjJBI_.js";import"./_commonjsHelpers-CqkleIqs.js";import"./index-x-G-dxfr.js";import"./index-CwPCC0ZT.js";const n=t.find(s=>s.name==="AppShell: panel push / over"),u={title:"Navigation/AppShell: panel push / over",component:p["AppShell: panel push / over"],tags:["autodocs"],parameters:{docs:{description:{component:"**Figma:** not a Figma component — panel mode by job (Nov 19): push = used with the page, over = preview; push falls back to a rail below 1024"}}}},e={name:"All variants & states",render:()=>n.render()};var r,a,o;e.parameters={...e.parameters,docs:{...(r=e.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  name: 'All variants & states',
+  render: () => section.render()
+}`,...(o=(a=e.parameters)==null?void 0:a.docs)==null?void 0:o.source}}};const v=["AllVariants"];export{e as AllVariants,v as __namedExportsOrder,u as default};

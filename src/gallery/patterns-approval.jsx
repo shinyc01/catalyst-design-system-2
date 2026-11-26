@@ -131,7 +131,7 @@ export default IFS_GALLERY;
     { type: 'section', label: 'Library', items: [{ id: 'strategy', label: 'Strategy Frameworks' }, { id: 'value', label: 'Value Frameworks' }, { id: 'models', label: 'Value Models' }] },
   ];
   const STATUS = {
-    draft: ['gray', 'Draft'], shaping: ['gray', 'Shaping'], pending: ['orange', 'Pending approval'], revisions: ['red', 'Revisions required'],
+    draft: ['gray', 'Draft'], shaping: ['gray', 'Shaping'], pending: ['orange', 'Pending approval'], revisions: ['red', 'Needs revision'],
     ready: ['blue', 'Ready to publish'], active: ['green', 'Active'],
   };
   const Screen = ({ children }) => <div style={{ position: 'relative', width: 1440, height: 900, maxWidth: '100%', overflow: 'hidden', border: '1px solid var(--color-border-soft)' }}>{children}</div>;
@@ -196,7 +196,7 @@ export default IFS_GALLERY;
     const requestInfo = () => {
       const text = note.trim();
       setModal(null); setDecision('info'); setChainMode(null); setMine({ status: 'revisions', comment: text });
-      IFS.toast({ title: 'Revision requested — sent back to Jeff Pauska', description: 'Status updated to Revision required',
+      IFS.toast({ title: 'Revisions requested — sent back to Jeff Pauska', description: 'Status updated to Needs revision',
         secondaryAction: { label: 'Undo', iconLeft: 'arrow-back-up', onClick: () => { setDecision(null); setMine({ status: 'empty', comment: undefined }); } } });
     };
     const mainAction = decision === 'approved' ? <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request more information' }]}>Approved</SplitButton>
