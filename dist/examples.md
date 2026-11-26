@@ -21,9 +21,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </Row>
     <Row label="connector"><IFS.Inline gap="600" style={{ height: 120 }}><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector /></div><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector type="dash" /></div></IFS.Inline></Row>
     <Row label="organism">
-      <Col><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
+      <Col><div role="list" aria-label="Timeline item" /* A11Y L5: an item shown alone sits in its list */><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
         Surfaced T-902 as top contributor to Hydro Feed Line 3 cluster risk. Scaled Inference — 87% evidence strength. Computational Receipt #441-WD generated.
-      </TimelineItem></Col>
+      </TimelineItem></div></Col>
     </Row>
     <Row label="in use (list)"><Col><Timeline items={ACTIVITY} /></Col><Col><Timeline connector="dash" items={ACTIVITY.slice(0, 3)} /></Col></Row>
   </> });
@@ -40,9 +40,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </Row>
     <Row label="connector"><IFS.Inline gap="600" style={{ height: 120 }}><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector /></div><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector type="dash" /></div></IFS.Inline></Row>
     <Row label="organism">
-      <Col><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
+      <Col><div role="list" aria-label="Timeline item" /* A11Y L5: an item shown alone sits in its list */><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
         Surfaced T-902 as top contributor to Hydro Feed Line 3 cluster risk. Scaled Inference — 87% evidence strength. Computational Receipt #441-WD generated.
-      </TimelineItem></Col>
+      </TimelineItem></div></Col>
     </Row>
     <Row label="in use (list)"><Col><Timeline items={ACTIVITY} /></Col><Col><Timeline connector="dash" items={ACTIVITY.slice(0, 3)} /></Col></Row>
   </> });
@@ -59,9 +59,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </Row>
     <Row label="connector"><IFS.Inline gap="600" style={{ height: 120 }}><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector /></div><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector type="dash" /></div></IFS.Inline></Row>
     <Row label="organism">
-      <Col><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
+      <Col><div role="list" aria-label="Timeline item" /* A11Y L5: an item shown alone sits in its list */><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
         Surfaced T-902 as top contributor to Hydro Feed Line 3 cluster risk. Scaled Inference — 87% evidence strength. Computational Receipt #441-WD generated.
-      </TimelineItem></Col>
+      </TimelineItem></div></Col>
     </Row>
     <Row label="in use (list)"><Col><Timeline items={ACTIVITY} /></Col><Col><Timeline connector="dash" items={ACTIVITY.slice(0, 3)} /></Col></Row>
   </> });
@@ -77,9 +77,9 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     </Row>
     <Row label="connector"><IFS.Inline gap="600" style={{ height: 120 }}><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector /></div><div style={{ width: 24, display: 'flex', flexDirection: 'column' }}><TimelineConnector type="dash" /></div></IFS.Inline></Row>
     <Row label="organism">
-      <Col><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
+      <Col><div role="list" aria-label="Timeline item" /* A11Y L5: an item shown alone sits in its list */><TimelineItem avatar={{ type: 'cooper', name: 'Cooper' }} title="Cooper" badge="Auto-action" subtitle="Agent" time="3:42 AM · Feb 5">
         Surfaced T-902 as top contributor to Hydro Feed Line 3 cluster risk. Scaled Inference — 87% evidence strength. Computational Receipt #441-WD generated.
-      </TimelineItem></Col>
+      </TimelineItem></div></Col>
     </Row>
     <Row label="in use (list)"><Col><Timeline items={ACTIVITY} /></Col><Col><Timeline connector="dash" items={ACTIVITY.slice(0, 3)} /></Col></Row>
   </> });
@@ -287,6 +287,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     ))}
     <Row label="sizes l / m / s">{['l', 'm', 's'].map(z => <Button key={z} type="primary" size={z} iconLeft="system-star-favourite" iconRight="system-heart">Label</Button>)}</Row>
     <Row label="loading l / m / s">{['l', 'm', 's'].map(z => <Button key={z} type="secondary" size={z} loading>Saving</Button>)}</Row>
+    {/* Moves are links (rule 14.1): href renders <a href> with the Ghost look; disabled stays a link (<a aria-disabled>, no href) */}
+    <Row label="href (moves)">
+      <Button href="#scenario-12" iconLeft="arrow-chevron-left">Back to scenarios</Button>
+      <Button href="#scenario-12" iconRight="arrow-chevron-right">Open scenario</Button>
+      <Button href="#scenario-12" disabled>Open scenario</Button>
+      <Button href="#scenario-12" disabled disabledReason="Only portfolio owners can open draft scenarios">Open draft scenario</Button>
+    </Row>
   </> });
 ```
 
@@ -356,7 +363,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'NodeCard', figma: 'node-card (1440:4401)', render: () => <div style={{ overflowX: 'auto', padding: 'var(--space-150)' }}>
     {STATES.map(s => <Row key={s || 'default'} label={s || 'default'} top nowrap>{TYPES.map(t => card(t, s))}</Row>)}
     <Row label="loading"><NodeCard type="skeleton" /></Row>
-    <Row label="counter / interactive"><NodeCard type="value-model" badge="Model" title="Click to select" caption="drag me" counter={7} draggable />
+    <Row label="counter / interactive"><NodeCard type="value-model" badge="Model" title="Select or drag" caption="Value model" counter={7} draggable />
       <NodeCard type="subnode" title="Checkbox" caption="toggle" checkbox defaultChecked={false} /></Row>
   </div> });
 ```
@@ -1127,9 +1134,10 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### Weekday
 ```jsx
   IFS_GALLERY.push({ name: 'Weekday', figma: 'weekday-atom (2704:74414)', render: () => <>
-    <Row label="atom"><Weekday>Wed</Weekday></Row>
-    <Row label="row (Mon start)"><Weekdays /></Row>
-    <Row label="row (Sun start)"><Weekdays weekStartsOn={0} /></Row>
+    {/* Shown inside their parent roles (grid > row), as in the calendar, so the gallery itself is valid ARIA (audit final A11Y L5) */}
+    <Row label="atom"><div role="grid" aria-label="Weekday"><div role="row"><Weekday>Wed</Weekday></div></div></Row>
+    <Row label="row (Mon start)"><div role="grid" aria-label="Weekdays, Monday start"><Weekdays /></div></Row>
+    <Row label="row (Sun start)"><div role="grid" aria-label="Weekdays, Sunday start"><Weekdays weekStartsOn={0} /></div></Row>
   </> });
 ```
 
@@ -1137,9 +1145,10 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 (from the Weekday example)
 ```jsx
   IFS_GALLERY.push({ name: 'Weekday', figma: 'weekday-atom (2704:74414)', render: () => <>
-    <Row label="atom"><Weekday>Wed</Weekday></Row>
-    <Row label="row (Mon start)"><Weekdays /></Row>
-    <Row label="row (Sun start)"><Weekdays weekStartsOn={0} /></Row>
+    {/* Shown inside their parent roles (grid > row), as in the calendar, so the gallery itself is valid ARIA (audit final A11Y L5) */}
+    <Row label="atom"><div role="grid" aria-label="Weekday"><div role="row"><Weekday>Wed</Weekday></div></div></Row>
+    <Row label="row (Mon start)"><div role="grid" aria-label="Weekdays, Monday start"><Weekdays /></div></Row>
+    <Row label="row (Sun start)"><div role="grid" aria-label="Weekdays, Sunday start"><Weekdays weekStartsOn={0} /></div></Row>
   </> });
 ```
 
@@ -1387,11 +1396,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     return <>
       {['m', 'l'].map(z => (
         <Row key={z} label={`tab ${z}`}>
+          <IFS.Inline gap="200" wrap role="tablist" aria-label={`Tab states, size ${z}`} /* A11Y L5: tabs shown alone sit in their parent role */>
           <Tab size={z} count={7}>Text</Tab>
           <Tab size={z} count={7} state="hover">Text</Tab>
           <Tab size={z} count={7} selected>Text</Tab>
           <Tab size={z} count={7} state="focus">Text</Tab>
           <Tab size={z} count={0} disabled>Text</Tab>
+          </IFS.Inline>
         </Row>
       ))}
       <Row label="organism m">
@@ -1414,11 +1425,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     return <>
       {['m', 'l'].map(z => (
         <Row key={z} label={`tab ${z}`}>
+          <IFS.Inline gap="200" wrap role="tablist" aria-label={`Tab states, size ${z}`} /* A11Y L5: tabs shown alone sit in their parent role */>
           <Tab size={z} count={7}>Text</Tab>
           <Tab size={z} count={7} state="hover">Text</Tab>
           <Tab size={z} count={7} selected>Text</Tab>
           <Tab size={z} count={7} state="focus">Text</Tab>
           <Tab size={z} count={0} disabled>Text</Tab>
+          </IFS.Inline>
         </Row>
       ))}
       <Row label="organism m">
@@ -1567,7 +1580,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 'var(--space-300)' }}>
-      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} onTitleMenu={() => {}} status={<Status>Draft</Status>}
+      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} backLabel="Back to Value frameworks" onTitleMenu={() => {}} status={<Status>Draft</Status>}
         actions={<IFS.Button type="primary" size="s">Review</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 'var(--space-300)' }}>
@@ -1586,7 +1599,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         tabs={{ items: FW_TABS, defaultValue: 'all' }} search={SEARCH} />
     </Frame>
     <Frame label="cooper = true, Show button = false (Command home; the instance overrides the gap to 12)">
-      <PageTop eyebrow title="Welcome back, Jeff." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
+      <PageTop eyebrow title="Welcome back, Jordan." description="2.8M simulations completed while you were away. Here are the items that require your input and attention right now."
         style={{ gap: 'var(--space-300)' }} tabs={{ items: [{ value: 'w', label: 'My works', count: 3 }, { value: 'd', label: 'Decisions', count: 6 }, { value: 'c', label: 'Conversations', count: 3 }, { value: 'f', label: 'Following', count: 3 }], defaultValue: 'd' }}
         search={{ placeholder: 'Search' }} />
     </Frame>
@@ -1709,7 +1722,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'SplitButton', figma: 'header-pattern main action [patterns] (138:291660)', render: () => (
     <Row label="states">
-      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jeff Pauska.' }) }]}>Approve</SplitButton>
+      <SplitButton onClick={() => IFS.toast({ title: 'Approve clicked' })} items={[{ label: 'Request revisions', description: 'Send it back to the author to revise.', onClick: () => IFS.toast({ title: 'Revisions requested', description: 'Sent back to Jordan Price.' }) }]}>Approve</SplitButton>
       <SplitButton disabled iconLeft="system-check" items={[{ label: 'Request revisions' }]}>Approved</SplitButton>
       <SplitButton disabled iconLeft="system-check">Revisions requested</SplitButton>
       <SplitButton type="secondary" onClick={() => {}}>Publish</SplitButton>
@@ -1866,14 +1879,14 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const online = c.members.filter(p => p.online && p.status !== 'owner');
     return (
       <div style={shell} aria-label="Draft framework with collaborators">
-        <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jeff P.' }} />
+        <IFS.NavBar defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'Jordan P.' }} />
         <div style={{ display: 'grid', gridTemplateColumns: '48px 1fr', minHeight: 0 }}>
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative', zIndex: 9 }}>
               <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
-                views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'overview' }, { value: 'map', iconLeft: 'node-map' }, { value: 'flow', iconLeft: 'capital-flow' }]} />}
+                views={<IFS.SegmentedControl size="s" defaultValue="map" aria-label="View" options={[{ value: 'grid', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'map', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />}
                 actions={<IFS.Inline as="span" gap="100" align="center">
                   <IFS.CollaboratorsMenu controller={c} open={panelOpen} onOpenChange={onPanelOpen} />
                   <IFS.CommentButton />
@@ -2017,7 +2030,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'ChatLink', figma: 'chat-link-molecule "chat-link-item" [patterns] (12:265109)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="follow-up · Default / Hover" w={426}><div><ChatLink>What decisions are waiting?</ChatLink><ChatLink state="hover">Show agent conflict</ChatLink></div></Cap>
-    <Cap title="source" w={426}><div><ChatLink type="source" number={1}>Q1 2026 Strategy Framework — coverage report</ChatLink><ChatLink type="source" number={2}>Asset health telemetry, last 12 months</ChatLink></div></Cap>
+    <Cap title="source" w={426}><div><ChatLink type="source" number={1}>Q1 2026 Strategy Framework: coverage report</ChatLink><ChatLink type="source" number={2}>Asset health telemetry, last 12 months</ChatLink></div></Cap>
   </IFS.Inline> });
 ```
 
@@ -2025,13 +2038,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 (from the CooperMessage example)
 ```jsx
   IFS_GALLERY.push({ name: 'CooperMessage', figma: 'Cooper Message content — anatomy & states [patterns] (67:134213)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="Analysing (Step n/total)" w={426}><CooperProgress {...step} /></Cap>
+    <Cap title="Analysing (Step n of total)" w={426}><CooperProgress step={step.n} total={step.total} label={step.label} /></Cap>
     <Cap title="Streaming" w={426}><CooperMessage status="streaming" text={answerText} streamed={120} /></Cap>
     <Cap title="Stopped while analysing → Try again" w={426}><CooperMessage status="stopped" step={step} onRetry={() => {}} /></Cap>
     <Cap title="Stopped while streaming → Regenerate" w={426}><CooperMessage status="stopped" text={answerText} streamed={120} onRegenerate={() => {}} /></Cap>
     <Cap title="Didn’t reply (error)" w={426}><CooperMessage status="error" onRetry={() => {}} /></Cap>
     <Cap title="Network error" w={426}><CooperMessage status="offline" onRetry={() => {}} /></Cap>
-    <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework — coverage report' }]} /></Cap>
+    <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework: coverage report' }]} /></Cap>
     <Cap title="Answer with clarifying options (follow-ups hidden)" w={426}><CooperMessage status="answered" text="I need a little more context. Which would you like to start with?" followUps={followUps}
       options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours. Select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
   </IFS.Inline> });
@@ -2040,13 +2053,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### CooperMessage
 ```jsx
   IFS_GALLERY.push({ name: 'CooperMessage', figma: 'Cooper Message content — anatomy & states [patterns] (67:134213)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
-    <Cap title="Analysing (Step n/total)" w={426}><CooperProgress {...step} /></Cap>
+    <Cap title="Analysing (Step n of total)" w={426}><CooperProgress step={step.n} total={step.total} label={step.label} /></Cap>
     <Cap title="Streaming" w={426}><CooperMessage status="streaming" text={answerText} streamed={120} /></Cap>
     <Cap title="Stopped while analysing → Try again" w={426}><CooperMessage status="stopped" step={step} onRetry={() => {}} /></Cap>
     <Cap title="Stopped while streaming → Regenerate" w={426}><CooperMessage status="stopped" text={answerText} streamed={120} onRegenerate={() => {}} /></Cap>
     <Cap title="Didn’t reply (error)" w={426}><CooperMessage status="error" onRetry={() => {}} /></Cap>
     <Cap title="Network error" w={426}><CooperMessage status="offline" onRetry={() => {}} /></Cap>
-    <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework — coverage report' }]} /></Cap>
+    <Cap title="Answered — full anatomy" w={426}><CooperMessage {...answer} sources={[{ label: 'Q1 2026 Strategy Framework: coverage report' }]} /></Cap>
     <Cap title="Answer with clarifying options (follow-ups hidden)" w={426}><CooperMessage status="answered" text="I need a little more context. Which would you like to start with?" followUps={followUps}
       options={{ title: 'Let’s build your priorities together', intro: 'I’ll suggest a few options that are common for enterprises like yours. Select one or type another in your message:', items: ['Grow recurring revenue', 'Improve operating margin', 'Deepen customer retention'] }} /></Cap>
   </IFS.Inline> });
@@ -2071,7 +2084,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'ChatCompactPanel', figma: 'chat-compact-panel-organism "floating-window" [patterns] (12:263560)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Text · Default"><ChatCompactPanel type="text" newChat /></Cap>
     <Cap title="Voice · Speaking"><ChatCompactPanel type="voice" newChat speech="Can you give me" /></Cap>
-    <Cap title="Text · Analyzing"><ChatCompactPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress {...step} /></ChatCompactPanel></Cap>
+    <Cap title="Text · Analyzing"><ChatCompactPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress step={step.n} total={step.total} label={step.label} /></ChatCompactPanel></Cap>
     <Cap title="Voice · Interrupted"><ChatCompactPanel type="voice" newChat><UserMessage>{Q}</UserMessage><CooperMessage status="stopped" onRetry={() => {}} /></ChatCompactPanel></Cap>
     <Cap title="Text · Answered"><ChatCompactPanel type="text" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatCompactPanel></Cap>
     <Cap title="Text · Drop file"><ChatCompactPanel type="text" newChat dropping /></Cap>
@@ -2082,7 +2095,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'ChatFullPanel', figma: 'chat-full-panel-organism [patterns] (67:120161)', render: () => <IFS.Inline gap="600" align="start" wrap style={stage}>
     <Cap title="Text · Default (show-chips)"><ChatFullPanel type="text" newChat prompts={prompts} /></Cap>
-    <Cap title="Text · Analyzing"><ChatFullPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress {...step} /></ChatFullPanel></Cap>
+    <Cap title="Text · Analyzing"><ChatFullPanel type="text" newChat analyzing><UserMessage>{Q}</UserMessage><CooperProgress step={step.n} total={step.total} label={step.label} /></ChatFullPanel></Cap>
     <Cap title="Text · Answered"><ChatFullPanel type="text" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatFullPanel></Cap>
     <Cap title="Voice · Answered"><ChatFullPanel type="voice" title="Current strategy overview"><UserMessage>{Q}</UserMessage><CooperMessage {...answer} /></ChatFullPanel></Cap>
   </IFS.Inline> });
@@ -2178,7 +2191,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       {['Strategic objectives', 'Measures', 'Value models'].map(g => <RecommendationGroup key={g} title={g}>{recs.filter(r => r.group === g).map((r, i) => <RecommendationItem key={r.id} {...r} defaultExpanded={g === 'Strategic objectives'} action={{ label: 'Explore' }} />)}</RecommendationGroup>)}
     </AgentWindow></Cap>
     <Cap title="Shape mode · one recommendation"><AgentWindow onAsk={() => {}} onClose={() => {}}><RecommendationDetail {...recs[0]} onBack={() => {}} /></AgentWindow></Cap>
-    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Working on it: Applying to framework structure…" /></Cap>
+    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Applying to framework structure…" /></Cap>
     <Cap title="View=Collapsed · Speaking=False"><AgentWindow defaultView="collapsed" defaultSpeaking={false} onAsk={() => {}} onClose={() => {}} text="x" /></Cap>
   </IFS.Inline> });
 
@@ -2194,7 +2207,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       {['Strategic objectives', 'Measures', 'Value models'].map(g => <RecommendationGroup key={g} title={g}>{recs.filter(r => r.group === g).map((r, i) => <RecommendationItem key={r.id} {...r} defaultExpanded={g === 'Strategic objectives'} action={{ label: 'Explore' }} />)}</RecommendationGroup>)}
     </AgentWindow></Cap>
     <Cap title="Shape mode · one recommendation"><AgentWindow onAsk={() => {}} onClose={() => {}}><RecommendationDetail {...recs[0]} onBack={() => {}} /></AgentWindow></Cap>
-    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Working on it: Applying to framework structure…" /></Cap>
+    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Applying to framework structure…" /></Cap>
     <Cap title="View=Collapsed · Speaking=False"><AgentWindow defaultView="collapsed" defaultSpeaking={false} onAsk={() => {}} onClose={() => {}} text="x" /></Cap>
   </IFS.Inline> });
 
@@ -2210,7 +2223,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       {['Strategic objectives', 'Measures', 'Value models'].map(g => <RecommendationGroup key={g} title={g}>{recs.filter(r => r.group === g).map((r, i) => <RecommendationItem key={r.id} {...r} defaultExpanded={g === 'Strategic objectives'} action={{ label: 'Explore' }} />)}</RecommendationGroup>)}
     </AgentWindow></Cap>
     <Cap title="Shape mode · one recommendation"><AgentWindow onAsk={() => {}} onClose={() => {}}><RecommendationDetail {...recs[0]} onBack={() => {}} /></AgentWindow></Cap>
-    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Working on it: Applying to framework structure…" /></Cap>
+    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Applying to framework structure…" /></Cap>
     <Cap title="View=Collapsed · Speaking=False"><AgentWindow defaultView="collapsed" defaultSpeaking={false} onAsk={() => {}} onClose={() => {}} text="x" /></Cap>
   </IFS.Inline> });
 
@@ -2226,7 +2239,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       {['Strategic objectives', 'Measures', 'Value models'].map(g => <RecommendationGroup key={g} title={g}>{recs.filter(r => r.group === g).map((r, i) => <RecommendationItem key={r.id} {...r} defaultExpanded={g === 'Strategic objectives'} action={{ label: 'Explore' }} />)}</RecommendationGroup>)}
     </AgentWindow></Cap>
     <Cap title="Shape mode · one recommendation"><AgentWindow onAsk={() => {}} onClose={() => {}}><RecommendationDetail {...recs[0]} onBack={() => {}} /></AgentWindow></Cap>
-    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Working on it: Applying to framework structure…" /></Cap>
+    <Cap title="Applying"><AgentWindow onAsk={() => {}} onClose={() => {}} text="Applying to framework structure…" /></Cap>
     <Cap title="View=Collapsed · Speaking=False"><AgentWindow defaultView="collapsed" defaultSpeaking={false} onAsk={() => {}} onClose={() => {}} text="x" /></Cap>
   </IFS.Inline> });
 
@@ -2293,7 +2306,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'BarChartItem', figma: 'bar-chart-item (44fcce06) [patterns] (12:107849)', render: () => <>
     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(c => <Row key={c} label={`color=${c}`}><BarChartItem color={c} style={{ width: 238 }} /></Row>)}
     <Row label="number=false"><BarChartItem color={4} number={false} style={{ width: 238 }} /></Row>
-    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-sequential-azure-3)" style={{ width: 238 }}>$1.2M</BarChartItem></Row>
+    <Row label="fill override"><BarChartItem fill="var(--color-data-viz-sequential-azure-3)" style={{ width: 238, '--bar-ink': 'var(--color-text-on-solid-dark)' }}>$1.2M</BarChartItem></Row>
   </> });
 ```
 
@@ -2347,8 +2360,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   // Investment overview content (the record the documents belong to). Map card uses the new pins.
   function AffectedAssets() {
     const S = 0.47; // the Figma map draws its pins at ~47%
-    // --pd-hit keeps each pin's hit area 24 px on screen inside the scaled thumbnail (audit run 2 M3)
-    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0', '--pd-hit': `calc(var(--size-24) / ${S})` }}>{node}</div>;
+    // MapPinDot scale={S} keeps each pin's hit area 24 px on screen inside the scaled thumbnail (audit run 2 M3, final H9)
+    const at = (x, y, node, k) => <div key={k} style={{ position: 'absolute', left: x, top: y, transform: `scale(${S})`, transformOrigin: '0 0' }}>{node}</div>;
     const route = '88,128 136,159 187,173 232,190 252,191 308,190 360,189 319,118';
     return (
       <div style={{ position: 'relative', width: '100%', height: 236, overflow: 'hidden', borderRadius: 'var(--radius-control)', background: 'var(--color-surface-secondary)' }}>
@@ -2357,10 +2370,10 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="3.7" />
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
         </svg>
-        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" />, `o${i}`))}
-        {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" />, `d${i}`))}
-        {at(230, 188, <MapPinDot size="xs" state="selected" label="Fault" />, 'sel')}
-        {at(314, 116, <MapPinDot size="s" label="Fault" />, 's1')}{at(84, 142, <MapPinDot size="s" label="Fault" />, 's2')}
+        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" scale={S} />, `o${i}`))}
+        {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" scale={S} />, `d${i}`))}
+        {at(230, 188, <MapPinDot size="xs" state="selected" label="Fault" scale={S} />, 'sel')}
+        {at(314, 116, <MapPinDot size="s" label="Fault" scale={S} />, 's1')}{at(84, 142, <MapPinDot size="s" label="Fault" scale={S} />, 's2')}
         {[[155, 159, 169], [275, 187, 180], [336, 143, -63]].map(([x, y, r], i) => at(x, y, <MapPinFlow type="error" rotate={r} />, `f${i}`))}
         {[[129, 145, 6], [354, 175, 1], [299, 179, 2], [246, 178, 3], [180, 161, 5]].map(([x, y, n]) => at(x, y, <MapPinPole pin={false} number={n} />, `p${n}`))}
         {at(224, 174, <MapPinPole pin={false} number={4} defaultSelected />, 'p4')}
@@ -2379,7 +2392,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '48px 1fr', gridTemplateRows: '200px 20px', gap: 'var(--space-100) 0', padding: 'var(--space-200) var(--space-250) 0' }}>
         <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>
           {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
   // … cut; full example in src/gallery/patterns-documents.jsx
 ```
 
@@ -2527,7 +2539,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### SearchCard
 ```jsx
   IFS_GALLERY.push({ name: 'SearchCard', figma: 'search-card [patterns] (95:21751)', render: () => (
-    <IFS.Stack gap="200" style={{ width: 450 }}>
+    <IFS.Stack gap="200" style={{ width: 450 }} role="listbox" aria-label="Suggestions" /* the parent role of its options (audit final A11Y L5) */>
       <SearchCard>Where is wildfire risk used?</SearchCard>
       <SearchCard state="hover">Where is wildfire risk used?</SearchCard>
       <SearchCard type="user-query" query="Where is wild">Where is wildfire risk used?</SearchCard>
@@ -2819,16 +2831,16 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Row label="size" style={{ alignItems: 'flex-start' }}>{sizes.map(z => <span key={z} className="g-label t-body-m-regular" style={W}>{z}</span>)}</Row>
     {triggerStates.map(([n, p]) => (
       <Row key={n} label={n}>
-        {sizes.map(z => <div key={z} style={W}><Select size={z} label="Label" placeholder="{label}" options={OPTS} {...p} /></div>)}
+        {sizes.map(z => <div key={z} style={W}><Select size={z} label="Label" options={OPTS} {...p} /></div>)}
       </Row>
     ))}
     <Row label="open: down / up" style={{ alignItems: 'flex-start', height: 520 }}>
-      <div style={{ width: 384 }}><Select size="l" defaultOpen placeholder="{label}" listTitle="Suggested" options={OPTS} defaultValue={3} /></div>
-      <div style={{ width: 384, marginTop: 460 }}><Select size="l" defaultOpen listPosition="up" placeholder="{label}" listTitle="Suggested" options={OPTS} /></div>
-      <div style={{ width: 240 }}><Select size="m" defaultOpen placeholder="{label}" listSize="l" options={[...OPTS.slice(0, 3), { value: 'x', label: 'Disabled option', disabled: true }]} defaultValue={2} /></div>
+      <div style={{ width: 384 }}><Select size="l" defaultOpen label="Owner" listTitle="Suggested" options={OPTS} defaultValue={3} /></div>
+      <div style={{ width: 384, marginTop: 460 }}><Select size="l" defaultOpen listPosition="up" label="Reviewer" listTitle="Suggested" options={OPTS} /></div>
+      <div style={{ width: 240 }}><Select size="m" defaultOpen label="Approver" listSize="l" options={[...OPTS.slice(0, 3), { value: 'x', label: 'Disabled option', disabled: true }]} defaultValue={2} /></div>
     </Row>
     <Row label="divider + action" style={{ alignItems: 'flex-start', height: 240 }}>
-      <div style={{ width: 240 }}><Select size="m" defaultOpen placeholder="Owner" defaultValue={1}
+      <div style={{ width: 240 }}><Select size="m" defaultOpen label="Owner" defaultValue={1}
         options={[...OPTS.slice(0, 3), { divider: true }, { action: true, danger: true, icon: 'system-trash-delete', label: 'Remove' }]} /></div>
     </Row>
   </> });
@@ -2841,11 +2853,11 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       ['loading', { loading: true, defaultValue: [1, 2, 3] }], ['filled', { defaultValue: [1, 2, 3] }], ['overflow', { defaultValue: [1, 2, 3, 4, 5, 6, 7, 8] }],
       ['error', { error: true }], ['disabled', { disabled: true }]].map(([n, p]) => (
       <Row key={n} label={n}>
-        {sizes.map(z => <div key={z} style={{ width: z === 's' ? 120 : 340 }}><MultiSelect size={z} label="Label" placeholder="{label}" options={OPTS} {...p} /></div>)}
+        {sizes.map(z => <div key={z} style={{ width: z === 's' ? 120 : 340 }}><MultiSelect size={z} label="Label" options={OPTS} {...p} /></div>)}
       </Row>
     ))}
     <Row label="open" style={{ alignItems: 'flex-start', height: 250 }}>
-      <div style={{ width: 384 }}><MultiSelect size="l" defaultOpen placeholder="{label}" listTitle="Suggested" options={OPTS} defaultValue={[2, 4]} /></div>
+      <div style={{ width: 384 }}><MultiSelect size="l" defaultOpen label="Reviewers" listTitle="Suggested" options={OPTS} defaultValue={[2, 4]} /></div>
     </Row>
   </> });
 ```
@@ -2857,8 +2869,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Row key={n} label={n}>{['m', 'l', 'xl'].map(z => <div key={z} style={{ width: 300 }}><Combobox size={z} label="Label" options={OPTS} {...p} /></div>)}</Row>
     ))}
     <Row label="open: results / no results / searching" style={{ alignItems: 'flex-start', height: 230 }}>
-      <div style={{ width: 300 }}><Combobox size="m" defaultOpen defaultQuery="a" options={OPTS} /></div>
-      <div style={{ width: 300 }}><Combobox size="l" defaultOpen defaultQuery="place" options={OPTS} suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></div>
+      <div style={{ width: 300 }}><Combobox size="m" label="Asset" defaultOpen defaultQuery="a" options={OPTS} /></div>
+      <div style={{ width: 300 }}><Combobox size="l" label="Asset" defaultOpen defaultQuery="place" options={OPTS} suggestions={['WDRM-1', 'WDRM-5', 'WDRM-6']} /></div>
       <div style={{ width: 300 }}><Combobox size="xl" label="Label" defaultOpen defaultQuery="place" loading options={OPTS} /></div>
     </Row>
   </> });
@@ -2901,13 +2913,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Calendar range defaultMonth={feb} today={new Date(2026, 1, 12)} defaultValue={{ start: new Date(2026, 1, 9), end: new Date(2026, 1, 13) }} />
     </Row>
     <Row label="picker" style={{ alignItems: 'flex-start', height: 340 }}>
-      <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
-      <div style={{ width: 240 }}><DatePicker size="l" /></div>
+      <div style={{ width: 240 }}><DatePicker label="Due date" defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
+      <div style={{ width: 240 }}><DatePicker size="l" label="Start date" /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Date" range /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Start date" required /></div>
     </Row>
     <Row label="showApply" style={{ alignItems: 'flex-start', height: 380 }}>
-      <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
+      <div style={{ width: 240 }}><DatePicker label="Due date" defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
     </Row>
   </> });
 ```
@@ -2920,13 +2932,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Calendar range defaultMonth={feb} today={new Date(2026, 1, 12)} defaultValue={{ start: new Date(2026, 1, 9), end: new Date(2026, 1, 13) }} />
     </Row>
     <Row label="picker" style={{ alignItems: 'flex-start', height: 340 }}>
-      <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
-      <div style={{ width: 240 }}><DatePicker size="l" /></div>
+      <div style={{ width: 240 }}><DatePicker label="Due date" defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" /></div>
+      <div style={{ width: 240 }}><DatePicker size="l" label="Start date" /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Date" range /></div>
       <div style={{ width: 240 }}><DatePicker size="xl" label="Start date" required /></div>
     </Row>
     <Row label="showApply" style={{ alignItems: 'flex-start', height: 380 }}>
-      <div style={{ width: 240 }}><DatePicker defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
+      <div style={{ width: 240 }}><DatePicker label="Due date" defaultValue={new Date(2026, 1, 18)} defaultOpen state="open" showApply /></div>
     </Row>
   </> });
 ```
@@ -2945,7 +2957,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Cell title="all parts (anatomy)" h={180}><EmptyState heading="Heading" body="One or two sentences: why it’s empty and what to do." suggestions={['{label}', '{label} ', '{label}  ']} secondaryAction={{ label: '{label}', icon: 'system-star-favourite' }} primaryAction={{ label: '{label}', icon: 'system-star-favourite' }} /></Cell>
     </IFS.Inline>
     <Row label="size=full">
-      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft, #111)', borderRadius: 'var(--radius-floating)' }}>
+      <div style={{ width: 640, height: 300, display: 'flex', background: 'var(--color-background-neutral-soft)', borderRadius: 'var(--radius-floating)' }}>
         <EmptyState size="full" cause="empty-container" heading="No models in this framework" body="Add a model to start scoring investments." primaryAction={{ label: 'Add model' }} />
       </div>
     </Row>
@@ -3117,7 +3129,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Row label="inline" top>
         <Modal inline title="{title}" secondaryAction={{ label: '{label}' }} primaryAction={{ label: '{label}' }}><div style={{ height: 286 }} /></Modal>
         <Modal inline title="Primary disabled" secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save', disabled: true }}><div style={{ height: 60 }} /></Modal>
-        <div style={{ position: 'relative', width: 240, height: 160, overflow: 'hidden', background: 'linear-gradient(135deg,#335,#a63)' }}>
+        <div style={{ position: 'relative', width: 240, height: 160, overflow: 'hidden', background: 'linear-gradient(135deg,#335,#a63)' /* raw-ok: demo backdrop art behind the glass sample */ }}>
           <Overlay inline type="strong" style={{ inset: '0 50% 0 0' }} /><Overlay inline type="base" style={{ inset: '0 0 0 50%' }} />
         </div>
       </Row>
@@ -3144,7 +3156,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <Row label="inline" top>
         <Modal inline title="{title}" secondaryAction={{ label: '{label}' }} primaryAction={{ label: '{label}' }}><div style={{ height: 286 }} /></Modal>
         <Modal inline title="Primary disabled" secondaryAction={{ label: 'Cancel' }} primaryAction={{ label: 'Save', disabled: true }}><div style={{ height: 60 }} /></Modal>
-        <div style={{ position: 'relative', width: 240, height: 160, overflow: 'hidden', background: 'linear-gradient(135deg,#335,#a63)' }}>
+        <div style={{ position: 'relative', width: 240, height: 160, overflow: 'hidden', background: 'linear-gradient(135deg,#335,#a63)' /* raw-ok: demo backdrop art behind the glass sample */ }}>
           <Overlay inline type="strong" style={{ inset: '0 50% 0 0' }} /><Overlay inline type="base" style={{ inset: '0 0 0 50%' }} />
         </div>
       </Row>

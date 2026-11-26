@@ -2,16 +2,16 @@
 
 Generated from `words.json` by `tools/gen-words.mjs` (2026-11-26); edit the JSON, not this file. Rules: [rules.md](rules.md) section 8 (rule 8.9 is the summary, rule 8.43 how to use this list).
 
-The Catalyst word list (rule 8.43). Terms are settled; a definition with "confirmed": false is a draft waiting for a product owner pass (BACKLOG). A term's definition doubles as its hint-tooltip text (rule 8.49).
+The Catalyst word list (rule 8.43). Terms are settled; a definition with "confirmed": false is a draft waiting for a product owner pass. A term's definition doubles as its hint-tooltip text (rule 8.49).
 
 **Organisation settings that change words**
-- entity name (USER-SETTINGS row 15): investment or project, default investment. An organisation may rename "investment" to "project"; copy takes the name from the setting.
+- entity name (a user setting, README → User settings): investment or project, default investment. An organisation may rename "investment" to "project"; copy takes the name from the setting.
 
 ## 1. Terms
 
 | Term | Definition (= hint-tooltip text) | Don't use | Notes | Rule | Definition confirmed |
 |---|---|---|---|---|---|
-| investment | A piece of work that competes for funding, with one or more alternatives. | request, initiative, job | An organisation may rename it "project" (USER-SETTINGS row 15): copy takes the entity name from the setting and never hard-codes "investment" or "project". "Project" is not a banned word. | 8.9 | not yet (product owner) |
+| investment | A piece of work that competes for funding, with one or more alternatives. | request, initiative, job | An organisation may rename it "project" (a user setting, `IFS.format.configure({ entity })`, read through `IFS.term`): copy takes the entity name from the setting and never hard-codes "investment" or "project". "Project" is not a banned word. | 8.9 | not yet (product owner) |
 | program | An investment type that groups related work. | — | A real investment type (decided Nov 26), not a level of portfolio. Whether an organisation may rename it is in the backlog. | 8.9 | yes |
 | alternative | One way to carry out an investment, with its own cost, timing and value. | option, variant, version, scenario | Distinct from scenario (a whole plan). "Option" stays fine for menu and radio choices, never for an alternative. | 8.9 | yes |
 | selected alternative | The alternative the plan currently uses for an investment. | chosen option, active alternative, preferred | One number per investment = the selected alternative. | 8.43 | not yet (product owner) |
@@ -56,8 +56,8 @@ The Catalyst word list (rule 8.43). Terms are settled; a definition with "confir
 
 | Use | For | Don't use | Rule |
 |---|---|---|---|
-| Create | making a new object ("Create scenario"). Every create button says Create, the PageTop one included ("Create ▾" opens the choice of things to create; audit run 2 B-24, decided Nov 26). "New" stays only as an adjective ("New scenario" as a title) | New (as a verb or a button label), Make, Add (for new objects), Generate (unless Cooper writes it) | 8.12 |
-| Add | putting an existing or new item into a container ("Add model") | Insert, Attach (except files), Include | 8.12 |
+| Create | making a new standalone record ("Create scenario", "Create framework"). Every create button says Create, the PageTop one included ("Create ▾" opens the choice of things to create; audit run 2 B-24, decided Nov 26). "New" stays only as an adjective ("New scenario" as a title). A chat is not a record, so it is not a Create button: "New chat" is fine, "Start a new chat" where there is room (decided Nov 26). One test for Create or Add: Add when the new thing lives inside the object on screen (a model in a framework), Create when it is a standalone record (decided Nov 26). | New (as a verb or a button label), Make, Add (for a standalone record), Generate (unless Cooper writes it) | 8.12 |
+| Add | putting an existing or new item inside the object on screen ("Add model" in a framework, "Add document") | Insert, Attach (except files), Include | 8.12 |
 | Remove | taking out of a group, without deleting ("Remove collaborator") | Delete (for this), Unassign | 8.12 |
 | Delete | removing for good ("Delete scenario") | Remove (for this), Erase, Destroy, Trash | 8.12 |
 | Archive / Restore | hiding and undoing it | Hide, Retire | 8.12 |
@@ -68,10 +68,11 @@ The Catalyst word list (rule 8.43). Terms are settled; a definition with "confir
 | Save | keeping edits; the FormCard fallback label | Submit, Apply (for forms), OK, Done (in edit forms) | 8.10 |
 | Apply | applying filters or a setting without leaving | Save (for filters), OK, Apply (for a Cooper suggestion: name the change) | 8.10 |
 | Send for approval | starting the approval chain | Submit, Sign off | 8.10 |
-| Approve / Request revisions / Reject | approver decisions; "Request revisions" sends the item back to its author. After "Request revisions" the status is "Needs revision" and the snackbar "Revisions requested" (description "Sent back to {name}."). The reviewer’s disabled button then reads "Revisions requested", the action’s past tense like "Approved". | Accept, Decline, Return, Sign off, Request changes, Request more information, Request more info | 8.9 |
+| Approve / Request revisions / Reject | approver decisions; "Request revisions" sends the item back to its author. After "Request revisions" the status is "Needs revision" and the snackbar "Revisions requested" (description "Sent back to {name}."). The reviewer’s disabled button then reads "Revisions requested", the action’s past tense like "Approved". The ban on Accept and Decline is for approver decisions in the approval chain only; invitations (Accept, Decline) and Cooper recommendations (Decline) may use them. | Accept, Decline, Return, Sign off, Request changes, Request more information, Request more info | 8.9 |
 | Export / Import | files out of or into the product ("Export plan (CSV)") | Download (for export), Upload (for import) | 8.12 |
 | Download / Upload | moving a file as a file | Export, Import | 8.12 |
 | Share | giving people access | Invite (except a new collaborator: "Invite collaborators") | 8.12 |
+| Invite | asking a new collaborator to join; they must accept ("Invite collaborators"; the dialog's button is the short verb "Invite", rule 8.10). One verb for the whole flow (decided Nov 26): the button, the dialog title and the search field all say Invite. | Add collaborator, Send invitation | 8.12 |
 | Request access | asking for access (rule 8.22) | Ask for permission | 8.12 |
 | Select | choosing, in instructions | Click, Tap, Hit, Press (except keys) | 9.26 |
 | Choose | a decision between options, in instructions | Pick | 8.8 |
@@ -95,7 +96,7 @@ The Catalyst word list (rule 8.43). Terms are settled; a definition with "confir
 | Submit, OK, Yes / No (alone) | verb + object ("Send for approval"); "Save" in a form | 8.11 |
 | Apply, Do it (on a Cooper suggestion) | the change, named in full ("Defer 3 investments") | 8.60 |
 | Retry | Try again | 8.18 |
-| Are you sure? | the consequence ("This can't be undone.") | 8.24 |
+| Are you sure? | the consequence ("This cannot be undone.", in full in a confirmation, rule 8.4; left out when an Undo follows) | 8.24 |
 | No data, No data found, Nothing here, No results found | the rule 8.22 heading for the cause ("No results for “WDRM-2”", "No matches for these filters") | 8.51 |
 | Insufficient data | "Not enough data yet" + when it will appear | 8.51 |
 | Success!, Error:, Warning:, Info:, Notification: | the message itself | 8.54 |
@@ -120,7 +121,7 @@ The Catalyst word list (rule 8.43). Terms are settled; a definition with "confir
 | option (for an alternative) | alternative | 8.9 |
 | whitelist, blacklist | allowlist, blocklist | 8.8 |
 | master, slave | primary, main, replica | 8.8 |
-| sanity check | quick check | 8.8 |
+| sanity check | check, first check | 8.8 |
 | dummy (data, value) | sample, placeholder | 8.8 |
 | kill, execute, hang (processes) | stop, run, stop responding | 8.8 |
 | grandfathered | existing, kept | 8.8 |

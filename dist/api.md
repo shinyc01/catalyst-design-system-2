@@ -125,7 +125,9 @@ Examples (read before using any component below — shows the data shapes props 
 Figma: Patterns › Mention (12:45593): the "@" picker under the composer. popover-organism (4394:56471) with no title or search,
 one content-card-organism S row per person (avatar, name, role). The composer's default picker; also exported.
 Props: people [{ name, role, avatar }], query (text after "@", filters by name), activeIndex, onPick(person), onActiveChange(i).
-`function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, className, style })`
+A11Y M3 (Nov 26): the list is the listbox (named, no dialog around it); focus stays in the composer, which points at the active
+option with aria-activedescendant (ids `${listId}-${i}`); options are not tab stops.
+`function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, listId, className, style })`
 
 ### TimelineMarker
 **Tier:** Component
@@ -286,7 +288,8 @@ it ("Only portfolio owners can publish"). Only for reasons the person can't fix 
 The reason is also the button's description at all times (a hidden copy, aria-describedby), so a screen reader in browse mode hears it
 without the tooltip (audit run 2 A11Y M1). A permanent reason (a permission) also shows as visible text near the control (rule 9.10).
 href (rule 14.1, audit run 2 item 12): a move (open an object, go to a screen, go up a level) renders as a link, <a href>, with the
-Ghost look by default (type may still be passed), so it opens in a new tab, shows its address and reads as a link.
+Ghost look by default (type may still be passed), so it opens in a new tab, shows its address and reads as a link. With `disabled` it
+stays a link: <a aria-disabled> without href (not followed; focusable when it has a disabledReason).
 `function Button({ type, size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, disabled, disabledReason, href, ...rest })`
 
 ### IconButton
@@ -553,14 +556,15 @@ the slice labels, rule 10.11): white on the dark slots, black on the light ones.
 Figma: grouped-bar-molecule (4457:37362)
 Props: type horizontal (segments stacked top→bottom) | vertical (segments side by side), progress (meter: value against max on a
 neutral track), values = numbers (segment sizes; categorical slots 1, 2, 3 … in order — or, when color is a 2.0.7 family name, that
-family's ramp steps 2, 4, 6 … (rule 10.7); an old group name (deprecated) keeps its steps 4, 5, 6 …), value + max (progress), showValues.
-`function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color, showValues, format = defaultFormat, className, style, ...rest })`
+family's ramp steps 2, 4, 6 … (rule 10.7); an old group name (deprecated) keeps its steps 4, 5, 6 …), value + max (progress), showValues,
+label (the progress meter's accessible name, default "Progress").
+`function DataVizGroupedBar({ type = 'horizontal', progress = false, values = [], value = 0, max = 100, color, showValues, format = defaultFormat, label = 'Progress', className, style, ...rest })`
 
 ### DataVizLine
 **Tier:** Component
 **In handovers:** placed 18× (Plan) · usual: Dashed true 89%
 Figma: line-atom (4440:32650)
-Props: dashed (3/5 dash — planned, median, reference), orientation horizontal|vertical. Fills its parent's width (or height).
+Props: dashed (3/5 dash — forecast, median, reference; a dash never means plan, rule 10.13), orientation horizontal|vertical. Fills its parent's width (or height).
 `function DataVizLine({ dashed = false, orientation = 'horizontal', className, ...rest })`
 
 ### DataVizIndicator
@@ -629,10 +633,11 @@ top of the table view); never shown on the card (showing it is a user setting, U
 movable (default true): drag from the header and keyboard move (Space / arrows / Space / Esc; useCardMove), with onMove, onMoveEnd,
 onDragEnd. menuItems = the screen's real extra ⋯ items (Menu items: download, full screen, remove from dashboard …).
 hideControls hides the switch and Evidence (no data to switch or explain: loading, empty, error, no results; D9).
-legendPlacement below (default) | beside (pie and donut: the list sits beside the plot). autoHeight = no fixed height (the `height`
+legendPosition below (default) | beside (pie and donut: the list sits beside the plot); the same name as the charts' prop (rule 10.5).
+legendPlacement is its deprecated alias (removed in 3.0). autoHeight = no fixed height (the `height`
 escape hatch). bare = no frame: no padding, fill, border or header — just the content and legend, for a chart placed inside another
 frame that already draws the header (e.g. a dashboard widget); it fills that frame's height.
-`function DataVizCard({ variant = 'organism', state, title, subtitle, description, header, legend, children, onCooper, onEditWithCooper, view, onViewChange, actions, menuItems, movable = true, onMove, onMoveEnd, onDragEnd, bare, size = 'default', legendPlacement = 'below', hideControls, autoHeight, className, style, ...rest })`
+`function DataVizCard({ variant = 'organism', state, title, subtitle, description, header, legend, children, onCooper, onEditWithCooper, view, onViewChange, actions, menuItems, movable = true, onMove, onMoveEnd, onDragEnd, bare, size = 'default', legendPosition: legendPositionIn, legendPlacement, hideControls, autoHeight, className, style, ...rest })`
 
 ### DataVizTooltip
 **Tier:** Component
@@ -701,7 +706,8 @@ tooltip and table name each level.
 ### LineChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-line (9863:11650) — change over time; actual solid vs planned dashed; optional peer band + dashed median.
+Figma: chart-line (9863:11650) — change over time; actual solid, forecast dashed (forecastFrom; dashed = forecast only, rule 10.13);
+plan on a line = a thin outlined line in the series colour (decided Nov 26; no plan series in LineChart yet); optional peer band + dashed median.
 Props: data = [{ label, [series.key]: number, … }], series = [{ key, label, color?, dashed?, points? }] (first series shows its
 points), band = { low, high, mid?, label } (keys into data; drawn as a white 16% band + dashed mid line), referenceKey/referenceLabel
 (dashed white line), zeroBased (default false — lines need not start at 0), endLabels (default true: each line is named at its end, D4;
@@ -1269,8 +1275,10 @@ or give each step its own `status`. active = index of a highlighted step (Figma 
 Figma: pagination-organism (3497:9660) — record pager for item-by-item content. Never for tables (Figma rule).
 Props: page (1-based) / defaultPage / onChange(page), total, percent (Figma show-%; omit to hide),
 progress (word after the percent, e.g. "resolved" → "(0% resolved)"; Figma's text override),
-complete (Figma "show left icon": success icon before the count), onShowAll (Figma show-all-button; omit to hide), showAllLabel.
-`function Pager({ page, defaultPage = 1, onChange, total = 1, percent, progress, complete, onShowAll, showAllLabel = 'Show all', className, ...rest })`
+complete (Figma "show left icon": success icon before the count), onShowAll (Figma show-all-button; omit to hide), showAllLabel,
+item (2.0.7: the noun paged through, default "issue": "Previous issue" / "Next issue", and the count is read "Issue 1 of 2" while
+"1 / 2" shows; rules 8.15, 8.35, 9.21).
+`function Pager({ page, defaultPage = 1, onChange, total = 1, percent, progress, complete, onShowAll, showAllLabel = 'Show all', item = 'issue', className, ...rest })`
 
 ### CanvasColumn
 **Tier:** Component
@@ -1321,9 +1329,10 @@ Narrow widths (Nov 19, measured on the header itself):
           no separate row for it.
   < 720   (or whenever one row doesn't fit even without the stepper) two rows. Row 1: back, title (truncates, never hidden).
           Row 2, starting under the title (not under back): id + status together, views, the other actions, primary last.
-Props: title, id, onBack, onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
+Props: title, id, onBack, backLabel (the back button's name and tooltip, default "Back"; name the destination: "Back to Value frameworks",
+rule 14.1 / WCAG 2.4.4), onTitleMenu, status, views, center (e.g. the Stepper), actions (secondary actions), primaryAction (the
 main button: always visible, last), progressLabel.
-`function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest })`
+`function PageHeader({ title, id, onBack, backLabel = 'Back', onTitleMenu, status, views: viewsIn, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest })`
 
 ### PageTop
 **Tier:** Component
@@ -1376,8 +1385,8 @@ Figma: drop-down list (c5186fedd85d1a8db92485b5b848c56e500c3c33 cached in Patter
 The open list of compare-dropdown: titled groups ("Top benchmarks", "All frameworks") split by a divider.
 Props: groups [{ title, items: [{ value, label, status: { type, label } (indicator-molecule), badge (badge-atom White S text), disabled }] }],
 value (selected value), activeValue (keyboard highlight = Figma hover row), onSelect(value, item), onActiveChange(value),
-id (listbox id), inline (static position — gallery).
-`function CompareDropdownList({ groups = [], value, activeValue, onSelect, onActiveChange, id, inline, className, style })`
+id (listbox id), inline (static position — gallery), label (the listbox name, default "Compare to").
+`function CompareDropdownList({ groups = [], value, activeValue, onSelect, onActiveChange, id, inline, label = 'Compare to', className, style })`
 
 ### CompareDropdown
 **Tier:** Component
@@ -1617,10 +1626,10 @@ Props: controller, defaultOpen, open / onOpenChange.
 ### InviteCollaboratorModal
 **Tier:** Pattern helper
 ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
-Pattern component: modal-organism "Add collaborator": person (content card, avatar L 40) + access select,
+Pattern component: modal-organism "Invite collaborator" (one verb for people, words.md: the person must accept): person (content card, avatar L 40) + access select,
 "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
-Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
-  title (the screen's own text; example default "Add collaborator" / "Edit collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
+Props: open, person, mode invite (Invite) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
+  title (the screen's own text; example default "Invite collaborator" / "Edit collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 `function InviteCollaboratorModal({ open, person, mode = 'invite', title, defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline })`
 
 ### RemoveCollaboratorModal
@@ -1716,7 +1725,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Pattern helper
 CooperRecommendations — the recommendation flow (pattern component; Patterns "Recommendation" 67:108295).
 List grouped by framework column → Shape walks through them one by one (detail: Decline / the named change) → confirming shows
-"Working on it…" then confirms and moves to the next → all applied closes the window. Decline removes one from the queue;
+"Applying to framework structure…" then confirms and moves to the next → all applied closes the window. Decline removes one from the queue;
 Decline all dismisses the queue. Every recommendation is also saved as a chat in the Recommendations smart folder.
 Props: recommendations / defaultRecommendations / onRecommendationsChange ([{ id, group, title, description, impact }]),
 onApply(rec), onDecline(rec), onAsk (opens Cooper chat — the two are never open together), onClose, onDone, speed (ms of the applying step).
@@ -1811,9 +1820,9 @@ number (source), onClick, state hover (gallery).
 
 ### CooperProgress
 **Tier:** Pattern helper
-Cooper progress line (Patterns "Cooper Message content" 67:134213): "Cooper is working on it (Step n/total): <step name>".
-The total is per run (2 for a simple question, 3–4 for widgets/alternatives); only the text changes between steps.
-Props: step, total, label, live (shimmer while running; frozen when stopped).
+Cooper progress line (Patterns "Cooper Message content" 67:134213): "Step n of total: <step name>…" (rules 8.71, 8.35: a real step, no
+filler, "2 of 3" not "2/3"). The total is per run (2 for a simple question, 3–4 for widgets/alternatives); only the text changes between steps.
+Props: step, total, label (required: the step being run), live (shimmer while running; frozen when stopped).
 `function CooperProgress({ step = 1, total = 3, label = 'Reviewing framework structure', live = true, className, ...rest })`
 
 ### CooperMessage
@@ -1964,7 +1973,7 @@ default the title, written as verb + object, "Add reliability model"; never "Do 
 **Tier:** Pattern helper
 CooperChat — the whole Cooper chat behaviour (pattern component; Patterns "Chat" section 67:121910).
 Sizes: closed (avatar + prompt chips in the bottom sheet) → bar (chat-collapsed-bar, voice by default) → compact (floating window)
-→ full (floating panel, one page margin in). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n/total) →
+→ full (floating panel, one page margin in). Sending a message adds a UserMessage, then a CooperMessage that runs Analysing (Step n of total) →
 Streaming → Answered; Stop interrupts (keeps the user message; partial answer stays + Regenerate; before any text: Try again).
 Props: size / defaultSize / onSizeChange ('closed'|'bar'|'compact'|'full'), mode / defaultMode ('voice'|'text'),
 messages / defaultMessages / onMessagesChange ([{ id, role:'user'|'cooper', text, status, ... }]), answer(q) → answer data
@@ -1997,8 +2006,9 @@ Props: size l (32) | m (24) | s (16) | xs (8), status danger|warning|neutral (C1
 yellow medium, grey low; old-name aliases: error draws danger, success and info draw neutral),
 type text|icon, counter (Figma "counter"; shown on L/M only), icon (type=icon glyph, default system-close),
 highlight (Figma higlight=yes: glow ring), selected / defaultSelected / onSelectedChange (click toggles),
-dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery).
-`function MapPinDot({ size = 'm', status: st = 'danger', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false, onSelectedChange, dimmed, label, state, className, onClick, ...rest })`
+dimmed (Figma state=out of hover), label (accessible name), state default|selected|out-of-hover (forced, gallery),
+scale (the transform scale of a scaled map preview the pin sits in, default 1): keeps the 24 px hit area on screen (WCAG 2.5.8).
+`function MapPinDot({ size = 'm', status: st = 'danger', type = 'text', counter = '999', icon = 'system-close', highlight, selected, defaultSelected = false, onSelectedChange, dimmed, label, state, scale, className, onClick, style, ...rest })`
 
 ### MapPinDefect
 **Tier:** Component
@@ -2168,7 +2178,7 @@ Examples (read before using any component below — shows the data shapes props 
 **Tier:** Component
 **In handovers:** placed 274× (Explore, Command) · usual: Cooper badge no 63%
 Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
-Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --size-control-s, "Search for…") + icon-button-filter (round, same height).
+Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --size-control-s, "Search") + icon-button-filter (round, same height).
 Right ("container-left"): collaborators button (Button Tertiary S, users-group, "3/5") + icon-button-comment.
 Props: search = SmartSearch props (placeholder, onSubmit, suggestions…), onFilter, filtersApplied (filter dot),
 collaborators (label, default "3/5"; null hides), onCollaborators, onComments, hasNewComments, children (extra left content),
@@ -2193,7 +2203,7 @@ Pattern: SideNavTree — navigation-panel-organism (sidebar-organism View=Expand
 folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H4 in sentence case + collapse).
 Tree row: 32px, padding 8/8/8/4, caret (folders) + chat-folder 16 + Body/M/medium label; children indent 18px with a
 hairline guide. The open path (folders above the current row) gets a --color-border-soft outline; the current row also the
---color-background-neutral-soft fill. Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
+--color-state-current fill (hover --color-state-hover, pressed --color-state-pressed; rule 7.1). Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
 Props: title, tree [{ id, label, folder (default: has children), children: [...] }], sections [{ label, action, items: [{ id, label }] }],
 value / defaultValue / onSelect(id, item), expanded / defaultExpanded (ids) / onExpandedChange,
 collapsed / defaultCollapsed / onCollapsedChange.
@@ -2538,8 +2548,9 @@ Keyboard: ↑/↓ move, Home/End, Enter/Space run, → / ← open / close a subm
 Figma: single-select-organism (3273:26820) = single-select-atom (789:18085) + single-select-list-molecule (153:62054)
 Props: options (strings or {value,label,icon,disabled}; {divider:true} draws a separator; {action:true,label,icon,danger,onClick} is a
 command row such as "Remove" (danger = red) that runs onClick and closes without selecting), value/defaultValue/onChange(value, option), open/defaultOpen/onOpenChange,
-size s|m|l|xl, label (xl prefix / s text), placeholder (none by default: an empty Select shows nothing, rule 8.46; an example value only),
-iconLeft, clearable (Figma show-remove-select, default true), loading, error, required (rule 14.4: * after the visible label + aria-required),
+size s|m|l|xl, label (m / l: drawn above the field and names it, with the * when required; xl: prefix; s: text, audit final H1),
+description (under the field at m / l / xl, linked with aria-describedby; an error string replaces it), placeholder (none by default: an empty Select shows nothing, rule 8.46; an example value only),
+iconLeft, clearable (Figma show-remove-select, default true), loading, error (true, or a string shown under the field), required (rule 14.4: * after the visible label + aria-required),
 disabled, listPosition down|up (Figma "List position"), listTitle (e.g. "Suggested"), listSize s|l, state hover|focus|open (gallery).
 `function Select(props) { return <SelectBase {...props} multi={false} />; }`
 
@@ -2554,13 +2565,13 @@ Same props as Select; value is an array. maxTags (default 5) tags then "+N". Siz
 **Tier:** Component
 **In handovers:** only inside other components (4×); don't place on its own
 Figma: signle-combobox-organism (3375:5415). Type to filter.
-Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label, placeholder (none by default, rule 8.46),
+Props: options, value/defaultValue/onChange(value, option), defaultOpen, defaultQuery, size m|l|xl, label (above at m / l, as Select), description, placeholder (none by default, rule 8.46),
 iconLeft, clearable, loading, error, required (* after the visible label + aria-required, rule 14.4),
 disabled, listPosition, listTitle ("Suggested", shown before typing), resultsTitle ("Results", while typing),
 emptyTitle / emptyText / suggestions (Figma "No results" state: heading, hint and suggestion chips that fill the query;
 emptyTitle defaults to No results for “<query>”, rule 8.51),
 filter(option, query), state. While loading and open, the list shows Figma's "Searching..." panel.
-`function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder, iconLeft, clearable = true, loading, error, disabled, required, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's', emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id, filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), 'aria-label': ariaLabel, ...rest })`
+`function Combobox({ options = [], value, defaultValue = null, onChange, defaultOpen = false, defaultQuery = null, size = 'm', label, placeholder, iconLeft, clearable = true, loading, error, disabled, required, listPosition = 'down', listTitle = 'Suggested', resultsTitle = 'Results', listSize = 's', emptyTitle, emptyText = 'You might be looking for', suggestions = [], state, className, style, id, filter = (o, q) => o.label.toLowerCase().includes(q.toLowerCase()), description, 'aria-label': ariaLabel, 'aria-labelledby': labelledBy, ...rest })`
 
 ### SegmentedControl
 **Tier:** Component
@@ -2570,7 +2581,11 @@ Props: options = [{ value, label, iconLeft, iconRight, counter, disabled, state 
 size m (default; outer 40 / 36 / 32: segments at the control height plus a 2px track) | s (only in tight fixed-height bars such as the page and thin header, rule 14.15; outer 32 / 28 / 28: segments at the s height, 24 in Comfortable, decided Nov 26); fullWidth (stretches to its container; segments share the width equally). Arrow keys move the selection (radio group).
 iconOnly (2.0.6, D1): each option shows only its icon (o.icon or o.iconLeft, 16) in a square segment; o.label becomes the accessible name
 and the native tooltip. M size: the segments are squares 4 smaller than the control height inside the 2 track, so the control is --size-control-m outside.
-`function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm' /* M by default; headers pass S (rule 14.15, Nov 26) */, fullWidth = false, iconOnly = false, className, ...rest })`
+Every option needs a name: a visible label, or ariaLabel when it shows only an icon (a console warning says which, audit final H3).
+narrowSelect (audit final M10, decided Nov 26): with counts on any option, below 600 (content area, or the window outside AppShell) the
+same choice renders as a Select, "Label (count)", because the counted control doesn't fit; default on when an option has a counter.
+Pass false where the screen builds its own narrow form. The Select takes the group's aria-label / aria-labelledby.
+`function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm' /* M by default; headers pass S (rule 14.15, Nov 26) */, fullWidth = false, iconOnly = false, narrowSelect, className, ...rest })`
 
 ### Chip
 **Tier:** Component
@@ -2593,12 +2608,12 @@ Keyboard: arrows move a day/week, PageUp/PageDown change month, Home/End week st
 ### DatePicker
 **Tier:** Component
 DatePicker = select trigger (single-select-atom look) + Calendar popup (date-picker-molecule 3406:9510).
-Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label,
+Props: value/defaultValue/onChange (Date or {start,end} with range), open/defaultOpen/onOpenChange, size s|m|l|xl, label (above at m / l, as Select), description,
 placeholder (none by default: an empty DatePicker shows nothing, rule 8.46), required (* after the visible label + aria-required, rule 14.4),
 format(date) → string, range, clearable, iconLeft (default system-calendar-date; null hides it), showApply (Figma show-apply-button:
 picks stay a draft until the full-width Apply button commits them), applyLabel, error, disabled, listPosition down|up, state,
 plus Calendar props (today, events, min, max).
-`function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder, format = d => IFS.format.date(d), range = false, clearable = true, iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply', error, disabled, required, listPosition = 'down', state, today, events, min, max, className, style, id, 'aria-label': ariaLabel, ...rest })`
+`function DatePicker({ value, defaultValue = null, onChange, open, defaultOpen = false, onOpenChange, size = 'm', label, placeholder, format = d => IFS.format.date(d), range = false, clearable = true, iconLeft = 'system-calendar-date', showApply = false, applyLabel = 'Apply', error, disabled, required, listPosition = 'down', state, today, events, min, max, className, style, id, description, 'aria-label': ariaLabel, 'aria-labelledby': labelledBy, ...rest })`
 
 ## states
 
@@ -2697,7 +2712,7 @@ type="explore": fields [{ key, label, options, value, zoom }], values/onFieldCha
   tools [{ icon, label, onClick }] (ghost S icon buttons). `left` replaces the whole left side for any type.
 Narrow widths (e.g. 600px): the left side shrinks first (coverage bar, then the map fields scroll sideways), then the
 prompts scroll sideways; the FAB, buttons and map tools never get cut.
-`function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true, showCooper = true, onCooper, cooperIndicator = false, inProgress = false, coverage = 0, cooperContext = true, documents, onUpload, fields = DEFAULT_MAP_FIELDS, values, onFieldChange, zoom, defaultZoom = 20, onZoomChange, lastSync = '{label}', tools = DEFAULT_MAP_TOOLS, left, className, ...rest })`
+`function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true, showCooper = true, onCooper, cooperIndicator = false, inProgress = false, coverage = 0, cooperContext = true, documents, onUpload, fields = DEFAULT_MAP_FIELDS, values, onFieldChange, zoom, defaultZoom = 20, onZoomChange, lastSync, tools = DEFAULT_MAP_TOOLS, left, className, ...rest })`
 
 ## surfaces
 
