@@ -232,7 +232,7 @@
 /* Select divider + action rows ("Remove" etc.) */
 .ifs-select__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--color-border-soft)}
 .ifs-select__option.is-danger,.ifs-select__option.is-danger .ifs-icon{color:var(--color-text-danger)}
-.ifs-select__option.is-danger:hover{color:var(--color-text-danger)}
+.ifs-select__option.is-danger:hover,.ifs-select__option.is-danger[data-state=hover]{color:var(--color-text)} /* rule 9.12: on the hover fill the label turns white (red 350 is 3.16:1 there); the icon stays red */
 
 /* ---------- Menu (single-select-list-molecule 153:62054 + single-select-list-atom 153:61939, Size S) ---------- */
 .ifs-menu{position:relative;display:inline-flex}
@@ -260,18 +260,21 @@
 .ifs-menu__text{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:var(--space-100)}
 .ifs-menu__label{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-menu__description{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:normal} /* Body/M/regular */
-.ifs-menu__shortcut{flex:none;color:var(--white-alpha-50);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
+.ifs-menu__shortcut{flex:none;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-menu__caret,.ifs-menu__check{flex:none;color:var(--color-icon)}
 .ifs-menu__item:hover,.ifs-menu__item.is-open,.ifs-menu__item[data-state=hover]{background:var(--color-background-neutral);color:var(--color-text)}
 .ifs-menu__item:focus-visible,.ifs-menu__item[data-state=focus]{color:var(--color-text);outline:none;box-shadow:var(--focus-ring-inset)} /* S1: the ring only, inset inside the clipped list */
 .ifs-menu__item.is-selected{color:var(--color-text)}
 .ifs-menu__item.is-danger,.ifs-menu__item.is-danger .ifs-menu__icon{color:var(--color-text-danger)}
+.ifs-menu__item.is-danger:hover,.ifs-menu__item.is-danger.is-open,.ifs-menu__item.is-danger[data-state=hover]{color:var(--color-text)} /* rule 9.12: white label on the hover fill (red 350 is 3.16:1 there); the icon stays red */
 .ifs-menu__item:disabled{color:var(--color-text-disabled);cursor:not-allowed;background:none}
 .ifs-menu__item:disabled .ifs-menu__icon{color:var(--color-icon-disabled)}
 .ifs-menu__item:hover .ifs-menu__description,.ifs-menu__item[data-state=hover] .ifs-menu__description{color:var(--color-text-soft)} /* G2 #12 (Nov 25): steps up on the hover fill */
 /* G2 #11 (Nov 25): a placeholder or empty value inside a menu or popover (overlay surfaces) uses text-soft */
-:is(.ifs-floating,.ifs-popover,.ifs-menu__list) :is(.ifs-select__value.is-placeholder,.ifs-select__input,.ifs-field__input,.ifs-range-field__input,.ifs-search__input,.ifs-popover__search input)::placeholder,
+:is(.ifs-floating,.ifs-popover,.ifs-menu__list,.ifs-select__list) :is(.ifs-select__value.is-placeholder,.ifs-select__input,.ifs-field__input,.ifs-range-field__input,.ifs-search__input,.ifs-popover__search input)::placeholder,
 :is(.ifs-floating,.ifs-popover,.ifs-menu__list) .ifs-select__value.is-placeholder{color:var(--color-text-soft)}
 /* G2 controls (Nov 25): segmented = 40% outline on the selected item; date range = an inset border-strong outline on each day inside the range */
-.ifs-segmented__item.is-selected{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
+.ifs-segmented__item.is-selected,
+.ifs-segmented__item.is-selected:hover:not(:disabled),.ifs-segmented__item.is-selected[data-state=hover],
+.ifs-segmented__item.is-selected:active:not(:disabled),.ifs-segmented__item.is-selected[data-state=pressed]{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)} /* the 40% edge stays on hover and press */
 .ifs-calendar__date.is-selected:not(.is-endpoint){--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}

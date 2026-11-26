@@ -295,5 +295,6 @@
 .ifs-node-card--solid:is(.ifs-node-card--ring-select,.ifs-node-card--ring-cooper,:focus-visible,[data-state=focus]){--nc-caption:var(--color-text-on-solid-soft)}
 /* G2 (Nov 25): the solid card's counter is the tag's chip (10% white, white text), so counter and tag look the same */
 .ifs-node-card--solid .ifs-node-card__counter{background:var(--color-background-neutral-soft);color:var(--color-text)}
-/* G2 map pins, option B (Nov 25): warning keeps its fill with a black glyph; neutral and danger take darker fills (above) so white glyphs pass 4.5:1 */
-.ifs-map-pin--warning .ifs-icon{color:var(--color-icon-inverse)}
+/* G2 map pins, option B (Nov 25): warning keeps its fill with a black glyph; neutral and danger take darker fills (above) so white glyphs pass 4.5:1.
+   Success takes the black glyph too (Nov 26 audit H7: white on green is 2.48:1) */
+.ifs-map-pin--warning .ifs-icon,.ifs-map-pin--success .ifs-icon{color:var(--color-icon-inverse)}

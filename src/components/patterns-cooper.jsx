@@ -325,6 +325,17 @@ function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children,
   const [drag, setDrag] = React.useState(false);
   const isDrop = dropping || drag;
   const showEmpty = empty ?? !children;
+  // WCAG 2.4.11: the input bar sits over the scroll area, so the scroll area keeps its height as scroll padding (--chat-bottom-h)
+  // and a focused message or card scrolls clear of the bar, not under it. The bar grows with the text and attachments.
+  const bodyRef = React.useRef(null), bottomRef = React.useRef(null);
+  React.useLayoutEffect(() => {
+    const b = bottomRef.current, body = bodyRef.current; if (!b || !body) return undefined;
+    const set = () => body.style.setProperty('--chat-bottom-h', `${b.getBoundingClientRect().height}px`);
+    set();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(set) : null;
+    ro && ro.observe(b);
+    return () => ro && ro.disconnect();
+  }, []);
   return (
     <section aria-label="Cooper chat" className={IFS.cx('ifs-chat-panel', `ifs-chat-panel--${size}`, 'ifs-cooper-surface', isDrop && 'ifs-cooper-surface--drop', className)} style={style}
       onDragOver={onFiles ? e => { e.preventDefault(); setDrag(true); } : undefined}
@@ -333,7 +344,7 @@ function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children,
       {onResizeStart && <span className="ifs-chat-panel__resize" onPointerDown={onResizeStart} aria-hidden />}
       <ChatHeader title={title} size={size} newChat={newChat} onNewChat={onNewChat} onHistory={onHistory} historyOpen={historyOpen}
         onResize={onResize} onMore={onMore} onClose={onClose} onDragStart={onDragStart} />
-      <div className="ifs-chat-panel__body">
+      <div className="ifs-chat-panel__body" ref={bodyRef}>
         {speech ? <div className="ifs-chat-panel__speech">{speech}</div>
           : showEmpty ? <div className="ifs-chat-panel__empty">
             <span className="ifs-chat-panel__empty-title">What’s on the agenda today?</span>
@@ -341,7 +352,7 @@ function ChatPanel({ size, type = 'text', title = 'New chat', newChat, children,
           </div>
           : <div className="ifs-chat-panel__scroll" ref={scrollRef}>{children}</div>}
         {isDrop && <div className="ifs-chat-panel__drop"><IFS.Icon name="system-upload" size={24} />Drop files to add them to the chat</div>}
-        <div className="ifs-chat-panel__bottom">
+        <div className="ifs-chat-panel__bottom" ref={bottomRef}>
           {type === 'voice'
             ? <VoiceMessageInput state={analyzing ? 'analyzing' : speech ? 'speaking' : 'default'} onAttach={onAttach} onKeyboard={() => onTypeChange && onTypeChange('text')} onStop={onStop} />
             : <TextMessageInput value={inputValue} onChange={onInputChange} onSend={onSend} analyzing={analyzing} onStop={onStop} onAttach={onAttach}

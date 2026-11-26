@@ -234,7 +234,7 @@
 .ifs-page-header__row--meta .ifs-page-header__right--wrapped{margin-inline-start:0} /* on its own line: left-aligned under the title */
 .ifs-page-header__id{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:nowrap}
 .ifs-page-header__divider{width:var(--border-width-100);height:var(--size-20);margin:0 var(--space-50);background:var(--color-border);flex:none}
-.ifs-page-header__right{display:flex;align-items:center;gap:var(--space-200);flex:none} /* buttons 8 apart, like every button group (Nov 19; was 16) */
+.ifs-page-header__right{display:flex;align-items:center;gap:var(--space-200);flex:none;max-width:100%} /* buttons 8 apart, like every button group (Nov 19; was 16); max-width: on a narrow screen the actions wrap instead of running off the end (F-29, WCAG 1.4.10) */
 /* Title menu ▾: a standard ghost IconButton S (Nov 19); the caret sits close to the title, the box overlaps the gap */
 .ifs-page-header__menu{margin-inline-start:calc((var(--size-16) - var(--size-control-s)) / 2)} /* the caret sits as close to the title as before; the 24 box overlaps the gap */
 
@@ -278,6 +278,7 @@
 /* Push panel with no room (below md): a rail; it expands over the content, which keeps a rail's width free */
 .ifs-app-shell--panel-rail .ifs-app-shell__content{margin-inline-end:var(--region-rail)}
 .ifs-app-shell--panel-rail .ifs-app-shell__panel{position:absolute;inset-block:0;inset-inline-end:0;z-index:2;box-shadow:var(--elevation-floating-shadow)} /* C1 level 2; the panel draws its own edge */
+.ifs-app-shell--panel-rail .ifs-app-shell__panel,.ifs-app-shell--panel-rail .ifs-app-shell__panel > .ifs-panel{max-width:100%} /* expanded over a narrow content area (below 380): never wider than it (F-29, WCAG 1.4.10) */
 /* Over panel (evidence chain, activity, Cooper full chat): over the end of the content, no scrim, the page stays usable */
 /* C4: an over panel floats one --float-inset in from the edges of the content area (so below the header and above the bottom sheet); C1 level 2 */
 .ifs-app-shell--panel-over .ifs-app-shell__panel{position:absolute;inset-block:var(--float-inset);inset-inline-end:var(--float-inset);z-index:var(--z-index-floating);max-width:calc(100% - 2 * var(--float-inset));box-shadow:var(--elevation-floating)}

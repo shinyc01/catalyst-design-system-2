@@ -386,6 +386,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collap
         const open = !info.locked && !collapsed.has(g);
         return (
           <React.Fragment key={String(g)}>
+            <div role="row" className="ifs-table__group-row"><div role="cell" aria-colspan={columns.length} className="ifs-table__group-cell">{/* row > cell keeps the table structure for screen readers (WCAG 1.3.1) */}
             <button type="button" className={IFS.cx('ifs-table__group', info.locked && 'ifs-table__group--locked')} aria-expanded={info.locked ? undefined : open}
               aria-disabled={info.locked || undefined} onClick={() => { if (!info.locked) setCollapsed(s => { const n = new Set(s); open ? n.add(g) : n.delete(g); return n; }); }}>
               {info.locked ? <IFS.Icon name="lock" size={16} />
@@ -393,6 +394,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collap
               <span className="ifs-table__group-title">{g}{info.note && <span className="ifs-table__group-note">{info.note}</span>}</span>
               {info.end !== undefined ? info.end : !info.locked && <DataCounter>{rs.length}</DataCounter>}
             </button>
+            </div></div>
             {open && headerPerGroup && headerRow}
             {open && rs.map(renderRow)}
           </React.Fragment>

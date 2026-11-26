@@ -16,10 +16,10 @@
 .ifs-ivi{display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;width:100%;
   padding:var(--space-inset) var(--space-inset) var(--space-inset);
   border-radius:var(--radius-control);background:var(--color-surface-secondary);box-shadow:0 0 0 var(--border-width-default) var(--color-border-soft)}
-.ifs-ivi__metrics{display:flex;align-items:center;gap:var(--space-stack)}
-.ifs-ivi__metric{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 0;min-width:0}
+.ifs-ivi__metrics{display:flex;flex-wrap:wrap /* WCAG 1.4.4: at large text sizes the metrics wrap (2 × 2) instead of overlapping */;align-items:center;gap:var(--space-stack)}
+.ifs-ivi__metric{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 0;min-width:min-content /* never narrower than its value (rule 2.12: numbers never truncate) */}
 .ifs-ivi__metric-title{color:var(--color-text-soft);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);min-height:var(--size-20);display:flex;align-items:center}
-.ifs-ivi__metric-value{display:flex;align-items:center;gap:var(--space-50);color:var(--color-text);font:var(--font-heading-h2-medium);letter-spacing:var(--font-heading-h2-medium-tracking);font-variant-numeric:var(--font-numeric)}
+.ifs-ivi__metric-value{white-space:nowrap;display:flex;align-items:center;gap:var(--space-50);color:var(--color-text);font:var(--font-heading-h2-medium);letter-spacing:var(--font-heading-h2-medium-tracking);font-variant-numeric:var(--font-numeric)}
 .ifs-ivi__metric-value--danger{color:var(--color-text-danger)}
 .ifs-ivi__metric-value--danger .ifs-icon{color:var(--color-icon-danger)}
 .ifs-ivi__metric-value--success{color:var(--color-text-success)}

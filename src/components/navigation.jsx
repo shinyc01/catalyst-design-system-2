@@ -253,7 +253,7 @@ function Pager({ page, defaultPage = 1, onChange, total = 1, percent, progress, 
 // Figma: canvas-container-atom (1440:5305) — one column heading of the canvas header. Optional action = { icon, label, onClick }.
 function CanvasColumn({ children, action, className, ...rest }) {
   return (
-    <div role="columnheader" className={IFS.cx('ifs-canvas-column', className)} {...rest}>
+    <div className={IFS.cx('ifs-canvas-column', className)} {...rest}>
       <div className="ifs-canvas-column__inner">
         <span className="ifs-canvas-column__label">{children}</span>
         {action && <IFS.IconButton icon={action.icon} label={action.label} size="s" onClick={action.onClick} />}
@@ -267,7 +267,7 @@ function CanvasColumn({ children, action, className, ...rest }) {
 function CanvasHeader({ columns, children, ruler = true, className, ...rest }) {
   return (
     <div className={IFS.cx('ifs-canvas-header', className)} {...rest}>
-      <div role="row" className="ifs-canvas-header__columns">
+      <div className="ifs-canvas-header__columns">{/* plain labels: no row / columnheader roles, there is no table around them (axe aria-required-parent) */}
         {children || (columns || []).map((c, i) => <CanvasColumn key={i}>{c}</CanvasColumn>)}
       </div>
       {ruler && <div className="ifs-canvas-header__ruler" aria-hidden="true" />}

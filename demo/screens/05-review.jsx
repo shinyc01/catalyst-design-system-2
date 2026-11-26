@@ -99,7 +99,21 @@ function ScreenReview({ bp, height }) {
         navBar={<NavBar stages={reviewStages} defaultValue="value" onChange={navStage} hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
         sideNav={<SideNav title="Value" defaultCollapsed items={[{ id: 'active', label: 'Active Framework' }]} onSelect={goValueNav} />}
         header={header}
-        bottom={<BottomSheet prompts={['Explain me the value impact', 'Evaluate publish risk']} onPrompt={l => toast(l)} onCooper={() => toast('Cooper')} />}>
+        bottom={<BottomSheet prompts={['Explain me the value impact', 'Evaluate publish risk']} onPrompt={l => toast(l)} onCooper={() => toast('Cooper')} />}
+        panel={ // through AppShell: below md (1024) the push panel folds to its rail and expands over the content (F-29, WCAG 1.4.10)
+          <Panel title="Readiness evaluation" onEvidence={() => toast('Evidence chain')}>
+            <ReadinessEvaluation
+              summary={{ title: 'Ready to Approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' }}
+              readiness={100}
+              checks={[
+                { label: 'Objective weighting', type: 'done', right: 'Passed' },
+                { label: 'Strategic alignment', type: 'done', right: 'Passed' },
+                { label: 'Risk balance', type: 'done', right: 'Passed' },
+                { label: 'Governance flags', type: 'done', right: 'Passed' },
+              ]}
+              sections={reviewSections} />
+          </Panel>
+        }>
         <div style={{ display: 'flex', height: '100%', minHeight: 0 }}>
           <div className="ifs-scroll" style={{ flex: '1 1 0', minWidth: 0, overflow: 'auto' }}>
             <IFS.Stack gap="page-gap" style={{ boxSizing: 'border-box', width: '100%', maxWidth: 'calc(var(--layout-max-content-width) + 2 * var(--pg-margin))', margin: '0 auto', padding: 'var(--pg-gap) var(--pg-margin)' }}>
@@ -118,18 +132,6 @@ function ScreenReview({ bp, height }) {
               )}
             </IFS.Stack>
           </div>
-          <Panel title="Readiness evaluation" onEvidence={() => toast('Evidence chain')}>
-            <ReadinessEvaluation
-              summary={{ title: 'Ready to Approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' }}
-              readiness={100}
-              checks={[
-                { label: 'Objective weighting', type: 'done', right: 'Passed' },
-                { label: 'Strategic alignment', type: 'done', right: 'Passed' },
-                { label: 'Risk balance', type: 'done', right: 'Passed' },
-                { label: 'Governance flags', type: 'done', right: 'Passed' },
-              ]}
-              sections={reviewSections} />
-          </Panel>
         </div>
       </AppShell>
     </div>

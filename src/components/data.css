@@ -245,8 +245,12 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
    Padding inset, gap stack; the same in both, so a change reaches every table. */
 .ifs-table-card{position:relative;display:flex;flex-direction:column;gap:var(--space-stack);box-sizing:border-box;min-width:0;padding:var(--space-table-x);border-radius:var(--radius-card);background:var(--color-surface-secondary)}
 .ifs-table-card__name{color:var(--color-text);font:var(--font-heading-h4-semibold);letter-spacing:var(--font-heading-h4-semibold-tracking)} /* Heading/H4 */
-.ifs-table-card__bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-stack);min-height:var(--size-40)}
+.ifs-table-card__bar{display:flex;flex-wrap:wrap /* WCAG 1.4.10: the search drops below the tabs when both don't fit */;align-items:center;justify-content:space-between;gap:var(--space-stack);min-height:var(--size-40)}
 .ifs-table-card__bar > :last-child:not(:first-child){width:22.5rem;flex:none}
+/* Narrow content area (below 600): the search goes full width on its own row, like PageTop */
+@container content (max-width:37.4375rem){
+  .ifs-table-card__bar > .ifs-smart-search:last-child:not(:first-child){width:100% !important} /* overrides SmartSearch's own width prop */
+}
 .ifs-table{display:flex;flex-direction:column;gap:var(--space-100);min-width:0;
   overflow-x:auto;padding:var(--size-4);margin:calc(-1 * var(--size-4))} /* scrolls sideways when the columns' minimum widths don't fit; the 4px padding keeps row focus rings (--focus-ring, 4 out) visible */
 .ifs-table > *{min-width:min-content}
@@ -303,6 +307,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 .ifs-table__trend--down .ifs-icon{transform:rotate(180deg)}
 .ifs-table__ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 /* group-row-molecule (4833:19072) */
+.ifs-table__group-row,.ifs-table__group-cell{display:contents} /* row > cell roles only; the group button lays out as before */
 .ifs-table__group{all:unset;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;height:var(--size-table-header);padding:var(--space-300);cursor:pointer;
   border-radius:var(--radius-control);background:var(--color-surface-tertiary);color:var(--color-text-softer);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
