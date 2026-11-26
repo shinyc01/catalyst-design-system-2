@@ -218,7 +218,7 @@ function ConfidenceGates({ controller: c, label = 'Approval readiness', classNam
       </div>
       <div className="ifs-trc-gates__list">
         {c.gates.map(g => g.done
-          ? <IFS.ReadinessStatus key={g.id} type="done" right="Passed">{g.label}</IFS.ReadinessStatus>
+          ? <IFS.ReadinessStatus key={g.id} type="done" end="Passed">{g.label}</IFS.ReadinessStatus>
           : <IFS.ReadinessStatus key={g.id} type="in-progress" right={<span className="ifs-trc-gates__inds">
             {g.indicators.map(d => <IFS.Tooltip key={d.kind} content={d.tooltip} type="top" arrow="right">
               <span tabIndex={0} className="ifs-trc-gates__ind"><IFS.Indicator size="xs" type={d.type}>{d.label}</IFS.Indicator></span>

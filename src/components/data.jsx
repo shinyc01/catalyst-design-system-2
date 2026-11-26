@@ -121,8 +121,10 @@ function Indicator({ type = 'orange', size = 's', children, buttonRight, onButto
 
 // Figma: status-readiness-molecule (1440:5273)
 // Props: type done|warning|error|in-progress|active|loading (error = red, e.g. "Exceeded" in the Patterns file), children = label (Figma Label),
-// right = text (Right-section=Text) OR indicators = [{ type, label }] (Right-section=Status, XS indicators).
-function ReadinessStatus({ type = 'done', children, right, indicators, className, ...rest }) {
+// end = text at the end of the row (Right-section=Text; renamed from `right` in 2.0.7, rule 11.4: `right` still works, deprecated until 3.0)
+// OR indicators = [{ type, label }] (Right-section=Status, XS indicators).
+function ReadinessStatus({ type = 'done', children, end: endIn, right, indicators, className, ...rest }) {
+  const end = endIn !== undefined ? endIn : right; // deprecated alias (2.0.7 → 3.0)
   type = { success: 'done', danger: 'error' }[type] || type; // C1 status words
   const t = dataKey(type);
   const icon = t === 'done' ? 'status-success-filled' : t === 'warning' ? 'status-warning-filled' : t === 'error' ? 'status-error-filled' : null;
@@ -137,9 +139,9 @@ function ReadinessStatus({ type = 'done', children, right, indicators, className
         <div className="ifs-readiness__right">
           {indicators.map((d, i) => <Indicator key={i} size="xs" type={loading ? 'loading' : (d.type || 'gray')}>{d.label}</Indicator>)}
         </div>
-      ) : right != null && (
+      ) : end != null && (
         <div className="ifs-readiness__right ifs-readiness__right--text">
-          {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-24)', height: 'var(--size-16)' }} /> : <span className="ifs-readiness__text">{right}</span>}
+          {loading ? <span className="ifs-skeleton-bar ifs-sk" style={{ width: 'var(--size-24)', height: 'var(--size-16)' }} /> : <span className="ifs-readiness__text">{end}</span>}
         </div>
       )}
     </div>

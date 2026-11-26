@@ -31,7 +31,9 @@
 .ifs-scroll-bar .ifs-scroll-area__bar{position:absolute;height:140px}
 
 /* ================= CircularButton — circular-button-molecule (72:9983) ================= */
-.ifs-circular-button{--fill:var(--element-button-circular-fill-default);--stroke:var(--color-border-soft);
+/* D3 (G2, decided Nov 25; built 2.0.7): rest white 20, hover white 30, pressed --color-background-neutral (15); a --color-border-strong edge and
+   white ink in every state; the hotkey text-soft at rest and pressed, white on hover */
+.ifs-circular-button{--fill:var(--color-background-neutral-strong);--stroke:var(--color-border-strong);
   --fg:var(--color-text);--ic:var(--color-icon);
   display:inline-flex;align-items:center;gap:var(--space-100);flex:none;margin:0;padding:0;border:0;background:none;
   border-radius:var(--radius-control);cursor:pointer;color:var(--fg);font:inherit}
@@ -42,8 +44,11 @@
 .ifs-circular-button__label{gap:var(--space-100);padding:0 var(--space-150);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;white-space:nowrap;color:var(--fg)}
 .ifs-circular-button__arrow{width:var(--size-24);color:var(--ic)}
-.ifs-circular-button:hover,.ifs-circular-button[data-state=hover]{--fill:var(--element-button-circular-fill-hover);--stroke:var(--color-border-strong);--fg:var(--color-text-inverse);--ic:var(--color-icon-inverse)}
-.ifs-circular-button:active,.ifs-circular-button[data-state=pressed]{--fill:var(--element-button-circular-fill-pressed);--stroke:var(--color-border-soft);--fg:var(--color-text-inverse);--ic:var(--color-icon-inverse)}
+.ifs-circular-button:hover,.ifs-circular-button[data-state=hover]{--fill:var(--color-background-neutral-strong-hover);--stroke:var(--color-border-strong);--fg:var(--color-text);--ic:var(--color-icon)}
+.ifs-circular-button:active,.ifs-circular-button[data-state=pressed]{--fill:var(--color-background-neutral);--stroke:var(--color-border-strong);--fg:var(--color-text);--ic:var(--color-icon)}
+.ifs-circular-button .ifs-hotkey{color:var(--color-text-soft)}
+.ifs-circular-button:hover .ifs-hotkey,.ifs-circular-button[data-state=hover] .ifs-hotkey{color:var(--color-text)}
+.ifs-circular-button:active .ifs-hotkey,.ifs-circular-button[data-state=pressed] .ifs-hotkey{color:var(--color-text-soft)}
 .ifs-circular-button:disabled,.ifs-circular-button[aria-disabled=true]{cursor:not-allowed;
   --fill:var(--color-background-neutral-soft);--stroke:var(--color-border-softer);--fg:var(--color-text-disabled);--ic:var(--color-icon-disabled)}
 .ifs-circular-button:disabled .ifs-hotkey{color:var(--color-text-disabled)}

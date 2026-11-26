@@ -58,7 +58,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'ReadinessStatus', figma: 'status-readiness-molecule (1440:5273)', render: () => <>
     {['done', 'warning', 'error', 'in-progress', 'active', 'loading'].map(t => (
       <Row key={t} label={t} style={{ gap: 'var(--space-500)' }}>
-        <div style={{ width: 164 }}><ReadinessStatus type={t} right="Text">Text</ReadinessStatus></div>
+        <div style={{ width: 164 }}><ReadinessStatus type={t} end="Text">Text</ReadinessStatus></div>
         {t !== 'done' && <div style={{ width: 164 }}><ReadinessStatus type={t} indicators={[{ type: 'red', label: 'text' }, { type: 'orange', label: 'text' }]}>Text</ReadinessStatus></div>}
       </Row>
     ))}

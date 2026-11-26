@@ -64,6 +64,7 @@ Use: An action in a dense context where a label won't fit. Tooltip + aria-label:
 
 ### circular-button-molecule · `CircularButton`
 Use: One directional trigger inside `circular-button-organism`; not placed alone.
+States (D3, 2.0.7): rest white 20 (`--color-background-neutral-strong`), hover white 30 (`--color-background-neutral-strong-hover`), pressed `--color-background-neutral`; `--color-border-strong` edge and white ink in every state; hotkey text-soft at rest and pressed, white on hover.
 
 ### circular-button-organism · `CircularMenu`
 Use: A small fixed set (2–4) of related actions tied to a point on a canvas/map node, each with direction + keyboard shortcut, for fast repeat use.
@@ -406,6 +407,7 @@ Use: Dot + text status label (e.g. "● Active" next to a page title). Types: th
 
 ### status-readiness-molecule · `ReadinessStatus`
 Use: Labelled readiness row (label + readiness icon/text).
+Notes: the text at the row's end is `end` (2.0.7; `right` still works, deprecated until 3.0, rule 11.4); or `indicators` for XS status indicators.
 
 ### status-risk-molecule · `RiskStatus`
 Use: Interactive risk status chip on cards, rows, assets.

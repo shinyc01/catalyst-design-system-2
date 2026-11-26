@@ -248,8 +248,8 @@ export default IFS_GALLERY;
             <span className="t-heading-h3-medium">Approval readiness</span>
             <IFS.Inline as="span" gap="200" align="center"><IFS.ProgressRing value={50} size={16} label="Approval readiness" /><span className="t-heading-h3-medium">50%</span></IFS.Inline>
           </div>
-          <IFS.ReadinessStatus style={{ width: "100%" }} type="done" right="Passed">Objective weighting</IFS.ReadinessStatus>
-          <IFS.ReadinessStatus style={{ width: "100%" }} type="done" right="Passed">Strategic alignment</IFS.ReadinessStatus>
+          <IFS.ReadinessStatus style={{ width: "100%" }} type="done" end="Passed">Objective weighting</IFS.ReadinessStatus>
+          <IFS.ReadinessStatus style={{ width: "100%" }} type="done" end="Passed">Strategic alignment</IFS.ReadinessStatus>
           <IFS.ReadinessStatus style={{ width: "100%" }} type="in-progress" indicators={[{ type: 'red', label: '0/1' }]}>Risk balance</IFS.ReadinessStatus>
           <IFS.ReadinessStatus style={{ width: "100%" }} type="in-progress" indicators={[{ type: 'red', label: '0/1' }, { type: 'orange', label: '0/2' }]}>Governance flags</IFS.ReadinessStatus>
           <IFS.SegmentedControl size="m" defaultValue="q" options={[{ value: 'q', label: 'Open questions', counter: 2 }, { value: 'w', label: 'Warnings', counter: 2 }]} />

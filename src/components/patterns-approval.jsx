@@ -232,7 +232,7 @@ function ReadinessSection({ title, badge, count, open, defaultOpen = false, onOp
 // Pattern helper: Readiness Evaluation sidebar content — built from ProgressRing, ReadinessStatus, ReadinessSection (place it in IFS.Panel). Figma: a content card (summary title + text, then
 // "Approval readiness" with a 16px progress ring and status-readiness rows) followed by ReadinessSections.
 // Props: summary = { title, text }, readiness (0–100; omit to hide the head), readinessLabel (default "Approval readiness"),
-// checks = [{ label, type done|warning, right }] (ReadinessStatus rows), sections = [{ id, title, badge, count, content }],
+// checks = [{ label, type done|warning, end }] (ReadinessStatus rows; `right` still works, deprecated until 3.0), sections = [{ id, title, badge, count, content }],
 // openSections / defaultOpenSections / onOpenSectionsChange (array of ids).
 function ReadinessEvaluation({ summary, readiness, readinessLabel = 'Approval readiness', checks = [], sections = [],
   openSections, defaultOpenSections = [], onOpenSectionsChange, className, ...rest }) {
@@ -248,7 +248,7 @@ function ReadinessEvaluation({ summary, readiness, readinessLabel = 'Approval re
           {(readiness != null || checks.length > 0) && <div className="ifs-readiness-card__checks">
             {readiness != null && <div className="ifs-readiness-card__head">{readinessLabel}
               <span className="ifs-readiness-card__pct"><IFS.ProgressRing value={readiness} size={16} label={readinessLabel} />{readiness}%</span></div>}
-            {checks.map((c, i) => <IFS.ReadinessStatus key={i} type={c.type || 'done'} right={c.right}>{c.label}</IFS.ReadinessStatus>)}
+            {checks.map((c, i) => <IFS.ReadinessStatus key={i} type={c.type || 'done'} end={c.end ?? c.right}>{c.label}</IFS.ReadinessStatus>)}
           </div>}
         </div>
       )}

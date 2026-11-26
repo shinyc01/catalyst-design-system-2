@@ -5,13 +5,13 @@
 // Fails (exit 1) on: a primitive (--palette-*), an old element colour (--element-*) or a deprecated alias (foundations/deprecated.css, incl.
 // names built at run time) used in src/components, src/gallery or demo/screens, and a colour role in tokens.css that holds a raw value instead of var() (data viz excepted until D1–D9).
 // Reports (known, C3 blocker P1/P2, not failing yet): raw hex / rgb() / rgba() / hsl() colours in component files (CSS, and colour
-// strings anywhere in JSX), and every use of the 8 held names (rule 11.6: --element-* held, --white-alpha-50, --white-500, --border-blue).
+// strings anywhere in JSX), and every use of the 5 held names (rule 11.6: --element-* held, --white-alpha-50, --white-500, --border-blue).
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dir = join(root, 'src/components');
-const HELD = /--element-(checkbox-off-border-pressed|radiobutton-off-border-pressed|button-circular-fill-(default|hover|pressed))\b/;
+const HELD = /--element-(checkbox-off-border-pressed|radiobutton-off-border-pressed)\b/; // the circular button fills left the list with D3 (2.0.7)
 const HELD_OTHER = /^--(white-alpha-50|white-500|border-blue)$/;
 const { customProps } = await import(join(root, 'tools/css-tokens.mjs'));
 const DEPRECATED = new Set(customProps(readFileSync(join(root, 'src/foundations/deprecated.css'), 'utf8')).map(d => d.name));

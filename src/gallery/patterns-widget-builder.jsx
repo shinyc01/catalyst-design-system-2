@@ -154,7 +154,7 @@ export default IFS_GALLERY;
       <IFS.Stack gap="300">
         <div className="t-label-l-medium" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>Approval readiness
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--space-150)' }}><IFS.ProgressRing value={35} size={16} />35%</span></div>
-        <IFS.ReadinessStatus type="done" right="Passed">Investment readiness</IFS.ReadinessStatus>
+        <IFS.ReadinessStatus type="done" end="Passed">Investment readiness</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1 error' }]}>Path forward</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1 error' }]}>Assumption consistency</IFS.ReadinessStatus>
         <IFS.ReadinessStatus type="in-progress" indicators={[{ type: 'error', label: '1/2' }, { type: 'warning', label: '1/3' }]}>Review blockers</IFS.ReadinessStatus>

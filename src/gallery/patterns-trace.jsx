@@ -201,9 +201,9 @@ export default IFS_GALLERY;
     <IFS.ReadinessFacts rows={[['Approved FY26 envelope', '$2.24B'], ['Proposed value', '$2.24B'], ['Over by', '$140M', 'danger'], ['Requires', 'Finance Committee waiver']]} /></> };
   const CASES = {
     approved: { summary: { title: 'Ready to Approve', text: 'All governance checks passed and the one flagged risk has been resolved. Net portfolio value rises 4.8% ($2.14B → $2.24B) with 1,621 investments re-scored.' },
-      readiness: 100, checks: ['Objective weighting', 'Strategic alignment', 'Risk balance', 'Governance flags'].map(label => ({ label, right: 'Passed' })), sections: BASE_SECTIONS },
+      readiness: 100, checks: ['Objective weighting', 'Strategic alignment', 'Risk balance', 'Governance flags'].map(label => ({ label, end: 'Passed' })), sections: BASE_SECTIONS },
     blocked: { summary: { title: 'Budget Envelope Exceeded', text: 'Proposed framework raises portfolio value to $2.24B — $140M above the approved FY26 capital envelope. 38 funding-tier changes fall outside pre-approved budget lines.' },
-      readiness: 40, checks: [{ label: 'Objective weighting', right: 'Passed' }, { label: 'Strategic alignment', right: 'Passed' }, { label: 'Budget envelope', type: 'error', right: 'Exceeded' }, { label: 'Governance flags', right: 'Passed' }],
+      readiness: 40, checks: [{ label: 'Objective weighting', end: 'Passed' }, { label: 'Strategic alignment', end: 'Passed' }, { label: 'Budget envelope', type: 'error', end: 'Exceeded' }, { label: 'Governance flags', end: 'Passed' }],
       sections: [BUDGET, ...BASE_SECTIONS] },
   };
   IFS_GALLERY.push({ name: 'Pattern: Readiness evaluation', figma: 'Review - Portfolio impact - Reviewer: Approved / Blocked view [patterns] (12:193232 / 12:193367)', render: () => {

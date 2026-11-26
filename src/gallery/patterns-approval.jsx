@@ -29,12 +29,12 @@ export default IFS_GALLERY;
     { id: 7, group: 'Unchanged', name: 'Feeder Automation North', type: 'Reliability', total: { from: '$2.0M', to: '$2.0M' }, ratio: { from: '2.1', to: '2.1' } },
   ];
   const CHECKS_READY = [
-    { label: 'Objective weighting', right: 'Passed' }, { label: 'Strategic alignment', right: 'Passed' },
-    { label: 'Risk balance', right: 'Passed' }, { label: 'Governance flags', right: 'Passed' },
+    { label: 'Objective weighting', end: 'Passed' }, { label: 'Strategic alignment', end: 'Passed' },
+    { label: 'Risk balance', end: 'Passed' }, { label: 'Governance flags', end: 'Passed' },
   ];
   const CHECKS_BLOCKED = [
-    { label: 'Objective weighting', right: 'Passed' }, { label: 'Strategic alignment', right: 'Passed' },
-    { label: 'Budget envelope', type: 'error', right: 'Exceeded' }, { label: 'Governance flags', right: 'Passed' },
+    { label: 'Objective weighting', end: 'Passed' }, { label: 'Strategic alignment', end: 'Passed' },
+    { label: 'Budget envelope', type: 'error', end: 'Exceeded' }, { label: 'Governance flags', end: 'Passed' },
   ];
   const P = ({ children }) => <p>{children}</p>;
   const sectionsFor = (blocked, notes) => [

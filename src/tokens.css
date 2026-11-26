@@ -131,6 +131,7 @@
 --color-background-input:var(--palette-white-alpha-10);
 --color-background-transparent:var(--palette-black-alpha-0);
 --color-background-neutral-strong:var(--palette-white-alpha-20);
+--color-background-neutral-strong-hover:var(--palette-white-alpha-30); /* D3 (2.0.7): CircularButton hover, between neutral-strong (20) and the field line's 30 */
 --color-background-info-soft:var(--palette-info-500-alpha-10);
 --color-background-info:var(--palette-info-500-alpha-25);
 --color-background-accent-purple-soft:var(--palette-purple-500-alpha-10);
@@ -251,8 +252,9 @@
 --color-cooper-button-shade:var(--palette-black-alpha-36);--color-cooper-button-fill-disabled:var(--palette-black-alpha-3);
 --color-cooper-art-light:var(--palette-core-1000);--color-cooper-art-pink:var(--palette-cooper-art-pink);--color-cooper-art-copper:var(--palette-cooper-art-copper);--color-cooper-art-violet:var(--palette-cooper-art-violet); /* Cooper avatar artwork */
 
-/* Held (Nov 23): these 8 would change a Dark value if folded onto a role; they keep their names and values until the component review
-   (values read the same primitives, so nothing changes) */
+/* Held (Nov 23): these colours would change a Dark value if folded onto a role; they keep their names and values until the component review
+   (values read the same primitives, so nothing changes). The three circular-button fills are no longer read by the kit (CircularButton D3,
+   2.0.7: --color-background-neutral-strong / -strong-hover / --color-background-neutral); they stay, unchanged, as deprecated names until 3.0. */
 --border-blue:var(--palette-info-500);
 --element-checkbox-off-border-pressed:var(--palette-white-alpha-15);
 --element-radiobutton-off-border-pressed:var(--palette-white-alpha-15);
