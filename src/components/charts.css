@@ -211,6 +211,12 @@
 .ifs-chart__guide{stroke:var(--color-border);stroke-dasharray:2 4}
 .ifs-chart__refline{stroke:var(--color-data-viz-reference) /* raw in Figma */;stroke-width:1.5;stroke-dasharray:4 4}
 .ifs-chart__refline--thin{stroke-width:1}
+/* Rule 10.13 (Nov 26): reference lines (budget cap, target, threshold) 1 px dashed in the strong border role, never a data-viz colour, labelled
+   at the line end in Label/S; the "Today" marker on a time axis is the same role, solid */
+.ifs-chart__ref{stroke:var(--color-border-strong);stroke-width:var(--border-width-default);stroke-dasharray:4 4} /* px: chart dash geometry */
+.ifs-chart__today{stroke:var(--color-border-strong);stroke-width:var(--border-width-default)}
+.ifs-chart__ref-label{font:var(--font-label-s-medium);letter-spacing:var(--font-label-s-medium-tracking);fill:var(--color-text-soft);
+  stroke:var(--color-border-chart-gap);stroke-width:3px;stroke-linejoin:round;paint-order:stroke} /* a card-colour halo keeps the label readable where it crosses a mark (px: chart geometry) */
 .ifs-chart__connector{stroke:var(--color-data-viz-baseline);stroke-dasharray:2 3;stroke-linecap:round}
 .ifs-chart__slice{stroke:var(--color-border-chart-gap);stroke-width:var(--border-width-default);stroke-linejoin:round} /* the one 1 px card-colour gap between parts (rule 10.9) */
 .ifs-chart__skel-stroke{stroke:var(--color-background-skeleton);fill:none}
@@ -264,6 +270,8 @@
   .ifs-chart svg text{fill:CanvasText}
   .ifs-chart svg :is(.ifs-chart__grid,.ifs-chart__guide,.ifs-chart__refline){stroke:GrayText}
   .ifs-chart svg .ifs-chart__baseline{stroke:CanvasText}
+  .ifs-chart svg :is(.ifs-chart__ref,.ifs-chart__today){stroke:CanvasText}
+  .ifs-chart svg .ifs-chart__ref-label{fill:CanvasText;stroke:Canvas}
   .ifs-chart svg :is(path.ifs-chart__mark,rect.ifs-chart__mark,.ifs-chart__slice,.ifs-chart__mark > path:not(.ifs-chart__line),.ifs-chart__gauge-track){
     fill:Canvas;stroke:CanvasText;stroke-width:var(--border-width-selected);fill-opacity:1}
   .ifs-chart svg .ifs-chart__line{stroke:CanvasText}

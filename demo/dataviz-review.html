@@ -118,7 +118,7 @@ function App() {
   const st = state === 'default' ? undefined : state;
   return h('div', { className: 'rv' },
     h('div', { className: 'rv-head' },
-      h('h1', null, 'Data visualisation review · 2.0.6'),
+      h('h1', null, 'Data visualisation review · 2.0.7'),
       h('p', null, 'Every decision from the Nov 24 data viz round (D1–D9) in the coded kit: the chart card on the container rule with a fixed height, the header order, solid gridlines, legends by chart type, the hover and tooltip, the v2g palette, stacks and corners, and the four states. Hover a chart, or Tab to it and use the arrow keys; Esc closes the tooltip.')),
     h('div', { className: 'rv-bar' },
       h('label', null, 'Density', h(Seg, { value: dens, onChange: setDens, options: DENS })),
@@ -177,6 +177,22 @@ function App() {
         Cell('Line, all series at the point', h(I.LineChart, { title: 'Forecast by program', data: lineData(3), series: ser(3), format: money, tooltipFormat: moneyFull, defaultActive: 3 })),
         Cell('Scatter point', h(I.ScatterChart, { title: 'Cost vs risk reduced', data: scatter, series: scatterSeries, xLabel: 'Days', yLabel: 'Cost', yFormat: money, tooltipFormat: moneyFull, defaultActive: 4 })),
         Cell('Donut slice', h(I.DonutChart, { title: 'Investments by status', data: donut, defaultActive: 1 })))),
+
+    h('section', { className: 'rv-sec', id: 'v207' }, h('h2', null, '2.0.7 · Reference and forecast lines (rule 10.13), line gaps, group levels (rule 10.7), legend position'),
+      h('p', null, 'Reference lines: 1 px dashed in the strong border role, labelled at the end, in the legend and the table view, never a data-viz colour. Forecast keeps the series colour: dashed after Today on lines, the light partner slot on bars, "Forecast" in the legend and tooltip. Missing values break the line, a lone value is a dot, the tooltip says "No data"; connectGaps joins across the gap with a dotted bridge. Stacked groups with levels use their own ramp from step 2.'),
+      h('div', { className: 'rv-grid', style: { '--cols': 3 } },
+        Cell('Column: budget cap and target references', h(I.ColumnChart, { title: 'Spend by quarter', data: col, valueLabel: 'Spend', format: money, tooltipFormat: moneyFull, references: [{ value: 13e6, label: 'Budget cap' }, { value: 10e6, label: 'Target' }] }), 'r1'),
+        Cell('Column: forecast quarters in the light partner slot', h(I.ColumnChart, { title: 'Spend by quarter', data: col.map((d, i) => ({ ...d, value: i === 5 ? 11.8e6 : d.value, forecast: i >= 4 })), valueLabel: 'Spend', format: money, tooltipFormat: moneyFull, defaultActive: 4 }), 'r2'),
+        Cell('Line: forecast after Today, a threshold reference', h(I.LineChart, { title: 'Forecast by program', data: lineData(3), series: ser(3), format: money, tooltipFormat: moneyFull, forecastFrom: 'FY27', references: [{ value: 5.5e6, label: 'Threshold' }], defaultActive: 5 }), 'r3'),
+        Cell('Line: gaps break the line, a lone value is a dot', h(I.LineChart, { title: 'Condition index', data: YEARS.map((l, i) => ({ label: l, s0: [71, 73, null, 74, null, 77, 78][i], s1: [65, null, 66, 68, 69, null, 72][i] })), series: [{ key: 's0', label: 'Substations' }, { key: 's1', label: 'Lines' }], defaultActive: 2 }), 'g1'),
+        Cell('Line: connectGaps joins with a dotted bridge', h(I.LineChart, { title: 'Condition index', connectGaps: true, data: YEARS.map((l, i) => ({ label: l, s0: [71, 73, null, 74, null, 77, 78][i], s1: [65, null, 66, 68, 69, null, 72][i] })), series: [{ key: 's0', label: 'Substations' }, { key: 's1', label: 'Lines' }] }), 'g2'),
+        Cell('Stacked, levels: 4 levels per group (steps 2 · 4 · 6 · 8)', h(I.StackedColumnChart, { title: 'Objectives by value driver', levels: true, data: ['Reliability', 'Financial', 'Environment', 'Social', 'Governance'].map((l, i) => ({ label: l, s0: [230, 25, 25, 25, 25][i], s1: [20, 20, 28, 20, 28][i], s2: [21, 260, 230, 260, 230][i], s3: [32, null, 20, null, 20][i] })), series: ['Level 1', 'Level 2', 'Level 3', 'Level 4'].map((l, j) => ({ key: 's' + j, label: l })), defaultActive: 0 }), 'l1'),
+        Cell('Stacked, levels: 7 levels (every step 2 … 8)', h(I.StackedColumnChart, { title: 'Objectives by value driver', levels: true, data: ['Reliability', 'Financial', 'Environment'].map((l, i) => Object.fromEntries([['label', l], ...Array.from({ length: 7 }, (_, j) => ['s' + j, 20 + ((i + j) % 4) * 10])])), series: Array.from({ length: 7 }, (_, j) => ({ key: 's' + j, label: `Level ${j + 1}` })) }), 'l2'),
+        Cell('Stacked with a reference line', h(I.StackedColumnChart, { title: 'Spend by asset class', data: stackData(4), series: ser(4), format: money, tooltipFormat: moneyFull, references: [{ value: 8e6, label: 'Budget cap' }] }), 'r4'),
+        Cell('legendPosition: donut legend below', h(I.DonutChart, { title: 'Investments by status', data: donut, legendPosition: 'below' }), 'lp1'),
+        Cell('legendPosition: line legend beside (no end labels)', h(I.LineChart, { title: 'Forecast by program', data: lineData(3), series: ser(3), format: money, tooltipFormat: moneyFull, legendPosition: 'beside' }), 'lp2'),
+        Cell('legendPosition: grouped legend beside', h(I.GroupedColumnChart, { title: 'Spend by region', data: groupData(3), series: ser(3), format: money, tooltipFormat: moneyFull, legendPosition: 'beside', references: [{ value: 9e6, label: 'Target' }] }), 'lp3'),
+        Cell('Bar: a target reference', h(I.BarChart, { title: 'Risk reduced by driver', data: bars, format: pct, references: [{ value: 30, label: 'Target' }] }), 'r5'))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D6 · D7 · Palette'), h(Palette)),
 

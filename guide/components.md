@@ -470,7 +470,7 @@ Use: Target/selection marker on a chart (e.g. bullet-chart target).
 Use: Axis or data value label.
 
 ### line-atom · `DataVizLine`
-Use: Gridline / reference line; dashed for planned or median.
+Use: Gridline / reference line; dashed for planned or median. Chart reference lines (budget cap, target, threshold) and forecasts: rule 10.13.
 
 ### legend-swatch-atom · `LegendSwatch`
 Use: One legend entry (`LegendSwatch`; `Legend` for a whole legend). Rules 10.1, 10.5.
@@ -516,10 +516,10 @@ Use: One phase row of the Gantt; building block.
 Use: Gantt: tasks/phases on a time axis (e.g. investment phases across a 5-year plan); shows sequential vs parallel work.
 Notes: A phase row expands and collapses with a caret `IconButton` S; the phase name is plain text, not a button (rule 6.2).
 
-Core chart types. All share the states Default, Hover, Cooper, Loading, Empty (no data), No results and Error, each at the card's height (rule 10.10; `state`, `onRetry`, `onClearFilters`), and the props `title`, `subtitle`, `description` (screen-reader only), `size` (default | large), `valueTicks` (2–8 value-axis intervals, default 4), `view` / `onViewChange`, `onCooper`, `onEditWithCooper`, `actions`, `menuItems`, `movable` / `onMove` / `onMoveEnd` / `onDragEnd`, `bare`, `height` (escape hatch). Give the same entity the same `color` on every chart of a screen (rule 10.12). Series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other", rule 10.7). Types with no kit component: box plot, radar, treemap.
+Core chart types. All share the states Default, Hover, Cooper, Loading, Empty (no data), No results and Error, each at the card's height (rule 10.10; `state`, `onRetry`, `onClearFilters`), and the props `title`, `subtitle`, `description` (screen-reader only), `size` (default | large), `valueTicks` (2–8 value-axis intervals, default 4), `view` / `onViewChange`, `onCooper`, `onEditWithCooper`, `actions`, `menuItems`, `movable` / `onMove` / `onMoveEnd` / `onDragEnd`, `bare`, `height` (escape hatch), `legendPosition` (2.0.7: `below` | `beside`; unset = the type's default, rule 10.5). Column, bar, grouped, stacked, line and area charts take `references = [{ value, label }]`: dashed `--color-border-strong` lines labelled at the end, in the legend and the table (rule 10.13). Give the same entity the same `color` on every chart of a screen (rule 10.12). Series take the categorical slots in order (keep it to 8: guidance; lines colour up to 12; stacks and slices fold into "Other", rule 10.7). Types with no kit component: box plot, radar, treemap.
 
 ### chart-column · `ColumnChart`
-Use: One measure across few or time-ordered categories ("which is biggest"); zero-based, one colour (slot 1). Legend only with a reference (one series = no legend); the radius sits on the end away from the baseline.
+Use: One measure across few or time-ordered categories ("which is biggest"); zero-based, one colour (slot 1). Legend only with a reference or forecast (one series = no legend); the radius sits on the end away from the baseline. `forecast: true` on a datum draws it in the light partner slot with "Forecast" in the legend, tooltip and table (rule 10.13).
 
 ### chart-bar · `BarChart`
 Use: Horizontal bars for many categories, long labels or rankings (sort biggest → smallest). Also the answer when column labels would need rotating (rule 10.4).
@@ -528,13 +528,13 @@ Use: Horizontal bars for many categories, long labels or rankings (sort biggest 
 Use: A few series side by side per category; every series and group is drawn (4 or fewer read best), legend below, consistent series order; bars at least `--size-data-viz-bar-min` with a 1 gap and groups at least `--size-data-viz-group-gap-min` apart, otherwise the plot scrolls sideways under a fixed value axis (rule 10.9).
 
 ### chart-stacked-column · `StackedColumnChart`
-Use: Composition of a total per category; the one stacked-column component (rule 10.9). Up to 8 named segments + one grey "Other" (5 or fewer read best), most important on the baseline, a 1 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the named segments top to bottom, then "Other" with its total and each folded series under it.
+Use: Composition of a total per category; the one stacked-column component (rule 10.9). Up to 8 named segments + one grey "Other" (5 or fewer read best), most important on the baseline, a 1 card-colour gap, only the outer end rounded; legend below in stack order; the tooltip lists the named segments top to bottom, then "Other" with its total and each folded series under it. `levels` (2.0.7, rule 10.7): each column is a group with levels inside: the group's dark slot on the baseline and its family's ramp upwards (every other step up to 4 levels, every step up to 8, then Other); the legend shows the levels in the hovered column's ramp.
 
 ### chart-line · `LineChart`
-Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit, a vertical legend sits on the end side of the plot (line / dashed swatches), in the order the lines end (top line first); the tooltip lists the series by value at the hovered point, highest first. Every line up to 12 has its own colour (keep it to 8: guidance); the 13th and later grey with one "Other" entry.
+Use: Change over time — spend/burn tracking, actual (solid) vs planned (dashed), trend and rate of change. `endLabels` (default on) names each line at its end; when the names collide or don't fit, a vertical legend sits on the end side of the plot (line / dashed swatches), in the order the lines end (top line first); the tooltip lists the series by value at the hovered point, highest first. Every line up to 12 has its own colour (keep it to 8: guidance); the 13th and later grey with one "Other" entry. Missing values (2.0.7): the line breaks at a gap, a lone value is a dot, the tooltip says "No data"; `connectGaps` joins across with a dotted bridge (rule 10.10). `forecastFrom` (the last actual point, index or label) dashes every line after it, with a "Today" marker and "Forecast" in the legend, tooltip and table (rule 10.13).
 
 ### chart-area · `AreaChart`
-Use: Cumulative volume over time; zero-based; names at the line ends, or a vertical legend on the end side when they collide (square swatches).
+Use: Cumulative volume over time; zero-based; names at the line ends, or a vertical legend on the end side when they collide (square swatches). Gaps, `connectGaps`, `forecastFrom` and `references` as `LineChart` (the fill breaks at a gap).
 
 ### chart-histogram · `HistogramChart`
 Use: Distribution of one measure across bins.

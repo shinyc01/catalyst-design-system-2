@@ -17,10 +17,8 @@ const dashboardStats = [
 
 // Series fills (portfolio rows) and legend
 // Value drivers: one dark categorical slot each (rules 10.7, 10.12; decided Nov 25), the same in every chart here.
-// The stacked columns split each driver into levels: the driver's own sequential ramp, step 2 (= its slot) on the baseline, then lighter upwards (rule 10.7, groups with levels; segments draw top to bottom).
+// The stacked columns split each driver into levels: StackedColumnChart `levels` gives each column its driver's dark slot (1 · 3 · 5 · 7 · 9, in column order) and its levels that family's ramp, step 2 on the baseline, then lighter upwards (rule 10.7, groups with levels).
 const dashboardSlot = n => `var(--color-data-viz-categorical-${n})`;
-const dashboardDriverRamp = ['violet', 'indigo', 'azure', 'teal', 'terracotta'];
-const dashboardLevel = (d, i) => `var(--color-data-viz-sequential-${dashboardDriverRamp[d]}-${2 + 2 * i})`;
 const dashboardSeries = [
   { label: 'Reliability', fill: dashboardSlot(1), legend: dashboardSlot(1), proj: dashboardSlot(1) },
   { label: 'Financial', fill: dashboardSlot(3), legend: dashboardSlot(3), proj: dashboardSlot(3) },
@@ -34,22 +32,13 @@ const dashboardPortfolio = {
   budget: [['You', [44, 31, 12, 6, 7]], ['Peer avg', [37, 27, 15, 9, 12]], ['Best in class', [36, 30, 18, 5, 11]]],
 };
 
+// Levels per driver, baseline first (a driver with 3 levels has no 4th).
+const dashboardLevels = ['Objective 1', 'Objective 2', 'Objective 3', 'Objective 4'].map((label, j) => ({ key: `o${j}`, label }));
+const dashboardColumnRows = rows => rows.map(([label, vals]) => Object.assign({ label }, ...vals.map((v, j) => ({ [`o${j}`]: v }))));
 const dashboardColumns = {
-  budget: [
-    ['Reliability', [[32, dashboardLevel(0, 3)], [21, dashboardLevel(0, 2)], [20, dashboardLevel(0, 1)], [230, dashboardLevel(0, 0)]]],
-    ['Financial', [[260, dashboardLevel(1, 2)], [20, dashboardLevel(1, 1)], [25, dashboardLevel(1, 0)]]],
-    ['Environmental', [[20, dashboardLevel(2, 3)], [230, dashboardLevel(2, 2)], [28, dashboardLevel(2, 1)], [25, dashboardLevel(2, 0)]]],
-    ['Social', [[260, dashboardLevel(3, 2)], [20, dashboardLevel(3, 1)], [25, dashboardLevel(3, 0)]]],
-    ['Governance', [[20, dashboardLevel(4, 3)], [230, dashboardLevel(4, 2)], [28, dashboardLevel(4, 1)], [25, dashboardLevel(4, 0)]]],
-  ],
+  budget: dashboardColumnRows([['Reliability', [230, 20, 21, 32]], ['Financial', [25, 20, 260]], ['Environmental', [25, 28, 230, 20]], ['Social', [25, 20, 260]], ['Governance', [25, 28, 230, 20]]]),
   // "By investment" is not drawn in Figma — illustrative split so the toggle works.
-  investment: [
-    ['Reliability', [[48, dashboardLevel(0, 3)], [36, dashboardLevel(0, 2)], [30, dashboardLevel(0, 1)], [189, dashboardLevel(0, 0)]]],
-    ['Financial', [[210, dashboardLevel(1, 2)], [52, dashboardLevel(1, 1)], [43, dashboardLevel(1, 0)]]],
-    ['Environmental', [[34, dashboardLevel(2, 3)], [196, dashboardLevel(2, 2)], [40, dashboardLevel(2, 1)], [33, dashboardLevel(2, 0)]]],
-    ['Social', [[225, dashboardLevel(3, 2)], [42, dashboardLevel(3, 1)], [38, dashboardLevel(3, 0)]]],
-    ['Governance', [[31, dashboardLevel(4, 3)], [205, dashboardLevel(4, 2)], [36, dashboardLevel(4, 1)], [31, dashboardLevel(4, 0)]]],
-  ],
+  investment: dashboardColumnRows([['Reliability', [189, 30, 36, 48]], ['Financial', [43, 52, 210]], ['Environmental', [33, 40, 196, 34]], ['Social', [38, 42, 225]], ['Governance', [31, 36, 205, 31]]]),
 };
 // A one-off chart (rule 10.12 step 2): measure types appear nowhere else, so they take the free slots in order after the drivers (1 · 3 · 5 · 7 · 9).
 const dashboardCoverage = [
@@ -73,13 +62,12 @@ function DashboardLegend({ proj }) {
 
 function ScreenDashboard({ bp, height }) {
   const { AppShell, NavBar, SideNav, PageHeader, Indicator, SegmentedControl, CooperChip, StatCardsRow, StatCard, DataVizCard,
-    BarChartItem, VerticalBarChartItem, DonutChart, BottomSheet } = IFS;
+    BarChartItem, StackedColumnChart, DonutChart, BottomSheet } = IFS;
   const toast = useToast();
   const [nav, setNav] = React.useState('active');
   const [view, setView] = React.useState('overview');
   const [pf, setPf] = React.useState('weight');
   const [so, setSo] = React.useState('budget');
-  const [activeCol, setActiveCol] = React.useState('Reliability');
 
   const header = (
     <PageHeader title="Q1 2026 Strategy Framework" onTitleMenu={() => toast('Framework menu')}
@@ -93,7 +81,6 @@ function ScreenDashboard({ bp, height }) {
   );
 
   const label = { color: 'var(--color-text)' };
-  const muted = { color: 'var(--color-text-softer)' };
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
@@ -126,25 +113,7 @@ function ScreenDashboard({ bp, height }) {
           <div className="ifs-grid">
             <DataVizCard title="Strategic objectives breakdown" className="ifs-span-8"
               header={{ segments: [{ value: 'budget', label: 'By budget' }, { value: 'investment', label: 'By investment' }], segmentValue: so, onSegmentChange: setSo }}>
-              <IFS.Inline gap="150" style={{ height: 353 }}>
-                <div className="t-label-m-medium" style={{ ...muted, width: 37, flex: 'none', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', paddingBottom: 'var(--space-inset)' }}>
-                  {['100%', '80%', '60%', '40%', '20%', '0'].map(t => <span key={t}>{t}</span>)}
-                </div>
-                <IFS.Stack gap="stack" style={{ flex: '1 1 0', minWidth: 0 }}>
-                  <IFS.Inline gap="50" align="end" style={{ padding: 'var(--space-100)', height: 321, boxSizing: 'border-box' }}>
-                    {dashboardColumns[so].map(([name, segs]) => (
-                      <div key={name} style={{ flex: '1 1 0', minWidth: 0 }}>
-                        <VerticalBarChartItem width="100%" height={313} label={name} active={activeCol === name}
-                          onActiveChange={on => setActiveCol(on ? name : null)}
-                          segments={segs.map(([v, fill]) => ({ value: v, fill }))} />
-                      </div>
-                    ))}
-                  </IFS.Inline>
-                  <IFS.Inline gap="50" style={{ padding: '0 var(--space-100)' }}>
-                    {dashboardColumns[so].map(([name]) => <span key={name} className="t-label-m-medium" style={{ ...muted, flex: '1 1 0', textAlign: 'center' }}>{name}</span>)}
-                  </IFS.Inline>
-                </IFS.Stack>
-              </IFS.Inline>
+              <StackedColumnChart bare levels height={353} data={dashboardColumns[so]} series={dashboardLevels} />
             </DataVizCard>
             <DataVizCard title="Framework coverage by measure type" className="ifs-span-4">
               <DonutChart bare data={dashboardCoverage} sort={false} height={300} valueLabel="Share" format={v => `${v}%`} />

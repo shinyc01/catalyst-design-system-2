@@ -660,14 +660,19 @@ const STATE_COPY = {
 // view / defaultView chart|table / onViewChange, defaultActive (index — or [row, col] for heatmap — whose tooltip starts open), onCooper,
 // onEditWithCooper, actions (a screen's real extra actions, in the hover row), menuItems (its ⋯ items, after Move), movable / onMove /
 // onMoveEnd / onDragEnd (item 9; see DataVizCard), bare (no frame or header: for a chart inside a widget frame),
+// legendPosition below | beside (2.0.7, item 17: where the legend sits; unset = the type's default, rule 10.5: below for bars, columns, stacks,
+// scatter, gauge, waterfall, funnel and heatmap; beside for pie and donut; line and area name their lines at the ends),
 // valueTicks (2–8 value-axis intervals, default 4 = 5 labels, D3), tooltipFormat (the tooltip's full value, rule 10.6), emptyTitle / emptyText, noResultsTitle / noResultsText /
 // onClearFilters, errorTitle / errorText / onRetry, className, style.
 // States (D9): the card keeps its height in every state and the title stays; the switch, Evidence and the legend hide while there is no data.
 // Loading shows the skeleton after 300 ms; empty / no results / error show an EmptyState (section) inside the card.
-function ChartShell({ title, subtitle, description, state, legend, table, isEmpty, skeleton = 'bars', height, size, view, defaultView = 'chart', onViewChange,
+function ChartShell({ title, subtitle, description, state, legend: legendIn, legendPosition, table, isEmpty, skeleton = 'bars', height, size, view, defaultView = 'chart', onViewChange,
   onCooper, onEditWithCooper, actions, menuItems, movable, onMove, onMoveEnd, onDragEnd, bare, emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry,
   className, style, children }) {
   const [v, setV] = useControlled(view, defaultView, onViewChange);
+  // legendPosition (2.0.7, item 17): below (a centred row) | beside (a list on the end side); unset = the chart type's default (rule 10.5)
+  const legend = legendIn && (legendPosition === 'below' || legendPosition === 'beside')
+    ? { ...legendIn, beside: legendPosition === 'beside', layout: legendPosition === 'beside' ? 'row' : 'inline' } : legendIn;
   const mode = state === 'loading' ? 'loading' : state === 'error' ? 'error' : state === 'no-results' ? 'no-results'
     : state === 'empty' || isEmpty ? 'empty' : v === 'table' && table ? 'table' : 'chart';
   const skel = useDelayed(mode === 'loading');
@@ -813,9 +818,9 @@ function YAxis({ L, ticks, format, part = 'all' }) {
 }
 
 // Plot geometry for category charts: value gutter from the widest label, room for the category labels below.
-function catLayout(p, n, ticks, format, padR = 0) {
+function catLayout(p, n, ticks, format, padR = 0, padT = 0) {
   const gutter = Math.max(24, Math.max(...ticks.map(t => p.measure(format(t)))) + 12);
-  const x0 = gutter, x1 = p.W - 4 - padR, yT = 8, yB = p.H - Math.round(p.px * 1.34 + 8);
+  const x0 = gutter, x1 = p.W - 4 - padR, yT = 8 + padT, yB = p.H - Math.round(p.px * 1.34 + 8);
   const lo = ticks[0], hi = ticks[ticks.length - 1];
   const band = (x1 - x0) / Math.max(1, n);
   return { x0, x1, yT, yB, band, cx: i => x0 + band * (i + 0.5), y: v => yB - ((v - lo) / (hi - lo)) * (yB - yT), labelY: p.H - 4 };
@@ -834,10 +839,10 @@ function catShown(labels, pitch, measure) {
   return i => set.has(i);
 }
 
-const shellProps = ({ title, subtitle, description, state, size, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, menuItems,
+const shellProps = ({ title, subtitle, description, state, size, legendPosition, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, menuItems,
   movable, onMove, onMoveEnd, onDragEnd, bare, height,
   emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry, className, style }) =>
-  ({ title, subtitle, description, state, size, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, menuItems,
+  ({ title, subtitle, description, state, size, legendPosition, view, defaultView, onViewChange, onCooper, onEditWithCooper, actions, menuItems,
     movable, onMove, onMoveEnd, onDragEnd, bare, height,
     emptyTitle, emptyText, noResultsTitle, noResultsText, onClearFilters, errorTitle, errorText, onRetry, className, style });
 
@@ -848,44 +853,68 @@ const fullFormat = v => IFS.format.number(v);
 const tipFormat = (props, format) => props.tooltipFormat || (props.format ? format : fullFormat);
 const tipFrom = (d, base, tooltip, i) => (tooltip ? tooltip(d, i) : { ...base, ...(d.delta && { delta: d.delta }), ...(d.details && { items: d.details }) });
 
+// Rule 10.13 (Nov 26; the convention: Carbon, Atlassian). Reference lines (budget cap, target, threshold): `references = [{ value, label }]`,
+// a 1 px dashed --color-border-strong line, labelled at its end (Label/S), listed in the legend and as a column of the table view, never a
+// data-viz colour. They widen the value axis so the line is always inside the plot.
+const REF_INK = 'var(--color-border-strong)';
+const refList = r => (Array.isArray(r) ? r : []).filter(x => x && x.value != null && Number.isFinite(Number(x.value)));
+const refLegend = refs => refs.map((r, i) => ({ key: `__ref${i}`, label: r.label || 'Reference', color: REF_INK, shape: 'dashed' }));
+const refColumns = (refs, format) => refs.map((r, i) => ({ key: `__ref${i}`, label: r.label || 'Reference', value: () => format(r.value) }));
+const refRows = (refs, format) => refs.map((r, i) => ({ [`r${i}`]: format(r.value) }));
+// Horizontal lines (column, stacked, grouped, line charts): the label sits just above the line at the plot's end.
+function RefLines({ refs, L, x0 = L.x0, x1 = L.x1 }) {
+  return refs.map((r, i) => <g key={`ref${i}`} aria-hidden="true">
+    <line x1={x0} x2={x1} y1={L.y(Number(r.value))} y2={L.y(Number(r.value))} className="ifs-chart__ref" />
+    {r.label && <text x={x1} y={L.y(Number(r.value)) - 4} textAnchor="end" className="ifs-chart__ref-label">{r.label}</text>}
+  </g>);
+}
+// Forecast (rule 10.13): bars keep the series' family in its light partner slot (odd slot n → n + 1); a token colour stays as it is.
+const lightOf = c => (c == null ? 2 : (typeof c === 'number' || /^\d+$/.test(String(c))) && Number(c) % 2 === 1 ? Number(c) + 1 : c);
+
 /* ------------------------------------------------------------------ column / bar family */
 
 // Figma: chart-column (9862:12468) — one measure across few or time-ordered categories; zero-based, one colour (slot 1).
-// Props: data = [{ label, value, reference?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
+// Props: data = [{ label, value, reference?, forecast?, delta?, details? }], valueLabel (legend + table), referenceLabel (white peer-median tick),
+// references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines), forecast: true on a datum = a forecast / planned value
+// (rule 10.13: the light partner slot of `color`, "Forecast" in the legend, tooltip and table),
 // color (categorical slot or data-viz token; default 1), format(v) for values/axis, tooltip(datum, i) → DataVizTooltip props, valueTicks.
 // Shell props (every chart): see ChartShell.
 function ColumnChart(props) {
   const { data = [], valueLabel = 'Value', referenceLabel = 'Peer median', color = 1, format = defaultFormat, tooltip, contiguous, valueTicks } = props;
+  const refs = refList(props.references);
   const p = usePlot(props);
   const hasRef = data.some(d => d.reference != null);
-  const ticks = scaleTicks(Math.min(0, ...finite(data.map(d => d.value))), Math.max(0, ...finite(data.flatMap(d => [d.value, d.reference]))), valueTicks);
+  const hasFc = data.some(d => d.forecast);
+  const ticks = scaleTicks(Math.min(0, ...finite([...data.map(d => d.value), ...refs.map(r => Number(r.value))])), Math.max(0, ...finite([...data.flatMap(d => [d.value, d.reference]), ...refs.map(r => Number(r.value))])), valueTicks);
   const L = catLayout(p, data.length, ticks, format);
   const bw = contiguous ? Math.max(1, L.band - GAP_MARK) : Math.max(4, Math.min(L.band * 0.55, 64));
-  const fill = dvColor(color, 0);
-  const legend = { items: [{ label: valueLabel, color }, hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }] };
-  const table = { columns: [{ key: 'label', title: contiguous ? 'Bin' : 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel }].filter(Boolean),
-    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
+  const fill = dvColor(color, 0), fcColor = lightOf(color), fcFill = dvColor(fcColor, 1);
+  const legend = { items: [{ label: valueLabel, color }, hasFc && { label: 'Forecast', color: fcColor }, hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }, ...refLegend(refs)] };
+  const table = { columns: [{ key: 'label', title: contiguous ? 'Bin' : 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel },
+    ...refs.map((r, i) => ({ key: `r${i}`, title: r.label || 'Reference' }))].filter(Boolean),
+    rows: data.map((d, i) => Object.assign({ id: i, label: d.forecast ? `${d.label} (forecast)` : d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() }, ...refRows(refs, format))) };
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const a = p.active != null ? data[p.active] : null;
   const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: L.cx(p.active) - bw / 2, x1: L.cx(p.active) + bw / 2, y: L.y(Math.max(a.value, 0, a.reference ?? 0)) },
-    content: tipFrom(a, { title: a.label, items: [{ label: valueLabel, value: tf(a.value), color, shape: 'square' }, ...(a.reference != null ? [{ label: referenceLabel, value: tf(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
+    content: tipFrom(a, { title: a.label, items: [{ label: a.forecast ? 'Forecast' : valueLabel, value: tf(a.value), color: a.forecast ? fcColor : color, shape: 'square' }, ...(a.reference != null ? [{ label: referenceLabel, value: tf(a.reference), color: WHITE, shape: 'line' }] : [])] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length}>
-      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick} describe={i => `${data[i].label}: ${format(data[i].value)}`}>
+      <Plot p={p} label={props.title} tip={tip} n={data.length} pick={pick} describe={i => `${data[i].label}: ${format(data[i].value)}${data[i].forecast ? ' (forecast)' : ''}`}>
         <YAxis L={L} ticks={ticks} format={format} />
         {data.map((d, i) => {
           const y0 = L.y(0), y1 = L.y(d.value), on = p.active === i;
           return (
             <g key={i}>
               <path d={d.value >= 0 ? barPath(L.cx(i) - bw / 2, y1, bw, y0 - y1, contiguous ? 'none' : 'top') : barPath(L.cx(i) - bw / 2, y0, bw, y1 - y0, contiguous ? 'none' : 'bottom')}
-                fill={fill} className={markCls(p, on)} />
+                fill={d.forecast ? fcFill : fill} className={markCls(p, on)} />
               {d.reference != null && <rect x={L.cx(i) - bw / 2 - 6} y={L.y(d.reference) - 1} width={bw + 12} height={2} fill={WHITE} className={markCls(p, on)} />}
               {shown(i) && <text x={L.cx(i)} y={L.labelY} textAnchor="middle" className="ifs-chart__axis">{d.label}</text>}
             </g>
           );
         })}
+        <RefLines refs={refs} L={L} />
       </Plot>
     </ChartShell>
   );
@@ -910,21 +939,24 @@ function HistogramChart({ values, bins = 10, binWidth, binFormat, data, valueLab
 
 // Figma: chart-bar (9862:12961) — horizontal bars for many categories, long labels or rankings (sort biggest → smallest).
 // Props: as ColumnChart + sort (true = biggest first), labelWidth (category column, default 96). Values are labelled at the bar end.
+// references = [{ value, label }] (rule 10.13): vertical dashed lines, labelled at their top end.
 function BarChart(props) {
   const { valueLabel = 'Value', referenceLabel = 'Peer median', color = 1, format = defaultFormat, tooltip, sort = false, labelWidth = 96 } = props;
+  const refs = refList(props.references);
   const data = sort ? [...(props.data || [])].sort((a, b) => b.value - a.value) : (props.data || []);
   const p = usePlot(props);
   const hasRef = data.some(d => d.reference != null);
-  const max = Math.max(0, ...finite(data.flatMap(d => [d.value, d.reference])));
+  const max = Math.max(0, ...finite([...data.flatMap(d => [d.value, d.reference]), ...refs.map(r => Number(r.value))]));
   const valW = Math.max(0, ...data.map(d => p.measure(format(d.value)))) + 12;
-  const x0 = labelWidth + 8, x1 = p.W - valW, yT = 4, yB = p.H - 4;
+  const x0 = labelWidth + 8, x1 = p.W - valW, yT = refs.some(r => r.label) ? Math.round(p.px * 1.34 + 8) : 4, yB = p.H - 4;
   const row = (yB - yT) / Math.max(1, data.length), bh = Math.max(4, Math.min(26, row * 0.57));
   const X = v => x0 + (max ? (Math.max(0, v) / max) * (x1 - x0) : 0);
   const cy = i => yT + row * (i + 0.5);
   const fill = dvColor(color, 0);
-  const legend = { items: [{ label: valueLabel, color }, hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }] };
-  const table = { columns: [{ key: 'label', title: 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel }].filter(Boolean),
-    rows: data.map((d, i) => ({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() })) };
+  const legend = { items: [{ label: valueLabel, color }, hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }, ...refLegend(refs)] };
+  const table = { columns: [{ key: 'label', title: 'Category' }, { key: 'v', title: valueLabel }, hasRef && { key: 'r', title: referenceLabel },
+    ...refs.map((r, i) => ({ key: `r${i}`, title: r.label || 'Reference' }))].filter(Boolean),
+    rows: data.map((d, i) => Object.assign({ id: i, label: d.label, v: format(d.value), r: d.reference != null ? format(d.reference) : IFS.format.empty() }, ...refRows(refs, format))) };
   const a = p.active != null ? data[p.active] : null;
   const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0, x1: X(Math.max(a.value, a.reference ?? 0)) + valW - 12, y: cy(p.active) - bh / 2 },
@@ -946,6 +978,10 @@ function BarChart(props) {
             </g>
           );
         })}
+        {refs.map((r, i) => <g key={`ref${i}`} aria-hidden="true">
+          <line x1={X(Number(r.value))} x2={X(Number(r.value))} y1={yT} y2={yB} className="ifs-chart__ref" />
+          {r.label && <text x={X(Number(r.value))} y={yT - 6} textAnchor="middle" className="ifs-chart__ref-label">{r.label}</text>}
+        </g>)}
       </Plot>
     </ChartShell>
   );
@@ -965,14 +1001,15 @@ const warnOnce = (k, msg) => { if (!dvWarned.has(k)) { dvWarned.add(k); if (type
 // Figma: chart-grouped-column (9862:13445) — series side by side per category; every series is drawn, 4 or fewer read best (rule 10.9); consistent series order + legend.
 // Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }] (capped at 4: a 5th and
 // more are left out of the plot, kept in the table view, with a console warning; use a stacked column or small multiples), referenceKey (default 'reference') +
-// referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
+// referenceLabel, references = [{ value, label }] (rule 10.13), format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
 function GroupedColumnChart(props) {
   const { data = [], referenceKey = 'reference', referenceLabel = 'Peer median', format = defaultFormat, tooltip, valueTicks } = props;
   const all = props.series || [];
   const series = all; // item 7 (Nov 25): every series and group is drawn; 4 series is guidance, not a cap
   const p = usePlot(props);
   const hasRef = data.some(d => d[referenceKey] != null);
-  const vals = finite(data.flatMap(d => [...series.map(s => valOf(d, s)), d[referenceKey]]));
+  const refs = refList(props.references);
+  const vals = finite([...data.flatMap(d => [...series.map(s => valOf(d, s)), d[referenceKey]]), ...refs.map(r => Number(r.value))]);
   const ticks = scaleTicks(Math.min(0, ...vals), Math.max(0, ...vals), valueTicks);
   const L0 = catLayout(p, data.length, ticks, format);
   const k = Math.max(1, series.length);
@@ -984,8 +1021,8 @@ function GroupedColumnChart(props) {
   const bw = Math.max(p.barMin, (gw - GAP_MARK * (k - 1)) / k);
   const sx = x => x - (scrolls ? p.sl : 0); // content x → plot x
   const legend = { active: p.series, onActive: p.setSeries,
-    items: [...series.map((s, i) => ({ key: s.key, label: s.label, color: s.color ?? i + 1 })), hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }] };
-  const table = seriesTable(data, all, format, hasRef ? [{ key: referenceKey, label: referenceLabel }] : []);
+    items: [...series.map((s, i) => ({ key: s.key, label: s.label, color: s.color ?? i + 1 })), hasRef && { label: referenceLabel, color: WHITE, shape: 'line' }, ...refLegend(refs)] };
+  const table = seriesTable(data, all, format, [...(hasRef ? [{ key: referenceKey, label: referenceLabel }] : []), ...refColumns(refs, format)]);
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const a = p.active != null ? data[p.active] : null;
   const top = a ? Math.max(0, ...finite(series.map(s => valOf(a, s)))) : 0;
@@ -1012,6 +1049,7 @@ function GroupedColumnChart(props) {
             </g>
           );
         })}
+        <RefLines refs={refs} L={L} />
       </Plot>
     </ChartShell>
   );
@@ -1020,25 +1058,47 @@ function GroupedColumnChart(props) {
 // Figma: chart-stacked-column (9863:11139) — composition of a total per category; the one stacked-column component (D8).
 // Series stack bottom → top in series order (most important first, on the baseline); up to 8 segments, the rest fold into "Other"
 // (fewer read better: 5 or fewer recommended). 1 px card-colour gap between segments (--border-width-default, WCAG 1.4.11); only the outer end of the whole column is rounded.
-// Props: data = [{ label, [series.key]: number, delta?, details? }], series = [{ key, label, color? }], format, tooltip, valueTicks. + shell props.
+// Props: data = [{ label, [series.key]: number, color?, delta?, details? }], series = [{ key, label, color? }], format, tooltip, valueTicks,
+// references = [{ value, label }] (rule 10.13). + shell props.
+// levels (2.0.7, rule 10.7 "groups with levels inside"): each column is a group and the series are its levels (baseline first). The group
+// takes a dark slot (data[i].color: 1 · 3 · 5 · 7 · 9 · 11 or a family name; default the i-th dark slot) and its levels take that family's
+// sequential ramp from step 2 (= the slot) upwards: up to 4 levels every other step (2 · 4 · 6 · 8), 5–8 every step (2 … 9), past 8 the
+// rest fold into "Other". Up to 6 groups. The legend names the levels in the ramp of the hovered column (the first column at rest); the
+// tooltip and table name each level.
+const LEVEL_FAMILIES = ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose'];
+const groupFamily = (c, i) => {
+  if (typeof c === 'string' && LEVEL_FAMILIES.includes(c)) return c;
+  const n = Number(c);
+  return Number.isFinite(n) && n >= 1 ? LEVEL_FAMILIES[Math.floor(((n - 1) % SLOTS) / 2)] : LEVEL_FAMILIES[i % LEVEL_FAMILIES.length];
+};
 function StackedColumnChart(props) {
-  const { data = [], format = defaultFormat, tooltip, valueTicks } = props;
+  const { data = [], format = defaultFormat, tooltip, valueTicks, levels = false } = props;
   const all = props.series || [];
-  const series = foldSeries(all, SERIES_MAX + 1); // up to 8 segments + "Other"
+  const refs = refList(props.references);
+  // up to 8 segments + "Other"; with levels the 9th level and later fold (the ramp has 8 steps from step 2)
+  const series = levels && all.length > SERIES_MAX ? [...all.slice(0, SERIES_MAX), { key: '__other', label: 'Other', color: 'other', members: all.slice(SERIES_MAX).map(s => s.key) }]
+    : foldSeries(all, SERIES_MAX + 1);
   const p = usePlot(props);
+  const named = series.filter(s => !s.members).length;
+  const stepOf = j => (named <= 4 ? 2 + 2 * j : 2 + j);
+  // the colour of series j in column i: by series (default) or, with levels, the column's family ramp
+  const fillOf = (s, j, i) => (s.members ? OTHER : levels ? `var(--color-data-viz-sequential-${groupFamily(data[i] && data[i].color, i)}-${stepOf(j)})` : colorOf(s, j));
+  const keyColor = (s, j, i) => (s.members ? 'other' : levels ? fillOf(s, j, i) : s.color ?? j + 1);
   const totals = data.map(d => series.reduce((t, s) => t + Math.max(0, valOf(d, s) || 0), 0));
-  const ticks = scaleTicks(0, Math.max(0, ...totals), valueTicks);
+  const ticks = scaleTicks(0, Math.max(0, ...totals, ...finite(refs.map(r => Number(r.value)))), valueTicks);
   const L = catLayout(p, data.length, ticks, format);
   const bw = Math.max(4, Math.min(L.band * 0.55, 64));
-  const legend = { active: p.series, onActive: p.setSeries, items: series.map((s, i) => ({ key: s.key, label: s.label, color: s.color ?? i + 1 })) };
-  const table = seriesTable(data, all, format, [{ key: 'total', label: 'Total', value: d => format(all.reduce((t, s) => t + (d[s.key] || 0), 0)) }]);
+  const legendCol = p.active != null ? p.active : 0;
+  const legend = { active: levels ? undefined : p.series, onActive: levels ? undefined : p.setSeries,
+    items: [...series.map((s, i) => ({ key: s.key, label: s.label, color: keyColor(s, i, legendCol) })), ...refLegend(refs)] };
+  const table = seriesTable(data, all, format, [{ key: 'total', label: 'Total', value: d => format(all.reduce((t, s) => t + (d[s.key] || 0), 0)) }, ...refColumns(refs, format)]);
   const shown = catShown(data.map(d => d.label), L.band, p.measure);
   const a = p.active != null ? data[p.active] : null;
   const tf = tipFormat(props, format);
   const tip = a && { anchor: { x0: L.cx(p.active) - bw / 2, x1: L.cx(p.active) + bw / 2, y: L.y(totals[p.active]) },
     // named segments top to bottom, then "Other" with its total and each folded series under it (no swatch)
     content: tipFrom(a, { title: a.label, value: `Total ${tf(totals[p.active])}`, items: [
-      ...series.filter(s => !s.members).map((s, i) => ({ label: s.label, value: tf(valOf(a, s)), color: s.color ?? i + 1, shape: 'square' })).reverse(),
+      ...series.map((s, j) => ({ s, j })).filter(({ s }) => !s.members).map(({ s, j }) => ({ label: s.label, value: tf(valOf(a, s)), color: keyColor(s, j, p.active), shape: 'square' })).reverse(),
       ...series.filter(s => s.members).flatMap(s => [{ label: 'Other', value: tf(valOf(a, s)), color: 'other', shape: 'square' },
         ...s.members.map(k => ({ label: (all.find(x => x.key === k) || {}).label, value: tf(a[k]), sub: true }))])] }, tooltip, p.active) };
   const pick = x => (x < L.x0 || !data.length ? null : Math.max(0, Math.min(data.length - 1, Math.floor((x - L.x0) / L.band))));
@@ -1055,12 +1115,13 @@ function StackedColumnChart(props) {
               {segs.map(({ s, j, v }, k) => {
                 const yb = L.y(acc) - (k ? GAP_MARK / 2 : 0), yt = L.y(acc + v) + (k < segs.length - 1 ? GAP_MARK / 2 : 0);
                 acc += v;
-                return <path key={s.key} d={barPath(L.cx(i) - bw / 2, yt, bw, Math.max(0, yb - yt), k === segs.length - 1 ? 'top' : 'none')} fill={colorOf(s, j)} className={markCls(p, on, s.key)} />;
+                return <path key={s.key} d={barPath(L.cx(i) - bw / 2, yt, bw, Math.max(0, yb - yt), k === segs.length - 1 ? 'top' : 'none')} fill={fillOf(s, j, i)} className={markCls(p, on, levels ? undefined : s.key)} />;
               })}
               {shown(i) && <text x={L.cx(i)} y={L.labelY} textAnchor="middle" className="ifs-chart__axis">{d.label}</text>}
             </g>
           );
         })}
+        <RefLines refs={refs} L={L} />
       </Plot>
     </ChartShell>
   );
@@ -1074,17 +1135,29 @@ const linePath = pts => pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x},${y}`).join
 // Props: data = [{ label, [series.key]: number, … }], series = [{ key, label, color?, dashed?, points? }] (first series shows its
 // points), band = { low, high, mid?, label } (keys into data; drawn as a white 16% band + dashed mid line), referenceKey/referenceLabel
 // (dashed white line), zeroBased (default false — lines need not start at 0), endLabels (default true: each line is named at its end, D4;
-// when the names collide or don't fit, a vertical legend sits on the end side of the plot instead), format, tooltip, valueTicks. Every
+// when the names collide or don't fit, a vertical legend sits on the end side of the plot instead; a legendPosition turns them off), format, tooltip, valueTicks. Every
 // series up to 12 has its own colour (keep it to 8 where you can: guidance); the 13th and later draw in the "Other" grey with one legend entry. Hover anywhere picks the nearest point; ← → move it with the keyboard.
+// Missing data (2.0.7, item 14): a missing value (null / undefined) breaks the line; a value with no neighbours is drawn as a dot so it never
+// disappears; the tooltip says "No data" there. connectGaps (default false) joins across the gap with a dotted bridge, so it never reads as data.
+// references = [{ value, label }] (rule 10.13: budget cap, target, threshold lines). forecastFrom (rule 10.13) = the last actual point, "today"
+// (a data index or label): every line keeps its colour and is dashed after it, a "Today" marker stands on the time axis there, and the legend,
+// tooltip ("Forecast") and table ("(forecast)") name the forecast part.
 function LineChart(props) {
-  const { data = [], band, referenceKey, referenceLabel = 'Peer median', zeroBased = false, format = defaultFormat, tooltip, area = false, endLabels = true, valueTicks } = props;
+  const { data = [], band, referenceKey, referenceLabel = 'Peer median', zeroBased = false, format = defaultFormat, tooltip, area = false, valueTicks,
+    connectGaps = false, forecastFrom } = props;
+  const endLabels = props.endLabels !== false && !props.legendPosition;
+  const refs = refList(props.references);
   const all = props.series || [];
   const p = usePlot(props);
   const fc = useForcedColors();
   const uid = useUid('ifs-area');
+  const fiRaw = typeof forecastFrom === 'number' ? forecastFrom : forecastFrom != null ? data.findIndex(d => d.label === forecastFrom) : -1;
+  const fi = fiRaw >= 0 && fiRaw < data.length ? Math.round(fiRaw) : null;
+  const isFc = i => fi != null && i > fi;
+  const padT = fi != null ? Math.round(p.px * 1.34) : 0; // room for the "Today" label above the plot
   const rawKeys = [...all.map(s => s.key), band && band.low, band && band.high, referenceKey].filter(Boolean);
   const range = (ser) => {
-    const vals = finite(data.flatMap(d => [...ser.map(s => valOf(d, s)), ...rawKeys.filter(k => !all.some(s => s.key === k)).map(k => d[k])]));
+    const vals = finite([...data.flatMap(d => [...ser.map(s => valOf(d, s)), ...rawKeys.filter(k => !all.some(s => s.key === k)).map(k => d[k])]), ...refs.map(r => Number(r.value))]);
     const lo = Math.min(...vals), hi = Math.max(...vals);
     return vals.length ? scaleTicks(zeroBased || area ? Math.min(0, lo) : lo - (hi - lo) * 0.1, hi, valueTicks) : [0, 1];
   };
@@ -1095,7 +1168,7 @@ function LineChart(props) {
     const ticks = range(ser);
     const padR = Math.max(...ser.map(s => p.measure(s.label))) + 8 + (fc ? FC_KEY : 0); // forced colours: room for the dash-and-shape key
     if (padR > p.W * 0.35) return null;
-    const L = catLayout(p, 1, ticks, format, padR);
+    const L = catLayout(p, 1, ticks, format, padR, padT);
     const last = data.length - 1;
     const ys = ser.map(s => { let i = last; while (i > 0 && valOf(data[i], s) == null) i--; const v = valOf(data[i], s); return v == null ? null : L.y(v); });
     const sorted = finite(ys).sort((x, y) => x - y);
@@ -1112,53 +1185,85 @@ function LineChart(props) {
   // the tooltip and screen-reader text list the series by value at that x, highest first, so the rows sit in the order of the points
   const byValueAt = d => series.map((s, i) => ({ s, i, v: valOf(d, s) })).sort((x, y) => (y.v ?? -Infinity) - (x.v ?? -Infinity));
   const ticks = lab ? lab.ticks : range(series);
-  const L = catLayout(p, 1, ticks, format, lab ? lab.padR : 0);
+  const L = catLayout(p, 1, ticks, format, lab ? lab.padR : 0, padT);
   const n = data.length, step = n > 1 ? (L.x1 - L.x0) / (n - 1) : 0;
   const X = i => (n > 1 ? L.x0 + step * i : (L.x0 + L.x1) / 2);
-  const pts = s => data.map((d, i) => { const v = typeof s === 'string' ? d[s] : valOf(d, s); return v == null ? null : [X(i), L.y(v)]; }).filter(Boolean);
+  const num = v => v != null && Number.isFinite(Number(v));
+  const defined = s => data.map((d, i) => { const v = typeof s === 'string' ? d[s] : valOf(d, s); return num(v) ? { i, x: X(i), y: L.y(v) } : null; }).filter(Boolean);
+  const pts = s => defined(s).map(q => [q.x, q.y]);
+  // item 14: the line's parts. solid (real neighbours), forecast (after "today"), bridge (across a gap, only with connectGaps);
+  // runs = unbroken stretches (for the area fill); dots = values with no neighbours
+  const parts = s => {
+    const def = defined(s), out = [], runs = [], touched = new Set();
+    def.forEach((q, k) => {
+      const prev = def[k - 1];
+      if (!prev || q.i - prev.i > 1) runs.push([[q.x, q.y]]); else runs[runs.length - 1].push([q.x, q.y]);
+      if (!prev) return;
+      const kind = q.i - prev.i > 1 ? (connectGaps ? 'bridge' : null) : isFc(q.i) ? 'forecast' : 'solid';
+      if (!kind) return;
+      if (kind !== 'bridge') { touched.add(prev.i); touched.add(q.i); }
+      const last = out[out.length - 1];
+      if (last && last.kind === kind && last.end === prev.i) { last.pts.push([q.x, q.y]); last.end = q.i; } else out.push({ kind, pts: [[prev.x, prev.y], [q.x, q.y]], end: q.i });
+    });
+    return { lines: out, runs, dots: def.filter(q => !touched.has(q.i)) };
+  };
   const shape = s => (s.dashed ? 'dashed' : 'line');
+  const fcKey = fi != null && fi < n - 1 ? { key: '__forecast', label: 'Forecast', color: 'var(--color-data-viz-neutral)', shape: 'dashed' } : null;
+  const keys = [fcKey, ...refLegend(refs)].filter(Boolean);
   // names at the line ends when they fit; when they collide, a vertical legend on the end side of the plot (like the pie / donut list)
-  const legend = lab ? null : { beside: true, layout: 'row', active: p.series, onActive: p.setSeries, items: [
+  const legend = lab ? (keys.length ? { items: [], extra: keys.map(k => <LegendSwatch key={k.key} layout="inline" label={k.label} color={k.color} shape={k.shape} />) } : null)
+    : { beside: true, layout: 'row', active: p.series, onActive: p.setSeries, items: [
     ...legendSeries.map(s => ({ key: s.key, label: s.label, color: s._c, shape: area ? 'square' : shape(s), fc: area || s.key === '__other' ? undefined : series.findIndex(x => x.key === s.key) })),
     band && { label: band.label, color: 'band' },
-    referenceKey && { label: referenceLabel, color: WHITE, shape: 'dashed' }] };
-  const extra = [band && band.mid && { key: band.mid, label: band.label }, referenceKey && { key: referenceKey, label: referenceLabel }].filter(Boolean);
-  const table = seriesTable(data, all, format, extra);
+    referenceKey && { label: referenceLabel, color: WHITE, shape: 'dashed' }, ...keys] };
+  const extra = [band && band.mid && { key: band.mid, label: band.label }, referenceKey && { key: referenceKey, label: referenceLabel }, ...refColumns(refs, format)].filter(Boolean);
+  const table = seriesTable(data.map((d, i) => (isFc(i) ? { ...d, label: `${d.label} (forecast)` } : d)), all, format, extra);
   const shown = catShown(data.map(d => d.label), n > 1 ? step : L.x1 - L.x0, p.measure);
   const a = p.active != null ? data[p.active] : null;
   const s0 = series[0];
   const topV = a ? Math.max(...finite(series.map(s => valOf(a, s)))) : 0;
   const tf = tipFormat(props, format);
+  const tv = v => (num(v) ? tf(v) : 'No data');
   const tip = a && s0 && { anchor: { x0: X(p.active) - 4, x1: X(p.active) + 4, y: L.y(Number.isFinite(topV) ? topV : ticks[0]) },
-    content: tipFrom(a, { title: a.label, items: [
-      ...byValueAt(a).map(({ s, i, v }) => ({ label: s.label, value: tf(v), color: s.color ?? i + 1, shape: area ? 'square' : shape(s) })),
+    content: tipFrom(a, { title: a.label, ...(isFc(p.active) && { value: 'Forecast' }), items: [
+      ...byValueAt(a).map(({ s, i, v }) => ({ label: s.label, value: tv(v), color: s.color ?? i + 1, shape: area ? 'square' : isFc(p.active) ? 'dashed' : shape(s) })),
       ...(band && band.mid && a[band.mid] != null ? [{ label: band.label, value: `${tf(a[band.mid])} ± ${tf((a[band.high] - a[band.low]) / 2)}`, color: 'band', shape: 'square' }] : []),
       ...(referenceKey && a[referenceKey] != null ? [{ label: referenceLabel, value: tf(a[referenceKey]), color: WHITE, shape: 'dashed' }] : [])] }, tooltip, p.active) };
   const pick = x => (!n ? null : Math.max(0, Math.min(n - 1, step ? Math.round((x - L.x0) / step) : 0)));
   const dimS = k => { const s = series.find(x => x.key === k), g = (s && s.group) || k; return p.series != null && p.series !== g ? 'ifs-chart__mark ifs-chart__mark--dim' : 'ifs-chart__mark'; };
+  const base = L.y(Math.max(0, ticks[0]));
   return (
     <ChartShell {...shellProps(props)} legend={legend} table={table} isEmpty={!data.length || !series.length}>
       <Plot p={p} label={props.title} tip={tip} n={n} pick={pick}
-        describe={i => `${data[i].label}: ${byValueAt(data[i]).map(({ s, v }) => `${s.label} ${tf(v)}`).join(', ')}`}>
+        describe={i => `${data[i].label}${isFc(i) ? ' (forecast)' : ''}: ${byValueAt(data[i]).map(({ s, v }) => `${s.label} ${tv(v)}`).join(', ')}`}>
         <YAxis L={L} ticks={ticks} format={format} />
         {data.map((d, i) => (shown(i) ? <text key={i} x={X(i)} y={L.labelY} textAnchor="middle" className="ifs-chart__axis">{d.label}</text> : null))}
+        {fi != null && <g aria-hidden="true">
+          <line x1={X(fi)} x2={X(fi)} y1={L.yT} y2={L.yB} className="ifs-chart__today" />
+          <text x={X(fi)} y={L.yT - 6} textAnchor="middle" className="ifs-chart__ref-label">Today</text>
+        </g>}
         {band && (() => { const up = pts(band.high), dn = pts(band.low).reverse(); return up.length ? <path d={`${linePath(up)}L${dn.map(q => q.join(',')).join('L')}Z`} fill={DV_SPECIAL.band} /> : null; })()}
         {band && band.mid && <path d={linePath(pts(band.mid))} fill="none" className="ifs-chart__refline" />}
         {area && series.map((s, k) => (
           <g key={s.key} className={dimS(s.key)}>
             <defs><linearGradient id={`${uid}-${k}`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor={colorOf(s, k)} stopOpacity="0.45" /><stop offset="1" stopColor={colorOf(s, k)} stopOpacity="0" /></linearGradient></defs>
-            <path d={`${linePath(pts(s))}L${X(n - 1)},${L.y(Math.max(0, ticks[0]))}L${X(0)},${L.y(Math.max(0, ticks[0]))}Z`} fill={`url(#${uid}-${k})`} />
+            {parts(s).runs.filter(r => r.length > 1).map((r, j) => <path key={j} d={`${linePath(r)}L${r[r.length - 1][0]},${base}L${r[0][0]},${base}Z`} fill={`url(#${uid}-${k})`} />)}
           </g>
         ))}
         {referenceKey && <path d={linePath(pts(referenceKey))} fill="none" className="ifs-chart__refline" />}
-        {series.map((s, k) => (
-          <g key={s.key} className={dimS(s.key)}>
-            <path d={linePath(pts(s))} fill="none" stroke={colorOf(s, k)} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" className="ifs-chart__line"
-              strokeDasharray={fc ? FC_DASH[k % FC_DASH.length] : s.dashed ? '6 4' : undefined} />
-            {fc ? pts(s).map(([x, y], i) => <FcPoint key={i} kind={FC_SHAPES[k % FC_SHAPES.length]} x={x} y={y} />)
-              : (s.points ?? (k === 0 && !area)) && pts(s).map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3} fill={colorOf(s, k)} />)}
-          </g>
-        ))}
+        <RefLines refs={refs} L={L} />
+        {series.map((s, k) => {
+          const pr = parts(s);
+          return (
+            <g key={s.key} className={dimS(s.key)}>
+              {pr.lines.map((ln, j) => <path key={j} d={linePath(ln.pts)} fill="none" stroke={colorOf(s, k)} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" className="ifs-chart__line"
+                strokeDasharray={ln.kind === 'bridge' ? '2 4' : fc ? FC_DASH[k % FC_DASH.length] : ln.kind === 'forecast' || s.dashed ? '6 4' : undefined} />)}
+              {fc ? pts(s).map(([x, y], i) => <FcPoint key={i} kind={FC_SHAPES[k % FC_SHAPES.length]} x={x} y={y} />)
+                : <>{(s.points ?? (k === 0 && !area)) && pts(s).map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3} fill={colorOf(s, k)} />)}
+                  {pr.dots.map(q => <circle key={`dot${q.i}`} cx={q.x} cy={q.y} r={3} fill={colorOf(s, k)} />)}</>}
+            </g>
+          );
+        })}
         {lab && series.map((s, k) => lab.ys[k] != null && (
           <g key={s.key} className={dimS(s.key)}>
             {fc && <><line x1={L.x1 + 6} x2={L.x1 + FC_KEY} y1={lab.ys[k]} y2={lab.ys[k]} className="ifs-chart__line" strokeWidth={2} strokeDasharray={FC_DASH[k % FC_DASH.length]} />
@@ -1168,7 +1273,7 @@ function LineChart(props) {
         ))}
         {a && <g aria-hidden="true">
           <line x1={X(p.active)} x2={X(p.active)} y1={L.yT} y2={L.yB} className="ifs-chart__guide" />
-          {series.map((s, k) => valOf(a, s) != null && <circle key={s.key} cx={X(p.active)} cy={L.y(valOf(a, s))} r={4} fill={colorOf(s, k)} className="ifs-chart__point--on" />)}
+          {series.map((s, k) => num(valOf(a, s)) && <circle key={s.key} cx={X(p.active)} cy={L.y(valOf(a, s))} r={4} fill={colorOf(s, k)} className="ifs-chart__point--on" />)}
         </g>}
       </Plot>
     </ChartShell>
