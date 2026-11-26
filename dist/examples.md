@@ -442,13 +442,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)' }}>
         <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Value framework canvas"
           overlay={<>
-            <div style={{ position: 'absolute', left: 16, bottom: 16 }}>
+            <div style={{ position: 'absolute', insetInlineStart: 16, bottom: 16 }}>
               <ValueMapButton type="shape" onFit={() => api.current.fit(WORLD)} onExpand={() => setCollapsed(false)} onCollapse={() => setCollapsed(true)} />
             </div>
-            <div style={{ position: 'absolute', right: 16, top: 16 }}>
+            <div style={{ position: 'absolute', insetInlineEnd: 16, top: 16 }}>
               <MapToolbar onAction={a => { if (a === 'zoom-in') api.current.zoomBy(1.2); if (a === 'zoom-out') api.current.zoomBy(1 / 1.2); }} />
             </div>
-            <div style={{ position: 'absolute', right: 16, bottom: 16 }}>
+            <div style={{ position: 'absolute', insetInlineEnd: 16, bottom: 16 }}>
   // … cut; full example in src/gallery/canvas.jsx
 ```
 
@@ -556,13 +556,13 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)' }}>
         <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Value framework canvas"
           overlay={<>
-            <div style={{ position: 'absolute', left: 16, bottom: 16 }}>
+            <div style={{ position: 'absolute', insetInlineStart: 16, bottom: 16 }}>
               <ValueMapButton type="shape" onFit={() => api.current.fit(WORLD)} onExpand={() => setCollapsed(false)} onCollapse={() => setCollapsed(true)} />
             </div>
-            <div style={{ position: 'absolute', right: 16, top: 16 }}>
+            <div style={{ position: 'absolute', insetInlineEnd: 16, top: 16 }}>
               <MapToolbar onAction={a => { if (a === 'zoom-in') api.current.zoomBy(1.2); if (a === 'zoom-out') api.current.zoomBy(1 / 1.2); }} />
             </div>
-            <div style={{ position: 'absolute', right: 16, bottom: 16 }}>
+            <div style={{ position: 'absolute', insetInlineEnd: 16, bottom: 16 }}>
   // … cut; full example in src/gallery/canvas.jsx
 ```
 
@@ -943,7 +943,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <div style={{ height: 24 }} />
     <Table columns={[
       { key: 'a', title: 'Check', type: 'check' }, { key: 'b', title: 'User description', type: 'user-description', width: '1.5fr' },
-      { key: 'c', title: 'Counter', render: r => <IFS.Icon name="system-more" size={16} /> }]}
+      { key: 'c', title: 'Counter', render: r => <IFS.Icon name="system-dots-horizont" size={16} /> }]}
       rows={[{ id: 1, a: 'Text', b: { name: 'Tom Nguyen', description: 'Neighbouring Asset Manager', type: 'blue' } }]} />
     <div style={{ height: 24 }} />
     <Table columns={columns.slice(0, 3)} rows={rows.slice(0, 3)} rowHeight={60}
@@ -1013,7 +1013,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'CircularButton', figma: 'circular-button-molecule (72:9983)', render: () => <>
     {[undefined, 'hover', 'pressed', 'disabled', 'focus'].map(s => (
       <Row key={s || 'default'} label={s || 'default'}>
-        {dirs.map(d => <CircularButton key={d} direction={d} hotkey="⌘/" state={s === 'disabled' ? undefined : s} disabled={s === 'disabled'}>{'{label}'}</CircularButton>)}
+        {dirs.map(d => <CircularButton key={d} direction={d} hotkey="⌘K" state={s === 'disabled' ? undefined : s} disabled={s === 'disabled'}>{'{label}'}</CircularButton>)}
       </Row>
     ))}
   </> });
@@ -1569,7 +1569,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
         actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 12 }}>
-      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} status={<Status>Draft</Status>}
+      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} onTitleMenu={() => {}} status={<Status>Draft</Status>}
         actions={<IFS.Button type="primary" size="s">Review</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 12 }}>
@@ -1828,7 +1828,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'RoleFilter', figma: 'icon-button + multiple-select-list-molecule [patterns] (12:11259)', render: () => {
     const [v, setV] = React.useState([]);
     return <Row label={v.length ? v.join(', ') : 'All roles'} style={{ minHeight: 230, alignItems: 'flex-start' }}>
-      <div style={{ marginLeft: 180 }}><IFS.RoleFilter roles={ROLES} value={v} onChange={setV} /></div></Row>;
+      <div style={{ marginInlineStart: 180 }}><IFS.RoleFilter roles={ROLES} value={v} onChange={setV} /></div></Row>;
   } });
 ```
 
@@ -1889,7 +1889,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
             <div style={{ position: 'relative', minHeight: 0, isolation: 'isolate' }}>
               <IFS.CanvasBackground style={{ position: 'absolute', inset: 0 }}
                 overlay={<>
-                  <div style={{ position: 'absolute', left: 14, bottom: 14, zIndex: 3 }}><IFS.ValueMapButton type="shape" /></div>
+                  <div style={{ position: 'absolute', insetInlineStart: 14, bottom: 14, zIndex: 3 }}><IFS.ValueMapButton type="shape" /></div>
                   {cursors && <IFS.LiveCursors users={online} />}
                 </>}>
                 {NODES.map(([t, title, n], i) => <div key={t} style={{ position: 'absolute', left: 140 + i * 240, top: 360 }}><IFS.NodeCard type={t} title={title} counter={n} /></div>)}
@@ -2308,7 +2308,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
       <VerticalBarChartItem segments={[{ value: 20, color: 8 }, { value: 117, color: 8 }, { value: 28, color: 7 }, { value: 25, color: 8 }]} />
       <VerticalBarChartItem state="active" segments={[{ value: 32, color: 3 }, { value: 21, color: 2 }, { value: 20, color: 5 }, { value: 117, color: 4 }]} />
       <VerticalBarChartItem active={act} onActiveChange={setAct} label="FY27" value={1.6} max={2.5}
-        segments={[{ value: 1, fill: 'var(--color-data-viz-muted-purple-data-4)' }]} />
+        segments={[{ value: 1, fill: 'var(--color-data-viz-categorical-7)' }]} />
     </Row>;
   } });
 ```
@@ -3067,15 +3067,15 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
   IFS_GALLERY.push({ name: 'Tooltip', figma: 'tooltip-organism (67:6151)', render: () => <>
     {['black', 'grey'].map(c => <React.Fragment key={c}>
       <Row label={`${c} · bottom / top`}><Black>
-        {['bottom', 'top'].map(t => ['left', 'center', 'right'].map(a => <Tooltip key={t + a} inline color={c} type={t} arrow={a} content="{label}" hotkey="⌘/" />))}
+        {['bottom', 'top'].map(t => ['left', 'center', 'right'].map(a => <Tooltip key={t + a} inline color={c} type={t} arrow={a} content="{label}" hotkey="⌘K" />))}
       </Black></Row>
       <Row label={`${c} · left / right`}><Black>
-        <Tooltip inline color={c} type="left" content="{label}" hotkey="⌘/" />
-        <Tooltip inline color={c} type="right" content="{label}" hotkey="⌘/" />
+        <Tooltip inline color={c} type="left" content="{label}" hotkey="⌘K" />
+        <Tooltip inline color={c} type="right" content="{label}" hotkey="⌘K" />
       </Black></Row>
     </React.Fragment>)}
     <Live>
-      {['bottom', 'top', 'left', 'right'].map(t => <Tooltip key={t} color="grey" type={t} content={`type=${t}`} hotkey="⌘/"><Button>Hover {t}</Button></Tooltip>)}
+      {['bottom', 'top', 'left', 'right'].map(t => <Tooltip key={t} color="grey" type={t} content={`type=${t}`} hotkey="⌘K"><Button>Hover {t}</Button></Tooltip>)}
       <Tooltip content="Settings"><IconButton icon="system-settings" label="Settings" type="secondary" /></Tooltip>
     </Live>
   </> });
@@ -3207,7 +3207,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     <Row label="default" top><Popover inline title="{title}" count={3} search onFilter={() => {}} style={{ height: 360 }} /></Row>
     <Row label="controlled search (clearable)" top><SurfPopoverSearch /></Row>
     <Live>
-      <Popover trigger={<Button iconRight="system-chevron-down">16 Documents</Button>} title="Documents" count={16} search onFilter={() => {}}>
+      <Popover trigger={<Button iconRight="arrow-chevron-down">16 Documents</Button>} title="Documents" count={16} search onFilter={() => {}}>
         <Filler h={80}>Esc, outside click or ✕ closes.</Filler>
       </Popover>
     </Live>

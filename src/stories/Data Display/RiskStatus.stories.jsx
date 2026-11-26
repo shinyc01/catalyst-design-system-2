@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** status-risk-molecule (69:1729)\n\n\nUse: Interactive risk status chip on cards, rows, assets." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=69-1729"},
+    
   },
 };
 

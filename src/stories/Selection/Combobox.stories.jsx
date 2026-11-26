@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** signle-combobox-organism (3375:5415)\n\n\nUse: Single choice where the user types to filter the list.\n\nNotes: \"No results\" shows the headline with the query; suggestions only when real fallbacks exist. Popup sizes to content." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3375-5415"},
+    
   },
 };
 

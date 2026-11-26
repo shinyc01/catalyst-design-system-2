@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The Figma previews are raster images; the kit draws blank placeholder blocks.\n\n**Figma:** preview-widget-card-organism [patterns] (331:492728)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=331-492728"},
+    
   },
 };
 

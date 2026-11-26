@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** page-header (1588:1971)\n\n\nUse: The thin header inside one entity (rules 12.1, 12.3)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1588-1971"},
+    
   },
 };
 

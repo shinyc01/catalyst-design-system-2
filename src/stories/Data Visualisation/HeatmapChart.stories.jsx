@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** chart-heatmap (9866:14280)\n\n\nUse: Ordered magnitude across a matrix, using a sequential ramp (`ramp` azure default | teal | cyan | orchid | pink | yellow; `classes` 5 or 9; rule 10.8). The legend is a scale bar below. Often the large card." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-14280"},
+    
   },
 };
 

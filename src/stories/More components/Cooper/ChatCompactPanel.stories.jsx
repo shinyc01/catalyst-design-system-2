@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** chat-compact-panel-organism \"floating-window\" [patterns] (12:263560)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=12-263560"},
+    
   },
 };
 

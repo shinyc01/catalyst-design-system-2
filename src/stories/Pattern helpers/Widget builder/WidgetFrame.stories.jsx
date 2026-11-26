@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The frame every dashboard widget sits in (header, hover actions, ⋮ menu). Figma draws it as content-card variations. Candidate for a real `widget-frame` component.\n\n**Figma:** content-card-organism widget [patterns] (413:45297)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=413-45297"},
+    
   },
 };
 

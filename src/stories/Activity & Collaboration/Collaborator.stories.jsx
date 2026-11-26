@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** collaborator (1440:6097) (legacy)\n\n\nUse: A collaborator row with invite status." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-6097"},
+    
   },
 };
 

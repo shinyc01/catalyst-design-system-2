@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** segmented-control-organism (1387:244501) · segmented-control-atom (1387:244511)\n\n\nUse: Picking one of 2–5 always-visible options, usually switching a view mode in a card, drawer or chart header. Size: rule 14.15.\n\nNotes: `iconOnly` (2.0.6) shows each option's icon only, 16 in a square segment, with `label` as the accessible name and tooltip; M is `--size-control-m` outside. Used for the chart card's Chart / Table switch (rule 10.2).\n\nDon't: More than 5 options — use `single-select-organism`.\n\n\nUse: One segment; building block." } },
     design: [{"name":"segmented-control-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1387-244501"},{"name":"segmented-control-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1387-244511"}],
+    
   },
 };
 

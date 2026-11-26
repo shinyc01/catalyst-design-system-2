@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** modal-organism Remove this collaborator? [patterns] (12:12281)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=12-12281"},
+    
   },
 };
 

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Built from `explore-header` (ae9026ad, no variants), but a published `explore-header-pattern` (0f49a18b, 7205:33581) has four toggles. Which is current?\n\n**Figma:** explore-header [patterns] (12:175111)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=12-175111"},
+    
   },
 };
 

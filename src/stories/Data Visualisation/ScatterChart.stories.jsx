@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** chart-scatter (9866:13245)\n\n\nUse: Relationship between two measures; clusters and outliers. Legend below (dot swatches); every point has a 24 hit area (rule 3.9)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-13245"},
+    
   },
 };
 

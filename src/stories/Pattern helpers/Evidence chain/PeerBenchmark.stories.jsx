@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The \"15+ feeders\" legend swatch is teal (#226d65) but its bars are indigo (#312262). Most bar fills are raw hex with no token.\n\n**Figma:** Evidence chain › Peer benchmark [patterns] (31:77627)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=31-77627"},
+    
   },
 };
 

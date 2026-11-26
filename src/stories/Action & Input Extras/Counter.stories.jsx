@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** counter-atom (88:24147)\n\n\nUse: Numeric count on tabs, chips, segmented controls." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=88-24147"},
+    
   },
 };
 

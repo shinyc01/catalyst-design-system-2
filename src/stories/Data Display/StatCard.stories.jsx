@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** stat-card-organism (3643:35055)\n\n\nUse: One key metric: title + value + optional trend or badge; `compare` for from → to. Size M by default (Nov 25) and the only size on dashboards and in the widget builder, there with the description inline; `size=\"s\"` for dense page layouts (rule 2.6). Read-only: no hover, focus, selected or disabled; only a loading skeleton. Type: rules 2.4, 2.6.\n\nDashboards and the widget builder (Nov 25): one variant only, `size=\"m\" descriptionPosition=\"inline\"` (never mixed with below-description cards or with S). Its height comes from its content (`--space-inset` all round, title → value `--space-inset`) and is the dashboard row unit `--size-data-viz-row` (116 / 100 / 84). The description (inline or below) is `--color-text-soft`; keep inline descriptions short (they never wrap or truncate)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3643-35055"},
+    
   },
 };
 

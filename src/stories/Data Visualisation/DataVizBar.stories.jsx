@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** bar-atom (4457:32996)\n\n\nUse: One bar; Background = the meter track. `color` = a categorical slot (default 1); hover keeps the colour, Out of focus darkens it (never transparent, rule 10.6)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4457-32996"},
+    
   },
 };
 

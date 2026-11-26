@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** breadcrumb-atom (3492:9413), breadcrumb-organism (67:4698)\n\n\nUse: One crumb; building block.\n\n\nUse: Where the page sits in a hierarchy, with a back ‹ control. Keyboard: rule 9.8." } },
     design: [{"name":"breadcrumb-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3492-9413"},{"name":"breadcrumb-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=67-4698"}],
+    
   },
 };
 

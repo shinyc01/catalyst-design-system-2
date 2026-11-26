@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** cursor-atom (55:1645)\n\n\nUse: Live multiplayer cursor with name label; one stable colour per user (rule 10.1)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=55-1645"},
+    
   },
 };
 

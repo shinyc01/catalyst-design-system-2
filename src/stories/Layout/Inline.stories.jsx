@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** none (code-only layout primitive; Figma uses horizontal auto layout)" } },
     
+    
   },
 };
 

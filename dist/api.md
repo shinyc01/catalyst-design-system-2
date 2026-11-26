@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.6, generated 2026-11-25. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.6, generated 2026-11-26. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -16,6 +16,8 @@ IFS.setGlass('full' | 'lite', el?) · IFS.getGlass()          // data-glass="lit
 IFS.setBaseMap('dark' | 'light' | 'imagery' | null, el?)     // data-base-map on <html>: map glass for the snackbar stack; an undeclared map gets black 85 — rule 4.2
 IFS.setShortcuts('on' | 'off') · IFS.getShortcuts()          // single-key shortcuts; remembered — rule 9.18
 IFS.shortcutAllowed(event) → boolean                         // the check every single-key shortcut makes (not in a text field, setting on)
+IFS.focusGlobalSearch() → boolean                         // what "/" does: focus (or click) the page's global search — rule 9.18
+IFS.cooperHotkey · IFS.isCooperShortcut(event)              // 'Ctrl+.' or '⌘.' by platform, and the check for it — rule 9.18
 IFS.announce(text, { assertive })                            // the two live regions — rule 9.19
 IFS.toast({ title, description, primaryAction, secondaryAction, duration, announce }) → id · toast.dismiss(id) · toast.command()  // rule 14.12
 IFS.useSnackbarTiming({ action, duration, onClose }) → hold handlers  // a pattern's own snackbar, same timing
@@ -656,7 +658,7 @@ Props: as ColumnChart + sort (true = biggest first), labelWidth (category column
 ### GroupedColumnChart
 **Tier:** Component
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
-Figma: chart-grouped-column (9862:13445) — 2–4 series side by side per category; consistent series order + legend.
+Figma: chart-grouped-column (9862:13445) — series side by side per category; every series is drawn, 4 or fewer read best (rule 10.9); consistent series order + legend.
 Props: data = [{ label, [series.key]: number, reference?, delta?, details? }], series = [{ key, label, color? }] (capped at 4: a 5th and
 more are left out of the plot, kept in the table view, with a console warning; use a stacked column or small multiples), referenceKey (default 'reference') +
 referenceLabel, format, tooltip, valueTicks. + shell props. Bars stay at least 4 px wide with the 1 px card-colour gap (D8).
@@ -2156,9 +2158,9 @@ Props: type text|voice / defaultType / onTypeChange (Text shows the mic button, 
 placeholder, value / defaultValue / onChange(value), onSubmit(value) on Enter or suggestion pick, onClear,
 suggestions (strings or {label,type,query}; shown in a search-modal while focused), suggestionsTitle, listening (voice: "…" state),
 disabled, width (default 360, Figma), size l (default: --size-control-m, 36 / 32 / 28) | s (--size-control-s, 28 / 24 / 24, padding 8/0/8/8: the explore-header instance),
-state hover|focus|pressed (gallery only), aria-label.
+state hover|focus|pressed (gallery only), aria-label, keyshortcut (aria-keyshortcuts on the input; PageTop and ExploreHeader pass "/", rule 9.18).
 The default search (AI search: keywords or natural language). IFS.Search (search-regular-organism) is the simple keyword search, when the use case needs no AI.
-`function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear, suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, ...rest })`
+`function SmartSearch({ type, defaultType = 'text', onTypeChange, placeholder = 'Ask anything…', value, defaultValue = '', onChange, onSubmit, onClear, suggestions, suggestionsTitle = 'Suggested questions', listening, disabled, width = 360, size = 'l', state, className, style, 'aria-label': ariaLabel, keyshortcut, ...rest })`
 
 ### SearchModal
 **Tier:** Component

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - A clickable badge-atom, which conflicts with \"badges aren't clickable\".\n\n**Figma:** badge-atom in Collaboration column [patterns] (95:132266)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=95-132266"},
+    
   },
 };
 

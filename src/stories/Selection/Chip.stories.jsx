@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** chips (832:235895)\n\n\nUse: A clickable token for one value. Selection chip = an applied filter value, removable with ✕. Suggestion chip = a fire-once next action or prompt, no ✕, no checked state. Group logic: rule 14.5.\n\nDon't: Read-only labels (→ badge)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=832-235895"},
+    
   },
 };
 

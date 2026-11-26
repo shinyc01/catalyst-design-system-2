@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** nav-bar-organism Type=Default ↔ Collapsed / Collapsed opened (3412:29453)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3412-29453"},
+    
   },
 };
 

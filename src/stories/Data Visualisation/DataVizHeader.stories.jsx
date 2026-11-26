@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** data-viz-header-molecule (2154:2068)\n\n\nUse: Chart title row with optional view toggle or button. `viewSwitch` sits after the hover row and before `slot` (Evidence), so it never moves when the hover row shows. `subtitle` (chart card): one line under the title; the controls stay on the title row (`.ifs-dv-header__controls`)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2154-2068"},
+    
   },
 };
 

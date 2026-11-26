@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** progress-ring-molecule (4619:18187)\n\n\nUse: Circular progress in tight spaces (cards, KPI tiles)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4619-18187"},
+    
   },
 };
 

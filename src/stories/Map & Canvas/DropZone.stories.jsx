@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** move-and-drop-background (4509:30446)\n\n\nUse: Dashboard edit mode: widgets become draggable tiles and the background shows the dashed drop zone." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4509-30446"},
+    
   },
 };
 

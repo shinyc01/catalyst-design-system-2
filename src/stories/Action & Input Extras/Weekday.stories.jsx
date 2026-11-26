@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** weekday-atom (2704:74414)\n\n\nUse: Weekday header cell in the calendar; names and first day from the locale (rule 8.29)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2704-74414"},
+    
   },
 };
 

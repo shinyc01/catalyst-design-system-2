@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** progress-bar-molecule (1674:1902)\n\n\nUse: Linear progress for measurable work (uploads, steps)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1674-1902"},
+    
   },
 };
 

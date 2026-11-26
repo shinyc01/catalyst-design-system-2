@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The library now publishes newer versions of parts used here: status b0bad471, review-investment-table, review-data-visualisation. The kit follows the Patterns file copies.\n\n**Figma:** Approval chain table [patterns] (157:114778)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=157-114778"},
+    
   },
 };
 

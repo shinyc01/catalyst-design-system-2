@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** chart-histogram (9864:14012)\n\n\nUse: Distribution of one measure across bins." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9864-14012"},
+    
   },
 };
 

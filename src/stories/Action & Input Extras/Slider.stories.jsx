@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** sliter-atom (3029:21077), slider-molecule (3029:20933), slider-organism (3029:20689)\n\n\nUse: The slider thumb; building block only.\n\n\nUse: Default = one thumb, zero is the floor, fill length = magnitude. Range = two thumbs, choosing an interval. Centered = zero in the middle, fill left for negative, right for positive.\n\n\nUse: A slider as a form field, with title, value and hint; put the right `slider-molecule` type in its slot." } },
     design: [{"name":"sliter-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3029-21077"},{"name":"slider-molecule","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3029-20933"},{"name":"slider-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3029-20689"}],
+    
   },
 };
 

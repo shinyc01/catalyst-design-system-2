@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The no-results chips (12:11069) name people already on the record. The kit suggests people who can still be invited.\n> - The filter says \"Field Lead\" but the job role is \"Field Team Lead\"; \"Jane Green\" shows initials LG (12:10913).\n\n**Figma:** popover-organism Collaborators [patterns] (12:10231 / 12:10037 / 12:9653 / 12:9847)" } },
     
+    
   },
 };
 

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** avatar-atom (260:17144), avatar-organism (260:19923)\n\n\nUse: The avatar face (initials colour, image, Cooper); building block.\n\n\nUse: A person or Cooper anywhere in the UI (header user menu, cards, comments)." } },
     design: [{"name":"avatar-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=260-17144"},{"name":"avatar-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=260-19923"}],
+    
   },
 };
 

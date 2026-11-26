@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - One document row, built from the legacy file-card classes. Candidate for an updated file-card component.\n\n**Figma:** file-card rows in the documents popover [patterns] (168:433527)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=168-433527"},
+    
   },
 };
 

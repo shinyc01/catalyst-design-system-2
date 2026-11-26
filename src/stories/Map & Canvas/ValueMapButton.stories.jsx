@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** value-map-button (2590:20612)\n\n\nUse: Map canvas view controls: Fit (zoom to show all, view only), Expand all, Collapse all.\n\nNotes: Floating vertical overlay on the map canvas, grouped in clusters." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2590-20612"},
+    
   },
 };
 

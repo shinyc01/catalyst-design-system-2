@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** status-readiness-molecule (1440:5273)\n\n\nUse: Labelled readiness row (label + readiness icon/text)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5273"},
+    
   },
 };
 

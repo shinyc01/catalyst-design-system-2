@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** header-pattern / collaboration [patterns] (I12:8475;4485:119305)" } },
     
+    
   },
 };
 

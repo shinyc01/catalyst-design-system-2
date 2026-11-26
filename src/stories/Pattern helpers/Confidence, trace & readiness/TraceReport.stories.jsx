@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** Trace report drawer / sidebar [patterns] (12:176606 / 12:176205)" } },
     
+    
   },
 };
 

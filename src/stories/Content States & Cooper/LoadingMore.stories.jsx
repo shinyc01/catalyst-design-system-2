@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** empty-state-loading-more-molecule (3782:24082)\n\n\nUse: Appending items to an already visible list." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3782-24082"},
+    
   },
 };
 

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - What's the difference between the Edit brief \"medium\" and \"high\" frames?\n\n**Figma:** modal-organism Add Collaborator [patterns] (12:11386 / 12:9330)" } },
     
+    
   },
 };
 

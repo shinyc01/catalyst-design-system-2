@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** Nov 19 rule: the stepper opens from the status once it no longer fits; below 720 two rows: title + id, then status, views, other actions, primary last" } },
     
+    
   },
 };
 

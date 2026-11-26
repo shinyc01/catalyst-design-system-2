@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** node-button (1851:191153)\n\n\nUse: Contextual control shown on hover over a framework node; the action depends on node type/state (collapsed → Expand, expanded → Collapse). Acts on that node only.\n\nDon't: Global toolbar actions." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1851-191153"},
+    
   },
 };
 

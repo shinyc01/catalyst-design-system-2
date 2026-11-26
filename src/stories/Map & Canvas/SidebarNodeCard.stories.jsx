@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** sidebar-node-card (2667:6608)\n\n\nUse: Draggable node in a side list, dropped onto the canvas." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2667-6608"},
+    
   },
 };
 

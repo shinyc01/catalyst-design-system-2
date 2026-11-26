@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** button (65:3211)\n\n\nUse: Every action and every navigation move (rule 14.1). Types and sizes: rule 14.2; icon sizes: rule 6.1. `loading` while its action runs: the dotted loader replaces the left icon, `aria-busy`, not clickable, label stays (rule 7.1).\n\nDon't: Links inside user-authored content or to external resources — those stay links." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=65-3211"},
+    
   },
 };
 

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** circular-button-molecule (72:9983)\n\n\nUse: One directional trigger inside `circular-button-organism`; not placed alone." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=72-9983"},
+    
   },
 };
 

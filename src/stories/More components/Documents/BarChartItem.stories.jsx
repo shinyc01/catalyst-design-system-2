@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - 2.0.6 (D8): the kit's colour index is now the categorical slot (data-viz/categorical/N); Figma's bar-chart-item still binds data-viz/data-N (rebind in the Figma round).\n\n**Figma:** bar-chart-item (44fcce06) [patterns] (12:107849)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=12-107849"},
+    
   },
 };
 

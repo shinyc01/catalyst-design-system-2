@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The table column filter panel (chips, presets, range). Composed from single-select-list + chips.\n\n**Figma:** single-select-list-molecule + chips — Filter [patterns] (95:107049)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=95-107049"},
+    
   },
 };
 

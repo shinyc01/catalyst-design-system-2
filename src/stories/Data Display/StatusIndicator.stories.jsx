@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** status-indicator-atom (789:39211)\n\n\nUse: Colour-only dot for category/identity (legend, series marker, online dot); rule 1.1. `neutral` is the readable grey (`--color-icon-softer`)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=789-39211"},
+    
   },
 };
 

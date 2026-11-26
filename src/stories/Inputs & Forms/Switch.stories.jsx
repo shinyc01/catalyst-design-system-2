@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** switch-molecule (88:22668), switch-atom (88:23960)\n\n\nUse: Labelled on/off setting that applies immediately.\n\n\nUse: Bare toggle inside cards/rows (e.g. map layer cards)." } },
     design: [{"name":"switch-molecule","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=88-22668"},{"name":"switch-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=88-23960"}],
+    
   },
 };
 

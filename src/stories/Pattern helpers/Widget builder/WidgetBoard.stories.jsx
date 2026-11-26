@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The drag/resize grid engine. It's behaviour, not visuals, so it should probably stay a helper.\n\n**Figma:** report section · Performance [patterns] (413:45297)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=413-45297"},
+    
   },
 };
 

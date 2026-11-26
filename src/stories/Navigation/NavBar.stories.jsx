@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** global-header (69:3736), nav-bar-page-atom (69:4012)\n\n\nUse: An older 48 nav bar in some pattern screens. Use `NavBar` instead.\n\n\nUse: One stage tab in the nav bar; building block." } },
     design: [{"name":"global-header","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=69-3736"},{"name":"nav-bar-page-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=69-4012"}],
+    
   },
 };
 

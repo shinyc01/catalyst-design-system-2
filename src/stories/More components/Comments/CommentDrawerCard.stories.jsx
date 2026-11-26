@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Read cards use an Inactive avatar, but the \"Comment open\" frames keep the opened author's avatar coloured.\n\n**Figma:** comment-drawer-card (1231:170874)\n\n\nUse: A thread entry in the Comments panel/drawer list." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1231-170874"},
+    
   },
 };
 

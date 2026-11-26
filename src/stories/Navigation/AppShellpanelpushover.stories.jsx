@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** not a Figma component — panel mode by job (Nov 19): push = used with the page, over = preview; push falls back to a rail below 1024" } },
     
+    
   },
 };
 

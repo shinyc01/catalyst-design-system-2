@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** panel-organism (4305:365421)\n\n\nUse: Rule 14.14. Examples: confidence rail, inspector, reading pane. Full height, a divider (not a shadow) on its edge; widths and mode rules 3.17–3.18." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4305-365421"},
+    
   },
 };
 

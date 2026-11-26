@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** Nov 19 rule: below 720 the tabs and search go onto separate rows" } },
     
+    
   },
 };
 

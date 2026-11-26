@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** single-select-list-molecule (153:62054) · single-select-list-atom (153:61939)\n\n\nUse: The option popup. Group headers only when the list mixes kinds or sources (Recent / Suggested / Results).\n\nCode: `Select`'s option list, and `Menu`: the same list as a command menu anchored to a trigger (rule 14.9; sizes and the 4 offset rule 3.8). Motion: the list opens with a 2 drop in 100 and fades out in 50 (rule 5.1). Items take an icon, shortcut, description, danger, disabled with a reason, a selected check, dividers, section titles and submenus. Pattern helpers such as SplitButton are built on it.\n\n\nUse: One option row in a single-select popup." } },
     design: [{"name":"single-select-list-molecule","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=153-62054"},{"name":"single-select-list-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=153-61939"}],
+    
   },
 };
 

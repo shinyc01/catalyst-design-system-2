@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** navigation-panel-atom (1544:2681)\n\n\nUse: One sidebar row: section (Parent), sub-section (Child), group header (Subtitle)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1544-2681"},
+    
   },
 };
 

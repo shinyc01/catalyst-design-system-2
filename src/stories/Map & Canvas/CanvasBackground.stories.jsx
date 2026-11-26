@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** canvas-background (1395:196712)\n\n\nUse: The infinite, pannable, zoomable ground plane for map-first and node-graph views (Value framework, Explore map).\n\n`baseMap` dark | light | imagery (G3): what the map image is, so map glass picks black 40 (matches the theme) or black 85 (doesn't); an `image` with no `baseMap` is undeclared and takes the safe black 85 (rule 4.2).\n\nDon't: Document-flow pages — those use the 12-column grid." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1395-196712"},
+    
   },
 };
 

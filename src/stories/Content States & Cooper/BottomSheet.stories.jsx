@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** base-bottom-sheet-organism (4406:25590), value-bottom-sheet-organism (789:37502), explore-bottom-sheet (72:4676)\n\n\nUse: Default bottom sheet for any tab: Cooper FAB + prompt chips.\n\n\nUse: base + the entity's documents and upload, which build Cooper's context (where: rule 14.18); read-only (no upload) once a framework is Active. `type=\"value\"` is the old name and still works.\n\n\nUse: Explore tab only: base + map controls." } },
     design: [{"name":"base-bottom-sheet-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4406-25590"},{"name":"value-bottom-sheet-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=789-37502"},{"name":"explore-bottom-sheet","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=72-4676"}],
+    
   },
 };
 

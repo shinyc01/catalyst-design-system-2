@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** single-select-organism (3273:26820) · single-select-atom (789:18085) · single-select-list-atom (153:61939)\n\n\nUse: Choosing one option from a list.\n\nDon't: 2–5 options that should all be visible — use `segmented-control-organism`; long lists the user needs to type into — use `signle-combobox-organism`.\n\n\nUse: The closed dropdown field; part of `single-select-organism`. Use alone only for S toolbar/footer selectors or XL view selectors.\n\n\nUse: One option row in a single-select popup." } },
     design: [{"name":"single-select-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3273-26820"},{"name":"single-select-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=789-18085"},{"name":"single-select-list-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=153-61939"}],
+    
   },
 };
 

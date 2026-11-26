@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** pagination-organism (3497:9660)\n\n\nUse: A record pager for item-by-item content (Trace report). Never for tables (rule 14.6)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3497-9660"},
+    
   },
 };
 

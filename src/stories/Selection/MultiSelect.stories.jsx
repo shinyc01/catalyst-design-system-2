@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** multiple-select-organism (3273:33904) · multiple-select-atom (3200:7897) · multiple-select-list-atom (3273:32692)\n\n\nUse: Choosing several options.\n\nNotes: Editing happens in the popup (keyboard: rule 9.7). ✕ / Delete clears all, recoverable via an Undo toast.\n\n\nUse: The closed multi-select field showing chips + \"+N\"; part of `multiple-select-organism`.\n\n\nUse: One checkable option row in a multi-select popup." } },
     design: [{"name":"multiple-select-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3273-33904"},{"name":"multiple-select-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3200-7897"},{"name":"multiple-select-list-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3273-32692"}],
+    
   },
 };
 

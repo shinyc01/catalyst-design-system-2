@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** chart-grouped-column (9862:13445)\n\n\nUse: A few series side by side per category; every series and group is drawn (4 or fewer read best), legend below, consistent series order; bars at least `--size-data-viz-bar-min` with a 1 gap and groups at least `--size-data-viz-group-gap-min` apart, otherwise the plot scrolls sideways under a fixed value axis (rule 10.9)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9862-13445"},
+    
   },
 };
 

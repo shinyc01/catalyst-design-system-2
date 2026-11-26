@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Figma builds the Plan tree from detached table cells; there is no tree component in the DS. The kit's tree is composed.\n> - The Plan folder-tree sidebar. Figma builds it from detached table cells; there is no tree component.\n\n**Figma:** sidebar-organism + Plan tree [patterns] (244:120655)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=244-120655"},
+    
   },
 };
 

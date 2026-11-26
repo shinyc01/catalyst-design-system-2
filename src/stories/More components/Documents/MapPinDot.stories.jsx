@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - \"Success\" is drawn grey (fill/default), while the defect pin's \"Monitoring\" is green. Possibly a Figma binding bug.\n\n**Figma:** map-pin-dot (d2686af3) [patterns] (12:107153)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=12-107153"},
+    
   },
 };
 

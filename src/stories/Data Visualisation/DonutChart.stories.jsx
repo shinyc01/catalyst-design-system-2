@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** chart-donut (9866:12774)\n\n\nUse: Share of a whole; slices largest → smallest clockwise from top; the legend is a list beside the chart with each slice's value (rule 10.5); up to 7 slices + \"Other\"; colours follow the displayed order (slot 1 = largest)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9866-12774"},
+    
   },
 };
 

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** drawer-organism (4394:21241)\n\n\nUse: Rule 14.14. Example: node details on the map. Can expand to fill the content area. `floating` sits one `--float-inset` in, below the header and above the bottom sheet (rule 3.18).\n\nMotion: slides in from its edge over 200; slides back out in 100; reduced motion fades (rules 5.1, 9.11)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4394-21241"},
+    
   },
 };
 

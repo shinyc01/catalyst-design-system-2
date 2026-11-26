@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** empty-state-spinner-molecule (3782:24081)\n\n\nUse: Indeterminate or shapeless waits where no layout can be previewed. `announce={false}` drops its live role inside a region that already announces (`LoadingRegion` does this, rule 9.9)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3782-24081"},
+    
   },
 };
 

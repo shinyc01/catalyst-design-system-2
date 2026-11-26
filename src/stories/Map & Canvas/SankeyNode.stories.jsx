@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** sankey-atom (1853:12325) + sankey-header (2698:64494)\n\n\nUse: One Sankey node; building block.\n\n\nUse: Column header of a Sankey chart; building block." } },
     design: [{"name":"sankey-atom","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1853-12325"},{"name":"sankey-header","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2698-64494"}],
+    
   },
 };
 

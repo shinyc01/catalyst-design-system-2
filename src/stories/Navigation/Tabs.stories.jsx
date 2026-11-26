@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** tab (1440:5039), tab-organism (3412:32038)\n\n\nUse: One tab; use `show-counter` for table filter tabs.\n\n\nUse: Switching between peer views of one page; also the library table filter with counts (rule 14.6).\n\nDon't: Stage or section navigation, or step progress." } },
     design: [{"name":"tab","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=1440-5039"},{"name":"tab-organism","type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=3412-32038"}],
+    
   },
 };
 

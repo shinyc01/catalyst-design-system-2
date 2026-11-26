@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** version-history-timeline (2277:5299) (legacy) — built on activity-organism\n\n\nUse: A version-history entry." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=2277-5299"},
+    
   },
 };
 

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Cached in the Patterns file under key c5186fed; IFS DS publishes it as ddd60a12. It may duplicate the single-select list.\n\n**Figma:** drop-down list [patterns] (52:82683)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=52-82683"},
+    
   },
 };
 

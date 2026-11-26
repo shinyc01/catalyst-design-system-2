@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - The table's filter, search and actions bar. Possibly part of table-card-organism.\n\n**Figma:** table card bar [patterns] (95:106479)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=95-106479"},
+    
   },
 };
 

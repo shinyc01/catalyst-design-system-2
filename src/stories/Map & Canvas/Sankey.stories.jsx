@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** sankey-organism (4457:53304)\n\n\nUse: Flow: how a total splits through stages (budget allocation, value decomposition, goal → objective → model lineage); band width = value." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4457-53304"},
+    
   },
 };
 

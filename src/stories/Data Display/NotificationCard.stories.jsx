@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** notification-card (9943:5373)\n\n\nUse: Notification tray card. Type = what happened; Read = unread dot + contrast; show-critical adds the error status.\n\nNotes: Sits loose on the page, outside any documented frame." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=9943-5373"},
+    
   },
 };
 

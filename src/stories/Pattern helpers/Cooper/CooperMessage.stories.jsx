@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "> ⚠️ **Needs review** — check these against Figma:\n>\n> - Answer sources use the legacy `source card` (fafdbabd) in the frames. The kit shows them as `ChatLink type=\"source\"`, plus `SourceCard` (built by the Evidence pattern). Decide which belongs in chat answers.\n> - The source link colour is raw white/850 in Figma; follow-ups use text/secondary.\n> - The Cooper answer bubble: reasoning, text, cards, sources and follow-ups, assembled from a dev-note anatomy (67:134213). Is there, or should there be, a published `cooper-message` component?\n\n**Figma:** Cooper Message content — anatomy & states [patterns] (67:134213)" } },
     design: {"type":"figma","url":"https://www.figma.com/design/KmmVU2D0kqWr0dC1xXNzWw/IFS-Design-System-Patterns?node-id=67-134213"},
+    
   },
 };
 

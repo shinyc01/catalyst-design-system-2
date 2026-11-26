@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** form-card-organism (5826:24755)\n\n\nUse: A surface that wraps a form: header (title, optional description, one optional action) → optional divider → body (fields) → optional footer (actions).\n\nNotes: Width and padding: rules 3.17, 3.2 (`inset-l`); `--radius-floating`, elevation 2 (rules 4.1, 4.2). The \"a form on a page\" wording vs a card built like a dialog is still open (rules §15). Height hugs content up to the viewport, then the body scrolls between pinned header and footer. Validation: rule 14.4. Loading = field skeletons; submitting = primary spinner, form locks." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=5826-24755"},
+    
   },
 };
 

@@ -296,8 +296,8 @@
 --color-data-viz-warning: var(--color-icon-warning)
 --color-data-viz-bad: var(--color-icon-danger)
 --color-data-viz-reference: var(--palette-core-1000)
---color-data-viz-target: rgba(255,255,255,0.9)
---color-data-viz-band: rgba(255,255,255,0.16)
+--color-data-viz-target: var(--palette-white-alpha-90)
+--color-data-viz-band: var(--palette-white-alpha-16)
 --color-data-viz-baseline: var(--palette-white-alpha-30)
 --effect-data-viz-dim: brightness(0.45) saturate(0.7)
 --size-data-viz-bar-min: 4px
@@ -553,6 +553,8 @@
 --palette-core-850: #d9d9d9
 --palette-core-900: #f6f6f6
 --palette-white-alpha-85: rgba(255,255,255,0.85)
+--palette-white-alpha-90: rgba(255,255,255,0.9)
+--palette-white-alpha-16: rgba(255,255,255,0.16)
 --palette-core-1000: #ffffff
 --palette-black-alpha-0: rgba(0,0,0,0)
 --palette-grey-0: rgba(70,70,70,0)
@@ -1423,86 +1425,86 @@
 --element-status-grey-band-start → --color-background-transparent
 --element-status-grey-band-light → --color-background-accent-white-strong
 --element-button-circular-hover-ring → --color-border-selected
---data-viz-rose-data-1 → --color-data-viz-rose-data-1
---data-viz-rose-data-2 → --color-data-viz-rose-data-2
---data-viz-rose-data-3 → --color-data-viz-rose-data-3
---data-viz-rose-data-4 → --color-data-viz-rose-data-4
---data-viz-rose-data-5 → --color-data-viz-rose-data-5
---data-viz-rose-data-6 → --color-data-viz-rose-data-6
---data-viz-rose-data-7 → --color-data-viz-rose-data-7
---data-viz-rose-data-8 → --color-data-viz-rose-data-8
---data-viz-rose-data-9 → --color-data-viz-rose-data-9
---data-viz-rose-data-10 → --color-data-viz-rose-data-10
---data-viz-muted-purple-data-1 → --color-data-viz-muted-purple-data-1
---data-viz-muted-purple-data-2 → --color-data-viz-muted-purple-data-2
---data-viz-muted-purple-data-3 → --color-data-viz-muted-purple-data-3
---data-viz-muted-purple-data-4 → --color-data-viz-muted-purple-data-4
---data-viz-muted-purple-data-5 → --color-data-viz-muted-purple-data-5
---data-viz-muted-purple-data-6 → --color-data-viz-muted-purple-data-6
---data-viz-muted-purple-data-7 → --color-data-viz-muted-purple-data-7
---data-viz-muted-purple-data-8 → --color-data-viz-muted-purple-data-8
---data-viz-muted-purple-data-9 → --color-data-viz-muted-purple-data-9
---data-viz-muted-purple-data-10 → --color-data-viz-muted-purple-data-10
---data-viz-teal-data-1 → --color-data-viz-teal-data-1
---data-viz-teal-data-2 → --color-data-viz-teal-data-2
---data-viz-teal-data-3 → --color-data-viz-teal-data-3
---data-viz-teal-data-4 → --color-data-viz-teal-data-4
---data-viz-teal-data-5 → --color-data-viz-teal-data-5
---data-viz-teal-data-6 → --color-data-viz-teal-data-6
---data-viz-teal-data-7 → --color-data-viz-teal-data-7
---data-viz-teal-data-8 → --color-data-viz-teal-data-8
---data-viz-teal-data-9 → --color-data-viz-teal-data-9
---data-viz-teal-data-10 → --color-data-viz-teal-data-10
---data-viz-steel-blue-data-1 → --color-data-viz-steel-blue-data-1
---data-viz-steel-blue-data-2 → --color-data-viz-steel-blue-data-2
---data-viz-steel-blue-data-3 → --color-data-viz-steel-blue-data-3
---data-viz-steel-blue-data-4 → --color-data-viz-steel-blue-data-4
---data-viz-steel-blue-data-5 → --color-data-viz-steel-blue-data-5
---data-viz-steel-blue-data-6 → --color-data-viz-steel-blue-data-6
---data-viz-steel-blue-data-7 → --color-data-viz-steel-blue-data-7
---data-viz-steel-blue-data-8 → --color-data-viz-steel-blue-data-8
---data-viz-steel-blue-data-9 → --color-data-viz-steel-blue-data-9
---data-viz-steel-blue-data-10 → --color-data-viz-steel-blue-data-10
---data-viz-deep-green-data-1 → --color-data-viz-deep-green-data-1
---data-viz-deep-green-data-2 → --color-data-viz-deep-green-data-2
---data-viz-deep-green-data-3 → --color-data-viz-deep-green-data-3
---data-viz-deep-green-data-4 → --color-data-viz-deep-green-data-4
---data-viz-deep-green-data-5 → --color-data-viz-deep-green-data-5
---data-viz-deep-green-data-6 → --color-data-viz-deep-green-data-6
---data-viz-deep-green-data-7 → --color-data-viz-deep-green-data-7
---data-viz-deep-green-data-8 → --color-data-viz-deep-green-data-8
---data-viz-deep-green-data-9 → --color-data-viz-deep-green-data-9
---data-viz-deep-green-data-10 → --color-data-viz-deep-green-data-10
---data-viz-alert-data-1 → --color-data-viz-alert-data-1
---data-viz-alert-data-2 → --color-data-viz-alert-data-2
---data-viz-alert-data-3 → --color-data-viz-alert-data-3
---data-viz-alert-data-4 → --color-data-viz-alert-data-4
---data-viz-alert-data-5 → --color-data-viz-alert-data-5
---data-viz-alert-data-6 → --color-data-viz-alert-data-6
---data-viz-alert-data-7 → --color-data-viz-alert-data-7
---data-viz-alert-data-8 → --color-data-viz-alert-data-8
---data-viz-alert-data-9 → --color-data-viz-alert-data-9
---data-viz-alert-data-10 → --color-data-viz-alert-data-10
---data-viz-violet-data-1 → --color-data-viz-violet-data-1
---data-viz-violet-data-2 → --color-data-viz-violet-data-2
---data-viz-violet-data-3 → --color-data-viz-violet-data-3
---data-viz-violet-data-4 → --color-data-viz-violet-data-4
---data-viz-violet-data-5 → --color-data-viz-violet-data-5
---data-viz-violet-data-6 → --color-data-viz-violet-data-6
---data-viz-violet-data-7 → --color-data-viz-violet-data-7
---data-viz-violet-data-8 → --color-data-viz-violet-data-8
---data-viz-violet-data-9 → --color-data-viz-violet-data-9
---data-viz-violet-data-10 → --color-data-viz-violet-data-10
---data-viz-cyan-data-1 → --color-data-viz-cyan-data-1
---data-viz-cyan-data-2 → --color-data-viz-cyan-data-2
---data-viz-cyan-data-3 → --color-data-viz-cyan-data-3
---data-viz-cyan-data-4 → --color-data-viz-cyan-data-4
---data-viz-cyan-data-5 → --color-data-viz-cyan-data-5
---data-viz-cyan-data-6 → --color-data-viz-cyan-data-6
---data-viz-cyan-data-7 → --color-data-viz-cyan-data-7
---data-viz-cyan-data-8 → --color-data-viz-cyan-data-8
---data-viz-cyan-data-9 → --color-data-viz-cyan-data-9
---data-viz-cyan-data-10 → --color-data-viz-cyan-data-10
+--data-viz-rose-data-1 → --color-data-viz-sequential-orchid-9
+--data-viz-rose-data-2 → --color-data-viz-sequential-orchid-8
+--data-viz-rose-data-3 → --color-data-viz-sequential-orchid-6
+--data-viz-rose-data-4 → --color-data-viz-sequential-orchid-4
+--data-viz-rose-data-5 → --color-data-viz-categorical-7
+--data-viz-rose-data-6 → --color-data-viz-sequential-orchid-1
+--data-viz-rose-data-7 → --color-data-viz-sequential-orchid-1
+--data-viz-rose-data-8 → --color-data-viz-sequential-orchid-1
+--data-viz-rose-data-9 → --color-data-viz-sequential-orchid-1
+--data-viz-rose-data-10 → --color-data-viz-sequential-orchid-1
+--data-viz-muted-purple-data-1 → --color-data-viz-sequential-orchid-9
+--data-viz-muted-purple-data-2 → --color-data-viz-sequential-orchid-6
+--data-viz-muted-purple-data-3 → --color-data-viz-sequential-orchid-4
+--data-viz-muted-purple-data-4 → --color-data-viz-categorical-7
+--data-viz-muted-purple-data-5 → --color-data-viz-sequential-orchid-1
+--data-viz-muted-purple-data-6 → --color-data-viz-sequential-orchid-1
+--data-viz-muted-purple-data-7 → --color-data-viz-sequential-orchid-1
+--data-viz-muted-purple-data-8 → --color-data-viz-sequential-orchid-1
+--data-viz-muted-purple-data-9 → --color-data-viz-sequential-orchid-1
+--data-viz-muted-purple-data-10 → --color-data-viz-sequential-orchid-1
+--data-viz-teal-data-1 → --color-data-viz-sequential-teal-9
+--data-viz-teal-data-2 → --color-data-viz-sequential-teal-7
+--data-viz-teal-data-3 → --color-data-viz-sequential-teal-5
+--data-viz-teal-data-4 → --color-data-viz-sequential-teal-3
+--data-viz-teal-data-5 → --color-data-viz-categorical-3
+--data-viz-teal-data-6 → --color-data-viz-sequential-teal-1
+--data-viz-teal-data-7 → --color-data-viz-sequential-teal-1
+--data-viz-teal-data-8 → --color-data-viz-sequential-teal-1
+--data-viz-teal-data-9 → --color-data-viz-sequential-teal-1
+--data-viz-teal-data-10 → --color-data-viz-sequential-teal-1
+--data-viz-steel-blue-data-1 → --color-data-viz-sequential-azure-9
+--data-viz-steel-blue-data-2 → --color-data-viz-sequential-azure-6
+--data-viz-steel-blue-data-3 → --color-data-viz-sequential-azure-4
+--data-viz-steel-blue-data-4 → --color-data-viz-sequential-azure-1
+--data-viz-steel-blue-data-5 → --color-data-viz-sequential-azure-1
+--data-viz-steel-blue-data-6 → --color-data-viz-sequential-azure-1
+--data-viz-steel-blue-data-7 → --color-data-viz-sequential-azure-1
+--data-viz-steel-blue-data-8 → --color-data-viz-sequential-azure-1
+--data-viz-steel-blue-data-9 → --color-data-viz-sequential-azure-1
+--data-viz-steel-blue-data-10 → --color-data-viz-sequential-orchid-1
+--data-viz-deep-green-data-1 → --color-data-viz-sequential-green-9
+--data-viz-deep-green-data-2 → --color-data-viz-sequential-green-6
+--data-viz-deep-green-data-3 → --color-data-viz-sequential-green-5
+--data-viz-deep-green-data-4 → --color-data-viz-sequential-green-3
+--data-viz-deep-green-data-5 → --color-data-viz-sequential-green-2
+--data-viz-deep-green-data-6 → --color-data-viz-sequential-green-2
+--data-viz-deep-green-data-7 → --color-data-viz-sequential-green-1
+--data-viz-deep-green-data-8 → --color-data-viz-sequential-green-1
+--data-viz-deep-green-data-9 → --color-data-viz-sequential-green-1
+--data-viz-deep-green-data-10 → --color-data-viz-sequential-green-1
+--data-viz-alert-data-1 → --color-data-viz-sequential-red-9
+--data-viz-alert-data-2 → --color-data-viz-sequential-red-8
+--data-viz-alert-data-3 → --color-data-viz-sequential-red-6
+--data-viz-alert-data-4 → --color-data-viz-sequential-red-5
+--data-viz-alert-data-5 → --color-data-viz-sequential-red-4
+--data-viz-alert-data-6 → --color-data-viz-sequential-red-2
+--data-viz-alert-data-7 → --color-data-viz-sequential-red-1
+--data-viz-alert-data-8 → --color-data-viz-sequential-red-1
+--data-viz-alert-data-9 → --color-data-viz-sequential-red-1
+--data-viz-alert-data-10 → --color-data-viz-sequential-red-1
+--data-viz-violet-data-1 → --color-data-viz-categorical-4
+--data-viz-violet-data-2 → --color-data-viz-sequential-orchid-6
+--data-viz-violet-data-3 → --color-data-viz-sequential-orchid-5
+--data-viz-violet-data-4 → --color-data-viz-sequential-orchid-3
+--data-viz-violet-data-5 → --color-data-viz-categorical-7
+--data-viz-violet-data-6 → --color-data-viz-categorical-7
+--data-viz-violet-data-7 → --color-data-viz-sequential-orchid-1
+--data-viz-violet-data-8 → --color-data-viz-sequential-orchid-1
+--data-viz-violet-data-9 → --color-data-viz-sequential-orchid-1
+--data-viz-violet-data-10 → --color-data-viz-sequential-orchid-1
+--data-viz-cyan-data-1 → --color-data-viz-sequential-teal-9
+--data-viz-cyan-data-2 → --color-data-viz-categorical-10
+--data-viz-cyan-data-3 → --color-data-viz-sequential-teal-7
+--data-viz-cyan-data-4 → --color-data-viz-sequential-teal-7
+--data-viz-cyan-data-5 → --color-data-viz-sequential-azure-5
+--data-viz-cyan-data-6 → --color-data-viz-sequential-azure-3
+--data-viz-cyan-data-7 → --color-data-viz-sequential-azure-1
+--data-viz-cyan-data-8 → --color-data-viz-sequential-teal-1
+--data-viz-cyan-data-9 → --color-data-viz-sequential-azure-1
+--data-viz-cyan-data-10 → --color-data-viz-sequential-teal-1
 --shadow-elevation-1 → --color-shadow-elevation-1
 --shadow-elevation-2 → --color-shadow-elevation-2
 --shadow-elevation-3 → --color-shadow-elevation-3
@@ -1539,16 +1541,16 @@
 --data-viz-target → --color-data-viz-target
 --data-viz-band → --color-data-viz-band
 --data-viz-baseline → --color-data-viz-baseline
---data-viz-data-1 → --color-data-viz-data-1
---data-viz-data-2 → --color-data-viz-data-2
---data-viz-data-3 → --color-data-viz-data-3
---data-viz-data-4 → --color-data-viz-data-4
---data-viz-data-5 → --color-data-viz-data-5
---data-viz-data-6 → --color-data-viz-data-6
---data-viz-data-7 → --color-data-viz-data-7
---data-viz-data-8 → --color-data-viz-data-8
---data-viz-data-9 → --color-data-viz-data-9
---data-viz-data-10 → --color-data-viz-data-10
+--data-viz-data-1 → --color-data-viz-sequential-red-2
+--data-viz-data-2 → --color-data-viz-sequential-yellow-3
+--data-viz-data-3 → --color-data-viz-sequential-green-1
+--data-viz-data-4 → --color-data-viz-sequential-orchid-1
+--data-viz-data-5 → --color-data-viz-sequential-azure-1
+--data-viz-data-6 → --color-data-viz-categorical-1
+--data-viz-data-7 → --color-data-viz-sequential-pink-1
+--data-viz-data-8 → --color-data-viz-sequential-orchid-1
+--data-viz-data-9 → --color-data-viz-other
+--data-viz-data-10 → --color-data-viz-other
 --size-ruler-master-0 → --size-0
 --size-ruler-master-0-5 → --size-0-5
 --size-ruler-master-1 → --size-1

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** comment-content-card (260:86722)\n\n\nUse: One reply inside a thread." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=260-86722"},
+    
   },
 };
 

@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** tooltip-organism (67:6151)\n\n\nUse: A short non-interactive label on hover and focus (text, status, date, avatar, metadata), 4 from its trigger, `--z-index-tooltip` above toasts. Rules 14.11, 9.2.\n\nMotion: fades in over 100 after the 300 pointer wait; at once on keyboard focus; closes at once (rule 5.1).\n\nDon't: Essential content, headings, links, buttons or forms (→ popover)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=67-6151"},
+    
   },
 };
 

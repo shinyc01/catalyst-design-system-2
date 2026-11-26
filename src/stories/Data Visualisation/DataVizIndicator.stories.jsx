@@ -11,6 +11,7 @@ export default {
   parameters: {
     docs: { description: { component: "**Figma:** indicator-atom (4440:32643)\n\n\nUse: Target/selection marker on a chart (e.g. bullet-chart target)." } },
     design: {"type":"figma","url":"https://www.figma.com/design/atgUmwcA1AE5sjFoWBT7ar/IFS-Design-System?node-id=4440-32643"},
+    
   },
 };
 
