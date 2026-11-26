@@ -228,22 +228,26 @@ function Stepper({ steps = [], current = 0, active, className, ...rest }) {
 // Figma: pagination-organism (3497:9660) — record pager for item-by-item content. Never for tables (Figma rule).
 // Props: page (1-based) / defaultPage / onChange(page), total, percent (Figma show-%; omit to hide),
 // progress (word after the percent, e.g. "resolved" → "(0% resolved)"; Figma's text override),
-// complete (Figma "show left icon": success icon before the count), onShowAll (Figma show-all-button; omit to hide), showAllLabel.
-function Pager({ page, defaultPage = 1, onChange, total = 1, percent, progress, complete, onShowAll, showAllLabel = 'Show all', className, ...rest }) {
+// complete (Figma "show left icon": success icon before the count), onShowAll (Figma show-all-button; omit to hide), showAllLabel,
+// item (2.0.7: the noun paged through, default "issue": "Previous issue" / "Next issue", and the count is read "Issue 1 of 2" while
+// "1 / 2" shows; rules 8.15, 8.35, 9.21).
+function Pager({ page, defaultPage = 1, onChange, total = 1, percent, progress, complete, onShowAll, showAllLabel = 'Show all', item = 'issue', className, ...rest }) {
   const [p, setP] = useNavControlled(page, defaultPage, onChange);
+  const Item = `${String(item).charAt(0).toUpperCase()}${String(item).slice(1)}`;
   return (
     <div className={IFS.cx('ifs-pager', className)} {...rest}>
       <div className="ifs-pager__status" aria-live="polite">
         {complete && <IFS.Icon name="status-success-filled" size={12} />}
-        <span className="ifs-pager__count">{p}<span className="ifs-pager__total"> / {total}</span></span>
+        <span className="ifs-pager__count" aria-hidden="true">{p}<span className="ifs-pager__total"> / {total}</span></span>
+        <span className="ifs-sr-only">{`${Item} ${p} of ${total}`}</span>
         {percent != null && <span className="ifs-pager__pct">({percent}%{progress ? ` ${progress}` : ''})</span>}
       </div>
       <div className="ifs-pager__actions">
         {onShowAll && <IFS.Button type="tertiary" size="s" iconLeft="list" onClick={onShowAll}>{showAllLabel}</IFS.Button>}
         <div className="ifs-pager__steps">
-          <IFS.IconButton icon="arrow-chevron-left" label="Previous" size="s" disabled={p <= 1} onClick={() => setP(p - 1)} />
+          <IFS.IconButton icon="arrow-chevron-left" label={`Previous ${item}`} size="s" disabled={p <= 1} onClick={() => setP(p - 1)} />
           <span className="ifs-pager__divider" aria-hidden="true" />
-          <IFS.IconButton icon="arrow-chevron-right" label="Next" size="s" disabled={p >= total} onClick={() => setP(p + 1)} />
+          <IFS.IconButton icon="arrow-chevron-right" label={`Next ${item}`} size="s" disabled={p >= total} onClick={() => setP(p + 1)} />
         </div>
       </div>
     </div>
@@ -371,7 +375,18 @@ const pageHeaderWarnOnce = (k, msg) => { if (!pageHeaderWarned.has(k)) { pageHea
 // Header sizes in px, read from the layout tokens (rem follows the user's text size)
 const headerLen = (el, name) => { const v = getComputedStyle(el).getPropertyValue(name).trim(); return v.endsWith('rem') ? parseFloat(v) * rootPx() : parseFloat(v) || 0; };
 const headerTitleMin = el => headerLen(el, '--layout-header-title-min');
-function PageHeader({ title, id, onBack, onTitleMenu, status, views, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest }) {
+// A11Y H3 (Nov 26): the views switch is usually icons only. PageHeader names it ("View") and names every option that has no visible
+// label or ariaLabel (from its icon, else "<Value> view"), so a screen that forgets the names still gives each button an accessible name.
+const VIEW_NAMES = { overview: 'Overview', 'node-map': 'Node map', 'capital-flow': 'Capital flow', compare: 'Compare', 'layout-gallery': 'Gallery',
+  'isolate-path': 'Tree', 'map-view-2d': 'Map', 'map-views': 'Map views', grid: 'Grid' };
+function namedViews(views) {
+  if (!React.isValidElement(views) || views.type !== IFS.SegmentedControl || !Array.isArray(views.props.options)) return views;
+  const options = views.props.options.map(o => (o == null || typeof o !== 'object' || o.label != null || o.ariaLabel) ? o
+    : { ...o, ariaLabel: VIEW_NAMES[o.icon || o.iconLeft] || `${String(o.value).charAt(0).toUpperCase()}${String(o.value).slice(1)} view` });
+  return React.cloneElement(views, { options, 'aria-label': views.props['aria-label'] || views.props.ariaLabel || 'View' });
+}
+function PageHeader({ title, id, onBack, onTitleMenu, status, views: viewsIn, center, actions, primaryAction, progressLabel = 'Progress', className, ...rest }) {
+  const views = namedViews(viewsIn);
   const ref = React.useRef(null);
   const [size, setSize] = React.useState('wide');
   const [tipOpen, setTipOpen] = React.useState(false);

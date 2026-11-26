@@ -311,7 +311,7 @@ function ApcNote({ row, canAdd, canEdit, editing, onStartEdit, onSave, onCancel,
   if (editing) {
     return (
       <div ref={ref} className="ifs-apc__editor" onKeyDown={e => { if (e.key === 'Escape') { e.stopPropagation(); onCancel(); } }}>
-        <IFS.TextArea size="m" autoFocus value={draft} onChange={v => setDraft(v)} placeholder="Add a note for this approver" aria-label="Note" />
+        <IFS.TextArea size="m" autoFocus value={draft} onChange={v => setDraft(v)} aria-label="Note" /* no placeholder: the Note column header is its label (rule 8.46) */ />
       </div>
     );
   }
@@ -439,7 +439,7 @@ function ApprovalChainTable({ approvers, defaultApprovers = [], onChange, stages
           {r.role && <span className="ifs-table__desc">{r.role}</span>}
         </div>
         {r.replaced && <IFS.Tooltip type="left" content="This reviewer was replaced by another stakeholder.">
-          <span className="ifs-apc__info" tabIndex={0} aria-label={`Replaced ${r.replaced.name}`}><IFS.Icon name="system-info-hint" size={16} /></span>
+          <span className="ifs-apc__info" tabIndex={0} role="img" aria-label={`Replaced ${r.replaced.name}`}><IFS.Icon name="system-info-hint" size={16} /></span>
         </IFS.Tooltip>}
       </> },
     { key: 'note', title: 'Note', type: 'custom',

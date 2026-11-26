@@ -114,6 +114,8 @@
 .ifs-composer--multi .ifs-composer__input{margin:0}
 .ifs-composer--multi .ifs-composer__inner > .ifs-composer__buttons{justify-content:flex-end;padding:var(--space-200)}
 /* Cooper mode, not focus: white-base fill, 1px ring-gap (B1: Figma 1.5 snaps to 1) + 3px gradient ring (cooper text → white). Attribution only. */
+/* T3-5 (Nov 26): the 200 / 300 / 400 widths below are ring geometry (the Cooper ring and the --focus-ring layers drawn outside it), not
+   strokes, so they stay on the width steps; no stroke role fits them. */
 .ifs-composer--cooper{--cooper-ring-out:calc(var(--border-width-default) + var(--border-width-300));background:var(--color-background-accent-white-soft);box-shadow:0 0 0 var(--border-width-default) var(--color-ring-gap)}
 /* Cooper mode, focus (S1): the gradient ring stays; the focus ring (--focus-ring widths and colours) is drawn just outside it */
 .ifs-composer--cooper:focus-within{box-shadow:0 0 0 var(--border-width-default) var(--color-ring-gap),

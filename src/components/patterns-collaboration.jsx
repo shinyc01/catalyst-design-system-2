@@ -150,17 +150,16 @@ function CollaboratorRow({ person, control, onOpen, onAdd, onRoleChange, onRemov
   const avatar = p.status === 'awaiting' ? { ...p.avatar, type: 'awaiting' } : p.avatar;
   const click = ctl === 'add' ? onAdd : onOpen;
   return (
-    <div className={ccx('ifs-collab-row', ctl === 'add' && 'ifs-collab-row--add', className)} data-state={state}
-      role={click ? 'button' : undefined} tabIndex={click ? 0 : undefined}
-      onClick={click ? () => click(p) : undefined}
-      onKeyDown={click ? e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); click(p); } } : undefined}>
-      <div className="ifs-collab-row__who">
-        <IFS.Avatar size="m" name={p.name} initials={p.initials} status={p.online && p.status !== 'awaiting' ? 'online' : undefined} {...avatar} />
-        <div className="ifs-collab-row__text">
+    <div className={ccx('ifs-collab-row', ctl === 'add' && 'ifs-collab-row--add', click && 'ifs-collab-row--clickable', className)} data-state={state}>
+      {/* A11Y M4 (Nov 26): the row's own action is one real button (the person), stretched over the row; the role select, reminder
+          and invite buttons are its siblings, so no control sits inside another */}
+      {React.createElement(click ? 'button' : 'div', { className: ccx('ifs-collab-row__who', click && 'ifs-collab-row__main'),
+        ...(click ? { type: 'button', onClick: () => click(p) } : {}) },
+        <IFS.Avatar size="m" name={p.name} initials={p.initials} status={p.online && p.status !== 'awaiting' ? 'online' : undefined} {...avatar} />,
+        <span className="ifs-collab-row__text">
           <span className="ifs-collab-row__name">{p.name}{p.you ? ' (you)' : ''}</span>
           <span className="ifs-collab-row__title">{p.title}</span>
-        </div>
-      </div>
+        </span>)}
       {push === 'available' && <IFS.IconButton type="tertiary" size="s" icon="system-notification" label="Send a reminder"
         onClick={e => { e.stopPropagation(); onPush && onPush(p); }} />}
       {push === 'notified' && <IFS.Button type="tertiary" size="s" iconLeft="system-notification" disabled onClick={e => e.stopPropagation()}>Notified</IFS.Button>}
@@ -227,10 +226,10 @@ function useCollaboration({ people: init = [], suggested: sugInit = [], director
 }
 
 // ───────────────────────────── InviteCollaboratorModal ─────────────────────────────
-// Pattern component: modal-organism "Add collaborator": person (content card, avatar L 40) + access select,
+// Pattern component: modal-organism "Invite collaborator" (one verb for people, words.md: the person must accept): person (content card, avatar L 40) + access select,
 // "Brief by Cooper" (cooper dots + gradient H4) + text-area-organism M with Cooper's brief for this person, editable.
-// Props: open, person, mode invite (Send invitation) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
-//   title (the screen's own text; example default "Add collaborator" / "Edit collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
+// Props: open, person, mode invite (Invite) | edit (Save; always on, rule 14.4: with no change it just closes, like Cancel), defaultAccess, defaultBrief,
+//   title (the screen's own text; example default "Invite collaborator" / "Edit collaborator" by mode), onCancel, onSubmit({ access, brief }), inline (card only — gallery).
 function InviteCollaboratorModal({ open, person, mode = 'invite', title, defaultAccess = 'editor', defaultBrief = '', onCancel, onSubmit, inline }) {
   const [access, setAccess] = React.useState(defaultAccess);
   const [text, setText] = React.useState(defaultBrief);
@@ -239,11 +238,11 @@ function InviteCollaboratorModal({ open, person, mode = 'invite', title, default
   const changed = access !== defaultAccess || text !== defaultBrief;
   const submit = () => { if (mode === 'edit' && !changed) { onCancel && onCancel(); return; } onSubmit && onSubmit({ access, brief: text }); };
   return (
-    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title || (mode === 'edit' ? 'Edit collaborator' : 'Add collaborator')} width={440} inline={inline}
+    <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title || (mode === 'edit' ? 'Edit collaborator' : 'Invite collaborator')} width={440} inline={inline}
       footer={<>
         <IFS.Button type="tertiary" size="l" onClick={onCancel}>Cancel</IFS.Button>
         <IFS.Button type="primary" size="l" onClick={submit}>
-          {mode === 'invite' ? 'Send invitation' : 'Save'}</IFS.Button>
+          {mode === 'invite' ? 'Invite' : 'Save'}</IFS.Button>
       </>}>
       <div className="ifs-collab-invite">
         <div className="ifs-collab-invite__person">
@@ -368,7 +367,7 @@ function CollaboratorsPanel({ controller: c, open, defaultOpen, onOpenChange, tr
   const card = (
     <IFS.Popover inline title="Collaborators" showClose={!inline} width="var(--layout-popover-width)" className={ccx('ifs-collab-panel', className)} style={style}>
       <div className="ifs-collab-panel__tools">
-        <IFS.Search placeholder="Jeff Pauska" /* an example value only (rule 8.46) */ value={q} onChange={v => setQ(v)} aria-label="Invite by name or role"
+        <IFS.Search placeholder="Jordan Price" /* an example value only (rule 8.46) */ value={q} onChange={v => setQ(v)} aria-label="Invite by name or role"
           onFocus={() => { clearTimeout(blurT.current); setFocus(true); }} onBlur={() => { blurT.current = setTimeout(() => setFocus(false), IFS.motionMs('--motion-duration-200', 200)); }} />
         <RoleFilter roles={c.roles} value={roles} onChange={setRoles} />
       </div>

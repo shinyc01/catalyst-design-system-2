@@ -18,7 +18,7 @@ function useNbValue(value, defaultValue, onChange) {
 
 
 // Figma: explore-header (key ae9026ad…; Patterns copy 12:175111) — the bar under the nav bar on the Explore map; its height follows the tallest part + 4 top and bottom, so 36 / 32 / 32.
-// Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --size-control-s, "Search for…") + icon-button-filter (round, same height).
+// Left (Figma "Content right slot"): smart-search-organism (248 wide, small control height --size-control-s, "Search") + icon-button-filter (round, same height).
 // Right ("container-left"): collaborators button (Button Tertiary S, users-group, "3/5") + icon-button-comment.
 // Props: search = SmartSearch props (placeholder, onSubmit, suggestions…), onFilter, filtersApplied (filter dot),
 // collaborators (label, default "3/5"; null hides), onCollaborators, onComments, hasNewComments, children (extra left content),
@@ -56,7 +56,6 @@ function HomeRowCard({ type = 'secondary', rank, title, badge, description, metr
   openLabel = 'Open', loading, state, className, ...rest }) {
   const primary = type === 'primary';
   const interactive = !!onOpen && !loading;
-  const onKeyDown = e => { if (interactive && e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onOpen(); } };
   const S = IFS.Skeleton;
   const head = loading
     ? <div className="ifs-home-row-card__head"><S width={250} height={16} /></div>
@@ -85,9 +84,10 @@ function HomeRowCard({ type = 'secondary', rank, title, badge, description, metr
 
   return (
     <div className={cx('ifs-home-row-card', `ifs-home-row-card--${primary ? 'primary' : 'secondary'}`, loading && 'ifs-home-row-card--loading ifs-sk', className)}
-      data-state={state} role={interactive ? 'button' : undefined} tabIndex={interactive ? 0 : undefined} aria-busy={loading || undefined}
-      aria-label={interactive ? `${rank != null ? `${rank}. ` : ''}${title}` : undefined}
-      onClick={interactive ? () => onOpen() : undefined} onKeyDown={onKeyDown} {...rest}>
+      data-state={state} aria-busy={loading || undefined} {...rest}>
+      {/* A11Y M4 (Nov 26): the card's open action is one real button stretched over the card; the avatar, live-alert pin and arrow
+          are its siblings, so no control sits inside another */}
+      {interactive && <button type="button" className="ifs-home-row-card__open" aria-label={`${rank != null ? `${rank}. ` : ''}${title}`} onClick={() => onOpen()} />}
       <div className="ifs-home-row-card__rank">{rank != null && <IFS.Counter size="s">{loading ? '' : rank}</IFS.Counter>}</div>
       {primary ? <>
         <div className="ifs-home-row-card__body">
@@ -95,7 +95,7 @@ function HomeRowCard({ type = 'secondary', rank, title, badge, description, metr
           {metrics.length > 0 && <div className="ifs-home-row-card__metrics">{metricCells}</div>}
         </div>
         <div className="ifs-home-row-card__media">
-          {media && !loading && <div className="ifs-home-row-card__media-art" aria-hidden="true">{media}</div>}
+          {media && !loading && <div className="ifs-home-row-card__media-art" aria-hidden="true" inert="">{media}</div>}
           <div className="ifs-home-row-card__action">{arrow}</div>
         </div>
       </> : <>

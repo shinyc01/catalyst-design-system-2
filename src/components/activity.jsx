@@ -333,21 +333,26 @@ const actMentionQuery = text => { const m = /(^|\s)@([\w.-]*)$/.exec(text || '')
 // Figma: Patterns › Mention (12:45593): the "@" picker under the composer. popover-organism (4394:56471) with no title or search,
 // one content-card-organism S row per person (avatar, name, role). The composer's default picker; also exported.
 // Props: people [{ name, role, avatar }], query (text after "@", filters by name), activeIndex, onPick(person), onActiveChange(i).
-function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, className, style }) {
+// A11Y M3 (Nov 26): the list is the listbox (named, no dialog around it); focus stays in the composer, which points at the active
+// option with aria-activedescendant (ids `${listId}-${i}`); options are not tab stops.
+function CommentMentionMenu({ people = [], query = '', activeIndex = 0, onPick, onActiveChange, listId, className, style }) {
   const q = (query || '').toLowerCase();
   const list = people.filter(p => p.name.toLowerCase().includes(q));
+  const ownId = React.useId(); const id = listId || ownId;
   if (!list.length) return null;
   return (
-    <div className={IFS.cx('ifs-cmention', className)} style={style} role="listbox" aria-label="Mention someone">
-      <IFS.Popover inline showClose={false} width={317}>
-        <div className="ifs-cmention__list">
-          {list.map((p, i) => (
-            <IFS.ContentCard key={p.name} size="s" role="option" aria-selected={i === activeIndex} title={p.name} description={p.role}
-              avatar={{ name: p.name, ...p.avatar, size: 'm' }} state={i === activeIndex ? 'hover' : undefined}
-              onMouseEnter={() => onActiveChange && onActiveChange(i)} onMouseDown={e => e.preventDefault()} onClick={() => onPick && onPick(p)} />
-          ))}
+    <div className={IFS.cx('ifs-cmention', className)} style={style}>
+      <div className="ifs-popover" style={{ width: IFS.remOf(317) }}>
+        <div className="ifs-popover__content ifs-scroll">
+          <div className="ifs-cmention__list" role="listbox" id={id} aria-label="Mention someone">
+            {list.map((p, i) => (
+              <IFS.ContentCard key={p.name} size="s" role="option" id={`${id}-${i}`} tabIndex={-1} aria-selected={i === activeIndex} title={p.name} description={p.role}
+                avatar={{ name: p.name, ...p.avatar, size: 'm' }} state={i === activeIndex ? 'hover' : undefined}
+                onMouseEnter={() => onActiveChange && onActiveChange(i)} onMouseDown={e => e.preventDefault()} onClick={() => onPick && onPick(p)} />
+            ))}
+          </div>
         </div>
-      </IFS.Popover>
+      </div>
     </div>
   );
 }
@@ -395,6 +400,8 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
     if (!menuPos || menuPos.left !== r.left || menuPos.top !== r.bottom + 4) setMenuPos({ /* ltr: mention menu placed from getBoundingClientRect */ left: r.left, top: r.bottom + 4 });
   });
   const pick = p => { setText((text || '').replace(/@([\w.-]*)$/, `@${p.name} `)); setActive(0); onMention && onMention(p); ref.current && ref.current.focus(); };
+  const listId = React.useId();
+  const open = matches.length > 0 && !!menuPos;
   const onKeyDown = e => {
     if (matches.length) {
       const k = e.key;
@@ -423,7 +430,7 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
   );
   const picker = matches.length > 0 && menuPos && createPortal(
     <div className="ifs-composer__mention-pop" style={{ /* ltr: mention menu placed from getBoundingClientRect */ left: menuPos.left, top: menuPos.top }}>
-      {(renderMentionMenu || (p => <CommentMentionMenu {...p} />))({ people: matches, query: q, activeIndex: ai, onPick: pick, onActiveChange: setActive })}
+      {(renderMentionMenu || (p => <CommentMentionMenu {...p} />))({ people: matches, query: q, activeIndex: ai, onPick: pick, onActiveChange: setActive, listId })}
     </div>, document.body);
   const field = (
     <div ref={fieldRef} className={actCx('ifs-composer', `ifs-composer--${m}`, multi && 'ifs-composer--multi', disabled && 'ifs-composer--disabled', !avatar && className)}
@@ -433,7 +440,9 @@ function CommentComposer({ mode, defaultMode = 'text', onModeChange, value, defa
           {cooper && <IFS.IconButton icon="cooper-system-icon" iconVariant="Insight" label="Leave Cooper mode" type="ghost" size="s"
             className="ifs-composer__cooper" onClick={() => switchMode('text')} />}
           <textarea ref={ref} rows={1} className="ifs-composer__input" value={text} placeholder={ph} disabled={disabled} autoFocus={autoFocus}
-            aria-label={rest['aria-label'] || 'Comment'} aria-autocomplete={mentionables ? 'list' : undefined} aria-expanded={mentionables ? matches.length > 0 : undefined}
+            aria-label={rest['aria-label'] || 'Comment'} role={mentionables ? 'combobox' : undefined} aria-autocomplete={mentionables ? 'list' : undefined}
+            aria-expanded={mentionables ? open : undefined} aria-controls={mentionables && open ? listId : undefined}
+            aria-activedescendant={mentionables && open ? `${listId}-${ai}` : undefined} aria-multiline={mentionables ? true : undefined}
             onChange={e => setText(e.target.value)} onKeyDown={onKeyDown} />
           {!multi && buttons}
         </div>
@@ -551,19 +560,20 @@ function CommentThread({ number = '#00', comments, defaultComments = [], onComme
                 { label: 'Delete', icon: 'system-trash-delete', onClick: () => setConfirmId(id) },
               ] : undefined}>{c.text}</Comment>;
           })}
-          {cooperSuggestion && !isResolved && (
-            <IFS.Button type="cooper" size="l" iconRight="arrow-right" className="ifs-thread__cooper" onClick={cooperSuggestion.onClick}>
-              {cooperSuggestion.label || 'Let’s do it with Cooper'}
-            </IFS.Button>
-          )}
         </div>
+        {/* A11Y M3 (Nov 26): the Cooper suggestion is outside the list (a list holds only comments); same gap, so the same look */}
+        {cooperSuggestion && !isResolved && (
+          <IFS.Button type="cooper" size="l" iconRight="arrow-right" className="ifs-thread__cooper" onClick={cooperSuggestion.onClick}>
+            {cooperSuggestion.label || 'Let’s do it with Cooper'}
+          </IFS.Button>
+        )}
         <CommentComposer avatar={{ name: currentUser.name, ...currentUser.avatar }} onSubmit={post}
           mentionables={mentionables} onMention={onMention} renderMentionMenu={renderMentionMenu} {...composerProps} />
       </div>
       {confirmId != null && createPortal(
         <IFS.Modal open onOpenChange={o => { if (!o) setConfirmId(null); }} width={440} title="Delete this comment?"
           secondaryAction={{ label: 'Cancel', onClick: () => setConfirmId(null) }} primaryAction={{ label: 'Delete', onClick: () => remove(confirmId) }}>
-          The comment is deleted for all collaborators. This can't be undone.
+          The comment is deleted for all collaborators.
         </IFS.Modal>, document.body)}
     </section>
   );

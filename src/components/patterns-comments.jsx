@@ -4,6 +4,8 @@ import { IFS } from './registry.js';
 // the thread callout (kit CommentThread) and the rules that tie them together.
 
 const cmCx = (...a) => IFS.cx(...a);
+// A11Y M7 (Nov 26): a Cooper avatar is named "Cooper" (rule 8.69), so a screen reader tells Cooper's comments apart.
+const cmAvatar = a => (a && a.type === 'cooper' && !a.name && !a.label ? { ...a, label: 'Cooper' } : a);
 function useCmValue(value, defaultValue, onChange) {
   const [inner, setInner] = React.useState(defaultValue);
   const controlled = value !== undefined;
@@ -24,8 +26,9 @@ function useCmValue(value, defaultValue, onChange) {
 function CommentPin({ type = 'unread', avatars = [], count, preview, state, onClick, label, className, style, ...rest }) {
   const [hover, setHover] = React.useState(false);
   const open = !!preview && (state === 'hover' || hover);
-  const list = count != null ? [{ type: 'inactive', initials: String(count) }] : avatars.slice(0, 3);
-  const name = label || (count != null ? `${count} comments` : preview ? `Comment by ${preview.name}` : 'Comment');
+  const list = count != null ? [{ type: 'inactive', initials: String(count) }] : avatars.slice(0, 3).map(cmAvatar);
+  const who = list.map(a => a.name || a.label).filter(Boolean).join(', ');
+  const name = label || (count != null ? `${count} comments` : preview ? `Comment by ${preview.name}` : who ? `Comment by ${who}` : 'Comment');
   return (
     <button type="button" aria-label={name} onClick={onClick}
       onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onFocus={() => setHover(true)} onBlur={() => setHover(false)}
@@ -61,22 +64,25 @@ function CommentDrawerCard({ type = 'read', number, place, name, time, children,
   selected, state, onClick, onResolve, menu, className, ...rest }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const muted = type === 'read' || type === 'resolved';
-  const author = avatar && (muted ? { ...avatar, type: 'inactive', src: undefined } : avatar);
+  const author = cmAvatar(avatar && (muted ? { ...avatar, type: 'inactive', src: undefined } : avatar));
   const isSel = selected || state === 'selected';
-  const onKey = e => { if (e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onClick && onClick(e); } };
+  const textId = React.useId();
   return (
-    <div role="button" tabIndex={0} aria-pressed={isSel || undefined} onClick={onClick} onKeyDown={onKey} data-state={state}
+    <div data-state={state}
       className={cmCx('ifs-cdcard', `ifs-cdcard--${type}`, isSel && 'ifs-cdcard--selected', menuOpen && 'ifs-cdcard--menu', className)} {...rest}>
+      {/* A11Y M4 (Nov 26): opening the thread is one real button stretched over the card; ⋯ and Resolve are its siblings */}
+      <button type="button" className="ifs-cdcard__open" aria-pressed={isSel} onClick={onClick} aria-describedby={textId}
+        aria-label={[number, place, name, time, type === 'new' ? 'Unread' : null].filter(Boolean).join(', ')} />
       <div className="ifs-cdcard__box">
         <div className="ifs-cdcard__head">
           <span className="ifs-cdcard__avatars">
             {author && <IFS.Avatar size="m" {...author} />}
-            {avatars.map((a, i) => <IFS.Avatar key={i} size="m" {...a} />)}
+            {avatars.map((a, i) => <IFS.Avatar key={i} size="m" {...cmAvatar(a)} />)}
           </span>
           <span className="ifs-cdcard__meta">
             {type === 'cooper' && <IFS.Indicator type="orange">{cooperLabel}</IFS.Indicator>}
             {actionRequired && type !== 'resolved' && type !== 'cooper' && <IFS.Badge color="white" size="s">Action required</IFS.Badge>}
-            {type === 'new' && <span className="ifs-cdcard__dot" aria-label="Unread" />}
+            {type === 'new' && <span className="ifs-cdcard__dot" role="img" aria-label="Unread" />}
           </span>
           <span className="ifs-cdcard__buttons">
             {menu && menu.length > 0 && <IFS.Menu more label="More actions" items={menu} open={menuOpen} onOpenChange={setMenuOpen} />}
@@ -92,7 +98,7 @@ function CommentDrawerCard({ type = 'read', number, place, name, time, children,
             <span className="ifs-cdcard__name">{name}</span>
             {time && <span className="ifs-cdcard__time">{time}</span>}
           </div>
-          <div className="ifs-cdcard__text">{children}</div>
+          <div className="ifs-cdcard__text" id={textId}>{children}</div>
         </div>
       </div>
     </div>

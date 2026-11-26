@@ -42,9 +42,12 @@
 /* ---- row: content-card-organism M (40), top slot = avatar M + text (gap 8) + control (gap 6) ---- */
 .ifs-collab-row{display:flex;align-items:center;gap:var(--space-150);box-sizing:border-box;min-height:var(--size-40);padding:var(--space-100);
   border-radius:var(--radius-control);background:transparent;transition:background-color var(--motion-duration-50) var(--motion-ease-standard);outline:none}
-.ifs-collab-row[role=button]{cursor:pointer}
-.ifs-collab-row[role=button]:hover,.ifs-collab-row[data-state=hover]{background:var(--color-surface-raised-hover)}
-.ifs-collab-row:focus-visible{box-shadow:var(--focus-ring)}
+.ifs-collab-row--clickable{position:relative;cursor:pointer}
+.ifs-collab-row--clickable:hover,.ifs-collab-row[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-collab-row:has(> .ifs-collab-row__main:focus-visible){box-shadow:var(--focus-ring)}
+.ifs-collab-row__main{margin:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer;outline:none}
+.ifs-collab-row__main::after{content:'';position:absolute;inset:0;border-radius:inherit} /* stretched over the row */
+.ifs-collab-row--clickable > :not(.ifs-collab-row__main){position:relative;z-index:1} /* the sibling controls sit above it */
 .ifs-collab-row__who{display:flex;align-items:center;gap:var(--space-200);flex:1 1 auto;min-width:0}
 .ifs-collab-row__text{display:flex;flex-direction:column;gap:var(--space-50);min-width:0}
 .ifs-collab-row__name{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking); /* Label/M/medium */

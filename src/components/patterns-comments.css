@@ -34,7 +34,9 @@
 .ifs-cdcard--selected,.ifs-cdcard--selected:hover{background:none;padding:var(--space-100) var(--space-200)}
 .ifs-cdcard--selected .ifs-cdcard__box{padding:var(--space-200);border-radius:var(--radius-card);
   background:var(--color-background-neutral-soft);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
-.ifs-cdcard:focus-visible,.ifs-cdcard[data-state=focus]{border-radius:var(--radius-card);box-shadow:var(--focus-ring-inset)}
+.ifs-cdcard__open{position:absolute;inset:0;z-index:0;margin:0;padding:0;border:0;border-radius:var(--radius-card);background:none;cursor:pointer;outline:none}
+.ifs-cdcard__buttons{position:relative;z-index:1} /* ⋯ and Resolve sit above the open button */
+.ifs-cdcard:has(> .ifs-cdcard__open:focus-visible),.ifs-cdcard[data-state=focus]{border-radius:var(--radius-card);box-shadow:var(--focus-ring-inset)}
 .ifs-cdcard__head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-200);height:var(--size-32)}
 .ifs-cdcard__avatars{display:flex;align-items:center}
 .ifs-cdcard__avatars > * + *{margin-inline-start:calc(-1 * var(--space-200))}
