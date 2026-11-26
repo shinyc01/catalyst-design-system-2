@@ -36,8 +36,10 @@ for (const [n, t] of seen) put(pathOf(n), t);
 // deprecated aliases
 const dep = rd('src/foundations/deprecated.css');
 let nd = 0;
+const depMap = new Map(customProps(dep).map(d => [d.name, (d.value.match(/^var\((--[a-z0-9-]+)\)$/) || [])[1]]).filter(d => d[1]));
+const finalOf = n => { const seen = new Set(); while (depMap.has(n) && !seen.has(n)) { seen.add(n); n = depMap.get(n); } return n; }; // straight to a current name
 for (const d of customProps(dep)) {
-  const m = [, d.name, (d.value.match(/^var\((--[a-z0-9-]+)\)$/) || [])[1]]; if (!m[2]) continue;
+  const m = [, d.name, finalOf((d.value.match(/^var\((--[a-z0-9-]+)\)$/) || [])[1])]; if (!m[2]) continue;
   const target = `{${pathOf(m[2]).filter(s => s !== '$root').join('.')}}`;
   put(['deprecated', m[1].slice(2)], { $value: target, $deprecated: `Use ${target} (CSS ${m[2]}). Old name ${m[1]} is removed in 3.0.` }); nd++;
 }

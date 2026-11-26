@@ -84,6 +84,8 @@ function entries(file) {
     + `IFS.setBaseMap('dark' | 'light' | 'imagery' | null, el?)     // data-base-map on <html>: map glass for the snackbar stack; an undeclared map gets black 85 — rule 4.2\n`
     + `IFS.setShortcuts('on' | 'off') · IFS.getShortcuts()          // single-key shortcuts; remembered — rule 9.18\n`
     + `IFS.shortcutAllowed(event) → boolean                         // the check every single-key shortcut makes (not in a text field, setting on)\n`
+    + `IFS.focusGlobalSearch() → boolean                         // what "/" does: focus (or click) the page's global search — rule 9.18\n`
+    + `IFS.cooperHotkey · IFS.isCooperShortcut(event)              // 'Ctrl+.' or '⌘.' by platform, and the check for it — rule 9.18\n`
     + `IFS.announce(text, { assertive })                            // the two live regions — rule 9.19\n`
     + `IFS.toast({ title, description, primaryAction, secondaryAction, duration, announce }) → id · toast.dismiss(id) · toast.command()  // rule 14.12\n`
     + `IFS.useSnackbarTiming({ action, duration, onClose }) → hold handlers  // a pattern's own snackbar, same timing\n\`\`\`\n\n`;
@@ -115,7 +117,10 @@ const table = tokenTable(cssFiles.map(f => readFileSync(f, 'utf8')));
 const tokens = [...table].map(([n, e]) => `${n}: ${e.value}${Object.entries(e.modes).map(([m, v]) => ` | ${m}: ${v}`).join('')}`);
 const css = cssFiles.map(f => readFileSync(f, 'utf8')).join('\n');
 const classes = [...css.matchAll(/^\.((?:t|fx)-[a-z0-9-]+)\{/gm)].map(m => `.${m[1]}`);
-const deprecated = customProps(readFileSync(join(fdir, 'deprecated.css'), 'utf8')).map(d => [d.name, (d.value.match(/^var\((--[a-z0-9-]+)\)$/) || [])[1]]).filter(d => d[1]).map(([a, b]) => `${a} → ${b}`);
+const depPairs = customProps(readFileSync(join(fdir, 'deprecated.css'), 'utf8')).map(d => [d.name, (d.value.match(/^var\((--[a-z0-9-]+)\)$/) || [])[1]]).filter(d => d[1]);
+const depMap = new Map(depPairs);
+const finalOf = n => { const seen = new Set(); while (depMap.has(n) && !seen.has(n)) { seen.add(n); n = depMap.get(n); } return n; }; // never point at another old name
+const deprecated = depPairs.map(([a, b]) => `${a} → ${finalOf(b)}`);
 writeFileSync(join(root, 'dist/tokens.txt'), [
   '# CSS custom properties (Dark mode). Names: every token starts with its type word (--color-*, --space-*, --size-*, --radius-*, --font-*, --motion-*).',
   '# Spacing scale: --space-100 = 4px, 200 = 8px, 400 = 16px, 600 = 24px. Components use colour roles only (--color-*), never --palette-*.',

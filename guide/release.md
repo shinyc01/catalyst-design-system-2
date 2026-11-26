@@ -23,7 +23,7 @@ Releases before 2.1.0 (2.0.0–2.0.6, and 2.0.7) are foundation-building and are
 ## Deprecation
 
 - A deprecated name keeps working for at least **2 minor releases and 60 days**, whichever is longer, and is removed only in a major.
-- Deprecated tokens are marked `$deprecated` in `dist/tokens.json`, listed after the new names in `dist/tokens.txt`, and flagged by `node tools/color-lint.mjs` (deprecated = 0 in kit code).
+- Deprecated tokens are marked `$deprecated` in `dist/tokens.json`, listed after the new names in `dist/tokens.txt`, flagged by `node tools/color-lint.mjs` (deprecated = 0 in `src/components`, `src/gallery` and `demo/screens`, including names built at run time) and listed by `node tools/gen-token-names.mjs --check` (every old name, the pre-2.0.6 data-viz names included). Each old name points straight at its current name.
 - The 2.0.5 renames (old names in `src/foundations/deprecated.css`) stay until 3.0.
 
 ## Changelog
