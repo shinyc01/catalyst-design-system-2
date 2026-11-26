@@ -735,9 +735,10 @@ label (caption under the number), valueLabel / targetLabel / referenceLabel (leg
 **In handovers:** no handover screen uses it yet (may be newer than the handovers)
 Figma: chart-waterfall (9866:16075) — bridge from a start value to an end value through increments.
 Props: data = [{ label, value, total? }]: total:true bars stand on 0 (value given = reset the running total; omitted = show it),
-other bars float as +/- steps. colors = { total, increase, decrease } (default neutral / diverging positive (pink) / diverging negative
-(azure), D7: polarity, never colour alone — every step is signed + / −), labels = { total, increase, decrease } (legend), format, tooltip,
-valueTicks. + shell props.
+other bars float as +/- steps. better = 'increase' (default: a value bridge, so increases are better) | 'decrease' (a cost or risk bridge)
+| 'none' (no good or bad): the better side takes azure (diverging negative), the worse side rose (diverging positive); with 'none' increases
+are rose and decreases azure (rule 10.8, decided Nov 26). colors = { total, increase, decrease } overrides (total default neutral); never
+colour alone — every step is signed + / −. labels = { total, increase, decrease } (legend), format, tooltip, valueTicks. + shell props.
 `function WaterfallChart(props)`
 
 ### FunnelChart

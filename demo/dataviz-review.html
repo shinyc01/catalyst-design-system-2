@@ -83,7 +83,7 @@ const CHARTS = [
   ['ScatterChart (3)', 'Cost vs risk reduced', p => h(I.ScatterChart, { data: scatter, series: scatterSeries, xLabel: 'Days', yLabel: 'Cost', xUnit: 'days', yFormat: money, tooltipFormat: moneyFull, ...p })],
   ['BubbleChart', 'Cost, risk and size', p => h(I.BubbleChart, { data: scatter.map(d => ({ ...d, series: undefined })), xLabel: 'Days', yLabel: 'Cost', sizeLabel: 'Assets', yFormat: money, tooltipFormat: moneyFull, ...p })],
   ['GaugeChart', 'Budget used', p => h(I.GaugeChart, { value: 72, target: 85, label: 'of FY27 budget', ...p })],
-  ['WaterfallChart', 'Plan bridge FY26 → FY27', p => h(I.WaterfallChart, { data: wf, format: money, tooltipFormat: moneyFull, ...p })],
+  ['WaterfallChart', 'Plan bridge FY26 → FY27', p => h(I.WaterfallChart, { data: wf, better: 'decrease' /* a spend bridge: less spend is better */, format: money, tooltipFormat: moneyFull, ...p })],
   ['FunnelChart', 'Investment pipeline', p => h(I.FunnelChart, { data: funnel, ...p })],
   ['HeatmapChart', 'Risk by asset class and year', p => h(I.HeatmapChart, { rows: hmRows, columns: hmCols, values: hmVals, valueLabel: 'risk score', lowLabel: 'Lower risk', highLabel: 'Higher risk', ...p })],
 ];

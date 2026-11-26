@@ -146,7 +146,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'GaugeChart', figma: 'chart-gauge (9867:618)', render: states(GaugeChart, { title: 'Plan delivery', value: 72, target: 85, reference: 64,
     label: 'of planned work delivered', valueLabel: 'Delivered', delta: { text: '−13 pts vs target', direction: 'down' } }, true) });
 
-  IFS_GALLERY.push({ name: 'WaterfallChart', figma: 'chart-waterfall (9866:16075)', render: states(WaterfallChart, { title: 'Budget bridge', format: v => `$${Math.round(v / 1e6)}M`,
+  IFS_GALLERY.push({ name: 'WaterfallChart', figma: 'chart-waterfall (9866:16075)', render: states(WaterfallChart, { title: 'Budget bridge', better: 'decrease', format: v => `$${Math.round(v / 1e6)}M`,
     data: [{ label: 'Plan', value: 120e6, total: true }, { label: 'Scope', value: 30e6 }, { label: 'Savings', value: -18e6 }, { label: 'Delay', value: 22e6 }, { label: 'Re-sequencing', value: -12e6 }, { label: 'Forecast', total: true }] }, 3) });
 
   IFS_GALLERY.push({ name: 'FunnelChart', figma: 'chart-funnel (9867:1065)', render: states(FunnelChart, { title: 'Project pipeline by stage',

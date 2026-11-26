@@ -763,7 +763,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 
 ### WaterfallChart
 ```jsx
-  IFS_GALLERY.push({ name: 'WaterfallChart', figma: 'chart-waterfall (9866:16075)', render: states(WaterfallChart, { title: 'Budget bridge', format: v => `$${Math.round(v / 1e6)}M`,
+  IFS_GALLERY.push({ name: 'WaterfallChart', figma: 'chart-waterfall (9866:16075)', render: states(WaterfallChart, { title: 'Budget bridge', better: 'decrease', format: v => `$${Math.round(v / 1e6)}M`,
     data: [{ label: 'Plan', value: 120e6, total: true }, { label: 'Scope', value: 30e6 }, { label: 'Savings', value: -18e6 }, { label: 'Delay', value: 22e6 }, { label: 'Re-sequencing', value: -12e6 }, { label: 'Forecast', total: true }] }, 3) });
 ```
 

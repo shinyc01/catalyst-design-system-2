@@ -144,7 +144,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Rule 10.12: one colour per entity across the whole dashboard; an unrelated one-off chart may reuse slots when they run out.
     - Rule 10.7: levels inside a group use the whole ramp (every other step up to 4 levels, every step up to 8, then Other); black labels from step 3.
   - **Deprecated**
-    - `--color-data-viz-sequential-orchid | pink | yellow | cyan-*` (and the same `HeatmapChart ramp` values): aliases of violet, rose, terracotta and indigo until 2.1.0.
+    - `--color-data-viz-sequential-orchid | pink | yellow | cyan-*` (and the same `HeatmapChart ramp` values): aliases of violet, rose, terracotta and azure until 3.0 (guide/release.md: deprecated names are removed only in a major).
 
 Version 1.0 (the original IFS DS kit, 12px body) is pinned at commit `f75244d` of `shinyc01/new-cl-design-system` (`ifs-kit/`).
 

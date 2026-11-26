@@ -560,7 +560,7 @@ Use: Comparing distributions side by side.
 Use: Profile of 3–6 options across 5–8 criteria.
 
 ### chart-waterfall · `WaterfallChart`
-Use: Bridge from a start value to an end value through increments. Totals neutral; increases and decreases on the diverging pair (positive rose, negative azure) and always signed + / −.
+Use: Bridge from a start value to an end value through increments. Totals neutral; increases and decreases on the diverging pair: the better side azure, the worse side rose (`better` = `increase` default, for value bridges · `decrease` for cost or risk bridges · `none` when there is no good or bad: increases rose, decreases azure); always signed + / − (rule 10.8).
 
 ### chart-treemap
 Use: Hierarchical part-to-whole by area.

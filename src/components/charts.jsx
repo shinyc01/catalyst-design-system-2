@@ -1376,12 +1376,15 @@ function GaugeChart(props) {
 
 // Figma: chart-waterfall (9866:16075) — bridge from a start value to an end value through increments.
 // Props: data = [{ label, value, total? }]: total:true bars stand on 0 (value given = reset the running total; omitted = show it),
-// other bars float as +/- steps. colors = { total, increase, decrease } (default neutral / diverging positive (pink) / diverging negative
-// (azure), D7: polarity, never colour alone — every step is signed + / −), labels = { total, increase, decrease } (legend), format, tooltip,
-// valueTicks. + shell props.
+// other bars float as +/- steps. better = 'increase' (default: a value bridge, so increases are better) | 'decrease' (a cost or risk bridge)
+// | 'none' (no good or bad): the better side takes azure (diverging negative), the worse side rose (diverging positive); with 'none' increases
+// are rose and decreases azure (rule 10.8, decided Nov 26). colors = { total, increase, decrease } overrides (total default neutral); never
+// colour alone — every step is signed + / −. labels = { total, increase, decrease } (legend), format, tooltip, valueTicks. + shell props.
 function WaterfallChart(props) {
-  const { data = [], format = defaultFormat, tooltip, valueTicks } = props;
-  const colors = { total: 'neutral', increase: 'var(--color-data-viz-diverging-positive-2)', decrease: 'var(--color-data-viz-diverging-negative-2)', ...props.colors };
+  const { data = [], format = defaultFormat, tooltip, valueTicks, better = 'increase' } = props;
+  const BETTER = 'var(--color-data-viz-diverging-negative-2)', WORSE = 'var(--color-data-viz-diverging-positive-2)';
+  const up = better === 'increase';
+  const colors = { total: 'neutral', increase: up ? BETTER : WORSE, decrease: up ? WORSE : BETTER, ...props.colors };
   const names = { total: 'Total', increase: 'Increase (+)', decrease: 'Decrease (−)', ...props.labels };
   const p = usePlot(props);
   let run = 0;
@@ -1475,7 +1478,7 @@ function FunnelChart(props) {
 
 /* ------------------------------------------------------------------ heatmap */
 
-const RAMPS = ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose', 'red', 'green', 'orchid', 'pink', 'yellow', 'cyan']; // the last four: 2.0.6 names, deprecated until 2.1.0 (tokens alias them)
+const RAMPS = ['violet', 'indigo', 'azure', 'teal', 'terracotta', 'rose', 'red', 'green', 'orchid', 'pink', 'yellow', 'cyan']; // the last four: 2.0.6 names, deprecated until 3.0 (aliases of violet, rose, terracotta, azure)
 // Figma: chart-heatmap (9866:14280) — ordered magnitude across a matrix, one sequential ramp (D7): more = lighter, 5 classes
 // (ladder steps 1 · 3 · 5 · 7 · 9) or 9 when the heatmap is dense. The legend is a scale bar below (D4).
 // Props: rows = [labels], columns = [labels], values = [[row][col] numbers], ramp (violet default | indigo | azure | teal | terracotta | rose; pick the ramp of the entity the chart shows, rule 10.8),

@@ -429,7 +429,7 @@ function SankeyHeader({ abbr, fromLabel, toLabel, from, to, className, ...rest }
 //             type=source draws the tall coloured source block (first column, e.g. "6 Goals").
 //   links   = [{ source, target, value }]  — band colour follows the source block it descends from.
 //   height (chart body px, default 575), onNodeClick(node), showFit + onFit (value-map-button Input in the corner).
-const SANKEY_COLOR = { violet: 'var(--color-data-viz-sequential-violet-5)' /* nearest role to the old violet-data-3 */, green: 'var(--color-background-success-strong)' };
+const SANKEY_COLOR = { violet: 'var(--color-data-viz-sequential-violet-4)' /* nearest role to the old violet-data-3 (2.0.7 palette) */, green: 'var(--color-background-success-strong)' };
 function Sankey({ columns = [], nodes = [], links = [], height = 575, onNodeClick, showFit = true, onFit, className, ...rest }) {
   const ref = React.useRef(null);
   const [w, setW] = React.useState(1200);
@@ -539,8 +539,8 @@ function sankeyLayout(columns, nodes, links, W, H) {
 // and draw the current role their data-4 step became (deprecated, until 3.0), start / end (fractional slot indexes on the axis),
 // tasks = [{ title, label ("Q1 2027"), start, end }], expanded / defaultExpanded / onExpandedChange,
 // onAdd, onMore (hover actions), slots (number of axis slots, set by the chart), state hover (gallery).
-const PHASE_LEGACY = { rose: 'sequential-orchid-4', 'muted-purple': 'categorical-7', teal: 'sequential-teal-3', 'steel-blue': 'sequential-azure-1',
-  'deep-green': 'sequential-green-3', alert: 'sequential-red-5', violet: 'sequential-orchid-3', cyan: 'sequential-teal-7' };
+const PHASE_LEGACY = { rose: 'sequential-violet-4', 'muted-purple': 'sequential-indigo-1', teal: 'sequential-teal-4', 'steel-blue': 'sequential-indigo-1',
+  'deep-green': 'sequential-green-3', alert: 'sequential-red-5', violet: 'sequential-violet-3', cyan: 'sequential-teal-7' }; // re-pointed Nov 26 to ramp steps (never slot numbers) for the 2.0.7 palette
 function TimelinePhase({ title, subtitle, badge, color = 1, start = 0, end = 1, tasks = [], expanded, defaultExpanded = false,
   onExpandedChange, onAdd, onMore, slots = 20, groups = 5, state, className, ...rest }) {
   const [open, setOpen] = useCanvasValue(expanded, defaultExpanded, onExpandedChange);
