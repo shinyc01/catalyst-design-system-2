@@ -92,7 +92,7 @@
 --color-data-viz-data-8:var(--color-data-viz-sequential-violet-1);
 --color-data-viz-data-9:var(--color-data-viz-other);
 --color-data-viz-data-10:var(--color-data-viz-other);
-/* 2.0.6 sequential family names, deprecated in 2.0.7 (Nov 26) until 3.0 (guide/release.md): orchid → violet, pink → rose, yellow → terracotta, cyan → azure (the nearest family). */
+/* 2.0.6 sequential family names, deprecated in 2.0.7 (Nov 26) until 3.0 (guide/release.md): orchid → violet, pink → rose, yellow → terracotta, cyan → azure (the nearest family outside red / green, which carry meaning). */
 --color-data-viz-sequential-orchid-1:var(--color-data-viz-sequential-violet-1);
 --color-data-viz-sequential-orchid-2:var(--color-data-viz-sequential-violet-2);
 --color-data-viz-sequential-orchid-3:var(--color-data-viz-sequential-violet-3);

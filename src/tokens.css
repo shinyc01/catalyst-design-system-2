@@ -131,7 +131,7 @@
 --color-background-input:var(--palette-white-alpha-10);
 --color-background-transparent:var(--palette-black-alpha-0);
 --color-background-neutral-strong:var(--palette-white-alpha-20);
---color-background-neutral-strong-hover:var(--palette-white-alpha-30); /* D3 (2.0.7): CircularButton hover, between neutral-strong (20) and the field line's 30 */
+--color-background-neutral-strong-hover:var(--palette-white-alpha-30); /* D3 (2.0.7): CircularButton hover, white 30 (the same step as the field line) */
 --color-background-info-soft:var(--palette-info-500-alpha-10);
 --color-background-info:var(--palette-info-500-alpha-25);
 --color-background-accent-purple-soft:var(--palette-purple-500-alpha-10);
@@ -253,14 +253,11 @@
 --color-cooper-art-light:var(--palette-core-1000);--color-cooper-art-pink:var(--palette-cooper-art-pink);--color-cooper-art-copper:var(--palette-cooper-art-copper);--color-cooper-art-violet:var(--palette-cooper-art-violet); /* Cooper avatar artwork */
 
 /* Held (Nov 23): these colours would change a Dark value if folded onto a role; they keep their names and values until the component review
-   (values read the same primitives, so nothing changes). The three circular-button fills are no longer read by the kit (CircularButton D3,
-   2.0.7: --color-background-neutral-strong / -strong-hover / --color-background-neutral); they stay, unchanged, as deprecated names until 3.0. */
+   (values read the same primitives, so nothing changes). The three circular-button fills left with CircularButton D3 (2.0.7): they are
+   deprecated aliases of --color-background-neutral-strong / -strong-hover / --color-background-neutral until 3.0 (deprecated.css, T2-4). */
 --border-blue:var(--palette-info-500);
 --element-checkbox-off-border-pressed:var(--palette-white-alpha-15);
 --element-radiobutton-off-border-pressed:var(--palette-white-alpha-15);
---element-button-circular-fill-default:var(--palette-white-alpha-20);
---element-button-circular-fill-hover:var(--palette-white-alpha-60);
---element-button-circular-fill-pressed:var(--palette-white-alpha-50);
 --white-500:var(--palette-white-alpha-50);
 --white-alpha-50:var(--palette-white-alpha-50);
 
@@ -273,7 +270,7 @@
    (0 at 16px, so tables look as designed); from 18px up it is the full 10rem and the table scrolls sideways. */
 --table-col-flex-min:clamp(0px, (1rem - 16px) * 100, 10rem);
 /* Fixed layout regions */
---layout-max-content-width:100rem;--layout-global-header-height:3rem;--layout-sidebar-width:15rem;
+--layout-global-header-height:3rem;--layout-sidebar-width:15rem;
 --layout-panel-width:23.75rem;--layout-rail-width:3rem;--layout-panel-width-collapsed:5.25rem;
 --border-width-0:0px;--border-width-100:1px;--border-width-150:1.5px;--border-width-200:2px;--border-width-300:3px;--border-width-400:4px;
 /* Stroke roles (B1, Nov 23): default for every stroke, divider and edge; selected for selected cards and table rows (and pins,

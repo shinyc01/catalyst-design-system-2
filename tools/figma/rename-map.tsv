@@ -218,9 +218,9 @@ colour	element/button/ghost/border/hover	--element-button-ghost-border-hover	col
 colour	element/button/ghost/border/pressed	--element-button-ghost-border-pressed	color/border/transparent	--color-border-transparent	merge	same	0	
 colour	element/button/ghost/border/disabled	--element-button-ghost-border-disabled	color/border/transparent	--color-border-transparent	merge	same	0	
 colour	background/canvas/primary	--background-canvas-primary	color/surface/canvas	--color-surface-canvas	rename	same	2	
-colour	element/button/circular/fill/default	--element-button-circular-fill-default	element/button/circular/fill/default	--element-button-circular-fill-default	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
-colour	element/button/circular/fill/hover	--element-button-circular-fill-hover	element/button/circular/fill/hover	--element-button-circular-fill-hover	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
-colour	element/button/circular/fill/pressed	--element-button-circular-fill-pressed	element/button/circular/fill/pressed	--element-button-circular-fill-pressed	held (unchanged)	would change Dark: see RENAME-MAP §4	1	held for the values / states round
+colour	element/button/circular/fill/default	--element-button-circular-fill-default	color/background/neutral/strong	--color-background-neutral-strong	remove (alias stays)	changes (no reader since CircularButton D3)	0	audit run 2 T2-4: alias of the D3 role until 3.0
+colour	element/button/circular/fill/hover	--element-button-circular-fill-hover	color/background/neutral/strong-hover	--color-background-neutral-strong-hover	remove (alias stays)	changes (no reader since CircularButton D3)	0	audit run 2 T2-4: alias of the D3 role until 3.0
+colour	element/button/circular/fill/pressed	--element-button-circular-fill-pressed	color/background/neutral	--color-background-neutral	remove (alias stays)	changes (no reader since CircularButton D3)	0	audit run 2 T2-4: alias of the D3 role until 3.0
 colour	element/button/circular/fill/disabled	--element-button-circular-fill-disabled	color/background/neutral/soft	--color-background-neutral-soft	merge	same	1	LIGHT DIFFERS: rgba(0,0,0,0.05) (group rgba(0,0,0,0.1), role rgba(80,66,125,0.1))
 colour	element/button/circular/border/default	--element-button-circular-border-default	color/border/soft	--color-border-soft	merge	same	1	
 colour	element/button/circular/border/hover	--element-button-circular-border-hover	color/border/strong	--color-border-strong	merge	same	1	

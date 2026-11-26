@@ -18,6 +18,7 @@
   --bp-sm:600px;--bp-md:1024px;--bp-lg:1440px;--bp-xl:1920px; /* reserved: JS and docs tokens (CSS can't read tokens in @media) */
   --layout-columns:4;--page-margin:var(--space-400);--page-gap:var(--space-400);
   --float-inset:var(--page-margin); /* C4: floating panels, the snackbar stack and map slots sit one page margin in, below the header, above the bottom sheet, from the window edge */
+  --layout-max-content-width:100rem; /* 1600: the page content cap (rule 3.15; moved here from tokens.css, audit run 2 T2-20) */
   --layout-max-content-width-wide:140rem; /* 2240: the cap of .ifs-page--wide (rule 3.15, 2.0.7) */
   /* Regions: min / default / max. Push the content at md and up; overlay below md. */
   --region-panel-min:20rem;--region-panel-max:50vw;
@@ -56,7 +57,12 @@
   padding:var(--page-margin);display:flex;flex-direction:column;gap:var(--page-gap);min-width:0}
 /* Wide pages (BENCHMARK F9, decided Nov 26; built 2.0.7): data screens (tables, dashboards, maps) use the width of a large screen; content
    capped at --layout-max-content-width-wide (2240) instead of 1600. Text-led pages stay on .ifs-page. */
-.ifs-page--wide{max-width:calc(var(--layout-max-content-width-wide) + 2 * var(--page-margin))}
+.ifs-page--wide{max-width:calc(var(--layout-max-content-width-wide) + 2 * var(--page-margin));
+  /* the grid inside a wide page follows the 2240 cap (custom properties resolve where they are declared, so they are redeclared here; T2-5) */
+  --layout-content:calc(min(100cqw, var(--layout-max-content-width-wide) + 2 * var(--page-margin)) - 2 * var(--page-margin));
+  --layout-inset:calc((100cqw - var(--layout-content)) / 2);
+  --layout-col:calc((var(--layout-content) - (var(--layout-columns) - 1) * var(--page-gap)) / var(--layout-columns));
+  --span-1:calc(1 * var(--layout-col) + 0 * var(--page-gap));--span-2:calc(2 * var(--layout-col) + 1 * var(--page-gap));--span-3:calc(3 * var(--layout-col) + 2 * var(--page-gap));--span-4:calc(4 * var(--layout-col) + 3 * var(--page-gap));--span-5:calc(5 * var(--layout-col) + 4 * var(--page-gap));--span-6:calc(6 * var(--layout-col) + 5 * var(--page-gap));--span-7:calc(7 * var(--layout-col) + 6 * var(--page-gap));--span-8:calc(8 * var(--layout-col) + 7 * var(--page-gap));--span-9:calc(9 * var(--layout-col) + 8 * var(--page-gap));--span-10:calc(10 * var(--layout-col) + 9 * var(--page-gap));--span-11:calc(11 * var(--layout-col) + 10 * var(--page-gap));--span-12:calc(12 * var(--layout-col) + 11 * var(--page-gap));}
 
 /* ---------- Panels: fixed sizes (hybrid). Cards and page regions use the columns; panels and overlays use this list ----------
      side panel / drawer   380   (min 320, max 50%)      --region-panel
