@@ -1879,6 +1879,7 @@
 --color-data-viz-sequential-yellow-7 → --color-data-viz-sequential-terracotta-7
 --color-data-viz-sequential-yellow-8 → --color-data-viz-sequential-terracotta-8
 --color-data-viz-sequential-yellow-9 → --color-data-viz-sequential-terracotta-9
+--color-data-viz-sequential-cyan-1 → --color-data-viz-sequential-azure-1
 --color-data-viz-sequential-cyan-2 → --color-data-viz-sequential-azure-2
 --color-data-viz-sequential-cyan-3 → --color-data-viz-sequential-azure-3
 --color-data-viz-sequential-cyan-4 → --color-data-viz-sequential-azure-4
