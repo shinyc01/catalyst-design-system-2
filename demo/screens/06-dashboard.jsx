@@ -17,7 +17,7 @@ const dashboardStats = [
 
 // Series fills (portfolio rows) and legend
 // Value drivers: one dark categorical slot each (rules 10.7, 10.12; decided Nov 25), the same in every chart here.
-// The stacked columns split each driver into levels: the driver's own sequential ramp, step 2 (= its slot) then lighter (rule 10.7, groups with levels).
+// The stacked columns split each driver into levels: the driver's own sequential ramp, step 2 (= its slot) on the baseline, then lighter upwards (rule 10.7, groups with levels; segments draw top to bottom).
 const dashboardSlot = n => `var(--color-data-viz-categorical-${n})`;
 const dashboardDriverRamp = ['azure', 'teal', 'yellow', 'orchid', 'pink'];
 const dashboardLevel = (d, i) => `var(--color-data-viz-sequential-${dashboardDriverRamp[d]}-${2 + 2 * i})`;
@@ -36,24 +36,24 @@ const dashboardPortfolio = {
 
 const dashboardColumns = {
   budget: [
-    ['Reliability', [[32, dashboardLevel(0, 0)], [21, dashboardLevel(0, 1)], [20, dashboardLevel(0, 2)], [230, dashboardLevel(0, 3)]]],
-    ['Financial', [[260, dashboardLevel(1, 0)], [20, dashboardLevel(1, 1)], [25, dashboardLevel(1, 2)]]],
-    ['Environmental', [[20, dashboardLevel(2, 0)], [230, dashboardLevel(2, 1)], [28, dashboardLevel(2, 2)], [25, dashboardLevel(2, 3)]]],
-    ['Social', [[260, dashboardLevel(3, 0)], [20, dashboardLevel(3, 1)], [25, dashboardLevel(3, 2)]]],
-    ['Governance', [[20, dashboardLevel(4, 0)], [230, dashboardLevel(4, 1)], [28, dashboardLevel(4, 2)], [25, dashboardLevel(4, 3)]]],
+    ['Reliability', [[32, dashboardLevel(0, 3)], [21, dashboardLevel(0, 2)], [20, dashboardLevel(0, 1)], [230, dashboardLevel(0, 0)]]],
+    ['Financial', [[260, dashboardLevel(1, 2)], [20, dashboardLevel(1, 1)], [25, dashboardLevel(1, 0)]]],
+    ['Environmental', [[20, dashboardLevel(2, 3)], [230, dashboardLevel(2, 2)], [28, dashboardLevel(2, 1)], [25, dashboardLevel(2, 0)]]],
+    ['Social', [[260, dashboardLevel(3, 2)], [20, dashboardLevel(3, 1)], [25, dashboardLevel(3, 0)]]],
+    ['Governance', [[20, dashboardLevel(4, 3)], [230, dashboardLevel(4, 2)], [28, dashboardLevel(4, 1)], [25, dashboardLevel(4, 0)]]],
   ],
   // "By investment" is not drawn in Figma — illustrative split so the toggle works.
   investment: [
-    ['Reliability', [[48, dashboardLevel(0, 0)], [36, dashboardLevel(0, 1)], [30, dashboardLevel(0, 2)], [189, dashboardLevel(0, 3)]]],
-    ['Financial', [[210, dashboardLevel(1, 0)], [52, dashboardLevel(1, 1)], [43, dashboardLevel(1, 2)]]],
-    ['Environmental', [[34, dashboardLevel(2, 0)], [196, dashboardLevel(2, 1)], [40, dashboardLevel(2, 2)], [33, dashboardLevel(2, 3)]]],
-    ['Social', [[225, dashboardLevel(3, 0)], [42, dashboardLevel(3, 1)], [38, dashboardLevel(3, 2)]]],
-    ['Governance', [[31, dashboardLevel(4, 0)], [205, dashboardLevel(4, 1)], [36, dashboardLevel(4, 2)], [31, dashboardLevel(4, 3)]]],
+    ['Reliability', [[48, dashboardLevel(0, 3)], [36, dashboardLevel(0, 2)], [30, dashboardLevel(0, 1)], [189, dashboardLevel(0, 0)]]],
+    ['Financial', [[210, dashboardLevel(1, 2)], [52, dashboardLevel(1, 1)], [43, dashboardLevel(1, 0)]]],
+    ['Environmental', [[34, dashboardLevel(2, 3)], [196, dashboardLevel(2, 2)], [40, dashboardLevel(2, 1)], [33, dashboardLevel(2, 0)]]],
+    ['Social', [[225, dashboardLevel(3, 2)], [42, dashboardLevel(3, 1)], [38, dashboardLevel(3, 0)]]],
+    ['Governance', [[31, dashboardLevel(4, 3)], [205, dashboardLevel(4, 2)], [36, dashboardLevel(4, 1)], [31, dashboardLevel(4, 0)]]],
   ],
 };
 const dashboardCoverage = [
-  { label: 'Risk', value: 29, color: dashboardSlot(1) }, { label: 'Service measure', value: 18, color: dashboardSlot(2) },
-  { label: 'Benefit', value: 17, color: dashboardSlot(3) }, { label: 'Cost', value: 16, color: dashboardSlot(4) },
+  { label: 'Risk', value: 30, color: dashboardSlot(1) }, { label: 'Service measure', value: 19, color: dashboardSlot(2) },
+  { label: 'Benefit', value: 18, color: dashboardSlot(3) }, { label: 'Cost', value: 17, color: dashboardSlot(4) },
   { label: 'Condition score', value: 10, color: dashboardSlot(5) }, { label: 'Resource', value: 6, color: dashboardSlot(6) },
 ];
 const dashboardProjects = [
@@ -114,7 +114,7 @@ function ScreenDashboard({ bp, height }) {
                   <IFS.Inline gap="50" style={{ flex: '1 1 0', minWidth: 0 }}>
                     {vals.map((v, i) => (
                       <BarChartItem key={i} fill={dashboardSeries[i].fill} title={`${dashboardSeries[i].label}: ${v}%`}
-                        style={{ flex: `${v} 1 0`, ...(r > 0 ? { color: 'var(--color-text-on-solid-soft)' } : null) }}>{v}%</BarChartItem>
+                        style={{ flex: `${v} 1 0` }}>{v}%</BarChartItem>
                     ))}
                   </IFS.Inline>
                 </IFS.Inline>

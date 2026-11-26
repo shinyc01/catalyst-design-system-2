@@ -438,17 +438,17 @@
    purple are yellow (H 90–114), teal–azure (176–228) and pink–orchid (314–352), all used by 1–9. A search of every allowed hue (dark L 0.55, light
    L 0.85–0.87) found nothing better: the best colour-blind option (orchid / mulberry variants) rises from ΔE00 0.5 to 3.1 but drops normal vision
    from 8.5 to 4.0, so cyan light / cyan dark / pink light stay. They remain for direct-labelled charts only. */
---palette-data-viz-categorical-1:#277b9e; /* azure dark */
+--palette-data-viz-categorical-1:var(--palette-data-viz-azure-2); /* azure dark = azure ramp step 2 (#277b9e) */
 --palette-data-viz-categorical-2:#dad98f; /* lemon light */
---palette-data-viz-categorical-3:#04837c; /* teal dark */
+--palette-data-viz-categorical-3:var(--palette-data-viz-teal-2); /* teal dark = teal ramp step 2 (#04837c) */
 --palette-data-viz-categorical-4:#eac5f2; /* lilac light */
---palette-data-viz-categorical-5:#77752c; /* olive dark */
+--palette-data-viz-categorical-5:var(--palette-data-viz-yellow-2); /* yellow dark = yellow ramp step 2 (#77752c) */
 --palette-data-viz-categorical-6:#a4e3dc; /* teal light */
---palette-data-viz-categorical-7:#8a5f94; /* orchid dark */
+--palette-data-viz-categorical-7:var(--palette-data-viz-orchid-2); /* orchid dark = orchid ramp step 2 (#8a5f94) */
 --palette-data-viz-categorical-8:#9fd6f1; /* sky light */
---palette-data-viz-categorical-9:#9b5979; /* mulberry dark */
+--palette-data-viz-categorical-9:var(--palette-data-viz-pink-2); /* pink dark = pink ramp step 2 (#9b5979) */
 --palette-data-viz-categorical-10:#9ce2ee; /* cyan light */
---palette-data-viz-categorical-11:#00808f; /* cyan dark */
+--palette-data-viz-categorical-11:var(--palette-data-viz-cyan-2); /* cyan dark = cyan ramp step 2 (#00808f) */
 --palette-data-viz-categorical-12:#f4bcd5; /* pink light */
 /* Sequential ramps, one per hue family, on the shared 9-step lightness ladder (OKLCH L 0.50 → 0.90 in 0.05 steps, C 0.095; step 1 C 0.070, step 9 C 0.050).
    Azure is the default sequential ramp. Red and green are the good / bad option only (never series colours). Cyan (H 209, added Nov 25 for the v2g cyan

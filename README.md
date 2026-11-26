@@ -111,6 +111,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Keyboard and focus (G4, rules 9.15–9.18): skip link in `AppShell`, focus on open goes to the first field or the title, return focus to the trigger's nearest container, `inert` behind modals and scrim drawers, switchable single-key shortcuts (`IFS.setShortcuts`, `IFS.shortcutAllowed`).
     - Status messages (G5, rule 9.19): `IFS.announce` with two live regions in the page from load; `IFS.useSnackbarTiming`; `toast.command()`.
     - Self-hosted fonts (G6, rule 2.1) with metric-matched fallbacks. Release policy (G7, `guide/release.md`).
+    - Rule 10.7, groups with levels: a stacked group keeps its dark categorical slot and its levels step lighter on that slot's ramp (2 · 4 · 6 · 8); the dark slots now reference ramp step 2. Rule 11.6: `-solid` documented as the opaque-twin suffix.
   - **Changed**
     - Chart card title H4 in `--color-text` (was Label/M/medium, text tertiary); default chart card = 3 dashboard rows + 2 page gaps (380 / 332 / 284 at a 16 gap; replaces item 6's S-inline unit).
     - Dashboards use the M stat card with the description inline (rule 2.6); its title → value gap is `--space-inset`; stat card descriptions `--color-text-soft`.
@@ -118,6 +119,7 @@ Icons are drawn at 12 / 16 / 24 in every density (rule 6.1).
     - Fields (C3): a 30% bottom line instead of the outline (hover 40); error = danger outline only. Switch off 40% edge (hover 60); slider track 40% when its value is hidden; segmented selected item and date-range days get a 40% outline.
     - `--color-text-danger` → red 350; live text that used the disabled colour → text-softer; overlay placeholders, menu descriptions on hover and attachment meta → text-soft; light data-viz bars take black labels; collaboration colours (direction 5 at 5%, user 13 olive) with white initials on every user; map pins option B; comment pins white meta, Cooper pin cooper 600; NodeCard counter = the tag chip; solid NodeCard caption stays white 85 when selected.
     - Every glass blur 80 reads `--blur-glass`.
+    - The Chart / Table switch is `SegmentedControl` M with square icon segments (D1 had S).
     - `StatCard` default size is M (was S since 2.0.4); S is an option for dense page layouts (rule 2.6).
     - Every chart-card header title is H4 in `--color-text`, the older organism `DataVizCard` (and so `WidgetFrame`) too; stat card titles stay Label/M/medium in text-soft.
     - Keyboard: "/" focuses the global search (the convention); Cooper opens with Ctrl+. / ⌘+. (`IFS.cooperHotkey` in its tooltip); single-key shortcuts are switchable (rule 9.18).
