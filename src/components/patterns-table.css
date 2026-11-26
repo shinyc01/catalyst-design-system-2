@@ -73,6 +73,7 @@
 .ifs-column-filter__range{display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-column-filter__label{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-column-filter__range-fields{display:flex;gap:var(--space-100)}
+.ifs-column-filter__range-item{display:flex;flex-direction:column;gap:var(--space-100);flex:1;min-width:0} /* From / To each get a visible label (audit final M09) */
 .ifs-column-filter .ifs-search{width:100%}
 .ifs-column-filter .ifs-datepicker,.ifs-column-filter .ifs-select{width:100%}
 
@@ -137,10 +138,10 @@
 .ifs-column-settings__none{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)}
 
 /* ================= Record preview (panel-organism look) ================= */
-.ifs-record-preview{display:flex;flex-direction:column;flex:none;box-sizing:border-box;height:100%;min-height:0;
+.ifs-record-preview{display:flex;flex-direction:column;flex:none;box-sizing:border-box;max-width:100% /* audit final M11 */;height:100%;min-height:0;
   background:var(--color-surface-primary);box-shadow:inset var(--border-width-default) 0 0 var(--color-border-soft)}
 :where([dir="rtl"]) .ifs-record-preview{box-shadow:inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)} /* rtl: one-side border mirrors */
-.ifs-record-preview__header{display:flex;align-items:center;gap:var(--space-200);padding:var(--space-inset)}
+.ifs-record-preview__header{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-200);padding:var(--space-inset)}
 .ifs-record-preview__id{flex:1;min-width:0;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
 .ifs-record-preview__content{flex:1;min-height:0;overflow:auto;padding:0 var(--space-inset) var(--space-inset)}
 

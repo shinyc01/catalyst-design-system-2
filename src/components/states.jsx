@@ -249,7 +249,7 @@ function BottomSheet({ type = 'base', prompts = [], onPrompt, showPrompts = true
           <div key={f.key} className="ifs-map-field">
             <span className="ifs-map-field__label">{f.label}</span>
             <div className="ifs-map-field__row">
-              <IFS.Select size="s" listPosition="up" aria-label={f.label} options={f.options || []} placeholder="{label}"
+              <IFS.Select size="s" listPosition="up" aria-label={f.label} options={f.options || []} /* rule 8.46 (audit final H09): no placeholder; the visible label is above */
                 value={values ? (values[f.key] ?? null) : undefined} defaultValue={f.value ?? null}
                 onChange={v => onFieldChange && onFieldChange(f.key, v)} />
               {f.zoom && <ZoomSlider value={zoom} defaultValue={defaultZoom} onChange={onZoomChange} />}

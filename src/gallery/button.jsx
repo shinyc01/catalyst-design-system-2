@@ -19,6 +19,13 @@ export default IFS_GALLERY;
     ))}
     <Row label="sizes l / m / s">{['l', 'm', 's'].map(z => <Button key={z} type="primary" size={z} iconLeft="system-star-favourite" iconRight="system-heart">Label</Button>)}</Row>
     <Row label="loading l / m / s">{['l', 'm', 's'].map(z => <Button key={z} type="secondary" size={z} loading>Saving</Button>)}</Row>
+    {/* Moves are links (rule 14.1): href renders <a href> with the Ghost look; disabled stays a link (<a aria-disabled>, no href) */}
+    <Row label="href (moves)">
+      <Button href="#scenario-12" iconLeft="arrow-chevron-left">Back to scenarios</Button>
+      <Button href="#scenario-12" iconRight="arrow-chevron-right">Open scenario</Button>
+      <Button href="#scenario-12" disabled>Open scenario</Button>
+      <Button href="#scenario-12" disabled disabledReason="Only portfolio owners can open draft scenarios">Open draft scenario</Button>
+    </Row>
   </> });
 
   IFS_GALLERY.push({ name: 'IconButton', figma: 'icon-button (71:4250)', render: () => <>

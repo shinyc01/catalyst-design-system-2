@@ -163,8 +163,8 @@ function RangeField({ value, onChange, placeholder, step = 1, min, max, startAt,
         onChange={e => { const t = e.target.value.trim(); onChange(t === '' ? null : (isNaN(Number(t)) ? value : Number(t))); }}
         onKeyDown={e => { if (e.key === 'ArrowUp') { e.preventDefault(); stepBy(1); } if (e.key === 'ArrowDown') { e.preventDefault(); stepBy(-1); } }} />
       <span className="ifs-range-field__stepper">
-        <button type="button" tabIndex={-1} aria-label={`Increase ${placeholder}`} onPointerDown={() => press(1)} onPointerUp={release} onPointerLeave={release} />
-        <button type="button" tabIndex={-1} aria-label={`Decrease ${placeholder}`} onPointerDown={() => press(-1)} onPointerUp={release} onPointerLeave={release} />
+        <button type="button" tabIndex={-1} aria-label={`Increase ${label || placeholder}`} onPointerDown={() => press(1)} onPointerUp={release} onPointerLeave={release} />
+        <button type="button" tabIndex={-1} aria-label={`Decrease ${label || placeholder}`} onPointerDown={() => press(-1)} onPointerUp={release} onPointerLeave={release} />
         <IFS.Icon name="caret-updown" size={16} />
       </span>
     </span>
@@ -208,17 +208,20 @@ function ColumnFilter({ title = 'Filter', options = [], value, defaultValue = []
             {shown.map(o => <IFS.Chip key={String(o.value)} selected={cur.includes(o.value)} onChange={() => toggle(o.value)}>{o.label}</IFS.Chip>)}
           </div>
         )}
-        {period && <IFS.DatePicker range size="m" placeholder={period.placeholder || 'Select custom period'} value={period.value || null}
+        {/* rule 8.46 (audit final H08): no instruction placeholder; the visible label says what to pick */}
+        {period && <IFS.DatePicker range size="m" label={period.label || 'Custom period'} placeholder={period.placeholder} value={period.value || null}
           onChange={v => period.onChange && period.onChange(v && v.start && v.end ? v : (v && v.start ? v : null))} format={period.format}
-          aria-label="Custom period" style={{ width: '100%' }} />}
+          style={{ width: '100%' }} />}
         {range && (
           <div className="ifs-column-filter__range">
             <span className="ifs-column-filter__label">Range</span>
             <div className="ifs-column-filter__range-fields">
-              <RangeField placeholder="From" step={range.step} min={range.min} max={range.value && range.value.to != null ? range.value.to : range.max}
-                startAt={range.min} value={range.value ? range.value.from : null} onChange={v => range.onChange({ ...(range.value || {}), from: v })} />
-              <RangeField placeholder="To" step={range.step} min={range.value && range.value.from != null ? range.value.from : range.min} max={range.max}
-                startAt={range.max} value={range.value ? range.value.to : null} onChange={v => range.onChange({ ...(range.value || {}), to: v })} />
+              <label className="ifs-column-filter__range-item"><span className="ifs-column-filter__label">From</span>
+              <RangeField label="From" step={range.step} min={range.min} max={range.value && range.value.to != null ? range.value.to : range.max}
+                startAt={range.min} value={range.value ? range.value.from : null} onChange={v => range.onChange({ ...(range.value || {}), from: v })} /></label>
+              <label className="ifs-column-filter__range-item"><span className="ifs-column-filter__label">To</span>
+              <RangeField label="To" step={range.step} min={range.value && range.value.from != null ? range.value.from : range.min} max={range.max}
+                startAt={range.max} value={range.value ? range.value.to : null} onChange={v => range.onChange({ ...(range.value || {}), to: v })} /></label>
             </div>
           </div>
         )}
@@ -357,13 +360,13 @@ function ColumnSettings({ columns = [], onChange, suggestions = [], onAdd, findC
           <div className="ifs-column-settings__list" ref={listRef}>
             {columns.map((c, i) => (
               <div key={c.key} data-col-row className={ptCx('ifs-column-settings__row', drag && drag.from === i && 'is-dragging')} style={{ position: 'relative' }}>
-                {drag && drag.over === i && drag.from !== i && drag.from !== i - 1 && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 0, insetInlineEnd: 0, top: -4 }} />}
+                {drag && drag.over === i && drag.from !== i && drag.from !== i - 1 && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 0, insetInlineEnd: 0, top: 'calc(-1 * var(--size-4))' }} />}
                 <IFS.ContentCard size="s" state={drag && drag.from === i ? 'drag' : undefined}
                   title={<span className="ifs-column-settings__name"><span className="ifs-column-settings__handle" onPointerDown={e => startDrag(e, i)} aria-label={`Drag ${c.title}`} role="button" tabIndex={0}
                     onKeyDown={e => { const d = { ArrowUp: -1, ArrowDown: 1 }[e.key]; if (!d) return; e.preventDefault(); const j = i + d; if (j < 0 || j >= columns.length) return; const n = [...columns]; [n[i], n[j]] = [n[j], n[i]]; onChange && onChange(n); }}>
                     <IFS.Icon name="system-drag-and-drop" size={16} /></span><span className={c.hidden ? 'ifs-column-settings__hidden' : undefined}>{c.title}</span></span>}
                   iconButton={{ icon: c.hidden ? 'eye-closed' : 'eye-opened', label: c.hidden ? `Show ${c.title}` : `Hide ${c.title}`, onClick: () => toggle(c.key) }} />
-                {drag && drag.over === columns.length && i === columns.length - 1 && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 0, insetInlineEnd: 0, bottom: -4 }} />}
+                {drag && drag.over === columns.length && i === columns.length - 1 && <IFS.DropIndicator style={{ position: 'absolute', insetInlineStart: 0, insetInlineEnd: 0, bottom: 'calc(-1 * var(--size-4))' }} />}
               </div>
             ))}
           </div>
@@ -676,7 +679,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
   const tabsNode = filterTabs && (filterTabs.variant === 'tabs'
     ? <IFS.Tabs items={tabItems.map(t => ({ value: t.value, label: t.label, count: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
     : <span className="ifs-table-card__filter">
-        <IFS.SegmentedControl size="m" className="ifs-table-card__filter-wide" options={tabItems.map(t => ({ value: t.value, label: t.label, counter: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
+        <IFS.SegmentedControl size="m" narrowSelect={false} /* builds its own narrow Select below */ className="ifs-table-card__filter-wide" options={tabItems.map(t => ({ value: t.value, label: t.label, counter: t.count, disabled: t.disabled }))} value={tab} onChange={setTab} aria-label="Filter rows" />
         {/* Below 600 the segmented control with counts doesn't fit (A11Y H8, decided Nov 26): the same choice as a Select (Carbon / Material) */}
         <IFS.Select size="m" clearable={false} className="ifs-table-card__filter-narrow" aria-label="Filter rows" value={tab} onChange={v => setTab(v)}
           options={tabItems.map(t => ({ value: t.value, label: t.count != null ? `${t.label} (${t.count})` : t.label, disabled: t.disabled }))} />

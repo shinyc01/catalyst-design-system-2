@@ -430,6 +430,14 @@ function Popover({ trigger, open, defaultOpen, onOpenChange, align = 'start', ti
     return () => document.removeEventListener('mousedown', onDown);
   }, [isOpen, inline]);
   const ex = IFS.useExit(isOpen, '--motion-duration-50'); // M3: small surfaces close in 50, fade only
+  // Keep an anchored popover inside the window (audit final M12): shift it back by what crosses either edge, 8 from the window edge.
+  React.useLayoutEffect(() => {
+    const el = ref.current; if (inline || !el || !ex.mounted) return;
+    el.style.translate = '';
+    const r = el.getBoundingClientRect(), vw = document.documentElement.clientWidth, edge = 8;
+    const dx = r.right > vw - edge ? (vw - edge) - r.right : r.left < edge ? edge - r.left : 0;
+    if (dx) el.style.translate = `${dx}px 0`;
+  }, [ex.mounted, inline]);
   const card = (inline || ex.mounted) && (
     <div ref={ref} id={id} role="dialog" aria-label={typeof title === 'string' ? title : undefined} tabIndex={-1}
       className={IFS.cx('ifs-popover', align === 'end' && 'ifs-popover--end', !inline && ex.leaving && 'is-leaving', className)} style={{ width: IFS.remOf(width), ...style }}>

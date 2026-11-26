@@ -10,19 +10,28 @@ import { IFS } from './registry.js';
 // The reason is also the button's description at all times (a hidden copy, aria-describedby), so a screen reader in browse mode hears it
 // without the tooltip (audit run 2 A11Y M1). A permanent reason (a permission) also shows as visible text near the control (rule 9.10).
 // href (rule 14.1, audit run 2 item 12): a move (open an object, go to a screen, go up a level) renders as a link, <a href>, with the
-// Ghost look by default (type may still be passed), so it opens in a new tab, shows its address and reads as a link.
+// Ghost look by default (type may still be passed), so it opens in a new tab, shows its address and reads as a link. With `disabled` it
+// stays a link: <a aria-disabled> without href (not followed; focusable when it has a disabledReason).
 function Button({ type, size = 'm', iconLeft, iconRight, loading, children, state, className, onClick, disabled, disabledReason, href, ...rest }) {
   if (type == null) type = href ? 'ghost' : 'secondary';
   const rid = 'ifs-dr-' + React.useId().replace(/:/g, '');
   const iconSize = size === 's' ? 12 : 16;
-  if (href && !disabled) return (
-    <a href={href} data-state={state} onClick={onClick}
-      className={IFS.cx('ifs-button', `ifs-button--${type}`, `ifs-button--${size}`, className)} {...rest}>
-      {iconLeft && <IFS.Icon name={iconLeft} size={iconSize} />}
-      {children != null && <span className="ifs-button__label">{children}</span>}
-      {iconRight && <IFS.Icon name={iconRight} size={iconSize} />}
-    </a>
-  );
+  // A disabled move stays a link (audit final L3): <a aria-disabled> without href, so the role never flips to button; with a
+  // disabledReason it stays focusable and shows the reason like a disabled Button.
+  if (href) {
+    const off = !!disabled, why = off && disabledReason;
+    const link = (
+      <a href={off ? undefined : href} role={off ? 'link' : undefined} aria-disabled={off || undefined} tabIndex={off ? (why ? 0 : -1) : undefined} data-state={state}
+        onClick={off ? e => e.preventDefault() : onClick}
+        className={IFS.cx('ifs-button', `ifs-button--${type}`, `ifs-button--${size}`, className)} {...rest} aria-describedby={why ? rid : rest['aria-describedby']}>
+        {iconLeft && <IFS.Icon name={iconLeft} size={iconSize} />}
+        {children != null && <span className="ifs-button__label">{children}</span>}
+        {iconRight && <IFS.Icon name={iconRight} size={iconSize} />}
+        {why && <span id={rid} hidden>{disabledReason}</span>}
+      </a>
+    );
+    return why && IFS.Tooltip ? <IFS.Tooltip content={disabledReason}>{link}</IFS.Tooltip> : link;
+  }
   const lead = loading ? 'system-loader' : iconLeft;
   const soft = disabled && disabledReason;
   const btn = (

@@ -64,7 +64,7 @@ export default IFS_GALLERY;
   ) });
 
   IFS_GALLERY.push({ name: 'SearchCard', figma: 'search-card [patterns] (95:21751)', render: () => (
-    <IFS.Stack gap="200" style={{ width: 450 }}>
+    <IFS.Stack gap="200" style={{ width: 450 }} role="listbox" aria-label="Suggestions" /* the parent role of its options (audit final A11Y L5) */>
       <SearchCard>Where is wildfire risk used?</SearchCard>
       <SearchCard state="hover">Where is wildfire risk used?</SearchCard>
       <SearchCard type="user-query" query="Where is wild">Where is wildfire risk used?</SearchCard>

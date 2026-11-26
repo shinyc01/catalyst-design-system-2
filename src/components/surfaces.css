@@ -114,7 +114,7 @@
 .ifs-scroll{scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent}
 .ifs-scroll::-webkit-scrollbar{width:var(--size-8)}
 .ifs-scroll::-webkit-scrollbar-track{background:transparent}
-.ifs-scroll::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border-radius:var(--radius-pill);border:var(--border-width-200) solid transparent;background-clip:padding-box}
+.ifs-scroll::-webkit-scrollbar-thumb{background:var(--color-background-neutral);border-radius:var(--radius-pill);border:var(--size-2) solid transparent /* spacing round the thumb, T3-5 */;background-clip:padding-box}
 
 /* ---------- Panel ---------- */
 .ifs-panel{display:flex;flex-direction:column;flex:none;width:var(--region-panel);height:100%;
@@ -130,7 +130,7 @@
 
 /* ---------- Popover ---------- */
 .ifs-popover-anchor{position:relative /* the collapsed rail: chrome, like the side nav */;display:inline-flex}
-.ifs-popover{display:flex;flex-direction:column;width:var(--layout-popover-width);min-width:10rem /* narrowest a popover gets */;max-width:var(--layout-modal-width-l);max-height:37.5rem;overflow:hidden;
+.ifs-popover{display:flex;flex-direction:column;width:var(--layout-popover-width);min-width:10rem /* narrowest a popover gets */;max-width:min(var(--layout-modal-width-l), calc(100vw - 2 * var(--space-inset))) /* audit final M12: fits a 320 window */;max-height:37.5rem;overflow:hidden;
   border-radius:var(--radius-floating);background:var(--color-surface-elevation-1);color:var(--color-text);
   box-shadow:var(--elevation-floating); /* C1 level 2 (was elevation-3) */
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));outline:none}
@@ -157,7 +157,7 @@
 .ifs-popover__header + .ifs-popover__content{padding-top:var(--space-inset)}
 
 /* ---------- Floating bar ---------- */
-.ifs-floating-bar{display:inline-flex;align-items:center;gap:var(--space-200);padding:var(--space-200);
+.ifs-floating-bar{display:inline-flex;flex-wrap:wrap /* audit final M11: wraps in a 320 window */;max-width:calc(100vw - 2 * var(--float-inset));box-sizing:border-box;align-items:center;gap:var(--space-200);padding:var(--space-200);
   border-radius:var(--radius-floating);background:var(--color-background-neutral-soft-inverse);color:var(--color-text);
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft);backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-floating-bar--floating{position:fixed;top:calc(var(--float-top, 0px) + var(--float-inset));left:50%;transform:translateX(-50%);z-index:var(--z-index-floating);box-shadow:var(--elevation-floating);animation:ifs-bar-in var(--motion-duration-100) var(--motion-ease-enter)} /* ltr: centred with translateX */
@@ -169,5 +169,5 @@
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium */
 .ifs-floating-bar__divider{flex:none;align-self:stretch;width:var(--size-16);display:flex;align-items:center;justify-content:center} /* 16px frame, 8px side padding, 1px line */
 .ifs-floating-bar__divider::before{content:"";flex:none;width:1px;height:var(--size-32);background:var(--color-border-soft)}
-.ifs-floating-bar__buttons{display:flex;align-items:center;gap:var(--space-200)}
+.ifs-floating-bar__buttons{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-200)}
 .ifs-floating-bar__close{display:flex;align-items:center}
