@@ -10,14 +10,14 @@ export default IFS_GALLERY;
   const Row = ({ label, children }) => <div className="g-row"><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
   const dirs = ['left', 'right', 'top', 'bottom'];
   const acts = n => [
-    { direction: 'left', label: '{label}', hotkey: '⌘/' }, { direction: 'right', label: '{label}', hotkey: '⌘/' },
-    { direction: 'top', label: '{label}', hotkey: '⌘/' }, { direction: 'bottom', label: '{label}', hotkey: '⌘/' },
+    { direction: 'left', label: '{label}', hotkey: '⌘K' }, { direction: 'right', label: '{label}', hotkey: '⌘K' },
+    { direction: 'top', label: '{label}', hotkey: '⌘K' }, { direction: 'bottom', label: '{label}', hotkey: '⌘K' },
   ].slice(0, n);
 
   IFS_GALLERY.push({ name: 'CircularButton', figma: 'circular-button-molecule (72:9983)', render: () => <>
     {[undefined, 'hover', 'pressed', 'disabled', 'focus'].map(s => (
       <Row key={s || 'default'} label={s || 'default'}>
-        {dirs.map(d => <CircularButton key={d} direction={d} hotkey="⌘/" state={s === 'disabled' ? undefined : s} disabled={s === 'disabled'}>{'{label}'}</CircularButton>)}
+        {dirs.map(d => <CircularButton key={d} direction={d} hotkey="⌘K" state={s === 'disabled' ? undefined : s} disabled={s === 'disabled'}>{'{label}'}</CircularButton>)}
       </Row>
     ))}
   </> });

@@ -220,7 +220,7 @@ export default IFS_GALLERY;
             <ReadinessEvaluation key={blocked ? 'b' : 'r'} summary={blocked ? SUMMARY_BLOCKED : SUMMARY_READY} readiness={blocked ? 40 : 100}
               checks={blocked ? CHECKS_BLOCKED : CHECKS_READY} sections={sectionsFor(blocked, notesOf(chain))} />
           </IFS.Panel>
-          {chainMode === 'popover' && <ApprovalChainPanel mode="popover" style={{ top: 4, right: 12 }}
+          {chainMode === 'popover' && <ApprovalChainPanel mode="popover" style={{ top: 4, insetInlineEnd: 12 }}
             onExpandedChange={f => setChainMode(f ? 'full' : 'popover')} onClose={() => setChainMode(null)}>{table}</ApprovalChainPanel>}
         </Shell>
         <IFS.Modal open={modal === 'approve'} onOpenChange={o => !o && setModal(null)} title="Approve this framework?" width={440} overlay="base"

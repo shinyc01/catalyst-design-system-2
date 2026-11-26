@@ -76,7 +76,7 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'RoleFilter', figma: 'icon-button + multiple-select-list-molecule [patterns] (12:11259)', render: () => {
     const [v, setV] = React.useState([]);
     return <Row label={v.length ? v.join(', ') : 'All roles'} style={{ minHeight: 230, alignItems: 'flex-start' }}>
-      <div style={{ marginLeft: 180 }}><IFS.RoleFilter roles={ROLES} value={v} onChange={setV} /></div></Row>;
+      <div style={{ marginInlineStart: 180 }}><IFS.RoleFilter roles={ROLES} value={v} onChange={setV} /></div></Row>;
   } });
 
   IFS_GALLERY.push({ name: 'CollaboratorsPanel', figma: 'popover-organism Collaborators [patterns] (12:10231 / 12:10037 / 12:9653 / 12:9847)', render: () => {
@@ -128,7 +128,7 @@ export default IFS_GALLERY;
             <div style={{ position: 'relative', minHeight: 0, isolation: 'isolate' }}>
               <IFS.CanvasBackground style={{ position: 'absolute', inset: 0 }}
                 overlay={<>
-                  <div style={{ position: 'absolute', left: 14, bottom: 14, zIndex: 3 }}><IFS.ValueMapButton type="shape" /></div>
+                  <div style={{ position: 'absolute', insetInlineStart: 14, bottom: 14, zIndex: 3 }}><IFS.ValueMapButton type="shape" /></div>
                   {cursors && <IFS.LiveCursors users={online} />}
                 </>}>
                 {NODES.map(([t, title, n], i) => <div key={t} style={{ position: 'absolute', left: 140 + i * 240, top: 360 }}><IFS.NodeCard type={t} title={title} counter={n} /></div>)}

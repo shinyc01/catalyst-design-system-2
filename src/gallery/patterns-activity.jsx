@@ -206,7 +206,7 @@ export default IFS_GALLERY;
               actions={draft ? <><IFS.Button type="secondary" size="s" iconLeft="users-group">1/1</IFS.Button><IFS.Button type="primary" size="s">Review</IFS.Button></> : <IFS.CooperChip />} />
             {draft && <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 344 }}>
               <IFS.Stepper steps={[{ label: 'Input' }, { label: 'Shape' }, { label: 'Review' }, { label: 'Approve' }]} current={1} /></div>}
-            {menu && <div style={{ position: 'absolute', left: 120, top: 40, zIndex: 5 }}>
+            {menu && <div style={{ position: 'absolute', insetInlineStart: 120, top: 40, zIndex: 5 }}>
               <IFS.Menu inline items={[{ label: 'Activity', icon: 'users-group', onClick: () => { setMenu(false); onActivity(); } }, { divider: true },
                 { label: 'Duplicate', icon: 'duplicate', onClick: () => { setMenu(false); onDuplicate(); } }, { label: 'Rename', icon: 'system-edit-rename', onClick: () => setMenu(false) }]} /></div>}
           </div>
@@ -214,7 +214,7 @@ export default IFS_GALLERY;
         </>}
         bottom={<IFS.BottomSheet type="value" documents={{ label: '16 Documents', icon: 'system-file' }} prompts={PROMPTS} />}>
         <div style={{ position: 'relative', height: '100%', minHeight: 640 }}>
-          <IFS.CanvasBackground style={{ position: 'absolute', inset: 0 }} overlay={<div style={{ position: 'absolute', left: 14, bottom: 14 }}><IFS.ValueMapButton type="shape" /></div>}>
+          <IFS.CanvasBackground style={{ position: 'absolute', inset: 0 }} overlay={<div style={{ position: 'absolute', insetInlineStart: 14, bottom: 14 }}><IFS.ValueMapButton type="shape" /></div>}>
             {MAP_NODES.map(([t, ttl, n], i) => <div key={t} style={{ position: 'absolute', left: 52 + i * 240, top: 340 }}><IFS.NodeCard type={t} title={ttl} counter={n} /></div>)}
           </IFS.CanvasBackground>
         </div>

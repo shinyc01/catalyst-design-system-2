@@ -163,13 +163,13 @@ export default IFS_GALLERY;
       <div ref={box} style={{ width: 1100, height: 560, borderRadius: 8, overflow: 'hidden', boxShadow: 'inset 0 0 0 1px var(--color-border-soft)' }}>
         <CanvasBackground apiRef={api} view={view} onViewChange={setView} aria-label="Value framework canvas"
           overlay={<>
-            <div style={{ position: 'absolute', left: 16, bottom: 16 }}>
+            <div style={{ position: 'absolute', insetInlineStart: 16, bottom: 16 }}>
               <ValueMapButton type="shape" onFit={() => api.current.fit(WORLD)} onExpand={() => setCollapsed(false)} onCollapse={() => setCollapsed(true)} />
             </div>
-            <div style={{ position: 'absolute', right: 16, top: 16 }}>
+            <div style={{ position: 'absolute', insetInlineEnd: 16, top: 16 }}>
               <MapToolbar onAction={a => { if (a === 'zoom-in') api.current.zoomBy(1.2); if (a === 'zoom-out') api.current.zoomBy(1 / 1.2); }} />
             </div>
-            <div style={{ position: 'absolute', right: 16, bottom: 16 }}>
+            <div style={{ position: 'absolute', insetInlineEnd: 16, bottom: 16 }}>
               <DemoMiniMap view={view} size={size} onJump={(wx, wy) => setView(v => ({ ...v, x: size.w / 2 - wx * v.zoom, y: size.h / 2 - wy * v.zoom }))} />
             </div>
           </>}>

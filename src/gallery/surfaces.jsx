@@ -14,15 +14,15 @@ export default IFS_GALLERY;
   IFS_GALLERY.push({ name: 'Tooltip', figma: 'tooltip-organism (67:6151)', render: () => <>
     {['black', 'grey'].map(c => <React.Fragment key={c}>
       <Row label={`${c} · bottom / top`}><Black>
-        {['bottom', 'top'].map(t => ['left', 'center', 'right'].map(a => <Tooltip key={t + a} inline color={c} type={t} arrow={a} content="{label}" hotkey="⌘/" />))}
+        {['bottom', 'top'].map(t => ['left', 'center', 'right'].map(a => <Tooltip key={t + a} inline color={c} type={t} arrow={a} content="{label}" hotkey="⌘K" />))}
       </Black></Row>
       <Row label={`${c} · left / right`}><Black>
-        <Tooltip inline color={c} type="left" content="{label}" hotkey="⌘/" />
-        <Tooltip inline color={c} type="right" content="{label}" hotkey="⌘/" />
+        <Tooltip inline color={c} type="left" content="{label}" hotkey="⌘K" />
+        <Tooltip inline color={c} type="right" content="{label}" hotkey="⌘K" />
       </Black></Row>
     </React.Fragment>)}
     <Live>
-      {['bottom', 'top', 'left', 'right'].map(t => <Tooltip key={t} color="grey" type={t} content={`type=${t}`} hotkey="⌘/"><Button>Hover {t}</Button></Tooltip>)}
+      {['bottom', 'top', 'left', 'right'].map(t => <Tooltip key={t} color="grey" type={t} content={`type=${t}`} hotkey="⌘K"><Button>Hover {t}</Button></Tooltip>)}
       <Tooltip content="Settings"><IconButton icon="system-settings" label="Settings" type="secondary" /></Tooltip>
     </Live>
   </> });
@@ -115,7 +115,7 @@ export default IFS_GALLERY;
     <Row label="default" top><Popover inline title="{title}" count={3} search onFilter={() => {}} style={{ height: 360 }} /></Row>
     <Row label="controlled search (clearable)" top><SurfPopoverSearch /></Row>
     <Live>
-      <Popover trigger={<Button iconRight="system-chevron-down">16 Documents</Button>} title="Documents" count={16} search onFilter={() => {}}>
+      <Popover trigger={<Button iconRight="arrow-chevron-down">16 Documents</Button>} title="Documents" count={16} search onFilter={() => {}}>
         <Filler h={80}>Esc, outside click or ✕ closes.</Filler>
       </Popover>
     </Live>

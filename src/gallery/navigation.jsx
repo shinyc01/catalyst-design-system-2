@@ -143,7 +143,7 @@ export default IFS_GALLERY;
         actions={<IFS.Button type="ghost" size="s">1 Recommendation</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 12 }}>
-      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} status={<Status>Draft</Status>}
+      <PageHeader title="Copy of Q1 2026 Enterprise Strategy" id="1/2" onBack={() => {}} onTitleMenu={() => {}} status={<Status>Draft</Status>}
         actions={<IFS.Button type="primary" size="s">Review</IFS.Button>} />
     </div>
     <div style={{ width: 1200, marginTop: 12 }}>

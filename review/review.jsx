@@ -56,9 +56,9 @@ const mockups = {
     <Line><LegendSwatch color="alert" step={5} label="Loss" /><LegendSwatch color="deep-green" step={5} label="Gain" /><LegendSwatch color="rose" label="Title" value="$1.2M" /></Line>
     <Cap>InfoHintItem today (fills its row, value pushed right, neutral swatch)</Cap>
     <div style={{ width: 240 }}><Stack gap={8}>
-      <InfoHintItem label="Loss" color="var(--data-viz-alert-data-5)" value="36" />
+      <InfoHintItem label="Loss" color="var(--color-data-viz-alert-data-5)" value="36" />
       <InfoHintItem label="Unchanged" neutral value="745" />
-      <InfoHintItem label="Gain" color="var(--data-viz-deep-green-data-5)" icon="system-info-hint" value="519" />
+      <InfoHintItem label="Gain" color="var(--color-data-viz-deep-green-data-5)" icon="system-info-hint" value="519" />
     </Stack></div>
   </Stack>,
   menus: () => <Line gap={24}>
@@ -88,7 +88,7 @@ const mockups = {
   </Line>,
   search: () => <Line gap={32}>
     <Stack><Cap>Search (the kit field)</Cap><div style={{ width: 280 }}><Search placeholder="Search people" /></div></Stack>
-    <Stack><Cap>Popover's built-in search today</Cap><Popover inline title="Add people" search searchValue="" onSearchChange={() => {}} width={320}><div className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>(list)</div></Popover></Stack>
+    <Stack><Cap>Popover's built-in search today</Cap><Popover inline title="Add people" search searchValue="" onSearchChange={() => {}} width={320}><div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)' }}>(list)</div></Popover></Stack>
   </Line>,
   role: () => <Line gap={32}>
     <Stack><Cap>RoleSelect today (24 tall, 28px rows)</Cap><IFS.RoleSelect defaultValue="editor" onRemove={() => {}} /></Stack>
@@ -96,8 +96,8 @@ const mockups = {
       <Select size="m" defaultValue="editor" clearable={false} options={[{ value: 'editor', label: 'Editor' }, { value: 'viewer', label: 'Viewer' }, { divider: true }, { label: 'Remove', action: true, danger: true, onClick: () => {} }]} /></div></Stack>
   </Line>,
   empty: () => <Line gap={32}>
-    <Stack><Cap>Chart empty today (title + text, gap 8)</Cap><div className="ifs-dv-empty" style={{ width: 320, height: 200, border: '1px dashed var(--border-base)' }}>
-      <span className="t-heading-h4-semibold">No data yet</span><span className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>Add investments to see this chart.</span></div></Stack>
+    <Stack><Cap>Chart empty today (title + text, gap 8)</Cap><div className="ifs-dv-empty" style={{ width: 320, height: 200, border: '1px dashed var(--color-border-soft)' }}>
+      <span className="t-heading-h4-semibold">No data yet</span><span className="t-body-m-regular" style={{ color: 'var(--color-text-soft)' }}>Add investments to see this chart.</span></div></Stack>
     <Stack><Cap>EmptyState (inset padding, gaps 20 / 16 / 12)</Cap><div style={{ width: 320 }}><EmptyState title="No data yet" description="Add investments to see this chart." /></div></Stack>
   </Line>,
   status: () => <Stack gap={16}>
@@ -108,8 +108,8 @@ const mockups = {
         .map(r => <tr key={r[0]}><td><Indicator type={r[0]}>{r[0]}</Indicator></td>{r.slice(1).map((c, i) => <td key={i}><code>{c}</code></td>)}</tr>)}
     </tbody></table>
     <Cap>Neutral dot: two greys today</Cap>
-    <Line gap={24}><Line gap={6}><StatusIndicator state="default" /><span className="t-body-m-regular">StatusIndicator default · #4d4d4d (--icon-disabled)</span></Line>
-      <Line gap={6}><Indicator type="gray">Indicator gray · #8c8c8c (--icon-tertiary)</Indicator></Line></Line>
+    <Line gap={24}><Line gap={6}><StatusIndicator state="default" /><span className="t-body-m-regular">StatusIndicator default · #4d4d4d (--color-icon-disabled)</span></Line>
+      <Line gap={6}><Indicator type="gray">Indicator gray · #8c8c8c (--color-icon-softer)</Indicator></Line></Line>
     <Cap>Dot sizes today: 8 (Indicator S, StatusIndicator) · 6 (Indicator XS, Chip) · 4 (Badge)</Cap>
     <Line gap={24}><Indicator type="orange" size="s">Pending approval (S, 8)</Indicator><Indicator type="orange" size="xs">Pending approval (XS, 6)</Indicator>
       <Chip indicator="warning">Chip (6)</Chip><Badge indicator="warning">Badge (4)</Badge></Line>
@@ -117,7 +117,7 @@ const mockups = {
   headers: () => <Stack gap={16}>
     <Cap>Card titles: ContentCard / WidgetCard use Label/M, chart and table cards use H4</Cap>
     <Line gap={24}><div style={{ width: 260 }}><ContentCard title="Grid modernisation" description="Label/M title (ContentCard)" /></div>
-      <div style={{ width: 300, padding: 16, borderRadius: 8, background: 'var(--surface-secondary-alpha)' }}><div className="t-heading-h4-semibold">Spend by year</div><div className="t-body-m-regular" style={{ color: 'var(--text-secondary)' }}>H4 title (DataViz / table card)</div></div></Line>
+      <div style={{ width: 300, padding: 16, borderRadius: 8, background: 'var(--color-surface-secondary)' }}><div className="t-heading-h4-semibold">Spend by year</div><div className="t-body-m-regular" style={{ color: 'var(--color-text-soft)' }}>H4 title (DataViz / table card)</div></div></Line>
   </Stack>,
 };
 
@@ -127,7 +127,7 @@ const ITEMS = [
   { sec: 'A. Merges that change the look', id: 'A1', title: 'Legend entry: one LegendSwatch, two layouts (done)',
     q: 'Done on Nov 19 from your feedback.',
     cols: [{ label: 'LegendSwatch / Legend: inline (horizontal) and row (vertical), values on or off', g: 'LegendSwatch' }],
-    [S]: 'Done: InfoHintItem is gone. Entries take the data\'s colour (data-viz group + step, a data-viz token, or neutral). Charts only accept data-viz colours now. Neutral grey: --data-viz-neutral = --icon-tertiary (#8c8c8c), 5.2–6.3:1 on page, card and chart backgrounds (WCAG 1.4.11 needs 3:1); bars and swatch match.' },
+    [S]: 'Done: InfoHintItem is gone. Entries take the data\'s colour (data-viz group + step, a data-viz token, or neutral). Charts only accept data-viz colours now. Neutral grey: --color-data-viz-neutral = --color-icon-softer (#8c8c8c), 5.2–6.3:1 on page, card and chart backgrounds (WCAG 1.4.11 needs 3:1); bars and swatch match.' },
   { id: 'A2', title: 'Chart bar: BarChartItem → DataVizBar',
     q: 'Which bar look and which colour system?',
     cols: [{ label: 'DataVizBar (keeper candidate)', g: 'DataVizBar' }, { label: 'BarChartItem (1–9 palette)', g: 'BarChartItem' }],

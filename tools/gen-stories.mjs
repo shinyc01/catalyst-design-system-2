@@ -84,6 +84,7 @@ export default {
   parameters: {
     docs: { description: { component: ${JSON.stringify(warn + (pDoc ? docs + '\n\n' + pDoc : docs))} } },
     ${design ? `design: ${JSON.stringify(design)},` : ''}
+    ${group.startsWith('Examples/') ? "layout: 'fullscreen', // F-28: the 1440 example frames fill the canvas without the 16 px padding scroll" : ''}
   },
 };
 

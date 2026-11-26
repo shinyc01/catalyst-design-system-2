@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  background: var(--surface-primary);
-  color: var(--text-primary);
+  background: var(--color-surface-primary);
+  color: var(--color-text);
 }
 .rv {
   max-width: 1600px;
@@ -21,11 +21,11 @@ body {
   gap: var(--space-500);
   flex-wrap: wrap;
   padding-bottom: var(--space-500);
-  border-bottom: 1px solid var(--border-base);
+  border-bottom: 1px solid var(--color-border-soft);
 }
 .rv-sub,
 .rv-q {
-  color: var(--text-secondary);
+  color: var(--color-text-soft);
   margin-top: var(--space-100);
 }
 .rv-density,
@@ -36,22 +36,22 @@ body {
   flex-wrap: wrap;
 }
 .rv-pill {
-  font: var(--text-label-m-medium);
-  color: var(--text-secondary);
+  font: var(--font-label-m-medium);
+  color: var(--color-text-soft);
   background: transparent;
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-radius-full);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
   padding: var(--space-100) var(--space-300);
   cursor: pointer;
   text-transform: capitalize;
 }
 .rv-pill:hover {
-  color: var(--text-primary);
+  color: var(--color-text);
 }
 .rv-pill.on {
-  background: var(--text-primary);
-  color: var(--surface-primary);
-  border-color: var(--text-primary);
+  background: var(--color-text);
+  color: var(--color-surface-primary);
+  border-color: var(--color-text);
 }
 .rv-toc {
   position: sticky;
@@ -61,18 +61,18 @@ body {
   gap: var(--space-100);
   flex-wrap: wrap;
   padding: var(--space-300) 0;
-  background: var(--surface-primary);
+  background: var(--color-surface-primary);
 }
 .rv-toc a {
-  font: var(--text-label-m-medium);
-  color: var(--text-secondary);
+  font: var(--font-label-m-medium);
+  color: var(--color-text-soft);
   text-decoration: none;
   padding: var(--space-50) var(--space-200);
-  border-radius: var(--radius-radius-100);
-  background: var(--surface-secondary-alpha);
+  border-radius: var(--radius-100);
+  background: var(--color-surface-secondary);
 }
 .rv-toc a.done {
-  color: var(--text-success);
+  color: var(--color-text-success);
 }
 .rv-sec {
   margin: var(--space-800) 0 var(--space-300);
@@ -80,8 +80,8 @@ body {
 .rv-item {
   margin-top: var(--space-500);
   padding: var(--space-500);
-  border-radius: var(--radius-radius-200);
-  background: var(--surface-secondary-alpha);
+  border-radius: var(--radius-200);
+  background: var(--color-surface-secondary);
   scroll-margin-top: var(--space-1000);
 }
 .rv-head {
@@ -91,8 +91,8 @@ body {
 }
 .rv-id {
   flex: none;
-  font: var(--text-label-m-medium);
-  color: var(--text-tertiary);
+  font: var(--font-label-m-medium);
+  color: var(--color-text-softer);
   padding-top: var(--space-50);
 }
 .rv-cols {
@@ -103,14 +103,14 @@ body {
 }
 .rv-col {
   min-width: 0;
-  border: 1px solid var(--border-base);
-  border-radius: var(--radius-radius-200);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-200);
   overflow: hidden;
 }
 .rv-col-label {
   padding: var(--space-200) var(--space-300);
-  color: var(--text-secondary);
-  border-bottom: 1px solid var(--border-base);
+  color: var(--color-text-soft);
+  border-bottom: 1px solid var(--color-border-soft);
 }
 .rv-col-body {
   padding: var(--space-400);
@@ -123,40 +123,40 @@ body {
   gap: var(--space-300);
 }
 .rv-cap {
-  font: var(--text-body-m-regular);
-  color: var(--text-tertiary);
+  font: var(--font-body-m-regular);
+  color: var(--color-text-softer);
 }
 .rv-suggest {
   margin-top: var(--space-400);
   padding: var(--space-400);
-  border-radius: var(--radius-radius-200);
-  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-200);
+  border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   gap: var(--space-200);
 }
 .rv-suggest p {
-  color: var(--text-primary);
-  max-width: var(--text-measure);
+  color: var(--color-text);
+  max-width: var(--font-measure);
 }
 .rv-err {
-  color: var(--text-danger);
-  font: var(--text-body-m-regular);
+  color: var(--color-text-danger);
+  font: var(--font-body-m-regular);
 }
 .rv-table {
   border-collapse: collapse;
-  font: var(--text-body-m-regular);
+  font: var(--font-body-m-regular);
 }
 .rv-table th,
 .rv-table td {
-  text-align: left;
+  text-align: start;
   padding: var(--space-150) var(--space-300);
-  border-bottom: 1px solid var(--border-base);
+  border-bottom: 1px solid var(--color-border-soft);
 }
 .rv-table th {
-  color: var(--text-tertiary);
-  font: var(--text-label-m-medium);
+  color: var(--color-text-softer);
+  font: var(--font-label-m-medium);
 }
 .rv-table code {
-  color: var(--text-secondary);
+  color: var(--color-text-soft);
 }

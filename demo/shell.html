@@ -94,7 +94,7 @@ function App() {
     <div className="app">
       <scr.Comp key={scr.id} bp={bpOf(vw)} height={vh} />
       <DisplaySettings open={settings} onClose={() => setSettings(false)} />
-      {toast && Snackbar && <div style={{ position: 'absolute', top: 64, right: 24, zIndex: 900 }}><Snackbar title={toast} onClose={() => setToast(null)} /></div>}
+      {toast && Snackbar && <div style={{ position: 'absolute', top: 64, insetInlineEnd: 24, zIndex: 900 }}><Snackbar title={toast} onClose={() => setToast(null)} /></div>}
     </div>
   </ToastCtx.Provider>;
 }

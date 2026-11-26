@@ -499,7 +499,7 @@
    "The y-axis starts at 80; Figma's starts at 60."
   ],
   "ColumnChart": [
-   "2.0.6 (D1): the kit shows an icon-only Chart / Table switch and no ⋮; Figma's core-chart frames don't have it yet (Figma round)."
+   "2.0.6 (D1): the kit shows an icon-only Chart / Table switch, and ⋯ (Move + the screen's extra actions) on every movable card with Edit with Cooper inside it below 416 px (item 9, Nov 25); Figma's core-chart frames don't have them yet (Figma round)."
   ],
   "WidgetFrame": [
    "The frame every dashboard widget sits in (header, hover actions, ⋮ menu). Figma draws it as content-card variations. Candidate for a real `widget-frame` component."

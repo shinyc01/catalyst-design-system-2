@@ -156,7 +156,7 @@ export default IFS_GALLERY;
     <div style={{ height: 24 }} />
     <Table columns={[
       { key: 'a', title: 'Check', type: 'check' }, { key: 'b', title: 'User description', type: 'user-description', width: '1.5fr' },
-      { key: 'c', title: 'Counter', render: r => <IFS.Icon name="system-more" size={16} /> }]}
+      { key: 'c', title: 'Counter', render: r => <IFS.Icon name="system-dots-horizont" size={16} /> }]}
       rows={[{ id: 1, a: 'Text', b: { name: 'Tom Nguyen', description: 'Neighbouring Asset Manager', type: 'blue' } }]} />
     <div style={{ height: 24 }} />
     <Table columns={columns.slice(0, 3)} rows={rows.slice(0, 3)} rowHeight={60}
