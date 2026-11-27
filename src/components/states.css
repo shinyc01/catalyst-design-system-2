@@ -135,13 +135,13 @@
 .ifs-map-field__label{padding-inline-start:var(--space-150);color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap}
 .ifs-map-field__row{display:flex;align-items:center;gap:var(--space-50) /* raw in Figma */;height:var(--size-16)}
 .ifs-map-field__value{padding:0 var(--space-150);color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);white-space:nowrap}
-.ifs-bottom-sheet__divider{width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--color-border);flex:none}
+.ifs-bottom-sheet__divider{width:var(--border-width-default);height:var(--size-20);margin:0 var(--space-50);background:var(--color-border);flex:none}
 .ifs-bottom-sheet__tools{display:flex;align-items:center;gap:var(--space-100)}
 
 /* zoom-slider-atom (3275:483): 20 ticks 4px apart, the current one 16px tall with a marker */
 .ifs-zoom{position:relative;display:inline-flex;align-items:center;gap:var(--size-3);width:80px;height:16px;padding:0 var(--space-50);box-sizing:border-box;cursor:pointer} /* px: map zoom scale geometry */
 .ifs-zoom:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-mark)}
-.ifs-zoom__tick{width:1px;height:8px;flex:none;background:var(--color-border-selected)}
+.ifs-zoom__tick{width:var(--border-width-default);height:8px;flex:none;background:var(--color-border-selected)}
 .ifs-zoom__tick.is-after{background:var(--color-border)}
 .ifs-zoom__tick.is-current{height:16px}
 .ifs-zoom__marker{position:absolute;top:-3px;width:4px;height:4px;margin-left:calc(-1 * var(--border-width-150)) /* marker geometry: half its stem, T3-5 */;background:var(--color-icon);clip-path:polygon(0 0,100% 0,50% 100%)} /* ltr: zoom marker placed by JS; click reads clientX */

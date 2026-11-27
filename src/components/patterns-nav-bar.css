@@ -29,7 +29,8 @@
 .ifs-home-row-card__head :is(button,a),.ifs-home-row-card__action{position:relative;z-index:2} /* the sibling controls sit above the open button */
 .ifs-home-row-card--primary{height:8.25rem} /* assumed: 124 + 8 for the 14/20 description and metric labels */
 .ifs-home-row-card--secondary{height:var(--size-80)} /* assumed: 72 + 8, same reason */
-.ifs-home-row-card:hover,.ifs-home-row-card[data-state=hover]{background:var(--color-surface-tertiary)}
+.ifs-home-row-card:hover,.ifs-home-row-card[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-home-row-card:active,.ifs-home-row-card[data-state=pressed]{background:var(--color-surface-raised-pressed)} /* rule 7.1: a card on a surface */
 .ifs-home-row-card:has(> .ifs-home-row-card__open:focus-visible),.ifs-home-row-card[data-state=focus]{box-shadow:var(--focus-ring)}
 /* Primary: 1px INSIDE gradient stroke, white (left) → Cooper copper (right) */
 .ifs-home-row-card--primary::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:var(--size-1);pointer-events:none;

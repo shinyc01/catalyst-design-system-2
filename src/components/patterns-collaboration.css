@@ -44,6 +44,7 @@
   border-radius:var(--radius-control);background:transparent;transition:background-color var(--motion-duration-50) var(--motion-ease-standard);outline:none}
 .ifs-collab-row--clickable{position:relative;cursor:pointer}
 .ifs-collab-row--clickable:hover,.ifs-collab-row[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-collab-row--clickable:active,.ifs-collab-row[data-state=pressed]{background:var(--color-surface-raised-pressed)} /* rule 7.1 (T4-13) */
 .ifs-collab-row:has(> .ifs-collab-row__main:focus-visible){box-shadow:var(--focus-ring)}
 .ifs-collab-row__main{margin:0;padding:0;border:0;background:none;color:inherit;font:inherit;text-align:start;cursor:pointer;outline:none}
 .ifs-collab-row__main::after{content:'';position:absolute;inset:0;border-radius:inherit} /* stretched over the row */
@@ -83,7 +84,7 @@
 .ifs-role-select__option:active,.ifs-role-filter__option:active{background:var(--color-state-pressed)}
 .ifs-role-select__option:focus-visible,.ifs-role-filter__option:focus-visible{color:var(--color-text);box-shadow:var(--focus-ring-inset)} /* S1: the ring only, inset inside the clipped list */
 .ifs-role-select__option.is-selected,.ifs-role-filter__option.is-selected{color:var(--color-text)}
-.ifs-role-select__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--color-border-soft)}
+.ifs-role-select__divider{flex:none;height:var(--border-width-default);margin:var(--space-100) 0;background:var(--color-border-soft)}
 
 /* ---- RoleFilter (icon-button Secondary M + multiple-select-list-molecule) ---- */
 .ifs-role-filter{position:relative;flex:none}

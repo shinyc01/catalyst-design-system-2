@@ -22,8 +22,8 @@
 
 /* ================= line-atom (4440:32650) ================= */
 .ifs-dv-line{display:block;flex:none;background:var(--color-border)}
-.ifs-dv-line--horizontal{width:100%;height:1px}
-.ifs-dv-line--vertical{height:100%;width:1px}
+.ifs-dv-line--horizontal{width:100%;height:var(--border-width-default)}
+.ifs-dv-line--vertical{height:100%;width:var(--border-width-default)}
 .ifs-dv-line--horizontal.ifs-dv-line--dashed{background:repeating-linear-gradient(90deg,var(--color-border) 0 3px,transparent 3px 8px)} /* ltr: brand gradient art, fixed in both directions */
 .ifs-dv-line--vertical.ifs-dv-line--dashed{background:repeating-linear-gradient(180deg,var(--color-border) 0 3px,transparent 3px 8px)}
 
@@ -78,7 +78,7 @@
 .ifs-dv-header__left > .ifs-dv-header__subtitle{flex-basis:100%} /* organism: the subtitle on its own line under the title */
 .ifs-dv-header__drag{display:none;color:var(--color-icon-handle) /* raw in Figma */;cursor:grab}
 .ifs-dv-header__hover{display:flex;align-items:center;gap:var(--space-200);opacity:0;pointer-events:none}
-.ifs-dv-header__divider{width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
+.ifs-dv-header__divider{width:var(--border-width-default);height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
 /* Hover row: real hover / keyboard focus of the header or its card, or forced (data-state=hover) */
 .ifs-dv-header:hover .ifs-dv-header__drag,.ifs-dv-header[data-state=hover] .ifs-dv-header__drag,
 .ifs-dv-card:hover .ifs-dv-header__drag,.ifs-dv-card[data-state=hover] .ifs-dv-header__drag{display:inline-flex}
@@ -170,7 +170,7 @@
 .ifs-dv-tooltip__delta{display:inline-flex;align-items:center;gap:var(--space-50)}
 .ifs-dv-tooltip__delta .ifs-icon{color:var(--color-icon-success)}
 .ifs-dv-tooltip__delta--negative .ifs-icon{color:var(--color-icon-danger)}
-.ifs-dv-tooltip__divider{display:block;height:1px;background:var(--color-border-soft)}
+.ifs-dv-tooltip__divider{display:block;height:var(--border-width-default);background:var(--color-border-soft)}
 .ifs-dv-tooltip__items{display:flex;flex-direction:column}
 .ifs-dv-tooltip__item{display:flex;align-items:center;gap:var(--space-200);padding:var(--space-150) 0;font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-dv-tooltip__dot{flex:none;width:var(--size-8);height:var(--size-8);border-radius:50%}

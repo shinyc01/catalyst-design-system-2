@@ -127,7 +127,8 @@ button.ifs-avatar__base:active .ifs-avatar__overlay,.ifs-avatar__base[data-state
   box-shadow:var(--stroke),var(--ring),var(--drop-shadow-risk);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium: statuses are sentence case */
 button.ifs-risk{cursor:pointer}
-button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface-tertiary);--stroke:0 0 0 var(--border-width-default) var(--color-border-soft)}
+button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-state-hover);--stroke:0 0 0 var(--border-width-default) var(--color-border-soft)}
+button.ifs-risk:active,.ifs-risk[data-state=pressed]{background:var(--color-state-pressed)} /* rule 7.1: pressed 5 */
 .ifs-risk:disabled,.ifs-risk[aria-disabled=true]{cursor:not-allowed;color:var(--color-text-disabled);background:var(--color-surface-secondary);--stroke:0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-risk:focus-visible,.ifs-risk[data-state=focus]{outline:none;border-radius:var(--radius-pill);--ring:var(--focus-ring)}
 .ifs-risk--loading{width:8.625rem}
@@ -269,6 +270,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
 /* Row hover / selected: not drawn in Figma — card state tokens */
 .ifs-table__row--clickable{cursor:pointer}
 .ifs-table__row--clickable:hover,.ifs-table__row--content[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-table__row--clickable:active,.ifs-table__row--content[data-state=pressed]{background:var(--color-surface-raised-pressed)} /* rule 7.1: pressed if clickable (T4-13) */
 .ifs-table__row--selected{box-shadow:inset 0 0 0 var(--border-width-selected) var(--color-border-strong)}
 .ifs-table__row--clickable:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 /* table-header-molecule (1440:5904) */
@@ -332,6 +334,7 @@ button.ifs-risk:hover,.ifs-risk[data-state=hover]{background:var(--color-surface
   padding:var(--space-inset);border-radius:var(--radius-control);background:var(--fill);text-align:start;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-notification--clickable{cursor:pointer}
 .ifs-notification--clickable:hover,.ifs-notification[data-state=hover]{--fill:var(--color-surface-raised-hover)}
+.ifs-notification--clickable:active,.ifs-notification[data-state=pressed]{--fill:var(--color-surface-raised-pressed)}
 /* A11Y M4: the title is the card's one button; its ::after stretches over the card, the action buttons sit above it */
 .ifs-notification__main{all:unset;cursor:pointer}
 .ifs-notification__main::after{content:"";position:absolute;inset:0;border-radius:inherit}

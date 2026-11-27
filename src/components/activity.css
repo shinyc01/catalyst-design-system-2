@@ -9,7 +9,7 @@
 .ifs-tl-marker--m{width:var(--size-32);height:var(--size-32)}
 .ifs-tl-marker > .ifs-avatar{margin:calc(-1 * var(--space-50))}
 /* connector-atom (3713:12835): 1px --color-border-soft line centred in its column; Dash = 3/3 */
-.ifs-tl-connector{display:block;flex:1 1 auto;align-self:center;width:1px;min-height:0;background:var(--color-border-soft)}
+.ifs-tl-connector{display:block;flex:1 1 auto;align-self:center;width:var(--border-width-default);min-height:0;background:var(--color-border-soft)}
 .ifs-tl-connector--dash{background:repeating-linear-gradient(to bottom,var(--color-border-soft) 0 3px,transparent 3px 6px)}
 
 /* activity-organism (3713:13396): H gap 12; rail = marker + connector; content V padding-bottom 20 */
@@ -65,7 +65,8 @@
 .ifs-version .ifs-tl-item__content{padding-bottom:var(--space-inset)}
 .ifs-version__card{position:relative;display:flex;flex-direction:column;gap:var(--space-200);padding:var(--space-inset);
   border-radius:var(--radius-card);background:var(--color-surface-secondary)}
-.ifs-version__card:hover,.ifs-version__card:focus-within,.ifs-version__card[data-state=hover]{background:var(--color-surface-tertiary)}
+.ifs-version__card:hover,.ifs-version__card:focus-within,.ifs-version__card[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-version__card:active,.ifs-version__card[data-state=pressed]{background:var(--color-surface-raised-pressed)} /* rule 7.1: a card on a surface */
 .ifs-version__head{display:flex;align-items:center;gap:var(--space-100);min-height:var(--size-20);padding-inline-end:var(--size-28)}
 .ifs-version__title{color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-version__desc{color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
@@ -234,7 +235,8 @@
 /* ================= VersionCard — version-card (2104:4022), legacy ================= */
 .ifs-version-card{display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset);border-radius:var(--radius-card);
   background:var(--color-surface-secondary);box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
-.ifs-version-card:hover,.ifs-version-card[data-state=hover]{background:var(--color-surface-tertiary)}
+.ifs-version-card:hover,.ifs-version-card[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-version-card:active,.ifs-version-card[data-state=pressed]{background:var(--color-surface-raised-pressed)}
 .ifs-version-card__body{display:flex;flex-direction:column;gap:var(--space-150)}
 .ifs-version-card__label{color:var(--color-text-softer);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
 .ifs-version-card__list{display:flex;flex-direction:column;gap:var(--space-150)}

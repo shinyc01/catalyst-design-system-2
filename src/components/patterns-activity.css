@@ -13,12 +13,14 @@
 .ifs-compare-list__group{display:flex;flex-direction:column}
 .ifs-compare-list__title{padding:var(--space-100) var(--space-200);color:var(--color-text-softer);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-compare-list__divider{flex:none;height:1px;background:var(--color-border-soft)}
+.ifs-compare-list__divider{flex:none;height:var(--border-width-default);background:var(--color-border-soft)}
 .ifs-compare-list__item{display:flex;align-items:center;gap:var(--space-200);min-height:var(--size-32);box-sizing:border-box;
   padding:var(--space-100) var(--space-200);border-radius:var(--radius-control);cursor:pointer;color:var(--color-text-soft)}
 .ifs-compare-list__label{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-compare-list__item.is-active,.ifs-compare-list__item:hover{background:var(--color-surface-elevation-1)}
+.ifs-compare-list__item.is-active{background:var(--color-state-selected)} /* rule 7.1: a selected list row is 10, brightens on hover */
+.ifs-compare-list__item:hover{background:var(--color-state-hover)}
+.ifs-compare-list__item:active{background:var(--color-state-pressed)}
 .ifs-compare-list__item.is-selected{color:var(--color-text)} /* inferred: Figma draws no selected row */
 .ifs-compare-list__item.is-disabled{cursor:default;color:var(--color-text-disabled);background:none}
 

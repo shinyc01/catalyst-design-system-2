@@ -135,9 +135,9 @@
 .ifs-segmented--icon.ifs-segmented--s .ifs-segmented__item{width:var(--size-control-s)}
 .ifs-segmented__item:hover,.ifs-segmented__item[data-state=hover]{--fill:var(--color-state-hover);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft-hover) /* raw in Figma */}
 .ifs-segmented__item:active,.ifs-segmented__item[data-state=pressed]{--fill:var(--color-state-pressed);--stroke:0 0 0 0 transparent;color:var(--color-text-softer)}
-.ifs-segmented__item.is-selected{--fill:var(--color-state-selected);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
-.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--color-state-hover) /* the outline steps up too (decided Nov 26) */;--stroke:inset 0 0 0 var(--border-width-default) var(--color-border)}
-.ifs-segmented__item.is-selected:active,.ifs-segmented__item.is-selected[data-state=pressed]{--fill:var(--color-state-pressed);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-softer)}
+.ifs-segmented__item.is-selected{--fill:var(--color-state-selected)} /* its 40% outline (rest, hover and pressed) is the G2 block below (decided Nov 26) */
+.ifs-segmented__item.is-selected:hover,.ifs-segmented__item.is-selected[data-state=hover]{--fill:var(--color-state-hover)}
+.ifs-segmented__item.is-selected:active,.ifs-segmented__item.is-selected[data-state=pressed]{--fill:var(--color-state-pressed)}
 .ifs-segmented__item:disabled{cursor:not-allowed;color:var(--color-text-disabled);--fill:var(--color-background-transparent);--stroke:0 0 0 0 transparent}
 .ifs-segmented__item.is-selected:disabled{--fill:var(--color-background-transparent);--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft)}
 .ifs-segmented__item:disabled .ifs-icon{color:var(--color-icon-disabled)}
@@ -212,6 +212,8 @@
 .ifs-calendar__date.is-today{color:var(--color-text-info)}
 .ifs-calendar__date:hover,.ifs-calendar__date[data-state=hover]{--stroke:inset 0 0 0 var(--border-width-default) var(--color-border-strong)}
 .ifs-calendar__date.is-selected{--fill:var(--color-state-selected)}
+.ifs-calendar__date:not(.is-endpoint):not(:disabled):hover,.ifs-calendar__date:not(.is-endpoint)[data-state=hover]{--fill:var(--color-state-hover)} /* rule 7.1: hover 15 with the 40% stroke; a selected day brightens (T4-11) */
+.ifs-calendar__date:not(.is-endpoint):not(:disabled):active,.ifs-calendar__date:not(.is-endpoint)[data-state=pressed]{--fill:var(--color-state-pressed)}
 .ifs-calendar__date.is-endpoint{--fill:var(--color-surface-overlay-inverse);color:var(--color-text-inverse)}
 .ifs-calendar__date:focus-visible,.ifs-calendar__date[data-state=focus]{outline:none;
   --stroke:inset 0 0 0 var(--border-width-default) var(--color-border-soft);--ring:var(--focus-ring)}
@@ -244,7 +246,7 @@
 .ifs-segmented--full .ifs-segmented__item{flex:1 1 0;min-width:0;justify-content:center}
 
 /* Select divider + action rows ("Remove" etc.) */
-.ifs-select__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--color-border-soft)}
+.ifs-select__divider{flex:none;height:var(--border-width-default);margin:var(--space-100) 0;background:var(--color-border-soft)}
 .ifs-select__option.is-danger,.ifs-select__option.is-danger .ifs-icon{color:var(--color-text-danger)}
 .ifs-select__option.is-danger:hover,.ifs-select__option.is-danger[data-state=hover]{color:var(--color-text)} /* rule 9.12: on the hover fill the label turns white (red 350 is 3.16:1 there); the icon stays red */
 
@@ -263,7 +265,7 @@
 .ifs-menu__list--l{width:var(--menu-width-l)}
 .ifs-menu__title{flex:none;display:flex;align-items:center;height:calc(var(--size-control-s) + var(--space-100));padding:var(--space-100) var(--space-200);color:var(--color-text-soft);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking)} /* Label/M/medium */
-.ifs-menu__divider{flex:none;height:1px;margin:var(--space-100) 0;background:var(--color-border-soft)}
+.ifs-menu__divider{flex:none;height:var(--border-width-default);margin:var(--space-100) 0;background:var(--color-border-soft)}
 .ifs-menu__wrap{display:flex;flex-direction:column}
 .ifs-menu__item{
   all:unset;flex:none;display:flex;align-items:center;gap:var(--space-100);box-sizing:border-box;min-height:var(--size-control-m) /* follows density 36 / 32 / 28 */;

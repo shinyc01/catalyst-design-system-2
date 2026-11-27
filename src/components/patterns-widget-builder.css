@@ -72,8 +72,8 @@
 .ifs-drop-indicator--vertical{flex-direction:column;width:var(--size-4)}
 .ifs-drop-indicator__dot{flex:none;width:var(--size-4);height:var(--size-4);border-radius:50%;box-sizing:border-box;box-shadow:0 0 0 var(--border-width-default) var(--color-border-accent-purple)}
 .ifs-drop-indicator__line{flex:1;background:var(--color-border-accent-purple)}
-.ifs-drop-indicator--horizontal .ifs-drop-indicator__line{height:1px}
-.ifs-drop-indicator--vertical .ifs-drop-indicator__line{width:1px}
+.ifs-drop-indicator--horizontal .ifs-drop-indicator__line{height:var(--border-width-default)}
+.ifs-drop-indicator--vertical .ifs-drop-indicator__line{width:var(--border-width-default)}
 
 /* ---------- widget-view-change-position (Patterns 331:509936) ---------- */
 /* fixed 48: the widget palette tile, not a control (A1 fixed sizes) */

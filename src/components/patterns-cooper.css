@@ -22,6 +22,7 @@
 .ifs-chat-header__actions{display:flex;align-items:center;flex:none}
 .ifs-chat-header .ifs-icon-button--active{--fill:var(--color-state-selected)} /* an open toggle (history) is current: 10 (rule 7.1) */
 .ifs-chat-header .ifs-icon-button--active:hover{--fill:var(--color-state-hover)}
+.ifs-chat-header .ifs-icon-button--active:active{--fill:var(--color-state-pressed)} /* pressed 5 beats the hover above (T4-2) */
 
 /* ---------- user-message-molecule ---------- */
 .ifs-user-msg{display:flex;justify-content:flex-end;align-items:flex-start;gap:var(--space-100);padding-block:0 var(--space-200);padding-inline:var(--space-700) 0}
@@ -128,7 +129,8 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);color:var(--color-text-soft)}
 .ifs-cooper-option{all:unset;box-sizing:border-box;display:block;width:100%;padding:var(--space-250) var(--space-200);border-radius:var(--radius-control);
   background:var(--color-surface-secondary);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);cursor:pointer}
-.ifs-cooper-option:hover{background:var(--color-surface-tertiary)}
+.ifs-cooper-option:hover{background:var(--color-state-hover)}
+.ifs-cooper-option:active{background:var(--color-state-pressed)} /* rule 7.1: hover 15, pressed 5 */
 .ifs-cooper-option:focus-visible{box-shadow:var(--focus-ring)}
 
 /* ---------- chat-collapsed-bar-organism (inline quick mode) ---------- */

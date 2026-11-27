@@ -240,7 +240,8 @@
 --color-data-viz-good:var(--color-icon-success);--color-data-viz-warning:var(--color-icon-warning);--color-data-viz-bad:var(--color-icon-danger);
 --color-data-viz-reference:var(--palette-core-1000);--color-data-viz-target:var(--palette-white-alpha-90);--color-data-viz-band:var(--palette-white-alpha-16);
 --color-data-viz-baseline:var(--palette-white-alpha-30); /* connector lines (Figma white/alpha-30); the zero line is --color-border-strong (D3) */
-/* D5: on hover the other marks dim, darkened toward the card and never made transparent, so gridlines never show through (Nov 24) */
+/* D5: on hover the other marks dim, darkened toward the card and never made transparent, so gridlines never show through (Nov 24).
+   Mirrored in patterns-documents.css (MapPinDot dimmed: color-mix 45% toward black, brightness only); change both together (T4-15). */
 --effect-data-viz-dim:brightness(0.45) saturate(0.7);
 /* Item 7 (Nov 25): the smallest a grouped bar and the gap between groups may get before the plot scrolls sideways (chart geometry, px, rule 11.3) */
 --size-data-viz-bar-min:4px;--size-data-viz-group-gap-min:8px;

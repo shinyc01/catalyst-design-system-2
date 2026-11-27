@@ -208,7 +208,7 @@ Use: Picking one of 2–5 always-visible options, usually switching a view mode 
 Notes: `iconOnly` (2.0.6) shows each option's icon only, 16 in a square segment, with `label` as the accessible name and tooltip; M is `--size-control-m` outside. Used for the chart card's Chart / Table switch (rule 10.2).
 Don't: More than 5 options — use `single-select-organism`.
 
-Narrow (2.0.7, rule 14.6): with counters it becomes a `Select` ("Label (count)") below 600; `narrowSelect` turns this on or off (`DataTable` passes `false` and keeps its own pair). Every option needs `label` or `ariaLabel` (console warning otherwise). States: rule 7.1 (selected 10 with its outline, hover 15, pressed 5).
+Narrow (2.0.7, rule 14.6): with counters it becomes a `Select` ("Label (count)") below 600; `narrowSelect` turns this on or off (`DataTable` passes `false` and keeps its own pair). Every option needs `label` or `ariaLabel` (console warning otherwise). States: rule 7.1 (selected 10 with its 40% outline, hover 15, pressed 5; the outline stays on hover and press).
 ### chips · `Chip`
 Use: A clickable token for one value. Selection chip = an applied filter value, removable with ✕. Suggestion chip = a fire-once next action or prompt, no ✕, no checked state. Group logic: rule 14.5.
 Don't: Read-only labels (→ badge).
@@ -777,7 +777,7 @@ How components work together, from the Figma file IFS Design System Patterns. Ea
 4. Switching a stage changes the whole shell below the bar. The active tab gets the header-item active fill.
 5. Sidebar rows: Value picks a section (title and table change). Plan: a row selects that plan and expands its folder; the caret toggles a folder without selecting; the open path is outlined, the current folder filled. `arrow-bar-left` / `-right` collapse and expand the sidebar.
 6. The hamburger list (rule 12.7) opens 4 under the button; picking a stage closes it.
-7. Command list: `HomeRowCard` is the one card on all four tabs (My works / Decisions / Conversations / Following); the tabs change the list. Only the top card is Primary (gradient stroke, media); the rest Secondary. Metrics CPV and V/C; titles and descriptions truncate to one line. States: default, hover (`--color-surface-tertiary` fill), focus (focus ring), loading (skeleton bars, no media, arrow disabled). The priority segmented control filters the list; nothing at a priority shows the all-done empty state. Opening a decision goes to the stage on its badge.
+7. Command list: `HomeRowCard` is the one card on all four tabs (My works / Decisions / Conversations / Following); the tabs change the list. Only the top card is Primary (gradient stroke, media); the rest Secondary. Metrics CPV and V/C; titles and descriptions truncate to one line. States: default, hover (`--color-surface-raised-hover` fill), pressed (`--color-surface-raised-pressed`), focus (focus ring), loading (skeleton bars, no media, arrow disabled). The priority segmented control filters the list; nothing at a priority shows the all-done empty state. Opening a decision goes to the stage on its badge.
 
 ### Pattern: Table
 

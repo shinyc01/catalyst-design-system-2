@@ -13,7 +13,7 @@
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking) /* Label/M/medium */;white-space:nowrap;font-variant-numeric:var(--font-numeric)}
 .ifs-counter--m{height:var(--size-24);min-width:var(--size-24);gap:var(--space-150);border-radius:var(--radius-pill);
   font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking) /* Label/L/medium */}
-.ifs-counter .ifs-status-indicator{position:absolute;top:-1px;inset-inline-end:0}
+.ifs-counter .ifs-status-indicator{position:absolute;top:calc(-1 * var(--border-width-default));inset-inline-end:0}
 
 /* ================= ScrollArea — scroll-bar-atom (83:57650) ================= */
 .ifs-scroll-area{position:relative;min-height:0;overflow:hidden}
@@ -118,7 +118,7 @@
 .ifs-phone__body{display:flex;align-items:center;flex:1;min-width:0;gap:var(--space-200)}
 .ifs-field--m .ifs-phone__body{gap:var(--space-150)}
 /* "IconButton" frame in Figma: 1px --color-border divider, 20px tall, 2px side padding */
-.ifs-phone__divider{flex:none;width:1px;height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
+.ifs-phone__divider{flex:none;width:var(--border-width-default);height:var(--size-20);margin:0 var(--space-50);background:var(--color-border)}
 .ifs-phone__menu{position:absolute;inset-inline-start:0;top:calc(100% + var(--space-100));z-index:var(--z-index-popover);
   display:flex;flex-direction:column;min-width:13.75rem;max-height:12.25rem;overflow-y:auto;box-sizing:border-box;
   padding:var(--space-100);border-radius:var(--radius-floating);
@@ -170,7 +170,7 @@
 .ifs-form-card__heading{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-200)}
 .ifs-form-card__title{margin:0;color:var(--color-text);font:var(--font-heading-h1-medium);letter-spacing:var(--font-heading-h1-medium-tracking) /* Heading/H1 */}
 .ifs-form-card__desc{margin:0;color:var(--color-text-soft);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking) /* Body/M/regular */}
-.ifs-form-card__divider{flex:none;height:1px;margin:var(--space-stack) var(--space-inset-l) 0;background:var(--color-border-soft)}
+.ifs-form-card__divider{flex:none;height:var(--border-width-default);margin:var(--space-stack) var(--space-inset-l) 0;background:var(--color-border-soft)}
 .ifs-form-card__body{flex:1 1 auto;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:var(--space-stack);
   padding:var(--space-inset-l) var(--space-inset-l) var(--space-inset-l);scrollbar-width:thin;scrollbar-color:var(--color-background-neutral) transparent}
 .ifs-form-card__header + .ifs-form-card__body{padding-top:var(--space-inset-l)}
@@ -194,7 +194,8 @@
   display:inline-flex;align-items:center;justify-content:center;width:var(--size-44);height:var(--size-44);margin:0;padding:0;border:0;
   border-radius:var(--radius-control);background:none;box-shadow:inset 0 0 0 var(--border-width-default) var(--stroke);color:var(--color-icon);cursor:pointer;
   transition:none}
-.ifs-icon-picker__item:hover,.ifs-icon-picker__item[data-state=hover]{--stroke:var(--color-border-strong)}
+.ifs-icon-picker__item:hover,.ifs-icon-picker__item[data-state=hover]{--stroke:var(--color-border-strong);background:var(--color-state-hover)} /* rule 7.1: hover 15, pressed 5, the stroke as before (T4-11) */
+.ifs-icon-picker__item:active,.ifs-icon-picker__item[data-state=pressed]{background:var(--color-state-pressed)}
 .ifs-icon-picker__item[aria-checked=true],.ifs-icon-picker__item[data-state=selected]{--stroke:var(--color-border-selected)}
 .ifs-icon-picker__item:focus-visible,.ifs-icon-picker__item[data-state=focus]{outline:none;
   box-shadow:inset 0 0 0 var(--border-width-default) var(--stroke),var(--focus-ring)}

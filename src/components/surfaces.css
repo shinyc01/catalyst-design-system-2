@@ -168,6 +168,6 @@
 .ifs-floating-bar__item{display:flex;align-items:center;gap:var(--space-200);color:var(--color-text);
   font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap} /* Label/M/medium */
 .ifs-floating-bar__divider{flex:none;align-self:stretch;width:var(--size-16);display:flex;align-items:center;justify-content:center} /* 16px frame, 8px side padding, 1px line */
-.ifs-floating-bar__divider::before{content:"";flex:none;width:1px;height:var(--size-32);background:var(--color-border-soft)}
+.ifs-floating-bar__divider::before{content:"";flex:none;width:var(--border-width-default);height:var(--size-32);background:var(--color-border-soft)}
 .ifs-floating-bar__buttons{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-200)}
 .ifs-floating-bar__close{display:flex;align-items:center}

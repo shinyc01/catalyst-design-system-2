@@ -120,7 +120,7 @@
   border-radius:var(--radius-control);background:var(--box-fill);box-shadow:var(--box-ring),inset 0 0 0 var(--border-width-default) var(--box-border);
   color:var(--color-icon-inverse);transition:background-color var(--motion-duration-50) var(--motion-ease-standard);
 }
-.ifs-check:hover,.ifs-check[data-state=hover]{background:var(--color-surface-secondary)}
+.ifs-check:hover,.ifs-check[data-state=hover]{background:var(--color-state-hover)} /* rule 7.1: hover 15 (T4-12) */
 .ifs-check--bare:hover,.ifs-check--bare[data-state=hover]{background:none}
 /* Checkbox: off = border only, on/indeterminate = solid fill + icon */
 .ifs-checkbox:hover .ifs-check__box,.ifs-checkbox[data-state=hover] .ifs-check__box{--box-border:var(--color-border-control-hover)}

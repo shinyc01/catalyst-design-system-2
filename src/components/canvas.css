@@ -7,7 +7,7 @@
   box-shadow:inset 0 0 0 var(--border-width-default) var(--color-border-soft),var(--elevation-floating-shadow) /* C1 level 2: map panels */;
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-map-cluster__divider{display:block;width:var(--size-32);height:var(--size-4);padding:var(--space-50) 0;box-sizing:border-box;flex:none}
-.ifs-map-cluster__divider::before{content:"";display:block;height:1px;margin-top:calc(-1 * var(--size-0-5));background:var(--color-border-soft)}
+.ifs-map-cluster__divider::before{content:"";display:block;height:var(--border-width-default);margin-top:calc(-1 * var(--size-0-5));background:var(--color-border-soft)}
 .ifs-map-cluster__fit{width:var(--size-32);height:var(--size-32);padding:var(--space-150) var(--space-250)} /* button Ghost M (32) in a fixed 32x32 frame */
 .ifs-map-cluster__fit .ifs-button__label{padding:0 var(--space-100)}
 .ifs-map-cluster__fit--idle{color:var(--color-text-soft)}
@@ -27,12 +27,12 @@
 .ifs-node-actions__item:hover .ifs-node-actions__icon{background:var(--color-state-strong-hover)} /* rule 7.1: rest 15, so hover 20; pressed 5 */
 .ifs-node-actions__item:active .ifs-node-actions__icon{background:var(--color-state-pressed)}
 .ifs-node-actions__item:focus-visible{outline:none;box-shadow:var(--focus-ring)}
-.ifs-node-actions__line{display:block;height:1px;background:var(--color-border-soft)}
+.ifs-node-actions__line{display:block;height:var(--border-width-default);background:var(--color-border-soft)}
 
 /* ---------- add-node-button (2879:7311) ---------- */
 .ifs-add-node{display:flex;align-items:center;justify-content:center;gap:var(--space-100);width:12.5rem;height:var(--size-40);box-sizing:border-box;margin:0;border:0;
   padding:var(--space-200);border-radius:var(--radius-control);cursor:pointer;color:var(--color-icon);
-  background:var(--color-background-neutral-soft-inverse);outline:var(--border-width-default) dashed var(--color-border);outline-offset:-1px;
+  background:var(--color-background-neutral-soft-inverse);outline:var(--border-width-default) dashed var(--color-border);outline-offset:calc(-1 * var(--border-width-default));
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass))}
 .ifs-add-node:hover,.ifs-add-node[data-state=hover]{background:var(--color-state-hover) /* rule 7.1 */;outline-color:var(--color-border-strong);
   backdrop-filter:blur(var(--blur-40))}
@@ -76,6 +76,7 @@
   background:linear-gradient(135deg,var(--color-background-sheen-from),var(--color-background-sheen-to)) /* raw in Figma */,var(--nc-fill);--nc-stroke:var(--color-border-soft)}
 .ifs-node-card:not(.ifs-node-card--solid):hover,.ifs-node-card:not(.ifs-node-card--solid)[data-state=hover],.ifs-node-card:not(.ifs-node-card--solid).ifs-node-card--drag{
   --nc-fill:var(--color-state-hover)}
+.ifs-node-card:not(.ifs-node-card--solid):not(.ifs-node-card--drag):active,.ifs-node-card:not(.ifs-node-card--solid)[data-state=pressed]{--nc-fill:var(--color-state-pressed)} /* rule 7.1 (T4-13) */
 .ifs-node-card--drag{--nc-stroke:var(--color-border-strong)!important;--nc-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
 /* Rings (Figma "Inner Focus Wrapper"): Select = 3px ring-gap + 1px white; Focus = --focus-ring;
    Cooper = 3px ring-gap + 1px cooper→white gradient. Select and Cooper use --color-ring-gap (the same black): they are not focus. Text switches to primary / tertiary inside a ring. */
@@ -95,7 +96,7 @@
 .ifs-node-card--disabled:not(.ifs-node-card--solid){--nc-title:var(--color-text)}
 /* Checkbox state: subnode/user get a dashed --color-border outline. */
 .ifs-node-card--checkbox{gap:var(--space-200)}
-.ifs-node-card--checkbox:not(.ifs-node-card--solid){outline:var(--border-width-default) dashed var(--color-border);outline-offset:-1px}
+.ifs-node-card--checkbox:not(.ifs-node-card--solid){outline:var(--border-width-default) dashed var(--color-border);outline-offset:calc(-1 * var(--border-width-default))}
 .ifs-node-card--edit{cursor:default}
 .ifs-node-card--skeleton{width:280px;height:88px;cursor:default;--nc-stroke:var(--color-border-soft);backdrop-filter:blur(var(--blur-10))} /* look: .ifs-sk (L1) */
 
@@ -134,8 +135,9 @@
   position:relative;display:flex;flex-direction:column;gap:var(--space-150);width:21.5625rem;box-sizing:border-box;padding:var(--space-inset);
   border-radius:var(--radius-control);background:var(--color-surface-secondary);cursor:grab;user-select:none;
   box-shadow:inset 0 0 0 var(--border-width-default) var(--sn-stroke),var(--sn-ring),var(--sn-shadow);transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
-.ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--color-surface-tertiary)}
-.ifs-sidebar-node--drag{background:var(--color-surface-tertiary);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
+.ifs-sidebar-node:hover,.ifs-sidebar-node[data-state=hover]{background:var(--color-surface-raised-hover)}
+.ifs-sidebar-node:active,.ifs-sidebar-node[data-state=pressed]{background:var(--color-surface-raised-pressed)} /* rule 7.1: a card on a surface */
+.ifs-sidebar-node--drag{background:var(--color-surface-raised-hover);--sn-stroke:var(--color-border-strong);--sn-shadow:var(--elevation-modal-shadow) /* C1: dragged items are level 3 */;cursor:grabbing}
 .ifs-sidebar-node:focus-visible,.ifs-sidebar-node[data-state=focus]{outline:none;--sn-ring:var(--focus-ring)}
 .ifs-sidebar-node--cooper{--sn-ring:0 0 0 var(--border-width-300) /* ring geometry */ var(--color-ring-gap)} /* not focus: Cooper ring on the ring-gap black */
 .ifs-sidebar-node--cooper::after{content:"";position:absolute;inset:-4px;border-radius:calc(var(--radius-card) + var(--size-4));padding:var(--size-1);pointer-events:none;
@@ -193,7 +195,7 @@
 /* ---------- move-and-drop-background (4509:30446) ---------- */
 .ifs-drop-zone{display:flex;align-items:center;justify-content:center;gap:var(--space-150);box-sizing:border-box;min-height:var(--size-80);
   border-radius:var(--radius-control);background:var(--color-background-accent-purple-soft);
-  outline:var(--border-width-default) dashed var(--color-border-accent-purple);outline-offset:-1px;color:var(--color-text-accent-purple);
+  outline:var(--border-width-default) dashed var(--color-border-accent-purple);outline-offset:calc(-1 * var(--border-width-default));color:var(--color-text-accent-purple);
   font:var(--font-label-l-medium);letter-spacing:var(--font-label-l-medium-tracking) /* Label/L/medium */;transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-drop-zone[data-over]{background:var(--color-background-accent-purple)}
 

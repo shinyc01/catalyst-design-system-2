@@ -24,7 +24,7 @@
 .ifs-ivi__metric-value--danger .ifs-icon{color:var(--color-icon-danger)}
 .ifs-ivi__metric-value--success{color:var(--color-text-success)}
 .ifs-ivi__metric-value--success .ifs-icon{color:var(--color-icon-success)}
-.ifs-ivi__divider{flex:none;width:1px;height:var(--size-52);background:var(--color-border-input)}
+.ifs-ivi__divider{flex:none;width:var(--border-width-default);height:var(--size-52);background:var(--color-border-input)}
 .ifs-ivi__text{margin:0;color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking);max-width:var(--font-measure)} /* Body/M/regular */
 .ifs-ivi__chart{display:flex;gap:var(--space-150);height:234px} /* chart plot geometry stays px (this and the axis/plot/item heights below) */
 .ifs-ivi__axis{display:flex;flex-direction:column;justify-content:space-between;flex:none;min-width:23px /* raw in Figma; grows to the widest tick (F-30) */;padding-bottom:var(--space-600) /* raw in Figma */;
@@ -33,7 +33,7 @@
 .ifs-ivi__plot-col{display:flex;flex-direction:column;gap:var(--space-stack);flex:1 1 auto;min-width:0;padding-top:var(--space-150)}
 .ifs-ivi__plot{position:relative;height:200px}
 .ifs-ivi__lines{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;opacity:.5}
-.ifs-ivi__line{height:1px;background:repeating-linear-gradient(to right,var(--color-border) 0 3px,transparent 3px 8px)} /* Figma dash 3/5 */ /* ltr: brand gradient art, fixed in both directions */
+.ifs-ivi__line{height:var(--border-width-default);background:repeating-linear-gradient(to right,var(--color-border) 0 3px,transparent 3px 8px)} /* Figma dash 3/5 */ /* ltr: brand gradient art, fixed in both directions */
 .ifs-ivi__line:last-child{background:var(--color-border)}
 .ifs-ivi__bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:var(--space-50);padding:0 var(--space-100)}
 .ifs-ivi__bars > .ifs-tooltip-anchor{display:flex;align-items:flex-end;flex:1 1 0;min-width:0;height:100%}
@@ -81,6 +81,7 @@
 .ifs-readiness-section{display:flex;flex-direction:column;box-sizing:border-box;border-radius:var(--radius-card);background:var(--color-surface-raised);transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-readiness-section__head{all:unset;display:flex;align-items:center;gap:var(--space-150);box-sizing:border-box;min-height:var(--size-44);padding:var(--space-inset);border-radius:var(--radius-control);cursor:pointer}
 .ifs-readiness-section:not(.is-open):hover{background:var(--color-surface-raised-hover)}
+.ifs-readiness-section:not(.is-open):active{background:var(--color-surface-raised-pressed)} /* rule 7.1 (T4-13) */
 .ifs-readiness-section__head:focus-visible{box-shadow:var(--focus-ring)}
 .ifs-readiness-section__head > .ifs-icon{flex:none;color:var(--color-icon-soft)}
 .ifs-readiness-section__title{flex:1 1 auto;min-width:0;color:var(--color-text);font:var(--font-label-m-medium);letter-spacing:var(--font-label-m-medium-tracking);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
