@@ -103,6 +103,7 @@
 .ifs-select__option-label{flex:1 1 auto;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .ifs-select__option-check{color:var(--color-icon)}
 .ifs-select__option:hover,.ifs-select__option[data-state=hover],.ifs-select__option.is-active{background:var(--color-state-hover);color:var(--color-text)} /* the keyboard-active option = hover (rule 7.1) */
+.ifs-select__option.is-active{box-shadow:var(--focus-ring-inset)} /* the keyboard-active option also gets the inset ring, as menu items do (audit round 4 M1) */
 .ifs-select__option:active,.ifs-select__option[data-state=pressed]{background:var(--color-state-pressed)}
 .ifs-select__option.is-selected{color:var(--color-text)}
 .ifs-select__option.is-disabled{color:var(--color-text-disabled);cursor:not-allowed;background:none}

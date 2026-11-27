@@ -228,9 +228,9 @@
 .ifs-file-card__tail{flex:none;white-space:pre}
 .ifs-file-card__text .ifs-tooltip-anchor{display:flex;min-width:0}
 .ifs-file-card__date{color:var(--color-text-softer);font:var(--font-body-m-regular);letter-spacing:var(--font-body-m-regular-tracking)} /* Body/M/regular */
-.ifs-file-card__actions{display:none;align-items:center;gap:var(--space-50);flex:none}
-.ifs-file-card:hover .ifs-file-card__actions,.ifs-file-card:focus-within .ifs-file-card__actions,.ifs-file-card[data-state=hover] .ifs-file-card__actions,.ifs-file-card--active .ifs-file-card__actions,
-.ifs-file-card__actions--error{display:flex}
+.ifs-file-card__actions{display:flex;align-items:center;gap:var(--space-50);flex:none}
+/* At rest the actions are visually hidden but stay in the Tab order, so focusing one shows them (:focus-within; audit round 4 M5); the 1 px box is the visually-hidden pattern */
+.ifs-file-card:not(:hover,:focus-within,[data-state=hover],.ifs-file-card--active) .ifs-file-card__actions:not(.ifs-file-card__actions--error){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* ================= VersionCard — version-card (2104:4022), legacy ================= */
 .ifs-version-card{display:flex;flex-direction:column;gap:var(--space-stack);padding:var(--space-inset);border-radius:var(--radius-card);

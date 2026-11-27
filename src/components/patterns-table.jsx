@@ -631,7 +631,7 @@ function DataTable({ columns: colsProp = [], rows, defaultRows = [], onRowsChang
       e.stopPropagation(); const b = e.currentTarget.getBoundingClientRect(); const w = wrapRef.current.getBoundingClientRect();
       setOpenFilter(o => (o && o.key === c.key ? null : { key: c.key, /* ltr: column filter placed from getBoundingClientRect */ left: Math.min(b.left - w.left - 12, w.width - 244), top: b.bottom - w.top + 8 }));
     } };
-    if (c.name && ranked) out.title = <span className="ifs-data-table__name-th">{c.title}</span>;
+    if (c.name && ranked) { out.title = <span className="ifs-data-table__name-th">{c.title}</span>; if (out.filterLabel == null && typeof c.title === 'string') out.filterLabel = c.title; }
     return out;
   });
   const hasActions = !!(onPreview || rowActions || follow);

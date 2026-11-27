@@ -694,7 +694,8 @@ function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, o
     </div>
   );
   // A11Y M4 (final audit): with onClick the open action is one real button stretched over the card (::after); the actions are its
-  // siblings above it, so no control sits inside another. Without onClick the card itself takes focus to show its actions.
+  // siblings above it, so no control sits inside another. Without onClick the card isn't a Tab stop: its action buttons are, and they show
+  // while one of them has focus (audit round 4 M5).
   const content = (
     <>
       <span className="ifs-file-card__tile"><IFS.Icon name={error ? 'status-error-filled' : 'system-file'} size={16} /></span>
@@ -705,8 +706,7 @@ function FileCard({ name, date, error, loading, onDownload, onDelete, onRetry, o
     </>
   );
   return (
-    <div className={actCx('ifs-file-card', error && 'ifs-file-card--error', active && 'ifs-file-card--active', onClick && 'ifs-file-card--clickable', className)} data-state={state}
-      tabIndex={onClick ? undefined : 0} {...rest}>
+    <div className={actCx('ifs-file-card', error && 'ifs-file-card--error', active && 'ifs-file-card--active', onClick && 'ifs-file-card--clickable', className)} data-state={state} {...rest}>
       {onClick
         ? <button type="button" className="ifs-file-card__main ifs-file-card__open" onClick={onClick}>{content}</button>
         : <div className="ifs-file-card__main">{content}</div>}

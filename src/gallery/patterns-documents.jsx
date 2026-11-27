@@ -128,7 +128,8 @@ export default IFS_GALLERY;
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="3.7" />
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
         </svg>
-        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" scale={S} />, `o${i}`))}
+        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" scale={S}
+          {...(y < 0 ? { tabIndex: -1, 'aria-hidden': true } : {})} /* cut off by the frame: out of the Tab order, so focus never lands under the card header (audit round 4 M6) */ />, `o${i}`))}
         {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" scale={S} />, `d${i}`))}
         {at(230, 188, <MapPinDot size="xs" state="selected" label="Fault" scale={S} />, 'sel')}
         {at(314, 116, <MapPinDot size="s" label="Fault" scale={S} />, 's1')}{at(84, 142, <MapPinDot size="s" label="Fault" scale={S} />, 's2')}

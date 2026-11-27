@@ -291,7 +291,8 @@ function renderCell(col, row) {
 // SegmentedControl there (prop "show-segmanted-control"); the canvas notes call it "tabs with counts".
 // Props:
 //   columns = [{ key, title, width ('1fr' | 240 | 'auto'), align left|center|right (Figma Align=Left|Right; the header follows its column), sortable, sortValue(row), primary (medium-weight name column; default the first text column),
-//               type text|number|description|counter|badge|status|check|user|user-description|custom, render(row), filter: { applied, onClick } }]
+//               type text|number|description|counter|badge|status|check|user|user-description|custom, render(row), filter: { applied, onClick },
+//               filterLabel (plain text for the filter button's name "Filter {filterLabel}" when title isn't a string; a console warning otherwise, audit round 4 H3) }]
 //     cell values by type: text → row[key]; number → row[key] (Figma Type=Number, right-aligned unless align is set); description → { text, description }; counter → { text, value, direction };
 //     badge → Badge props; status → { type, label, description }; check → label; user → { name, initials, type, description }.
 //   rows = [{ id, ...data }], groupBy = key or fn(row) → group title (group-row-molecule, expand/collapse), defaultCollapsed = [titles],
@@ -303,6 +304,13 @@ function renderCell(col, row) {
 //   title (show-table-name), tabs (show-segmanted-control), search (right side of the bar). Without title/tabs/search it renders the bare table.
 //   rowHeight = content-row min height in px (default 60, Figma content-row-molecule),
 //   rowProps(row) → { className, style, ...attributes } merged onto that content row (drag states, data-* hooks).
+// The filter button's name (audit round 4 H3): plain text only, never "[object Object]" from an element title.
+const filterName = c => {
+  const t = c.filterLabel != null ? c.filterLabel : (typeof c.title === 'string' || typeof c.title === 'number') ? String(c.title) : '';
+  if (!t && c.title != null && c.title !== '' && typeof console !== 'undefined')
+    console.warn(`IFS.Table: column "${c.key}" has a filter and a non-text title; pass filterLabel so the button is named "Filter …" (WCAG 4.1.2)`);
+  return t ? `Filter ${t}` : 'Filter';
+};
 function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collapsed: collapsedProp, onCollapsedChange, groupOrder, groupInfo, headerPerGroup,
   sort, defaultSort = null, onSortChange,
   selectedId, onRowClick, rowKey = 'id', rowHeight, rowProps, title, tabs, search, className, ...rest }) {
@@ -374,7 +382,7 @@ function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collap
                   <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span><TableSort dir={dir} />
                 </button>
               ) : c.title != null && c.title !== '' ? <span className="ifs-table__th-label" title={typeof c.title === 'string' ? c.title : undefined}>{c.title}</span> : c.title}
-              {c.filter && <IFS.IconButton icon="system-filter" type="ghost" size="s" label={`Filter ${c.title || ''}`} onClick={c.filter.onClick}
+              {c.filter && <IFS.IconButton icon="system-filter" type="ghost" size="s" label={filterName(c)} onClick={c.filter.onClick}
                 className={IFS.cx('ifs-table-filter', c.filter.applied && 'ifs-table-filter--applied')} />}
             </div>
           );

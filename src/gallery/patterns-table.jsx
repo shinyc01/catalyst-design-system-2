@@ -111,7 +111,7 @@ export default IFS_GALLERY;
 
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
     <div style={{ width: 1000, padding: 'var(--space-400)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-secondary)' }}>
-      <TableToolbar filter={<IFS.SegmentedControl size="m" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
+      <TableToolbar filter={<IFS.SegmentedControl size="m" aria-label="Filter ideas" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
         search={<SmartSearch placeholder="Search ideas" />} onConfigure={() => {}} />
     </div>
   ) });

@@ -326,7 +326,8 @@ function Combobox({ options = [], value, defaultValue = null, onChange, defaultO
 // Every option needs a name: a visible label, or ariaLabel when it shows only an icon (a console warning says which, audit final H3).
 // narrowSelect (audit final M10, decided Nov 26): with counts on any option, below 600 (content area, or the window outside AppShell) the
 // same choice renders as a Select, "Label (count)", because the counted control doesn't fit; default on when an option has a counter.
-// Pass false where the screen builds its own narrow form. The Select takes the group's aria-label / aria-labelledby.
+// Pass false where the screen builds its own narrow form. The Select takes the group's aria-label / aria-labelledby; a console warning when
+// a counted control has neither, because its narrow Select would have no name (audit round 4 H4, WCAG 4.1.2).
 function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm' /* M by default; headers pass S (rule 14.15, Nov 26) */, fullWidth = false, iconOnly = false, narrowSelect, className, ...rest }) {
   const opts = options.map(norm);
   const [val, setVal] = useControlled(value, defaultValue !== undefined ? defaultValue : (opts[0] && opts[0].value), onChange);
@@ -337,6 +338,10 @@ function SegmentedControl({ options = [], value, defaultValue, onChange, size = 
       console.warn(`IFS.SegmentedControl: ${unnamed.length} option(s) show only an icon and have no name; pass label or ariaLabel (WCAG 4.1.2): ${unnamed.map(o => String(o.value)).join(', ')}`);
   }, []);
   const counted = narrowSelect !== undefined ? narrowSelect : opts.some(o => o.counter != null);
+  useEffect(() => {
+    if (counted && !rest['aria-label'] && !rest['aria-labelledby'] && typeof console !== 'undefined')
+      console.warn('IFS.SegmentedControl: a counted control becomes a Select below 600 and takes its name from aria-label or aria-labelledby; pass one (WCAG 4.1.2)');
+  }, []);
   const onKeyDown = (e, i) => {
     const dir = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
     if (!dir) return;

@@ -205,7 +205,7 @@ export default IFS_GALLERY;
     const table = <ApprovalChainTable approvers={chain} onChange={setChain} currentUserId={me} ownerId="jp" view={chainMode === 'full' ? 'full' : 'compact'} />;
     return <>
       <Demo>
-        <IFS.SegmentedControl size="s" value={blocked ? '40' : '100'} onChange={v => setBlocked(v === '40')} options={[{ value: '100', label: 'Readiness 100%' }, { value: '40', label: 'Readiness 40% (budget exceeded)' }]} />
+        <IFS.SegmentedControl size="s" narrowSelect aria-label="Readiness" /* a Select below 600 (audit round 4 M7) */ value={blocked ? '40' : '100'} onChange={v => setBlocked(v === '40')} options={[{ value: '100', label: 'Readiness 100%' }, { value: '40', label: 'Readiness 40% (budget exceeded)' }]} />
         <IFS.Button size="s" type="tertiary" onClick={reset}>Reset</IFS.Button>
       </Demo>
       <Screen>

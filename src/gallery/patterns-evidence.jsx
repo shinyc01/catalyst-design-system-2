@@ -252,7 +252,7 @@ export default IFS_GALLERY;
           <IFS.ReadinessStatus style={{ width: "100%" }} type="done" end="Passed">Strategic alignment</IFS.ReadinessStatus>
           <IFS.ReadinessStatus style={{ width: "100%" }} type="in-progress" indicators={[{ type: 'red', label: '0/1' }]}>Risk balance</IFS.ReadinessStatus>
           <IFS.ReadinessStatus style={{ width: "100%" }} type="in-progress" indicators={[{ type: 'red', label: '0/1' }, { type: 'orange', label: '0/2' }]}>Governance flags</IFS.ReadinessStatus>
-          <IFS.SegmentedControl size="m" defaultValue="q" options={[{ value: 'q', label: 'Open questions', counter: 2 }, { value: 'w', label: 'Warnings', counter: 2 }]} />
+          <IFS.SegmentedControl size="m" defaultValue="q" aria-label="Issue type" options={[{ value: 'q', label: 'Open questions', counter: 2 }, { value: 'w', label: 'Warnings', counter: 2 }]} />
           <IFS.Pager defaultPage={1} total={2} percent={0} onShowAll={noop} showAllLabel="All" />
           <div><div className="t-heading-h2-medium">Wildfire risk over-weighted</div><div className="t-body-l-regular" style={{ color: 'var(--color-text-soft)', marginTop: 'var(--space-100)' }}>V2 pulls capital into ignition mitigation</div></div>
           <div className="t-label-m-medium" style={{ color: 'var(--color-text-soft)' }}>Solutions</div>

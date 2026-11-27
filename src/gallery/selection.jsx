@@ -62,12 +62,12 @@ export default IFS_GALLERY;
 
   const seg = (n, extra = {}) => ['Overview', 'Details', 'History', 'Files', 'Notes'].slice(0, n).map((l, i) => ({ value: i, label: l, iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, ...extra }));
   IFS_GALLERY.push({ name: 'SegmentedControl', figma: 'segmented-control-organism (1387:244501) · segmented-control-atom (1387:244511)', render: () => <>
-    {[2, 3, 4, 5].map(n => <Row key={n} label={`number ${n}`}><SegmentedControl size="m" options={seg(n)} /><SegmentedControl size="s" options={seg(n)} /></Row>)}
+    {[2, 3, 4, 5].map(n => <Row key={n} label={`number ${n}`}><SegmentedControl size="m" aria-label="View" options={seg(n)} /><SegmentedControl size="s" aria-label="View" options={seg(n)} /></Row>)}
     {['m', 's'].map(z => <Row key={z} label={`states ${z}`}>
-      {[undefined, 'hover', 'pressed', 'focus'].map(s => <SegmentedControl key={s || 'd'} size={z} defaultValue={0} options={[{ value: 0, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }, { value: 1, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }]} />)}
-      <SegmentedControl size={z} defaultValue={0} options={[{ value: 0, label: 'label', counter: 3, disabled: true }, { value: 1, label: 'label', counter: 3, disabled: true }]} />
+      {[undefined, 'hover', 'pressed', 'focus'].map(s => <SegmentedControl key={s || 'd'} size={z} defaultValue={0} aria-label="Sample options" options={[{ value: 0, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }, { value: 1, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }]} />)}
+      <SegmentedControl size={z} defaultValue={0} aria-label="Sample options" options={[{ value: 0, label: 'label', counter: 3, disabled: true }, { value: 1, label: 'label', counter: 3, disabled: true }]} />
     </Row>)}
-    <Row label="fullWidth (355)"><div style={{ width: 355 }}><SegmentedControl size="s" fullWidth options={[{ value: 0, label: 'Versions' }, { value: 1, label: 'Approvals', counter: 2 }]} /></div></Row>
+    <Row label="fullWidth (355)"><div style={{ width: 355 }}><SegmentedControl size="s" fullWidth aria-label="Panel view" options={[{ value: 0, label: 'Versions' }, { value: 1, label: 'Approvals', counter: 2 }]} /></div></Row>
   </> });
 
   const MENU = [

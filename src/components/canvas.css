@@ -57,9 +57,8 @@
   backdrop-filter:blur(var(--blur-glass));-webkit-backdrop-filter:blur(var(--blur-glass));transition:background-color var(--motion-duration-50) var(--motion-ease-standard)}
 .ifs-node-card:focus-visible{outline:none}
 /* A11Y M4: the select toggle is one real button whose ::after covers the card; the card's other controls sit above it */
-.ifs-node-card__main{all:unset;position:static}
-.ifs-node-card__main::after{content:"";position:absolute;inset:0;border-radius:var(--radius-card);cursor:pointer}
-.ifs-node-card__main:disabled::after{cursor:not-allowed}
+.ifs-node-card__main{all:unset;position:absolute;inset:0;border-radius:var(--radius-card);cursor:pointer} /* the button itself covers the card, so magnifiers and touch readers get its real size (audit round 4 M2) */
+.ifs-node-card__main:disabled{cursor:not-allowed}
 .ifs-node-card :is(.ifs-node-card__check,.ifs-node-card__icons){position:relative;z-index:1}
 /* Solid types: dark colour fill, --color-border-soft stroke, on-solid text, --blur-10. */
 .ifs-node-card--solid{--nc-stroke:var(--color-border-soft);--nc-title:var(--color-text-on-solid);--nc-caption:var(--color-text-on-solid-soft);

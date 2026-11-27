@@ -90,7 +90,8 @@ const CHARTS = [
 const STATES = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'No data'], ['no-results', 'No results'], ['error', 'Error']];
 const DENS = ['spacious', 'comfortable', 'compact'];
 
-function Seg({ value, onChange, options }) { return h(I.SegmentedControl, { size: 's', value, onChange, options: options.map(o => (typeof o === 'string' ? { value: o, label: o[0].toUpperCase() + o.slice(1) } : o)) }); }
+// narrowSelect (audit round 4 M7): the review bar's controls become a Select below 600, so they never overflow at 320
+function Seg({ value, onChange, options, name }) { return h(I.SegmentedControl, { size: 's', narrowSelect: true, 'aria-label': name, value, onChange, options: options.map(o => (typeof o === 'string' ? { value: o, label: o[0].toUpperCase() + o.slice(1) } : o)) }); }
 const Cell = (cap, node, key) => h('div', { className: 'rv-cell', key: key || cap }, node, h('span', { className: 'rv-cap' }, cap));
 const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
@@ -121,9 +122,9 @@ function App() {
       h('h1', null, 'Data visualisation review · 2.0.7'),
       h('p', null, 'Every decision from the Nov 24 data viz round (D1–D9) in the coded kit: the chart card on the container rule with a fixed height, the header order, solid gridlines, legends by chart type, the hover and tooltip, the v2g palette, stacks and corners, and the four states. Hover a chart, or Tab to it and use the arrow keys; Esc closes the tooltip.')),
     h('div', { className: 'rv-bar' },
-      h('label', null, 'Density', h(Seg, { value: dens, onChange: setDens, options: DENS })),
-      h('label', null, 'State', h(Seg, { value: state, onChange: setState, options: STATES.map(([v, l]) => ({ value: v, label: l })) })),
-      h('label', null, 'Columns', h(Seg, { value: cols, onChange: setCols, options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }] }))),
+      h('label', null, 'Density', h(Seg, { name: 'Density', value: dens, onChange: setDens, options: DENS })),
+      h('label', null, 'State', h(Seg, { name: 'State', value: state, onChange: setState, options: STATES.map(([v, l]) => ({ value: v, label: l })) })),
+      h('label', null, 'Columns', h(Seg, { name: 'Columns', value: cols, onChange: setCols, options: [{ value: '1', label: '1' }, { value: '2', label: '2' }, { value: '3', label: '3' }, { value: '4', label: '4' }] }))),
 
     h('section', { className: 'rv-sec' }, h('h2', null, 'D1 · D2 · Every chart type (state and density from the bar above)'),
       h('p', null, 'Default card = 3 dashboard rows (the M stat card with an inline description: 116 / 100 / 84) + 2 page gaps: 380 / 332 / 284 (Spacious / Comfortable / Compact) at a 16 gap, more at the wider gaps from 1440 px; the plot fills what is left after the header and legend. Header (items 9, 11): H4 title with an optional subtitle · [hover / focus: Edit with Cooper (in ⋯ below 416 px), ⋯ with Move] · Chart / Table switch · Evidence; the drag handle sits in the start inset. The switch and Evidence hide while there is no data.'),
