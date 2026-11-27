@@ -5,13 +5,13 @@ Generated from `words.json` by `tools/gen-words.mjs` (2026-11-26); edit the JSON
 The Catalyst word list (rule 8.43). Terms are settled; a definition with "confirmed": false is a draft waiting for a product owner pass. A term's definition doubles as its hint-tooltip text (rule 8.49).
 
 **Organisation settings that change words**
-- entity name (a user setting, README → User settings): investment or project, default investment. An organisation may rename "investment" to "project"; copy takes the name from the setting.
+- entity name (an organisation setting, an admin sets it; README → User settings): investment or project, default investment. An organisation may rename "investment" to "project"; copy takes the name from the setting.
 
 ## 1. Terms
 
 | Term | Definition (= hint-tooltip text) | Don't use | Notes | Rule | Definition confirmed |
 |---|---|---|---|---|---|
-| investment | A piece of work that competes for funding, with one or more alternatives. | request, initiative, job | An organisation may rename it "project" (a user setting, `IFS.format.configure({ entity })`, read through `IFS.term`): copy takes the entity name from the setting and never hard-codes "investment" or "project". "Project" is not a banned word. | 8.9 | not yet (product owner) |
+| investment | A piece of work that competes for funding, with one or more alternatives. | request, initiative, job | An organisation may rename it "project" (an organisation setting, an admin sets it; `IFS.format.configure({ entity })`, read through `IFS.term`): copy takes the entity name from the setting and never hard-codes "investment" or "project". "Project" is not a banned word. | 8.9 | not yet (product owner) |
 | program | An investment type that groups related work. | — | A real investment type (decided Nov 26), not a level of portfolio. Whether an organisation may rename it is in the backlog. | 8.9 | yes |
 | alternative | One way to carry out an investment, with its own cost, timing and value. | option, variant, version, scenario | Distinct from scenario (a whole plan). "Option" stays fine for menu and radio choices, never for an alternative. | 8.9 | yes |
 | selected alternative | The alternative the plan currently uses for an investment. | chosen option, active alternative, preferred | One number per investment = the selected alternative. | 8.43 | not yet (product owner) |

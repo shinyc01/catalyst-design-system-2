@@ -1884,7 +1884,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative', zIndex: 9 }}>
-              <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
+              <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} backLabel="Back to Value frameworks" onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
                 views={<IFS.SegmentedControl size="s" defaultValue="map" aria-label="View" options={[{ value: 'grid', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'map', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />}
                 actions={<IFS.Inline as="span" gap="100" align="center">
@@ -2370,7 +2370,8 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeOpacity=".35" strokeWidth="3.7" />
           <polyline points={route} fill="none" stroke="var(--color-icon-danger)" strokeWidth=".5" strokeDasharray="2.6 1.7" />
         </svg>
-        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" scale={S} />, `o${i}`))}
+        {[[-3, -22], [80, -21], [230, -13], [83, 74]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" state="out-of-hover" label="Fault" scale={S}
+          {...(y < 0 ? { tabIndex: -1, 'aria-hidden': true } : {})} /* cut off by the frame: out of the Tab order, so focus never lands under the card header (audit round 4 M6) */ />, `o${i}`))}
         {[[135, 157], [186, 171], [252, 189], [306, 188], [358, 187]].map(([x, y], i) => at(x, y, <MapPinDot size="xs" label="Fault" scale={S} />, `d${i}`))}
         {at(230, 188, <MapPinDot size="xs" state="selected" label="Fault" scale={S} />, 'sel')}
         {at(314, 116, <MapPinDot size="s" label="Fault" scale={S} />, 's1')}{at(84, 142, <MapPinDot size="s" label="Fault" scale={S} />, 's2')}
@@ -2390,8 +2391,6 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
     const [sel, setSel] = React.useState(null);
     return (
       <div style={{ width: '100%', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '48px 1fr', gridTemplateRows: '200px 20px', gap: 'var(--space-100) 0', padding: 'var(--space-200) var(--space-250) 0' }}>
-        <div className="t-body-m-regular" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', color: 'var(--color-text-soft)' }}>
-          {['$2.5M', '$2M', '$1.5M', '$1M', '$0.5M', '$0'].map(t => <span key={t}>{t}</span>)}</div>
   // … cut; full example in src/gallery/patterns-documents.jsx
 ```
 
@@ -2602,7 +2601,7 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ```jsx
   IFS_GALLERY.push({ name: 'TableToolbar', figma: 'table card bar [patterns] (95:106479)', render: () => (
     <div style={{ width: 1000, padding: 'var(--space-400)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-secondary)' }}>
-      <TableToolbar filter={<IFS.SegmentedControl size="m" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
+      <TableToolbar filter={<IFS.SegmentedControl size="m" aria-label="Filter ideas" options={[{ value: 'all', label: 'All ideas', counter: 11 }, { value: 'p', label: 'Project ideas', counter: 8 }, { value: 'g', label: 'Program ideas', counter: 3 }]} />}
         search={<SmartSearch placeholder="Search ideas" />} onConfigure={() => {}} />
     </div>
   ) });
@@ -2879,12 +2878,12 @@ Working usage of each component, from the kit gallery (src/gallery). Printed by 
 ### SegmentedControl
 ```jsx
   IFS_GALLERY.push({ name: 'SegmentedControl', figma: 'segmented-control-organism (1387:244501) · segmented-control-atom (1387:244511)', render: () => <>
-    {[2, 3, 4, 5].map(n => <Row key={n} label={`number ${n}`}><SegmentedControl size="m" options={seg(n)} /><SegmentedControl size="s" options={seg(n)} /></Row>)}
+    {[2, 3, 4, 5].map(n => <Row key={n} label={`number ${n}`}><SegmentedControl size="m" aria-label="View" options={seg(n)} /><SegmentedControl size="s" aria-label="View" options={seg(n)} /></Row>)}
     {['m', 's'].map(z => <Row key={z} label={`states ${z}`}>
-      {[undefined, 'hover', 'pressed', 'focus'].map(s => <SegmentedControl key={s || 'd'} size={z} defaultValue={0} options={[{ value: 0, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }, { value: 1, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }]} />)}
-      <SegmentedControl size={z} defaultValue={0} options={[{ value: 0, label: 'label', counter: 3, disabled: true }, { value: 1, label: 'label', counter: 3, disabled: true }]} />
+      {[undefined, 'hover', 'pressed', 'focus'].map(s => <SegmentedControl key={s || 'd'} size={z} defaultValue={0} aria-label="Sample options" options={[{ value: 0, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }, { value: 1, label: 'label', iconLeft: 'system-star-favourite', iconRight: 'system-heart', counter: 3, state: s }]} />)}
+      <SegmentedControl size={z} defaultValue={0} aria-label="Sample options" options={[{ value: 0, label: 'label', counter: 3, disabled: true }, { value: 1, label: 'label', counter: 3, disabled: true }]} />
     </Row>)}
-    <Row label="fullWidth (355)"><div style={{ width: 355 }}><SegmentedControl size="s" fullWidth options={[{ value: 0, label: 'Versions' }, { value: 1, label: 'Approvals', counter: 2 }]} /></div></Row>
+    <Row label="fullWidth (355)"><div style={{ width: 355 }}><SegmentedControl size="s" fullWidth aria-label="Panel view" options={[{ value: 0, label: 'Versions' }, { value: 1, label: 'Approvals', counter: 2 }]} /></div></Row>
   </> });
 ```
 

@@ -1,6 +1,6 @@
 # IFS DS kit — component API
 
-Kit version 2.0.7, generated 2026-11-26. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
+Kit version 2.0.7, generated 2026-11-27. Everything is available as `IFS.<Name>` in a prototype. Each entry has a **Tier**: *Component* = a published IFS DS Figma component (build screens from these); *Pattern helper* = a working composition that implements a pattern's rules, not a Figma component (allowed, but name it as a pattern helper in the plan); *Layout primitive* = `Stack` / `Inline`, token-only spacing between things in a screen (Figma's auto layout; use them instead of writing your own flex + gap). Example screens are not in this list — see the Examples in Storybook.
 Each entry is the comment above the component in source (Figma name/node and props). For real usage of every variant,
 read the family's examples file (linked per family). **In handovers** = how often designers place it in the real product files and its usual variant. `IFS.Icon({ name, size: 12|16|24, variant })` takes Figma icon names — see icons.txt.
 
@@ -608,7 +608,7 @@ Figma: data-viz-header-molecule (2154:2068)
 Props: title (H4, --color-text, on every chart-card header: chart card and organism, Nov 25), subtitle (item 11: one line under the title,
 Body/M, ellipsis with the full text on hover),
 state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
-Right element: segments = SegmentedControl options (size S) with segmentValue/defaultSegmentValue/onSegmentChange,
+Right element: segments = SegmentedControl options (size M, rule 14.15) with segmentValue/defaultSegmentValue/onSegmentChange,
 or button = { label, onClick, iconRight } (Tertiary S). Hover row: drag handle (draggable), and ghost icon-buttons
 for onEdit / onDelete / onMore. hoverActions = custom hover-only node, viewSwitch = the chart card's Chart / Table switch (after the hover row),
 slot = always-visible end node (Figma "Slot"; the chart card's Evidence button).
@@ -913,7 +913,8 @@ Figma rule: tables show every row (no pagination). Filter with the `tabs` slot: 
 SegmentedControl there (prop "show-segmanted-control"); the canvas notes call it "tabs with counts".
 Props:
   columns = [{ key, title, width ('1fr' | 240 | 'auto'), align left|center|right (Figma Align=Left|Right; the header follows its column), sortable, sortValue(row), primary (medium-weight name column; default the first text column),
-              type text|number|description|counter|badge|status|check|user|user-description|custom, render(row), filter: { applied, onClick } }]
+              type text|number|description|counter|badge|status|check|user|user-description|custom, render(row), filter: { applied, onClick },
+              filterLabel (plain text for the filter button's name "Filter {filterLabel}" when title isn't a string; a console warning otherwise, audit round 4 H3) }]
     cell values by type: text → row[key]; number → row[key] (Figma Type=Number, right-aligned unless align is set); description → { text, description }; counter → { text, value, direction };
     badge → Badge props; status → { type, label, description }; check → label; user → { name, initials, type, description }.
   rows = [{ id, ...data }], groupBy = key or fn(row) → group title (group-row-molecule, expand/collapse), defaultCollapsed = [titles],
@@ -925,6 +926,7 @@ Props:
   title (show-table-name), tabs (show-segmanted-control), search (right side of the bar). Without title/tabs/search it renders the bare table.
   rowHeight = content-row min height in px (default 60, Figma content-row-molecule),
   rowProps(row) → { className, style, ...attributes } merged onto that content row (drag states, data-* hooks).
+The filter button's name (audit round 4 H3): plain text only, never "[object Object]" from an element title.
 `function Table({ columns = [], rows = [], groupBy, defaultCollapsed = [], collapsed: collapsedProp, onCollapsedChange, groupOrder, groupInfo, headerPerGroup, sort, defaultSort = null, onSortChange, selectedId, onRowClick, rowKey = 'id', rowHeight, rowProps, title, tabs, search, className, ...rest })`
 
 ### NotificationCard
@@ -1421,7 +1423,7 @@ Props: groups / value / defaultValue / onChange (the compare-dropdown), stats [{
 ### ActivityPanel
 **Tier:** Pattern helper
 The record's Activity panel ("Library - Strategy Framework - Activity panel", Patterns 52:87879): panel-organism (380px, full height)
-as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version history | Approval chain, only when the record has
+as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control M (Version history | Approval chain, only when the record has
 both), the Cooper smart search that filters the current view, then the version-history timeline or the approval chain.
 Version entries are kit VersionEntry (M marker = expand toggle; card = the version card): click the card or name to
 open that version read-only, ⋮ for Compare / Duplicate / Rename / Restore, the caret to expand the version's full activity log.
@@ -1637,7 +1639,7 @@ Props: open, person, mode invite (Invite) | edit (Save; always on, rule 14.4: wi
 ───────────────────────────── RemoveCollaboratorModal ─────────────────────────────
 Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + the consequence (body, default
 "They lose access."; the screen names its record) + Cancel / Remove. Props: open, person, title, body, onCancel, onConfirm, inline.
-`function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", body, onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)`
+`function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", body, onCancel, onConfirm, inline }) { // title: the screen's text (section 8 intro: component text is the screen's content)`
 
 ### useCollaboration
 **Tier:** Pattern helper
@@ -2155,7 +2157,7 @@ emptyHeading / emptyBody to override the copy.
 Figma: drawer-organism "Evidence chain" (Patterns 31:76682; same content in modal-organism 297:76633 on the empty-state frames).
 The floating drawer that shows the sources and reasoning steps behind one Cooper value (glass box).
 Header "Evidence chain" + ✕; content: EvidenceStrength (no title; captions <70% Reject · {value}% Review · >90% Approve),
-SegmentedControl S Rationale | Peer benchmark, then the tab:
+SegmentedControl M Rationale | Peer benchmark, then the tab:
   Rationale = EvidenceSection list (`rationale` = [{ title, items: [SourceCard props] }]) — never empty;
   Peer benchmark = PeerBenchmark props (`benchmark`; null/{ empty: true} → empty state, tab stays selectable).
 Props: open / defaultOpen / onOpenChange (✕ and Esc close), value (confidence %), thresholds,
@@ -2203,7 +2205,7 @@ Pattern: SideNavTree — navigation-panel-organism (sidebar-organism View=Expand
 folder tree, as the Plan stage draws it (Patterns 244:120655). Same shell as IFS.SideNav (title H4 in sentence case + collapse).
 Tree row: 32px, padding 8/8/8/4, caret (folders) + chat-folder 16 + Body/M/medium label; children indent 18px with a
 hairline guide. The open path (folders above the current row) gets a --color-border-soft outline; the current row also the
---color-state-current fill (hover --color-state-hover, pressed --color-state-pressed; rule 7.1). Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
+--color-state-selected fill (hover --color-state-hover, pressed --color-state-pressed; rule 7.1). Sections (e.g. "Ad hoc plans") = NavSubtitle + flat rows.
 Props: title, tree [{ id, label, folder (default: has children), children: [...] }], sections [{ label, action, items: [{ id, label }] }],
 value / defaultValue / onSelect(id, item), expanded / defaultExpanded (ids) / onExpandedChange,
 collapsed / defaultCollapsed / onCollapsedChange.
@@ -2280,7 +2282,7 @@ Props: children = full text (string), mode end|middle|start|wrap|segment (a tabl
 ### TableToolbar
 **Tier:** Pattern helper
 ───────────────────────────── Table toolbar ─────────────────────────────
-The bar above the table (Figma table-card "Frame" row, 40px): filter (SegmentedControl S with counts inside a table card,
+The bar above the table (Figma table-card "Frame" row, 40px): filter (SegmentedControl M with counts inside a table card,
 or Tabs with counts on library pages), search (SmartSearch), onConfigure → divider + Tertiary S icon-button system-filter-settings
 (opens the column settings). Props: filter, search, onConfigure, configureLabel, actions (extra nodes before the divider).
 `function TableToolbar({ filter, search, onConfigure, configureLabel = 'Table configuration', actions, className })`
@@ -2366,7 +2368,7 @@ Enter or ✓ submits, Esc or ✕ cancels. Props: value / defaultValue / onChange
 ### IssueKindSwitch
 **Tier:** Pattern helper
 ------------------------------------------------------------------------------------------ 
-Pattern helper: issue-kind switch — built from SegmentedControl. Segmented control between issue kinds (Figma: segmented-control-organism S with counters). Hidden when only one kind has
+Pattern helper: issue-kind switch — built from SegmentedControl. Segmented control between issue kinds (Figma: segmented-control-organism with counters; M, rule 14.15). Hidden when only one kind has
 items (Figma: "when one of the types is completely missing, the segmented control is hidden").
 `function IssueKindSwitch({ controller: c, className })`
 
@@ -2584,7 +2586,8 @@ and the native tooltip. M size: the segments are squares 4 smaller than the cont
 Every option needs a name: a visible label, or ariaLabel when it shows only an icon (a console warning says which, audit final H3).
 narrowSelect (audit final M10, decided Nov 26): with counts on any option, below 600 (content area, or the window outside AppShell) the
 same choice renders as a Select, "Label (count)", because the counted control doesn't fit; default on when an option has a counter.
-Pass false where the screen builds its own narrow form. The Select takes the group's aria-label / aria-labelledby.
+Pass false where the screen builds its own narrow form. The Select takes the group's aria-label / aria-labelledby; a console warning when
+a counted control has neither, because its narrow Select would have no name (audit round 4 H4, WCAG 4.1.2).
 `function SegmentedControl({ options = [], value, defaultValue, onChange, size = 'm' /* M by default; headers pass S (rule 14.15, Nov 26) */, fullWidth = false, iconOnly = false, narrowSelect, className, ...rest })`
 
 ### Chip
@@ -2658,7 +2661,7 @@ Props: width, height, shape bar|circle|block. Always aria-hidden, never focusabl
 
 ### LoadingRegion
 **Tier:** Component
-Loading wrapper for the component that owns async data (Skeleton notes, rules 7–9).
+Loading wrapper for the component that owns async data (rule 7.2: skeletons only in the component that owns the data; rule 8.23).
 Props: loading, skeleton (node shown while loading — a Loading variant or Skeleton blocks; omit for an unknown shape → Spinner),
 delay (ms before the skeleton shows; fast loads never flash, default 300), minDuration (ms it stays once shown, default 300),
 label (announced "Loading <label>" / "Loaded"), children = loaded content (or the empty state — decided by the caller after loading).
@@ -2688,9 +2691,9 @@ Props: size l|m, children = Prompt label, state hover|pressed|focus (gallery), d
 **Tier:** Component
 **In handovers:** placed 41× (Build) · usual: State=Hover (98%)
 Figma: cooper-chip-atom (3501:23480) — in-context marker where Cooper has a recommendation; click opens it.
-Props: children (default "1 Recommendation"), selected/defaultSelected/onChange (Figma State=Selected while its recommendation is open),
+Props: children (default "1 recommendation"), selected/defaultSelected/onChange (Figma State=Selected while its recommendation is open),
 disabled, state hover|focus (gallery), onClick.
-`function CooperChip({ children = '1 Recommendation', selected, defaultSelected = false, onChange, state, className, onClick, ...rest })`
+`function CooperChip({ children = '1 recommendation', selected, defaultSelected = false, onChange, state, className, onClick, ...rest })`
 
 ### ZoomSlider
 **Tier:** Component
