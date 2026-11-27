@@ -193,7 +193,7 @@ export default IFS_GALLERY;
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
-              <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
+              <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} backLabel="Back to Value frameworks" onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
                 views={<IFS.SegmentedControl size="s" defaultValue="map" aria-label="View" options={[{ value: 'grid', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'map', iconLeft: 'map-view-2d', ariaLabel: 'Map' }, { value: 'flow', iconLeft: 'map-views', ariaLabel: 'Map views' }]} />}
                 actions={<IFS.Inline as="span" gap="300" align="center">

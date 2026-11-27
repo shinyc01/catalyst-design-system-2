@@ -4,7 +4,7 @@ import { IFS } from './registry.js';
 // the thread callout (kit CommentThread) and the rules that tie them together.
 
 const cmCx = (...a) => IFS.cx(...a);
-// A11Y M7 (Nov 26): a Cooper avatar is named "Cooper" (rule 8.69), so a screen reader tells Cooper's comments apart.
+// A11Y M7 (Nov 26): a Cooper avatar is named "Cooper" (rule 9.22), so a screen reader tells Cooper's comments apart.
 const cmAvatar = a => (a && a.type === 'cooper' && !a.name && !a.label ? { ...a, label: 'Cooper' } : a);
 function useCmValue(value, defaultValue, onChange) {
   const [inner, setInner] = React.useState(defaultValue);

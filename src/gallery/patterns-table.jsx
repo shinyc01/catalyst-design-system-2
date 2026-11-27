@@ -282,7 +282,7 @@ export default IFS_GALLERY;
     <Screen h={1500}>
       <IFS.AppShell height={1500}
         navBar={<IFS.NavBar stages={STAGES} defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
-        header={<IFS.PageHeader title="Southern Feeder Replacement" id="INV-2025-0842" onBack={() => {}} onTitleMenu={() => {}} status={<IFS.Indicator type="purple" size="xs">Refining</IFS.Indicator>}
+        header={<IFS.PageHeader title="Southern Feeder Replacement" id="INV-2025-0842" onBack={() => {}} backLabel="Back to Investments" onTitleMenu={() => {}} status={<IFS.Indicator type="purple" size="xs">Refining</IFS.Indicator>}
           views={<div style={{ width: 360 }}><IFS.Stepper current={2} steps={['Shape', 'Review', 'Refine', 'Approve'].map(label => ({ label }))} /></div>}
           actions={<><IFS.Button type="secondary" size="s">Dismiss</IFS.Button><IFS.Button type="primary" size="s">Send for approval</IFS.Button></>} />}
         bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file' }} onUpload={() => {}} prompts={['Explain gaps in confidence', 'Draft value assessment']} />}>

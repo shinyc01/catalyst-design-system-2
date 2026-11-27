@@ -81,7 +81,7 @@ export default IFS_GALLERY;
           navBar={<IFS.NavBar stages={stages} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
           sideNav={<IFS.SideNav title="Value" items={valueNav} defaultValue="active" defaultCollapsed={sideCollapsed} />}
           header={<>
-            <IFS.PageHeader title="Q1 2026 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}} status={<Status />}
+            <IFS.PageHeader title="Q1 2026 Strategy Framework" onBack={() => {}} backLabel="Back to Value frameworks" onTitleMenu={() => {}} status={<Status />}
               views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'layout-gallery' }, { value: 'map', iconLeft: 'node-map' }, { value: 'tree', iconLeft: 'isolate-path' }]} />}
               actions={recCount > 0 ? <IFS.CooperChip selected={recSelected} onClick={onRecs}>{`${recCount} Recommendation${recCount === 1 ? '' : 's'}`}</IFS.CooperChip> : null} />
             <IFS.CanvasHeader columns={['Enterprise goals', 'Value framework', 'Strategic objectives', 'Value models', 'Measure output']} />

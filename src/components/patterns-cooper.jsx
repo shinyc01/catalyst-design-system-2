@@ -971,7 +971,7 @@ function CooperHistory({ chats, defaultChats = [], onChatsChange, folders, defau
       </>, 'Delete', () => { upd(modalIds, { trashed: true, pinned: false }); setModal(null); endSelect(); })}
       {modal && modal.kind === 'deleteFolders' && confirm(modalIds.length === 1 ? 'Delete this folder?' : 'Delete these folders?', <>
         <div className="ifs-confirm-list">{modalIds.map(id => <ConfirmDeleteCard key={id} icon={(fols.find(f => f.id === id) || {}).icon || 'chat-folder'} onRemove={modalIds.length > 1 ? () => dropId(id) : undefined}>{nameOf(id)}</ConfirmDeleteCard>)}</div>
-        <p className="ifs-confirm-note">Chats are not deleted. They are removed from the folder and stay in your history.</p>
+        <p className="ifs-confirm-note">Chats aren’t deleted. They’re removed from the folder and stay in your history. This cannot be undone.</p>
       </>, 'Delete', () => { setFols(fols.filter(f => !modalIds.includes(f.id))); setList(list.map(c => modalIds.includes(c.folder) ? { ...c, folder: undefined } : c)); if (modalIds.includes(open)) setOpen(null); setModal(null); endSelect(); })}
       {modal && modal.kind === 'move' && confirm('Move to folder', <>
         {modalIds.length > 1 && <div className="ifs-confirm-list" style={{ marginBottom: 'var(--space-300)' }}>{modalIds.map(id => <ConfirmDeleteCard key={id} onRemove={() => dropId(id)}>{nameOf(id)}</ConfirmDeleteCard>)}</div>}

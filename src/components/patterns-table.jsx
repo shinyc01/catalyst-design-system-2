@@ -306,7 +306,7 @@ function TruncatedText({ children, mode = 'end', className, tooltip = true }) {
 }
 
 // ───────────────────────────── Table toolbar ─────────────────────────────
-// The bar above the table (Figma table-card "Frame" row, 40px): filter (SegmentedControl S with counts inside a table card,
+// The bar above the table (Figma table-card "Frame" row, 40px): filter (SegmentedControl M with counts inside a table card,
 // or Tabs with counts on library pages), search (SmartSearch), onConfigure → divider + Tertiary S icon-button system-filter-settings
 // (opens the column settings). Props: filter, search, onConfigure, configureLabel, actions (extra nodes before the divider).
 function TableToolbar({ filter, search, onConfigure, configureLabel = 'Table configuration', actions, className }) {

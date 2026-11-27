@@ -178,7 +178,7 @@ export default IFS_GALLERY;
       <div style={{ ...shell, gridTemplateRows: '48px 40px 1fr 40px' }} aria-label={label}>
         <IFS.NavBar defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />
         <div style={{ position: 'relative' }}>
-          <IFS.PageHeader title={title} id="INV-2025-0842" onBack={noop} onTitleMenu={noop}
+          <IFS.PageHeader title={title} id="INV-2025-0842" onBack={noop} backLabel="Back to Investments" onTitleMenu={noop}
             status={<IFS.Indicator type="purple" size="xs">Shaping</IFS.Indicator>}
             actions={<>
               <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></IFS.Inline>
@@ -279,7 +279,7 @@ export default IFS_GALLERY;
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: '40px 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
-              <IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} onTitleMenu={noop}
+              <IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} backLabel="Back to Value frameworks" onTitleMenu={noop}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
                 views={<IFS.Inline as="span" gap="50">{[['node-map', 'Node map'], ['map-view-2d', 'Map'], ['map-views', 'Map views']].map(([i, l]) => <IFS.IconButton key={i} icon={i} label={l} type="ghost" size="s" />)}</IFS.Inline>}
                 actions={<>

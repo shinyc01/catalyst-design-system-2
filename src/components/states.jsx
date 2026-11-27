@@ -104,7 +104,7 @@ function Skeleton({ width = '100%', height = 16, shape = 'bar', className, style
   return <span aria-hidden="true" className={IFS.cx('ifs-sk', `ifs-sk--${shape}`, className)} style={{ width, height, ...style }} />;
 }
 
-// Loading wrapper for the component that owns async data (Skeleton notes, rules 7–9).
+// Loading wrapper for the component that owns async data (rule 7.2: skeletons only in the component that owns the data; rule 8.23).
 // Props: loading, skeleton (node shown while loading — a Loading variant or Skeleton blocks; omit for an unknown shape → Spinner),
 // delay (ms before the skeleton shows; fast loads never flash, default 300), minDuration (ms it stays once shown, default 300),
 // label (announced "Loading <label>" / "Loaded"), children = loaded content (or the empty state — decided by the caller after loading).
@@ -162,9 +162,9 @@ function PromptButton({ size = 'm', state, children, className, ...rest }) {
 }
 
 // Figma: cooper-chip-atom (3501:23480) — in-context marker where Cooper has a recommendation; click opens it.
-// Props: children (default "1 Recommendation"), selected/defaultSelected/onChange (Figma State=Selected while its recommendation is open),
+// Props: children (default "1 recommendation"), selected/defaultSelected/onChange (Figma State=Selected while its recommendation is open),
 // disabled, state hover|focus (gallery), onClick.
-function CooperChip({ children = '1 Recommendation', selected, defaultSelected = false, onChange, state, className, onClick, ...rest }) {
+function CooperChip({ children = '1 recommendation', selected, defaultSelected = false, onChange, state, className, onClick, ...rest }) {
   const [sel, setSel] = useStatesControlled(selected, defaultSelected, onChange);
   return (
     <button type="button" aria-pressed={sel} data-state={state}

@@ -133,7 +133,7 @@ function evidenceZone(value, thresholds = [70, 90]) {
 // Figma: drawer-organism "Evidence chain" (Patterns 31:76682; same content in modal-organism 297:76633 on the empty-state frames).
 // The floating drawer that shows the sources and reasoning steps behind one Cooper value (glass box).
 // Header "Evidence chain" + ✕; content: EvidenceStrength (no title; captions <70% Reject · {value}% Review · >90% Approve),
-// SegmentedControl S Rationale | Peer benchmark, then the tab:
+// SegmentedControl M Rationale | Peer benchmark, then the tab:
 //   Rationale = EvidenceSection list (`rationale` = [{ title, items: [SourceCard props] }]) — never empty;
 //   Peer benchmark = PeerBenchmark props (`benchmark`; null/{ empty: true} → empty state, tab stays selectable).
 // Props: open / defaultOpen / onOpenChange (✕ and Esc close), value (confidence %), thresholds,

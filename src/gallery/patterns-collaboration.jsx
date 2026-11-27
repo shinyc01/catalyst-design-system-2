@@ -112,7 +112,7 @@ export default IFS_GALLERY;
           <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 'var(--space-400)', boxShadow: 'inset calc(-1 * var(--border-width-default)) 0 0 var(--color-border-soft)' }}><IFS.ArrowButton label="Open navigation" /></div>
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative', zIndex: 9 }}>
-              <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} onTitleMenu={() => {}}
+              <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} backLabel="Back to Value frameworks" onTitleMenu={() => {}}
                 status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
                 views={<IFS.SegmentedControl size="s" defaultValue="map" aria-label="View" options={[{ value: 'grid', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'map', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />}
                 actions={<IFS.Inline as="span" gap="100" align="center">
@@ -169,7 +169,7 @@ export default IFS_GALLERY;
   function HeaderOnly({ preset }) {
     const c = useCollab(preset);
     return <div style={{ width: 700, border: '1px solid var(--color-border-soft)' }}>
-      <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
+      <IFS.PageHeader title="Q1 2027 Strategy Framework" onBack={() => {}} backLabel="Back to Value frameworks" status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
         actions={<IFS.Inline as="span" gap="100"><IFS.CollaboratorsMenu controller={c} /><IFS.CommentButton /></IFS.Inline>} />
     </div>;
   }

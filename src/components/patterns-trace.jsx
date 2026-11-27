@@ -156,7 +156,7 @@ function IssueAnswerField({ value, defaultValue = '', onChange, onSubmit, onCanc
 }
 
 /* ------------------------------------------------------------------------------------------ */
-// Pattern helper: issue-kind switch — built from SegmentedControl. Segmented control between issue kinds (Figma: segmented-control-organism S with counters). Hidden when only one kind has
+// Pattern helper: issue-kind switch — built from SegmentedControl. Segmented control between issue kinds (Figma: segmented-control-organism with counters; M, rule 14.15). Hidden when only one kind has
 // items (Figma: "when one of the types is completely missing, the segmented control is hidden").
 function IssueKindSwitch({ controller: c, className }) {
   if (c.present.length < 2) return null;

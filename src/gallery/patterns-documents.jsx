@@ -248,7 +248,7 @@ export default IFS_GALLERY;
       <div style={shell} aria-label={label}>
         <IFS.NavBar defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />
         <div style={{ position: 'relative' }}>
-          <IFS.PageHeader title="Southern Feeder Replacem…" id="INV-2025-0842" onBack={() => {}} onTitleMenu={() => {}}
+          <IFS.PageHeader title="Southern Feeder Replacem…" id="INV-2025-0842" onBack={() => {}} backLabel="Back to Investments" onTitleMenu={() => {}}
             status={<IFS.Indicator type="purple" size="xs">Refining</IFS.Indicator>}
             actions={<>
               <IFS.Inline as="span" gap="100"><IFS.Button type="tertiary" size="s" iconLeft="users-group">3/5</IFS.Button><IFS.CommentButton /></IFS.Inline>
@@ -286,7 +286,7 @@ export default IFS_GALLERY;
             : <IFS.SideNav title="Value" items={nav} defaultValue="active" />}
           <div style={{ display: 'grid', gridTemplateRows: 'auto auto 1fr 40px', minHeight: 0, minWidth: 0 }}>
             <div style={{ position: 'relative' }}>
-              <IFS.PageHeader title={draft ? 'Q1 2027 Strategy Framework' : 'Q1 2026 Strategy Framework'} onBack={draft ? () => {} : undefined} onTitleMenu={() => {}}
+              <IFS.PageHeader title={draft ? 'Q1 2027 Strategy Framework' : 'Q1 2026 Strategy Framework'} onBack={draft ? () => {} : undefined} backLabel="Back to Value frameworks" onTitleMenu={() => {}}
                 status={<IFS.Indicator type={draft ? 'gray' : 'green'} size="xs">{draft ? 'Draft' : 'Active'}</IFS.Indicator>}
                 views={<IFS.SegmentedControl size="s" defaultValue="map" options={[{ value: 'grid', iconLeft: 'node-map' }, { value: 'map', iconLeft: 'map-view-2d' }, { value: 'flow', iconLeft: 'map-views' }]} />}
                 actions={draft ? <IFS.Button type="secondary" size="s" disabled>Shape</IFS.Button> : <IFS.CooperChip />} />

@@ -265,7 +265,7 @@ function InviteCollaboratorModal({ open, person, mode = 'invite', title, default
 // ───────────────────────────── RemoveCollaboratorModal ─────────────────────────────
 // Pattern component: modal-organism "Remove this collaborator?": person card (avatar L) + the consequence (body, default
 // "They lose access."; the screen names its record) + Cancel / Remove. Props: open, person, title, body, onCancel, onConfirm, inline.
-function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", body, onCancel, onConfirm, inline }) { // title: the screen's text (rule 8)
+function RemoveCollaboratorModal({ open, person, title = "Remove this collaborator?", body, onCancel, onConfirm, inline }) { // title: the screen's text (section 8 intro: component text is the screen's content)
   if (!person) return null;
   return (
     <IFS.Modal open={open} onOpenChange={v => { if (!v) onCancel && onCancel(); }} title={title} width={440} inline={inline}

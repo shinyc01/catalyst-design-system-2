@@ -266,7 +266,7 @@ function Legend({ items = [], layout = 'inline', showValues = true, align = 'cen
 // Props: title (H4, --color-text, on every chart-card header: chart card and organism, Nov 25), subtitle (item 11: one line under the title,
 // Body/M, ellipsis with the full text on hover),
 // state default|hover (forced; real hover/focus of the header or its card also shows the hover row),
-// Right element: segments = SegmentedControl options (size S) with segmentValue/defaultSegmentValue/onSegmentChange,
+// Right element: segments = SegmentedControl options (size M, rule 14.15) with segmentValue/defaultSegmentValue/onSegmentChange,
 // or button = { label, onClick, iconRight } (Tertiary S). Hover row: drag handle (draggable), and ghost icon-buttons
 // for onEdit / onDelete / onMore. hoverActions = custom hover-only node, viewSwitch = the chart card's Chart / Table switch (after the hover row),
 // slot = always-visible end node (Figma "Slot"; the chart card's Evidence button).

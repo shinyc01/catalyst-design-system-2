@@ -222,7 +222,7 @@ export default IFS_GALLERY;
         <IFS.AppShell height={900}
           navBar={<IFS.NavBar stages={STAGES} defaultValue="build" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
           sideNav={<IFS.SideNav title="Investment" defaultCollapsed items={[{ id: 'overview', label: 'Investment overview' }]} defaultValue="overview" />}
-          header={<IFS.PageHeader title="Southern Feeder Replacement" id="INV-2025-0842" onBack={() => {}} onTitleMenu={() => {}}
+          header={<IFS.PageHeader title="Southern Feeder Replacement" id="INV-2025-0842" onBack={() => {}} backLabel="Back to Investments" onTitleMenu={() => {}}
             status={<IFS.Indicator type="purple" size="xs">Refining</IFS.Indicator>}
             views={<div style={{ width: 360 }}><IFS.Stepper current={2} steps={['Shape', 'Review', 'Refine', 'Approve'].map(label => ({ label }))} /></div>}
             actions={<>
@@ -268,7 +268,7 @@ export default IFS_GALLERY;
           navBar={<IFS.NavBar stages={STAGES} defaultValue="results" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
           sideNav={<IFS.SideNav title="Sections" items={REPORT_LAYOUT.sections.map(s => ({ id: s.id, label: s.title }))} value={sel}
             onSelect={id => { setSel(id); const el = document.querySelector(`[data-wb-section="${id}"]`); el && el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }} />}
-          header={<IFS.PageHeader title="Weekly portfolio outcomes" id="Edition 11" onBack={() => {}} onTitleMenu={() => {}}
+          header={<IFS.PageHeader title="Weekly portfolio outcomes" id="Edition 11" onBack={() => {}} backLabel="Back to Reports" onTitleMenu={() => {}}
             status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
             actions={<>
               <IFS.Button type="secondary" size="s" iconLeft="users-group">3/5</IFS.Button>

@@ -24,7 +24,7 @@
         "initiative",
         "job"
       ],
-      "notes": "An organisation may rename it \"project\" (a user setting, `IFS.format.configure({ entity })`, read through `IFS.term`): copy takes the entity name from the setting and never hard-codes \"investment\" or \"project\". \"Project\" is not a banned word.",
+      "notes": "An organisation may rename it \"project\" (an organisation setting, an admin sets it; `IFS.format.configure({ entity })`, read through `IFS.term`): copy takes the entity name from the setting and never hard-codes \"investment\" or \"project\". \"Project\" is not a banned word.",
       "rule": "8.9",
       "confirmed": false
     },

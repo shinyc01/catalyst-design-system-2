@@ -139,7 +139,7 @@ export default IFS_GALLERY;
 
   function Header({ status, step, actions }) {
     const [tone, label] = STATUS[status];
-    return <IFS.PageHeader title={FRAMEWORK} onBack={() => {}} onTitleMenu={() => {}}
+    return <IFS.PageHeader title={FRAMEWORK} onBack={() => {}} backLabel="Back to Value frameworks" onTitleMenu={() => {}}
       status={<IFS.Indicator type={tone} size="xs">{label}</IFS.Indicator>}
       views={<IFS.Inline gap="1100" align="center">
         <IFS.SegmentedControl size="s" defaultValue="overview" aria-label="View" options={[{ value: 'overview', iconLeft: 'overview', ariaLabel: 'Overview' }, { value: 'map', iconLeft: 'node-map', ariaLabel: 'Node map' }, { value: 'flow', iconLeft: 'capital-flow', ariaLabel: 'Capital flow' }]} />

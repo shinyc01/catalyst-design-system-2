@@ -213,7 +213,7 @@ const PA_VERSION_SUGGESTIONS = ['Show comments only', 'What did Cooper change au
 const PA_APPROVAL_SUGGESTIONS = ['Who hasn’t responded yet?', 'Who requested changes?', 'Who still needs to approve?'];
 
 // The record's Activity panel ("Library - Strategy Framework - Activity panel", Patterns 52:87879): panel-organism (380px, full height)
-// as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control S (Version history | Approval chain, only when the record has
+// as an over panel (no scrim; Figma drew it over overlay Type=Base), header ACTIVITY + ✕, a segmented control M (Version history | Approval chain, only when the record has
 // both), the Cooper smart search that filters the current view, then the version-history timeline or the approval chain.
 // Version entries are kit VersionEntry (M marker = expand toggle; card = the version card): click the card or name to
 // open that version read-only, ⋮ for Compare / Duplicate / Rename / Restore, the caret to expand the version's full activity log.

@@ -80,7 +80,7 @@ export default IFS_GALLERY;
     ] },
     { id: 'dist', label: 'Distribution', children: [{ id: 'dist-1', label: 'Urban feeders' }] },
   ];
-  const PLAN_SECTIONS = [{ label: 'Ad hoc plans', action: { icon: 'system-plus', label: 'New ad hoc plan', onClick: () => toast('New ad hoc plan') },
+  const PLAN_SECTIONS = [{ label: 'Ad hoc plans', action: { icon: 'system-plus', label: 'Create ad hoc plan', onClick: () => toast('Create ad hoc plan') },
     items: [{ id: 'ah1', label: 'All Transformer Investments' }, { id: 'ah2', label: 'Ridgeview Village — All Infrastructure' }, { id: 'ah3', label: 'Pluto Unit 4 Outage — 2026' }, { id: 'ah4', label: 'My investments' }] }];
   const findNode = (nodes, id) => { for (const n of nodes) { if (n.id === id) return n; const r = n.children && findNode(n.children, id); if (r) return r; } return null; };
 

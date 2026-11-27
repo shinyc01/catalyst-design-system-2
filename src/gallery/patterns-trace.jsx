@@ -119,7 +119,7 @@ export default IFS_GALLERY;
       <IFS.AppShell height={900}
         navBar={<IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: user, name: user }} />}
         sideNav={<IFS.SideNav title="Value" defaultCollapsed items={[{ id: 'review', label: 'Review' }]} defaultValue="review" />}
-        header={<IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} onTitleMenu={noop} status={status}
+        header={<IFS.PageHeader title="Copy of Q1 2026 Enterprise…" onBack={noop} backLabel="Back to Value frameworks" onTitleMenu={noop} status={status}
           views={<div style={{ width: 344 }}><IFS.Stepper steps={['Input', 'Shape', 'Review', 'Approve'].map(label => ({ label }))} current={stage} /></div>}
           actions={actions} />}
         bottom={<IFS.BottomSheet type="value" documents={{ label: '16 documents', icon: 'system-file', onClick: noop }} prompts={['Explain me the value impact', 'Evaluate publish risk']} />}>
@@ -167,7 +167,7 @@ export default IFS_GALLERY;
       <IFS.AppShell height={900}
         navBar={<IFS.NavBar stages={STAGES} defaultValue="value" hasNotifications user={{ initials: 'JP', name: 'J. Parker' }} />}
         sideNav={<IFS.SideNav title="Value" defaultCollapsed items={[{ id: 'map', label: 'Map' }]} defaultValue="map" />}
-        header={<><IFS.PageHeader title="Copy of Q2 2026 Strategy…" onBack={noop} onTitleMenu={noop} status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
+        header={<><IFS.PageHeader title="Copy of Q2 2026 Strategy…" onBack={noop} backLabel="Back to Value frameworks" onTitleMenu={noop} status={<IFS.Indicator type="gray" size="xs">Draft</IFS.Indicator>}
           views={<div style={{ width: 344 }}><IFS.Stepper steps={['Input', 'Shape', 'Review', 'Approve'].map(label => ({ label }))} current={1} /></div>}
           actions={<><IFS.Button type="tertiary" size="s" iconLeft="users-group">1/1</IFS.Button><IFS.CommentButton /><IFS.Button type="primary" size="s" disabled={shown}>Review</IFS.Button></>} />
           <IFS.CanvasHeader columns={COLS} /></>}
