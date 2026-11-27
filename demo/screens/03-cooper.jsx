@@ -100,7 +100,7 @@ function ScreenCooper({ bp, height }) {
               <CanvasConnector key={i} from={{ x: i * COOPER_NODE_STEP + COOPER_NODE_W, y: COOPER_NODE_H / 2 }} to={{ x: (i + 1) * COOPER_NODE_STEP, y: COOPER_NODE_H / 2 }} />
             ))}
           </CanvasBackground>
-          {chat === 'full' && <div style={{ position: 'absolute', top: 'var(--space-300)', insetInlineEnd: 'var(--page-margin)' }}>
+          {chat === 'full' && <div style={{ position: 'absolute', top: 'var(--space-300)', insetInlineEnd: 'var(--page-margin)', maxWidth: 'calc(100% - 2 * var(--page-margin))' /* 320 reflow (audit round 4 H5) */ }}>
             <ChatFullPanel {...panelProps} onResize={() => setChat('compact')} style={{ width: 'var(--region-panel)', height: 688, maxHeight: 'calc(100% - 24px)' }} />
           </div>}
           {chat === 'compact' && <div style={{ position: 'absolute', bottom: 'var(--space-300)', insetInlineEnd: 'var(--page-margin)' }}>

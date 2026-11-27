@@ -10,7 +10,7 @@ export default IFS_GALLERY;
     HistoryPanel, FolderContent, ConfirmDeleteCard, HistorySearch, AgentWindow, RecommendationGroup, RecommendationItem, RecommendationDetail,
     CooperChat, CooperHistory, CooperRecommendations } = IFS;
   const Row = ({ label, children, style }) => <div className="g-row" style={{ alignItems: 'flex-start', ...style }}><span className="g-label t-body-m-regular">{label}</span>{children}</div>;
-  const Cap = ({ title, children, w }) => <IFS.Stack gap="200" style={{ width: w }}><span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>{title}</span>{children}</IFS.Stack>;
+  const Cap = ({ title, children, w }) => <IFS.Stack gap="200" style={{ width: w, minWidth: 0, maxWidth: '100%' }} /* lets a panel fit a 320 window (audit round 4 H5) */><span className="t-label-m-medium" style={{ color: 'var(--color-text-softer)' }}>{title}</span>{children}</IFS.Stack>;
   // Cooper surfaces are glass: show them on the dark canvas they sit on in the product.
   const stage = { padding: 'var(--space-600)', borderRadius: 'var(--radius-floating)', background: 'var(--color-surface-canvas)' };
 

@@ -294,7 +294,7 @@ button.ifs-chat-card:focus-visible{outline:none;box-shadow:var(--focus-ring)}
 
 /* ---------- pattern screen helpers ---------- */
 .ifs-cooper-stage{position:relative;width:100%;height:100%;overflow:hidden}
-.ifs-cooper-float{position:absolute;z-index:var(--z-index-floating) /* C2 */;inset-inline-end:var(--cooper-compact-end);bottom:var(--cooper-compact-bottom)} /* default place; the position prop and dragging override it */
+.ifs-cooper-float{position:absolute;z-index:var(--z-index-floating) /* C2 */;max-inline-size:calc(100% - 2 * var(--float-inset)) /* 320 reflow (audit round 4 H5) */;inset-inline-end:var(--cooper-compact-end);bottom:var(--cooper-compact-bottom)} /* default place; the position prop and dragging override it */
 .ifs-cooper-fade{animation:ifs-cooper-in var(--motion-duration-200) var(--motion-ease-enter)} /* M3 Cooper exception: grows from 90% at the orb */
 @keyframes ifs-cooper-in{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:none}}
 .ifs-cooper-fade{transform-origin:100% 100%}

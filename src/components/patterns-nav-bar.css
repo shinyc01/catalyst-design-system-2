@@ -70,7 +70,8 @@
 @media (max-width:37.4375rem){
   .ifs-home-row-card{flex-wrap:wrap}
   .ifs-home-row-card--primary,.ifs-home-row-card--secondary{height:auto}
-  .ifs-home-row-card__body,.ifs-home-row-card--secondary .ifs-home-row-card__body{flex:1 1 0}
+  .ifs-home-row-card__body,.ifs-home-row-card--secondary .ifs-home-row-card__body{flex:1 1 calc(100% - var(--size-72))} /* the rest of the first row beside the rank, so the metrics wrap below */
+  .ifs-home-row-card__head > .ifs-sk,.ifs-home-row-card__text > .ifs-sk{max-width:100%}
   .ifs-home-row-card__title{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2}
   .ifs-home-row-card__metrics{flex-wrap:wrap;column-gap:var(--space-inset);row-gap:var(--space-stack)}
   .ifs-home-row-card__metric,.ifs-home-row-card__metric+.ifs-home-row-card__metric{width:auto}
@@ -83,7 +84,8 @@
 @container content (max-width:37.4375rem){
   .ifs-home-row-card{flex-wrap:wrap}
   .ifs-home-row-card--primary,.ifs-home-row-card--secondary{height:auto}
-  .ifs-home-row-card__body,.ifs-home-row-card--secondary .ifs-home-row-card__body{flex:1 1 0}
+  .ifs-home-row-card__body,.ifs-home-row-card--secondary .ifs-home-row-card__body{flex:1 1 calc(100% - var(--size-72))} /* the rest of the first row beside the rank, so the metrics wrap below */
+  .ifs-home-row-card__head > .ifs-sk,.ifs-home-row-card__text > .ifs-sk{max-width:100%}
   .ifs-home-row-card__title{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2}
   .ifs-home-row-card__metrics{flex-wrap:wrap;column-gap:var(--space-inset);row-gap:var(--space-stack)}
   .ifs-home-row-card__metric,.ifs-home-row-card__metric+.ifs-home-row-card__metric{width:auto}
